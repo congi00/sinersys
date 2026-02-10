@@ -11,9 +11,21 @@ export default function Header() {
         backdrop-blur-xl
         backdrop-saturate-150
         rounded-3xl
-        border border-white/30
-        shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
-        
+        border border-[#F4F7FA]/30
+        after:absolute after:inset-0
+        after:rounded-3xl
+        after:border after:border-[#F4F7FA]/20
+        after:pointer-events-none
+        shadow-[12px_12px_32px_rgba(0,0,0,0.18)]
+        relative overflow-hidden
+        before:absolute before:inset-0
+        before:bg-[linear-gradient(135deg,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.15)_40%,rgba(255,255,255,0)_70%)]
+        before:pointer-events-none">
+        <img
+            src="/logobianco.png"
+            alt="Logo Sinersys"
+            className="relative z-10 h-12 object-contain"
+        />
       </div>
     );
   }
