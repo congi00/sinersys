@@ -3,7 +3,6 @@
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { motion, useTransform, MotionValue } from "framer-motion";
-import { useEffect } from "react";
 
 interface Props {
   progressMotion: MotionValue<number>;
@@ -13,12 +12,11 @@ export default function HomePage({ progressMotion }: Props) {
   const homeTexts = useTranslations("homepage");
 
   // Crossfade
-  const slide0Opacity = useTransform(progressMotion, [0, 1], [1, 0]);
-  const slide1Opacity = useTransform(progressMotion, [0, 1], [0, 1]);
+  const slide0Opacity = useTransform(progressMotion, [0, 0.15], [1, 0]);
+  const slide0Y = useTransform(progressMotion, [0, 0.15], [0, -120]);
 
-  // Parallax verticale
-  const slide0Y = useTransform(progressMotion, [0, 1], [0, -60]);
-  const slide1Y = useTransform(progressMotion, [0, 1], [60, 0]);
+  const slide1Opacity = useTransform(progressMotion, [0.85, 1], [0, 1]);
+  const slide1Y = useTransform(progressMotion, [0.85, 1], [120, 0]);
 
   // Border radius animato (24px → 0px)
   const borderRadius = useTransform(progressMotion, [0, 1], [24, 0]);

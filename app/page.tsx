@@ -28,7 +28,7 @@ export default function Home() {
     requestAnimationFrame(raf)
 
     lenis.on("scroll", (e: { scroll: number; limit: number }) => {
-      const progress = Math.min(e.scroll / window.innerHeight, 1)
+      const progress = Math.min(e.scroll / e.limit, 1)
       progressMotion.set(progress)
     })
 
