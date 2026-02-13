@@ -31,21 +31,23 @@ export default function HomePage({ progressMotion }: Props) {
           "flex w-full h-full",
           "items-center justify-center",
           "text-center",
-          "font-extrabold",
           "bg-[#004D8A]",
           "overflow-hidden"
         )}
       >
-        <motion.div style={{ opacity: slide0Opacity, y: slide0Y }} className="absolute">
-          <h1 className="text-[2.25rem] text-white line-height-40">{homeTexts("slide0.title")}</h1>
-          <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20">
+        <motion.div style={{ opacity: slide0Opacity, y: slide0Y }} className="absolute px-[60px]">
+          <h1 className="text-[2.25rem] text-white line-height-40 font-extrabold">{homeTexts("slide0.title")}</h1>
+          <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20 font-medium">
             {homeTexts("slide0.subtitle")}
           </h2>
         </motion.div>
 
-        <motion.div style={{ opacity: slide1Opacity, y: slide1Y }} className="absolute">
-          <h1 className="text-[2.25rem] text-white line-height-40">{homeTexts("slide1.title")}</h1>
-          <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20">
+        <motion.div style={{ opacity: slide1Opacity, y: slide1Y }} className="absolute px-[60px]">
+          <h4 className="text-[1.25rem] mb-4 whitespace-pre-line text-[#D9D9D9] line-height-20 font-semibold ">
+            {homeTexts("slide1.suptitle")}
+          </h4>
+          <h1 className="text-[2.25rem] text-white line-height-40 font-extrabold">{homeTexts("slide1.title")}</h1>
+          <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20 font-medium ">
             {homeTexts("slide1.subtitle")}
           </h2>
         </motion.div>
