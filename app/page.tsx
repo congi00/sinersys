@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.1,
       smoothWheel: true,
     })
 
@@ -38,8 +38,8 @@ export default function Home() {
   }, [progressMotion])
 
   const smooth = useSpring(progressMotion, {
-    stiffness: 120,
-    damping: 30,
+    stiffness: 200,
+    damping: 20,
   })
 
   // Animazione padding wrapper
