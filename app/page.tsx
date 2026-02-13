@@ -1,49 +1,61 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import Lenis from '@studio-freight/lenis'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Lenis, { LenisOptions } from '@studio-freight/lenis'
 import Header from "./components/Header";
 import MenuButton from "./components/MenuButton";
+import HomePage from './containers/HomePage';
+
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const lenisRef = useRef<Lenis | null>(null)
+  const progressMotion = useMotionValue(0)
 
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t: number) =>
-        Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
     })
+
+    lenisRef.current = lenis
 
     function raf(time: number) {
       lenis.raf(time)
       requestAnimationFrame(raf)
     }
+
     requestAnimationFrame(raf)
 
-    lenis.on('scroll', ({ scroll }: { scroll: number }) => {
-      if (!containerRef.current) return
-
-      const maxScroll = 120 // px di scroll per arrivare a p-0
-      const clamped = Math.min(scroll, maxScroll)
-
-      // p-4 = 16px → 0px
-      const padding = 16 * (1 - clamped / maxScroll)
-
-      containerRef.current.style.padding = `${padding}px`
+    lenis.on("scroll", (e: { scroll: number; limit: number }) => {
+      const progress = Math.min(e.scroll / window.innerHeight, 1)
+      progressMotion.set(progress)
     })
 
     return () => {
       lenis.destroy()
     }
-  }, [])
+  }, [progressMotion])
+
+  const smooth = useSpring(progressMotion, {
+    stiffness: 120,
+    damping: 30,
+  })
+
+  // Animazione padding wrapper
+  const wrapperPadding = useTransform(smooth, [0, 1], [16, 0])
 
   return (
     <div 
-      ref={containerRef}
-      className="flex min-h-[100dvh] items-center justify-center p-4 bg-[#F4F7FA] flex-column">
-      <main className="flex min-h-[96dvh] w-full max-w-3xl flex-col items-center justify-between bg-[#004D8A] sm:items-start rounded-3xl">
+      className="min-h-[200vh] bg-[#F4F7FA]">
+      <main className="sticky top-0 flex h-screen w-full flex flex-col">
         <Header />
+        <motion.div
+          style={{ padding: wrapperPadding }}
+          className="flex flex-1 items-center justify-center"
+        >
+          <HomePage progressMotion={smooth} />
+        </motion.div>
         <MenuButton />
       </main>
     </div>

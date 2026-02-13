@@ -1,0 +1,19 @@
+{
+    "menu": {
+        "homepage": "HOMEPAGE",
+        "products": "PRODUCTS",
+        "about": "ABOUT US",
+        "contacts": "CONTACTS"
+    },
+    "homepage": {
+       "slide0":{
+            "title": "L'INNOVAZIONE CHE NASCE DALL'ESPERIENZA",
+            "subtitle": "Il futuro non sta arrivando. \n É qui. Ed è italiano."
+        },
+        "slide1":{
+            "suptitle": "SCOPRI APWEC",
+            "title": "IL GENERATORE CHE RISCRIVE LE REGOLE DELL’ENERGIA",
+            "subtitle": "Una tecnologia italiana brevettata che produce energia continua sfruttando la pressione atmosferica. Senza vento. Senza emissioni. 24/7."
+        }
+    }
+  }

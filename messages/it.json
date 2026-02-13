@@ -1,0 +1,12 @@
+{
+    "menu": {
+        "homepage": "HOMEPAGE",
+        "products": "I NOSTRI PRODOTTI",
+        "about": "LA NOSTRA STORIA",
+        "contacts": "CONTATTACI"
+    },
+    "homepage": {
+        "title": "L'INNOVAZIONE CHE NASCE DALL'ESPERIENZA",
+        "subtitle": "Il futuro non sta arrivando. \n É qui. Ed è italiano."
+    }
+  }

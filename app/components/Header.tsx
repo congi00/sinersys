@@ -1,6 +1,7 @@
 export default function Header() {
     return (
       <div className="flex mt-6 
+        fixed top-6 left-1/2 -translate-x-1/2 z-50
         min-w-[84vw] 
         min-h-[70px] 
         rounded-full 
@@ -17,9 +18,9 @@ export default function Header() {
         after:border after:border-[#F4F7FA]/20
         after:pointer-events-none
         shadow-[12px_12px_32px_rgba(0,0,0,0.18)]
-        relative overflow-hidden
+        overflow-hidden
         before:absolute before:inset-0
-        before:bg-[linear-gradient(135deg,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.15)_40%,rgba(255,255,255,0)_70%)]
+        before:bg-[linear-gradient(135deg,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.15)_10%,rgba(255,255,255,0)_20%)]
         before:pointer-events-none">
         <img
             src="/logobianco.png"
