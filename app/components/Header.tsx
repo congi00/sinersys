@@ -1,6 +1,6 @@
 export default function Header() {
     return (
-      <div className="flex mt-6 
+      <div className="flex mt-2
         fixed top-6 left-1/2 -translate-x-1/2 z-50
         min-w-[84vw] 
         min-h-[70px] 

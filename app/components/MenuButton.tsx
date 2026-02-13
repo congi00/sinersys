@@ -26,7 +26,7 @@ export default function MenuButton() {
   return (
     <div
       className={clsx(
-        "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 overflow-hidden",
+        "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 overflow-hidden",
         "p-4",
         "pt-8",
         "flex flex-col items-center justify-center",

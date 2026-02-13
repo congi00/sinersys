@@ -23,6 +23,11 @@ type Props = {
 export default async function RootLayout({children}: Props) {
   return (
     <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="theme-color" content="rgba(255,255,255,0.2)" />
+      </head>
       <body
         className={`
           ${leagueSpartan.variable} 
