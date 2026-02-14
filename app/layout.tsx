@@ -25,8 +25,7 @@ export default async function RootLayout({children}: Props) {
     <html lang="en">
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes"></meta>
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></meta>
-        <meta name="theme-color" content="#f4f4f4" />
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <body
         className={`
