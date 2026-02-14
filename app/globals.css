@@ -20,7 +20,7 @@
 }
 
 html, body {
-  background-color: var(--background);
+  /* background-color: var(--background); */
   color: var(--foreground);
   font-family: var(--font-league), sans-serif;
   padding-top: env(safe-area-inset-top);
@@ -29,18 +29,9 @@ html, body {
   padding-right: env(safe-area-inset-right);
 }
 
-html {
+/* html {
   background-color: var(--background);
-}
-
-html,body{
-  background-color: rgba(255, 255, 255, 0.01);
-    background-image: linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 1),
-        rgba(255, 255, 255, 1)
-    );
-}
+} */
 
 @keyframes slideUpFade {
   from {
