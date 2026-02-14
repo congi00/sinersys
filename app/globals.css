@@ -29,6 +29,10 @@ html, body {
   padding-right: env(safe-area-inset-right);
 }
 
+html {
+  background-color: var(--background);
+}
+
 @keyframes slideUpFade {
   from {
     opacity: 0;
@@ -50,8 +54,4 @@ html, body {
 
 .line-height-40 {
   line-height: 40px !important;
-}
-
-html, body{
-  background: linear-gradient(135deg, #f4f4f4, #f4f4f4);
 }
