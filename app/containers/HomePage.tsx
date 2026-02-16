@@ -27,6 +27,7 @@ export default function HomePage({ progressMotion }: Props) {
           borderRadius,
         }}
         className={clsx(
+          "relative",
           "flex w-full",
           "items-center justify-center",
           "text-center",
