@@ -6,19 +6,17 @@ import { motion, useTransform, MotionValue } from "framer-motion";
 
 interface Props {
   progressMotion: MotionValue<number>;
-  scrollYMotion: MotionValue<number>;
 }
 
-export default function HomePage({ progressMotion, scrollYMotion }: Props) {
+export default function HomePage({ progressMotion }: Props) {
   const homeTexts = useTranslations("homepage");
-  const fakePinY = useTransform(scrollYMotion, (value) => -value)
 
   // Crossfade
-  const slide0Opacity = useTransform(progressMotion, [0, 0.15], [1, 0]);
-  const slide0Y = useTransform(progressMotion, [0, 0.15], [0, -120]);
+  const slide0Opacity = useTransform(progressMotion, [0, 0.2], [1, 0]);
+  const slide0Y = useTransform(progressMotion, [0, 0.2], [0, -120]);
 
-  const slide1Opacity = useTransform(progressMotion, [0.85, 1], [0, 1]);
-  const slide1Y = useTransform(progressMotion, [0.85, 1], [120, 0]);
+  const slide1Opacity = useTransform(progressMotion, [0.6, 0.8], [0, 1]);
+  const slide1Y = useTransform(progressMotion, [0.6, 0.8], [120, 0]);
 
   // Border radius animato (24px → 0px)
   const borderRadius = useTransform(progressMotion, [0, 1], [24, 0]);
@@ -27,16 +25,15 @@ export default function HomePage({ progressMotion, scrollYMotion }: Props) {
       <motion.div
         style={{
           borderRadius,
-          y: fakePinY,
         }}
         className={clsx(
           "relative",
           "flex w-full",
+          "h-full",
           "items-center justify-center",
           "text-center",
           "bg-[#cccccc]",
           "overflow-hidden",
-          "h-[100dvh]"
         )}
       >
         <motion.div style={{ opacity: slide0Opacity, y: slide0Y }} className="absolute px-[60px]">
