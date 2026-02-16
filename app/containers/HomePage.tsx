@@ -6,10 +6,12 @@ import { motion, useTransform, MotionValue } from "framer-motion";
 
 interface Props {
   progressMotion: MotionValue<number>;
+  scrollYMotion: MotionValue<number>;
 }
 
-export default function HomePage({ progressMotion }: Props) {
+export default function HomePage({ progressMotion, scrollYMotion }: Props) {
   const homeTexts = useTranslations("homepage");
+  const fakePinY = useTransform(scrollYMotion, (value) => -value)
 
   // Crossfade
   const slide0Opacity = useTransform(progressMotion, [0, 0.15], [1, 0]);
@@ -25,6 +27,7 @@ export default function HomePage({ progressMotion }: Props) {
       <motion.div
         style={{
           borderRadius,
+          y: fakePinY,
         }}
         className={clsx(
           "relative",

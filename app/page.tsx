@@ -11,6 +11,7 @@ import HomePage from './containers/HomePage';
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null)
   const progressMotion = useMotionValue(0)
+  const scrollYMotion = useMotionValue(0)
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -30,6 +31,7 @@ export default function Home() {
     lenis.on("scroll", (e: { scroll: number; limit: number }) => {
       const progress = Math.min(e.scroll / e.limit, 1)
       progressMotion.set(progress)
+      scrollYMotion.set(e.scroll)
     })
 
     return () => {
@@ -47,14 +49,14 @@ export default function Home() {
 
   return (
     <div 
-      className="min-h-[200dvh] bg-[#F4F7FA]">
-      <main className="flex h-screen w-full flex flex-col">
+      className="bg-[#F4F7FA]">
+      <main className="flex w-full flex flex-col">
         <Header />
         <motion.div
           style={{ padding: wrapperPadding }}
           className="flex flex-1 items-center justify-center"
         >
-          <HomePage progressMotion={smooth} />
+          <HomePage progressMotion={smooth} scrollYMotion={scrollYMotion} />
         </motion.div>
         <MenuButton />
       </main>
