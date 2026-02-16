@@ -32,7 +32,6 @@ export default function HomePage({ progressMotion }: Props) {
           "text-center",
           "bg-[#cccccc]",
           "overflow-hidden",
-          "fixed inset-0",
           "h-[100dvh]"
         )}
       >
