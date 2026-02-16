@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <div 
       className="min-h-[200dvh] bg-[#F4F7FA]">
-      <main className="fixed inset-0 flex h-screen w-full flex flex-col">
+      <main className="flex h-screen w-full flex flex-col">
         <Header />
         <motion.div
           style={{ padding: wrapperPadding }}
