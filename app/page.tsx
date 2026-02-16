@@ -17,8 +17,6 @@ export default function Home() {
       smoothWheel: true,
     });
 
-    lenisRef.current = lenis;
-
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -27,9 +25,9 @@ export default function Home() {
     requestAnimationFrame(raf);
 
     lenis.on("scroll", (e: { scroll: number; limit: number }) => {
-      const progress = Math.min(e.scroll / e.limit, 1);
-      progressMotion.set(progress);
-    });
+      const progress = e.scroll / e.limit
+      progressMotion.set(progress)
+    })
 
     return () => {
       lenis.destroy();
@@ -45,15 +43,16 @@ export default function Home() {
   const wrapperPadding = useTransform(smooth, [0, 1], [16, 0]);
 
   return (
-    <div className="relative h-screen bg-[#F4F7FA] overflow-hidden">
-        <Header />
-        <motion.div
-          style={{ padding: wrapperPadding }}
-          className="flex w-full h-full items-center justify-center"
-        >
-          <HomePage progressMotion={smooth} />
-        </motion.div>
-        <MenuButton />
+    <div className="relative bg-[#F4F7FA]">
+      <div className="h-[200vh]" />
+      <Header />
+      <motion.div
+        style={{ padding: wrapperPadding }}
+        className="flex w-full h-full items-center justify-center fixed inset-0"
+      >
+        <HomePage progressMotion={smooth} />
+      </motion.div>
+      <MenuButton />
     </div>
   );
 }
