@@ -27,12 +27,13 @@ export default function HomePage({ progressMotion }: Props) {
           borderRadius,
         }}
         className={clsx(
-          "fixed inset-0",
-          "flex w-full h-full",
+          "flex w-full",
           "items-center justify-center",
           "text-center",
           "bg-[#cccccc]",
-          "overflow-hidden"
+          "overflow-hidden",
+          "fixed inset-0",
+          "h-[100dvh]"
         )}
       >
         <motion.div style={{ opacity: slide0Opacity, y: slide0Y }} className="absolute px-[60px]">
