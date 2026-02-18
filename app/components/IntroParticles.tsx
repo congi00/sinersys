@@ -63,7 +63,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
 
       particles.forEach((p) => {
         if (phase === 1 || phase === 2) {
-          const sync = Math.min(time / 11, 1);
+          const sync = Math.min(time / 13, 1);
           const speed = 1 + sync * 3;
           const amplitudeY = 10 + sync * 200;
           const wave = Math.sin(time * speed + p.offset * (1 - sync));
