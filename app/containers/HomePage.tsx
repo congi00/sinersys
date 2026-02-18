@@ -23,7 +23,7 @@ export default function HomePage({ progressMotion }: Props) {
   const slide1Y = useTransform(progressMotion, [0.6, 0.8], [120, 0]);
 
   // Border radius animato (24px → 0px)
-  const borderRadius = useTransform(progressMotion, [0, 1, 2], [24, 0, 24]);
+  const borderRadius = useTransform(progressMotion, [0, 1, 1.8, 2.3], [24, 0, 0, 24]);
 
   return (
     <motion.div

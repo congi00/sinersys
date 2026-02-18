@@ -53,7 +53,7 @@ export default function Home() {
   const frameY = useTransform(smooth, [1.5, 2.5], ["0%", "-100%"]);
 
   // Animazione padding wrapper
-  const wrapperPadding = useTransform(smooth, [0, 1, 1.3], [16, 0, 16]);
+  const wrapperPadding = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
   const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
 
   return (
