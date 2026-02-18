@@ -1,17 +1,28 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import Header from "./components/Header";
 import MenuButton from "./components/MenuButton";
 import HomePage from "./containers/HomePage";
+import clsx from "clsx";
+import IntroParticles from "./components/IntroParticles";
 
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
   const progressMotion = useMotionValue(0);
+  const [showIntro, setShowIntro] = useState(true);
 
   useEffect(() => {
+    if (showIntro) return;
+
     const lenis = new Lenis({
       duration: 0.1,
       smoothWheel: true,
@@ -25,9 +36,9 @@ export default function Home() {
     requestAnimationFrame(raf);
 
     lenis.on("scroll", (e: { scroll: number; limit: number }) => {
-      const progress = e.scroll / e.limit
-      progressMotion.set(progress)
-    })
+      const progress = (e.scroll / e.limit) * 2;
+      progressMotion.set(progress);
+    });
 
     return () => {
       lenis.destroy();
@@ -39,20 +50,34 @@ export default function Home() {
     damping: 20,
   });
 
+  const frameY = useTransform(smooth, [1, 2], ["0%", "-100%"]);
+
   // Animazione padding wrapper
-  const wrapperPadding = useTransform(smooth, [0, 1], [16, 0]);
+  const wrapperPadding = useTransform(smooth, [0, 1, 1.3], [16, 0, 16]);
+  const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
 
   return (
-    <div className="relative bg-[#F4F7FA]">
-      <div className="h-[200vh]" />
-      <Header />
-      <motion.div
-        style={{ padding: wrapperPadding }}
-        className="flex w-full h-full items-center justify-center fixed inset-0"
-      >
-        <HomePage progressMotion={smooth} />
-      </motion.div>
-      <MenuButton />
-    </div>
+    <>
+      <AnimatePresence>
+        {showIntro && <IntroParticles onFinish={() => setShowIntro(false)} />}
+      </AnimatePresence>
+      <div className="relative bg-[#F4F7FA]">
+        <div className="h-[200vh]" />
+        <Header />
+        <motion.div
+          style={{ padding: wrapperPadding, y: frameY }}
+          className={clsx(
+            "flex w-full h-full items-center justify-center inset-0 fixed"
+          )}
+        >
+          <HomePage progressMotion={smooth} />
+        </motion.div>
+        <motion.div
+          style={{ opacity: AboutOpacity }}
+          className="h-[100vh] flex items-start justify-center pt-20 bg-[red]"
+        ></motion.div>
+        <MenuButton />
+      </div>
+    </>
   );
 }

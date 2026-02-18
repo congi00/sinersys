@@ -2,12 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface SiteState {
   menuVisible: Boolean,
-  navigationState: Number
+  navigationState: Number,
+  hasPlayed: Boolean,
 }
 
 const initialState: SiteState = {
     menuVisible: false,
     navigationState: 0,
+    hasPlayed: false,
 }
 
 const siteSlice = createSlice({
@@ -25,9 +27,12 @@ const siteSlice = createSlice({
     },
     setNavigationState: (state, action: PayloadAction<Number>) => {
         state.navigationState = action.payload
-    }
+    },
+    setPlayed: (state) => {
+      state.hasPlayed = true;
+    },
   },
 })
 
-export const { setMenuVisible, setMenuNotVisible, setMenuVisibility, setNavigationState } = siteSlice.actions
+export const { setMenuVisible, setMenuNotVisible, setMenuVisibility, setNavigationState, setPlayed } = siteSlice.actions
 export default siteSlice.reducer
