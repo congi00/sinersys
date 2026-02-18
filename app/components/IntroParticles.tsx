@@ -11,7 +11,7 @@ type Props = {
 
 export default function IntroParticles({ onFinish, showIntro }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const phaseRef = useRef<1 | 2 | 3 | 4>(1); 
+  const phaseRef = useRef<1 | 2 | 3 | 4>(1);
   const [, forceRender] = useState(0);
 
   useEffect(() => {
@@ -21,8 +21,8 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     const dpr = Math.min(window.devicePixelRatio, 1.5);
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
-    canvas.style.width = "100vw";
-    canvas.style.height = "100vh";
+    canvas.style.width = "100dvw";
+    canvas.style.height = "100dvh";
     ctx.scale(dpr, dpr);
 
     const W = window.innerWidth;
@@ -52,10 +52,9 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     });
 
     function animate(now: number) {
-
       const delta = (now - lastTime) / 1000; // secondi reali
       lastTime = now;
-    
+
       time += delta * 2; // velocità globale vortice (2 = speed boost)
       ctx.clearRect(0, 0, W, H);
 
@@ -110,7 +109,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     setTimeout(() => {
       phaseRef.current = 4;
       forceRender((n) => n + 1); // aggiorna bg/logo
-    }, 6000);
+    }, 6100);
 
     setTimeout(() => {
       cancelAnimationFrame(frame);
@@ -125,9 +124,8 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
   return (
     <div
       className={clsx(
-        "inset-0 z-[9999] transition-colors duration-700",
-        phase >= 4 ? "bg-white" : "bg-blue-900",
-        showIntro ? "fixed" : "absolute"
+        "absolute inset-0 z-[9999] transition-colors duration-700",
+        phase >= 4 ? "bg-white" : "bg-blue-900"
       )}
     >
       <canvas ref={canvasRef} className="absolute inset-0" />

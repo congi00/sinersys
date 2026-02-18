@@ -57,7 +57,10 @@ export default function Home() {
   const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
 
   return (
-    <>
+    <div className={clsx(
+      "relative min-h-screen max-h-screen",
+      showIntro ? "overflow-hidden" : ""
+    )}>
       <AnimatePresence>
         {showIntro && <IntroParticles showIntro={showIntro} onFinish={() => setTimeout(() => setShowIntro(false), 10)} />}
       </AnimatePresence>
@@ -78,6 +81,6 @@ export default function Home() {
         ></motion.div>
         <MenuButton />
       </div>
-    </>
+    </div>
   );
 }
