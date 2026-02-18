@@ -9,7 +9,8 @@ type Props = {
 
 export default function IntroParticles({ onFinish }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [phase, setPhase] = useState<1 | 2 | 3 | 4>(1);
+  const phaseRef = useRef<1 | 2 | 3 | 4>(1); // 🔥 REF e non state
+  const [, forceRender] = useState(0); // solo per aggiornare bg/logo
 
   useEffect(() => {
     const canvas = canvasRef.current!;
@@ -40,9 +41,8 @@ export default function IntroParticles({ onFinish }: Props) {
       return {
         x: centerX + (Math.random() - 0.5) * BOX_W,
         y: centerY + (Math.random() - 0.5) * BOX_H,
-        baseX: centerX + (Math.random() - 0.5) * BOX_W,
         baseY: centerY + (Math.random() - 0.5) * BOX_H,
-        offset: colFactor * 6, // sequenza destra -> sinistra
+        offset: colFactor * 6,
         vx: 0,
         vy: 0,
       };
@@ -52,62 +52,43 @@ export default function IntroParticles({ onFinish }: Props) {
       ctx.clearRect(0, 0, W, H);
       time += 0.015;
 
-      particles.forEach((p, i) => {
+      const phase = phaseRef.current; // 🔥 sempre aggiornato
+
+      particles.forEach((p) => {
         if (phase === 1) {
-          // Onda desincronizzata lenta
           const sync = Math.min(time / 5, 1);
           const speed = 1 + sync * 3;
           const amplitudeY = 10 + sync * 200;
-          const amplitudeX = 5 + sync * 120;
-
           const wave = Math.sin(time * speed + p.offset * (1 - sync));
-
-          p.x =
-            p.baseX +
-            wave * amplitudeX;
-
-          p.y =
-            p.baseY +
-            wave * amplitudeY;
-        }
-
-        if (phase === 2) {
-          // accelerazione forte prima del collasso
+          p.y = p.baseY + wave * amplitudeY;
+        } else if (phase === 2) {
           const wave = Math.sin(time * 6);
-
-          p.x += wave * 4;
           p.y += wave * 8;
-        }
-
-        if (phase === 3) {
-          // Collasso in UN punto
+        } else if (phase === 3) {
           p.x += (centerX - p.x) * 0.15;
           p.y += (centerY - p.y) * 0.15;
-        }
-
-        if (phase === 4) {
-          // Big Bang + vagano nello spazio
+        } else if (phase === 4) {
+          // Se non hanno ancora velocità, generala
           if (p.vx === 0 && p.vy === 0) {
             const angle = Math.random() * Math.PI * 2;
-            const power = 6 + Math.random() * 8;
+            const power = 5 + Math.random() * 8;
             p.vx = Math.cos(angle) * power;
             p.vy = Math.sin(angle) * power;
           }
 
+          // Aggiorna posizione
           p.x += p.vx;
           p.y += p.vy;
 
-          // lieve frizione per vagare
-          p.vx *= 0.995;
-          p.vy *= 0.995;
+          // Piccola decelerazione
+          p.vx *= 0.99;
+          p.vy *= 0.99;
         }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
         ctx.fillStyle =
-          phase >= 4
-            ? "rgba(0,0,0,0.7)"
-            : "rgba(180,240,255,0.95)";
+          phase >= 4 ? "rgba(0,0,0,0.7)" : "rgba(180,240,255,0.95)";
         ctx.fill();
       });
 
@@ -116,14 +97,29 @@ export default function IntroParticles({ onFinish }: Props) {
 
     frame = requestAnimationFrame(animate);
 
-    // Timeline fluida
-    setTimeout(() => setPhase(2), 4000);
-    setTimeout(() => setPhase(3), 5200);
-    setTimeout(() => setPhase(4), 6000);
-    setTimeout(() => onFinish(), 8500);
+    // Timeline senza ri-render multipli
+    setTimeout(() => {
+      phaseRef.current = 2;
+    }, 4000);
+
+    setTimeout(() => {
+      phaseRef.current = 3;
+    }, 5200);
+
+    setTimeout(() => {
+      phaseRef.current = 4;
+      forceRender((n) => n + 1); // aggiorna bg/logo
+    }, 6000);
+
+    setTimeout(() => {
+      cancelAnimationFrame(frame);
+      onFinish();
+    }, 8500);
 
     return () => cancelAnimationFrame(frame);
-  }, [phase]);
+  }, []);
+
+  const phase = phaseRef.current;
 
   return (
     <div
@@ -136,9 +132,9 @@ export default function IntroParticles({ onFinish }: Props) {
       {phase >= 4 && (
         <motion.img
           src="/full-logo-sinersys.png"
-          initial={{ opacity: 0, scale: 0.6 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, scale: 0.6, filter: "invert(0)" }} // bianco originale
+          animate={{ opacity: 1, scale: 3, filter: "invert(1)" }} // diventa nero
+          transition={{ duration: 4 }}
           className="absolute inset-0 m-auto w-44"
         />
       )}
