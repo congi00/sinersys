@@ -36,6 +36,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
 
     let frame: number;
     let time = 0;
+    let lastTime = performance.now();
 
     const particles = new Array(COUNT).fill(0).map((_, i) => {
       const colFactor = i / COUNT;
@@ -50,15 +51,19 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
       };
     });
 
-    function animate() {
+    function animate(now: number) {
+
+      const delta = (now - lastTime) / 1000; // secondi reali
+      lastTime = now;
+    
+      time += delta * 2; // velocità globale vortice (2 = speed boost)
       ctx.clearRect(0, 0, W, H);
-      time += 0.015;
 
       const phase = phaseRef.current; // 🔥 sempre aggiornato
 
       particles.forEach((p) => {
         if (phase === 1 || phase === 2) {
-          const sync = Math.min(time / 9, 1);
+          const sync = Math.min(time / 11, 1);
           const speed = 1 + sync * 3;
           const amplitudeY = 10 + sync * 200;
           const wave = Math.sin(time * speed + p.offset * (1 - sync));
@@ -87,7 +92,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
         ctx.fillStyle =
-          phase >= 4 ? "rgba(0,0,0,0.7)" : "rgba(180,240,255,0.95)";
+          phase >= 4 ? "rgba(180,240,255,1)" : "rgba(180,240,255,0.95)";
         ctx.fill();
       });
 
