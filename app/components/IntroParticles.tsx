@@ -30,9 +30,9 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     const centerX = W / 2;
     const centerY = H / 2;
 
-    const COUNT = 700;
-    const BOX_W = 200;
-    const BOX_H = 30;
+    const COUNT = 900;
+    const BOX_W = 450;
+    const BOX_H = 70;
 
     let frame: number;
     let time = 0;
@@ -58,7 +58,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
 
       particles.forEach((p) => {
         if (phase === 1 || phase === 2) {
-          const sync = Math.min(time / 15, 1);
+          const sync = Math.min(time / 11, 1);
           const speed = 1 + sync * 3;
           const amplitudeY = 10 + sync * 200;
           const wave = Math.sin(time * speed + p.offset * (1 - sync));
@@ -70,7 +70,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
           // Se non hanno ancora velocità, generala
           if (p.vx === 0 && p.vy === 0) {
             const angle = Math.random() * Math.PI * 2;
-            const power = 5 + Math.random() * 8;
+            const power = 2 + Math.random() * 8;
             p.vx = Math.cos(angle) * power;
             p.vy = Math.sin(angle) * power;
           }
@@ -113,7 +113,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     setTimeout(() => {
       cancelAnimationFrame(frame);
       onFinish();
-    }, 8500);
+    }, 9000);
 
     return () => cancelAnimationFrame(frame);
   }, []);
@@ -131,13 +131,49 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
       <canvas ref={canvasRef} className="absolute inset-0" />
 
       {phase >= 4 && (
-        <motion.img
-          src="/full-logo-sinersys.png"
-          initial={{ opacity: 0, scale: 0.6, filter: "invert(0)" }} // bianco originale
-          animate={{ opacity: 1, scale: 3, filter: "invert(1)" }} // diventa nero
-          transition={{ duration: 4 }}
-          className="absolute inset-0 m-auto w-44"
-        />
+        <div className="inset-0 flex flex-col items-center justify-center mt-[300px]">
+          {/* Full Logo */}
+          <motion.img
+            src="/logoblu.svg"
+            initial={{ opacity: 0,  scale: 0.6, filter: "invert(0)" }} // bianco originale
+            animate={{ opacity: 1,  scale: 1 }} // diventa nero
+            transition={{ duration: 4 }}
+            className="mb-6 w-[90px]"
+          />
+          <motion.img
+            src="/full-logo-sinersys.png"
+            initial={{ opacity: 0, scale: 0.6, filter: "invert(0)" }} // bianco originale
+            animate={{ opacity: 1, scale: 2.8, filter: "invert(1)" }} // diventa nero
+            transition={{ duration: 1.5 }}
+            className="w-44"
+          />
+
+          {/* H1 con effetto lettera per lettera */}
+          <motion.h1
+            className="text-3xl font-regular text-[#000000] mt-8 flex overflow-hidden"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.08, // intervallo tra le lettere
+                },
+              },
+            }}
+          >
+            {"NEW ENERGY FRONTIERS".split("").map((char, index) => (
+              <motion.span
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+              >
+                {char === " " ? "\u00A0" : char} {/* mantiene gli spazi */}
+              </motion.span>
+            ))}
+          </motion.h1>
+        </div>
       )}
     </div>
   );

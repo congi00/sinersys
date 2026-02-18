@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <>
       <AnimatePresence>
-        {showIntro && <IntroParticles showIntro={showIntro} onFinish={() => setShowIntro(false)} />}
+        {showIntro && <IntroParticles showIntro={showIntro} onFinish={() => setTimeout(() => setShowIntro(false), 500)} />}
       </AnimatePresence>
       <div className="relative bg-[#F4F7FA]">
         <div className="h-[200vh]" />
