@@ -36,7 +36,7 @@ export default function Home() {
     requestAnimationFrame(raf);
 
     lenis.on("scroll", (e: { scroll: number; limit: number }) => {
-      const progress = (e.scroll / e.limit) * 2;
+      const progress = (e.scroll / e.limit) * 3;
       progressMotion.set(progress);
     });
 
@@ -50,7 +50,7 @@ export default function Home() {
     damping: 20,
   });
 
-  const frameY = useTransform(smooth, [1, 2], ["0%", "-100%"]);
+  const frameY = useTransform(smooth, [1.5, 2.5], ["0%", "-100%"]);
 
   // Animazione padding wrapper
   const wrapperPadding = useTransform(smooth, [0, 1, 1.3], [16, 0, 16]);
@@ -62,7 +62,7 @@ export default function Home() {
         {showIntro && <IntroParticles showIntro={showIntro} onFinish={() => setTimeout(() => setShowIntro(false), 10)} />}
       </AnimatePresence>
       <div className="relative bg-[#F4F7FA]">
-        <div className="h-[200vh]" />
+        <div className="h-[400vh]" />
         <Header />
         <motion.div
           style={{ padding: wrapperPadding, y: frameY }}

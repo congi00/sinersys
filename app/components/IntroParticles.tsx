@@ -11,8 +11,8 @@ type Props = {
 
 export default function IntroParticles({ onFinish, showIntro }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const phaseRef = useRef<1 | 2 | 3 | 4>(1); // 🔥 REF e non state
-  const [, forceRender] = useState(0); // solo per aggiornare bg/logo
+  const phaseRef = useRef<1 | 2 | 3 | 4>(1); 
+  const [, forceRender] = useState(0);
 
   useEffect(() => {
     const canvas = canvasRef.current!;
@@ -133,7 +133,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
       <canvas ref={canvasRef} className="absolute inset-0" />
 
       {phase >= 4 && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
           {/* Logo Blu */}
           <motion.img
             src="/logoblu.svg"

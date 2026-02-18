@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { motion, useTransform, MotionValue } from "framer-motion";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
+import { Canvas } from "@react-three/fiber";
+import HeroScene from "../components/HeroScene";
 
 interface Props {
   progressMotion: MotionValue<number>;
@@ -38,6 +40,16 @@ export default function HomePage({ progressMotion }: Props) {
         "overflow-hidden"
       )}
     >
+      <motion.div className="absolute inset-0 overflow-hidden">
+        <Canvas
+          dpr={[1, 1.5]}
+          gl={{ antialias: false }}
+          camera={{ position: [0, 0, 10], fov: 40 }}
+        >
+          <HeroScene progress={progressMotion} />
+        </Canvas>
+      </motion.div>
+
       <motion.div
         style={{ opacity: slide0Opacity, y: slide0Y }}
         className="absolute px-[60px]"
@@ -63,7 +75,11 @@ export default function HomePage({ progressMotion }: Props) {
         <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20 font-medium ">
           {homeTexts("slide1.subtitle")}
         </h2>
-        <LinkButton text={homeTexts("slide1.link")} link={""} icon={<ArrowUpRight size={20} className="text-white"></ArrowUpRight>}></LinkButton>
+        <LinkButton
+          text={homeTexts("slide1.link")}
+          link={""}
+          icon={<ArrowUpRight size={20} className="text-white"></ArrowUpRight>}
+        ></LinkButton>
       </motion.div>
     </motion.div>
   );
