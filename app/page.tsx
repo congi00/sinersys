@@ -43,7 +43,7 @@ export default function Home() {
     return () => {
       lenis.destroy();
     };
-  }, [progressMotion]);
+  }, [progressMotion,showIntro]);
 
   const smooth = useSpring(progressMotion, {
     stiffness: 200,

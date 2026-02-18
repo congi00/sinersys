@@ -55,15 +55,12 @@ export default function IntroParticles({ onFinish }: Props) {
       const phase = phaseRef.current; // 🔥 sempre aggiornato
 
       particles.forEach((p) => {
-        if (phase === 1) {
-          const sync = Math.min(time / 5, 1);
+        if (phase === 1 || phase === 2) {
+          const sync = Math.min(time / 15, 1);
           const speed = 1 + sync * 3;
           const amplitudeY = 10 + sync * 200;
           const wave = Math.sin(time * speed + p.offset * (1 - sync));
           p.y = p.baseY + wave * amplitudeY;
-        } else if (phase === 2) {
-          const wave = Math.sin(time * 6);
-          p.y += wave * 8;
         } else if (phase === 3) {
           p.x += (centerX - p.x) * 0.15;
           p.y += (centerY - p.y) * 0.15;
