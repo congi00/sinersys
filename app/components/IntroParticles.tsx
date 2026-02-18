@@ -62,15 +62,12 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
       const phase = phaseRef.current; // 🔥 sempre aggiornato
 
       particles.forEach((p) => {
-        if (phase === 1 || phase === 2) {
+        if (phase === 1 || phase === 2 || phase === 3) {
           const sync = Math.min(time / 13, 1);
           const speed = 1 + sync * 3;
           const amplitudeY = 10 + sync * 200;
           const wave = Math.sin(time * speed + p.offset * (1 - sync));
           p.y = p.baseY + wave * amplitudeY;
-        } else if (phase === 3) {
-          p.x += (centerX - p.x) * 0.15;
-          p.y += (centerY - p.y) * 0.15;
         } else if (phase === 4) {
           // Se non hanno ancora velocità, generala
           if (p.vx === 0 && p.vy === 0) {
@@ -92,7 +89,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
         ctx.fillStyle =
-          phase >= 4 ? "rgba(180,240,255,1)" : "rgba(180,240,255,0.95)";
+          phase >= 4 ? "rgba(97, 188, 211, 1)" : "rgba(180,240,255,0.95)";
         ctx.fill();
       });
 
