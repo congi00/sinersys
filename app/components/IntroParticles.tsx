@@ -131,19 +131,25 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
       <canvas ref={canvasRef} className="absolute inset-0" />
 
       {phase >= 4 && (
-        <div className="inset-0 flex flex-col items-center justify-center mt-[300px]">
+        <div className="inset-0 flex flex-col items-center justify-center mt-[350px]">
           {/* Full Logo */}
           <motion.img
             src="/logoblu.svg"
-            initial={{ opacity: 0,  scale: 0.6, filter: "invert(0)" }} // bianco originale
-            animate={{ opacity: 1,  scale: 1 }} // diventa nero
-            transition={{ duration: 4 }}
+            initial={{ opacity: 0, scale: 0.6, }}
+            animate={{ opacity: 1, scale: 1,  }}
+            exit={{
+              scale: 0,
+              opacity: 0,
+              transition: { duration: 0.1 },
+            }}
+            transition={{ duration: 2 }}
             className="mb-6 w-[90px]"
           />
           <motion.img
             src="/full-logo-sinersys.png"
-            initial={{ opacity: 0, scale: 0.6, filter: "invert(0)" }} // bianco originale
-            animate={{ opacity: 1, scale: 2.8, filter: "invert(1)" }} // diventa nero
+            initial={{ opacity: 0, scale: 0.6, filter: "invert(0)" }}
+            animate={{ opacity: 1, scale: 2.8, filter: "invert(1)" }}
+            exit={{ opacity: 0, scale: 0, transition: { duration: 0.1 } }}
             transition={{ duration: 1.5 }}
             className="w-44"
           />
@@ -153,10 +159,11 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
             className="text-3xl font-regular text-[#000000] mt-8 flex overflow-hidden"
             initial="hidden"
             animate="visible"
+            exit={{ opacity: 0, scale: 0, transition: { duration: 0.1 } }}
             variants={{
               visible: {
                 transition: {
-                  staggerChildren: 0.08, // intervallo tra le lettere
+                  staggerChildren: 0.02,
                 },
               },
             }}
@@ -169,7 +176,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
                   visible: { opacity: 1, y: 0 },
                 }}
               >
-                {char === " " ? "\u00A0" : char} {/* mantiene gli spazi */}
+                {char === " " ? "\u00A0" : char}
               </motion.span>
             ))}
           </motion.h1>
