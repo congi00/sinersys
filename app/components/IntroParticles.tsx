@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import clsx from "clsx";
 
 type Props = {
   onFinish: () => void;
+  showIntro: Boolean;
 };
 
-export default function IntroParticles({ onFinish }: Props) {
+export default function IntroParticles({ onFinish, showIntro }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const phaseRef = useRef<1 | 2 | 3 | 4>(1); // 🔥 REF e non state
   const [, forceRender] = useState(0); // solo per aggiornare bg/logo
@@ -120,9 +122,11 @@ export default function IntroParticles({ onFinish }: Props) {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] transition-colors duration-700 ${
-        phase >= 4 ? "bg-white" : "bg-blue-900"
-      }`}
+      className={clsx(
+        "inset-0 z-[9999] transition-colors duration-700",
+        phase >= 4 ? "bg-white" : "bg-blue-900",
+        showIntro ? "fixed" : "absolute"
+      )}
     >
       <canvas ref={canvasRef} className="absolute inset-0" />
 
