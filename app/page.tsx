@@ -14,6 +14,7 @@ import MenuButton from "./components/MenuButton";
 import HomePage from "./containers/HomePage";
 import clsx from "clsx";
 import IntroParticles from "./components/IntroParticles";
+import HomePageAbout from "./containers/HomePageAbout";
 
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -65,7 +66,7 @@ export default function Home() {
         {showIntro && <IntroParticles showIntro={showIntro} onFinish={() => setTimeout(() => setShowIntro(false), 10)} />}
       </AnimatePresence>
       <div className="relative bg-[#F4F7FA]">
-        <div className="h-[400vh]" />
+        <div className="h-[500vh]" />
         <Header />
         <motion.div
           style={{ inset: wrapperInset, y: frameY }}
@@ -77,8 +78,10 @@ export default function Home() {
         </motion.div>
         <motion.div
           style={{ opacity: AboutOpacity }}
-          className="h-[100vh] flex items-start justify-center pt-20 bg-[red]"
-        ></motion.div>
+          className="h-[100svh] flex items-start justify-center pt-20 bg-[red]"
+        >
+          <HomePageAbout progressMotion={smooth} />
+        </motion.div>
         <MenuButton />
       </div>
     </div>

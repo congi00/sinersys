@@ -1,0 +1,78 @@
+"use client";
+
+import clsx from "clsx";
+import { useTranslations } from "next-intl";
+import { motion, useTransform, MotionValue } from "framer-motion";
+import LinkButton from "../components/LinkButton";
+import { ArrowUpRight } from "@deemlol/next-icons";
+import { Canvas } from "@react-three/fiber";
+import HeroScene from "../components/HeroScene";
+import { useRef, useEffect } from "react";
+
+interface Props {
+  progressMotion: MotionValue<number>;
+}
+
+export default function HomePageAbout({ progressMotion }: Props) {
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
+  const homeTexts = useTranslations("homepage");
+
+  // Crossfade
+  const slide0Opacity = useTransform(progressMotion, [0, 0.2], [1, 0]);
+  const slide0Y = useTransform(progressMotion, [0, 0.2], [0, -120]);
+
+  const slide1Opacity = useTransform(progressMotion, [0.6, 0.8], [0, 1]);
+  const slide1Y = useTransform(progressMotion, [0.6, 0.8], [120, 0]);
+
+  // Border radius animato (24px → 0px)
+  const borderRadius = useTransform(progressMotion, [0, 1, 1.8, 2.3], [24, 0, 0, 24]);
+
+  useEffect(() => {
+    const container = canvasContainerRef.current;
+    if (!container) return;
+  
+    const ro = new ResizeObserver(() => {
+      window.dispatchEvent(new Event("resize"));
+    });
+  
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <motion.div
+      style={{
+        borderRadius,
+      }}
+      className={clsx(
+        "relative",
+        "flex w-full",
+        "h-full",
+        "items-center justify-center",
+        "text-left",
+        "overflow-hidden"
+      )}
+    >
+
+      <motion.div
+        style={{ opacity: slide1Opacity, y: slide1Y }}
+        className="absolute px-[60px]"
+      >
+        <h4 className="text-[1.25rem] mb-4 whitespace-pre-line text-[#D9D9D9] line-height-20 font-semibold ">
+          {homeTexts("slide2.suptitle")}
+        </h4>
+        <h1 className="text-[2.25rem] text-white line-height-40 font-extrabold">
+          {homeTexts("slide2.title")}
+        </h1>
+        <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20 font-medium ">
+          {homeTexts("slide2.subtitle")}
+        </h2>
+        <LinkButton
+          text={homeTexts("slide2.link")}
+          link={""}
+          icon={<ArrowUpRight size={20} className="text-white"></ArrowUpRight>}
+        ></LinkButton>
+      </motion.div>
+    </motion.div>
+  );
+}

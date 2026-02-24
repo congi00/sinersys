@@ -43,7 +43,7 @@ export default function MenuButton() {
         "before:bg-[linear-gradient(135deg,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.15)_10%,rgba(255,255,255,0)_20%)]",
         "before:pointer-events-none",
         !menuVisibility &&
-          "min-h-[90px] min-w-[90px] max-h-[90px] max-w-[90px] mb-6 rounded-[999px]",
+          "min-h-[70px] min-w-[70px] max-h-[70px] max-w-[70px] mb-6 rounded-[999px]",
         menuVisibility &&
           "min-h-[280px] md:min-w-[550px] max-h-[320px] min-w-[350px] mb-6 bg-[#1A2127]/20 rounded-[28px]"
       )}
@@ -115,15 +115,15 @@ export default function MenuButton() {
       >
         {!menuVisibility && (
           <AlignCenter
-            size="48px"
+            size="40px"
             color="#F4F7FA"
-            className="cursor-pointer mb-1"
+            className="cursor-pointer mt-1"
             onClick={() => dispatch(setMenuVisibility(!menuVisibility))}
           />
         )}
         {menuVisibility && (
           <ChevronDown
-            size="48px"
+            size="40px"
             color="#F4F7FA"
             className="cursor-pointer"
             onClick={() => dispatch(setMenuVisibility(!menuVisibility))}
