@@ -22,7 +22,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
     canvas.style.width = "100dvw";
-    canvas.style.height = "100dvh";
+    canvas.style.height = "100svh";
     ctx.scale(dpr, dpr);
 
     const W = window.innerWidth;
