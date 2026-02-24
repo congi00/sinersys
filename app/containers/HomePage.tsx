@@ -7,12 +7,14 @@ import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import { Canvas } from "@react-three/fiber";
 import HeroScene from "../components/HeroScene";
+import { useRef, useEffect } from "react";
 
 interface Props {
   progressMotion: MotionValue<number>;
 }
 
 export default function HomePage({ progressMotion }: Props) {
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
   const homeTexts = useTranslations("homepage");
 
   // Crossfade
@@ -24,6 +26,18 @@ export default function HomePage({ progressMotion }: Props) {
 
   // Border radius animato (24px → 0px)
   const borderRadius = useTransform(progressMotion, [0, 1, 1.8, 2.3], [24, 0, 0, 24]);
+
+  useEffect(() => {
+    const container = canvasContainerRef.current;
+    if (!container) return;
+  
+    const ro = new ResizeObserver(() => {
+      window.dispatchEvent(new Event("resize"));
+    });
+  
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, []);
 
   return (
     <motion.div
@@ -40,11 +54,12 @@ export default function HomePage({ progressMotion }: Props) {
         "overflow-hidden"
       )}
     >
-      <motion.div className="absolute inset-0 overflow-hidden">
+      <motion.div ref={canvasContainerRef} className="absolute inset-0 overflow-hidden">
         <Canvas
           dpr={[1, 1.5]}
           gl={{ antialias: false }}
           camera={{ position: [0, 0, 10], fov: 40 }}
+          resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
         >
           <HeroScene progress={progressMotion} />
         </Canvas>

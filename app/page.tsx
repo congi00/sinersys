@@ -50,10 +50,10 @@ export default function Home() {
     damping: 20,
   });
 
-  const frameY = useTransform(smooth, [1.5, 2.5], ["0%", "-100%"]);
+  const frameY = useTransform(smooth, [1.5, 2.5], ["0%", "-105%"]);
 
   // Animazione padding wrapper
-  const wrapperPadding = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
+  const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
   const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
 
   return (
@@ -68,9 +68,9 @@ export default function Home() {
         <div className="h-[400vh]" />
         <Header />
         <motion.div
-          style={{ padding: wrapperPadding, y: frameY }}
+          style={{ inset: wrapperInset, y: frameY }}
           className={clsx(
-            "flex w-full h-full items-center justify-center inset-0 fixed"
+            "flex items-center justify-center fixed"
           )}
         >
           <HomePage progressMotion={smooth} />
