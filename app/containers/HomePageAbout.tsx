@@ -23,18 +23,32 @@ export default function HomePageAbout({ progressMotion }: Props) {
 
   const slide1Opacity = useTransform(progressMotion, [0.6, 0.8], [0, 1]);
   const slide1Y = useTransform(progressMotion, [0.6, 0.8], [120, 0]);
+  const titleColor = useTransform(
+    progressMotion,
+    [2.1, 2.12],
+    ["#004D8A", "#F4F7FA"]
+  );
+  const subtitleColor = useTransform(
+    progressMotion,
+    [2.1, 2.12],
+    ["#5C8BAF32", "#F4F7FA82"]
+  );
 
   // Border radius animato (24px → 0px)
-  const borderRadius = useTransform(progressMotion, [0, 1, 1.8, 2.3], [24, 0, 0, 24]);
+  const borderRadius = useTransform(
+    progressMotion,
+    [0, 1, 1.8, 2.3],
+    [24, 0, 0, 24]
+  );
 
   useEffect(() => {
     const container = canvasContainerRef.current;
     if (!container) return;
-  
+
     const ro = new ResizeObserver(() => {
       window.dispatchEvent(new Event("resize"));
     });
-  
+
     ro.observe(container);
     return () => ro.disconnect();
   }, []);
@@ -53,20 +67,32 @@ export default function HomePageAbout({ progressMotion }: Props) {
         "overflow-hidden"
       )}
     >
-
       <motion.div
         style={{ opacity: slide1Opacity, y: slide1Y }}
         className="absolute px-[60px]"
       >
-        <h4 className="text-[1.25rem] mb-4 whitespace-pre-line text-[#D9D9D9] line-height-20 font-semibold ">
+        <motion.h4
+          className="text-[1.25rem] mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] line-height-20 font-semibold flex items-center"
+          style={{ color: subtitleColor }}
+        >
+          <motion.div
+            className="h-[3px] w-[50px] bg-[#5C8BAF62] [shadow:0_0px_0px_rgba(0,0,0,0.2)] mr-2"
+            style={{ backgroundColor: subtitleColor }}
+          ></motion.div>
           {homeTexts("slide2.suptitle")}
-        </h4>
-        <h1 className="text-[2.25rem] text-white line-height-40 font-extrabold">
+        </motion.h4>
+        <motion.h1
+          className="text-[2.25rem] line-height-40 font-extrabold"
+          style={{ color: titleColor }}
+        >
           {homeTexts("slide2.title")}
-        </h1>
-        <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20 font-medium ">
+        </motion.h1>
+        <motion.h2
+          className="text-[1.25rem] mt-4 whitespace-pre-line line-height-20 font-medium "
+          style={{ color: titleColor }}
+        >
           {homeTexts("slide2.subtitle")}
-        </h2>
+        </motion.h2>
         <LinkButton
           text={homeTexts("slide2.link")}
           link={""}
