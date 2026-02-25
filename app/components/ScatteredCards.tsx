@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import clsx from "clsx";
+import { useState } from "react";
 
 type CardItem = {
   id: string;
@@ -16,7 +17,7 @@ type CardItem = {
 };
 
 type Props = {
-  items: CardItem[]; // deve essere 5
+  items: CardItem[];
   progress: MotionValue<number>;
   spreadStart?: number;
   spreadEnd?: number;
@@ -29,7 +30,8 @@ export default function ScatteredCards({
   spreadEnd = 3.4,
 }: Props) {
 
-  // curva 0 → 1 → 0
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
   const spreadProgress = useTransform(
     progress,
     [spreadStart, (spreadStart + spreadEnd) / 2, spreadEnd],
@@ -41,7 +43,6 @@ export default function ScatteredCards({
     damping: 20,
   });
 
-  // Layout fisso per 5 card
   const layout = [
     { x: -120, y: -270, rotate: -42 },
     { x: 80, y: -260, rotate: 26 },
@@ -68,19 +69,24 @@ export default function ScatteredCards({
         return (
           <motion.div
             key={item.id}
+            onClick={() => setActiveIndex(index)}
             style={{
               x,
               y,
               rotate,
               scale,
-              zIndex: 10 - index,
+              zIndex:
+                activeIndex === index
+                  ? 50
+                  : 10 - index,
             }}
             className={clsx(
               "absolute w-[300px] h-[420px]",
               "rounded-3xl overflow-hidden",
               "shadow-[0_30px_60px_rgba(0,0,0,0.25)]",
-              "bg-white p-3"
+              "bg-white p-[6px] cursor-pointer",
             )}
+            whileTap={{ scale: 1.08 }}
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden">
               <Image
@@ -90,10 +96,8 @@ export default function ScatteredCards({
                 className="object-cover"
               />
 
-              {/* overlay sfumatura */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-              {/* label */}
               <div className="absolute bottom-5 left-5 right-5 text-white text-lg font-medium leading-snug">
                 {item.label}
               </div>

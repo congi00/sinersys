@@ -26,7 +26,7 @@ export default function HomePageAbout({ progressMotion }: Props) {
   const titleColor = useTransform(
     progressMotion,
     [2.1, 2.12],
-    ["#004D8A", "#F4F7FA"]
+    ["#1c398e", "#F4F7FA"]
   );
   const subtitleColor = useTransform(
     progressMotion,

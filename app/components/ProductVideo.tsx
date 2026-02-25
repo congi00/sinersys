@@ -6,7 +6,7 @@ const ProductVideo = forwardRef<THREE.Mesh>((_, ref) => {
 
   useEffect(() => {
     const video = document.createElement("video");
-    video.src = "/product-loop.mp4";
+    video.src = "/cta.mp4";
     video.loop = true;
     video.muted = true;
     video.playsInline = true;
