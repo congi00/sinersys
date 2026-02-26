@@ -8,6 +8,11 @@ import { ArrowUpRight } from "@deemlol/next-icons";
 import { Canvas } from "@react-three/fiber";
 import HeroScene from "../components/HeroScene";
 import { useRef, useEffect } from "react";
+import ContactDrawer from "../components/ContactDrawer";
+import {
+  setOpenContact,
+} from "../features/counterSlice";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 interface Props {
   progressMotion: MotionValue<number>;
@@ -15,6 +20,8 @@ interface Props {
 
 export default function HomePage({ progressMotion }: Props) {
   const canvasContainerRef = useRef<HTMLDivElement>(null);
+  const openContact = useAppSelector((state) => state.siteState.openContact);
+  const dispatch = useAppDispatch();
   const homeTexts = useTranslations("homepage");
 
   // Crossfade
@@ -92,10 +99,15 @@ export default function HomePage({ progressMotion }: Props) {
         </h2>
         <LinkButton
           text={homeTexts("slide1.link")}
-          link={""}
+          link={"apwec"}
           icon={<ArrowUpRight size={20} className="text-white"></ArrowUpRight>}
         ></LinkButton>
       </motion.div>
+
+      <ContactDrawer
+        open={openContact}
+        onClose={() => dispatch(setOpenContact(false))}
+      />
     </motion.div>
   );
 }

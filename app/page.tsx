@@ -19,6 +19,7 @@ import ScatteredCards from "./components/ScatteredCards";
 import OurPromise from "./components/OurPromise";
 import { useTranslations } from "next-intl";
 import CallToActionHome from "./components/CallToActionHome";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -154,6 +155,7 @@ export default function Home() {
         </motion.div>
         <MenuButton />
       </motion.div>
+      <Footer />
     </div>
   );
 }

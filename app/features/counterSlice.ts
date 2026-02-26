@@ -4,12 +4,14 @@ interface SiteState {
   menuVisible: Boolean,
   navigationState: Number,
   hasPlayed: Boolean,
+  openContact: Boolean,
 }
 
 const initialState: SiteState = {
     menuVisible: false,
     navigationState: 0,
     hasPlayed: false,
+    openContact: false,
 }
 
 const siteSlice = createSlice({
@@ -31,8 +33,11 @@ const siteSlice = createSlice({
     setPlayed: (state) => {
       state.hasPlayed = true;
     },
+    setOpenContact: (state, action: PayloadAction<Boolean>) => {
+      state.openContact = action.payload
+    },
   },
 })
 
-export const { setMenuVisible, setMenuNotVisible, setMenuVisibility, setNavigationState, setPlayed } = siteSlice.actions
+export const { setMenuVisible, setMenuNotVisible, setMenuVisibility, setNavigationState, setPlayed, setOpenContact } = siteSlice.actions
 export default siteSlice.reducer

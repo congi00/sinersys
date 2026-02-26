@@ -95,7 +95,7 @@ export default function HomePageAbout({ progressMotion }: Props) {
         </motion.h2>
         <LinkButton
           text={homeTexts("slide2.link")}
-          link={""}
+          link={"/about-us"}
           icon={<ArrowUpRight size={20} className="text-white"></ArrowUpRight>}
         ></LinkButton>
       </motion.div>

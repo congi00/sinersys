@@ -1,10 +1,15 @@
 "use client";
 
-import { ReactElement, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ReactElement, useRef, useState } from "react";
+import Link from "next/link";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import clsx from "clsx";
-import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
 
 interface Props {
   link: string;
@@ -13,20 +18,17 @@ interface Props {
 }
 
 export default function LinkButton({ link, text, icon }: Props) {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  // Mouse tracking
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
 
   const springX = useSpring(mx, { stiffness: 120, damping: 12 });
   const springY = useSpring(my, { stiffness: 120, damping: 12 });
 
-  // Liquid stretch
   const stretchX = useTransform(springX, [-50, 50], [0.95, 1.05]);
   const stretchY = useTransform(springY, [-50, 50], [1.05, 0.95]);
 
-  // Blob morph radius
   const blobRadius = useTransform(
     springX,
     [-50, 0, 50],
@@ -45,7 +47,7 @@ export default function LinkButton({ link, text, icon }: Props) {
     setTimeout(() => setPopping(false), 600);
   }
 
-  function handleMove(e: React.MouseEvent<HTMLAnchorElement>) {
+  function handleMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
 
@@ -62,17 +64,14 @@ export default function LinkButton({ link, text, icon }: Props) {
   }
 
   return (
-    <motion.a
-      ref={ref}
-      href={link}
-      onMouseMove={handleMove}
-      onMouseLeave={reset}
-      onClick={triggerPop}
-      onFocus={triggerPop}
-      whileTap={{ scale: 0.94 }}
-      className="relative inline-flex mt-8"
-    >
+    <Link href={link} className="inline-flex mt-8">
       <motion.div
+        ref={ref}
+        onMouseMove={handleMove}
+        onMouseLeave={reset}
+        onClick={triggerPop}
+        onFocus={triggerPop}
+        whileTap={{ scale: 0.94 }}
         style={{
           scaleX: stretchX,
           scaleY: stretchY,
@@ -99,14 +98,11 @@ export default function LinkButton({ link, text, icon }: Props) {
       >
         {text}
 
-        {/* Liquid Circle */}
         <AnimatePresence>
           {!popping && (
             <motion.div
               key="bubble"
-              style={{
-                borderRadius: blobRadius,
-              }}
+              style={{ borderRadius: blobRadius }}
               initial={{ scale: 1 }}
               animate={{ scale: 1 }}
               exit={{
@@ -125,8 +121,7 @@ export default function LinkButton({ link, text, icon }: Props) {
                 "w-12 h-12",
                 "flex items-center justify-center",
                 "backdrop-blur-md",
-                "bg-white/20 border border-white/30",
-                "shadow-[0_0_0px_rgba(255,255,255,0.6)]"
+                "bg-white/20 border border-white/30"
               )}
             >
               {icon}
@@ -134,6 +129,6 @@ export default function LinkButton({ link, text, icon }: Props) {
           )}
         </AnimatePresence>
       </motion.div>
-    </motion.a>
+    </Link>
   );
 }

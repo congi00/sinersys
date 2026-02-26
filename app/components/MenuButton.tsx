@@ -4,10 +4,12 @@ import { AlignCenter, ChevronDown } from "@deemlol/next-icons";
 import {
   setMenuVisibility,
   setNavigationState,
+  setOpenContact,
 } from "../features/counterSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import clsx from "clsx";
 import {useTranslations} from 'next-intl';
+import { useState } from "react";
 
 export default function MenuButton() {
   const menuVisibility = useAppSelector((state) => state.siteState.menuVisible);
@@ -102,6 +104,7 @@ export default function MenuButton() {
                 onClick={() => {
                     dispatch(setNavigationState(index))
                     dispatch(setMenuVisibility(!menuVisibility))
+                    if(item === "contacts") dispatch(setOpenContact(true))
                 }}
               >
                 {menuVoices(item)}
