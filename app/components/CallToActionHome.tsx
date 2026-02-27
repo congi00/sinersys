@@ -51,7 +51,7 @@ export default function CallToActionHome({ progressMotion }: Props) {
         "items-center justify-center",
         "text-center",
         "bg-[#cccccc]",
-        "overflow-hidden"
+        "overflow-hidden",
       )}
     >
       <motion.div ref={canvasContainerRef} className="absolute inset-0 overflow-hidden">

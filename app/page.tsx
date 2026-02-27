@@ -21,7 +21,7 @@ import { useTranslations } from "next-intl";
 import CallToActionHome from "./components/CallToActionHome";
 import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
-import { useViewportHeight } from "./support/useViewportHeight";
+import { detectIOS } from "./support/useViewportHeight";
 
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -30,7 +30,6 @@ export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
   const homeTexts = useTranslations("homepage");
   const openContact = useAppSelector((state) => state.siteState.openContact);
-  const vh = useViewportHeight();
 
   useEffect(() => {
     if (showIntro) return;
@@ -71,7 +70,7 @@ export default function Home() {
   const frameY = useTransform(smooth, [1.5, 2.5], ["0%", "-105%"]);
   const frameYAbout = useTransform(smooth, [2.0, 3.0], ["-270%", "-300%"]);
   const frameYCards = useTransform(smooth, [2.5, 3.5], ["-270%", "-300%"]);
-  const frameYPromise = useTransform(smooth, [2.0, 3.5], ["0vh", "0vh"]);
+  const frameYPromise = useTransform(smooth, [2.0, 3.5], ["0lvh", "0lvh"]);
   const frameYCTA = useTransform(smooth, [5.0, 6.0], ["105%", "-105%"]);
   const bgColor = useTransform(smooth, [2.1, 2.2, 4], ["#F4F7FA", "#1c398e", "linear-gradient(rgb(28, 57, 142) 89%, rgb(81, 118, 252) 94%, rgb(247, 251, 255) 100%)"]);
 
@@ -96,7 +95,7 @@ export default function Home() {
 
   const heroHeight = useTransform(
     wrapperInset,
-    (v) => `calc(${vh} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+    (v) => `calc(100${detectIOS() ? "lvh" : "dvh"} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
   );
   
   const heroTop = useTransform(
@@ -136,12 +135,19 @@ export default function Home() {
         </motion.div>
         <motion.div
           style={{ opacity: AboutOpacity, y: frameYAbout }}
-          className="h-[100vh] flex items-start justify-center"
+          className={clsx(
+            detectIOS() ? "h-[100lvh]" : "h-[100dvh]", 
+            "flex items-start justify-center"
+          )}
+          
         >
           <HomePageAbout progressMotion={smooth} />
         </motion.div>
         <motion.div
-          className="h-[50vh] flex items-start justify-center"
+          className={clsx(
+            detectIOS() ? "h-[50lvh]" : "h-[50dvh]", 
+            "flex items-start justify-center"
+          )}
           style={{ y: frameYCards }}
         >
           <ScatteredCards
@@ -177,7 +183,10 @@ export default function Home() {
         </motion.div>
         
         <motion.div
-          className="h-[100vh] flex items-start justify-center px-5"
+          className={clsx(
+            detectIOS() ? "h-[100lvh]" : "h-[100dvh]", 
+            "flex items-start justify-center px-5"
+          )}
           style={{ y: frameYPromise }}
         >
             <OurPromise

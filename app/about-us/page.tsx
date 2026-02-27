@@ -12,6 +12,8 @@ import AboutUsContainer from "../containers/AboutUsContainer";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuButton from "../components/MenuButton";
+import clsx from "clsx";
+import { detectIOS } from "../support/useViewportHeight";
 
 export default function AboutUsPage() {
   const progressMotion = useMotionValue(0);
@@ -53,7 +55,7 @@ export default function AboutUsPage() {
       <Header />
 
       <motion.div className="relative bg-[#f4f4fa]">
-        <div className="h-[300vh]" />
+        <div className={clsx(detectIOS() ? "h-[300lvh]" : "h-[300dvh]")}/>
 
         <motion.div
           style={{ inset: wrapperInset }}

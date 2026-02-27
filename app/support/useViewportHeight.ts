@@ -1,40 +1,45 @@
 "use client";
-
 import { useEffect, useState } from "react";
 
-export function useViewportHeight() {
-  const [height, setHeight] = useState<string>("100dvh");
+export function useFullViewportHeight() {
+  const [height, setHeight] = useState<number>(window.innerHeight);
 
   useEffect(() => {
-    const el = document.createElement("div");
-    el.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 1px;
-      bottom: 0;
-      pointer-events: none;
-      visibility: hidden;
-    `;
-    document.body.appendChild(el);
+    const updateHeight = () => {
+      let h = window.innerHeight;
 
-    const measure = () => {
-      // Un elemento fixed con top:0 e bottom:0 si estende
-      // fino al bordo REALE del viewport inclusa la tab bar glass
-      const h = el.getBoundingClientRect().height;
-      setHeight(`${h}px`);
+      // Se visualViewport disponibile, usalo (include keyboard, tab bar mobile)
+      if (window.visualViewport) {
+        h = window.visualViewport.height;
+      }
+
+      setHeight(h);
     };
 
-    measure();
-    window.addEventListener("resize", measure);
-    window.addEventListener("orientationchange", measure);
+    updateHeight();
+
+    window.addEventListener("resize", updateHeight);
+    window.addEventListener("orientationchange", updateHeight);
+
+    // Aggiorna anche su scroll per Safari glass edition
+    window.addEventListener("scroll", updateHeight);
 
     return () => {
-      document.body.removeChild(el);
-      window.removeEventListener("resize", measure);
-      window.removeEventListener("orientationchange", measure);
+      window.removeEventListener("resize", updateHeight);
+      window.removeEventListener("orientationchange", updateHeight);
+      window.removeEventListener("scroll", updateHeight);
     };
   }, []);
 
   return height;
 }
+
+export function detectIOS() {
+    const ua = navigator.userAgent;
+  
+    const iOS =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  
+    return iOS;
+  }

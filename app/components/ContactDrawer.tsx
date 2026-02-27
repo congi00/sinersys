@@ -28,7 +28,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
             animate={{ opacity: 0.6 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black backdrop-blur-sm z-40 rounded-3xl"
           />
 
           {/* DRAWER */}
@@ -38,7 +38,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
             exit={{ y: "-100%" }}
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
             style={{ textAlign: "left"}}
-            className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#1c398e] to-[#0f2a6b] z-50 flex justify-center overflow-y-auto pt-[3px]"
+            className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#1c398e] to-[#0f2a6b] z-50 flex justify-center overflow-y-auto pt-[3px] rounded-3xl"
           >
             <div className="relative w-full max-w-3xl px-6 py-24 text-white" style={{ textAlign: "left"}}>
 

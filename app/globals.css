@@ -20,10 +20,8 @@
 }
 
 :root {
-  --sat: env(safe-area-inset-top);
-  --sab: env(safe-area-inset-bottom);
-  --sal: env(safe-area-inset-left);
-  --sar: env(safe-area-inset-right);
+  --sat-env-top: env(safe-area-inset-top);
+  --sat-env-bottom: env(safe-area-inset-bottom);
 }
 
 html, body {
