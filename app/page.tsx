@@ -21,13 +21,16 @@ import { useTranslations } from "next-intl";
 import CallToActionHome from "./components/CallToActionHome";
 import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
+import { useViewportHeight } from "./support/useViewportHeight";
 
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
   const progressMotion = useMotionValue(0);
+  const scrollY = useMotionValue(0);
   const [showIntro, setShowIntro] = useState(true);
   const homeTexts = useTranslations("homepage");
   const openContact = useAppSelector((state) => state.siteState.openContact);
+  const vh = useViewportHeight();
 
   useEffect(() => {
     if (showIntro) return;
@@ -47,6 +50,7 @@ export default function Home() {
     lenis.on("scroll", (e: { scroll: number; limit: number }) => {
       const progress = (e.scroll / e.limit) * 6;
       progressMotion.set(progress);
+      scrollY.set(e.scroll);
     });
 
     return () => {
@@ -55,6 +59,11 @@ export default function Home() {
   }, [progressMotion, showIntro]);
 
   const smooth = useSpring(progressMotion, {
+    stiffness: 200,
+    damping: 20,
+  });
+
+  const smoothScrollY = useSpring(scrollY, {
     stiffness: 200,
     damping: 20,
   });
@@ -70,11 +79,35 @@ export default function Home() {
   const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
   const wrapperCTAInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
   const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
+  const smoothScrollYString = useTransform(
+    smoothScrollY,
+    (v) => `${v}px`
+  );
+  
+  const heroTranslateY = useTransform(
+    [smoothScrollYString, frameY],
+    ([sy, fy]) => `calc(${sy} + ${fy})`
+  );
+
+  const ctaTranslateY = useTransform(
+    [smoothScrollYString, frameY],
+    ([sy, fy]) => `calc(${sy} + ${fy})`
+  );
+
+  const heroHeight = useTransform(
+    wrapperInset,
+    (v) => `calc(${vh} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+  );
+  
+  const heroTop = useTransform(
+    wrapperInset,
+    (v) => `calc(${v}px + env(safe-area-inset-top))`
+  );
 
   return (
     <div
       className={clsx(
-        "relative min-h-screen max-h-screen",
+        "relative",
         showIntro ? "overflow-hidden" : ""
       )}
     >
@@ -90,8 +123,14 @@ export default function Home() {
         <div className="h-[450vh]" />
         {!openContact && <Header />}
         <motion.div
-          style={{ inset: wrapperInset, y: frameY }}
-          className={clsx("flex items-center justify-center fixed")}
+          style={{ 
+            left: wrapperInset,
+            right: wrapperInset,
+            top: heroTop,
+            height: heroHeight, 
+            y: heroTranslateY,
+           }}
+          className={clsx("flex items-center justify-center absolute")}
         >
           <HomePage progressMotion={smooth} />
         </motion.div>

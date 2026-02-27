@@ -19,6 +19,13 @@
   }
 }
 
+:root {
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
+  --sal: env(safe-area-inset-left);
+  --sar: env(safe-area-inset-right);
+}
+
 html, body {
   color: var(--foreground);
   font-family: var(--font-league), sans-serif;
