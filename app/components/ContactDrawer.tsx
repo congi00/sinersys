@@ -37,9 +37,10 @@ export default function ContactDrawer({ open, onClose }: Props) {
             animate={{ y: "0%" }}
             exit={{ y: "-100%" }}
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#0f2a6b] to-[#1c398e] z-50 flex justify-center overflow-y-auto"
+            style={{ textAlign: "left"}}
+            className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#1c398e] to-[#0f2a6b] z-50 flex justify-center overflow-y-auto pt-[3px]"
           >
-            <div className="relative w-full max-w-3xl px-6 py-24 text-white">
+            <div className="relative w-full max-w-3xl px-6 py-24 text-white" style={{ textAlign: "left"}}>
 
               {/* CLOSE BUTTON */}
               <button
@@ -54,9 +55,9 @@ export default function ContactDrawer({ open, onClose }: Props) {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-4xl font-semibold text-center mb-10 tracking-wide"
+                className="text-[2rem] font-semibold mb-10 sm:text-center tracking-wide"
               >
-                Avvia una collaborazione strategica
+                AVVIA UNA COLLABORAZIONE STRATEGICA
               </motion.h2>
 
               {/* FORM */}
@@ -104,7 +105,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
                       "0px 0px 20px rgba(255,255,255,0.4)",
                   }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full h-14 rounded-full bg-white text-[#1c398e] font-semibold text-lg transition"
+                  className="w-full h-14 rounded-full bg-white text-[#1c398e] font-semibold text-lg transition mb-[20px]"
                 >
                   Invia richiesta
                 </motion.button>

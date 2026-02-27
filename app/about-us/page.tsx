@@ -1,17 +1,70 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import Lenis from "@studio-freight/lenis";
+import AboutUsContainer from "../containers/AboutUsContainer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import MenuButton from "../components/MenuButton";
 
-export default function AboutUs() {
+export default function AboutUsPage() {
+  const progressMotion = useMotionValue(0);
+  const lenisRef = useRef<Lenis | null>(null);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 0.1,
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    lenis.on("scroll", (e: { scroll: number; limit: number }) => {
+      const progress = (e.scroll / e.limit) * 2;
+      progressMotion.set(progress);
+    });
+
+    return () => {
+      lenis.destroy();
+    };
+  }, [progressMotion]);
+
+  const smooth = useSpring(progressMotion, {
+    stiffness: 200,
+    damping: 20,
+  });
+
+  // Wrapper inset animato
+  const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -40 }}
-      transition={{ duration: 0.6 }}
-      className="min-h-screen bg-white flex items-center justify-center"
-    >
-      <h1 className="text-4xl font-bold">About Us Page</h1>
-    </motion.div>
+    <div className="relative min-h-screen">
+      <Header />
+
+      <motion.div className="relative bg-[#f4f4fa]">
+        <div className="h-[300vh]" />
+
+        <motion.div
+          style={{ inset: wrapperInset }}
+          className="fixed flex items-center justify-center"
+        >
+          <AboutUsContainer progressMotion={smooth} />
+        </motion.div>
+      </motion.div>
+
+      <MenuButton />
+      <Footer />
+    </div>
   );
 }

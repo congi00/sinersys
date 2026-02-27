@@ -20,12 +20,14 @@ import OurPromise from "./components/OurPromise";
 import { useTranslations } from "next-intl";
 import CallToActionHome from "./components/CallToActionHome";
 import Footer from "./components/Footer";
+import { useAppSelector } from "./hooks";
 
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
   const progressMotion = useMotionValue(0);
   const [showIntro, setShowIntro] = useState(true);
   const homeTexts = useTranslations("homepage");
+  const openContact = useAppSelector((state) => state.siteState.openContact);
 
   useEffect(() => {
     if (showIntro) return;
@@ -86,7 +88,7 @@ export default function Home() {
       </AnimatePresence>
       <motion.div className="relative" style={{ background: bgColor }}>
         <div className="h-[450vh]" />
-        <Header />
+        {!openContact && <Header />}
         <motion.div
           style={{ inset: wrapperInset, y: frameY }}
           className={clsx("flex items-center justify-center fixed")}
@@ -153,7 +155,7 @@ export default function Home() {
         >
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
-        <MenuButton />
+        {!openContact && <MenuButton />}
       </motion.div>
       <Footer />
     </div>

@@ -1,6 +1,36 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+
 export default function Header() {
-    return (
-      <div className="flex mt-2
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = lastScrollY.current;
+
+    if (latest > previous && latest > 80) {
+      // Scrollando verso il basso
+      setHidden(true);
+    } else {
+      // Scrollando verso l'alto
+      setHidden(false);
+    }
+
+    lastScrollY.current = latest;
+  });
+
+  return (
+    <motion.div
+      variants={{
+        visible: { y: 0, opacity: 1 },
+        hidden: { y: "-150%", opacity: 0 },
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+      className="flex mt-2
         fixed top-6 left-1/2 -translate-x-1/2 z-50
         min-w-[84vw] 
         min-h-[70px] 
@@ -21,13 +51,13 @@ export default function Header() {
         overflow-hidden
         before:absolute before:inset-0
         before:bg-[linear-gradient(135deg,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.15)_10%,rgba(255,255,255,0)_20%)]
-        before:pointer-events-none">
-        <img
-            src="/logobianco.png"
-            alt="Logo Sinersys"
-            className="relative z-10 h-12 object-contain"
-        />
-      </div>
-    );
-  }
-  
+        before:pointer-events-none"
+    >
+      <img
+        src="/logobianco.png"
+        alt="Logo Sinersys"
+        className="relative z-10 h-12 object-contain"
+      />
+    </motion.div>
+  );
+}

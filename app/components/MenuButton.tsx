@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import clsx from "clsx";
 import {useTranslations} from 'next-intl';
 import { useState } from "react";
+import Link from "next/link";
 
 export default function MenuButton() {
   const menuVisibility = useAppSelector((state) => state.siteState.menuVisible);
@@ -24,6 +25,12 @@ export default function MenuButton() {
     'about',
     'contacts'
   ];
+  const links = [
+    "/",
+    "",
+    "about-us",
+    "",
+  ]
 
   return (
     <div
@@ -84,31 +91,32 @@ export default function MenuButton() {
             const reverseIndex = array.length - 1 - index;
 
             return (
-              <span
-                key={item}
-                className={clsx(
-                  "text-white text-xl",
-                  "cursor-pointer",
-                  "transition-[opacity,transform] duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
-                  "transition-[font-weight] duration-200",
-                  menuVisibility
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-6",
-                  index === navigationState ? "font-bold" : "font-light"
-                )}
-                style={{
-                  transitionDelay: menuVisibility
-                    ? `${reverseIndex * 120}ms`
-                    : "0ms",
-                }}
-                onClick={() => {
-                    dispatch(setNavigationState(index))
-                    dispatch(setMenuVisibility(!menuVisibility))
-                    if(item === "contacts") dispatch(setOpenContact(true))
-                }}
-              >
-                {menuVoices(item)}
-              </span>
+              <Link key={item} href={links[index]}>
+                <span
+                  className={clsx(
+                    "text-white text-xl",
+                    "cursor-pointer",
+                    "transition-[opacity,transform] duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
+                    "transition-[font-weight] duration-200",
+                    menuVisibility
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-6",
+                    index === navigationState ? "font-bold" : "font-light"
+                  )}
+                  style={{
+                    transitionDelay: menuVisibility
+                      ? `${reverseIndex * 120}ms`
+                      : "0ms",
+                  }}
+                  onClick={() => {
+                      dispatch(setNavigationState(index))
+                      dispatch(setMenuVisibility(!menuVisibility))
+                      if(item === "contacts") dispatch(setOpenContact(true))
+                  }}
+                >
+                  {menuVoices(item)}
+                </span>
+              </Link>
             );
           })}
         </div>

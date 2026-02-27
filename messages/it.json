@@ -26,5 +26,27 @@
       "title": "LA FORTE CRISI ENERGETICA INTERNAZIONALE DEGLI ULTIMI TEMPI ED IL CONSEGUENTE INNALZAMENTO DEI COSTI DEI CARBURANTI, RENDONO URGENTI SOLUZIONI VOLTE AL RISPARMIO ENERGETICO, AD UNA MIGLIORE COMPATIBILITÀ AMBIENTALE ED ALLA CREAZIONE DI RISORSE INTERNE CHE OFFRANO ALLE ATTIVITÀ PRODUTTIVE E DI PUBBLICO SERVIZIO L'OPPORTUNITÀ DI MAGGIORI AUTONOMIE NELL'APPROVVIGIONAMENTO ENERGETICO.",
       "subtitle": "Sinersys ha applicato la propria cultura scientifica a tecnologie assemblate, sicure e certificate che rispondono esattamente alle esigenze di nuovi modelli di approvvigionamento energetico. \nSinersys fornisce sistemi efficienti e flessibili che consentono ad utenti industriali, commerciali o del pubblico servizio, l'autoproduzione di energia, riducendo fortemente i costi energetici e l'impatto ambientale."
     }
-  }
+  },
+  "aboutus": {
+    "slide0":{
+         "title": "LE NOSTRE RADICI",
+         "subtitle": "Oltre un Secolo di Esperienza tra Meccanica, Mobilità ed Energia"
+     },
+     "slide1":{
+         "suptitle": "SCOPRI APWEC",
+         "title": "DALLE PRIME INTUIZIONI MECCANICHE ALLA NASCITA DI UNA CULTURA INDUSTRIALE EUROPEA",
+         "subtitle": "Sinersys è oggi l’espressione di una profonda continuità industriale che unisce competenze storiche, ricerca ingegneristica avanzata e una visione strategica orientata alla sostenibilità. L’azienda opera come centro di eccellenza nello sviluppo di soluzioni innovative per la generazione di energia rinnovabile continua, affidabile e a basso impatto ambientale.",
+         "link": "Scopri Di Più"
+     },
+     "slide2": {
+       "suptitle": "CHI SIAMO",
+       "title": "OLTRE 100 ANNI DI INNOVAZIONE ITALIANA",
+       "subtitle": "Collaborazioni con Honda, Volvo e Chrysler hanno consolidato l’esperienza di Sinersys nella progettazione e produzione di tecnologie avanzate, aprendo la strada alla rivoluzione green.",
+       "link": "Scopri Di Più"
+     },
+     "slide3": {
+       "title": "Ogni progetto è un’opportunità per innovare, migliorare le prestazioni energetiche e promuovere modelli di produzione più sostenibili ed efficienti per il futuro.",
+       "subtitle": "Sinersys garantisce sistemi efficienti e flessibili che permettono ad aziende, enti pubblici e operatori commerciali di autoprodurre energia, riducendo significativamente i costi e l’impatto ambientale."
+     }
+ }
 }
