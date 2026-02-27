@@ -30,6 +30,8 @@ export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
   const homeTexts = useTranslations("homepage");
   const openContact = useAppSelector((state) => state.siteState.openContact);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (showIntro) return;
@@ -42,6 +44,13 @@ export default function Home() {
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
+      const sy = lenis.scroll;
+      if (heroRef.current) {
+        heroRef.current.style.transform = `translateY(${sy}px)`;
+      }
+      if (ctaRef.current) {
+        ctaRef.current.style.transform = `translateY(${sy}px)`;
+      }
     }
 
     requestAnimationFrame(raf);
@@ -62,54 +71,46 @@ export default function Home() {
     damping: 20,
   });
 
-  const smoothScrollY = useSpring(scrollY, {
-    stiffness: 200,
-    damping: 20,
-  });
-
   const frameY = useTransform(smooth, [1.5, 2.5], ["0%", "-105%"]);
   const frameYAbout = useTransform(smooth, [2.0, 3.0], ["-270%", "-300%"]);
   const frameYCards = useTransform(smooth, [2.5, 3.5], ["-270%", "-300%"]);
-  const frameYPromise = useTransform(smooth, [2.0, 3.5], ["0lvh", "0lvh"]);
+  const frameYPromise = useTransform(smooth, [2.0, 3.5], ["0%", "0%"]);
   const frameYCTA = useTransform(smooth, [5.0, 6.0], ["105%", "-105%"]);
-  const bgColor = useTransform(smooth, [2.1, 2.2, 4], ["#F4F7FA", "#1c398e", "linear-gradient(rgb(28, 57, 142) 89%, rgb(81, 118, 252) 94%, rgb(247, 251, 255) 100%)"]);
+  const bgColor = useTransform(
+    smooth,
+    [2.1, 2.2, 4],
+    [
+      "#F4F7FA",
+      "#1c398e",
+      "linear-gradient(rgb(28, 57, 142) 89%, rgb(81, 118, 252) 94%, rgb(247, 251, 255) 100%)",
+    ]
+  );
 
   // Animazione padding wrapper
   const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
-  const wrapperCTAInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
+  const wrapperCTAInset = useTransform(
+    smooth,
+    [0, 1, 1.8, 2.3],
+    [16, 0, 0, 16]
+  );
   const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
-  const smoothScrollYString = useTransform(
-    smoothScrollY,
-    (v) => `${v}px`
-  );
-  
-  const heroTranslateY = useTransform(
-    [smoothScrollYString, frameY],
-    ([sy, fy]) => `calc(${sy} + ${fy})`
-  );
-
-  const ctaTranslateY = useTransform(
-    [smoothScrollYString, frameY],
-    ([sy, fy]) => `calc(${sy} + ${fy})`
-  );
 
   const heroHeight = useTransform(
     wrapperInset,
-    (v) => `calc(100${detectIOS() ? "lvh" : "dvh"} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+    (v) =>
+      `calc(100${detectIOS() ? "lvh" : "dvh"} - ${
+        v * 2
+      }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
   );
-  
+
   const heroTop = useTransform(
     wrapperInset,
     (v) => `calc(${v}px + env(safe-area-inset-top))`
   );
 
+
   return (
-    <div
-      className={clsx(
-        "relative",
-        showIntro ? "overflow-hidden" : ""
-      )}
-    >
+    <div className={clsx("relative", showIntro ? "overflow-hidden" : "")}>
       <AnimatePresence>
         {showIntro && (
           <IntroParticles
@@ -118,34 +119,45 @@ export default function Home() {
           />
         )}
       </AnimatePresence>
-      <motion.div className="relative" style={{ background: bgColor }}>
-        <div className="h-[450vh]" />
-        {!openContact && <Header />}
+      {!openContact && <Header />}
+      <div className="h-[450vh]" />
+      <motion.div
+        ref={heroRef}
+        style={{
+          background: bgColor,
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: 0,
+          willChange: "transform",
+        }}
+      >
         <motion.div
-          style={{ 
+          style={{
             left: wrapperInset,
             right: wrapperInset,
             top: heroTop,
-            height: heroHeight, 
-            y: heroTranslateY,
-           }}
-          className={clsx("flex items-center justify-center absolute")}
+            height: heroHeight,
+            y: frameY,
+            position: "absolute",
+          }}
+          className={clsx("flex items-center justify-center")}
         >
           <HomePage progressMotion={smooth} />
         </motion.div>
-        <motion.div
+      </motion.div>
+      <motion.div
           style={{ opacity: AboutOpacity, y: frameYAbout }}
           className={clsx(
-            detectIOS() ? "h-[100lvh]" : "h-[100dvh]", 
+            detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
             "flex items-start justify-center"
           )}
-          
         >
           <HomePageAbout progressMotion={smooth} />
         </motion.div>
         <motion.div
           className={clsx(
-            detectIOS() ? "h-[50lvh]" : "h-[50dvh]", 
+            detectIOS() ? "h-[50lvh]" : "h-[50dvh]",
             "flex items-start justify-center"
           )}
           style={{ y: frameYCards }}
@@ -181,22 +193,22 @@ export default function Home() {
             progress={progressMotion}
           />
         </motion.div>
-        
+
         <motion.div
           className={clsx(
-            detectIOS() ? "h-[100lvh]" : "h-[100dvh]", 
+            detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
             "flex items-start justify-center px-5"
           )}
           style={{ y: frameYPromise }}
         >
-            <OurPromise
-              title={homeTexts("slide3.title")}
-              subtitle={homeTexts("slide3.subtitle")}
-              disabledColor="#5C8BAF"
-              enabledColor="#F4F7FA"
-              progress={smooth}
-            />
-        </ motion.div>
+          <OurPromise
+            title={homeTexts("slide3.title")}
+            subtitle={homeTexts("slide3.subtitle")}
+            disabledColor="#5C8BAF"
+            enabledColor="#F4F7FA"
+            progress={smooth}
+          />
+        </motion.div>
         <motion.div
           style={{ inset: wrapperCTAInset, y: frameYCTA }}
           className={clsx("flex items-center justify-center fixed")}
@@ -204,7 +216,6 @@ export default function Home() {
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
         {!openContact && <MenuButton />}
-      </motion.div>
       <Footer />
     </div>
   );
