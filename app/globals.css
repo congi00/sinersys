@@ -32,6 +32,7 @@ html, body {
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
   overscroll-behavior-y: none;
+  overflow-x: hidden;
 }
 
 @keyframes slideUpFade {

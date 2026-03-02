@@ -72,10 +72,7 @@ export default function Home() {
   });
 
   const frameY = useTransform(smooth, [1.5, 2.5], ["0%", "-105%"]);
-  const frameYAbout = useTransform(smooth, [2.0, 3.0], ["-270%", "-300%"]);
-  const frameYCards = useTransform(smooth, [2.5, 3.5], ["-270%", "-300%"]);
-  const frameYPromise = useTransform(smooth, [2.0, 3.5], ["0%", "0%"]);
-  const frameYCTA = useTransform(smooth, [5.0, 6.0], ["105%", "-105%"]);
+  const frameYCTA = useTransform(smooth, [4.0, 4.5], ["-105%", "-175%"]);
   const bgColor = useTransform(
     smooth,
     [2.1, 2.2, 4],
@@ -110,7 +107,7 @@ export default function Home() {
 
 
   return (
-    <div className={clsx("relative", showIntro ? "overflow-hidden" : "")}>
+    <motion.div className={clsx("relative", showIntro ? "overflow-hidden" : "", )} style={{background: bgColor}}>
       <AnimatePresence>
         {showIntro && (
           <IntroParticles
@@ -124,7 +121,6 @@ export default function Home() {
       <motion.div
         ref={heroRef}
         style={{
-          background: bgColor,
           position: "absolute",
           left: 0,
           right: 0,
@@ -147,7 +143,7 @@ export default function Home() {
         </motion.div>
       </motion.div>
       <motion.div
-          style={{ opacity: AboutOpacity, y: frameYAbout }}
+          style={{ opacity: AboutOpacity, y: "-150%" }}
           className={clsx(
             detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
             "flex items-start justify-center"
@@ -157,10 +153,10 @@ export default function Home() {
         </motion.div>
         <motion.div
           className={clsx(
-            detectIOS() ? "h-[50lvh]" : "h-[50dvh]",
-            "flex items-start justify-center"
+            detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
+            "flex items-start justify-center w-[100vw]"
           )}
-          style={{ y: frameYCards }}
+          style={{ y: "-160%" }}
         >
           <ScatteredCards
             items={[
@@ -199,7 +195,7 @@ export default function Home() {
             detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
             "flex items-start justify-center px-5"
           )}
-          style={{ y: frameYPromise }}
+          style={{ y: "-170%" }}
         >
           <OurPromise
             title={homeTexts("slide3.title")}
@@ -211,12 +207,12 @@ export default function Home() {
         </motion.div>
         <motion.div
           style={{ inset: wrapperCTAInset, y: frameYCTA }}
-          className={clsx("flex items-center justify-center fixed")}
+          className={clsx("flex items-center justify-center")}
         >
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
         {!openContact && <MenuButton />}
       <Footer />
-    </div>
+    </motion.div>
   );
 }

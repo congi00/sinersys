@@ -7,7 +7,7 @@ interface SignatureProps {
 }
 
 const Signature: React.FC<SignatureProps> = ({ progress }) => {
-  const pathLength = useTransform(progress, [4, 4.5], [0, 1]);
+  const pathLength = useTransform(progress, [3.6, 3.7], [0, 1]);
 
   return (
     <motion.svg

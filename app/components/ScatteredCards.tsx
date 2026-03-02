@@ -84,7 +84,18 @@ export default function ScatteredCards({
               "absolute w-[300px] h-[420px]",
               "rounded-3xl overflow-hidden",
               "shadow-[0_30px_60px_rgba(0,0,0,0.25)]",
-              "bg-white p-[6px] cursor-pointer",
+              " p-[10px] cursor-pointer",
+              "bg-[#2f3651]/20",
+              "after:absolute after:inset-0",
+              "after:rounded-3xl",
+              "after:border after:border-white/20",
+              "after:pointer-events-none",
+              "before:absolute before:inset-0",
+              "before:bg-[linear-gradient(135deg,rgba(255,255,255,0.25)_0%,rgba(255,255,255,0.15)_10%,rgba(255,255,255,0)_20%)]",
+              "before:pointer-events-none",
+              "backdrop-blur-xl backdrop-saturate-150",
+              "border border-[#F4F7FA]/30",
+              "shadow-[12px_12px_32px_rgba(0,0,0,0.18)]",
             )}
             whileTap={{ scale: 1.08 }}
           >
