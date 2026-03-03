@@ -22,6 +22,7 @@ import CallToActionHome from "./components/CallToActionHome";
 import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
 import { detectIOS } from "./support/useViewportHeight";
+import FaqSection from "./components/FaqSection";
 
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -75,7 +76,7 @@ export default function Home() {
   const frameYCTA = useTransform(smooth, [4.0, 4.5], ["0%", "0%"]);
   const bgColor = useTransform(
     smooth,
-    [2.1, 2.2, 4, 4.1],
+    [2.1, 2.2, 3.5, 3.8],
     [
       "#F4F7FA",
       "#1c398e",
@@ -206,6 +207,44 @@ export default function Home() {
           disabledColor="#5C8BAF"
           enabledColor="#F4F7FA"
           progress={smooth}
+        />
+      </motion.div>
+      <motion.div
+        className="flex items-start justify-center"
+        style={{ y: "-215%" }} // adatta questo valore al tuo layout
+      >
+        <FaqSection
+          progress={smooth}
+          progressStart={3.5} // il range di progress in cui entra in scena
+          title="Here are the essentials about our service, how it works, and what makes it unique."
+          suptitle="FAQ"
+          items={[
+            {
+              question: "What exactly does Nfinite sell?",
+              answer:
+                "Nfinite develops and sells a high-performance paper-based material that replaces conventional plastic packaging. Our material is fully recyclable, compostable, and designed to meet the same mechanical requirements as traditional plastic films.",
+            },
+            {
+              question: "Does Nfinite paper require lamination?",
+              answer:
+                "No lamination needed. Our proprietary coating technology provides barrier properties directly on the paper surface, eliminating the need for multi-layer lamination processes while maintaining excellent moisture and oxygen resistance.",
+            },
+            {
+              question: "Will it run on existing packing lines?",
+              answer:
+                "Yes. Nfinite paper is engineered to be drop-in compatible with standard horizontal and vertical form-fill-seal machines, with minimal to no equipment modifications required.",
+            },
+            {
+              question: "Does Nfinite paper contain metal?",
+              answer:
+                "No. Our material is entirely metal-free, making it fully compatible with microwave use and industrial composting streams, as well as standard paper recycling facilities.",
+            },
+            {
+              question: "What's the aspect of Nfinite paper?",
+              answer:
+                "Nfinite paper looks and feels just like paper. Our coating is fully transparent, so it doesn't have a metallic appearance on the inside or outside.",
+            },
+          ]}
         />
       </motion.div>
       <motion.div
