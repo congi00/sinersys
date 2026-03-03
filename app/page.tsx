@@ -72,14 +72,15 @@ export default function Home() {
   });
 
   const frameY = useTransform(smooth, [1.5, 2.5], ["0%", "-105%"]);
-  const frameYCTA = useTransform(smooth, [4.0, 4.5], ["-105%", "-175%"]);
+  const frameYCTA = useTransform(smooth, [4.0, 4.5], ["0%", "0%"]);
   const bgColor = useTransform(
     smooth,
-    [2.1, 2.2, 4],
+    [2.1, 2.2, 4, 4.1],
     [
       "#F4F7FA",
       "#1c398e",
-      "linear-gradient(rgb(28, 57, 142) 89%, rgb(81, 118, 252) 94%, rgb(247, 251, 255) 100%)",
+      "#1c398e",
+      "#F4F7FA",
     ]
   );
 
@@ -105,9 +106,11 @@ export default function Home() {
     (v) => `calc(${v}px + env(safe-area-inset-top))`
   );
 
-
   return (
-    <motion.div className={clsx("relative", showIntro ? "overflow-hidden" : "", )} style={{background: bgColor}}>
+    <motion.div
+      className={clsx("relative", showIntro ? "overflow-hidden" : "")}
+      style={{ background: bgColor }}
+    >
       <AnimatePresence>
         {showIntro && (
           <IntroParticles
@@ -143,75 +146,93 @@ export default function Home() {
         </motion.div>
       </motion.div>
       <motion.div
-          style={{ opacity: AboutOpacity, y: "-150%" }}
-          className={clsx(
-            detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
-            "flex items-start justify-center"
-          )}
-        >
-          <HomePageAbout progressMotion={smooth} />
-        </motion.div>
-        <motion.div
-          className={clsx(
-            detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
-            "flex items-start justify-center w-[100vw]"
-          )}
-          style={{ y: "-160%" }}
-        >
-          <ScatteredCards
-            items={[
-              {
-                id: "1",
-                image: "/images/1.jpg",
-                label: "descrizione 1",
-              },
-              {
-                id: "2",
-                image: "/images/2.jpg",
-                label: "descrizione 2",
-              },
-              {
-                id: "3",
-                image: "/images/3.jpg",
-                label: "descrizione 3",
-              },
-              {
-                id: "4",
-                image: "/images/4.jpg",
-                label: "descrizione 4",
-              },
-              {
-                id: "5",
-                image: "/images/5.jpg",
-                label: "descrizione 5",
-              },
-            ]}
-            progress={progressMotion}
-          />
-        </motion.div>
+        style={{ opacity: AboutOpacity, y: "-150%" }}
+        className={clsx(
+          detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
+          "flex items-start justify-center"
+        )}
+      >
+        <HomePageAbout progressMotion={smooth} />
+      </motion.div>
+      <motion.div
+        className={clsx(
+          detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
+          "flex items-start justify-center w-[100vw]"
+        )}
+        style={{ y: "-160%" }}
+      >
+        <ScatteredCards
+          items={[
+            {
+              id: "1",
+              image: "/images/1.jpg",
+              label: "descrizione 1",
+            },
+            {
+              id: "2",
+              image: "/images/2.jpg",
+              label: "descrizione 2",
+            },
+            {
+              id: "3",
+              image: "/images/3.jpg",
+              label: "descrizione 3",
+            },
+            {
+              id: "4",
+              image: "/images/4.jpg",
+              label: "descrizione 4",
+            },
+            {
+              id: "5",
+              image: "/images/5.jpg",
+              label: "descrizione 5",
+            },
+          ]}
+          progress={progressMotion}
+        />
+      </motion.div>
 
+      <motion.div
+        className={clsx(
+          detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
+          "flex items-start justify-center px-5"
+        )}
+        style={{ y: "-170%" }}
+      >
+        <OurPromise
+          title={homeTexts("slide3.title")}
+          subtitle={homeTexts("slide3.subtitle")}
+          disabledColor="#5C8BAF"
+          enabledColor="#F4F7FA"
+          progress={smooth}
+        />
+      </motion.div>
+      <motion.div
+        ref={ctaRef}
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: "67%",
+          willChange: "transform",
+        }}
+      >
         <motion.div
-          className={clsx(
-            detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
-            "flex items-start justify-center px-5"
-          )}
-          style={{ y: "-170%" }}
-        >
-          <OurPromise
-            title={homeTexts("slide3.title")}
-            subtitle={homeTexts("slide3.subtitle")}
-            disabledColor="#5C8BAF"
-            enabledColor="#F4F7FA"
-            progress={smooth}
-          />
-        </motion.div>
-        <motion.div
-          style={{ inset: wrapperCTAInset, y: frameYCTA }}
-          className={clsx("flex items-center justify-center")}
+          style={{
+            left: wrapperCTAInset,
+            right: wrapperCTAInset,
+            top: "67%",
+            height: heroHeight,
+            // y: frameYCTA,
+            position: "absolute",
+          }}
+          className="flex items-center justify-center"
         >
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
-        {!openContact && <MenuButton />}
+      </motion.div>
+      {!openContact && <MenuButton />}
       <Footer />
     </motion.div>
   );
