@@ -25,7 +25,6 @@ import { detectIOS } from "./support/useViewportHeight";
 import FaqSection from "./components/FaqSection";
 
 export default function Home() {
-  const lenisRef = useRef<Lenis | null>(null);
   const progressMotion = useMotionValue(0);
   const scrollY = useMotionValue(0);
   const [showIntro, setShowIntro] = useState(true);
@@ -34,24 +33,38 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
+  // Altezza reale viewport in px — unica fonte di verita cross-platform
+  const [vhPx, setVhPx] = useState(0);
+
+  useEffect(() => {
+    const measure = () => {
+      const el = document.createElement("div");
+      el.style.cssText =
+        "position:fixed;top:0;left:0;width:1px;bottom:0;pointer-events:none;visibility:hidden;";
+      document.body.appendChild(el);
+      const h = el.getBoundingClientRect().height;
+      document.body.removeChild(el);
+      setVhPx(h);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    window.addEventListener("orientationchange", measure);
+    return () => {
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("orientationchange", measure);
+    };
+  }, []);
+
   useEffect(() => {
     if (showIntro) return;
-
-    const lenis = new Lenis({
-      duration: 0.1,
-      smoothWheel: true,
-    });
+    const lenis = new Lenis({ duration: 0.1, smoothWheel: true });
 
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
       const sy = lenis.scroll;
-      if (heroRef.current) {
-        heroRef.current.style.transform = `translateY(${sy}px)`;
-      }
-      if (ctaRef.current) {
-        ctaRef.current.style.transform = `translateY(${sy}px)`;
-      }
+      if (heroRef.current) heroRef.current.style.transform = `translateY(${sy}px)`;
+      if (ctaRef.current) ctaRef.current.style.transform = `translateY(${sy}px)`;
     }
 
     requestAnimationFrame(raf);
@@ -62,55 +75,59 @@ export default function Home() {
       scrollY.set(e.scroll);
     });
 
-    return () => {
-      lenis.destroy();
-    };
+    return () => lenis.destroy();
   }, [progressMotion, showIntro]);
 
-  const smooth = useSpring(progressMotion, {
-    stiffness: 200,
-    damping: 20,
-  });
+  const smooth = useSpring(progressMotion, { stiffness: 200, damping: 20 });
 
   const frameY = useTransform(smooth, [1.5, 2.5], ["0%", "-105%"]);
-  const frameYCTA = useTransform(smooth, [4.0, 4.5], ["0%", "0%"]);
-  const bgColor = useTransform(
-    smooth,
-    [2.1, 2.2, 3.5, 3.8],
-    [
-      "#F4F7FA",
-      "#1c398e",
-      "#1c398e",
-      "#F4F7FA",
-    ]
-  );
-
-  // Animazione padding wrapper
   const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
-  const wrapperCTAInset = useTransform(
-    smooth,
-    [0, 1, 1.8, 2.3],
-    [16, 0, 0, 16]
-  );
-  const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
-
   const heroHeight = useTransform(
     wrapperInset,
-    (v) =>
-      `calc(100${detectIOS() ? "lvh" : "dvh"} - ${
-        v * 2
-      }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+    (v) => `calc(100${detectIOS() ? "lvh" : "dvh"} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
   );
-
   const heroTop = useTransform(
     wrapperInset,
     (v) => `calc(${v}px + env(safe-area-inset-top))`
   );
 
+  const wrapperCTAInset = useTransform(smooth, [4.5, 5.0, 5.5, 6.0], [16, 0, 0, 16]);
+  const ctaHeight = useTransform(
+    wrapperCTAInset,
+    (v) => `calc(100${detectIOS() ? "lvh" : "dvh"} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+  );
+  const ctaTop = useTransform(
+    wrapperCTAInset,
+    (v) => `calc(${v}px + env(safe-area-inset-top))`
+  );
+  const ctaFrameY = useTransform(smooth, [4.5, 5.3, 5.4, 6.1], ["105%", "0%", "0%", "-105%"]);
+
+  const bgColor = useTransform(
+    smooth,
+    [2.1, 2.2, 3.5, 3.8],
+    ["#F4F7FA", "#1c398e", "#1c398e", "#F4F7FA"]
+  );
+
+  const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
+  const aboutExitY = useTransform(smooth, [3.3, 3.5], ["0px", `${-vhPx}px`]);
+  const cardsExitY = useTransform(smooth, [3.3, 4.5], ["0px", `${-vhPx}px`]);
+
+  if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
+
+  // Tutto in px assoluti:
+  // spacer = 4.5 * vhPx (lo scroll space del hero)
+  // About  = spacer + 0
+  // Cards  = spacer + 1*vhPx
+  // Promise= spacer + 2*vhPx
+  // FAQ    = spacer + 3*vhPx
+  // Footer = spacer + 3*vhPx + 700 (stima FAQ height)
+  const spacerPx = 2.5 * vhPx;
+  const totalHeight = spacerPx + vhPx * 4 + 900;
+
   return (
     <motion.div
       className={clsx("relative", showIntro ? "overflow-hidden" : "")}
-      style={{ background: bgColor }}
+      style={{ background: bgColor, height: totalHeight }}
     >
       <AnimatePresence>
         {showIntro && (
@@ -120,86 +137,67 @@ export default function Home() {
           />
         )}
       </AnimatePresence>
+
       {!openContact && <Header />}
-      <div className="h-[450vh]" />
-      <motion.div
+
+      {/* Hero - fixed simulato via RAF */}
+      <div
         ref={heroRef}
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: 0,
-          willChange: "transform",
-        }}
+        style={{ position: "absolute", left: 0, right: 0, top: 0, willChange: "transform" }}
       >
         <motion.div
           style={{
-            left: wrapperInset,
-            right: wrapperInset,
-            top: heroTop,
-            height: heroHeight,
-            y: frameY,
-            position: "absolute",
+            left: wrapperInset, right: wrapperInset,
+            top: heroTop, height: heroHeight,
+            y: frameY, position: "absolute",
           }}
-          className={clsx("flex items-center justify-center")}
+          className="flex items-center justify-center"
         >
           <HomePage progressMotion={smooth} />
         </motion.div>
-      </motion.div>
+      </div>
+
+      {/* About - top esatto in px */}
       <motion.div
-        style={{ opacity: AboutOpacity, y: "-150%" }}
-        className={clsx(
-          detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
-          "flex items-start justify-center"
-        )}
+        style={{
+          position: "absolute",
+          top: spacerPx, left: 0, right: 0, height: vhPx,
+          opacity: AboutOpacity,
+          y: aboutExitY,
+        }}
+        className="flex items-start justify-center"
       >
         <HomePageAbout progressMotion={smooth} />
       </motion.div>
+
+      {/* ScatteredCards */}
       <motion.div
-        className={clsx(
-          detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
-          "flex items-start justify-center w-[100vw]"
-        )}
-        style={{ y: "-160%" }}
+        style={{
+          position: "absolute",
+          top: spacerPx + vhPx - 300, left: 0, right: 0, height: vhPx - 300,
+          y: cardsExitY,
+        }}
+        className="flex items-start justify-center w-full"
       >
         <ScatteredCards
           items={[
-            {
-              id: "1",
-              image: "/images/1.jpg",
-              label: "descrizione 1",
-            },
-            {
-              id: "2",
-              image: "/images/2.jpg",
-              label: "descrizione 2",
-            },
-            {
-              id: "3",
-              image: "/images/3.jpg",
-              label: "descrizione 3",
-            },
-            {
-              id: "4",
-              image: "/images/4.jpg",
-              label: "descrizione 4",
-            },
-            {
-              id: "5",
-              image: "/images/5.jpg",
-              label: "descrizione 5",
-            },
+            { id: "1", image: "/images/1.jpg", label: "descrizione 1" },
+            { id: "2", image: "/images/2.jpg", label: "descrizione 2" },
+            { id: "3", image: "/images/3.jpg", label: "descrizione 3" },
+            { id: "4", image: "/images/4.jpg", label: "descrizione 4" },
+            { id: "5", image: "/images/5.jpg", label: "descrizione 5" },
           ]}
           progress={progressMotion}
         />
       </motion.div>
 
-      <motion.div
-        className={clsx(
-          detectIOS() ? "h-[100lvh]" : "h-[100dvh]",
-          "flex items-start justify-center px-5"
-        )}
-        style={{ y: "-170%" }}
+      {/* OurPromise */}
+      <div
+        style={{
+          position: "absolute",
+          top: spacerPx + vhPx * 1.6, left: 0, right: 0, height: vhPx,
+        }}
+        className="flex items-start justify-center px-5"
       >
         <OurPromise
           title={homeTexts("slide3.title")}
@@ -208,71 +206,59 @@ export default function Home() {
           enabledColor="#F4F7FA"
           progress={smooth}
         />
-      </motion.div>
-      <motion.div
+      </div>
+
+      {/* FAQ */}
+      <div
+        style={{
+          position: "absolute",
+          top: spacerPx + vhPx * 2.5, left: 0, right: 0,
+        }}
         className="flex items-start justify-center"
-        style={{ y: "-215%" }} // adatta questo valore al tuo layout
       >
         <FaqSection
           progress={smooth}
-          progressStart={3.5} // il range di progress in cui entra in scena
-          title="Here are the essentials about our service, how it works, and what makes it unique."
+          progressStart={3.5}
+          title={homeTexts("faq.title")}
           suptitle="FAQ"
           items={[
-            {
-              question: "What exactly does Nfinite sell?",
-              answer:
-                "Nfinite develops and sells a high-performance paper-based material that replaces conventional plastic packaging. Our material is fully recyclable, compostable, and designed to meet the same mechanical requirements as traditional plastic films.",
-            },
-            {
-              question: "Does Nfinite paper require lamination?",
-              answer:
-                "No lamination needed. Our proprietary coating technology provides barrier properties directly on the paper surface, eliminating the need for multi-layer lamination processes while maintaining excellent moisture and oxygen resistance.",
-            },
-            {
-              question: "Will it run on existing packing lines?",
-              answer:
-                "Yes. Nfinite paper is engineered to be drop-in compatible with standard horizontal and vertical form-fill-seal machines, with minimal to no equipment modifications required.",
-            },
-            {
-              question: "Does Nfinite paper contain metal?",
-              answer:
-                "No. Our material is entirely metal-free, making it fully compatible with microwave use and industrial composting streams, as well as standard paper recycling facilities.",
-            },
-            {
-              question: "What's the aspect of Nfinite paper?",
-              answer:
-                "Nfinite paper looks and feels just like paper. Our coating is fully transparent, so it doesn't have a metallic appearance on the inside or outside.",
-            },
+            { question: homeTexts("faq.q1"), answer: homeTexts("faq.a1") },
+            { question: homeTexts("faq.q2"), answer: homeTexts("faq.a2") },
+            { question: homeTexts("faq.q3"), answer: homeTexts("faq.a3") },
+            { question: homeTexts("faq.q4"), answer: homeTexts("faq.a4") },
+            { question: homeTexts("faq.q5"), answer: homeTexts("faq.a5") },
           ]}
         />
-      </motion.div>
-      <motion.div
+      </div>
+
+      {/* CTA - fixed simulato via RAF, entra da progress 4.5 */}
+      <div
         ref={ctaRef}
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: "67%",
-          willChange: "transform",
-        }}
+        style={{ position: "absolute", left: 0, right: 0, top: 0, willChange: "transform" }}
       >
         <motion.div
           style={{
-            left: wrapperCTAInset,
-            right: wrapperCTAInset,
-            top: "67%",
-            height: heroHeight,
-            // y: frameYCTA,
-            position: "absolute",
+            left: wrapperCTAInset, right: wrapperCTAInset,
+            top: ctaTop, height: ctaHeight,
+            y: ctaFrameY, position: "absolute",
           }}
           className="flex items-center justify-center"
         >
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
-      </motion.div>
+      </div>
+
+      {/* Footer - dopo FAQ */}
+      <div
+        style={{
+          position: "absolute",
+          top: spacerPx + vhPx * 4 + 650, left: 0, right: 0,
+        }}
+      >
+        <Footer />
+      </div>
+
       {!openContact && <MenuButton />}
-      <Footer />
     </motion.div>
   );
 }

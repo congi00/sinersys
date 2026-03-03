@@ -38,7 +38,7 @@ const OurPromise: React.FC<OurPromiseProps> = ({
   }, [wordsProgress, controls]);
 
   return (
-    <div className="text-center whitespace-pre-line">
+    <div className="text-left whitespace-pre-line">
       <motion.h1
         style={{
           fontSize: "1.9rem",

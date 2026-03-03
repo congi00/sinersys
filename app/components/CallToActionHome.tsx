@@ -25,7 +25,7 @@ export default function CallToActionHome({ progressMotion }: Props) {
 //   const slide1Y = useTransform(progressMotion, [0.6, 0.8], [120, 0]);
 
   // Border radius animato (24px → 0px)
-  const borderRadius = useTransform(progressMotion, [4, 4.1, 4.8, 5], [24, 0, 0, 24]);
+  const borderRadius = useTransform(progressMotion, [4.7, 5.0, 5.6, 6], [24, 0, 0, 24]);
 
   useEffect(() => {
     const container = canvasContainerRef.current;
