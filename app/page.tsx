@@ -35,13 +35,20 @@ export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
   const homeTexts = useTranslations("homepage");
   const openContact = useAppSelector((state) => state.siteState.openContact);
+  const navigationState = useAppSelector(
+    (state) => state.siteState.navigationState
+  );
   const [vhPx, setVhPx] = useState(0);
 
+  const isIOS = detectIOS();
+  const vhUnit = isIOS ? "lvh" : "dvh";
+
   useEffect(() => {
+    // vhPx serve solo per totalHeight e le animazioni di uscita (aboutExitY, cardsExitY)
+    // Misura 100lvh su iOS, 100dvh altrove — coerente con vhUnit
     const measure = () => {
       const el = document.createElement("div");
-      el.style.cssText =
-        "position:fixed;top:0;left:0;width:1px;bottom:0;pointer-events:none;visibility:hidden;";
+      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${isIOS ? "lvh" : "dvh"};pointer-events:none;visibility:hidden;`;
       document.body.appendChild(el);
       const h = el.getBoundingClientRect().height;
       document.body.removeChild(el);
@@ -60,6 +67,9 @@ export default function Home() {
     if (showIntro) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
+    } else if(navigationState === 3) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
@@ -68,7 +78,7 @@ export default function Home() {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     };
-  }, [showIntro]);
+  }, [showIntro,navigationState]);
 
   useEffect(() => {
     if (showIntro) return;
@@ -109,7 +119,7 @@ export default function Home() {
   const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
   const heroHeight = useTransform(
     wrapperInset,
-    (v) => `calc(100${detectIOS() ? "lvh" : "dvh"} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+    (v) => `calc(100${vhUnit} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
   );
   const heroTop = useTransform(
     wrapperInset,
@@ -119,7 +129,7 @@ export default function Home() {
   const wrapperCTAInset = useTransform(smooth, [4.5, 5.0, 5.5, 6.0], [16, 0, 0, 16]);
   const ctaHeight = useTransform(
     wrapperCTAInset,
-    (v) => `calc(100${detectIOS() ? "lvh" : "dvh"} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+    (v) => `calc(100${vhUnit} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
   );
   const ctaTop = useTransform(
     wrapperCTAInset,
@@ -133,18 +143,25 @@ export default function Home() {
     ["#F4F7FA", "#1c398e", "#1c398e", "#F4F7FA"]
   );
 
+  // aboutExitY e cardsExitY usano vhPx (px assoluti) perché y di Framer Motion
+  // non accetta stringhe CSS con vhUnit dinamico
   const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
-  const aboutExitY = useTransform(smooth, [3.3, 3.5], ["0px", `${-vhPx}px`]);
-  const cardsExitY = useTransform(smooth, [3.3, 4.5], ["0px", `${-vhPx}px`]);
+  const aboutExitY = useTransform(smooth, [3.3, 3.5], [0, -vhPx]);
+  const cardsExitY = useTransform(smooth, [3.3, 4.5], [0, -vhPx]);
 
-  // if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
+  if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
 
-  const spacerPx = 3.2 * vhPx;
+  // totalHeight in px — necessario per lo spacer che gonfia il body
+  // Usa vhPx (= 100lvh/dvh misurato) moltiplicato per il numero di "schermate"
+  const spacerPx = 3.5 * vhPx;
   const totalHeight = spacerPx + vhPx * 4 + 900;
 
   return (
     <>
-      <motion.div style={{ height: totalHeight, pointerEvents: "none", backgroundColor: bgColor }} aria-hidden />
+      <motion.div
+        style={{ height: totalHeight, pointerEvents: "none", backgroundColor: bgColor }}
+        aria-hidden
+      />
 
       <div
         className={clsx("absolute inset-x-0 top-0", showIntro ? "overflow-hidden" : "")}
@@ -161,9 +178,7 @@ export default function Home() {
 
         {!openContact && <Header />}
 
-        {/* Hero — position: fixed con background: transparent.
-            iOS risale la chain: transparent → body transparent → html #F4F7FA
-            → tab bar glass usa quel colore e rimane trasparente. */}
+        {/* Hero */}
         <motion.div
           style={{
             position: "fixed",
@@ -172,7 +187,6 @@ export default function Home() {
             top: heroTop,
             height: heroHeight,
             y: frameY,
-            background: "transparent",
             zIndex: 10,
           }}
           className="flex items-center justify-center"
@@ -180,10 +194,13 @@ export default function Home() {
           <HomePage progressMotion={smooth} />
         </motion.div>
 
+        {/* About */}
         <motion.div
           style={{
             position: "absolute",
-            top: spacerPx, left: 0, right: 0, height: vhPx,
+            top: `calc(3.5 * 100${vhUnit})`,
+            left: 0, right: 0,
+            // minHeight: `100${vhUnit}`,
             opacity: AboutOpacity,
             y: aboutExitY,
           }}
@@ -192,10 +209,13 @@ export default function Home() {
           <HomePageAbout progressMotion={smooth} />
         </motion.div>
 
+        {/* ScatteredCards */}
         <motion.div
           style={{
             position: "absolute",
-            top: spacerPx + vhPx - 300, left: 0, right: 0, height: vhPx - 300,
+            top: `calc(4.2 * 100${vhUnit})`,
+            left: 0, right: 0,
+            minHeight: `100${vhUnit}`,
             y: cardsExitY,
           }}
           className="flex items-start justify-center w-full"
@@ -212,10 +232,13 @@ export default function Home() {
           />
         </motion.div>
 
+        {/* OurPromise */}
         <div
           style={{
             position: "absolute",
-            top: spacerPx + vhPx * 1.6, left: 0, right: 0, height: vhPx,
+            top: `calc(5.1 * 100${vhUnit})`,
+            left: 0, right: 0,
+            minHeight: `100${vhUnit}`,
           }}
           className="flex items-start justify-center px-5"
         >
@@ -228,10 +251,12 @@ export default function Home() {
           />
         </div>
 
+        {/* FAQ */}
         <div
           style={{
             position: "absolute",
-            top: spacerPx + vhPx * 2.5, left: 0, right: 0,
+            top: `calc(6 * 100${vhUnit})`,
+            left: 0, right: 0,
           }}
           className="flex items-start justify-center"
         >
@@ -250,7 +275,7 @@ export default function Home() {
           />
         </div>
 
-        {/* CTA — stesso approccio: fixed + transparent */}
+        {/* CTA */}
         <motion.div
           style={{
             position: "fixed",
@@ -267,10 +292,12 @@ export default function Home() {
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
 
+        {/* Footer */}
         <div
           style={{
             position: "absolute",
-            top: spacerPx + vhPx * 4 + 650, left: 0, right: 0,
+            top: `calc(7.5 * 100${vhUnit})`,
+            left: 0, right: 0,
           }}
         >
           <Footer />

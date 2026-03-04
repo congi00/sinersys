@@ -9,7 +9,7 @@ import { Canvas } from "@react-three/fiber";
 import HeroScene from "../components/HeroScene";
 import { useRef, useEffect } from "react";
 import ContactDrawer from "../components/ContactDrawer";
-import { setOpenContact } from "../features/counterSlice";
+import { setNavigationState, setOpenContact } from "../features/counterSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 
 interface Props {
@@ -97,7 +97,10 @@ export default function HomePage({ progressMotion }: Props) {
 
       <ContactDrawer
         open={openContact}
-        onClose={() => dispatch(setOpenContact(false))}
+        onClose={() => {
+          dispatch(setOpenContact(false))
+          dispatch(setNavigationState(0))
+        }}
       />
     </motion.div>
   );

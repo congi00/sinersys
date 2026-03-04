@@ -57,11 +57,11 @@ export default function HomePageAbout({ progressMotion }: Props) {
     <motion.div
       style={{
         borderRadius,
+        height: "60vh"
       }}
       className={clsx(
         "relative",
         "flex w-full",
-        "h-full",
         "items-center justify-center",
         "text-left",
         "overflow-hidden"
