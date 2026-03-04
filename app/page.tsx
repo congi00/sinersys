@@ -57,6 +57,20 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    if (showIntro) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [showIntro]);
+
+  useEffect(() => {
     if (showIntro) return;
 
     const isTouch = isTouchDevice();
@@ -123,14 +137,14 @@ export default function Home() {
   const aboutExitY = useTransform(smooth, [3.3, 3.5], ["0px", `${-vhPx}px`]);
   const cardsExitY = useTransform(smooth, [3.3, 4.5], ["0px", `${-vhPx}px`]);
 
-  if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
+  // if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
 
-  const spacerPx = 2.5 * vhPx;
+  const spacerPx = 3.2 * vhPx;
   const totalHeight = spacerPx + vhPx * 4 + 900;
 
   return (
     <>
-      <div style={{ height: totalHeight, pointerEvents: "none" }} aria-hidden />
+      <motion.div style={{ height: totalHeight, pointerEvents: "none", backgroundColor: bgColor }} aria-hidden />
 
       <div
         className={clsx("absolute inset-x-0 top-0", showIntro ? "overflow-hidden" : "")}
