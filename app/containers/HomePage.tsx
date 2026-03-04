@@ -9,9 +9,7 @@ import { Canvas } from "@react-three/fiber";
 import HeroScene from "../components/HeroScene";
 import { useRef, useEffect } from "react";
 import ContactDrawer from "../components/ContactDrawer";
-import {
-  setOpenContact,
-} from "../features/counterSlice";
+import { setOpenContact } from "../features/counterSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 
 interface Props {
@@ -24,53 +22,48 @@ export default function HomePage({ progressMotion }: Props) {
   const dispatch = useAppDispatch();
   const homeTexts = useTranslations("homepage");
 
-  // Crossfade
   const slide0Opacity = useTransform(progressMotion, [0, 0.2], [1, 0]);
   const slide0Y = useTransform(progressMotion, [0, 0.2], [0, -120]);
-
   const slide1Opacity = useTransform(progressMotion, [0.6, 0.8], [0, 1]);
   const slide1Y = useTransform(progressMotion, [0.6, 0.8], [120, 0]);
-
-  // Border radius animato (24px → 0px)
   const borderRadius = useTransform(progressMotion, [0, 1, 1.8, 2.3], [24, 0, 0, 24]);
 
   useEffect(() => {
     const container = canvasContainerRef.current;
     if (!container) return;
-  
     const ro = new ResizeObserver(() => {
       window.dispatchEvent(new Event("resize"));
     });
-  
     ro.observe(container);
     return () => ro.disconnect();
   }, []);
 
   return (
     <motion.div
-      style={{
-        borderRadius,
-      }}
+      style={{ borderRadius }}
       className={clsx(
-        "relative",
-        "flex w-full",
-        "h-full",
-        "items-center justify-center",
-        "text-center",
-        "bg-[#cccccc]",
+        "relative w-full h-full",
+        "flex items-center justify-center text-center",
         "overflow-hidden"
+        // Nessun bg-* qui: il canvas copre tutto visivamente.
+        // background transparent sul wrapper in page.tsx → tab bar iOS trasparente.
       )}
     >
-      <motion.div ref={canvasContainerRef} className="absolute inset-0 overflow-hidden">
+      <div ref={canvasContainerRef} className="absolute inset-0">
         <Canvas
           dpr={[1, 1.5]}
-          gl={{ antialias: false }}
+          gl={{
+            antialias: false,
+            // alpha: true → il canvas WebGL è trasparente dove Three.js non disegna.
+            // Necessario perché iOS campioni transparent invece del grigio solido.
+            alpha: true,
+          }}
           camera={{ position: [0, 0, 10], fov: 40 }}
           resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
         >
           <HeroScene progress={progressMotion} />
         </Canvas>
-      </motion.div>
+      </div>
 
       <motion.div
         style={{ opacity: slide0Opacity, y: slide0Y }}
@@ -88,20 +81,20 @@ export default function HomePage({ progressMotion }: Props) {
         style={{ opacity: slide1Opacity, y: slide1Y }}
         className="absolute px-[60px]"
       >
-        <h4 className="text-[1.25rem] mb-4 whitespace-pre-line text-[#D9D9D9] line-height-20 font-semibold ">
+        <h4 className="text-[1.25rem] mb-4 whitespace-pre-line text-[#D9D9D9] line-height-20 font-semibold">
           {homeTexts("slide1.suptitle")}
         </h4>
         <h1 className="text-[2.25rem] text-white line-height-40 font-extrabold">
           {homeTexts("slide1.title")}
         </h1>
-        <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20 font-medium ">
+        <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20 font-medium">
           {homeTexts("slide1.subtitle")}
         </h2>
         <LinkButton
           text={homeTexts("slide1.link")}
           link={"apwec"}
-          icon={<ArrowUpRight size={20} className="text-white"></ArrowUpRight>}
-        ></LinkButton>
+          icon={<ArrowUpRight size={20} className="text-white" />}
+        />
       </motion.div>
 
       <ContactDrawer

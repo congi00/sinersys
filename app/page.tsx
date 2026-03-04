@@ -24,16 +24,17 @@ import { useAppSelector } from "./hooks";
 import { detectIOS } from "./support/useViewportHeight";
 import FaqSection from "./components/FaqSection";
 
+function isTouchDevice() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(pointer: coarse)").matches;
+}
+
 export default function Home() {
   const progressMotion = useMotionValue(0);
   const scrollY = useMotionValue(0);
   const [showIntro, setShowIntro] = useState(true);
   const homeTexts = useTranslations("homepage");
   const openContact = useAppSelector((state) => state.siteState.openContact);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-
-  // Altezza reale viewport in px — unica fonte di verita cross-platform
   const [vhPx, setVhPx] = useState(0);
 
   useEffect(() => {
@@ -57,26 +58,36 @@ export default function Home() {
 
   useEffect(() => {
     if (showIntro) return;
-    const lenis = new Lenis({ duration: 0.1, smoothWheel: true });
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-      const sy = lenis.scroll;
-      if (heroRef.current) heroRef.current.style.transform = `translateY(${sy}px)`;
-      if (ctaRef.current) ctaRef.current.style.transform = `translateY(${sy}px)`;
+    const isTouch = isTouchDevice();
+
+    if (isTouch) {
+      const onScroll = () => {
+        const sy = window.scrollY;
+        const limit = document.documentElement.scrollHeight - window.innerHeight;
+        if (limit > 0) {
+          progressMotion.set(Math.min(6, (sy / limit) * 6));
+          scrollY.set(sy);
+        }
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    } else {
+      const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
+      let rafId: number;
+      function raf(time: number) {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(raf);
+      }
+      rafId = requestAnimationFrame(raf);
+      lenis.on("scroll", (e: { scroll: number; limit: number }) => {
+        progressMotion.set(Math.min(6, (e.scroll / e.limit) * 6));
+        scrollY.set(e.scroll);
+      });
+      return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
     }
-
-    requestAnimationFrame(raf);
-
-    lenis.on("scroll", (e: { scroll: number; limit: number }) => {
-      const progress = (e.scroll / e.limit) * 6;
-      progressMotion.set(progress);
-      scrollY.set(e.scroll);
-    });
-
-    return () => lenis.destroy();
-  }, [progressMotion, showIntro]);
+  }, [progressMotion, scrollY, showIntro]);
 
   const smooth = useSpring(progressMotion, { stiffness: 200, damping: 20 });
 
@@ -108,157 +119,158 @@ export default function Home() {
     ["#F4F7FA", "#1c398e", "#1c398e", "#F4F7FA"]
   );
 
+  // Applica bgColor direttamente su document.body invece che su elemento fixed.
+  // iOS legge il bg dell'elemento fixed per la tab bar — con body trasparente
+  // e il colore su html, la tab bar rimane glass.
+  useEffect(() => {
+    return bgColor.on("change", (value) => {
+      document.documentElement.style.backgroundColor = value;
+    });
+  }, [bgColor]);
+
   const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
   const aboutExitY = useTransform(smooth, [3.3, 3.5], ["0px", `${-vhPx}px`]);
   const cardsExitY = useTransform(smooth, [3.3, 4.5], ["0px", `${-vhPx}px`]);
 
-  if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
+  if (vhPx === 0) return <div className="min-h-screen" />;
 
-  // Tutto in px assoluti:
-  // spacer = 4.5 * vhPx (lo scroll space del hero)
-  // About  = spacer + 0
-  // Cards  = spacer + 1*vhPx
-  // Promise= spacer + 2*vhPx
-  // FAQ    = spacer + 3*vhPx
-  // Footer = spacer + 3*vhPx + 700 (stima FAQ height)
   const spacerPx = 2.5 * vhPx;
   const totalHeight = spacerPx + vhPx * 4 + 900;
 
   return (
-    <motion.div
-      className={clsx("relative", showIntro ? "overflow-hidden" : "")}
-      style={{ background: bgColor, height: totalHeight }}
-    >
-      <AnimatePresence>
-        {showIntro && (
-          <IntroParticles
-            showIntro={showIntro}
-            onFinish={() => setTimeout(() => setShowIntro(false), 10)}
-          />
-        )}
-      </AnimatePresence>
+    <>
+      <div style={{ height: totalHeight, pointerEvents: "none" }} aria-hidden />
 
-      {!openContact && <Header />}
+      {/* Nessun elemento fixed per il background —
+          il colore viene applicato su html via useEffect,
+          così iOS non lo legge dall'elemento fixed e la tab bar rimane trasparente */}
 
-      {/* Hero - fixed simulato via RAF */}
       <div
-        ref={heroRef}
-        style={{ position: "absolute", left: 0, right: 0, top: 0, willChange: "transform" }}
+        className={clsx("absolute inset-x-0 top-0", showIntro ? "overflow-hidden" : "")}
+        style={{ height: totalHeight, zIndex: 1 }}
       >
+        <AnimatePresence>
+          {showIntro && (
+            <IntroParticles
+              showIntro={showIntro}
+              onFinish={() => setTimeout(() => setShowIntro(false), 10)}
+            />
+          )}
+        </AnimatePresence>
+
+        {!openContact && <Header />}
+
         <motion.div
           style={{
-            left: wrapperInset, right: wrapperInset,
-            top: heroTop, height: heroHeight,
-            y: frameY, position: "absolute",
+            position: "fixed",
+            left: wrapperInset,
+            right: wrapperInset,
+            top: heroTop,
+            height: heroHeight,
+            y: frameY,
+            zIndex: 10,
           }}
           className="flex items-center justify-center"
         >
           <HomePage progressMotion={smooth} />
         </motion.div>
-      </div>
 
-      {/* About - top esatto in px */}
-      <motion.div
-        style={{
-          position: "absolute",
-          top: spacerPx, left: 0, right: 0, height: vhPx,
-          opacity: AboutOpacity,
-          y: aboutExitY,
-        }}
-        className="flex items-start justify-center"
-      >
-        <HomePageAbout progressMotion={smooth} />
-      </motion.div>
-
-      {/* ScatteredCards */}
-      <motion.div
-        style={{
-          position: "absolute",
-          top: spacerPx + vhPx - 300, left: 0, right: 0, height: vhPx - 300,
-          y: cardsExitY,
-        }}
-        className="flex items-start justify-center w-full"
-      >
-        <ScatteredCards
-          items={[
-            { id: "1", image: "/images/1.jpg", label: "descrizione 1" },
-            { id: "2", image: "/images/2.jpg", label: "descrizione 2" },
-            { id: "3", image: "/images/3.jpg", label: "descrizione 3" },
-            { id: "4", image: "/images/4.jpg", label: "descrizione 4" },
-            { id: "5", image: "/images/5.jpg", label: "descrizione 5" },
-          ]}
-          progress={progressMotion}
-        />
-      </motion.div>
-
-      {/* OurPromise */}
-      <div
-        style={{
-          position: "absolute",
-          top: spacerPx + vhPx * 1.6, left: 0, right: 0, height: vhPx,
-        }}
-        className="flex items-start justify-center px-5"
-      >
-        <OurPromise
-          title={homeTexts("slide3.title")}
-          subtitle={homeTexts("slide3.subtitle")}
-          disabledColor="#5C8BAF"
-          enabledColor="#F4F7FA"
-          progress={smooth}
-        />
-      </div>
-
-      {/* FAQ */}
-      <div
-        style={{
-          position: "absolute",
-          top: spacerPx + vhPx * 2.5, left: 0, right: 0,
-        }}
-        className="flex items-start justify-center"
-      >
-        <FaqSection
-          progress={smooth}
-          progressStart={3.5}
-          title={homeTexts("faq.title")}
-          suptitle="FAQ"
-          items={[
-            { question: homeTexts("faq.q1"), answer: homeTexts("faq.a1") },
-            { question: homeTexts("faq.q2"), answer: homeTexts("faq.a2") },
-            { question: homeTexts("faq.q3"), answer: homeTexts("faq.a3") },
-            { question: homeTexts("faq.q4"), answer: homeTexts("faq.a4") },
-            { question: homeTexts("faq.q5"), answer: homeTexts("faq.a5") },
-          ]}
-        />
-      </div>
-
-      {/* CTA - fixed simulato via RAF, entra da progress 4.5 */}
-      <div
-        ref={ctaRef}
-        style={{ position: "absolute", left: 0, right: 0, top: 0, willChange: "transform" }}
-      >
         <motion.div
           style={{
-            left: wrapperCTAInset, right: wrapperCTAInset,
-            top: ctaTop, height: ctaHeight,
-            y: ctaFrameY, position: "absolute",
+            position: "absolute",
+            top: spacerPx, left: 0, right: 0, height: vhPx,
+            opacity: AboutOpacity,
+            y: aboutExitY,
+          }}
+          className="flex items-start justify-center"
+        >
+          <HomePageAbout progressMotion={smooth} />
+        </motion.div>
+
+        <motion.div
+          style={{
+            position: "absolute",
+            top: spacerPx + vhPx - 300, left: 0, right: 0, height: vhPx - 300,
+            y: cardsExitY,
+          }}
+          className="flex items-start justify-center w-full"
+        >
+          <ScatteredCards
+            items={[
+              { id: "1", image: "/images/1.jpg", label: "descrizione 1" },
+              { id: "2", image: "/images/2.jpg", label: "descrizione 2" },
+              { id: "3", image: "/images/3.jpg", label: "descrizione 3" },
+              { id: "4", image: "/images/4.jpg", label: "descrizione 4" },
+              { id: "5", image: "/images/5.jpg", label: "descrizione 5" },
+            ]}
+            progress={progressMotion}
+          />
+        </motion.div>
+
+        <div
+          style={{
+            position: "absolute",
+            top: spacerPx + vhPx * 1.6, left: 0, right: 0, height: vhPx,
+          }}
+          className="flex items-start justify-center px-5"
+        >
+          <OurPromise
+            title={homeTexts("slide3.title")}
+            subtitle={homeTexts("slide3.subtitle")}
+            disabledColor="#5C8BAF"
+            enabledColor="#F4F7FA"
+            progress={smooth}
+          />
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            top: spacerPx + vhPx * 2.5, left: 0, right: 0,
+          }}
+          className="flex items-start justify-center"
+        >
+          <FaqSection
+            progress={smooth}
+            progressStart={3.5}
+            title={homeTexts("faq.title")}
+            suptitle="FAQ"
+            items={[
+              { question: homeTexts("faq.q1"), answer: homeTexts("faq.a1") },
+              { question: homeTexts("faq.q2"), answer: homeTexts("faq.a2") },
+              { question: homeTexts("faq.q3"), answer: homeTexts("faq.a3") },
+              { question: homeTexts("faq.q4"), answer: homeTexts("faq.a4") },
+              { question: homeTexts("faq.q5"), answer: homeTexts("faq.a5") },
+            ]}
+          />
+        </div>
+
+        <motion.div
+          style={{
+            position: "fixed",
+            left: wrapperCTAInset,
+            right: wrapperCTAInset,
+            top: ctaTop,
+            height: ctaHeight,
+            y: ctaFrameY,
+            zIndex: 10,
           }}
           className="flex items-center justify-center"
         >
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
-      </div>
 
-      {/* Footer - dopo FAQ */}
-      <div
-        style={{
-          position: "absolute",
-          top: spacerPx + vhPx * 4 + 650, left: 0, right: 0,
-        }}
-      >
-        <Footer />
-      </div>
+        <div
+          style={{
+            position: "absolute",
+            top: spacerPx + vhPx * 4 + 650, left: 0, right: 0,
+          }}
+        >
+          <Footer />
+        </div>
 
-      {!openContact && <MenuButton />}
-    </motion.div>
+        {!openContact && <MenuButton />}
+      </div>
+    </>
   );
 }

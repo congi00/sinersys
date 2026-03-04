@@ -1,15 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f4f4;
+  --background: #f4f7fa;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,6 +26,13 @@ html, body {
   padding-right: env(safe-area-inset-right);
   overscroll-behavior-y: none;
   overflow-x: hidden;
+}
+
+html {
+  background-color: #F4F7FA;
+}
+body {
+  background: transparent !important;
 }
 
 @keyframes slideUpFade {
