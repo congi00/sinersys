@@ -28,11 +28,14 @@ html, body {
   overflow-x: hidden;
 }
 
+/* iOS Safari legge il background-color dell'elemento fixed per la tab bar glass.
+   Con body transparent, risale fino a html dove trova il colore corretto → tab bar trasparente. */
 html {
   background-color: #F4F7FA;
 }
+
 body {
-  background: transparent !important;
+  background: transparent;
 }
 
 @keyframes slideUpFade {

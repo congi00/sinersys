@@ -54,8 +54,6 @@ export default function HomePage({ progressMotion }: Props) {
           dpr={[1, 1.5]}
           gl={{
             antialias: false,
-            // alpha: true → il canvas WebGL è trasparente dove Three.js non disegna.
-            // Necessario perché iOS campioni transparent invece del grigio solido.
             alpha: true,
           }}
           camera={{ position: [0, 0, 10], fov: 40 }}

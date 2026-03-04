@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
+import { detectIOS } from "../support/useViewportHeight";
 
 type Props = {
   onFinish: () => void;
@@ -14,6 +15,8 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
   const phaseRef = useRef<1 | 2 | 3 | 4>(1);
   const [, forceRender] = useState(0);
 
+  const vhUnit = detectIOS() ? "lvh" : "dvh";
+
   useEffect(() => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
@@ -21,8 +24,8 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     const dpr = Math.min(window.devicePixelRatio, 1.5);
     canvas.width = window.innerWidth * dpr;
     canvas.height = window.innerHeight * dpr;
-    canvas.style.width = "100dvw";
-    canvas.style.height = "100lvh";
+    canvas.style.width = `100dvw`;
+    canvas.style.height = `100${vhUnit}`;
     ctx.scale(dpr, dpr);
 
     const W = window.innerWidth;
@@ -40,7 +43,6 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
 
     const particles = new Array(COUNT).fill(0).map((_, i) => {
       const colFactor = i / COUNT;
-
       return {
         x: centerX + (Math.random() - 0.5) * BOX_W,
         y: centerY + (Math.random() - 0.5) * BOX_H,
@@ -52,35 +54,36 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     });
 
     function animate(now: number) {
-      const delta = (now - lastTime) / 1000; // secondi reali
+      const delta = (now - lastTime) / 1000;
       lastTime = now;
+      time += delta * 2;
 
-      time += delta * 2; // velocità globale vortice (2 = speed boost)
-      ctx.clearRect(0, 0, W, H);
+      const phase = phaseRef.current;
 
-      const phase = phaseRef.current; // 🔥 sempre aggiornato
+      // Nella fase 4 riempi il canvas con #F4F7FA invece di clearRect trasparente
+      if (phase >= 4) {
+        ctx.fillStyle = "#F4F7FA";
+        ctx.fillRect(0, 0, W, H);
+      } else {
+        ctx.clearRect(0, 0, W, H);
+      }
 
       particles.forEach((p) => {
         if (phase === 1 || phase === 2 || phase === 3) {
           const sync = Math.min(time / 13, 1);
-          const speed = 1 + sync * 3;
+          const speed = 1 + sync * 5;
           const amplitudeY = 10 + sync * 200;
           const wave = Math.sin(time * speed + p.offset * (1 - sync));
           p.y = p.baseY + wave * amplitudeY;
         } else if (phase === 4) {
-          // Se non hanno ancora velocità, generala
           if (p.vx === 0 && p.vy === 0) {
             const angle = Math.random() * Math.PI * 2;
             const power = 2 + Math.random() * 8;
             p.vx = Math.cos(angle) * power;
             p.vy = Math.sin(angle) * power;
           }
-
-          // Aggiorna posizione
           p.x += p.vx;
           p.y += p.vy;
-
-          // Piccola decelerazione
           p.vx *= 0.99;
           p.vy *= 0.99;
         }
@@ -97,24 +100,16 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
 
     frame = requestAnimationFrame(animate);
 
-    // Timeline senza ri-render multipli
-    setTimeout(() => {
-      phaseRef.current = 2;
-    }, 4000);
-
-    setTimeout(() => {
-      phaseRef.current = 3;
-    }, 5200);
-
+    setTimeout(() => { phaseRef.current = 2; }, 3000);
+    setTimeout(() => { phaseRef.current = 3; }, 3700);
     setTimeout(() => {
       phaseRef.current = 4;
-      forceRender((n) => n + 1); // aggiorna bg/logo
-    }, 6100);
-
+      forceRender((n) => n + 1);
+    }, 3800);
     setTimeout(() => {
       cancelAnimationFrame(frame);
       onFinish();
-    }, 9000);
+    }, 6000);
 
     return () => cancelAnimationFrame(frame);
   }, []);
@@ -124,64 +119,40 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
   return (
     <div
       className={clsx(
-        "absolute inset-0 z-[9999] transition-colors duration-700",
-        phase >= 4 ? "bg-white" : "bg-blue-900"
+        "fixed inset-x-0 top-0 z-[9999] transition-colors duration-700",
+        phase >= 4 ? "bg-[#F4F7FA]" : "bg-blue-900"
       )}
+      style={{ height: `100${vhUnit}` }}
     >
       <canvas ref={canvasRef} className="absolute inset-0" />
 
       {phase >= 4 && (
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          {/* Logo Blu */}
           <motion.img
             src="/logoblu.svg"
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ scale: 0, opacity: 0, transition: { duration: 0.1 } }}
             transition={{ duration: 2 }}
-            className="
-              mb-4
-              w-[60px]
-              sm:w-[90px]
-            "
+            className="mb-4 w-[60px] sm:w-[90px]"
           />
 
-          {/* Full Logo */}
           <motion.img
             src="/full-logo-sinersys.png"
             initial={{ opacity: 0, scale: 0.6, filter: "invert(0)" }}
             animate={{ opacity: 1, scale: 2.7, filter: "invert(1)" }}
             exit={{ opacity: 0, scale: 0, transition: { duration: 0.1 } }}
             transition={{ duration: 1.5 }}
-            className="
-              w-28
-              sm:w-44
-            "
+            className="w-28 sm:w-44"
           />
 
-          {/* H1 animato */}
           <motion.h1
-            className="
-              mt-4
-              sm:mt-6
-              flex
-              flex-wrap
-              justify-center
-              text-black
-              font-medium
-              tracking-wider
-              text-lg
-              sm:text-3xl
-            "
+            className="mt-4 sm:mt-6 flex flex-wrap justify-center text-black font-medium tracking-wider text-lg sm:text-3xl"
             initial="hidden"
             animate="visible"
             exit={{ opacity: 0, scale: 0, transition: { duration: 0.1 } }}
             variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.02,
-                },
-              },
+              visible: { transition: { staggerChildren: 0.02 } },
             }}
           >
             {"NEW ENERGY FRONTIERS".split("").map((char, index) => (

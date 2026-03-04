@@ -119,20 +119,11 @@ export default function Home() {
     ["#F4F7FA", "#1c398e", "#1c398e", "#F4F7FA"]
   );
 
-  // Applica bgColor direttamente su document.body invece che su elemento fixed.
-  // iOS legge il bg dell'elemento fixed per la tab bar — con body trasparente
-  // e il colore su html, la tab bar rimane glass.
-  useEffect(() => {
-    return bgColor.on("change", (value) => {
-      document.documentElement.style.backgroundColor = value;
-    });
-  }, [bgColor]);
-
   const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
   const aboutExitY = useTransform(smooth, [3.3, 3.5], ["0px", `${-vhPx}px`]);
   const cardsExitY = useTransform(smooth, [3.3, 4.5], ["0px", `${-vhPx}px`]);
 
-  if (vhPx === 0) return <div className="min-h-screen" />;
+  if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
 
   const spacerPx = 2.5 * vhPx;
   const totalHeight = spacerPx + vhPx * 4 + 900;
@@ -140,10 +131,6 @@ export default function Home() {
   return (
     <>
       <div style={{ height: totalHeight, pointerEvents: "none" }} aria-hidden />
-
-      {/* Nessun elemento fixed per il background —
-          il colore viene applicato su html via useEffect,
-          così iOS non lo legge dall'elemento fixed e la tab bar rimane trasparente */}
 
       <div
         className={clsx("absolute inset-x-0 top-0", showIntro ? "overflow-hidden" : "")}
@@ -160,6 +147,9 @@ export default function Home() {
 
         {!openContact && <Header />}
 
+        {/* Hero — position: fixed con background: transparent.
+            iOS risale la chain: transparent → body transparent → html #F4F7FA
+            → tab bar glass usa quel colore e rimane trasparente. */}
         <motion.div
           style={{
             position: "fixed",
@@ -168,6 +158,7 @@ export default function Home() {
             top: heroTop,
             height: heroHeight,
             y: frameY,
+            background: "transparent",
             zIndex: 10,
           }}
           className="flex items-center justify-center"
@@ -245,6 +236,7 @@ export default function Home() {
           />
         </div>
 
+        {/* CTA — stesso approccio: fixed + transparent */}
         <motion.div
           style={{
             position: "fixed",
@@ -253,6 +245,7 @@ export default function Home() {
             top: ctaTop,
             height: ctaHeight,
             y: ctaFrameY,
+            background: "transparent",
             zIndex: 10,
           }}
           className="flex items-center justify-center"
