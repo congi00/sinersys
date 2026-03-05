@@ -137,7 +137,7 @@ export default function Home() {
 
   const wrapperCTAInset = useTransform(
     smooth,
-    [4.5, 5.0, 5.5, 6.0],
+    [3.9, 4.6, 5.0, 5.5],
     [16, 0, 0, 16]
   );
   const ctaHeight = useTransform(
@@ -153,7 +153,7 @@ export default function Home() {
   );
   const ctaFrameY = useTransform(
     smooth,
-    [4.5, 5.3, 5.4, 6.1],
+    [3.9, 4.6, 5.0, 5.5],
     ["105%", "0%", "0%", "-105%"]
   );
 
