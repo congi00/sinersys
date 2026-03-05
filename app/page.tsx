@@ -48,7 +48,9 @@ export default function Home() {
     // Misura 100lvh su iOS, 100dvh altrove — coerente con vhUnit
     const measure = () => {
       const el = document.createElement("div");
-      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${isIOS ? "lvh" : "dvh"};pointer-events:none;visibility:hidden;`;
+      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${
+        isIOS ? "lvh" : "dvh"
+      };pointer-events:none;visibility:hidden;`;
       document.body.appendChild(el);
       const h = el.getBoundingClientRect().height;
       document.body.removeChild(el);
@@ -67,7 +69,7 @@ export default function Home() {
     if (showIntro) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
-    } else if(navigationState === 3) {
+    } else if (navigationState === 3) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
@@ -78,7 +80,7 @@ export default function Home() {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     };
-  }, [showIntro,navigationState]);
+  }, [showIntro, navigationState]);
 
   useEffect(() => {
     if (showIntro) return;
@@ -88,7 +90,8 @@ export default function Home() {
     if (isTouch) {
       const onScroll = () => {
         const sy = window.scrollY;
-        const limit = document.documentElement.scrollHeight - window.innerHeight;
+        const limit =
+          document.documentElement.scrollHeight - window.innerHeight;
         if (limit > 0) {
           progressMotion.set(Math.min(6, (sy / limit) * 6));
           scrollY.set(sy);
@@ -109,7 +112,10 @@ export default function Home() {
         progressMotion.set(Math.min(6, (e.scroll / e.limit) * 6));
         scrollY.set(e.scroll);
       });
-      return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
+      return () => {
+        cancelAnimationFrame(rafId);
+        lenis.destroy();
+      };
     }
   }, [progressMotion, scrollY, showIntro]);
 
@@ -119,27 +125,41 @@ export default function Home() {
   const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
   const heroHeight = useTransform(
     wrapperInset,
-    (v) => `calc(100${vhUnit} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+    (v) =>
+      `calc(100${vhUnit} - ${
+        v * 2
+      }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
   );
   const heroTop = useTransform(
     wrapperInset,
     (v) => `calc(${v}px + env(safe-area-inset-top))`
   );
 
-  const wrapperCTAInset = useTransform(smooth, [4.5, 5.0, 5.5, 6.0], [16, 0, 0, 16]);
+  const wrapperCTAInset = useTransform(
+    smooth,
+    [4.5, 5.0, 5.5, 6.0],
+    [16, 0, 0, 16]
+  );
   const ctaHeight = useTransform(
     wrapperCTAInset,
-    (v) => `calc(100${vhUnit} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+    (v) =>
+      `calc(100${vhUnit} - ${
+        v * 2
+      }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
   );
   const ctaTop = useTransform(
     wrapperCTAInset,
     (v) => `calc(${v}px + env(safe-area-inset-top))`
   );
-  const ctaFrameY = useTransform(smooth, [4.5, 5.3, 5.4, 6.1], ["105%", "0%", "0%", "-105%"]);
+  const ctaFrameY = useTransform(
+    smooth,
+    [4.5, 5.3, 5.4, 6.1],
+    ["105%", "0%", "0%", "-105%"]
+  );
 
   const bgColor = useTransform(
     smooth,
-    [2.1, 2.2, 3.5, 3.8],
+    [2.1, 2.2, 3.5, 3.6],
     ["#F4F7FA", "#1c398e", "#1c398e", "#F4F7FA"]
   );
 
@@ -159,12 +179,19 @@ export default function Home() {
   return (
     <>
       <motion.div
-        style={{ height: totalHeight, pointerEvents: "none", backgroundColor: bgColor }}
+        style={{
+          height: totalHeight,
+          pointerEvents: "none",
+          backgroundColor: bgColor,
+        }}
         aria-hidden
       />
 
       <div
-        className={clsx("absolute inset-x-0 top-0", showIntro ? "overflow-hidden" : "")}
+        className={clsx(
+          "absolute inset-x-0 top-0",
+          showIntro ? "overflow-hidden" : ""
+        )}
         style={{ height: totalHeight, zIndex: 1 }}
       >
         <AnimatePresence>
@@ -199,7 +226,8 @@ export default function Home() {
           style={{
             position: "absolute",
             top: `calc(3.5 * 100${vhUnit})`,
-            left: 0, right: 0,
+            left: 0,
+            right: 0,
             // minHeight: `100${vhUnit}`,
             opacity: AboutOpacity,
             y: aboutExitY,
@@ -214,7 +242,8 @@ export default function Home() {
           style={{
             position: "absolute",
             top: `calc(4.2 * 100${vhUnit})`,
-            left: 0, right: 0,
+            left: 0,
+            right: 0,
             minHeight: `100${vhUnit}`,
             y: cardsExitY,
           }}
@@ -237,7 +266,8 @@ export default function Home() {
           style={{
             position: "absolute",
             top: `calc(4.9 * 100${vhUnit})`,
-            left: 0, right: 0,
+            left: 0,
+            right: 0,
             minHeight: `100${vhUnit}`,
           }}
           className="flex items-start justify-center px-5"
@@ -254,7 +284,8 @@ export default function Home() {
           style={{
             position: "absolute",
             top: `calc(6 * 100${vhUnit})`,
-            left: 0, right: 0,
+            left: 0,
+            right: 0,
           }}
           className="flex items-start justify-center"
         >
@@ -274,7 +305,7 @@ export default function Home() {
         </div>
 
         {/* CTA */}
-        {/* <motion.div
+        <motion.div
           style={{
             position: "fixed",
             left: wrapperCTAInset,
@@ -288,14 +319,15 @@ export default function Home() {
           className="flex items-center justify-center"
         >
           <CallToActionHome progressMotion={smooth} />
-        </motion.div> */}
+        </motion.div>
 
         {/* Footer */}
         <div
           style={{
             position: "absolute",
-            top: `calc(7.5 * 100${vhUnit})`,
-            left: 0, right: 0,
+            top: spacerPx + vhPx * 4 + 650,
+            left: 0,
+            right: 0,
           }}
         >
           <Footer />

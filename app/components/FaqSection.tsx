@@ -110,7 +110,7 @@ export default function FaqSection({
           {suptitle}
         </span>
         <h2
-          className="text-[1.75rem] font-extrabold leading-tight text-[#111827]"
+          className="text-[1.75rem] font-extrabold leading-tight text-[#1c398e]"
           style={{ letterSpacing: "-0.02em" }}
         >
           {title}
@@ -118,7 +118,7 @@ export default function FaqSection({
       </motion.div>
 
       {/* Items */}
-      <div className="divide-y divide-[#E5E7EB]">
+      <div className="divide-y divide-[#1c398e]">
         {items.map((item, index) => {
           const itemOpacity = getItemOpacity(index);
           const itemY = getItemY(index);
@@ -135,7 +135,7 @@ export default function FaqSection({
                 aria-expanded={isOpen}
               >
                 <span
-                  className="text-[1.0625rem] font-semibold text-[#111827] pr-4
+                  className="text-[1.0625rem] font-semibold text-[#1c398e] pr-4
                     group-hover:text-[#1c398e] transition-colors duration-200"
                 >
                   {item.question}
@@ -168,7 +168,7 @@ export default function FaqSection({
                     }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-5 text-[0.9375rem] text-[#6B7280] leading-relaxed">
+                    <p className="pb-5 text-[0.9375rem] text-[#5c8baf] leading-relaxed">
                       {item.answer}
                     </p>
                   </motion.div>

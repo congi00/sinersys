@@ -24,12 +24,12 @@ function Word({
 
   const activeColor = useTransform(
     progress,
-    [2.1, 2.5, 3.5, 3.8],
+    [2.1, 2.5, 3.5, 3.6],
     ["#1c398e", "#f4f7fa", "#f4f7fa", "#1c398e"]
   );
   const inactiveColor = useTransform(
     progress,
-    [2.1, 2.5, 3.5, 3.8],
+    [2.1, 2.5, 3.5, 3.6],
     ["#aaaaaa", "#5c8baf", "#5c8baf", "#aaaaaa"]
   );
 
