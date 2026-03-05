@@ -1,70 +1,89 @@
-import React from "react";
-import { motion, Variants, useAnimation } from "framer-motion";
-import { MotionValue, useTransform } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useMotionValueEvent } from "framer-motion";
+import { MotionValue, useTransform, useMotionValue } from "framer-motion";
 import Signature from "./Signature";
 
 interface OurPromiseProps {
   title: string;
   subtitle?: string;
-  disabledColor?: string;
-  enabledColor?: string;
-  progress: MotionValue<number>; // progress derivato da Lenis
+  progress: MotionValue<number>;
 }
 
-const OurPromise: React.FC<OurPromiseProps> = ({
-  title,
-  subtitle,
-  disabledColor = "#999",
-  enabledColor = "#000",
+function Word({
+  word,
+  index,
+  wordsProgress,
   progress,
-}) => {
-  const controls = useAnimation();
+}: {
+  word: string;
+  index: number;
+  wordsProgress: MotionValue<number>;
+  progress: MotionValue<number>;
+}) {
+  const wordColor = useMotionValue("#aaaaaa");
 
-  const wordVariants: Variants = {
-    hidden: { color: disabledColor },
-    visible: { color: enabledColor, transition: { duration: 0.2 } },
+  const activeColor = useTransform(
+    progress,
+    [2.1, 2.5, 3.5, 3.8],
+    ["#1c398e", "#f4f7fa", "#f4f7fa", "#1c398e"]
+  );
+  const inactiveColor = useTransform(
+    progress,
+    [2.1, 2.5, 3.5, 3.8],
+    ["#aaaaaa", "#5c8baf", "#5c8baf", "#aaaaaa"]
+  );
+
+  const updateColor = () => {
+    const active = wordsProgress.get() >= index + 0.5;
+    wordColor.set(active ? activeColor.get() : inactiveColor.get());
   };
 
+  useMotionValueEvent(wordsProgress, "change", updateColor);
+  useMotionValueEvent(progress, "change", updateColor);
+
+  return (
+    <motion.span style={{ whiteSpace: "pre", marginRight: "0.5rem", color: wordColor }}>
+      {word}
+    </motion.span>
+  );
+}
+
+const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) => {
   const words = title.split(" ");
   const wordsProgress = useTransform(progress, [3.2, 3.6], [0, words.length]);
 
-  React.useEffect(() => {
-    const unsubscribe = wordsProgress.on("change", (value) => {
-      const wordsCount = Math.floor(value);
-      controls.start((i) => (i < wordsCount ? "visible" : "hidden"));
-    });
-
-    return () => unsubscribe();
-  }, [wordsProgress, controls]);
+  const subtitleColor = useTransform(
+    progress,
+    [2.1, 2.2, 3.5, 3.8],
+    ["#5C8BAF", "#f4f7fa", "#f4f7fa", "#5C8BAF"]
+  );
 
   return (
-    <div className="text-left whitespace-pre-line">
+    <div className="whitespace-pre-line w-full px-6">
       <motion.h1
         style={{
           fontSize: "1.9rem",
           fontWeight: "bold",
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "flex-start",
           flexWrap: "wrap",
           textTransform: "uppercase",
+          textAlign: "left",
         }}
       >
         {words.map((word, i) => (
-          <motion.span
+          <Word
             key={i}
-            custom={i}
-            variants={wordVariants}
-            initial="hidden"
-            animate={controls}
-            style={{ whiteSpace: "pre", marginRight: "0.5rem" }} // spazio tra le parole
-          >
-            {word}
-          </motion.span>
+            word={word}
+            index={i}
+            wordsProgress={wordsProgress}
+            progress={progress}
+          />
         ))}
       </motion.h1>
       {subtitle && (
         <motion.h2
-          style={{ color: "#fff", fontSize: "1.4rem", marginTop: "2rem" }}
+          style={{ fontSize: "1.4rem", marginTop: "2rem", color: subtitleColor }}
         >
           {subtitle}
         </motion.h2>

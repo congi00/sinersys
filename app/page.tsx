@@ -236,7 +236,7 @@ export default function Home() {
         <div
           style={{
             position: "absolute",
-            top: `calc(5.1 * 100${vhUnit})`,
+            top: `calc(4.9 * 100${vhUnit})`,
             left: 0, right: 0,
             minHeight: `100${vhUnit}`,
           }}
@@ -245,8 +245,6 @@ export default function Home() {
           <OurPromise
             title={homeTexts("slide3.title")}
             subtitle={homeTexts("slide3.subtitle")}
-            disabledColor="#5C8BAF"
-            enabledColor="#F4F7FA"
             progress={smooth}
           />
         </div>
@@ -276,7 +274,7 @@ export default function Home() {
         </div>
 
         {/* CTA */}
-        <motion.div
+        {/* <motion.div
           style={{
             position: "fixed",
             left: wrapperCTAInset,
@@ -290,7 +288,7 @@ export default function Home() {
           className="flex items-center justify-center"
         >
           <CallToActionHome progressMotion={smooth} />
-        </motion.div>
+        </motion.div> */}
 
         {/* Footer */}
         <div
