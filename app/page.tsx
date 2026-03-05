@@ -153,7 +153,7 @@ export default function Home() {
   );
   const ctaFrameY = useTransform(
     smooth,
-    [3.9, 4.6, 5.0, 5.5],
+    [3.9, 4.6, 4.7, 5.5],
     ["105%", "0%", "0%", "-105%"]
   );
 
