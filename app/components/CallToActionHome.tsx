@@ -16,7 +16,7 @@ interface Props {
 export default function CallToActionHome({ progressMotion }: Props) {
   const canvasContainerRef = useRef<HTMLDivElement>(null);
 
-  const borderRadius = useTransform(progressMotion, [3.9, 4.6, 5.0, 5.5], [24, 0, 0, 24]);
+  const borderRadius = useTransform(progressMotion, [3.6, 4.3, 4.4, 5.1], [24, 0, 0, 24]);
 
   useEffect(() => {
     const container = canvasContainerRef.current;

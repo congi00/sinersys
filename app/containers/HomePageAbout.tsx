@@ -69,26 +69,26 @@ export default function HomePageAbout({ progressMotion }: Props) {
     >
       <motion.div
         style={{ opacity: slide1Opacity, y: slide1Y }}
-        className="absolute px-[60px]"
+        className="absolute px-[40px] sm:text-center"
       >
         <motion.h4
-          className="text-[1.25rem] sm:text-[2rem] mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] line-height-20 font-semibold flex items-center"
+          className="text-[1.15rem] sm:text-[1.7rem] mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] line-height-20 font-regular flex items-center sm:justify-center"
           style={{ color: subtitleColor }}
         >
           <motion.div
-            className="h-[3px] w-[50px] bg-[#5C8BAF62] [shadow:0_0px_0px_rgba(0,0,0,0.2)] mr-2"
+            className="h-[1px] w-[50px] bg-[#5C8BAF62] sm:hidden [shadow:0_0px_0px_rgba(0,0,0,0.2)] mr-2"
             style={{ backgroundColor: subtitleColor }}
           ></motion.div>
           {homeTexts("slide2.suptitle")}
         </motion.h4>
         <motion.h1
-          className="text-[2.25rem] sm:text-[4rem] line-height-40 font-extrabold"
+          className="text-[3.0rem] sm:text-[4.2rem] line-height-40 font-bold"
           style={{ color: titleColor }}
         >
           {homeTexts("slide2.title")}
         </motion.h1>
         <motion.h2
-          className="text-[1.25rem] sm:text-[3rem] mt-4 whitespace-pre-line line-height-20 font-medium "
+          className="text-[1.65rem] sm:text-[2.25rem] mt-4 sm:whitespace-pre-line line-height-40 font-light "
           style={{ color: titleColor }}
         >
           {homeTexts("slide2.subtitle")}
@@ -97,6 +97,7 @@ export default function HomePageAbout({ progressMotion }: Props) {
           text={homeTexts("slide2.link")}
           link={"/about-us"}
           icon={<ArrowUpRight size={20} className="text-white"></ArrowUpRight>}
+          top={""}
         ></LinkButton>
       </motion.div>
     </motion.div>

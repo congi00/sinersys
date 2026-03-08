@@ -137,7 +137,7 @@ export default function Home() {
 
   const wrapperCTAInset = useTransform(
     smooth,
-    [3.9, 4.6, 5.0, 5.5],
+    [3.6, 4.3, 4.4, 5.1],
     [16, 0, 0, 16]
   );
   const ctaHeight = useTransform(
@@ -153,7 +153,7 @@ export default function Home() {
   );
   const ctaFrameY = useTransform(
     smooth,
-    [3.9, 4.6, 4.7, 5.5],
+    [3.6, 4.3, 4.4, 5.2],
     ["105%", "0%", "0%", "-105%"]
   );
 
@@ -279,11 +279,28 @@ export default function Home() {
           />
         </div>
 
+        {/* CTA */}
+        <motion.div
+          style={{
+            position: "fixed",
+            left: wrapperCTAInset,
+            right: wrapperCTAInset,
+            top: ctaTop,
+            height: ctaHeight,
+            y: ctaFrameY,
+            background: "transparent",
+            zIndex: 10,
+          }}
+          className="flex items-center justify-center"
+        >
+          <CallToActionHome progressMotion={smooth} />
+        </motion.div>
+
         {/* FAQ */}
         <div
           style={{
             position: "absolute",
-            top: `calc(6 * 100${vhUnit})`,
+            top: `calc(7.3 * 100${vhUnit})`,
             left: 0,
             right: 0,
           }}
@@ -303,23 +320,6 @@ export default function Home() {
             ]}
           />
         </div>
-
-        {/* CTA */}
-        <motion.div
-          style={{
-            position: "fixed",
-            left: wrapperCTAInset,
-            right: wrapperCTAInset,
-            top: ctaTop,
-            height: ctaHeight,
-            y: ctaFrameY,
-            background: "transparent",
-            zIndex: 10,
-          }}
-          className="flex items-center justify-center"
-        >
-          <CallToActionHome progressMotion={smooth} />
-        </motion.div>
 
         {/* Footer */}
         <div

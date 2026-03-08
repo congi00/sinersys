@@ -82,16 +82,16 @@ export default function HomePage({ progressMotion }: Props) {
         <h4 className="text-[1.15rem] sm:text-[1.7rem] mb-4 whitespace-pre-line text-[#D9D9D9] line-height-20 font-regular">
           {homeTexts("slide1.suptitle")}
         </h4>
-        <h1 className="text-[3.0rem] sm:text-[4.2rem] text-white line-height-40 font-bold">
+        <h1 className="text-[3.0rem] sm:text-[4.2rem] text-[#f4f7fa] line-height-40 font-bold">
           {homeTexts("slide1.title")}
         </h1>
-        <h2 className="text-[1.65rem] sm:text-[2.25rem] mt-4 whitespace-pre-line text-white line-height-40 font-light">
+        <h2 className="text-[1.65rem] sm:text-[2.25rem] mt-4 whitespace-pre-line text-[#f4f7fa] line-height-40 font-light">
           {homeTexts("slide1.subtitle")}
         </h2>
         <LinkButton
           text={homeTexts("slide1.link")}
           link={"apwec"}
-          icon={<ArrowUpRight size={20} className="text-white" />}
+          icon={<ArrowUpRight size={20} className="text-[#f4f7fa]" />}
           top="200px"
         />
       </motion.div>

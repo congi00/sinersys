@@ -104,13 +104,13 @@ export default function FaqSection({
       <motion.div className="mb-12 text-center">
         <span
           className="inline-block text-xs font-semibold tracking-[0.2em] uppercase
-            border border-current rounded-full px-4 py-1.5 mb-6
+            border border-current rounded-full px-4 py-1.5 mb-6 font-light
             text-[#1c398e]"
         >
           {suptitle}
         </span>
         <h2
-          className="text-[1.75rem] font-extrabold leading-tight text-[#1c398e]"
+          className="font-bold leading-tight text-[#1c398e] text-[3.0rem] sm:text-[4.2rem]"
           style={{ letterSpacing: "-0.02em" }}
         >
           {title}
@@ -135,8 +135,8 @@ export default function FaqSection({
                 aria-expanded={isOpen}
               >
                 <span
-                  className="text-[1.0625rem] font-semibold text-[#1c398e] pr-4
-                    group-hover:text-[#1c398e] transition-colors duration-200"
+                  className="font-regular text-[#1c398e] pr-4
+                    group-hover:text-[#1c398e] transition-colors duration-200 text-[1.65rem] sm:text-[2.25rem]"
                 >
                   {item.question}
                 </span>
@@ -168,7 +168,7 @@ export default function FaqSection({
                     }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-5 text-[0.9375rem] text-[#5c8baf] leading-relaxed">
+                    <p className="pb-5 text-[1.15rem] sm:text-[1.7rem] font-light text-[#5c8baf] leading-relaxed">
                       {item.answer}
                     </p>
                   </motion.div>

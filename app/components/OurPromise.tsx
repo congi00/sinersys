@@ -54,20 +54,17 @@ const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) =>
 
   const subtitleColor = useTransform(
     progress,
-    [2.1, 2.2, 3.5, 3.8],
+    [2.1, 2.2, 3.5, 3.6],
     ["#5C8BAF", "#f4f7fa", "#f4f7fa", "#5C8BAF"]
   );
 
   return (
-    <div className="whitespace-pre-line w-full px-6">
+    <div className="sm:whitespace-pre-line w-full px-6 sm:text-center">
       <motion.h1
-        className="text-2xl"
+        className="text-[3.0rem] sm:text-[4.2rem] font-bold line-height-40 sm:justify-center flex-start"
         style={{
-          fontWeight: "bold",
           display: "flex",
-          justifyContent: "flex-start",
           flexWrap: "wrap",
-          textTransform: "uppercase",
           textAlign: "left",
         }}
       >
@@ -83,7 +80,7 @@ const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) =>
       </motion.h1>
       {subtitle && (
         <motion.h2
-          className="text-xl"
+          className="text-[1.65rem] sm:text-[2.25rem] line-height-40 font-light"
           style={{ marginTop: "2rem", color: subtitleColor }}
         >
           {subtitle}
