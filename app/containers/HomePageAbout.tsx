@@ -72,7 +72,7 @@ export default function HomePageAbout({ progressMotion }: Props) {
         className="absolute px-[60px]"
       >
         <motion.h4
-          className="text-[1.25rem] mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] line-height-20 font-semibold flex items-center"
+          className="text-[1.25rem] sm:text-[2rem] mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] line-height-20 font-semibold flex items-center"
           style={{ color: subtitleColor }}
         >
           <motion.div
@@ -82,13 +82,13 @@ export default function HomePageAbout({ progressMotion }: Props) {
           {homeTexts("slide2.suptitle")}
         </motion.h4>
         <motion.h1
-          className="text-[2.25rem] line-height-40 font-extrabold"
+          className="text-[2.25rem] sm:text-[4rem] line-height-40 font-extrabold"
           style={{ color: titleColor }}
         >
           {homeTexts("slide2.title")}
         </motion.h1>
         <motion.h2
-          className="text-[1.25rem] mt-4 whitespace-pre-line line-height-20 font-medium "
+          className="text-[1.25rem] sm:text-[3rem] mt-4 whitespace-pre-line line-height-20 font-medium "
           style={{ color: titleColor }}
         >
           {homeTexts("slide2.subtitle")}

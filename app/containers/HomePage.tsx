@@ -24,8 +24,8 @@ export default function HomePage({ progressMotion }: Props) {
 
   const slide0Opacity = useTransform(progressMotion, [0, 0.2], [1, 0]);
   const slide0Y = useTransform(progressMotion, [0, 0.2], [0, -120]);
-  const slide1Opacity = useTransform(progressMotion, [0.6, 0.8], [0, 1]);
-  const slide1Y = useTransform(progressMotion, [0.6, 0.8], [120, 0]);
+  const slide1Opacity = useTransform(progressMotion, [1.2, 1.3, 1.8, 1.9], [0, 1, 1, 0]);
+  const slide1Y = useTransform(progressMotion, [0.8, 1.0], [120, 0]);
   const borderRadius = useTransform(progressMotion, [0, 1, 1.8, 2.3], [24, 0, 0, 24]);
 
   useEffect(() => {
@@ -65,33 +65,34 @@ export default function HomePage({ progressMotion }: Props) {
 
       <motion.div
         style={{ opacity: slide0Opacity, y: slide0Y }}
-        className="absolute px-[60px]"
+        className="absolute px-[60px] whitespace-pre-line"
       >
-        <h1 className="text-[2.25rem] text-white line-height-40 font-extrabold">
+        <h1 className="text-[3.0rem] sm:text-[4.2rem] text-[#f4f7fa] line-height-40 font-bold">
           {homeTexts("slide0.title")}
         </h1>
-        <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20 font-medium">
+        <h2 className="text-[1.65rem] sm:text-[2.25rem] mt-4 whitespace-pre-line text-[#f4f7fa] line-height-40 font-light">
           {homeTexts("slide0.subtitle")}
         </h2>
       </motion.div>
 
       <motion.div
-        style={{ opacity: slide1Opacity, y: slide1Y }}
-        className="absolute px-[60px]"
+        style={{ opacity: slide1Opacity, y: slide1Y , top: "150px"}}
+        className="absolute px-[20px]"
       >
-        <h4 className="text-[1.25rem] mb-4 whitespace-pre-line text-[#D9D9D9] line-height-20 font-semibold">
+        <h4 className="text-[1.15rem] sm:text-[1.7rem] mb-4 whitespace-pre-line text-[#D9D9D9] line-height-20 font-regular">
           {homeTexts("slide1.suptitle")}
         </h4>
-        <h1 className="text-[2.25rem] text-white line-height-40 font-extrabold">
+        <h1 className="text-[3.0rem] sm:text-[4.2rem] text-white line-height-40 font-bold">
           {homeTexts("slide1.title")}
         </h1>
-        <h2 className="text-[1.25rem] mt-4 whitespace-pre-line text-white line-height-20 font-medium">
+        <h2 className="text-[1.65rem] sm:text-[2.25rem] mt-4 whitespace-pre-line text-white line-height-40 font-light">
           {homeTexts("slide1.subtitle")}
         </h2>
         <LinkButton
           text={homeTexts("slide1.link")}
           link={"apwec"}
           icon={<ArrowUpRight size={20} className="text-white" />}
+          top="200px"
         />
       </motion.div>
 
