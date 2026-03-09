@@ -36,6 +36,7 @@ html {
 
 body {
   background: transparent;
+  overflow-x: hidden;
 }
 
 @keyframes slideUpFade {
