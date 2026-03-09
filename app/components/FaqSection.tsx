@@ -98,7 +98,7 @@ export default function FaqSection({
   return (
     <motion.section
       style={{ opacity: sectionOpacity, y: sectionY }}
-      className="w-full max-w-2xl mx-auto px-5 py-16"
+      className="w-full mx-auto px-5 py-16"
     >
       {/* Header */}
       <motion.div className="mb-12 text-center">
