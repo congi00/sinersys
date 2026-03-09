@@ -122,7 +122,7 @@ export default function Home() {
   const smooth = useSpring(progressMotion, { stiffness: 200, damping: 20 });
 
   const frameY = useTransform(smooth, [1.5, 2.3], ["0%", "-105%"]);
-  const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.3], [16, 0, 0, 16]);
+  const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.4], [16, 0, 0, 16]);
   const heroHeight = useTransform(
     wrapperInset,
     (v) =>
