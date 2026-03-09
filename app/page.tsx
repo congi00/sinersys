@@ -39,7 +39,20 @@ export default function Home() {
     (state) => state.siteState.navigationState
   );
   const [vhPx, setVhPx] = useState(0);
+  const [width, setWidth] = useState(0);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    handleResize(); // valore iniziale
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = width <= 768;
   const isIOS = detectIOS();
   const vhUnit = isIOS ? "lvh" : "dvh";
 
@@ -153,7 +166,7 @@ export default function Home() {
   );
   const ctaFrameY = useTransform(
     smooth,
-    [3.6, 4.3, 4.4, 5.2],
+    [3.6, isMobile? 4.1 : 4.3, isMobile? 4.2 : 4.4, isMobile? 5.0 :  5.2],
     ["105%", "0%", "0%", "-105%"]
   );
 
@@ -174,7 +187,7 @@ export default function Home() {
   // totalHeight in px — necessario per lo spacer che gonfia il body
   // Usa vhPx (= 100lvh/dvh misurato) moltiplicato per il numero di "schermate"
   const spacerPx = 3.5 * vhPx;
-  const totalHeight = spacerPx + vhPx * 4 + 900;
+  const totalHeight = spacerPx + vhPx * (isMobile ? 5 : 4) + 900;
 
   return (
     <>
@@ -300,7 +313,7 @@ export default function Home() {
         <div
           style={{
             position: "absolute",
-            top: `calc(7.3 * 100${vhUnit})`,
+            top: `calc(${isMobile ? 7.8 : 7.0} * 100${vhUnit})`,
             left: 0,
             right: 0,
           }}
@@ -308,7 +321,7 @@ export default function Home() {
         >
           <FaqSection
             progress={smooth}
-            progressStart={5.2}
+            progressStart={isMobile ? 4.6 : 4.7}
             title={homeTexts("faq.title")}
             suptitle="FAQ"
             items={[
@@ -325,7 +338,7 @@ export default function Home() {
         <div
           style={{
             position: "absolute",
-            top: spacerPx + vhPx * 4 + 650,
+            top: spacerPx + vhPx * 4 + (isMobile? 950 : 650),
             left: 0,
             right: 0,
           }}
