@@ -1,19 +1,17 @@
 "use client";
 
-import {
-  motion,
-  useTransform,
-  MotionValue,
-  useSpring,
-} from "framer-motion";
+import { motion, useTransform, MotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
+import { ArrowUpRight } from "@deemlol/next-icons";
 import clsx from "clsx";
-import { useState } from "react";
 
 type CardItem = {
   id: string;
   image: string;
   label: string;
+  title?: string;
+  subtitle?: string;
+  link?: string;
 };
 
 type Props = {
@@ -23,89 +21,80 @@ type Props = {
   spreadEnd?: number;
 };
 
-// Angoli finali del ventaglio — distribuiti simmetricamente
-// La carta centrale (index 2) rimane diritta, le laterali ruotano
-const FAN_ANGLES = [-38, -19, 0, 19, 38];
-
-// Piccolo offset verticale per le carte esterne — effetto arco
-const FAN_Y_OFFSET = [18, 6, 0, 6, 18];
-
-function Card({
+function ProjectCard({
   item,
   index,
-  smoothSpread,
-  isActive,
-  onClick,
-  total,
+  progress,
+  spreadStart,
 }: {
   item: CardItem;
   index: number;
-  smoothSpread: MotionValue<number>;
-  isActive: boolean;
-  onClick: () => void;
-  total: number;
+  progress: MotionValue<number>;
+  spreadStart: number;
 }) {
-  const targetAngle   = FAN_ANGLES[index] ?? 0;
-  const targetYOffset = FAN_Y_OFFSET[index] ?? 0;
+  // Stagger: ogni carta ha un delay crescente
+  const cardStart = spreadStart + index * 0.1;
+  const cardEnd   = cardStart + 0.3;
 
-  // Ruota attorno al pivot in basso al centro (transformOrigin: bottom center)
-  const rotate  = useTransform(smoothSpread, [0, 1], [0, targetAngle]);
-  const y       = useTransform(smoothSpread, [0, 1], [0, targetYOffset]);
+  // Uscita: tutte le carte escono insieme leggermente dopo
+  const exitStart = spreadStart + 0.9;
+  const exitEnd   = spreadStart + 1.1;
 
-  // Le carte sotto la centrale vengono leggermente abbassate per dare profondità
-  const baseZIndex = total - Math.abs(index - Math.floor(total / 2));
+  const rawOpacity = useTransform(
+    progress,
+    [cardStart, cardEnd, exitStart, exitEnd],
+    [0, 1, 1, 0]
+  );
+  // Spring sull'opacità per un fade più morbido
+  const opacity = useSpring(rawOpacity, { stiffness: 60, damping: 20 });
+
+  // Entrata dal basso con clip — effetto "emerge"
+  const rawY = useTransform(
+    progress,
+    [cardStart, cardEnd, exitStart, exitEnd],
+    [60, 0, 0, -30]
+  );
+  const y = useSpring(rawY, { stiffness: 60, damping: 20 });
+
+  // Scala leggera all'entrata
+  const rawScale = useTransform(
+    progress,
+    [cardStart, cardEnd],
+    [0.92, 1]
+  );
+  const scale = useSpring(rawScale, { stiffness: 60, damping: 20 });
 
   return (
     <motion.div
-      onClick={onClick}
-      style={{
-        rotate,
-        y,
-        // Pivot in basso al centro — crea l'effetto mazzo che si apre
-        originX: "50%",
-        originY: "100%",
-        zIndex: isActive ? 50 : baseZIndex,
-        position: "absolute",
-        bottom: 0,
-        left: "50%",
-        marginLeft: -95, // metà della larghezza (190/2)
-      }}
-      className={clsx(
-        "w-[190px] h-[265px]",
-        "rounded-2xl overflow-hidden",
-        "cursor-pointer",
-        "shadow-[0_6px_24px_rgba(0,0,0,0.28),0_20px_60px_rgba(0,0,0,0.22)]",
-        "ring-1 ring-white/15",
-      )}
-      whileHover={{
-        scale: 1.06,
-        zIndex: 40,
-        transition: { type: "spring", stiffness: 320, damping: 26 },
-      }}
+      style={{ opacity, y, scale }}
+      className="flex-shrink-0 w-[72vw] sm:w-auto flex flex-col group cursor-pointer"
     >
-      <div className="relative w-full h-full">
+      {/* Foto */}
+      <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden">
         <Image
           src={item.image}
           alt={item.label}
           fill
-          className="object-cover"
-          sizes="190px"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          sizes="(max-width: 640px) 72vw, 33vw"
         />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+      </div>
 
-        {/* Vignetta fotografica */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent" />
-
-        {/* Riflesso topside */}
-        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/10 to-transparent pointer-events-none rounded-t-2xl" />
-
-        {/* Bordo interno */}
-        <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none" />
-
-        {/* Label */}
-        <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-8">
-          <p className="text-white/75 text-[0.65rem] font-semibold tracking-[0.14em] uppercase leading-none">
-            {item.label}
-          </p>
+      {/* Testo sotto */}
+      <div className="mt-4 flex items-start justify-between gap-2">
+        <div className="flex flex-col gap-1">
+          <h3 className="text-[1.05rem] font-semibold text-[#f4f7fa] leading-tight">
+            {item.title ?? item.label}
+          </h3>
+          {item.subtitle && (
+            <p className="text-[0.85rem] text-[#5C8BAF] leading-snug whitespace-pre-line">
+              {item.subtitle}
+            </p>
+          )}
+        </div>
+        <div className="shrink-0 mt-0.5">
+          <ArrowUpRight size={18} className="text-[#f4f7fa] opacity-70 group-hover:opacity-100 transition-opacity" />
         </div>
       </div>
     </motion.div>
@@ -116,37 +105,32 @@ export default function ScatteredCards({
   items,
   progress,
   spreadStart = 2.3,
-  spreadEnd = 3.0,
+  spreadEnd = 3.2,
 }: Props) {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  const spreadProgress = useTransform(progress, [spreadStart, spreadEnd], [0, 1]);
-  const smoothSpread = useSpring(spreadProgress, {
-    stiffness: 70,
-    damping: 24,
-  });
-
-  const uiOpacity = useTransform(progress, [spreadStart + 0.1, spreadStart + 0.4], [0, 1]);
-
   const cards = items.slice(0, 5);
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-end pb-20 select-none overflow-hidden">
-      {/* Stack con pivot in basso */}
+    <div className="w-full py-10 px-6">
       <div
-        className="relative flex items-end justify-center"
-        style={{ width: "100%", height: 320 }}
+        className={clsx(
+          // Mobile: scroll orizzontale
+          "flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4",
+          // Desktop: griglia centrata a larghezza fissa
+          "sm:grid sm:grid-cols-3 sm:overflow-visible sm:snap-none sm:pb-0",
+          "sm:max-w-5xl sm:mx-auto sm:gap-6",
+          // Nascondi scrollbar
+          "[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        )}
       >
         {cards.map((item, index) => (
-          <Card
-            key={item.id}
-            item={item}
-            index={index}
-            smoothSpread={smoothSpread}
-            isActive={activeIndex === index}
-            onClick={() => setActiveIndex(i => i === index ? null : index)}
-            total={cards.length}
-          />
+          <div key={item.id} className="snap-start">
+            <ProjectCard
+              item={item}
+              index={index}
+              progress={progress}
+              spreadStart={spreadStart}
+            />
+          </div>
         ))}
       </div>
     </div>
