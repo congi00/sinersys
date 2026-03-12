@@ -32,7 +32,11 @@ function isTouchDevice() {
 export default function Home() {
   const progressMotion = useMotionValue(0);
   const scrollY = useMotionValue(0);
+  // showIntro: particelle in corso
   const [showIntro, setShowIntro] = useState(true);
+  // introFinished: particelle terminate → parte il dezoom Three.js
+  const [introFinished, setIntroFinished] = useState(false);
+
   const homeTexts = useTranslations("homepage");
   const openContact = useAppSelector((state) => state.siteState.openContact);
   const navigationState = useAppSelector(
@@ -42,13 +46,9 @@ export default function Home() {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-
-    handleResize(); // valore iniziale
+    const handleResize = () => setWidth(window.innerWidth);
+    handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -57,8 +57,6 @@ export default function Home() {
   const vhUnit = isIOS ? "lvh" : "dvh";
 
   useEffect(() => {
-    // vhPx serve solo per totalHeight e le animazioni di uscita (aboutExitY, cardsExitY)
-    // Misura 100lvh su iOS, 100dvh altrove — coerente con vhUnit
     const measure = () => {
       const el = document.createElement("div");
       el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${
@@ -134,6 +132,7 @@ export default function Home() {
 
   const smooth = useSpring(progressMotion, { stiffness: 200, damping: 20 });
 
+  // Hero: con lo scroll il frame sale (esce in cima) usando il sistema inset esistente
   const frameY = useTransform(smooth, [1.5, 2.3], ["0%", "-110%"]);
   const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.4], [16, 0, 0, 16]);
   const heroHeight = useTransform(
@@ -166,7 +165,7 @@ export default function Home() {
   );
   const ctaFrameY = useTransform(
     smooth,
-    [3.6, isMobile? 4.1 : 4.3, isMobile? 4.2 : 4.4, isMobile? 5.0 :  5.2],
+    [3.6, isMobile ? 4.1 : 4.3, isMobile ? 4.2 : 4.4, isMobile ? 5.0 : 5.2],
     ["105%", "0%", "0%", "-105%"]
   );
 
@@ -176,16 +175,12 @@ export default function Home() {
     ["#F4F7FA", "#1c398e", "#1c398e", "#F4F7FA"]
   );
 
-  // aboutExitY e cardsExitY usano vhPx (px assoluti) perché y di Framer Motion
-  // non accetta stringhe CSS con vhUnit dinamico
   const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
   const aboutExitY = useTransform(smooth, [3.3, 3.5], [0, -vhPx]);
   const cardsExitY = useTransform(smooth, [3.3, 4.5], [0, -vhPx]);
 
   if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
 
-  // totalHeight in px — necessario per lo spacer che gonfia il body
-  // Usa vhPx (= 100lvh/dvh misurato) moltiplicato per il numero di "schermate"
   const spacerPx = 3.5 * vhPx;
   const totalHeight = spacerPx + vhPx * (isMobile ? 5 : 4) + 900;
 
@@ -211,14 +206,19 @@ export default function Home() {
           {showIntro && (
             <IntroParticles
               showIntro={showIntro}
-              onFinish={() => setTimeout(() => setShowIntro(false), 10)}
+              onFinish={() => {
+                // Prima segniamo introFinished (parte il dezoom)
+                setIntroFinished(true);
+                // Poi rimuoviamo IntroParticles dal DOM dopo un tick
+                setTimeout(() => setShowIntro(false), 10);
+              }}
             />
           )}
         </AnimatePresence>
 
         {!openContact && <Header />}
 
-        {/* Hero */}
+        {/* Hero — gestisce internamente dezoom, testo scroll, sezione video */}
         <motion.div
           style={{
             position: "fixed",
@@ -231,7 +231,10 @@ export default function Home() {
           }}
           className="flex items-center justify-center"
         >
-          <HomePage progressMotion={smooth} />
+          <HomePage
+            progressMotion={smooth}
+            introFinished={introFinished}
+          />
         </motion.div>
 
         {/* About */}
@@ -241,7 +244,6 @@ export default function Home() {
             top: `calc(3.5 * 100${vhUnit})`,
             left: 0,
             right: 0,
-            // minHeight: `100${vhUnit}`,
             opacity: AboutOpacity,
             y: aboutExitY,
           }}
