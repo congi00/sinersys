@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useTransform, MotionValue, useSpring } from "framer-motion";
+import { useRef } from "react";
+import { motion, useTransform, MotionValue, useInView } from "framer-motion";
 import Image from "next/image";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import clsx from "clsx";
@@ -26,59 +27,37 @@ function ProjectCard({
   index,
   progress,
   spreadStart,
+  spreadEnd,
 }: {
   item: CardItem;
   index: number;
   progress: MotionValue<number>;
   spreadStart: number;
+  spreadEnd: number;
 }) {
-  // Stagger: ogni carta ha un delay crescente
-  const cardStart = spreadStart + index * 0.1;
-  const cardEnd   = cardStart + 0.3;
+  // Ogni carta entra con un leggero delay basato sull'indice
+  const cardStart = spreadStart + index * 0.08;
+  const cardEnd = cardStart + 0.25;
 
-  // Uscita: tutte le carte escono insieme leggermente dopo
-  const exitStart = spreadStart + 0.9;
-  const exitEnd   = spreadStart + 1.1;
-
-  const rawOpacity = useTransform(
-    progress,
-    [cardStart, cardEnd, exitStart, exitEnd],
-    [0, 1, 1, 0]
-  );
-  // Spring sull'opacità per un fade più morbido
-  const opacity = useSpring(rawOpacity, { stiffness: 60, damping: 20 });
-
-  // Entrata dal basso con clip — effetto "emerge"
-  const rawY = useTransform(
-    progress,
-    [cardStart, cardEnd, exitStart, exitEnd],
-    [60, 0, 0, -30]
-  );
-  const y = useSpring(rawY, { stiffness: 60, damping: 20 });
-
-  // Scala leggera all'entrata
-  const rawScale = useTransform(
-    progress,
-    [cardStart, cardEnd],
-    [0.92, 1]
-  );
-  const scale = useSpring(rawScale, { stiffness: 60, damping: 20 });
+  const opacity = useTransform(progress, [cardStart, cardEnd], [0, 1]);
+  const y = useTransform(progress, [cardStart, cardEnd], [40, 0]);
 
   return (
     <motion.div
-      style={{ opacity, y, scale }}
-      className="flex-shrink-0 w-[72vw] sm:w-auto flex flex-col group cursor-pointer"
+      style={{ opacity, y }}
+      className="flex-shrink-0 w-[72vw] sm:w-[440px] flex flex-col group cursor-pointer"
     >
       {/* Foto */}
-      <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden">
+      <div className="relative w-full aspect-[3/4] rounded-l overflow-hidden">
         <Image
           src={item.image}
           alt={item.label}
           fill
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          sizes="(max-width: 640px) 72vw, 33vw"
+          sizes="(max-width: 640px) 72vw, 340px"
         />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+        {/* Overlay sottile al hover */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
       </div>
 
       {/* Testo sotto */}
@@ -88,7 +67,7 @@ function ProjectCard({
             {item.title ?? item.label}
           </h3>
           {item.subtitle && (
-            <p className="text-[0.85rem] text-[#5C8BAF] leading-snug whitespace-pre-line">
+            <p className="text-[0.85rem] text-[#5C8BAF] leading-snug">
               {item.subtitle}
             </p>
           )}
@@ -110,16 +89,16 @@ export default function ScatteredCards({
   const cards = items.slice(0, 5);
 
   return (
-    <div className="w-full py-10 px-6">
+    <div className="w-full flex flex-col gap-8 py-10 px-6">
+      {/* Scrollabile orizzontalmente su mobile, griglia su desktop */}
       <div
         className={clsx(
           // Mobile: scroll orizzontale
           "flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4",
-          // Desktop: griglia centrata a larghezza fissa
+          // Desktop: griglia fissa
           "sm:grid sm:grid-cols-3 sm:overflow-visible sm:snap-none sm:pb-0",
-          "sm:max-w-5xl sm:mx-auto sm:gap-6",
-          // Nascondi scrollbar
-          "[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          // Nascondi scrollbar visivamente
+          "scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         )}
       >
         {cards.map((item, index) => (
@@ -129,6 +108,7 @@ export default function ScatteredCards({
               index={index}
               progress={progress}
               spreadStart={spreadStart}
+              spreadEnd={spreadEnd}
             />
           </div>
         ))}
@@ -136,3 +116,15 @@ export default function ScatteredCards({
     </div>
   );
 }
+
+/*
+  In page.tsx aggiorna gli items così:
+
+  items={[
+    { id: "1", image: "/images/1.jpg", label: "1", title: "Superhead", subtitle: "Premium mountain stay booking platform\n\n360 Brand Development and Product Development" },
+    { id: "2", image: "/images/2.jpg", label: "2", title: "Pellegrin",  subtitle: "Jewelry house in Provence\n\nDevelopment strategy and digitalization" },
+    { id: "3", image: "/images/3.jpg", label: "3", title: "Lumara Vision", subtitle: "Solution for digitizing maritime oil and gas operations\n\nUX and app development" },
+    { id: "4", image: "/images/4.jpg", label: "4", title: "Progetto 4", subtitle: "Descrizione" },
+    { id: "5", image: "/images/5.jpg", label: "5", title: "Progetto 5", subtitle: "Descrizione" },
+  ]}
+*/
