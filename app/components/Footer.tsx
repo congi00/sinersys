@@ -47,7 +47,6 @@ export default function Footer() {
     >
       {/* 🌊 PARALLAX BACKGROUND */}
       <motion.div
-        style={{ y: bgY }}
         className="absolute inset-0 bg-gradient-to-br from-[#1c398e] to-[#4e67b1]"
       />
 
@@ -61,11 +60,11 @@ export default function Footer() {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="relative max-w-6xl mx-auto px-6"
+        className="relative max-w-6xl mx-auto px-6 "
       >
         {/* LOGO */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-2">
             <Image
               src="/full-logo-sinersys.png"
               alt="Sinersys Logo"
@@ -77,7 +76,7 @@ export default function Footer() {
 
           <motion.h2
             variants={itemVariants}
-            className="text-3xl font-semibold tracking-widest"
+            className="text-l font-semibold tracking-widest"
           >
             NEW ENERGY FRONTIERS
           </motion.h2>

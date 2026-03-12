@@ -336,7 +336,7 @@ export default function Home() {
         <div
           style={{
             position: "absolute",
-            top: spacerPx + vhPx * 4 + (isMobile? 950 : 650),
+            bottom: 0,
             left: 0,
             right: 0,
           }}
