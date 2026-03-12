@@ -267,8 +267,6 @@ export default function Home() {
               { id: "1", image: "/images/1.jpg", label: "descrizione 1" },
               { id: "2", image: "/images/2.jpg", label: "descrizione 2" },
               { id: "3", image: "/images/3.jpg", label: "descrizione 3" },
-              { id: "4", image: "/images/4.jpg", label: "descrizione 4" },
-              { id: "5", image: "/images/5.jpg", label: "descrizione 5" },
             ]}
             progress={progressMotion}
           />
@@ -278,7 +276,7 @@ export default function Home() {
         <div
           style={{
             position: "absolute",
-            top: `calc(4.9 * 100${vhUnit})`,
+            top: `calc(5.1 * 100${vhUnit})`,
             left: 0,
             right: 0,
             minHeight: `100${vhUnit}`,
