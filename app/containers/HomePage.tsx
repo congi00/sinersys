@@ -17,6 +17,9 @@ import * as THREE from "three";
 interface Props {
   progressMotion: MotionValue<number>;
   introFinished: boolean;
+  // Raw pixel value (0 → vh) that drives the heroClip in page.tsx.
+  // We use it here to scroll the image upward at half the speed → parallax.
+  heroTopInset: MotionValue<number>;
 }
 
 // ---------------------------------------------------------------------------
@@ -132,7 +135,7 @@ function useThreeDezoom(
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
-export default function HomePage({ progressMotion, introFinished }: Props) {
+export default function HomePage({ progressMotion, introFinished, heroTopInset }: Props) {
   const canvasRef   = useRef<HTMLCanvasElement>(null);
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const dispatch    = useAppDispatch();
@@ -143,16 +146,27 @@ export default function HomePage({ progressMotion, introFinished }: Props) {
 
   const slide0Opacity = useTransform(progressMotion, [0, 0.05], [0, 1]);
 
+  // Parallax: image moves up at 40% of the clip speed.
+  // heroTopInset goes 0→vh (px). We move the image 0 → -vh*0.4.
+  // This keeps the image "sliding behind" the closing clip, creating depth.
+  const imgParallaxY = useTransform(heroTopInset, (v) => -v * 0.4);
+
   return (
     <>
       <div className={clsx("relative w-full h-full overflow-hidden rounded-[inherit]")}>
 
-        {/* Static image — always visible, never fades. z:1 */}
-        <img
+        {/* Static image — parallax: moves up slower than the clip cuts it */}
+        <motion.img
           src="/homepageimage.png"
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ zIndex: 1 }}
+          style={{
+            zIndex: 1,
+            y: imgParallaxY,
+            // Scale up slightly so parallax movement never reveals edges
+            scale: 1.0,
+            transformOrigin: "center",
+          }}
         />
 
         {/* Dezoom canvas — plays over the image, then removed from DOM */}

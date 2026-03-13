@@ -126,33 +126,37 @@ export default function Home() {
   });
 
   // ── Motion values ─────────────────────────────────────────────────────────
-  const smooth = useSpring(progressMotion, { stiffness: 200, damping: 20 });
+  const smooth = useSpring(progressMotion, { stiffness: 280, damping: 28 });
 
-  // Use vh=1 as safe fallback when vhPx not yet measured.
-  // The early return below means these values are never rendered in that state.
   const vh = vhPx || 1;
 
-  const wrapperInset = useTransform(smooth, [0, 0.3, 0.8, 1.0], [16, 0, 0, 0]);
-  const heroHeight   = useTransform(
-    wrapperInset,
-    (v) => `calc(100${vhUnit} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
-  );
-  const heroTop   = useTransform(wrapperInset, (v) => `calc(${v}px + env(safe-area-inset-top))`);
-  const heroLeft  = wrapperInset;
-  const heroRight = wrapperInset;
-  const heroY     = useTransform(smooth, [0, 1], [0, -vh]);
+  // ── HERO (z:10): compressed from the top as textDiv rises ────────────────
+  // heroTopInset grows 0→vh in sync with textDiv sliding up.
+  // Result: hero appears to be "pushed up and out" by the rising panel.
+  const heroTopInset = useTransform(smooth, [0, 1.0], [0, vh]);
+  const heroClip = useTransform(heroTopInset, (v) => `inset(0px 0px ${v}px 0px)`);
 
-  const textDivY = useTransform(smooth, [0, 1, 2], [vh, 0, -vh]);
-  const videoY   = useTransform(smooth, [1, 2, 4, 5], [vh, 0, 0, -vh]);
+  // ── TEXT DIV (z:11): slides up from 100vh, synchronized with hero clip ────
+  // Enters: progress 0→1.0 (y: vh→0)
+  // Exits:  progress 1.5→2.0 (y: 0→-vh) when video starts rising
+  const textDivY = useTransform(smooth, [0, 1.0, 1.0, 1.8], [vh, 0, 0, -vh]);
+  const textDivRadius = useTransform(smooth, [0, 1.0, 1.4, 1.8], [0, 24, 24, 0]);
+  const textDivInset = useTransform(smooth, [0, 1.0, 1.4, 1.8], [0, 16, 16, 0]);
 
-  const slide1Opacity = useTransform(smooth, [2.3, 2.6, 3.7, 4.0], [0, 1, 1, 0]);
-  const slide1Y       = useTransform(smooth, [2.2, 2.6], [60, 0]);
+  // ── VIDEO (z:12): same mechanic — textDiv compressed from top as video rises
+  // videoTopInset tracks textDiv exit: progress 1.5→2.0, inset 0→vh on textDiv
+  // But video itself slides up: progress 1.5→2.0, y: vh→0
+  const textDivTopInset = useTransform(smooth, [1.5, 2.0], [0, vh]);
+  const textDivClip = useTransform(textDivTopInset, (v) => `inset(${v}px 0px 0px 0px)`);
 
-  const bgColor = useTransform(
-    smooth,
-    [1.8, 2.0, 4.8, 5.0],
-    ["#F4F7FA", "#1c398e", "#1c398e", "#F4F7FA"]
-  );
+  const videoY = useTransform(smooth, [1.0, 1.1, 4.6, 5.0], [vh, 0, 0, -vh]);
+  const videoOpacity = useTransform(smooth, [1.1, 1.6], [ 0, 1]);
+
+  // Slide 1 text inside video — pure y, no opacity
+  const slide1Y = useTransform(smooth, [2.0, 2.4, 3.7, 4.1], [60, 0, 0, -40]);
+
+  // ── Header text color ─────────────────────────────────────────────────────
+  const headerTheme = useTransform(smooth, [0.5, 0.7, 4.7, 4.9], [1, 0, 0, 1]);
 
   const aboutExitY = useTransform(smooth, [6.3, 6.5], [0, -vh]);
   const cardsExitY = useTransform(smooth, [6.3, 7.5], [0, -vh]);
@@ -169,9 +173,15 @@ export default function Home() {
     ["105%", "0%", "0%", "-105%"]
   );
 
-  // ── Derived layout values (safe to compute always) ────────────────────────
+  // ── Derived layout values ─────────────────────────────────────────────────
+  // 3 fixed panels (hero, textDiv, video) each consume 1 progress unit of scroll.
+  // After progress=5 the video exits and absolute sections begin.
+  // ScatteredCards was invisible because its top was too close to About.
+  // Spread them out: About at 5vh, Cards at 5.8vh, OurPromise at 6.6vh.
   const totalHeight  = vh * 8 + 900;
   const spacerAbove5 = vh * 5;
+  const spacerCards  = vh * 5.8;   // was spacerAbove5 + vh*0.7 → cards hidden under About
+  const spacerPromise = vh * 6.6;
 
   // ── Early return AFTER all hooks ──────────────────────────────────────────
   if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
@@ -203,37 +213,43 @@ export default function Home() {
           )}
         </AnimatePresence>
 
-        {!openContact && <Header />}
-
-        {/* ── HERO ──────────────────────────────────────────────────────────
-            y: 0 → -vh as progress 0→1. Pure physical scroll, no opacity.
+        {/* ── HEADER ────────────────────────────────────────────────────────
+            Receives headerTheme so it can swap text/logo color per panel.
+            headerTheme: 0 = dark bg (white text), 1 = light bg (dark text)
         ──────────────────────────────────────────────────────────────────── */}
-        <motion.div
-          style={{
-            position: "fixed",
-            left: heroLeft,
-            right: heroRight,
-            top: heroTop,
-            height: heroHeight,
-            y: heroY,
-            zIndex: 10,
-          }}
-        >
-          <HomePage progressMotion={smooth} introFinished={introFinished} />
-        </motion.div>
+        {!openContact && <Header headerTheme={headerTheme} />}
 
-        {/* ── TEXT DIV ──────────────────────────────────────────────────────
-            y: +vh → 0 → -vh  (progress 0→1→2).
-            Arrives exactly as hero exits. Solid bg prevents bleed-through.
+
+        {/* ── HERO (z:10) ───────────────────────────────────────────────────
+            Fixed full-screen. clipPath TOP-inset grows 0→vh in sync with
+            textDiv rising: hero gets "pushed up" as textDiv covers it.
         ──────────────────────────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "fixed",
             inset: 0,
+            clipPath: heroClip,
+            zIndex: 10,
+          }}
+        >
+          <HomePage progressMotion={smooth} introFinished={introFinished} heroTopInset={heroTopInset} />
+        </motion.div>
+
+        {/* ── TEXT DIV (z:11) ───────────────────────────────────────────────
+            Slides up from 100vh (progress 0→1.0) covering the hero.
+            clipPath top-inset then grows 0→vh (progress 1.5→2.0) as video
+            rises beneath it — same "push up" mechanic applied to textDiv.
+        ──────────────────────────────────────────────────────────────────── */}
+        <motion.div
+          style={{
+            position: "fixed",
+            inset: textDivInset,
             y: textDivY,
-            zIndex: 9,
+            clipPath: textDivClip,
+            zIndex: 11,
+            borderRadius: textDivRadius,
             pointerEvents: "none",
-            backgroundColor: "#1c398e"
+            backgroundColor: "#1c398e",
           }}
           className="flex items-center justify-center px-8"
         >
@@ -244,16 +260,18 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* ── VIDEO (scrubbed) ──────────────────────────────────────────────
-            y: +vh → 0 (progress 1→2), holds 2→4 (scrubbing), exits -vh at 5.
-            No opacity — attached flush below textDiv.
+        {/* ── VIDEO (z:12) ──────────────────────────────────────────────────
+            Slides up from 100vh (progress 1.5→2.0) covering textDiv.
+            No clipPath needed — it's a pure y slide, same as on.energy.
+            Holds full-screen during scrub (2→4.6), exits at 4.6→5.0.
         ──────────────────────────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "fixed",
             inset: 0,
             y: videoY,
-            zIndex: 8,
+            opacity: videoOpacity,
+            zIndex: 10,
           }}
           className="overflow-hidden"
         >
@@ -266,8 +284,9 @@ export default function Home() {
             className="absolute inset-0 w-full h-full object-cover"
           />
 
+          {/* Slide 1 text: pure y-only translation, no opacity */}
           <motion.div
-            style={{ opacity: slide1Opacity, y: slide1Y, top: "150px" }}
+            style={{ y: slide1Y, top: "150px" }}
             className="absolute px-[20px] z-10 text-center w-full"
           >
             <h4 className="text-[1.15rem] sm:text-[1.7rem] mb-4 whitespace-pre-line text-[#D9D9D9]">
@@ -308,7 +327,7 @@ export default function Home() {
         <motion.div
           style={{
             position: "absolute",
-            top: spacerAbove5 + vh * 0.7,
+            top: spacerCards,
             left: 0,
             right: 0,
             minHeight: `100${vhUnit}`,
@@ -330,7 +349,7 @@ export default function Home() {
         <div
           style={{
             position: "absolute",
-            top: spacerAbove5 + vh * 1.6,
+            top: spacerPromise,
             left: 0,
             right: 0,
             minHeight: `100${vhUnit}`,
@@ -365,7 +384,7 @@ export default function Home() {
         <div
           style={{
             position: "absolute",
-            top: spacerAbove5 + vh * (isMobile ? 2.8 : 2.0),
+            top: spacerPromise + vh * (isMobile ? 1.2 : 0.8),
             left: 0,
             right: 0,
           }}
