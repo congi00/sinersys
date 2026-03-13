@@ -6,6 +6,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
+  useMotionValueEvent,
   AnimatePresence,
 } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
@@ -23,6 +24,9 @@ import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
 import { detectIOS } from "./support/useViewportHeight";
 import FaqSection from "./components/FaqSection";
+import LinkButton from "./components/LinkButton";
+import { ArrowUpRight } from "@deemlol/next-icons";
+import LiquidBackground from "./components/LiquidBackground";
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -30,31 +34,31 @@ function isTouchDevice() {
 }
 
 export default function Home() {
+  // ── State & refs ──────────────────────────────────────────────────────────
   const progressMotion = useMotionValue(0);
-  const scrollY = useMotionValue(0);
-  // showIntro: particelle in corso
-  const [showIntro, setShowIntro] = useState(true);
-  // introFinished: particelle terminate → parte il dezoom Three.js
+  const scrollY        = useMotionValue(0);
+  const [showIntro, setShowIntro]         = useState(true);
   const [introFinished, setIntroFinished] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const homeTexts = useTranslations("homepage");
-  const openContact = useAppSelector((state) => state.siteState.openContact);
-  const navigationState = useAppSelector(
-    (state) => state.siteState.navigationState
-  );
-  const [vhPx, setVhPx] = useState(0);
-  const [width, setWidth] = useState(0);
+  const homeTexts       = useTranslations("homepage");
+  const openContact     = useAppSelector((s) => s.siteState.openContact);
+  const navigationState = useAppSelector((s) => s.siteState.navigationState);
 
+  const [vhPx, setVhPx]   = useState(0);
+  const [width, setWidth]  = useState(0);
+
+  // ── Effects ───────────────────────────────────────────────────────────────
   useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const onResize = () => setWidth(window.innerWidth);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   const isMobile = width <= 768;
-  const isIOS = detectIOS();
-  const vhUnit = isIOS ? "lvh" : "dvh";
+  const isIOS    = detectIOS();
+  const vhUnit   = isIOS ? "lvh" : "dvh";
 
   useEffect(() => {
     const measure = () => {
@@ -63,9 +67,8 @@ export default function Home() {
         isIOS ? "lvh" : "dvh"
       };pointer-events:none;visibility:hidden;`;
       document.body.appendChild(el);
-      const h = el.getBoundingClientRect().height;
+      setVhPx(el.getBoundingClientRect().height);
       document.body.removeChild(el);
-      setVhPx(h);
     };
     measure();
     window.addEventListener("resize", measure);
@@ -74,37 +77,27 @@ export default function Home() {
       window.removeEventListener("resize", measure);
       window.removeEventListener("orientationchange", measure);
     };
-  }, []);
+  }, [isIOS]);
 
   useEffect(() => {
-    if (showIntro) {
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-    } else if (navigationState === 3) {
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    }
+    const lock = showIntro || navigationState === 3;
+    document.body.style.overflow            = lock ? "hidden" : "";
+    document.documentElement.style.overflow = lock ? "hidden" : "";
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow            = "";
       document.documentElement.style.overflow = "";
     };
   }, [showIntro, navigationState]);
 
   useEffect(() => {
     if (showIntro) return;
-
     const isTouch = isTouchDevice();
-
     if (isTouch) {
       const onScroll = () => {
-        const sy = window.scrollY;
-        const limit =
-          document.documentElement.scrollHeight - window.innerHeight;
+        const sy    = window.scrollY;
+        const limit = document.documentElement.scrollHeight - window.innerHeight;
         if (limit > 0) {
-          progressMotion.set(Math.min(6, (sy / limit) * 6));
+          progressMotion.set(Math.min(8, (sy / limit) * 8));
           scrollY.set(sy);
         }
       };
@@ -114,92 +107,88 @@ export default function Home() {
     } else {
       const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
       let rafId: number;
-      function raf(time: number) {
-        lenis.raf(time);
-        rafId = requestAnimationFrame(raf);
-      }
+      const raf = (t: number) => { lenis.raf(t); rafId = requestAnimationFrame(raf); };
       rafId = requestAnimationFrame(raf);
       lenis.on("scroll", (e: { scroll: number; limit: number }) => {
-        progressMotion.set(Math.min(6, (e.scroll / e.limit) * 6));
+        progressMotion.set(Math.min(8, (e.scroll / e.limit) * 8));
         scrollY.set(e.scroll);
       });
-      return () => {
-        cancelAnimationFrame(rafId);
-        lenis.destroy();
-      };
+      return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
     }
   }, [progressMotion, scrollY, showIntro]);
 
+  // Video scrubbing: progress 2→4 maps to full video duration
+  useMotionValueEvent(progressMotion, "change", (p) => {
+    const video = videoRef.current;
+    if (!video || !video.duration) return;
+    const t = Math.max(0, Math.min(1, (p - 2) / 2));
+    video.currentTime = t * video.duration;
+  });
+
+  // ── Motion values ─────────────────────────────────────────────────────────
   const smooth = useSpring(progressMotion, { stiffness: 200, damping: 20 });
 
-  // Hero: con lo scroll il frame sale (esce in cima) usando il sistema inset esistente
-  const frameY = useTransform(smooth, [1.5, 2.3], ["0%", "-110%"]);
-  const wrapperInset = useTransform(smooth, [0, 1, 1.8, 2.4], [16, 0, 0, 16]);
-  const heroHeight = useTransform(
-    wrapperInset,
-    (v) =>
-      `calc(100${vhUnit} - ${
-        v * 2
-      }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
-  );
-  const heroTop = useTransform(
-    wrapperInset,
-    (v) => `calc(${v}px + env(safe-area-inset-top))`
-  );
+  // Use vh=1 as safe fallback when vhPx not yet measured.
+  // The early return below means these values are never rendered in that state.
+  const vh = vhPx || 1;
 
-  const wrapperCTAInset = useTransform(
-    smooth,
-    [3.6, 4.3, 4.4, 5.1],
-    [16, 0, 0, 16]
+  const wrapperInset = useTransform(smooth, [0, 0.3, 0.8, 1.0], [16, 0, 0, 0]);
+  const heroHeight   = useTransform(
+    wrapperInset,
+    (v) => `calc(100${vhUnit} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
   );
-  const ctaHeight = useTransform(
-    wrapperCTAInset,
-    (v) =>
-      `calc(100${vhUnit} - ${
-        v * 2
-      }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
-  );
-  const ctaTop = useTransform(
-    wrapperCTAInset,
-    (v) => `calc(${v}px + env(safe-area-inset-top))`
-  );
-  const ctaFrameY = useTransform(
-    smooth,
-    [3.6, isMobile ? 4.1 : 4.3, isMobile ? 4.2 : 4.4, isMobile ? 5.0 : 5.2],
-    ["105%", "0%", "0%", "-105%"]
-  );
+  const heroTop   = useTransform(wrapperInset, (v) => `calc(${v}px + env(safe-area-inset-top))`);
+  const heroLeft  = wrapperInset;
+  const heroRight = wrapperInset;
+  const heroY     = useTransform(smooth, [0, 1], [0, -vh]);
+
+  const textDivY = useTransform(smooth, [0, 1, 2], [vh, 0, -vh]);
+  const videoY   = useTransform(smooth, [1, 2, 4, 5], [vh, 0, 0, -vh]);
+
+  const slide1Opacity = useTransform(smooth, [2.3, 2.6, 3.7, 4.0], [0, 1, 1, 0]);
+  const slide1Y       = useTransform(smooth, [2.2, 2.6], [60, 0]);
 
   const bgColor = useTransform(
     smooth,
-    [2.1, 2.2, 3.5, 3.6],
+    [1.8, 2.0, 4.8, 5.0],
     ["#F4F7FA", "#1c398e", "#1c398e", "#F4F7FA"]
   );
 
-  const AboutOpacity = useTransform(smooth, [1, 1.2], [0, 1]);
-  const aboutExitY = useTransform(smooth, [3.3, 3.5], [0, -vhPx]);
-  const cardsExitY = useTransform(smooth, [3.3, 4.5], [0, -vhPx]);
+  const aboutExitY = useTransform(smooth, [6.3, 6.5], [0, -vh]);
+  const cardsExitY = useTransform(smooth, [6.3, 7.5], [0, -vh]);
 
+  const wrapperCTAInset = useTransform(smooth, [5.6, 6.3, 6.4, 7.1], [16, 0, 0, 16]);
+  const ctaHeight = useTransform(
+    wrapperCTAInset,
+    (v) => `calc(100${vhUnit} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
+  );
+  const ctaTop    = useTransform(wrapperCTAInset, (v) => `calc(${v}px + env(safe-area-inset-top))`);
+  const ctaFrameY = useTransform(
+    smooth,
+    [5.6, isMobile ? 6.1 : 6.3, isMobile ? 6.2 : 6.4, isMobile ? 7.0 : 7.2],
+    ["105%", "0%", "0%", "-105%"]
+  );
+
+  // ── Derived layout values (safe to compute always) ────────────────────────
+  const totalHeight  = vh * 8 + 900;
+  const spacerAbove5 = vh * 5;
+
+  // ── Early return AFTER all hooks ──────────────────────────────────────────
   if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
 
-  const spacerPx = 3.5 * vhPx;
-  const totalHeight = spacerPx + vhPx * (isMobile ? 5 : 4) + 900;
-
+  // ── Render ────────────────────────────────────────────────────────────────
   return (
     <>
+      {/* Permanent background — fixed behind everything */}
+      <LiquidBackground style={{ position: "fixed", inset: 0, zIndex: 0 }} />
+
       <motion.div
-        style={{
-          height: totalHeight,
-          pointerEvents: "none",
-          backgroundColor: bgColor,
-        }}
+        style={{ height: totalHeight, pointerEvents: "none" }}
         aria-hidden
       />
 
       <div
-        className={clsx(
-          "absolute inset-x-0 top-0",
-          showIntro ? "overflow-hidden" : ""
-        )}
+        className={clsx("absolute inset-x-0 top-0", showIntro ? "overflow-hidden" : "")}
         style={{ height: totalHeight, zIndex: 1 }}
       >
         <AnimatePresence>
@@ -207,9 +196,7 @@ export default function Home() {
             <IntroParticles
               showIntro={showIntro}
               onFinish={() => {
-                // Prima segniamo introFinished (parte il dezoom)
                 setIntroFinished(true);
-                // Poi rimuoviamo IntroParticles dal DOM dopo un tick
                 setTimeout(() => setShowIntro(false), 10);
               }}
             />
@@ -218,33 +205,98 @@ export default function Home() {
 
         {!openContact && <Header />}
 
-        {/* Hero — gestisce internamente dezoom, testo scroll, sezione video */}
+        {/* ── HERO ──────────────────────────────────────────────────────────
+            y: 0 → -vh as progress 0→1. Pure physical scroll, no opacity.
+        ──────────────────────────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "fixed",
-            left: wrapperInset,
-            right: wrapperInset,
+            left: heroLeft,
+            right: heroRight,
             top: heroTop,
             height: heroHeight,
-            y: frameY,
+            y: heroY,
             zIndex: 10,
           }}
-          className="flex items-center justify-center"
         >
-          <HomePage
-            progressMotion={smooth}
-            introFinished={introFinished}
-          />
+          <HomePage progressMotion={smooth} introFinished={introFinished} />
         </motion.div>
 
-        {/* About */}
+        {/* ── TEXT DIV ──────────────────────────────────────────────────────
+            y: +vh → 0 → -vh  (progress 0→1→2).
+            Arrives exactly as hero exits. Solid bg prevents bleed-through.
+        ──────────────────────────────────────────────────────────────────── */}
+        <motion.div
+          style={{
+            position: "fixed",
+            inset: 0,
+            y: textDivY,
+            zIndex: 9,
+            pointerEvents: "none",
+            backgroundColor: "#1c398e"
+          }}
+          className="flex items-center justify-center px-8"
+        >
+          <div className="max-w-2xl text-center">
+            <p className="text-[1.1rem] sm:text-[1.4rem] text-[#c8d8f8] font-medium leading-relaxed">
+              {homeTexts("slide0.subtitle")}
+            </p>
+          </div>
+        </motion.div>
+
+        {/* ── VIDEO (scrubbed) ──────────────────────────────────────────────
+            y: +vh → 0 (progress 1→2), holds 2→4 (scrubbing), exits -vh at 5.
+            No opacity — attached flush below textDiv.
+        ──────────────────────────────────────────────────────────────────── */}
+        <motion.div
+          style={{
+            position: "fixed",
+            inset: 0,
+            y: videoY,
+            zIndex: 8,
+          }}
+          className="overflow-hidden"
+        >
+          <video
+            ref={videoRef}
+            src="/city-loopj.mp4"
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+
+          <motion.div
+            style={{ opacity: slide1Opacity, y: slide1Y, top: "150px" }}
+            className="absolute px-[20px] z-10 text-center w-full"
+          >
+            <h4 className="text-[1.15rem] sm:text-[1.7rem] mb-4 whitespace-pre-line text-[#D9D9D9]">
+              {homeTexts("slide1.suptitle")}
+            </h4>
+            <h1 className="text-[3.0rem] sm:text-[4.2rem] text-[#f4f7fa] font-bold">
+              {homeTexts("slide1.title")}
+            </h1>
+            <h2 className="text-[1.65rem] sm:text-[2.25rem] mt-4 whitespace-pre-line text-[#f4f7fa] font-light">
+              {homeTexts("slide1.subtitle")}
+            </h2>
+            <LinkButton
+              text={homeTexts("slide1.link")}
+              link={"apwec"}
+              icon={<ArrowUpRight size={20} className="text-[#f4f7fa]" />}
+              top="200px"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* ── ABOUT ─────────────────────────────────────────────────────────
+            Absolute at 5*vh — appears exactly when video exits at progress=5.
+        ──────────────────────────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "absolute",
-            top: `calc(3.5 * 100${vhUnit})`,
+            top: spacerAbove5,
             left: 0,
             right: 0,
-            opacity: AboutOpacity,
             y: aboutExitY,
           }}
           className="flex items-start justify-center"
@@ -252,11 +304,11 @@ export default function Home() {
           <HomePageAbout progressMotion={smooth} />
         </motion.div>
 
-        {/* ScatteredCards */}
+        {/* ── ScatteredCards ─────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "absolute",
-            top: `calc(4.2 * 100${vhUnit})`,
+            top: spacerAbove5 + vh * 0.7,
             left: 0,
             right: 0,
             minHeight: `100${vhUnit}`,
@@ -274,11 +326,11 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* OurPromise */}
+        {/* ── OurPromise ─────────────────────────────────────────────────── */}
         <div
           style={{
             position: "absolute",
-            top: `calc(5.1 * 100${vhUnit})`,
+            top: spacerAbove5 + vh * 1.6,
             left: 0,
             right: 0,
             minHeight: `100${vhUnit}`,
@@ -292,7 +344,7 @@ export default function Home() {
           />
         </div>
 
-        {/* CTA */}
+        {/* ── CTA ────────────────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "fixed",
@@ -309,11 +361,11 @@ export default function Home() {
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
 
-        {/* FAQ */}
+        {/* ── FAQ ────────────────────────────────────────────────────────── */}
         <div
           style={{
             position: "absolute",
-            top: `calc(${isMobile ? 7.8 : 7.0} * 100${vhUnit})`,
+            top: spacerAbove5 + vh * (isMobile ? 2.8 : 2.0),
             left: 0,
             right: 0,
           }}
@@ -321,7 +373,7 @@ export default function Home() {
         >
           <FaqSection
             progress={smooth}
-            progressStart={isMobile ? 4.6 : 4.7}
+            progressStart={isMobile ? 6.6 : 6.7}
             title={homeTexts("faq.title")}
             suptitle="FAQ"
             items={[
@@ -334,15 +386,8 @@ export default function Home() {
           />
         </div>
 
-        {/* Footer */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-          }}
-        >
+        {/* ── Footer ─────────────────────────────────────────────────────── */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
           <Footer />
         </div>
 
