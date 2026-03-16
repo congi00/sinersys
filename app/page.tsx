@@ -272,14 +272,12 @@ export default function Home() {
           }}
           className="flex flex-col items-center justify-center px-8 text-center"
         >
-          <div style={{ marginBottom: "22vh" }}>
-            <h1 className="text-[3.0rem] sm:text-[4.8rem] text-[#f4f7fa] font-bold leading-tight tracking-tight">
+            <h1 className="text-[3.0rem] sm:text-[5.8rem] text-[#f4f7fa] font-bold leading-tight tracking-tight">
               {homeTexts("slide0.title")}
             </h1>
-            <h2 className="text-[1.4rem] sm:text-[2rem] mt-5 whitespace-pre-line text-[#c8d8f8] font-light max-w-2xl">
+            <h2 className="text-[1.4rem] sm:text-[2rem] mt-5 whitespace-pre-line text-[#c8d8f8] font-light max-w-xl">
               {homeTexts("slide0.subtitle")}
             </h2>
-          </div>
         </motion.div>
 
         {/* ── MODEL PHASE A: bottom strip, full width, visible from start ────
@@ -290,10 +288,9 @@ export default function Home() {
           <motion.div
             style={{
               position: "fixed",
-              left: "5vw",
-              right: "5vw",
               bottom: 0,
               height: "30vh",
+              width: "100vw",
               zIndex: 10,
               opacity: modelPhaseAOpacity,
               y: modelPhaseAY,
@@ -303,10 +300,11 @@ export default function Home() {
             <HeroModel progressMotion={smooth} rotationProgress={modelRotationY} />
             <motion.div
               style={{
-                position: "absolute", inset: 0,
+                position: "absolute", inset: 16,
                 background: "linear-gradient(to top, rgba(12,24,70,0.97) 0%, rgba(12,24,70,0.65) 40%, rgba(12,24,70,0.1) 70%, transparent 100%)",
                 opacity: modelMaskOpacity,
                 pointerEvents: "none", zIndex: 2,
+                borderRadius: "24px",
               }}
             />
           </motion.div>

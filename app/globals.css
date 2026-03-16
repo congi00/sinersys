@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Maorin";
+  src: url("/font/maorin.otf") format("opentype");
+}
+
 :root {
   --background: #f4f7fa;
   --foreground: #171717;
@@ -17,9 +22,10 @@
   --sat-env-bottom: env(safe-area-inset-bottom);
 }
 
+/* font-family: var(--font-league), sans-serif; */
 html, body {
   color: var(--foreground);
-  font-family: var(--font-league), sans-serif;
+  font-family: "Maorin", sans-serif;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);

@@ -13,7 +13,7 @@ interface Props {
 export default function HeroModel({
   progressMotion,
   rotationProgress,
-  stepSrc = "/APWEC2017.step",
+  stepSrc = "/APWEC2017.STEP",
 }: Props) {
   const mountRef = useRef<HTMLDivElement>(null);
 

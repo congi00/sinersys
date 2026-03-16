@@ -35,7 +35,6 @@ export default async function RootLayout({children}: Props) {
       </head>
       <body
         className={`
-          ${leagueSpartan.variable} 
           antialiased
           min-h-vh pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]
         `}

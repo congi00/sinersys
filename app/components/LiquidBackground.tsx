@@ -92,23 +92,36 @@ void main() {
 `;
 
 export default function LiquidBackground({ className = "", style = {}, progress }: Props) {
-  const canvasRef = useRef<HTMLDivElement>(null);
+  const mountRef = useRef<HTMLDivElement>(null);
 
-  // Only animate borderRadius — the canvas fills its container fully.
-  // The outer wrapper (motion.div) handles the inset via padding.
-  // This avoids re-triggering Three.js resize on every frame.
-  const insetVal  = progress ? useTransform(progress, [0, 0.7, 1.1], [16, 16, 0])  : null;
-  const radiusVal = progress ? useTransform(progress, [0, 0.7, 1.1], [24, 24, 0])  : null;
-  const insetStr  = insetVal  ? useTransform(insetVal,  (v) => `${v}px`) : null;
-  const radiusStr = radiusVal ? useTransform(radiusVal, (v) => `${v}px`) : null;
+  // ── clip-path approach ────────────────────────────────────────────────────
+  // The canvas div is ALWAYS position:fixed inset:0 — never resized.
+  // We fake the inset+borderRadius by animating clip-path on the same div.
+  // inset(16px 16px 16px 16px round 24px) → inset(0px round 0px)
+  // clip-path is a compositor-only property: zero layout, zero canvas resize.
+  const clipPath = progress
+    ? useTransform(
+        progress,
+        [0, 0.7, 1.1],
+        [
+          "inset(16px round 24px)",
+          "inset(16px round 24px)",
+          "inset(0px round 0px)",
+        ]
+      )
+    : null;
 
   useEffect(() => {
-    const mount = canvasRef.current;
+    const mount = mountRef.current;
     if (!mount) return;
+
+    // Size to full window — clip-path handles the visual cropping.
+    const W = window.innerWidth;
+    const H = window.innerHeight;
 
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.setSize(mount.clientWidth, mount.clientHeight);
+    renderer.setSize(W, H);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
 
@@ -116,7 +129,7 @@ export default function LiquidBackground({ className = "", style = {}, progress 
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const uniforms = {
       uTime:       { value: 0 },
-      uResolution: { value: new THREE.Vector2(mount.clientWidth, mount.clientHeight) },
+      uResolution: { value: new THREE.Vector2(W, H) },
     };
     const geo = new THREE.PlaneGeometry(2, 2);
     const mat = new THREE.ShaderMaterial({ vertexShader: VERT, fragmentShader: FRAG, uniforms });
@@ -131,16 +144,18 @@ export default function LiquidBackground({ className = "", style = {}, progress 
     }
     animate();
 
-    const ro = new ResizeObserver(() => {
-      const w = mount.clientWidth, h = mount.clientHeight;
+    // Only resize on actual window resize — NOT on scroll/clip-path changes.
+    function onResize() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
       renderer.setSize(w, h);
       uniforms.uResolution.value.set(w, h);
-    });
-    ro.observe(mount);
+    }
+    window.addEventListener("resize", onResize);
 
     return () => {
       cancelAnimationFrame(rafId);
-      ro.disconnect();
+      window.removeEventListener("resize", onResize);
       renderer.dispose();
       mat.dispose();
       geo.dispose();
@@ -149,29 +164,19 @@ export default function LiquidBackground({ className = "", style = {}, progress 
   }, []);
 
   return (
-    // Outer wrapper: animates inset via `inset` CSS shorthand (padding approach).
-    // We use clip-path on the inner canvas div instead to avoid layout reflows.
     <motion.div
+      ref={mountRef}
+      className={className}
       style={{
         position: "fixed",
         inset: 0,
         zIndex: 0,
         pointerEvents: "none",
-        padding: insetStr ?? "16px",
+        // clip-path drives the visual inset+radius — no layout change ever
+        clipPath: clipPath ?? "inset(16px round 24px)",
+        willChange: "clip-path",
         ...style,
       }}
-    >
-      {/* Inner div: fills the padded area, clips to borderRadius */}
-      <motion.div
-        ref={canvasRef}
-        className={className}
-        style={{
-          width: "100%",
-          height: "100%",
-          borderRadius: radiusStr ?? "24px",
-          overflow: "hidden",
-        }}
-      />
-    </motion.div>
+    />
   );
 }
