@@ -7,14 +7,14 @@ interface SignatureProps {
 }
 
 const Signature: React.FC<SignatureProps> = ({ progress }) => {
-  const pathLength = useTransform(progress, [3.6, 3.7], [0, 1]);
+  const pathLength = useTransform(progress, [3.8, 4.0], [0, 1]);
 
   return (
     <div className="sm:flex sm:justify-center">
       <motion.svg viewBox="0 0 500 200" width="400" fill="none">
         <motion.path
           d="M10 100 C 100 0, 200 200, 300 100"
-          stroke="#5C8BAF"
+          stroke="#f1f1f1"
           strokeWidth="3"
           style={{ pathLength }}
         />

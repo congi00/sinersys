@@ -50,7 +50,7 @@ function Word({
 
 const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) => {
   const words = title.split(" ");
-  const wordsProgress = useTransform(progress, [3.2, 3.6], [0, words.length]);
+  const wordsProgress = useTransform(progress, [3.7, 4.6], [0, words.length]);
 
   const subtitleColor = useTransform(
     progress,

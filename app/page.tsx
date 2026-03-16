@@ -134,18 +134,18 @@ export default function Home() {
   // 7.2+        OurPromise (z:31), CTA (z:32), FAQ (z:31)
 
   // ── Slide 0 ───────────────────────────────────────────────────────────────
-  const slide0Y       = useTransform(smooth, [0, 0.6, 1.0], [0, 0, -80]);
+  const slide0Y       = useTransform(smooth, [0, 0.2, 0.6], [0, 0, -880]);
   const slide0Opacity = useTransform(smooth, [0, 0.7, 1.0], [1, 1, 0]);
   const slide0Clip    = useTransform(smooth,
-    [0, 0.6, 1.0],
+    [0, 0.3, 0.7],
     ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
   );
 
   // ── Slide 1 ───────────────────────────────────────────────────────────────
-  const slide1Y       = useTransform(smooth, [0.7, 1.1, 2.0, 2.5], [80, 0, 0, -80]);
+  const slide1Y       = useTransform(smooth, [0.7, 1.1, 1.6, 1.8], [80, 0, 0, -880]);
   const slide1Opacity = useTransform(smooth, [0.7, 1.1, 2.1, 2.5], [0, 1, 1, 0]);
   const slide1Clip    = useTransform(smooth,
-    [0.7, 1.1, 2.0, 2.5],
+    [0.7, 1.1, 1.6, 1.8],
     ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
   );
 
@@ -191,20 +191,20 @@ export default function Home() {
   // Phase A exit: slides up slightly
   const modelPhaseAY       = useTransform(smooth, [0.7, 1.0], [0, -40]);
   // Bottom mask fades
-  const modelMaskOpacity   = useTransform(smooth, [0, 0.5], [1, 0.05]);
+  const modelMaskOpacity   = useTransform(smooth, [0, 0.5], [1, 1]);
 
   // Phase B (top-right small version): fades in p 0.8→1.1, exits p 2.0→2.5
-  const modelPhaseBOpacity = useTransform(smooth, [0.8, 1.1, 2.0, 2.5], [0, 1, 1, 0]);
-  const modelPhaseBY       = useTransform(smooth, [0.8, 1.1, 2.0, 2.5], [20, 0, 0, -60]);
+  const modelPhaseBOpacity = useTransform(smooth, [0.8, 1.1, 1.6, 1.8], [0, 1, 1, 0]);
+  const modelPhaseBY       = useTransform(smooth, [0.8, 1.1, 1.6, 1.8], [20, 0, 0, -60]);
 
   // 45° CW rotation for both phases
   const modelRotationY = useTransform(smooth, [0, 0.8, 8], [0, Math.PI / 4, Math.PI / 4]);
 
   // ── HomePageAbout ─────────────────────────────────────────────────────────
-  const aboutY       = useTransform(smooth, [2.2, 2.6, 3.4, 3.8], [80, 0, 0, -80]);
-  const aboutOpacity = useTransform(smooth, [2.2, 2.6, 3.5, 3.8], [0, 1, 1, 0]);
+  const aboutY       = useTransform(smooth, [1.8, 1.9, 2.4, 2.8], [80, 0, 0, -880]);
+  const aboutOpacity = useTransform(smooth, [1.8, 1.9, 3.5, 3.8], [0, 1, 1, 0]);
   const aboutClip    = useTransform(smooth,
-    [2.2, 2.6, 3.4, 3.8],
+    [1.8, 1.9, 2.4, 2.8],
     ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
   );
 
@@ -214,7 +214,7 @@ export default function Home() {
   // ── White circle — z:30, above ScatteredCards (z:20–22) ──────────────────
   // Expands after cards finish at p≈6.6
   const circleClip = useTransform(smooth,
-    [6.6, 7.2],
+    [3.7, 3.8],
     ["circle(0% at 10% 95%)", "circle(160% at 10% 95%)"]
   );
 
@@ -383,7 +383,7 @@ export default function Home() {
           style={{
             position: "fixed", inset: 0,
             zIndex: 30,
-            backgroundColor: "#f7f4fa",
+            backgroundColor: "#1c398e",
             clipPath: circleClip,
             pointerEvents: "none",
           }}

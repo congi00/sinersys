@@ -43,7 +43,7 @@ interface SingleCardProps {
 }
 
 function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProps) {
-  const enterStart = 5.0 + index * 0.4;
+  const enterStart = 2.4 + index * 0.4;
   const enterEnd   = enterStart + 0.4;
   const slideStart = enterEnd;
   const slideEnd   = slideStart + 0.4;

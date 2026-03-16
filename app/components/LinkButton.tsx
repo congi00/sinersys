@@ -8,6 +8,7 @@ import {
   useSpring,
   useTransform,
   AnimatePresence,
+  MotionValue,
 } from "framer-motion";
 import clsx from "clsx";
 
@@ -16,9 +17,10 @@ interface Props {
   text: string;
   icon: ReactElement;
   top: string;
+  color: MotionValue;
 }
 
-export default function LinkButton({ link, text, icon, top }: Props) {
+export default function LinkButton({ link, text, icon, top, color }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   const mx = useMotionValue(0);
@@ -77,6 +79,7 @@ export default function LinkButton({ link, text, icon, top }: Props) {
           scaleX: stretchX,
           scaleY: stretchY,
           top: top,
+          color: color,
         }}
         whileHover="hover"
         initial="rest"

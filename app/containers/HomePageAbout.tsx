@@ -9,6 +9,8 @@ import { Canvas } from "@react-three/fiber";
 import HeroScene from "../components/HeroScene";
 import { useRef, useEffect } from "react";
 
+const MotionArrowUpRight = motion(ArrowUpRight)
+
 interface Props {
   progressMotion: MotionValue<number>;
 }
@@ -26,12 +28,12 @@ export default function HomePageAbout({ progressMotion }: Props) {
   const titleColor = useTransform(
     progressMotion,
     [2.1, 2.12],
-    ["#1c398e", "#F4F7FA"]
+    ["#F4F7FA", "#1c398e"]
   );
   const subtitleColor = useTransform(
     progressMotion,
     [2.1, 2.12],
-    ["#5C8BAF32", "#F4F7FA82"]
+    ["#F4F7FA82", "#5C8BAF32" ]
   );
 
   // Border radius animato (24px → 0px)
@@ -96,8 +98,9 @@ export default function HomePageAbout({ progressMotion }: Props) {
         <LinkButton
           text={homeTexts("slide2.link")}
           link={"/about-us"}
-          icon={<ArrowUpRight size={20} className="text-white"></ArrowUpRight>}
+          icon={<MotionArrowUpRight size={20} style={{color: titleColor}} className="text-white"></MotionArrowUpRight>}
           top={""}
+          color={titleColor}
         ></LinkButton>
       </motion.div>
     </motion.div>
