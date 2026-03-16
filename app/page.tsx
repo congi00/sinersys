@@ -1,18 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   motion,
   useMotionValue,
   useSpring,
   useTransform,
-  useMotionValueEvent,
   AnimatePresence,
 } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import Header from "./components/Header";
 import MenuButton from "./components/MenuButton";
-import HomePage from "./containers/HomePage";
 import clsx from "clsx";
 import IntroParticles from "./components/IntroParticles";
 import HomePageAbout from "./containers/HomePageAbout";
@@ -24,9 +22,11 @@ import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
 import { detectIOS } from "./support/useViewportHeight";
 import FaqSection from "./components/FaqSection";
-import LinkButton from "./components/LinkButton";
-import { ArrowUpRight } from "@deemlol/next-icons";
 import LiquidBackground from "./components/LiquidBackground";
+import HeroModel from "./components/HeroModel";
+import ContactDrawer from "./components/ContactDrawer";
+import { setNavigationState, setOpenContact } from "./features/counterSlice";
+import { useAppDispatch } from "./hooks";
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -34,21 +34,19 @@ function isTouchDevice() {
 }
 
 export default function Home() {
-  // ── State & refs ──────────────────────────────────────────────────────────
   const progressMotion = useMotionValue(0);
   const scrollY        = useMotionValue(0);
   const [showIntro, setShowIntro]         = useState(true);
   const [introFinished, setIntroFinished] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const homeTexts       = useTranslations("homepage");
   const openContact     = useAppSelector((s) => s.siteState.openContact);
   const navigationState = useAppSelector((s) => s.siteState.navigationState);
+  const dispatch        = useAppDispatch();
 
-  const [vhPx, setVhPx]   = useState(0);
-  const [width, setWidth]  = useState(0);
+  const [vhPx, setVhPx]  = useState(0);
+  const [width, setWidth] = useState(0);
 
-  // ── Effects ───────────────────────────────────────────────────────────────
   useEffect(() => {
     const onResize = () => setWidth(window.innerWidth);
     onResize();
@@ -106,7 +104,7 @@ export default function Home() {
       return () => window.removeEventListener("scroll", onScroll);
     } else {
       const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
-      let rafId: number;
+      let rafId = 0;
       const raf = (t: number) => { lenis.raf(t); rafId = requestAnimationFrame(raf); };
       rafId = requestAnimationFrame(raf);
       lenis.on("scroll", (e: { scroll: number; limit: number }) => {
@@ -117,85 +115,135 @@ export default function Home() {
     }
   }, [progressMotion, scrollY, showIntro]);
 
-  // Video scrubbing: progress 2→4 maps to full video duration
-  useMotionValueEvent(progressMotion, "change", (p) => {
-    const video = videoRef.current;
-    if (!video || !video.duration) return;
-    const t = Math.max(0, Math.min(1, (p - 2) / 2));
-    video.currentTime = t * video.duration;
-  });
-
-  // ── Motion values ─────────────────────────────────────────────────────────
   const smooth = useSpring(progressMotion, { stiffness: 280, damping: 28 });
+  const vh     = vhPx || 1;
 
-  const vh = vhPx || 1;
+  // ── SCROLL TIMELINE ───────────────────────────────────────────────────────
+  //
+  // 0           Hero: LiquidBg (inset:16→0 at p1.1) + slide0 + model bottom 30vh
+  // 0 → 1.1     slide0 exits up (0.6→1.0), model moves top-right (0.7→1.1)
+  //             slide1 enters from below (0.7→1.1), LiquidBg goes fullscreen
+  // 1.1 → 2.0   slide1 + model (top-right) hold
+  // 2.0 → 2.5   slide1 + model exit upward
+  // 2.2 → 2.6   HomePageAbout enters
+  // 2.6 → 3.4   HomePageAbout sticky
+  // 3.4 → 3.8   HomePageAbout exits upward
+  // 3.8 → 5.0   scroll budget for ScatteredCards approach
+  // 5.0 → 6.6   ScatteredCards sequence (z:20+)
+  // 6.6 → 7.2   White circle expands (z:30, above cards z:22)
+  // 7.2+        OurPromise (z:31), CTA (z:32), FAQ (z:31)
 
-  // ── HERO (z:10): compressed from the top as textDiv rises ────────────────
-  // heroTopInset grows 0→vh in sync with textDiv sliding up.
-  // Result: hero appears to be "pushed up and out" by the rising panel.
-  const heroTopInset = useTransform(smooth, [0, 1.0], [0, vh]);
-  const heroClip = useTransform(heroTopInset, (v) => `inset(0px 0px ${v}px 0px)`);
+  // ── Slide 0 ───────────────────────────────────────────────────────────────
+  const slide0Y       = useTransform(smooth, [0, 0.6, 1.0], [0, 0, -80]);
+  const slide0Opacity = useTransform(smooth, [0, 0.7, 1.0], [1, 1, 0]);
+  const slide0Clip    = useTransform(smooth,
+    [0, 0.6, 1.0],
+    ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
+  );
 
-  // ── TEXT DIV (z:11): slides up from 100vh, synchronized with hero clip ────
-  // Enters: progress 0→1.0 (y: vh→0)
-  // Exits:  progress 1.5→2.0 (y: 0→-vh) when video starts rising
-  const textDivY = useTransform(smooth, [0, 1.0, 1.0, 1.8], [vh, 0, 0, -vh]);
-  const textDivRadius = useTransform(smooth, [0, 1.0, 1.4, 1.8], [0, 24, 24, 0]);
-  const textDivInset = useTransform(smooth, [0, 1.0, 1.4, 1.8], [0, 16, 16, 0]);
+  // ── Slide 1 ───────────────────────────────────────────────────────────────
+  const slide1Y       = useTransform(smooth, [0.7, 1.1, 2.0, 2.5], [80, 0, 0, -80]);
+  const slide1Opacity = useTransform(smooth, [0.7, 1.1, 2.1, 2.5], [0, 1, 1, 0]);
+  const slide1Clip    = useTransform(smooth,
+    [0.7, 1.1, 2.0, 2.5],
+    ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
+  );
 
-  // ── VIDEO (z:12): same mechanic — textDiv compressed from top as video rises
-  // videoTopInset tracks textDiv exit: progress 1.5→2.0, inset 0→vh on textDiv
-  // But video itself slides up: progress 1.5→2.0, y: vh→0
-  const textDivTopInset = useTransform(smooth, [1.5, 2.0], [0, vh]);
-  const textDivClip = useTransform(textDivTopInset, (v) => `inset(${v}px 0px 0px 0px)`);
+  // ── Model ─────────────────────────────────────────────────────────────────
+  // Initial state: fixed bottom, left 5vw, right 5vw, height 30vh.
+  // Visible immediately (opacity starts at 1).
+  //
+  // Transition to top-right (p 0.7→1.1):
+  //   The model container is positioned from left:5vw/bottom:0.
+  //   We translate it using viewport-relative values:
+  //   - translateX: 0 → move right so right edge is ~3vw from screen right
+  //     The container is 90vw wide. To place it top-right at ~30vw wide:
+  //     We need to shift right by ~62vw and up by ~(30vh + topOffset).
+  //   - translateY: 0 → -(vh-based offset to reach top)
+  //   - scale: 1 → 0.33 (30vw/90vw ≈ 0.33)
+  //
+  // Using percentages on the motion.div: % is relative to the element itself (90vw).
+  // To move right edge to 3vw from right:
+  //   right edge at 5vw + 90vw = 95vw. Target right edge at 97vw.
+  //   So translateX = +2vw. But also scale shrinks to 0.33 so visual right = 5vw + 90vw*0.33/2 ... 
+  //   Better: use fixed pixel-based transforms via vw strings.
+  //
+  // Simpler approach: animate left/right/bottom/height as CSS via useTransform strings.
+  // BUT layout changes cause reflows. Instead keep fixed position and use
+  // translateX(vw) + translateY(vw) + scale.
+  //
+  // The container starts at: left=5vw, right=5vw, bottom=0, height=30vh
+  // transformOrigin = "right bottom"
+  // At p=1.1 we want it in top-right:
+  //   scale = 0.33, so rendered size ≈ 90vw*0.33 = ~30vw wide, 30vh*0.33 = ~10vh tall
+  //   target position: right=2vw, top=10vh
+  //   current right anchor = 5vw from right, bottom=0
+  //   With transformOrigin right bottom:
+  //     translateX = 0 (right edge stays pinned)... no, let's use center as origin.
+  // 
+  // SIMPLEST CORRECT approach: use two separate fixed divs controlled by framer:
+  //   - phase A (p<0.7): bottom strip
+  //   - phase B (p>0.7): top-right box
+  // Crossfade between them.
+  
+  // Phase A opacity: 1 at p=0, 0 at p=1.0
+  const modelPhaseAOpacity = useTransform(smooth, [0, 0.05, 0.8, 1.0], [1, 1, 1, 0]);
+  // Phase A exit: slides up slightly
+  const modelPhaseAY       = useTransform(smooth, [0.7, 1.0], [0, -40]);
+  // Bottom mask fades
+  const modelMaskOpacity   = useTransform(smooth, [0, 0.5], [1, 0.05]);
 
-  const videoY = useTransform(smooth, [1.0, 1.1, 4.6, 5.0], [vh, 0, 0, -vh]);
-  const videoOpacity = useTransform(smooth, [1.1, 1.6], [ 0, 1]);
+  // Phase B (top-right small version): fades in p 0.8→1.1, exits p 2.0→2.5
+  const modelPhaseBOpacity = useTransform(smooth, [0.8, 1.1, 2.0, 2.5], [0, 1, 1, 0]);
+  const modelPhaseBY       = useTransform(smooth, [0.8, 1.1, 2.0, 2.5], [20, 0, 0, -60]);
 
-  // Slide 1 text inside video — pure y, no opacity
-  const slide1Y = useTransform(smooth, [2.0, 2.4, 3.7, 4.1], [60, 0, 0, -40]);
+  // 45° CW rotation for both phases
+  const modelRotationY = useTransform(smooth, [0, 0.8, 8], [0, Math.PI / 4, Math.PI / 4]);
 
-  // ── Header text color ─────────────────────────────────────────────────────
-  const headerTheme = useTransform(smooth, [0.5, 0.7, 4.7, 4.9], [1, 0, 0, 1]);
+  // ── HomePageAbout ─────────────────────────────────────────────────────────
+  const aboutY       = useTransform(smooth, [2.2, 2.6, 3.4, 3.8], [80, 0, 0, -80]);
+  const aboutOpacity = useTransform(smooth, [2.2, 2.6, 3.5, 3.8], [0, 1, 1, 0]);
+  const aboutClip    = useTransform(smooth,
+    [2.2, 2.6, 3.4, 3.8],
+    ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
+  );
 
-  const aboutExitY = useTransform(smooth, [6.3, 6.5], [0, -vh]);
-  const cardsExitY = useTransform(smooth, [6.3, 7.5], [0, -vh]);
+  // ── Header theme ──────────────────────────────────────────────────────────
+  const headerTheme = useTransform(smooth, [7.0, 7.3], [0, 1]);
 
-  const wrapperCTAInset = useTransform(smooth, [5.6, 6.3, 6.4, 7.1], [16, 0, 0, 16]);
-  const ctaHeight = useTransform(
-    wrapperCTAInset,
+  // ── White circle — z:30, above ScatteredCards (z:20–22) ──────────────────
+  // Expands after cards finish at p≈6.6
+  const circleClip = useTransform(smooth,
+    [6.6, 7.2],
+    ["circle(0% at 10% 95%)", "circle(160% at 10% 95%)"]
+  );
+
+  // ── OurPromise ────────────────────────────────────────────────────────────
+  const ourPromiseY       = useTransform(smooth, [7.1, 7.4], [60, 0]);
+  const ourPromiseOpacity = useTransform(smooth, [7.1, 7.4], [0, 1]);
+
+  // ── CTA ──────────────────────────────────────────────────────────────────
+  const wrapperCTAInset = useTransform(smooth, [7.4, 7.8, 7.9, 8.4], [16, 0, 0, 16]);
+  const ctaHeight = useTransform(wrapperCTAInset,
     (v) => `calc(100${vhUnit} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
   );
   const ctaTop    = useTransform(wrapperCTAInset, (v) => `calc(${v}px + env(safe-area-inset-top))`);
-  const ctaFrameY = useTransform(
-    smooth,
-    [5.6, isMobile ? 6.1 : 6.3, isMobile ? 6.2 : 6.4, isMobile ? 7.0 : 7.2],
+  const ctaFrameY = useTransform(smooth,
+    [7.4, isMobile ? 7.7 : 7.8, isMobile ? 7.8 : 7.9, isMobile ? 8.3 : 8.4],
     ["105%", "0%", "0%", "-105%"]
   );
 
-  // ── Derived layout values ─────────────────────────────────────────────────
-  // 3 fixed panels (hero, textDiv, video) each consume 1 progress unit of scroll.
-  // After progress=5 the video exits and absolute sections begin.
-  // ScatteredCards was invisible because its top was too close to About.
-  // Spread them out: About at 5vh, Cards at 5.8vh, OurPromise at 6.6vh.
-  const totalHeight  = vh * 8 + 900;
-  const spacerAbove5 = vh * 5;
-  const spacerCards  = vh * 5.8;   // was spacerAbove5 + vh*0.7 → cards hidden under About
-  const spacerPromise = vh * 6.6;
+  const spacerOurPromise = vh * 7.2;
+  const spacerFaq        = spacerOurPromise + vh * 0.8;
+  const totalHeight      = vh * 10 + 900;
 
-  // ── Early return AFTER all hooks ──────────────────────────────────────────
-  if (vhPx === 0) return <div className="min-h-screen bg-[#F4F7FA]" />;
+  if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
 
-  // ── Render ────────────────────────────────────────────────────────────────
   return (
     <>
-      {/* Permanent background — fixed behind everything */}
-      <LiquidBackground style={{ position: "fixed", inset: 0, zIndex: 0 }} />
+      <LiquidBackground progress={smooth} />
 
-      <motion.div
-        style={{ height: totalHeight, pointerEvents: "none" }}
-        aria-hidden
-      />
+      <motion.div style={{ height: totalHeight, pointerEvents: "none" }} aria-hidden />
 
       <div
         className={clsx("absolute inset-x-0 top-0", showIntro ? "overflow-hidden" : "")}
@@ -213,145 +261,145 @@ export default function Home() {
           )}
         </AnimatePresence>
 
-        {/* ── HEADER ────────────────────────────────────────────────────────
-            Receives headerTheme so it can swap text/logo color per panel.
-            headerTheme: 0 = dark bg (white text), 1 = light bg (dark text)
-        ──────────────────────────────────────────────────────────────────── */}
         {!openContact && <Header headerTheme={headerTheme} />}
 
-
-        {/* ── HERO (z:10) ───────────────────────────────────────────────────
-            Fixed full-screen. clipPath TOP-inset grows 0→vh in sync with
-            textDiv rising: hero gets "pushed up" as textDiv covers it.
-        ──────────────────────────────────────────────────────────────────── */}
+        {/* ── SLIDE 0 ─────────────────────────────────────────────────────── */}
         <motion.div
           style={{
-            position: "fixed",
-            inset: 0,
-            clipPath: heroClip,
-            zIndex: 10,
-          }}
-        >
-          <HomePage progressMotion={smooth} introFinished={introFinished} heroTopInset={heroTopInset} />
-        </motion.div>
-
-        {/* ── TEXT DIV (z:11) ───────────────────────────────────────────────
-            Slides up from 100vh (progress 0→1.0) covering the hero.
-            clipPath top-inset then grows 0→vh (progress 1.5→2.0) as video
-            rises beneath it — same "push up" mechanic applied to textDiv.
-        ──────────────────────────────────────────────────────────────────── */}
-        <motion.div
-          style={{
-            position: "fixed",
-            inset: textDivInset,
-            y: textDivY,
-            clipPath: textDivClip,
-            zIndex: 11,
-            borderRadius: textDivRadius,
+            position: "fixed", inset: 0, zIndex: 11,
+            y: slide0Y, opacity: slide0Opacity, clipPath: slide0Clip,
             pointerEvents: "none",
-            backgroundColor: "#1c398e",
           }}
-          className="flex items-center justify-center px-8"
+          className="flex flex-col items-center justify-center px-8 text-center"
         >
-          <div className="max-w-2xl text-center">
-            <p className="text-[1.1rem] sm:text-[1.4rem] text-[#c8d8f8] font-medium leading-relaxed">
+          <div style={{ marginBottom: "22vh" }}>
+            <h1 className="text-[3.0rem] sm:text-[4.8rem] text-[#f4f7fa] font-bold leading-tight tracking-tight">
+              {homeTexts("slide0.title")}
+            </h1>
+            <h2 className="text-[1.4rem] sm:text-[2rem] mt-5 whitespace-pre-line text-[#c8d8f8] font-light max-w-2xl">
               {homeTexts("slide0.subtitle")}
-            </p>
+            </h2>
           </div>
         </motion.div>
 
-        {/* ── VIDEO (z:12) ──────────────────────────────────────────────────
-            Slides up from 100vh (progress 1.5→2.0) covering textDiv.
-            No clipPath needed — it's a pure y slide, same as on.energy.
-            Holds full-screen during scrub (2→4.6), exits at 4.6→5.0.
+        {/* ── MODEL PHASE A: bottom strip, full width, visible from start ────
+            left:5vw right:5vw bottom:0 height:30vh
+            Fades out as phase B (top-right) fades in.
         ──────────────────────────────────────────────────────────────────── */}
-        <motion.div
-          style={{
-            position: "fixed",
-            inset: 0,
-            y: videoY,
-            opacity: videoOpacity,
-            zIndex: 10,
-          }}
-          className="overflow-hidden"
-        >
-          <video
-            ref={videoRef}
-            src="/city-loopj.mp4"
-            muted
-            playsInline
-            preload="auto"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-
-          {/* Slide 1 text: pure y-only translation, no opacity */}
+        {introFinished && (
           <motion.div
-            style={{ y: slide1Y, top: "150px" }}
-            className="absolute px-[20px] z-10 text-center w-full"
+            style={{
+              position: "fixed",
+              left: "5vw",
+              right: "5vw",
+              bottom: 0,
+              height: "30vh",
+              zIndex: 10,
+              opacity: modelPhaseAOpacity,
+              y: modelPhaseAY,
+              pointerEvents: "none",
+            }}
           >
-            <h4 className="text-[1.15rem] sm:text-[1.7rem] mb-4 whitespace-pre-line text-[#D9D9D9]">
-              {homeTexts("slide1.suptitle")}
-            </h4>
-            <h1 className="text-[3.0rem] sm:text-[4.2rem] text-[#f4f7fa] font-bold">
-              {homeTexts("slide1.title")}
-            </h1>
-            <h2 className="text-[1.65rem] sm:text-[2.25rem] mt-4 whitespace-pre-line text-[#f4f7fa] font-light">
-              {homeTexts("slide1.subtitle")}
-            </h2>
-            <LinkButton
-              text={homeTexts("slide1.link")}
-              link={"apwec"}
-              icon={<ArrowUpRight size={20} className="text-[#f4f7fa]" />}
-              top="200px"
+            <HeroModel progressMotion={smooth} rotationProgress={modelRotationY} />
+            <motion.div
+              style={{
+                position: "absolute", inset: 0,
+                background: "linear-gradient(to top, rgba(12,24,70,0.97) 0%, rgba(12,24,70,0.65) 40%, rgba(12,24,70,0.1) 70%, transparent 100%)",
+                opacity: modelMaskOpacity,
+                pointerEvents: "none", zIndex: 2,
+              }}
             />
           </motion.div>
-        </motion.div>
+        )}
 
-        {/* ── ABOUT ─────────────────────────────────────────────────────────
-            Absolute at 5*vh — appears exactly when video exits at progress=5.
+        {/* ── MODEL PHASE B: top-right corner, small ────────────────────────
+            Fixed at top-right, ~30vw wide, ~22vh tall.
+            Fades in as phase A fades out.
+            Separate HeroModel instance shares same stepSrc.
         ──────────────────────────────────────────────────────────────────── */}
+        {introFinished && (
+          <motion.div
+            style={{
+              position: "fixed",
+              right: "3vw",
+              top: "10vh",
+              width: isMobile ? "45vw" : "30vw",
+              height: isMobile ? "18vh" : "22vh",
+              zIndex: 12,
+              opacity: modelPhaseBOpacity,
+              y: modelPhaseBY,
+              pointerEvents: "none",
+            }}
+          >
+            <HeroModel progressMotion={smooth} rotationProgress={modelRotationY} />
+          </motion.div>
+        )}
+
+        {/* ── SLIDE 1 ─────────────────────────────────────────────────────── */}
         <motion.div
           style={{
-            position: "absolute",
-            top: spacerAbove5,
-            left: 0,
-            right: 0,
-            y: aboutExitY,
+            position: "fixed", inset: 0, zIndex: 11,
+            y: slide1Y, opacity: slide1Opacity, clipPath: slide1Clip,
+            pointerEvents: "none",
           }}
-          className="flex items-start justify-center"
+          className="flex flex-col items-start justify-center px-8 sm:px-16"
+        >
+          {/* Leave right side clear for the model */}
+          <div style={{ maxWidth: isMobile ? "100%" : "55%", marginBottom: "10vh" }}>
+            <h4 className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase">
+              {homeTexts("slide1.suptitle")}
+            </h4>
+            <h1 className="text-[2.8rem] sm:text-[4.0rem] text-[#f4f7fa] font-bold leading-tight">
+              {homeTexts("slide1.title")}
+            </h1>
+            <h2 className="text-[1.3rem] sm:text-[1.8rem] mt-4 whitespace-pre-line text-[#c8d8f8] font-light">
+              {homeTexts("slide1.subtitle")}
+            </h2>
+          </div>
+        </motion.div>
+
+        {/* ── HomePageAbout ──────────────────────────────────────────────── */}
+        <motion.div
+          style={{
+            position: "fixed", inset: 0, zIndex: 11,
+            y: aboutY, opacity: aboutOpacity, clipPath: aboutClip,
+            pointerEvents: "none",
+          }}
+          className="flex items-center justify-center"
         >
           <HomePageAbout progressMotion={smooth} />
         </motion.div>
 
-        {/* ── ScatteredCards ─────────────────────────────────────────────── */}
+        {/* ── ScatteredCards (z: 20–22) ──────────────────────────────────── */}
+        <ScatteredCards
+          items={[
+            { id: "1", image: "/images/1.jpg", label: "d1", suptitle: "Progetto", title: "Titolo uno",   subtitle: "Descrizione della prima scheda."  },
+            { id: "2", image: "/images/2.jpg", label: "d2", suptitle: "Progetto", title: "Titolo due",   subtitle: "Descrizione della seconda scheda." },
+            { id: "3", image: "/images/3.jpg", label: "d3", suptitle: "Progetto", title: "Titolo tre",   subtitle: "Descrizione della terza scheda."  },
+          ]}
+          progress={smooth}
+        />
+
+        {/* ── WHITE CIRCLE (z:30 > cards z:22) — expands after p=6.6 ─────── */}
+        <motion.div
+          style={{
+            position: "fixed", inset: 0,
+            zIndex: 30,
+            backgroundColor: "#f7f4fa",
+            clipPath: circleClip,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* ── OurPromise — z:31, above white circle ─────────────────────── */}
         <motion.div
           style={{
             position: "absolute",
-            top: spacerCards,
-            left: 0,
-            right: 0,
-            minHeight: `100${vhUnit}`,
-            y: cardsExitY,
-          }}
-          className="flex items-start justify-center w-full"
-        >
-          <ScatteredCards
-            items={[
-              { id: "1", image: "/images/1.jpg", label: "descrizione 1" },
-              { id: "2", image: "/images/2.jpg", label: "descrizione 2" },
-              { id: "3", image: "/images/3.jpg", label: "descrizione 3" },
-            ]}
-            progress={progressMotion}
-          />
-        </motion.div>
-
-        {/* ── OurPromise ─────────────────────────────────────────────────── */}
-        <div
-          style={{
-            position: "absolute",
-            top: spacerPromise,
-            left: 0,
-            right: 0,
+            top: spacerOurPromise,
+            left: 0, right: 0,
+            zIndex: 31,
+            y: ourPromiseY,
+            opacity: ourPromiseOpacity,
             minHeight: `100${vhUnit}`,
           }}
           className="flex items-start justify-center px-5"
@@ -361,9 +409,9 @@ export default function Home() {
             subtitle={homeTexts("slide3.subtitle")}
             progress={smooth}
           />
-        </div>
+        </motion.div>
 
-        {/* ── CTA ────────────────────────────────────────────────────────── */}
+        {/* ── CTA — z:32, above white circle ────────────────────────────── */}
         <motion.div
           style={{
             position: "fixed",
@@ -373,44 +421,62 @@ export default function Home() {
             height: ctaHeight,
             y: ctaFrameY,
             background: "transparent",
-            zIndex: 10,
+            zIndex: 32,
           }}
           className="flex items-center justify-center"
         >
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
 
-        {/* ── FAQ ────────────────────────────────────────────────────────── */}
+        {/* ── FAQ — z:31, centered, no horizontal overflow ─────────────── */}
         <div
           style={{
             position: "absolute",
-            top: spacerPromise + vh * (isMobile ? 1.2 : 0.8),
-            left: 0,
-            right: 0,
+            top: spacerFaq,
+            left: 0, right: 0,
+            zIndex: 31,
+            overflowX: "hidden",
           }}
           className="flex items-start justify-center"
         >
-          <FaqSection
-            progress={smooth}
-            progressStart={isMobile ? 6.6 : 6.7}
-            title={homeTexts("faq.title")}
-            suptitle="FAQ"
-            items={[
-              { question: homeTexts("faq.q1"), answer: homeTexts("faq.a1") },
-              { question: homeTexts("faq.q2"), answer: homeTexts("faq.a2") },
-              { question: homeTexts("faq.q3"), answer: homeTexts("faq.a3") },
-              { question: homeTexts("faq.q4"), answer: homeTexts("faq.a4") },
-              { question: homeTexts("faq.q5"), answer: homeTexts("faq.a5") },
-            ]}
-          />
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "860px",
+              padding: "0 1.5rem",
+              boxSizing: "border-box",
+            }}
+          >
+            <FaqSection
+              progress={smooth}
+              progressStart={isMobile ? 7.9 : 8.0}
+              title={homeTexts("faq.title")}
+              suptitle="FAQ"
+              items={[
+                { question: homeTexts("faq.q1"), answer: homeTexts("faq.a1") },
+                { question: homeTexts("faq.q2"), answer: homeTexts("faq.a2") },
+                { question: homeTexts("faq.q3"), answer: homeTexts("faq.a3") },
+                { question: homeTexts("faq.q4"), answer: homeTexts("faq.a4") },
+                { question: homeTexts("faq.q5"), answer: homeTexts("faq.a5") },
+              ]}
+            />
+          </div>
         </div>
 
-        {/* ── Footer ─────────────────────────────────────────────────────── */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
+        {/* ── Footer — z:31 ──────────────────────────────────────────────── */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 31 }}>
           <Footer />
         </div>
 
         {!openContact && <MenuButton />}
+
+        <ContactDrawer
+          open={openContact}
+          onClose={() => {
+            dispatch(setOpenContact(false));
+            dispatch(setNavigationState(0));
+          }}
+        />
       </div>
     </>
   );

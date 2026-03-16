@@ -7,24 +7,36 @@ interface Props {
   headerTheme?: MotionValue<number>;
 }
 
-export default function Header({headerTheme} : Props) {
+export default function Header({ headerTheme }: Props) {
   const [hidden, setHidden] = useState(false);
+  const [isDark, setIsDark] = useState(false); // true = dark bg → white logo
   const lastScrollY = useRef(0);
   const { scrollY } = useScroll();
 
+  // Hide/show on scroll direction
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = lastScrollY.current;
-
     if (latest > previous && latest > 80) {
-      // Scrollando verso il basso
       setHidden(true);
     } else {
-      // Scrollando verso l'alto
       setHidden(false);
     }
-
     lastScrollY.current = latest;
   });
+
+  // Subscribe to headerTheme MotionValue:
+  // 0 = dark background → white logo
+  // 1 = light background → blue logo
+  useEffect(() => {
+    if (!headerTheme) return;
+    // Read initial value
+    setIsDark(headerTheme.get() < 0.5);
+    // Subscribe to changes
+    const unsubscribe = headerTheme.on("change", (v) => {
+      setIsDark(v < 0.5);
+    });
+    return unsubscribe;
+  }, [headerTheme]);
 
   return (
     <motion.div
@@ -36,12 +48,12 @@ export default function Header({headerTheme} : Props) {
       transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
       className="flex mt-2
         fixed top-6 left-1/2 -translate-x-1/2 z-50
-        min-w-[84vw] 
-        min-h-[70px] 
-        rounded-full 
-        items-center 
-        justify-center 
-        p-4 
+        min-w-[84vw]
+        min-h-[70px]
+        rounded-full
+        items-center
+        justify-center
+        p-4
         bg-[#F4F7FA]/20
         backdrop-blur-xl
         backdrop-saturate-150
@@ -57,11 +69,22 @@ export default function Header({headerTheme} : Props) {
         before:bg-[linear-gradient(135deg,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.15)_10%,rgba(255,255,255,0)_20%)]
         before:pointer-events-none"
     >
-      <img
-        src={(headerTheme == new MotionValue(0) || undefined ) ? "/logoblu.png" : "/logobianco.png"}
+      <motion.img
+        src="/logobianco.png"
         alt="Logo Sinersys"
-        className="relative z-10 h-12 object-contain"
+        className="relative z-10 h-12 object-contain absolute"
+        animate={{ opacity: isDark ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
       />
+      <motion.img
+        src="/logoblu.png"
+        alt="Logo Sinersys"
+        className="relative z-10 h-12 object-contain absolute"
+        animate={{ opacity: isDark ? 0 : 1 }}
+        transition={{ duration: 0.3 }}
+      />
+      {/* Invisible spacer to keep header height consistent */}
+      <img src="/logoblu.png" alt="" className="h-12 object-contain opacity-0" aria-hidden />
     </motion.div>
   );
 }

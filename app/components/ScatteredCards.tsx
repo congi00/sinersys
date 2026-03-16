@@ -1,15 +1,15 @@
 "use client";
 
-import { motion, useTransform, MotionValue, useSpring } from "framer-motion";
+import { motion, useTransform, MotionValue } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight } from "@deemlol/next-icons";
-import clsx from "clsx";
+import { useEffect, useState } from "react";
 
 type CardItem = {
   id: string;
   image: string;
   label: string;
   title?: string;
+  suptitle?: string;
   subtitle?: string;
   link?: string;
 };
@@ -17,122 +17,289 @@ type CardItem = {
 type Props = {
   items: CardItem[];
   progress: MotionValue<number>;
-  spreadStart?: number;
-  spreadEnd?: number;
 };
 
-function ProjectCard({
-  item,
-  index,
-  progress,
-  spreadStart,
-}: {
+// ─────────────────────────────────────────────────────────────────────────────
+// DESKTOP TIMING
+// ─────────────────────────────────────────────────────────────────────────────
+// p 5.0→5.4  Card 0 enters from bottom-right (y: 100%→0, x stays 0%)
+// p 5.4→5.8  Card 0 slides left (-100%), Card 1 enters from right (x: 100%→0%)
+// p 5.8→6.2  Card 1 slides left (-100%), Card 0 exits (-200%), Card 2 enters (x: 100%→0%)
+// p 6.2+     Card 1 and Card 2 stay FIXED — no more movement
+//
+// MOBILE TIMING
+// ─────────────────────────────────────────────────────────────────────────────
+// p 5.0→5.4  Card 0 enters from right (x: 100%→0%) full width
+// p 5.4→5.8  Card 0 slides up (y: 0→-100%), Card 1 enters from bottom (y: 100%→0%)
+// p 5.8→6.2  Card 1 slides up (y: 0→-100%), Card 2 enters from bottom (y: 100%→0%)
+// p 6.2+     Card 2 stays FIXED
+
+interface SingleCardProps {
   item: CardItem;
   index: number;
   progress: MotionValue<number>;
-  spreadStart: number;
-}) {
-  // Stagger: ogni carta ha un delay crescente
-  const cardStart = spreadStart + index * 0.1;
-  const cardEnd   = cardStart + 0.3;
+  isGlass: boolean;
+  isMobile: boolean;
+}
 
-  // Uscita: tutte le carte escono insieme leggermente dopo
-  const exitStart = spreadStart + 0.9;
-  const exitEnd   = spreadStart + 1.1;
+function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProps) {
+  const enterStart = 5.0 + index * 0.4;
+  const enterEnd   = enterStart + 0.4;
+  const slideStart = enterEnd;
+  const slideEnd   = slideStart + 0.4;
 
-  const rawOpacity = useTransform(
+  // ── DESKTOP ───────────────────────────────────────────────────────────────
+  // Card 0: enters from bottom (y: 100%→0), then slides left, then exits left
+  // Card 1: enters from right (x: 100%→0), then slides left, then exits left
+  // Card 2: enters from right (x: 100%→0), then STAYS — both card 1 and 2 remain
+
+  const desktopY = useTransform(
     progress,
-    [cardStart, cardEnd, exitStart, exitEnd],
-    [0, 1, 1, 0]
+    index === 0 ? [enterStart, enterEnd] : [enterStart, enterStart],
+    index === 0 ? ["100%", "0%"] : ["0%", "0%"]
   );
-  // Spring sull'opacità per un fade più morbido
-  const opacity = useSpring(rawOpacity, { stiffness: 60, damping: 20 });
 
-  // Entrata dal basso con clip — effetto "emerge"
-  const rawY = useTransform(
-    progress,
-    [cardStart, cardEnd, exitStart, exitEnd],
-    [60, 0, 0, -30]
-  );
-  const y = useSpring(rawY, { stiffness: 60, damping: 20 });
+  const desktopX = (() => {
+    if (index === 0) {
+      // enters bottom (x stays 0), slides left to -100%, exits to -200%
+      return useTransform(
+        progress,
+        [enterStart, enterEnd, slideStart, slideEnd, slideEnd, slideEnd + 0.4],
+        ["0%", "0%", "0%", "-100%", "-100%", "-200%"]
+      );
+    }
+    if (index === 1) {
+      // enters from right, slides to left half, STAYS (no exit)
+      return useTransform(
+        progress,
+        [enterStart, enterEnd, slideStart, slideEnd],
+        ["100%", "0%", "0%", "-100%"]
+      );
+    }
+    // Card 2: enters from right, STAYS at 0% (right half) — no more movement
+    return useTransform(
+      progress,
+      [enterStart, enterEnd],
+      ["100%", "0%"]
+    );
+  })();
 
-  // Scala leggera all'entrata
-  const rawScale = useTransform(
-    progress,
-    [cardStart, cardEnd],
-    [0.92, 1]
-  );
-  const scale = useSpring(rawScale, { stiffness: 60, damping: 20 });
+  // Opacity: card 0 exits, cards 1 and 2 stay permanently
+  const desktopOpacity = (() => {
+    if (index === 0) {
+      return useTransform(
+        progress,
+        [enterStart, slideEnd + 0.2, slideEnd + 0.4],
+        [1, 1, 0]
+      );
+    }
+    // Cards 1 and 2: appear and stay forever
+    return useTransform(progress, [enterStart], [1]);
+  })();
+
+  // ── MOBILE ────────────────────────────────────────────────────────────────
+  // Card 0: enters from right (x: 100%→0%), then slides up (y: 0→-100%), exits
+  // Card 1: enters from bottom (y: 100%→0%), then slides up, exits
+  // Card 2: enters from bottom (y: 100%→0%), STAYS
+
+  const mobileX = (() => {
+    if (index === 0) {
+      // enters from right, then stays at 0 while sliding up
+      return useTransform(
+        progress,
+        [enterStart, enterEnd],
+        ["100%", "0%"]
+      );
+    }
+    return useTransform(progress, [enterStart], ["0%"]);
+  })();
+
+  const mobileY = (() => {
+    if (index === 0) {
+      // slides up and exits after card 1 arrives
+      return useTransform(
+        progress,
+        [enterEnd, slideStart, slideEnd, slideEnd + 0.4],
+        ["0%", "0%", "-100%", "-100%"]
+      );
+    }
+    if (index === 1) {
+      // enters from bottom, slides up, stays
+      return useTransform(
+        progress,
+        [enterStart, enterEnd, slideStart, slideEnd],
+        ["100%", "0%", "0%", "-100%"]
+      );
+    }
+    // Card 2: enters from bottom, STAYS
+    return useTransform(
+      progress,
+      [enterStart, enterEnd],
+      ["100%", "0%"]
+    );
+  })();
+
+  const mobileOpacity = (() => {
+    if (index === 0) {
+      return useTransform(
+        progress,
+        [enterStart, slideEnd + 0.1, slideEnd + 0.3],
+        [1, 1, 0]
+      );
+    }
+    return useTransform(progress, [enterStart], [1]);
+  })();
+
+  // ── Styles ────────────────────────────────────────────────────────────────
+  const bgStyle = isGlass
+    ? {
+        background: "rgba(255,255,255,0.08)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+        border: "1px solid rgba(255,255,255,0.18)",
+      }
+    : { background: "#ffffff" };
+
+  const textColor = isGlass ? "#f4f7fa" : "#111827";
+  const subColor  = isGlass ? "rgba(244,247,250,0.6)" : "#6b7280";
+
+  if (isMobile) {
+    return (
+      <motion.div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100%",
+          x: mobileX,
+          y: mobileY,
+          opacity: mobileOpacity,
+          zIndex: 20 + index,
+          overflow: "hidden",
+          ...bgStyle,
+        }}
+      >
+        <CardContent item={item} isGlass={isGlass} textColor={textColor} subColor={subColor} />
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
-      style={{ opacity, y, scale }}
-      className="flex-shrink-0 w-[72vw] sm:w-auto flex flex-col group cursor-pointer"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: "50%",
+        width: "50vw",
+        height: "100%",
+        x: desktopX,
+        y: desktopY,
+        opacity: desktopOpacity,
+        zIndex: 20 + index,
+        overflow: "hidden",
+        ...bgStyle,
+      }}
     >
-      {/* Foto */}
-      <div className="relative w-full aspect-[3/4] rounded-l overflow-hidden">
-        <Image
-          src={item.image}
-          alt={item.label}
-          fill
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          sizes="(max-width: 640px) 72vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
-      </div>
-
-      {/* Testo sotto */}
-      <div className="mt-4 flex items-start justify-between gap-2">
-        <div className="flex flex-col gap-1">
-          <h3 className="text-[1.05rem] font-semibold text-[#f4f7fa] leading-tight">
-            {item.title ?? item.label}
-          </h3>
-          {item.subtitle && (
-            <p className="text-[0.85rem] text-[#5C8BAF] leading-snug whitespace-pre-line">
-              {item.subtitle}
-            </p>
-          )}
-        </div>
-        <div className="shrink-0 mt-0.5">
-          <ArrowUpRight size={18} className="text-[#f4f7fa] opacity-70 group-hover:opacity-100 transition-opacity" />
-        </div>
-      </div>
+      <CardContent item={item} isGlass={isGlass} textColor={textColor} subColor={subColor} />
     </motion.div>
   );
 }
 
-export default function ScatteredCards({
-  items,
-  progress,
-  spreadStart = 2.3,
-  spreadEnd = 3.2,
-}: Props) {
-  const cards = items.slice(0, 5);
+// ─────────────────────────────────────────────────────────────────────────────
+function CardContent({ item, isGlass, textColor, subColor }: {
+  item: CardItem;
+  isGlass: boolean;
+  textColor: string;
+  subColor: string;
+}) {
+  return (
+    <>
+      {/* Image — top 55% */}
+      <div style={{ position: "relative", width: "100%", height: "55%" }}>
+        <Image
+          src={item.image}
+          alt={item.label}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: isGlass
+            ? "linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.35) 100%)"
+            : "linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.08) 100%)"
+        }} />
+      </div>
+
+      {/* Text — bottom 45% */}
+      <div style={{
+        padding: "2rem 2.5rem",
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.75rem",
+        height: "45%",
+        justifyContent: "center",
+      }}>
+        {item.suptitle && (
+          <p style={{
+            fontSize: "0.78rem",
+            fontWeight: 600,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: isGlass ? "rgba(200,216,248,0.8)" : "#1c398e",
+          }}>
+            {item.suptitle}
+          </p>
+        )}
+        <h2 style={{
+          fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+          fontWeight: 700,
+          lineHeight: 1.15,
+          color: textColor,
+          margin: 0,
+        }}>
+          {item.title ?? item.label}
+        </h2>
+        {item.subtitle && (
+          <p style={{
+            fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)",
+            lineHeight: 1.55,
+            color: subColor,
+            margin: 0,
+          }}>
+            {item.subtitle}
+          </p>
+        )}
+      </div>
+    </>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+export default function ScatteredCards({ items, progress }: Props) {
+  const cards = items.slice(0, 3);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
-    <div className="w-full py-10 px-6">
-      <div
-        className={clsx(
-          // Mobile: scroll orizzontale
-          "flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4",
-          // Desktop: griglia centrata a larghezza fissa
-          "sm:grid sm:grid-cols-3 sm:overflow-visible sm:snap-none sm:pb-0",
-          "sm:max-w-5xl sm:mx-auto sm:gap-6",
-          // Nascondi scrollbar
-          "[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-        )}
-      >
-        {cards.map((item, index) => (
-          <div key={item.id} className="snap-start">
-            <ProjectCard
-              item={item}
-              index={index}
-              progress={progress}
-              spreadStart={spreadStart}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
+    <>
+      {cards.map((item, index) => (
+        <SingleCard
+          key={item.id}
+          item={item}
+          index={index}
+          progress={progress}
+          isGlass={index === 1}
+          isMobile={isMobile}
+        />
+      ))}
+    </>
   );
 }
