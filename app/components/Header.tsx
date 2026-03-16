@@ -1,9 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, MotionValue } from "framer-motion";
 
-export default function Header() {
+interface Props {
+  headerTheme?: MotionValue<number>;
+}
+
+export default function Header({headerTheme} : Props) {
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
   const { scrollY } = useScroll();
@@ -54,7 +58,7 @@ export default function Header() {
         before:pointer-events-none"
     >
       <img
-        src="/logobianco.png"
+        src={(headerTheme == new MotionValue(0) || undefined ) ? "/logoblu.png" : "/logobianco.png"}
         alt="Logo Sinersys"
         className="relative z-10 h-12 object-contain"
       />

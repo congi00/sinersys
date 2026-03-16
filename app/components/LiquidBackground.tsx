@@ -16,12 +16,6 @@ void main() {
 }
 `;
 
-// ---------------------------------------------------------------------------
-// Fragment shader — fluid gradient blobs
-// Base: #080e1a (very dark navy)
-// Blobs: tones of #1c398e → #2a52c9 → #3d6ef0
-// Highlights: pale periwinkle where blobs overlap
-// ---------------------------------------------------------------------------
 const FRAG = `
 precision highp float;
 varying vec2 vUv;
@@ -61,28 +55,25 @@ float blob(vec2 uv, vec2 center, float radius, float distort, float t) {
   return smoothstep(0.0, radius * 0.65, -(length(p) - radius - noise));
 }
 
-// ── Palette ──────────────────────────────────────────────────────────────
-// #080e1a  base
-// #0d1a3a  dark navy
-// #1c398e  primary blue
-// #2a52c9  mid blue
-// #3d6ef0  bright blue
-// #6690f5  light periwinkle highlight
-vec3 cBase      = vec3(0.031, 0.055, 0.102); // #080e1a
-vec3 cDarkNavy  = vec3(0.051, 0.102, 0.227); // #0d1a3a
-vec3 cPrimary   = vec3(0.110, 0.224, 0.557); // #1c398e
-vec3 cMid       = vec3(0.165, 0.322, 0.788); // #2a52c9
-vec3 cBright    = vec3(0.239, 0.431, 0.941); // #3d6ef0
-vec3 cHighlight = vec3(0.400, 0.565, 0.961); // #6690f5
+// ── Palette — tutto ruota attorno a #1c398e ───────────────────────────────
+// #1c398e  primary (base dominante)
+// #162d72  dark variant
+// #0f2057  very dark
+// #2a52c9  bright accent blob
+// #3d6ef0  highlight overlap
+vec3 cBase      = vec3(0.031, 0.041, 0.271); // #1c398e linear
+vec3 cDark      = vec3(0.046, 0.153, 0.855); // #162d72 linear
+vec3 cVeryDark  = vec3(0.022, 0.082, 0.560); // #0f2057 linear
+vec3 cBright    = vec3(0.022, 0.082, 0.560); // #2a52c9 linear
+vec3 cHighlight = vec3(0.096, 0.153, 0.855); // #3d6ef0 linear
 
 void main() {
   vec2 uv = vUv;
   float aspect = uResolution.x / uResolution.y;
   vec2 auv = vec2(uv.x * aspect, uv.y);
 
-  float t = uTime * 0.14; // slower = more serene
+  float t = uTime * 0.90;
 
-  // 6 blobs with independent drift speeds
   vec2 c1 = vec2((0.30 + sin(t * 0.61) * 0.17) * aspect, 0.52 + cos(t * 0.47) * 0.14);
   vec2 c2 = vec2((0.72 + cos(t * 0.53) * 0.13) * aspect, 0.32 + sin(t * 0.71) * 0.17);
   vec2 c3 = vec2((0.12 + sin(t * 0.39) * 0.11) * aspect, 0.22 + cos(t * 0.83) * 0.11);
@@ -90,37 +81,41 @@ void main() {
   vec2 c5 = vec2((0.48 + sin(t * 0.77) * 0.18) * aspect, 0.82 + cos(t * 0.36) * 0.09);
   vec2 c6 = vec2((0.22 + cos(t * 0.65) * 0.09) * aspect, 0.62 + sin(t * 0.62) * 0.15);
 
-  float b1 = blob(auv, c1, 0.30, 0.055, t * 1.0);
-  float b2 = blob(auv, c2, 0.24, 0.048, t * 0.85);
-  float b3 = blob(auv, c3, 0.19, 0.065, t * 1.25);
-  float b4 = blob(auv, c4, 0.26, 0.050, t * 0.75);
-  float b5 = blob(auv, c5, 0.21, 0.055, t * 1.10);
-  float b6 = blob(auv, c6, 0.17, 0.072, t * 0.95);
+  float b1 = blob(auv, c1, 0.38, 0.050, t * 1.0);
+  float b2 = blob(auv, c2, 0.32, 0.042, t * 0.85);
+  float b3 = blob(auv, c3, 0.28, 0.058, t * 1.25);
+  float b4 = blob(auv, c4, 0.35, 0.045, t * 0.75);
+  float b5 = blob(auv, c5, 0.30, 0.050, t * 1.10);
+  float b6 = blob(auv, c6, 0.25, 0.065, t * 0.95);
 
-  // Background warp — adds organic texture to dark base
-  float bg = fbm(auv * 1.2 + vec2(t * 0.05, t * 0.03)) * 0.45
-           + fbm(auv * 2.0 - vec2(t * 0.04, t * 0.06)) * 0.20;
+  // Background warp su base #1c398e
+  float bg = fbm(auv * 1.2 + vec2(t * 0.05, t * 0.03)) * 0.40
+           + fbm(auv * 2.0 - vec2(t * 0.04, t * 0.06)) * 0.32;
 
-  // Build up layers from dark base
+  // Parti dal primary #1c398e come colore di base
   vec3 col = cBase;
-  col = mix(col, cDarkNavy, clamp(bg * 1.1, 0.0, 1.0));
-  col = mix(col, cPrimary,  b1 * 0.88);
-  col = mix(col, cDarkNavy, b2 * 0.80);
-  col = mix(col, cMid,      b3 * 0.75);
-  col = mix(col, cPrimary,  b4 * 0.82);
-  col = mix(col, cBright,   b5 * 0.65);
-  col = mix(col, cMid,      b6 * 0.70);
 
-  // Luminous merge where blobs overlap
-  float overlap = b1*b2 + b2*b3 + b1*b5 + b3*b6 + b4*b5;
-  col += cHighlight * clamp(overlap * 0.40, 0.0, 0.22);
+  // Blob scuri per dare profondità (mai più scuri del 30% rispetto al base)
+  col = mix(col, cDark,     clamp(bg * 0.6, 0.0, 1.0));
+  col = mix(col, cVeryDark, b2 * 0.45); // solo leggera variazione scura
+  col = mix(col, cVeryDark, b4 * 0.40);
 
-  // Vignette — darkens edges for depth
+  // Blob chiari — toni di blu più brillanti ma non dominanti
+  col = mix(col, cBright,    b1 * 0.55);
+  col = mix(col, cBright,    b3 * 0.50);
+  col = mix(col, cHighlight, b5 * 0.35);
+  col = mix(col, cHighlight,    b6 * 0.45);
+
+  // Luminosità dove i blob si sovrappongono
+  float overlap = b1*b3 + b3*b5 + b1*b5 + b2*b6;
+  col += cHighlight * clamp(overlap * 0.25, 0.0, 0.15);
+
+  // Vignette leggera — non troppo scura per non allontanarsi da #1c398e
   vec2 vig = uv * 2.0 - 1.0;
-  col *= 0.65 + 0.35 * (1.0 - dot(vig * vec2(0.55, 0.75), vig * vec2(0.55, 0.75)));
+  float vignette = 0.75 + 0.25 * (1.0 - dot(vig * vec2(0.50, 0.65), vig * vec2(0.50, 0.65)));
+  col *= vignette;
 
-  // Gamma
-  col = pow(clamp(col, 0.0, 1.0), vec3(1.0 / 2.2));
+
 
   gl_FragColor = vec4(col, 1.0);
 }
@@ -136,7 +131,7 @@ export default function LiquidBackground({ className = "", style = {} }: Props) 
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
-    renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
 
     const scene  = new THREE.Scene();
