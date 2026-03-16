@@ -118,20 +118,17 @@ export default function Home() {
   const smooth = useSpring(progressMotion, { stiffness: 280, damping: 28 });
   const vh     = vhPx || 1;
 
-  // ── SCROLL TIMELINE ───────────────────────────────────────────────────────
-  //
-  // 0           Hero: LiquidBg (inset:16→0 at p1.1) + slide0 + model bottom 30vh
-  // 0 → 1.1     slide0 exits up (0.6→1.0), model moves top-right (0.7→1.1)
-  //             slide1 enters from below (0.7→1.1), LiquidBg goes fullscreen
-  // 1.1 → 2.0   slide1 + model (top-right) hold
-  // 2.0 → 2.5   slide1 + model exit upward
-  // 2.2 → 2.6   HomePageAbout enters
-  // 2.6 → 3.4   HomePageAbout sticky
-  // 3.4 → 3.8   HomePageAbout exits upward
-  // 3.8 → 5.0   scroll budget for ScatteredCards approach
-  // 5.0 → 6.6   ScatteredCards sequence (z:20+)
-  // 6.6 → 7.2   White circle expands (z:30, above cards z:22)
-  // 7.2+        OurPromise (z:31), CTA (z:32), FAQ (z:31)
+  // ── TIMELINE ──────────────────────────────────────────────────────────────
+  // 0           slide0 + model bottom
+  // 0→1.1       slide0 exits, LiquidBg fullscreen, model → top-right, slide1 enters
+  // 1.1→1.8     slide1 + model hold
+  // 1.8→2.8     slide1 exits, HomePageAbout enters + sticky
+  // 2.8→3.4     HomePageAbout exits
+  // 3.7→3.8     circle expands (covers screen)
+  // 3.9→4.3     OurPromise enters (fixed, above circle)
+  // 4.3→5.0     OurPromise sticky, words animate (3.7→4.6 in component)
+  // 5.0→6.6     ScatteredCards
+  // 6.6→7.2     ... (future)
 
   // ── Slide 0 ───────────────────────────────────────────────────────────────
   const slide0Y       = useTransform(smooth, [0, 0.2, 0.6], [0, 0, -880]);
@@ -208,9 +205,6 @@ export default function Home() {
     ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
   );
 
-  // ── Header theme ──────────────────────────────────────────────────────────
-  const headerTheme = useTransform(smooth, [7.0, 7.3], [0, 1]);
-
   // ── White circle — z:30, above ScatteredCards (z:20–22) ──────────────────
   // Expands after cards finish at p≈6.6
   const circleClip = useTransform(smooth,
@@ -218,9 +212,14 @@ export default function Home() {
     ["circle(0% at 10% 95%)", "circle(160% at 10% 95%)"]
   );
 
-  // ── OurPromise ────────────────────────────────────────────────────────────
-  const ourPromiseY       = useTransform(smooth, [7.1, 7.4], [60, 0]);
-  const ourPromiseOpacity = useTransform(smooth, [7.1, 7.4], [0, 1]);
+  // ── OurPromise — fixed, appears just after circle completes (p 3.85→4.1) ─
+  // Stays visible and sticky until p ≈ 5.2, then exits upward
+  const ourPromiseY       = useTransform(smooth, [3.85, 4.1, 5.0, 5.2], [50, 0, 0, -60]);
+  const ourPromiseOpacity = useTransform(smooth, [3.85, 4.1, 4.9, 5.2], [0, 1, 1, 0]);
+
+  // ── Header theme ──────────────────────────────────────────────────────────
+  // Switches to light (blue logo) after circle has expanded
+  const headerTheme = useTransform(smooth, [3.75, 3.9], [0, 1]);
 
   // ── CTA ──────────────────────────────────────────────────────────────────
   const wrapperCTAInset = useTransform(smooth, [7.4, 7.8, 7.9, 8.4], [16, 0, 0, 16]);
@@ -233,9 +232,8 @@ export default function Home() {
     ["105%", "0%", "0%", "-105%"]
   );
 
-  const spacerOurPromise = vh * 7.2;
-  const spacerFaq        = spacerOurPromise + vh * 0.8;
-  const totalHeight      = vh * 10 + 900;
+  const spacerFaq   = vh * 5.5;
+  const totalHeight = vh * 10 + 900;
 
   if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
 
@@ -389,18 +387,22 @@ export default function Home() {
           }}
         />
 
-        {/* ── OurPromise — z:31, above white circle ─────────────────────── */}
+        {/* ── OurPromise — z:31, FIXED, appears just after circle completes ─
+            p 3.85: circle is done → OurPromise fades+slides in (3.85→4.1)
+            Sticky until p 5.0, then exits upward (5.0→5.2)
+        ──────────────────────────────────────────────────────────────────── */}
         <motion.div
           style={{
-            position: "absolute",
-            top: spacerOurPromise,
-            left: 0, right: 0,
+            position: "fixed",
+            inset: 0,
             zIndex: 31,
             y: ourPromiseY,
             opacity: ourPromiseOpacity,
-            minHeight: `100${vhUnit}`,
+            pointerEvents: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-          className="flex items-start justify-center px-5"
         >
           <OurPromise
             title={homeTexts("slide3.title")}
@@ -409,14 +411,12 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* ── CTA — z:32, above white circle ────────────────────────────── */}
+        {/* ── CTA — z:32 ───────────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "fixed",
-            left: wrapperCTAInset,
-            right: wrapperCTAInset,
-            top: ctaTop,
-            height: ctaHeight,
+            left: wrapperCTAInset, right: wrapperCTAInset,
+            top: ctaTop, height: ctaHeight,
             y: ctaFrameY,
             background: "transparent",
             zIndex: 32,
@@ -426,7 +426,7 @@ export default function Home() {
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
 
-        {/* ── FAQ — z:31, centered, no horizontal overflow ─────────────── */}
+        {/* ── FAQ — z:31 ───────────────────────────────────────────────────── */}
         <div
           style={{
             position: "absolute",
@@ -437,14 +437,7 @@ export default function Home() {
           }}
           className="flex items-start justify-center"
         >
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "860px",
-              padding: "0 1.5rem",
-              boxSizing: "border-box",
-            }}
-          >
+          <div style={{ width: "100%", maxWidth: "860px", padding: "0 1.5rem", boxSizing: "border-box" }}>
             <FaqSection
               progress={smooth}
               progressStart={isMobile ? 7.9 : 8.0}
@@ -461,7 +454,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── Footer — z:31 ──────────────────────────────────────────────── */}
+        {/* ── Footer ───────────────────────────────────────────────────────── */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 31 }}>
           <Footer />
         </div>

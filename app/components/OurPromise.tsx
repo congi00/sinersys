@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
-import { motion, useMotionValueEvent } from "framer-motion";
-import { MotionValue, useTransform, useMotionValue } from "framer-motion";
+import React from "react";
+import { motion, useTransform, useMotionValue, useMotionValueEvent } from "framer-motion";
+import { MotionValue } from "framer-motion";
 import Signature from "./Signature";
 
 interface OurPromiseProps {
@@ -9,40 +9,35 @@ interface OurPromiseProps {
   progress: MotionValue<number>;
 }
 
+// The circle background is #1c398e (dark blue).
+// Active words → bright white #f4f7fa
+// Inactive words → muted blue-white rgba(244,247,250,0.35)
+// Subtitle → soft blue #a0c4e8
+
 function Word({
   word,
   index,
   wordsProgress,
-  progress,
 }: {
   word: string;
   index: number;
   wordsProgress: MotionValue<number>;
-  progress: MotionValue<number>;
 }) {
-  const wordColor = useMotionValue("#aaaaaa");
-
-  const activeColor = useTransform(
-    progress,
-    [2.1, 2.5, 3.5, 3.6],
-    ["#1c398e", "#f4f7fa", "#f4f7fa", "#1c398e"]
+  const opacity = useTransform(
+    wordsProgress,
+    [index - 0.3, index + 0.3],
+    [0.28, 1]
   );
-  const inactiveColor = useTransform(
-    progress,
-    [2.1, 2.5, 3.5, 3.6],
-    ["#aaaaaa", "#5c8baf", "#5c8baf", "#aaaaaa"]
-  );
-
-  const updateColor = () => {
-    const active = wordsProgress.get() >= index + 0.5;
-    wordColor.set(active ? activeColor.get() : inactiveColor.get());
-  };
-
-  useMotionValueEvent(wordsProgress, "change", updateColor);
-  useMotionValueEvent(progress, "change", updateColor);
 
   return (
-    <motion.span style={{ whiteSpace: "pre", marginRight: "0.5rem", color: wordColor }}>
+    <motion.span
+      style={{
+        whiteSpace: "pre",
+        marginRight: "0.5rem",
+        color: "#f4f7fa",
+        opacity,
+      }}
+    >
       {word}
     </motion.span>
   );
@@ -50,22 +45,19 @@ function Word({
 
 const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) => {
   const words = title.split(" ");
-  const wordsProgress = useTransform(progress, [3.7, 4.6], [0, words.length]);
 
-  const subtitleColor = useTransform(
-    progress,
-    [2.1, 2.2, 3.5, 3.6],
-    ["#5C8BAF", "#f4f7fa", "#f4f7fa", "#5C8BAF"]
-  );
+  // Words animate from p 3.9 → 4.8 (after circle is fully expanded at 3.8)
+  const wordsProgress = useTransform(progress, [3.9, 4.8], [0, words.length]);
 
   return (
-    <div className="sm:whitespace-pre-line w-full px-6 sm:text-center">
+    <div className="w-full px-6 sm:px-16 sm:text-center">
       <motion.h1
-        className="text-[3.0rem] sm:text-[4.2rem] font-bold line-height-40 sm:justify-center flex-start"
+        className="text-[2.6rem] sm:text-[4.2rem] font-bold"
         style={{
           display: "flex",
           flexWrap: "wrap",
           textAlign: "left",
+          lineHeight: 1.15,
         }}
       >
         {words.map((word, i) => (
@@ -74,18 +66,19 @@ const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) =>
             word={word}
             index={i}
             wordsProgress={wordsProgress}
-            progress={progress}
           />
         ))}
       </motion.h1>
+
       {subtitle && (
         <motion.h2
-          className="text-[1.65rem] sm:text-[2.25rem] line-height-40 font-light"
-          style={{ marginTop: "2rem", color: subtitleColor }}
+          className="text-[1.4rem] sm:text-[2rem] font-light mt-8"
+          style={{ color: "rgba(200, 216, 248, 0.75)" }}
         >
           {subtitle}
         </motion.h2>
       )}
+
       <Signature progress={progress} />
     </div>
   );
