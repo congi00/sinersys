@@ -9,7 +9,7 @@ import { Canvas } from "@react-three/fiber";
 import HeroScene from "../components/HeroScene";
 import { useRef, useEffect } from "react";
 
-const MotionArrowUpRight = motion(ArrowUpRight)
+const MotionArrowUpRight = motion.create(ArrowUpRight)
 
 interface Props {
   progressMotion: MotionValue<number>;
