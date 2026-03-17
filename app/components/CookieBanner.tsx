@@ -31,7 +31,7 @@ export default function CookieBanner() {
               left:      "24px",
               transform: "translateX(-50%)",
               zIndex:    9999,
-              width:     "min(92vw, 640px)",
+              width:     "min(88vw, 640px)",
             }}
           >
             {/* Glass card */}

@@ -27,6 +27,7 @@ import HeroModel from "./components/HeroModel";
 import ContactDrawer from "./components/ContactDrawer";
 import { setNavigationState, setOpenContact } from "./features/counterSlice";
 import { useAppDispatch } from "./hooks";
+import CookieBanner from "./components/CookieBanner";
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -320,7 +321,7 @@ export default function Home() {
               right: "3vw",
               top: isIOS ? "10lvh" : "10dvh",
               width: isMobile ? "45vw" : "30vw",
-              height: isMobile ? isIOS ? "18lvh" : "18dvh" : "22vh",
+              height: isMobile ? (isIOS ? "18lvh" : "18dvh") : "22vh",
               zIndex: 12,
               opacity: modelPhaseBOpacity,
               y: modelPhaseBY,
@@ -469,6 +470,13 @@ export default function Home() {
           }}
         />
       </div>
+
+      {/* ── Cookie Banner — montato fuori dal div scrollabile, z:9999 ────────
+          Visibile solo dopo che introFinished diventa true.
+          CookieBanner gestisce internamente showBanner da localStorage,
+          quindi se il consenso è già salvato non mostra nulla.
+      ──────────────────────────────────────────────────────────────────────── */}
+      {introFinished && <CookieBanner />}
     </>
   );
 }
