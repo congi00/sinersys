@@ -287,7 +287,7 @@ export default function Home() {
             style={{
               position: "fixed",
               bottom: 0,
-              height: "30vh",
+              height: isIOS ? "30lvh" : "30dvh",
               width: "100vw",
               zIndex: 10,
               opacity: modelPhaseAOpacity,
@@ -318,9 +318,9 @@ export default function Home() {
             style={{
               position: "fixed",
               right: "3vw",
-              top: "10vh",
+              top: isIOS ? "10lvh" : "10dvh",
               width: isMobile ? "45vw" : "30vw",
-              height: isMobile ? "18vh" : "22vh",
+              height: isMobile ? isIOS ? "18lvh" : "18dvh" : "22vh",
               zIndex: 12,
               opacity: modelPhaseBOpacity,
               y: modelPhaseBY,
@@ -341,7 +341,7 @@ export default function Home() {
           className="flex flex-col items-start justify-center px-8 sm:px-16"
         >
           {/* Leave right side clear for the model */}
-          <div style={{ maxWidth: isMobile ? "100%" : "55%", marginBottom: "10vh" }}>
+          <div style={{ maxWidth: isMobile ? "100%" : "55%", marginBottom: isIOS ? "10lvh" : "10dvh" }}>
             <h4 className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase">
               {homeTexts("slide1.suptitle")}
             </h4>

@@ -69,22 +69,20 @@ export default function Header({ headerTheme }: Props) {
         before:bg-[linear-gradient(135deg,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.15)_10%,rgba(255,255,255,0)_20%)]
         before:pointer-events-none"
     >
-      <motion.img
+      {isDark && <motion.img
         src="/logobianco.png"
         alt="Logo Sinersys"
         className="relative z-10 h-12 object-contain absolute"
         animate={{ opacity: isDark ? 1 : 0 }}
         transition={{ duration: 0.3 }}
-      />
-      <motion.img
+      />}
+      {!isDark && <motion.img
         src="/logoblu.png"
         alt="Logo Sinersys"
         className="relative z-10 h-12 object-contain absolute"
         animate={{ opacity: isDark ? 0 : 1 }}
         transition={{ duration: 0.3 }}
-      />
-      {/* Invisible spacer to keep header height consistent */}
-      <img src="/logoblu.png" alt="" className="h-12 object-contain opacity-0" aria-hidden />
+      />}
     </motion.div>
   );
 }

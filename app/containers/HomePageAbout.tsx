@@ -8,6 +8,7 @@ import { ArrowUpRight } from "@deemlol/next-icons";
 import { Canvas } from "@react-three/fiber";
 import HeroScene from "../components/HeroScene";
 import { useRef, useEffect } from "react";
+import { detectIOS } from "../support/useViewportHeight";
 
 const MotionArrowUpRight = motion.create(ArrowUpRight)
 
@@ -59,7 +60,7 @@ export default function HomePageAbout({ progressMotion }: Props) {
     <motion.div
       style={{
         borderRadius,
-        height: "70vh"
+        height: detectIOS() ? "70lvh" : "70dvh"
       }}
       className={clsx(
         "relative",

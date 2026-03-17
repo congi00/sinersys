@@ -3,6 +3,7 @@ import { League_Spartan } from "next/font/google";
 import {NextIntlClientProvider} from 'next-intl';
 import "./globals.css";
 import { Providers } from "./providers";
+import { detectIOS } from "./support/useViewportHeight";
 
 
 const leagueSpartan = League_Spartan({
@@ -35,8 +36,7 @@ export default async function RootLayout({children}: Props) {
       </head>
       <body
         className={`
-          antialiased
-          min-h-vh pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]
+          antialiased pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] h-[100vh] h-[100dvh] h-[100lvh]
         `}
       >
         <Providers>
