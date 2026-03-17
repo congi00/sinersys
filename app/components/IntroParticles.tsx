@@ -4,27 +4,35 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { detectIOS } from "../support/useViewportHeight";
+import { preloadOBJ } from "./HeroModel";
 
 type Props = {
-  onFinish: () => void;
+  onFinish:  () => void;
   showIntro: Boolean;
 };
 
 export default function IntroParticles({ onFinish, showIntro }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const phaseRef = useRef<1 | 2 | 3 | 4>(1);
+  const phaseRef  = useRef<1 | 2 | 3 | 4>(1);
   const [, forceRender] = useState(0);
 
   const vhUnit = detectIOS() ? "lvh" : "dvh";
 
   useEffect(() => {
+    // ── Preload the 3D model in the background immediately ────────────────
+    // By the time IntroParticles finishes (~6 s), the OBJ will be ready
+    // and HeroModel can use it from cache with zero extra load time.
+    preloadOBJ("/APWEC.obj");
+  }, []);
+
+  useEffect(() => {
     const canvas = canvasRef.current!;
-    const ctx = canvas.getContext("2d")!;
+    const ctx    = canvas.getContext("2d")!;
 
     const dpr = Math.min(window.devicePixelRatio, 1.5);
-    canvas.width = window.innerWidth * dpr;
+    canvas.width  = window.innerWidth  * dpr;
     canvas.height = window.innerHeight * dpr;
-    canvas.style.width = `100dvw`;
+    canvas.style.width  = "100dvw";
     canvas.style.height = `100${vhUnit}`;
     ctx.scale(dpr, dpr);
 
@@ -38,15 +46,15 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     const BOX_H = 70;
 
     let frame: number;
-    let time = 0;
+    let time     = 0;
     let lastTime = performance.now();
 
     const particles = new Array(COUNT).fill(0).map((_, i) => {
       const colFactor = i / COUNT;
       return {
-        x: centerX + (Math.random() - 0.5) * BOX_W,
-        y: centerY + (Math.random() - 0.5) * BOX_H,
-        baseY: centerY + (Math.random() - 0.5) * BOX_H,
+        x:      centerX + (Math.random() - 0.5) * BOX_W,
+        y:      centerY + (Math.random() - 0.5) * BOX_H,
+        baseY:  centerY + (Math.random() - 0.5) * BOX_H,
         offset: colFactor * 6,
         vx: 0,
         vy: 0,
@@ -60,7 +68,6 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
 
       const phase = phaseRef.current;
 
-      // Nella fase 4 riempi il canvas con #F4F7FA invece di clearRect trasparente
       if (phase >= 4) {
         ctx.fillStyle = "#F4F7FA";
         ctx.fillRect(0, 0, W, H);
@@ -70,10 +77,10 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
 
       particles.forEach((p) => {
         if (phase === 1 || phase === 2 || phase === 3) {
-          const sync = Math.min(time / 13, 1);
-          const speed = 1 + sync * 5;
+          const sync      = Math.min(time / 13, 1);
+          const speed     = 1 + sync * 5;
           const amplitudeY = 10 + sync * 200;
-          const wave = Math.sin(time * speed + p.offset * (1 - sync));
+          const wave      = Math.sin(time * speed + p.offset * (1 - sync));
           p.y = p.baseY + wave * amplitudeY;
         } else if (phase === 4) {
           if (p.vx === 0 && p.vy === 0) {
@@ -82,8 +89,8 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
             p.vx = Math.cos(angle) * power;
             p.vy = Math.sin(angle) * power;
           }
-          p.x += p.vx;
-          p.y += p.vy;
+          p.x  += p.vx;
+          p.y  += p.vy;
           p.vx *= 0.99;
           p.vy *= 0.99;
         }
@@ -91,7 +98,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
         ctx.fillStyle =
-          phase >= 4 ? "rgba(97, 188, 211, 1)" : "rgba(180,240,255,0.95)";
+          phase >= 4 ? "rgba(97,188,211,1)" : "rgba(180,240,255,0.95)";
         ctx.fill();
       });
 
@@ -100,8 +107,8 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
 
     frame = requestAnimationFrame(animate);
 
-    setTimeout(() => { phaseRef.current = 2; }, 3000);
-    setTimeout(() => { phaseRef.current = 3; }, 3700);
+    setTimeout(() => { phaseRef.current = 2; },        3000);
+    setTimeout(() => { phaseRef.current = 3; },        3700);
     setTimeout(() => {
       phaseRef.current = 4;
       forceRender((n) => n + 1);
@@ -112,6 +119,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     }, 6000);
 
     return () => cancelAnimationFrame(frame);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const phase = phaseRef.current;
@@ -159,8 +167,8 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
               <motion.span
                 key={index}
                 variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
+                  hidden:  { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0  },
                 }}
               >
                 {char === " " ? "\u00A0" : char}

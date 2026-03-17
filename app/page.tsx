@@ -119,18 +119,6 @@ export default function Home() {
   const smooth = useSpring(progressMotion, { stiffness: 280, damping: 28 });
   const vh     = vhPx || 1;
 
-  // ── TIMELINE ──────────────────────────────────────────────────────────────
-  // 0           slide0 + model bottom
-  // 0→1.1       slide0 exits, LiquidBg fullscreen, model → top-right, slide1 enters
-  // 1.1→1.8     slide1 + model hold
-  // 1.8→2.8     slide1 exits, HomePageAbout enters + sticky
-  // 2.8→3.4     HomePageAbout exits
-  // 3.7→3.8     circle expands (covers screen)
-  // 3.9→4.3     OurPromise enters (fixed, above circle)
-  // 4.3→5.0     OurPromise sticky, words animate (3.7→4.6 in component)
-  // 5.0→6.6     ScatteredCards
-  // 6.6→7.2     ... (future)
-
   // ── Slide 0 ───────────────────────────────────────────────────────────────
   const slide0Y       = useTransform(smooth, [0, 0.2, 0.6], [0, 0, -880]);
   const slide0Opacity = useTransform(smooth, [0, 0.7, 1.0], [1, 1, 0]);
@@ -148,55 +136,13 @@ export default function Home() {
   );
 
   // ── Model ─────────────────────────────────────────────────────────────────
-  // Initial state: fixed bottom, left 5vw, right 5vw, height 30vh.
-  // Visible immediately (opacity starts at 1).
-  //
-  // Transition to top-right (p 0.7→1.1):
-  //   The model container is positioned from left:5vw/bottom:0.
-  //   We translate it using viewport-relative values:
-  //   - translateX: 0 → move right so right edge is ~3vw from screen right
-  //     The container is 90vw wide. To place it top-right at ~30vw wide:
-  //     We need to shift right by ~62vw and up by ~(30vh + topOffset).
-  //   - translateY: 0 → -(vh-based offset to reach top)
-  //   - scale: 1 → 0.33 (30vw/90vw ≈ 0.33)
-  //
-  // Using percentages on the motion.div: % is relative to the element itself (90vw).
-  // To move right edge to 3vw from right:
-  //   right edge at 5vw + 90vw = 95vw. Target right edge at 97vw.
-  //   So translateX = +2vw. But also scale shrinks to 0.33 so visual right = 5vw + 90vw*0.33/2 ... 
-  //   Better: use fixed pixel-based transforms via vw strings.
-  //
-  // Simpler approach: animate left/right/bottom/height as CSS via useTransform strings.
-  // BUT layout changes cause reflows. Instead keep fixed position and use
-  // translateX(vw) + translateY(vw) + scale.
-  //
-  // The container starts at: left=5vw, right=5vw, bottom=0, height=30vh
-  // transformOrigin = "right bottom"
-  // At p=1.1 we want it in top-right:
-  //   scale = 0.33, so rendered size ≈ 90vw*0.33 = ~30vw wide, 30vh*0.33 = ~10vh tall
-  //   target position: right=2vw, top=10vh
-  //   current right anchor = 5vw from right, bottom=0
-  //   With transformOrigin right bottom:
-  //     translateX = 0 (right edge stays pinned)... no, let's use center as origin.
-  // 
-  // SIMPLEST CORRECT approach: use two separate fixed divs controlled by framer:
-  //   - phase A (p<0.7): bottom strip
-  //   - phase B (p>0.7): top-right box
-  // Crossfade between them.
-  
-  // Phase A opacity: 1 at p=0, 0 at p=1.0
-  const modelPhaseAOpacity = useTransform(smooth, [0, 0.05, 0.8, 1.0], [1, 1, 1, 0]);
-  // Phase A exit: slides up slightly
-  const modelPhaseAY       = useTransform(smooth, [0.7, 1.0], [0, -40]);
-  // Bottom mask fades
-  const modelMaskOpacity   = useTransform(smooth, [0, 0.5], [1, 1]);
-
-  // Phase B (top-right small version): fades in p 0.8→1.1, exits p 2.0→2.5
-  const modelPhaseBOpacity = useTransform(smooth, [0.8, 1.1, 1.6, 1.8], [0, 1, 1, 0]);
-  const modelPhaseBY       = useTransform(smooth, [0.8, 1.1, 1.6, 1.8], [20, 0, 0, -60]);
-
-  // 45° CW rotation for both phases
-  const modelRotationY = useTransform(smooth, [0, 0.8, 8], [0, Math.PI / 4, Math.PI / 4]);
+  const modelPhaseAOpacity = useTransform(smooth, [0, 1.0, 1.7, 1.8], [1, 1, 1, 0]);
+  const modelPhaseAY       = useTransform(smooth, [0.7, 1.0], [490, -40]);
+  const modelMaskOpacity = useTransform(smooth, [0, 0.03], [1, 0]);
+  const modelRotationY     = useTransform(smooth, [0, 1.0, 4], [0, Math.PI , Math.PI / 4]);
+  const modelOverflow = useTransform(smooth, (v) =>
+    v < 0.05 ? "hidden" : "visible"
+  );
 
   // ── HomePageAbout ─────────────────────────────────────────────────────────
   const aboutY       = useTransform(smooth, [1.8, 1.9, 2.4, 2.8], [80, 0, 0, -880]);
@@ -206,20 +152,17 @@ export default function Home() {
     ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
   );
 
-  // ── White circle — z:30, above ScatteredCards (z:20–22) ──────────────────
-  // Expands after cards finish at p≈6.6
+  // ── Circle ────────────────────────────────────────────────────────────────
   const circleClip = useTransform(smooth,
     [3.7, 3.8],
     ["circle(0% at 10% 95%)", "circle(160% at 10% 95%)"]
   );
 
-  // ── OurPromise — fixed, appears just after circle completes (p 3.85→4.1) ─
-  // Stays visible and sticky until p ≈ 5.2, then exits upward
+  // ── OurPromise ────────────────────────────────────────────────────────────
   const ourPromiseY       = useTransform(smooth, [3.85, 4.1, 5.0, 5.2], [50, 0, 0, -60]);
   const ourPromiseOpacity = useTransform(smooth, [3.85, 4.1, 4.9, 5.2], [0, 1, 1, 0]);
 
   // ── Header theme ──────────────────────────────────────────────────────────
-  // Switches to light (blue logo) after circle has expanded
   const headerTheme = useTransform(smooth, [3.75, 3.9], [0, 1]);
 
   // ── CTA ──────────────────────────────────────────────────────────────────
@@ -271,29 +214,27 @@ export default function Home() {
           }}
           className="flex flex-col items-center justify-center px-8 text-center"
         >
-            <h1 className="text-[3.0rem] sm:text-[5.8rem] text-[#f4f7fa] font-bold leading-tight tracking-tight">
-              {homeTexts("slide0.title")}
-            </h1>
-            <h2 className="text-[1.4rem] sm:text-[2rem] mt-5 whitespace-pre-line text-[#c8d8f8] font-light max-w-xl">
-              {homeTexts("slide0.subtitle")}
-            </h2>
+          <h1 className="text-[3.0rem] sm:text-[5.8rem] text-[#f4f7fa] font-bold leading-tight tracking-tight">
+            {homeTexts("slide0.title")}
+          </h1>
+          <h2 className="text-[1.4rem] sm:text-[2rem] mt-5 whitespace-pre-line text-[#c8d8f8] font-light max-w-xl">
+            {homeTexts("slide0.subtitle")}
+          </h2>
         </motion.div>
 
-        {/* ── MODEL PHASE A: bottom strip, full width, visible from start ────
-            left:5vw right:5vw bottom:0 height:30vh
-            Fades out as phase B (top-right) fades in.
-        ──────────────────────────────────────────────────────────────────── */}
+        {/* ── MODEL PHASE A ────────────────────────────────────────────────── */}
         {introFinished && (
           <motion.div
             style={{
               position: "fixed",
               bottom: 0,
-              height: isIOS ? "30lvh" : "30dvh",
+              height: isIOS ? "120lvh" : "120dvh",
               width: "100vw",
               zIndex: 10,
               opacity: modelPhaseAOpacity,
               y: modelPhaseAY,
               pointerEvents: "none",
+              overflow: modelOverflow,
             }}
           >
             <HeroModel progressMotion={smooth} rotationProgress={modelRotationY} />
@@ -309,29 +250,6 @@ export default function Home() {
           </motion.div>
         )}
 
-        {/* ── MODEL PHASE B: top-right corner, small ────────────────────────
-            Fixed at top-right, ~30vw wide, ~22vh tall.
-            Fades in as phase A fades out.
-            Separate HeroModel instance shares same stepSrc.
-        ──────────────────────────────────────────────────────────────────── */}
-        {introFinished && (
-          <motion.div
-            style={{
-              position: "fixed",
-              right: "3vw",
-              top: isIOS ? "10lvh" : "10dvh",
-              width: isMobile ? "45vw" : "30vw",
-              height: isMobile ? (isIOS ? "18lvh" : "18dvh") : "22vh",
-              zIndex: 12,
-              opacity: modelPhaseBOpacity,
-              y: modelPhaseBY,
-              pointerEvents: "none",
-            }}
-          >
-            <HeroModel progressMotion={smooth} rotationProgress={modelRotationY} />
-          </motion.div>
-        )}
-
         {/* ── SLIDE 1 ─────────────────────────────────────────────────────── */}
         <motion.div
           style={{
@@ -341,7 +259,6 @@ export default function Home() {
           }}
           className="flex flex-col items-start justify-center px-8 sm:px-16"
         >
-          {/* Leave right side clear for the model */}
           <div style={{ maxWidth: isMobile ? "100%" : "55%", marginBottom: isIOS ? "10lvh" : "10dvh" }}>
             <h4 className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase">
               {homeTexts("slide1.suptitle")}
@@ -367,7 +284,7 @@ export default function Home() {
           <HomePageAbout progressMotion={smooth} />
         </motion.div>
 
-        {/* ── ScatteredCards (z: 20–22) ──────────────────────────────────── */}
+        {/* ── ScatteredCards ──────────────────────────────────────────────── */}
         <ScatteredCards
           items={[
             { id: "1", image: "/images/1.jpg", label: "d1", suptitle: "Progetto", title: "Titolo uno",   subtitle: "Descrizione della prima scheda."  },
@@ -377,7 +294,7 @@ export default function Home() {
           progress={smooth}
         />
 
-        {/* ── WHITE CIRCLE (z:30 > cards z:22) — expands after p=6.6 ─────── */}
+        {/* ── Circle ──────────────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "fixed", inset: 0,
@@ -388,21 +305,13 @@ export default function Home() {
           }}
         />
 
-        {/* ── OurPromise — z:31, FIXED, appears just after circle completes ─
-            p 3.85: circle is done → OurPromise fades+slides in (3.85→4.1)
-            Sticky until p 5.0, then exits upward (5.0→5.2)
-        ──────────────────────────────────────────────────────────────────── */}
+        {/* ── OurPromise ──────────────────────────────────────────────────── */}
         <motion.div
           style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 31,
-            y: ourPromiseY,
-            opacity: ourPromiseOpacity,
+            position: "fixed", inset: 0, zIndex: 31,
+            y: ourPromiseY, opacity: ourPromiseOpacity,
             pointerEvents: "none",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: "flex", alignItems: "center", justifyContent: "center",
           }}
         >
           <OurPromise
@@ -412,7 +321,7 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* ── CTA — z:32 ───────────────────────────────────────────────────── */}
+        {/* ── CTA ──────────────────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "fixed",
@@ -427,7 +336,7 @@ export default function Home() {
           <CallToActionHome progressMotion={smooth} />
         </motion.div>
 
-        {/* ── FAQ — z:31 ───────────────────────────────────────────────────── */}
+        {/* ── FAQ ──────────────────────────────────────────────────────────── */}
         <div
           style={{
             position: "absolute",
