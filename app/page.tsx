@@ -17,7 +17,6 @@ import HomePageAbout from "./containers/HomePageAbout";
 import ScatteredCards from "./components/ScatteredCards";
 import OurPromise from "./components/OurPromise";
 import { useTranslations } from "next-intl";
-import CallToActionHome from "./components/CallToActionHome";
 import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
 import { detectIOS } from "./support/useViewportHeight";
@@ -28,6 +27,7 @@ import ContactDrawer from "./components/ContactDrawer";
 import { setNavigationState, setOpenContact } from "./features/counterSlice";
 import { useAppDispatch } from "./hooks";
 import CookieBanner from "./components/CookieBanner";
+import WhiteSection from "./components/WhiteSection";
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -163,20 +163,13 @@ export default function Home() {
   const ourPromiseOpacity = useTransform(smooth, [3.85, 4.1, 4.9, 5.2], [0, 1, 1, 0]);
 
   // ── Header theme ──────────────────────────────────────────────────────────
-  const headerTheme = useTransform(smooth, [3.75, 3.9], [0, 1]);
+  // Dark bg (white logo) while circle is up, then switches to light when
+  // white section appears after circle shrinks (p 5.2+)
+  const headerTheme = useTransform(smooth, [3.75, 3.9, 5.15, 5.3], [0, 1, 1, 0]);
 
-  // ── CTA ──────────────────────────────────────────────────────────────────
-  const wrapperCTAInset = useTransform(smooth, [7.4, 7.8, 7.9, 8.4], [16, 0, 0, 16]);
-  const ctaHeight = useTransform(wrapperCTAInset,
-    (v) => `calc(100${vhUnit} - ${v * 2}px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`
-  );
-  const ctaTop    = useTransform(wrapperCTAInset, (v) => `calc(${v}px + env(safe-area-inset-top))`);
-  const ctaFrameY = useTransform(smooth,
-    [7.4, isMobile ? 7.7 : 7.8, isMobile ? 7.8 : 7.9, isMobile ? 8.3 : 8.4],
-    ["105%", "0%", "0%", "-105%"]
-  );
-
-  const spacerFaq   = vh * 5.5;
+  // ── FAQ ───────────────────────────────────────────────────────────────────
+  // Absolute positioned after the white section scroll budget
+  const spacerFaq   = vh * 7.5;
   const totalHeight = vh * 10 + 900;
 
   if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
@@ -287,9 +280,9 @@ export default function Home() {
         {/* ── ScatteredCards ──────────────────────────────────────────────── */}
         <ScatteredCards
           items={[
-            { id: "1", image: "/images/1.jpg", label: "d1", suptitle: "Progetto", title: "Titolo uno",   subtitle: "Descrizione della prima scheda."  },
-            { id: "2", image: "/images/2.jpg", label: "d2", suptitle: "Progetto", title: "Titolo due",   subtitle: "Descrizione della seconda scheda." },
-            { id: "3", image: "/images/3.jpg", label: "d3", suptitle: "Progetto", title: "Titolo tre",   subtitle: "Descrizione della terza scheda."  },
+            { id: "1", image: "/images/1.jpg", label: "Prodotto",  suptitle: "Business",  title: "Strategia",   subtitle: "Analizzare il mercato, validare il product-market fit e testare la solidità del modello di business." },
+            { id: "2", image: "/images/2.jpg", label: "Tecnologia",suptitle: "Ingegneria", title: "Innovazione",  subtitle: "Sviluppare soluzioni energetiche all'avanguardia che ridefiniscono gli standard di settore." },
+            { id: "3", image: "/images/3.jpg", label: "Impatto",   suptitle: "Ambiente",   title: "Sostenibilità",subtitle: "Costruire un futuro energetico sostenibile attraverso tecnologia italiana d'eccellenza." },
           ]}
           progress={smooth}
         />
@@ -321,33 +314,31 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* ── CTA ──────────────────────────────────────────────────────────── */}
-        <motion.div
-          style={{
-            position: "fixed",
-            left: wrapperCTAInset, right: wrapperCTAInset,
-            top: ctaTop, height: ctaHeight,
-            y: ctaFrameY,
-            background: "transparent",
-            zIndex: 32,
-          }}
-          className="flex items-center justify-center"
-        >
-          <CallToActionHome progressMotion={smooth} />
-        </motion.div>
+        {/* ── WHITE SECTION — appears after circle shrinks (p 5.2+) ─────────
+            Contains:
+            1. Scrolling marquee text (top third)
+            2. Partial CTA preview (bottom two-thirds)
+               └ CallToActionHome handles its own inset/radius animation
+        ──────────────────────────────────────────────────────────────────── */}
+        <WhiteSection
+          progressMotion={smooth}
+          isMobile={isMobile}
+          vhUnit={vhUnit}
+        />
 
-        {/* ── FAQ ──────────────────────────────────────────────────────────── */}
-        <div
+        {/* ── FAQ — absolute, on white bg, after CTA ───────────────────────── */}
+        {/* <div
           style={{
             position: "absolute",
             top: spacerFaq,
             left: 0, right: 0,
             zIndex: 31,
             overflowX: "hidden",
+            background: "#ffffff",
           }}
           className="flex items-start justify-center"
         >
-          <div style={{ width: "100%", maxWidth: "860px", padding: "0 1.5rem", boxSizing: "border-box" }}>
+          <div style={{ width: "100%", maxWidth: "860px", padding: "4rem 1.5rem 2rem", boxSizing: "border-box" }}>
             <FaqSection
               progress={smooth}
               progressStart={isMobile ? 7.9 : 8.0}
@@ -362,10 +353,10 @@ export default function Home() {
               ]}
             />
           </div>
-        </div>
+        </div> */}
 
         {/* ── Footer ───────────────────────────────────────────────────────── */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 31 }}>
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 31, background: "#ffffff" }}>
           <Footer />
         </div>
 
