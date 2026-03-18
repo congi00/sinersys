@@ -154,8 +154,8 @@ export default function Home() {
 
   // ── Circle ────────────────────────────────────────────────────────────────
   const circleClip = useTransform(smooth,
-    [3.7, 3.8],
-    ["circle(0% at 10% 95%)", "circle(160% at 10% 95%)"]
+    [3.7, 3.8, 5.2, 5.3],
+    ["circle(0% at 100% 95%)", "circle(160% at 10% 95%)", "circle(160% at 10% 95%)" , "circle(0% at 5% 5%)"]
   );
 
   // ── OurPromise ────────────────────────────────────────────────────────────

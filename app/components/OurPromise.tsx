@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useTransform, useMotionValue, useMotionValueEvent } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 import { MotionValue } from "framer-motion";
 import Signature from "./Signature";
 
@@ -8,11 +8,6 @@ interface OurPromiseProps {
   subtitle?: string;
   progress: MotionValue<number>;
 }
-
-// The circle background is #1c398e (dark blue).
-// Active words → bright white #f4f7fa
-// Inactive words → muted blue-white rgba(244,247,250,0.35)
-// Subtitle → soft blue #a0c4e8
 
 function Word({
   word,
@@ -45,34 +40,51 @@ function Word({
 
 const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) => {
   const words = title.split(" ");
-
-  // Words animate from p 3.9 → 4.8 (after circle is fully expanded at 3.8)
   const wordsProgress = useTransform(progress, [3.9, 4.8], [0, words.length]);
 
   return (
-    <div className="w-full px-6 sm:px-16 sm:text-center">
+    <div className="w-full px-6 sm:px-16">
       <motion.h1
         className="text-[2.6rem] sm:text-[4.2rem] font-bold"
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          textAlign: "left",
-          lineHeight: 1.15,
+          display:        "flex",
+          flexWrap:       "wrap",
+          lineHeight:     1.15,
+          // Left on mobile, centered on desktop via justifyContent
+          justifyContent: "flex-start",
         }}
       >
-        {words.map((word, i) => (
-          <Word
-            key={i}
-            word={word}
-            index={i}
-            wordsProgress={wordsProgress}
-          />
-        ))}
+        {/* Desktop-only centering wrapper — invisible on mobile */}
+        <style>{`
+          @media (min-width: 640px) {
+            .ourpromise-words {
+              justify-content: center !important;
+            }
+          }
+        `}</style>
+        <span
+          className="ourpromise-words"
+          style={{
+            display:        "flex",
+            flexWrap:       "wrap",
+            justifyContent: "flex-start",
+            width:          "100%",
+          }}
+        >
+          {words.map((word, i) => (
+            <Word
+              key={i}
+              word={word}
+              index={i}
+              wordsProgress={wordsProgress}
+            />
+          ))}
+        </span>
       </motion.h1>
 
       {subtitle && (
         <motion.h2
-          className="text-[1.4rem] sm:text-[2rem] font-light mt-8"
+          className="text-[1.4rem] sm:text-[2rem] font-light mt-8 text-left sm:text-center"
           style={{ color: "rgba(200, 216, 248, 0.75)" }}
         >
           {subtitle}

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useTransform, MotionValue } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type CardItem = {
@@ -19,21 +18,6 @@ type Props = {
   progress: MotionValue<number>;
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// DESKTOP TIMING
-// ─────────────────────────────────────────────────────────────────────────────
-// p 5.0→5.4  Card 0 enters from bottom-right (y: 100%→0, x stays 0%)
-// p 5.4→5.8  Card 0 slides left (-100%), Card 1 enters from right (x: 100%→0%)
-// p 5.8→6.2  Card 1 slides left (-100%), Card 0 exits (-200%), Card 2 enters (x: 100%→0%)
-// p 6.2+     Card 1 and Card 2 stay FIXED — no more movement
-//
-// MOBILE TIMING
-// ─────────────────────────────────────────────────────────────────────────────
-// p 5.0→5.4  Card 0 enters from right (x: 100%→0%) full width
-// p 5.4→5.8  Card 0 slides up (y: 0→-100%), Card 1 enters from bottom (y: 100%→0%)
-// p 5.8→6.2  Card 1 slides up (y: 0→-100%), Card 2 enters from bottom (y: 100%→0%)
-// p 6.2+     Card 2 stays FIXED
-
 interface SingleCardProps {
   item: CardItem;
   index: number;
@@ -48,11 +32,6 @@ function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProp
   const slideStart = enterEnd;
   const slideEnd   = slideStart + 0.4;
 
-  // ── DESKTOP ───────────────────────────────────────────────────────────────
-  // Card 0: enters from bottom (y: 100%→0), then slides left, then exits left
-  // Card 1: enters from right (x: 100%→0), then slides left, then exits left
-  // Card 2: enters from right (x: 100%→0), then STAYS — both card 1 and 2 remain
-
   const desktopY = useTransform(
     progress,
     index === 0 ? [enterStart, enterEnd] : [enterStart, enterStart],
@@ -61,7 +40,6 @@ function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProp
 
   const desktopX = (() => {
     if (index === 0) {
-      // enters bottom (x stays 0), slides left to -100%, exits to -200%
       return useTransform(
         progress,
         [enterStart, enterEnd, slideStart, slideEnd, slideEnd, slideEnd + 0.4],
@@ -69,214 +47,191 @@ function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProp
       );
     }
     if (index === 1) {
-      // enters from right, slides to left half, STAYS (no exit)
       return useTransform(
         progress,
         [enterStart, enterEnd, slideStart, slideEnd],
         ["100%", "0%", "0%", "-100%"]
       );
     }
-    // Card 2: enters from right, STAYS at 0% (right half) — no more movement
-    return useTransform(
-      progress,
-      [enterStart, enterEnd],
-      ["100%", "0%"]
-    );
+    return useTransform(progress, [enterStart, enterEnd], ["100%", "0%"]);
   })();
 
-  // Opacity: card 0 exits, cards 1 and 2 stay permanently
   const desktopOpacity = (() => {
     if (index === 0) {
-      return useTransform(
-        progress,
-        [enterStart, slideEnd + 0.2, slideEnd + 0.4],
-        [1, 1, 0]
-      );
+      return useTransform(progress, [enterStart, slideEnd + 0.2, slideEnd + 0.4], [1, 1, 0]);
     }
-    // Cards 1 and 2: appear and stay forever
     return useTransform(progress, [enterStart], [1]);
   })();
 
-  // ── MOBILE ────────────────────────────────────────────────────────────────
-  // Card 0: enters from right (x: 100%→0%), then slides up (y: 0→-100%), exits
-  // Card 1: enters from bottom (y: 100%→0%), then slides up, exits
-  // Card 2: enters from bottom (y: 100%→0%), STAYS
-
   const mobileX = (() => {
-    if (index === 0) {
-      // enters from right, then stays at 0 while sliding up
-      return useTransform(
-        progress,
-        [enterStart, enterEnd],
-        ["100%", "0%"]
-      );
-    }
+    if (index === 0) return useTransform(progress, [enterStart, enterEnd], ["100%", "0%"]);
     return useTransform(progress, [enterStart], ["0%"]);
   })();
 
   const mobileY = (() => {
     if (index === 0) {
-      // slides up and exits after card 1 arrives
-      return useTransform(
-        progress,
-        [enterEnd, slideStart, slideEnd, slideEnd + 0.4],
-        ["0%", "0%", "-100%", "-100%"]
-      );
+      return useTransform(progress, [enterEnd, slideStart, slideEnd, slideEnd + 0.4], ["0%", "0%", "-100%", "-100%"]);
     }
     if (index === 1) {
-      // enters from bottom, slides up, stays
-      return useTransform(
-        progress,
-        [enterStart, enterEnd, slideStart, slideEnd],
-        ["100%", "0%", "0%", "-100%"]
-      );
+      return useTransform(progress, [enterStart, enterEnd, slideStart, slideEnd], ["100%", "0%", "0%", "-100%"]);
     }
-    // Card 2: enters from bottom, STAYS
-    return useTransform(
-      progress,
-      [enterStart, enterEnd],
-      ["100%", "0%"]
-    );
+    return useTransform(progress, [enterStart, enterEnd], ["100%", "0%"]);
   })();
 
   const mobileOpacity = (() => {
     if (index === 0) {
-      return useTransform(
-        progress,
-        [enterStart, slideEnd + 0.1, slideEnd + 0.3],
-        [1, 1, 0]
-      );
+      return useTransform(progress, [enterStart, slideEnd + 0.1, slideEnd + 0.3], [1, 1, 0]);
     }
     return useTransform(progress, [enterStart], [1]);
   })();
 
-  // ── Styles ────────────────────────────────────────────────────────────────
-  const bgStyle = isGlass
-    ? {
-        background: "rgba(255,255,255,0.08)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-        border: "1px solid rgba(255,255,255,0.18)",
-      }
-    : { background: "#ffffff" };
+  // Glass card = dark blue bg, white text. Solid card = white bg, dark text.
+  const bg         = isGlass ? "rgba(14,28,80,0.72)"            : "#ffffff";
+  const blur       = isGlass ? "blur(32px) saturate(160%)"      : "none";
+  const border     = isGlass ? "1px solid rgba(255,255,255,0.14)": "none";
 
-  const textColor = isGlass ? "#f4f7fa" : "#111827";
-  const subColor  = isGlass ? "rgba(244,247,250,0.6)" : "#6b7280";
+  const content = <CardContent item={item} isGlass={isGlass} />;
+
+  const shared: React.CSSProperties = {
+    position: "fixed", top: 0, zIndex: 20 + index, overflow: "hidden",
+    background: bg,
+    backdropFilter: blur,
+    WebkitBackdropFilter: blur,
+    border,
+  };
 
   if (isMobile) {
     return (
-      <motion.div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100%",
-          x: mobileX,
-          y: mobileY,
-          opacity: mobileOpacity,
-          zIndex: 20 + index,
-          overflow: "hidden",
-          ...bgStyle,
-        }}
-      >
-        <CardContent item={item} isGlass={isGlass} textColor={textColor} subColor={subColor} />
+      <motion.div style={{ ...shared, left: 0, width: "100vw", height: "100%", x: mobileX, y: mobileY, opacity: mobileOpacity }}>
+        {content}
       </motion.div>
     );
   }
-
   return (
-    <motion.div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: "50%",
-        width: "50vw",
-        height: "100%",
-        x: desktopX,
-        y: desktopY,
-        opacity: desktopOpacity,
-        zIndex: 20 + index,
-        overflow: "hidden",
-        ...bgStyle,
-      }}
-    >
-      <CardContent item={item} isGlass={isGlass} textColor={textColor} subColor={subColor} />
+    <motion.div style={{ ...shared, left: "50%", width: "50vw", height: "100%", x: desktopX, y: desktopY, opacity: desktopOpacity }}>
+      {content}
     </motion.div>
   );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-function CardContent({ item, isGlass, textColor, subColor }: {
-  item: CardItem;
-  isGlass: boolean;
-  textColor: string;
-  subColor: string;
-}) {
+// Layout — exact replica of reference image:
+//
+//  ┌────────────────────────────────────┐
+//  │  Subtitle text (top-left)    ↗     │  ← top zone, ~18% height
+//  │                                    │
+//  │       (generous white space)       │  ← middle breathing room ~42%
+//  │                                    │
+//  │  LABEL & CATEGORY                  │  ← small-caps label ~5%
+//  │  Massive Title                     │  ← giant display type ~35%
+//  └────────────────────────────────────┘
+// ─────────────────────────────────────────────────────────────────────────────
+function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
+  const textPrimary    = isGlass ? "#f4f7fa"                 : "#0a0f24";
+  const textSecondary  = isGlass ? "rgba(200,218,250,0.75)"  : "#374151";
+  const labelLight     = isGlass ? "rgba(160,194,255,0.60)"  : "#9ca3af";
+  const labelBold      = isGlass ? "rgba(200,218,250,0.90)"  : "#1c398e";
+  const arrowColor     = isGlass ? "rgba(180,210,255,0.80)"  : "#e53e3e";
+
+  // Title gradient: from a lighter blue to a deep navy (matches reference)
+  const titleStyle: React.CSSProperties = isGlass
+    ? { color: "#f4f7fa" }
+    : {
+        background:          "linear-gradient(135deg, #2a52c9 0%, #0f2057 60%)",
+        WebkitBackgroundClip:"text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip:      "text",
+      };
+
   return (
-    <>
-      {/* Image — top 55% */}
-      <div style={{ position: "relative", width: "100%", height: "55%" }}>
-        <Image
-          src={item.image}
-          alt={item.label}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-        <div style={{
-          position: "absolute", inset: 0,
-          background: isGlass
-            ? "linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.35) 100%)"
-            : "linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.08) 100%)"
-        }} />
+    <div style={{
+      display:        "flex",
+      flexDirection:  "column",
+      height:         "100%",
+      width:          "100%",
+      padding:        "clamp(1.6rem, 4vw, 3rem) clamp(1.6rem, 4vw, 3rem)",
+      boxSizing:      "border-box",
+    }}>
+
+      {/* ── TOP: description left + arrow top-right ──────────────────────── */}
+      <div style={{
+        display:        "flex",
+        justifyContent: "space-between",
+        alignItems:     "flex-start",
+        flexShrink:     0,
+      }}>
+        <p style={{
+          margin:     0,
+          fontSize:   "clamp(0.9rem, 1.5vw, 1.15rem)",
+          lineHeight: 1.55,
+          color:      textSecondary,
+          fontWeight: 400,
+          maxWidth:   "78%",
+        }}>
+          {item.subtitle}
+        </p>
+
+        {/* Arrow — top right, accent colour */}
+        <span style={{
+          fontSize:   "clamp(1.1rem, 1.8vw, 1.5rem)",
+          color:      arrowColor,
+          fontWeight: 700,
+          lineHeight: 1,
+          flexShrink: 0,
+          marginLeft: "1rem",
+        }}>
+          ↗
+        </span>
       </div>
 
-      {/* Text — bottom 45% */}
-      <div style={{
-        padding: "2rem 2.5rem",
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.75rem",
-        height: "45%",
-        justifyContent: "center",
-      }}>
-        {item.suptitle && (
+      {/* ── MIDDLE: breathing space (flexGrow pushes bottom content down) ── */}
+      <div style={{ flexGrow: 1 }} />
+
+      {/* ── BOTTOM: label + giant title ───────────────────────────────────── */}
+      <div style={{ flexShrink: 0 }}>
+
+        {/* Category label — "LIGHT & BOLD" style from reference */}
+        {(item.suptitle || item.label) && (
           <p style={{
-            fontSize: "0.78rem",
-            fontWeight: 600,
-            letterSpacing: "0.12em",
+            margin:        "0 0 clamp(0.5rem, 1vh, 0.9rem)",
+            fontSize:      "clamp(0.62rem, 0.9vw, 0.78rem)",
+            fontWeight:    400,
+            letterSpacing: "0.10em",
             textTransform: "uppercase",
-            color: isGlass ? "rgba(200,216,248,0.8)" : "#1c398e",
+            color:         labelLight,
+            lineHeight:    1,
           }}>
-            {item.suptitle}
+            {item.suptitle && (
+              <>
+                <span style={{ fontWeight: 400, color: labelLight }}>{item.suptitle}</span>
+                <span style={{ color: labelBold, fontWeight: 700 }}> & {item.label}</span>
+              </>
+            )}
+            {!item.suptitle && (
+              <span style={{ fontWeight: 700, color: labelBold }}>{item.label}</span>
+            )}
           </p>
         )}
+
+        {/* Massive display title — fills the bottom of the card */}
         <h2 style={{
-          fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
-          fontWeight: 700,
-          lineHeight: 1.15,
-          color: textColor,
-          margin: 0,
+          margin:        0,
+          fontSize:      "clamp(3rem, 9vw, 7.5rem)",
+          fontWeight:    700,
+          lineHeight:    0.88,
+          letterSpacing: "-0.03em",
+          ...titleStyle,
+          // Overflow visible so descenders can breathe
+          overflowX:     "visible",
+          overflowY:     "visible",
         }}>
           {item.title ?? item.label}
         </h2>
-        {item.subtitle && (
-          <p style={{
-            fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)",
-            lineHeight: 1.55,
-            color: subColor,
-            margin: 0,
-          }}>
-            {item.subtitle}
-          </p>
-        )}
       </div>
-    </>
+    </div>
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 export default function ScatteredCards({ items, progress }: Props) {
   const cards = items.slice(0, 3);
   const [isMobile, setIsMobile] = useState(false);
