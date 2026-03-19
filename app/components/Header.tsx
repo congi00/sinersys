@@ -46,6 +46,13 @@ export default function Header({ headerTheme }: Props) {
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+      style={{
+        background:          "rgba(255, 255, 255, 0.18)",
+        backdropFilter:      "blur(32px) saturate(180%)",
+        WebkitBackdropFilter:"blur(32px) saturate(180%)",
+        border:              "1px solid rgba(255,255,255,0.22)",
+        boxShadow:           "0 8px 40px rgba(12,24,70,0.35), inset 0 1px 0 rgba(255,255,255,0.18)",
+      }}
       className="flex mt-2
         fixed top-6 left-1/2 -translate-x-1/2 z-50
         min-w-[84vw]
@@ -54,20 +61,15 @@ export default function Header({ headerTheme }: Props) {
         items-center
         justify-center
         p-4
-        bg-[#F4F7FA]/20
-        backdrop-blur-xl
         backdrop-saturate-150
         rounded-3xl
-        border border-[#F4F7FA]/30
         after:absolute after:inset-0
         after:rounded-3xl
         after:border after:border-[#F4F7FA]/20
         after:pointer-events-none
         shadow-[12px_12px_32px_rgba(0,0,0,0.18)]
         overflow-hidden
-        before:absolute before:inset-0
-        before:bg-[linear-gradient(135deg,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.15)_10%,rgba(255,255,255,0)_20%)]
-        before:pointer-events-none"
+        "
     >
       {isDark && <motion.img
         src="/logobianco.png"

@@ -36,7 +36,7 @@ export default function CookieBanner() {
           >
             {/* Glass card */}
             <div style={{
-              background:          "rgba(28, 57, 142, 0.18)",
+              background:          "rgba(255, 255, 255, 0.18)",
               backdropFilter:      "blur(32px) saturate(180%)",
               WebkitBackdropFilter:"blur(32px) saturate(180%)",
               border:              "1px solid rgba(255,255,255,0.22)",
@@ -64,7 +64,7 @@ export default function CookieBanner() {
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: "16px", flexShrink: 0,
                 }}>
-                  🍪
+                  <img src={"/logobianco.png"}></img>
                 </div>
                 <h2 style={{
                   margin: 0, fontSize: "1.05rem", fontWeight: 700,

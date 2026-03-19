@@ -40,22 +40,24 @@ export default function MenuButton() {
         "pt-8",
         "flex flex-col items-center justify-center",
         "bg-[#F4F7FA]/20 backdrop-blur-xl backdrop-saturate-150",
-        "border border-[#F4F7FA]/30",
-        "shadow-[12px_12px_32px_rgba(0,0,0,0.18)]",
         "items-center",
         "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ease-[cubic-bezier(.16,1,.3,1)]",
         "after:absolute after:inset-0",
         "after:rounded-3xl",
         "after:border after:border-white/20",
         "after:pointer-events-none",
-        "before:absolute before:inset-0",
-        "before:bg-[linear-gradient(135deg,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.15)_10%,rgba(255,255,255,0)_20%)]",
-        "before:pointer-events-none",
         !menuVisibility &&
           "min-h-[70px] min-w-[70px] max-h-[70px] max-w-[70px] mb-6 rounded-[999px]",
         menuVisibility &&
           "min-h-[280px] md:min-w-[550px] max-h-[320px] min-w-[350px] mb-6 bg-[#1A2127]/20 rounded-[28px]"
       )}
+      style={{
+        background:          "rgba(255, 255, 255, 0.18)",
+        backdropFilter:      "blur(32px) saturate(180%)",
+        WebkitBackdropFilter:"blur(32px) saturate(180%)",
+        border:              "1px solid rgba(255,255,255,0.22)",
+        boxShadow:           "0 8px 40px rgba(12,24,70,0.35), inset 0 1px 0 rgba(255,255,255,0.18)",
+      }}
     >
       <div
         className={clsx(

@@ -1,52 +1,357 @@
 {
-    "menu": {
-        "homepage": "HOMEPAGE",
-        "products": "PRODUCTS",
-        "about": "ABOUT US",
-        "contacts": "CONTACTS"
+  "menu": {
+    "homepage": "HOMEPAGE",
+    "products": "PRODUCTS",
+    "about": "ABOUT US",
+    "contacts": "CONTACTS"
+  },
+  "homepage": {
+    "slide0": {
+      "title": "L'innovazione \n che nasce dall'esperienza",
+      "subtitle": "Il futuro non sta arrivando. \n É qui. Ed è italiano."
     },
-    "homepage": {
-       "slide0":{
-            "title": "L'innovazione \n che nasce dall'esperienza",
-            "subtitle": "Il futuro non sta arrivando. \n É qui. Ed è italiano."
-        },
-        "slide1":{
-            "suptitle": "SCOPRI APWEC",
-            "title": "Il generatore che riscrive le regole dell’energia",
-            "subtitle": "Una tecnologia italiana brevettata che produce energia continua\n  sfruttando la pressione atmosferica.\n Senza vento. Senza emissioni. 24/7.",
-            "link": "Scopri Di Più"
-        },
-        "slide2": {
-          "suptitle": "CHI SIAMO",
-          "title": "Oltre 100 anni di innovazione italiana",
-          "subtitle": "Collaborazioni con Honda, Volvo e Chrysler hanno consolidato \nl’esperienza di Sinersys nella progettazione e produzione \ndi tecnologie avanzate, aprendo la strada alla rivoluzione green.",
-          "link": "Scopri Di Più"
-        },
-        "slide3": {
-          "title": "Ogni progetto è un’opportunità per innovare, migliorare le prestazioni energetiche e promuovere modelli di produzione più sostenibili ed efficienti per il futuro.",
-          "subtitle": "Sinersys garantisce sistemi efficienti e flessibili che permettono ad aziende, enti\n pubblici e operatori commerciali di autoprodurre energia,\n riducendo significativamente i costi\n e l’impatto ambientale."
-        }
+    "slide1": {
+      "suptitle": "SCOPRI APWEC",
+      "title": "Il generatore che riscrive le regole dell’energia",
+      "subtitle": "Una tecnologia italiana brevettata che produce energia continua\n  sfruttando la pressione atmosferica.\n Senza vento. Senza emissioni. 24/7.",
+      "link": "Scopri Di Più"
     },
-    "aboutus": {
-        "slide0":{
-             "title": "LE NOSTRE RADICI",
-             "subtitle": "Oltre un Secolo di Esperienza tra Meccanica, Mobilità ed Energia"
-        },
-        "slide1":{
-            "suptitle": "SCOPRI APWEC",
-            "title": "DALLE PRIME INTUIZIONI MECCANICHE ALLA NASCITA DI UNA CULTURA INDUSTRIALE EUROPEA",
-            "subtitle": "Sinersys è oggi l’espressione di una profonda continuità industriale che unisce competenze storiche, ricerca ingegneristica avanzata e una visione strategica orientata alla sostenibilità. L’azienda opera come centro di eccellenza nello sviluppo di soluzioni innovative per la generazione di energia rinnovabile continua, affidabile e a basso impatto ambientale.",
-            "link": "Scopri Di Più"
-        },
-        "slide2": {
-          "suptitle": "CHI SIAMO",
-          "title": "OLTRE 100 ANNI DI INNOVAZIONE ITALIANA",
-          "subtitle": "Collaborazioni con Honda, Volvo e Chrysler hanno consolidato l’esperienza di Sinersys nella progettazione e produzione di tecnologie avanzate, aprendo la strada alla rivoluzione green.",
-          "link": "Scopri Di Più"
-        },
-        "slide3": {
-          "title": "Ogni progetto è un’opportunità per innovare, migliorare le prestazioni energetiche e promuovere modelli di produzione più sostenibili ed efficienti per il futuro.",
-          "subtitle": "Sinersys garantisce sistemi efficienti e flessibili che permettono ad aziende, enti pubblici e operatori commerciali di autoprodurre energia, riducendo significativamente i costi e l’impatto ambientale."
-        }
+    "slide2": {
+      "suptitle": "CHI SIAMO",
+      "title": "Oltre 100 anni di innovazione italiana",
+      "subtitle": "Collaborazioni con Honda, Volvo e Chrysler hanno consolidato \nl’esperienza di Sinersys nella progettazione e produzione \ndi tecnologie avanzate, aprendo la strada alla rivoluzione green.",
+      "link": "Scopri Di Più"
+    },
+    "slide3": {
+      "title": "Ogni progetto è un’opportunità per innovare, migliorare le prestazioni energetiche e promuovere modelli di produzione più sostenibili ed efficienti per il futuro.",
+      "subtitle": "Sinersys garantisce sistemi efficienti e flessibili che permettono ad aziende, enti\n pubblici e operatori commerciali di autoprodurre energia,\n riducendo significativamente i costi\n e l’impatto ambientale."
+    }
+  },
+  "aboutus": {
+    "slide0": {
+      "title": "LE NOSTRE RADICI",
+      "subtitle": "Oltre un Secolo di Esperienza tra Meccanica, Mobilità ed Energia"
+    },
+    "slide1": {
+      "suptitle": "SCOPRI APWEC",
+      "title": "DALLE PRIME INTUIZIONI MECCANICHE ALLA NASCITA DI UNA CULTURA INDUSTRIALE EUROPEA",
+      "subtitle": "Sinersys è oggi l’espressione di una profonda continuità industriale che unisce competenze storiche, ricerca ingegneristica avanzata e una visione strategica orientata alla sostenibilità. L’azienda opera come centro di eccellenza nello sviluppo di soluzioni innovative per la generazione di energia rinnovabile continua, affidabile e a basso impatto ambientale.",
+      "link": "Scopri Di Più"
+    },
+    "slide2": {
+      "suptitle": "CHI SIAMO",
+      "title": "OLTRE 100 ANNI DI INNOVAZIONE ITALIANA",
+      "subtitle": "Collaborazioni con Honda, Volvo e Chrysler hanno consolidato l’esperienza di Sinersys nella progettazione e produzione di tecnologie avanzate, aprendo la strada alla rivoluzione green.",
+      "link": "Scopri Di Più"
+    },
+    "slide3": {
+      "title": "Ogni progetto è un’opportunità per innovare, migliorare le prestazioni energetiche e promuovere modelli di produzione più sostenibili ed efficienti per il futuro.",
+      "subtitle": "Sinersys garantisce sistemi efficienti e flessibili che permettono ad aziende, enti pubblici e operatori commerciali di autoprodurre energia, riducendo significativamente i costi e l’impatto ambientale."
+    }
+  },
+  "apwec": {
+    "slide0": {
+      "suptitle": "Sinersys · Prodotto",
+      "title": "APWEC",
+      "subtitle": "Advanced Pressure Wave Energy Converter — il futuro della generazione energetica distribuita."
+    },
+    "slide1": {
+      "suptitle": "Tecnologia",
+      "title": "Energia dalle onde di pressione",
+      "subtitle": "Un sistema brevettato che converte le fluttuazioni di pressione in energia elettrica con efficienza senza precedenti."
+    },
+    "slide2": {
+      "suptitle": "Ingegneria italiana",
+      "title": "Progettato per durare",
+      "subtitle": "Componenti modulari ad alta resistenza, progettati per operare in ambienti industriali estremi."
+    },
+    "slide3": {
+      "suptitle": "Architettura",
+      "title": "4 sistemi integrati",
+      "subtitle": "Ogni componente è ottimizzato per massimizzare la resa energetica."
+    },
+    "slide4": {
+      "suptitle": "In contesto",
+      "title": "Pronto all'installazione",
+      "subtitle": "Integrazione plug-and-play con infrastrutture esistenti. Setup in meno di 48 ore."
+    },
+    "static": {
+      "label": "Cos'è APWEC",
+      "title": "Una rivoluzione nella generazione energetica distribuita",
+      "p1": "APWEC (Advanced Pressure Wave Energy Converter) è un sistema brevettato sviluppato da Sinersys per convertire le oscillazioni di pressione presenti in reti industriali, pipeline e sistemi idraulici in energia elettrica pulita e continua.",
+      "p2": "A differenza dei sistemi tradizionali, APWEC non richiede un flusso costante: sfrutta le variazioni di pressione già presenti nell'impianto, trasformando energia 'sprecata' in valore economico e ambientale misurabile.",
+      "f0": {
+        "label": "Efficienza",
+        "title": "Fino all'85% di conversione",
+        "description": "Il sistema raggiunge rendimenti di conversione superiori all'85%, grazie alla geometria ottimizzata dei trasduttori e al controllo adattivo del carico."
+      },
+      "f1": {
+        "label": "Scalabilità",
+        "title": "Da 1 kW a 10 MW",
+        "description": "L'architettura modulare permette di dimensionare l'impianto in base alla domanda, con incrementi di potenza senza interruzione dell'operatività."
+      },
+      "f2": {
+        "label": "Integrazione",
+        "title": "Plug-and-play universale",
+        "description": "Compatibile con qualsiasi sistema di supervisione industriale (SCADA, DCS, IoT). Protocolli Modbus, OPC-UA e MQTT nativi."
+      },
+      "cta": {
+        "title": "Vuoi sapere se APWEC è adatto al tuo impianto?",
+        "subtitle": "Il nostro team effettua una valutazione preliminare gratuita in meno di 72 ore.",
+        "link": "Richiedi una valutazione"
+      }
+    }
+  },
+  "ethics": {
+    "label": "Codice Etico",
+    "title": "Codice Etico",
+    "subtitle": "I principi che guidano ogni nostra scelta, ogni giorno.",
+    "updated": "Ultimo aggiornamento: Gennaio 2025",
+
+    "s1": {
+      "heading": "Premessa e campo di applicazione",
+      "p1": "Sinersys è una società italiana specializzata nello sviluppo di tecnologie avanzate per la conversione e la gestione dell'energia. Operiamo con la convinzione che innovazione e responsabilità non siano valori in contraddizione, ma complementari: la qualità del lavoro che facciamo dipende anche dalla qualità delle relazioni che costruiamo e dei comportamenti che adottiamo.",
+      "p2": "Il presente Codice Etico si applica a tutti coloro che operano per o con Sinersys: dipendenti, collaboratori, consulenti, fornitori e partner commerciali. Non è un documento formale fine a sé stesso, ma il riflesso scritto di una cultura aziendale che privilegia la sostanza rispetto alla forma."
+    },
+
+    "s2": {
+      "heading": "I nostri valori",
+      "p1": "Ogni decisione che prendiamo — strategica, operativa, commerciale — è orientata dai seguenti principi fondamentali:",
+      "v1": {
+        "title": "Integrità",
+        "body": "Manteniamo coerenza tra ciò che diciamo e ciò che facciamo. Ci assumiamo la responsabilità dei nostri errori e non li minimizziamo."
+      },
+      "v2": {
+        "title": "Innovazione consapevole",
+        "body": "Sviluppiamo tecnologia con la piena consapevolezza delle sue implicazioni sociali e ambientali. L'innovazione che non porta benefici concreti non è progresso."
+      },
+      "v3": {
+        "title": "Rispetto reciproco",
+        "body": "Ogni persona che interagisce con Sinersys — collaboratore, cliente, fornitore — merita rispetto della propria dignità, indipendentemente dal ruolo o dalla posizione."
+      },
+      "v4": {
+        "title": "Sostenibilità reale",
+        "body": "Non usiamo la sostenibilità come strumento di marketing. I nostri impegni ambientali e sociali sono misurabili e verificabili."
+      },
+      "v5": {
+        "title": "Trasparenza",
+        "body": "Comunichiamo in modo chiaro, anche quando le notizie sono difficili. La fiducia si costruisce con l'onestà, non con le rassicurazioni."
+      }
+    },
+
+    "s3": {
+      "heading": "Ambiente di lavoro",
+      "p1": "Sinersys è un luogo dove le persone devono poter lavorare bene. Questo richiede impegno attivo da parte di tutti:",
+      "l1": "Garantire ambienti fisici e digitali sicuri, privi di rischi evitabili per la salute e il benessere.",
+      "l2": "Costruire una cultura in cui il disaccordo viene espresso apertamente e rispettosamente, senza timore di ritorsioni.",
+      "l3": "Riconoscere e valorizzare il contributo di ciascuno, indipendentemente da genere, età, nazionalità, orientamento sessuale o convinzioni personali.",
+      "l4": "Investire nello sviluppo professionale come impegno reciproco, non come benefit unilaterale."
+    },
+
+    "s4": {
+      "heading": "Relazioni commerciali",
+      "p1": "Con clienti e partner costruiamo relazioni che creano valore nel lungo periodo. Questo significa essere onesti sui limiti delle nostre soluzioni, rispettare gli impegni contrattuali anche quando è costoso farlo, e rifiutare commesse che richiederebbero di compromettere la nostra integrità.",
+      "p2": "Nella selezione dei fornitori privilegiamo chi condivide standard etici e ambientali comparabili ai nostri. Non accettiamo il principio per cui il prezzo più basso giustifica qualsiasi compromesso sulle condizioni di lavoro o sull'impatto ambientale nella catena di fornitura."
+    },
+
+    "s5": {
+      "heading": "Conflitti di interesse e doni",
+      "p1": "Un conflitto di interesse si verifica quando un interesse personale potrebbe interferire con le decisioni prese per conto di Sinersys. Chiediamo a tutti di:",
+      "l1": "Segnalare proattivamente qualsiasi situazione che possa generare un conflitto di interesse reale o apparente.",
+      "l2": "Astenersi dal prendere decisioni in situazioni di conflitto, delegandole a un terzo.",
+      "l3": "Non accettare né offrire doni, ospitalità o altri benefici che vadano oltre le normali prassi di cortesia professionale (limite indicativo: €50 per singolo episodio).",
+      "l4": "Non utilizzare informazioni confidenziali ottenute nell'esercizio del proprio ruolo per fini personali o per conto di terzi."
+    },
+
+    "s6": {
+      "heading": "Riservatezza e protezione dei dati",
+      "p1": "Le informazioni riservate — relative a clienti, partner, tecnologie proprietarie, dati finanziari — sono un patrimonio che va protetto. Ogni collaboratore è tenuto a trattarle con la stessa cura con cui vorrebbe che i propri dati personali fossero trattati da altri.",
+      "p2": "Il trattamento dei dati personali avviene in conformità al Regolamento UE 2016/679 (GDPR) e alla normativa italiana vigente. I principi di minimizzazione, finalità e sicurezza si applicano a ogni trattamento, senza eccezioni."
+    },
+
+    "s7": {
+      "heading": "Anticorruzione e conformità normativa",
+      "p1": "Sinersys opera nel rispetto di tutte le leggi e i regolamenti applicabili in ogni paese in cui è presente. La corruzione — in qualsiasi forma — è incompatibile con i nostri valori e con il nostro modello di business. In particolare:",
+      "l1": "È vietato effettuare pagamenti o promesse di benefici a funzionari pubblici o privati per ottenere vantaggi indebiti.",
+      "l2": "La contabilità deve riflettere fedelmente ogni operazione. Non esistono fondi in nero, pagamenti non registrati o registrazioni false.",
+      "l3": "Chi rileva o sospetta una violazione di questo Codice può segnalarla in modo riservato attraverso i canali ufficiali, con garanzia di anonimato e protezione da ritorsioni."
+    },
+
+    "s8": {
+      "heading": "Violazioni e conseguenze",
+      "p1": "Le violazioni accertate del presente Codice Etico comportano conseguenze proporzionate alla gravità del comportamento, fino alla risoluzione del rapporto di lavoro o collaborazione e, ove previsto dalla legge, alle sanzioni penali o civili applicabili. Sinersys si impegna a trattare ogni segnalazione con la massima riservatezza e ad investigare con tempestività e imparzialità. Per segnalazioni: etica@sinersys.it"
+    }
+  },
+
+  "privacy": {
+    "label": "Privacy Policy",
+    "title": "Privacy Policy",
+    "subtitle": "Come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.",
+    "updated": "Ultimo aggiornamento: Gennaio 2025",
+
+    "s1": {
+      "heading": "Titolare del trattamento",
+      "p1": "La presente informativa è redatta ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR) e si applica a chiunque visiti il sito web sinersys.it o interagisca con i servizi di Sinersys.",
+      "controller": "Titolare del trattamento: ",
+      "controllerVal": "Sinersys S.r.l.",
+      "address": "Sede legale: ",
+      "addressVal": "[INSERIRE INDIRIZZO REALE DA VISURA CAMERALE]",
+      "email": "Contatto privacy: ",
+      "emailVal": "privacy@sinersys.it"
+    },
+
+    "s2": {
+      "heading": "Categorie di dati trattati",
+      "p1": "In funzione del tipo di interazione con i nostri servizi, trattiamo le seguenti categorie di dati personali:",
+      "d1": {
+        "title": "Dati di navigazione",
+        "body": "Indirizzo IP, tipo di browser e sistema operativo, pagine visitate, timestamp degli accessi. Raccolti automaticamente dai sistemi informatici a fini tecnici e di sicurezza."
+      },
+      "d2": {
+        "title": "Dati comunicati volontariamente",
+        "body": "Nome, cognome, indirizzo email, numero di telefono e ogni altra informazione inserita nei form di contatto, richiesta di preventivo o iscrizione alla newsletter."
+      },
+      "d3": {
+        "title": "Dati contrattuali",
+        "body": "Informazioni necessarie per la stipula e la gestione di contratti di fornitura: dati anagrafici, codice fiscale/partita IVA, dati di fatturazione e bancari."
+      },
+      "d4": {
+        "title": "Dati tecnici di utilizzo",
+        "body": "Statistiche aggregate sull'utilizzo delle funzionalità del sito e dei prodotti digitali, raccolte in forma anonimizzata o pseudonimizzata."
+      }
+    },
+
+    "s3": {
+      "heading": "Finalità e basi giuridiche",
+      "p1": "I dati personali sono trattati per finalità specifiche, ciascuna con una propria base giuridica:",
+      "l1": "Risposta a richieste di contatto e gestione di rapporti precontrattuali (base: esecuzione di misure precontrattuali, art. 6.1.b GDPR).",
+      "l2": "Adempimento di obblighi contrattuali relativi alla fornitura di prodotti e servizi (base: esecuzione contrattuale, art. 6.1.b GDPR).",
+      "l3": "Adempimento di obblighi legali, fiscali, contabili e di rendicontazione (base: obbligo legale, art. 6.1.c GDPR).",
+      "l4": "Invio di comunicazioni promozionali e newsletter, esclusivamente previo consenso esplicito e revocabile (base: consenso, art. 6.1.a GDPR).",
+      "l5": "Analisi statistiche sull'utilizzo del sito per migliorarne le prestazioni e l'esperienza utente (base: legittimo interesse, art. 6.1.f GDPR, con possibilità di opposizione)."
+    },
+
+    "s4": {
+      "heading": "Destinatari dei dati",
+      "p1": "I dati personali non vengono venduti a terzi. Possono essere comunicati esclusivamente a:",
+      "b1": {
+        "title": "Responsabili del trattamento",
+        "body": "Fornitori di servizi tecnici (hosting, email, CRM, analytics) che trattano dati per nostro conto sulla base di specifici accordi contrattuali (DPA)."
+      },
+      "b2": {
+        "title": "Professionisti e consulenti",
+        "body": "Commercialisti, consulenti legali e altri professionisti che necessitano di accedere a determinati dati per l'esercizio del loro incarico, nel rispetto del segreto professionale."
+      },
+      "b3": {
+        "title": "Autorità pubbliche",
+        "body": "Forze dell'ordine, autorità giudiziarie o amministrative, esclusivamente su richiesta formale o in adempimento di un obbligo di legge."
+      }
+    },
+
+    "s5": {
+      "heading": "Trasferimenti extra-UE",
+      "p1": "Alcuni servizi tecnici di cui ci avvaliamo (es. provider cloud, strumenti di collaborazione) potrebbero comportare trasferimenti di dati verso paesi extra-UE. In tali casi applichiamo le garanzie previste dal GDPR: Clausole Contrattuali Standard (SCC) approvate dalla Commissione Europea, oppure ci avvaliamo di fornitori operanti in paesi con decisione di adeguatezza.",
+      "p2": "L'elenco aggiornato dei sub-responsabili e delle garanzie adottate è disponibile su richiesta scrivendo a privacy@sinersys.it."
+    },
+
+    "s6": {
+      "heading": "I tuoi diritti",
+      "p1": "In quanto interessato, hai diritto di:",
+      "r1": {
+        "title": "Accesso (art. 15)",
+        "body": "Ottenere conferma che stiamo trattando tuoi dati personali e riceverne una copia."
+      },
+      "r2": {
+        "title": "Rettifica (art. 16)",
+        "body": "Chiedere la correzione di dati inesatti o il completamento di dati incompleti."
+      },
+      "r3": {
+        "title": "Cancellazione (art. 17)",
+        "body": "Richiedere la cancellazione ('diritto all'oblio') nei casi previsti dalla normativa."
+      },
+      "r4": {
+        "title": "Limitazione (art. 18)",
+        "body": "Richiedere che il trattamento sia limitato a determinate operazioni in circostanze specifiche."
+      },
+      "r5": {
+        "title": "Portabilità (art. 20)",
+        "body": "Ricevere i dati forniti in un formato strutturato e machine-readable, e trasmetterli a un altro titolare."
+      },
+      "contact": "Per esercitare i tuoi diritti scrivi a privacy@sinersys.it, indicando il diritto che intendi esercitare. Risponderemo entro 30 giorni. Hai altresì il diritto di proporre reclamo al Garante per la Protezione dei Dati Personali (www.garanteprivacy.it)."
+    },
+
+    "s7": {
+      "heading": "Tempi di conservazione",
+      "p1": "Conserviamo i dati personali per il tempo strettamente necessario alle finalità per cui sono stati raccolti: dati contrattuali e fiscali per 10 anni dalla cessazione del rapporto (obblighi di legge); dati di navigazione per massimo 13 mesi; dati per attività di marketing fino alla revoca del consenso o per un massimo di 24 mesi dall'ultima interazione.",
+      "p2": "Alla scadenza del periodo di conservazione i dati vengono cancellati in modo sicuro o resi definitivamente anonimi."
+    },
+
+    "s8": {
+      "heading": "Aggiornamenti",
+      "p1": "La presente informativa può essere aggiornata in qualsiasi momento per riflettere modifiche normative, tecnologiche o nei nostri servizi. Le modifiche sostanziali vengono comunicate tramite avviso sul sito o via email agli utenti registrati. La data di ultimo aggiornamento è sempre indicata in cima alla pagina."
+    }
+  },
+
+  "cookies": {
+    "label": "Cookie Policy",
+    "title": "Cookie Policy",
+    "subtitle": "Come utilizziamo i cookie e tecnologie di tracciamento su sinersys.it.",
+    "updated": "Ultimo aggiornamento: Gennaio 2025",
+
+    "s1": {
+      "heading": "Cosa sono i cookie",
+      "p1": "I cookie sono file di testo di piccole dimensioni che i siti web depositano sul dispositivo dell'utente durante la navigazione. Permettono al sito di ricordare le azioni e le preferenze dell'utente nel tempo, rendendo la navigazione più efficiente e personalizzata.",
+      "p2": "Oltre ai cookie tradizionali, utilizziamo tecnologie analoghe come i pixel di tracciamento e il local storage. La presente Cookie Policy si applica a tutte queste tecnologie e descrive come le utilizziamo, perché, e come puoi controllarle."
+    },
+
+    "s2": {
+      "heading": "Tipi di cookie che utilizziamo",
+      "p1": "Classifichiamo i cookie che utilizziamo in quattro categorie:",
+      "c1": {
+        "title": "Cookie tecnici essenziali",
+        "body": "Necessari per il funzionamento del sito. Senza di essi alcune funzionalità fondamentali non sarebbero disponibili (es. gestione della sessione, memorizzazione delle preferenze sul banner cookie). Non richiedono consenso e non possono essere disattivati."
+      },
+      "c2": {
+        "title": "Cookie analitici",
+        "body": "Raccolgono informazioni aggregate su come gli utenti utilizzano il sito (pagine visitate, tempo di permanenza, fonti di traffico). I dati vengono anonimizzati prima dell'elaborazione. Richiedono consenso."
+      },
+      "c3": {
+        "title": "Cookie funzionali",
+        "body": "Permettono al sito di ricordare scelte effettuate dall'utente (es. lingua, regione, preferenze di visualizzazione) per offrire un'esperienza più personalizzata. Richiedono consenso."
+      },
+      "c4": {
+        "title": "Cookie di marketing e profilazione",
+        "body": "Utilizzati per mostrare contenuti pubblicitari rilevanti e misurare l'efficacia delle campagne. Creano un profilo degli interessi dell'utente su più siti. Richiedono consenso esplicito."
+      }
+    },
+
+    "s3": {
+      "heading": "Cookie di terze parti",
+      "p1": "Integriamo nel sito i seguenti servizi di terze parti, ciascuno dei quali può installare propri cookie:",
+      "ga": "Piattaforma di web analytics di Google LLC. Raccoglie dati di navigazione anonimizzati per analisi statistiche. Puoi disattivarlo tramite l'apposito componente aggiuntivo per browser disponibile su tools.google.com/dlpage/gaoptout.",
+      "gtm": "Servizio di Google LLC per la gestione centralizzata dei tag di tracciamento. Non raccoglie direttamente dati utente, ma facilita l'attivazione degli altri cookie di terze parti.",
+      "p2": "Per informazioni complete sui cookie installati da ciascun servizio e su come esercitare i relativi diritti, consulta le privacy policy dei singoli fornitori disponibili sui loro siti web ufficiali."
+    },
+
+    "s4": {
+      "heading": "Come gestire i cookie",
+      "p1": "Hai il pieno controllo sui cookie non essenziali. Puoi gestire le tue preferenze attraverso:",
+      "l1": "Il pannello di gestione del consenso: accessibile in qualsiasi momento tramite il link 'Impostazioni cookie' nel footer di ogni pagina. Puoi modificare le tue scelte o ritirare il consenso con effetto immediato.",
+      "l2": "Le impostazioni del browser: Chrome, Firefox, Safari, Edge e gli altri principali browser ti consentono di visualizzare, eliminare e bloccare i cookie. Consulta la sezione 'Impostazioni' o 'Aiuto' del tuo browser per le istruzioni specifiche.",
+      "l3": "Strumenti di opt-out dei fornitori: Google Analytics Opt-out (tools.google.com/dlpage/gaoptout) e strumenti analoghi messi a disposizione dai singoli provider.",
+      "l4": "Piattaforme di gestione per la pubblicità comportamentale: YourOnlineChoices (youronlinechoices.eu) per il contesto europeo."
+    },
+
+    "s5": {
+      "heading": "Impatto della disattivazione",
+      "p1": "La disattivazione dei cookie tecnici essenziali non è possibile senza pregiudicare gravemente il funzionamento del sito. La disattivazione dei cookie analitici e di marketing, invece, non influisce sulla tua capacità di navigare e usufruire dei contenuti: il sito funzionerà normalmente, ma non riceverai contenuti personalizzati basati sulla tua navigazione.",
+      "p2": "Se utilizzi il browser in modalità privata/incognito, i cookie vengono eliminati automaticamente alla chiusura della finestra. Tieni presente che questa modalità non equivale a un opt-out completo dal tracciamento."
+    },
+
+    "s6": {
+      "heading": "Aggiornamenti e contatti",
+      "p1": "La presente Cookie Policy viene aggiornata periodicamente per riflettere variazioni tecnologiche, modifiche nei servizi di terze parti integrati o aggiornamenti normativi. Ti consigliamo di visitare questa pagina regolarmente.",
+      "p2": "Per qualsiasi domanda relativa all'utilizzo dei cookie su sinersys.it, scrivici a privacy@sinersys.it. Indirizzo postale: Sinersys S.r.l., [INSERIRE INDIRIZZO REALE DA VISURA CAMERALE]."
     }
   }
+}
