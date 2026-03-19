@@ -23,8 +23,8 @@ export default function CallToActionHome({ progressMotion }: Props) {
   //   7.2   → CTA shrinks back  (inset:16 radius:24)
   //
   // Expressed as CSS shorthand via useTransform on a number, then converted.
-  const inset  = useTransform(progressMotion, [5.2, 5.6, 6.8, 7.2], [16, 0, 0, 16]);
-  const radius = useTransform(progressMotion, [5.2, 5.6, 6.8, 7.2], [24, 0, 0, 24]);
+  const inset  = useTransform(progressMotion, [5.2, 6.0, 6.1, 6.8], [16, 0, 0, 16]);
+  const radius = useTransform(progressMotion, [5.2, 6.0, 6.1, 6.8], [24, 0, 0, 24]);
 
   const insetStr  = useTransform(inset,  (v) => `${v}px`);
   const radiusStr = useTransform(radius, (v) => `${v}px`);
@@ -54,18 +54,15 @@ export default function CallToActionHome({ progressMotion }: Props) {
       }}
     >
       {/* ── Video background ─────────────────────────────────────────────── */}
-      <video
-        ref={videoRef}
-        src="/cta.mp4"
-        loop
-        muted
-        playsInline
+      <img
+        src="/sinVid.gif"
+        alt="background animation"
         style={{
-          position:   "absolute",
-          inset:      0,
-          width:      "100%",
-          height:     "100%",
-          objectFit:  "cover",
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
           objectPosition: "center",
         }}
       />
@@ -89,7 +86,7 @@ export default function CallToActionHome({ progressMotion }: Props) {
           height:    "100%",
           display:   "flex",
           flexDirection: "column",
-          justifyContent: "flex-end",
+          justifyContent: "center",
           padding:   "clamp(2rem, 5vw, 4rem)",
           opacity:   contentOpacity,
           y:         contentY,

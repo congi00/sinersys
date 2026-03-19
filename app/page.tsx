@@ -136,10 +136,10 @@ export default function Home() {
   );
 
   // ── Model ─────────────────────────────────────────────────────────────────
-  const modelPhaseAOpacity = useTransform(smooth, [0, 1.0, 1.7, 1.8], [1, 1, 1, 0]);
+  const modelPhaseAOpacity = useTransform(smooth, [0, 0.5, 0.6, 1.7, 1.8], [0, 0, 1,1, 0]);
   const modelPhaseAY       = useTransform(smooth, [0.7, 1.0], [490, -40]);
   const modelMaskOpacity = useTransform(smooth, [0, 0.03], [1, 0]);
-  const modelRotationY     = useTransform(smooth, [0, 1.0, 4], [0, Math.PI , Math.PI / 4]);
+  const modelRotationY     = useTransform(smooth, [0, 1.0, 4], [0, -Math.PI/6 , Math.PI / 7]);
   const modelOverflow = useTransform(smooth, (v) =>
     v < 0.05 ? "hidden" : "visible"
   );
@@ -148,7 +148,7 @@ export default function Home() {
   const aboutY       = useTransform(smooth, [1.8, 1.9, 2.4, 2.8], [80, 0, 0, -880]);
   const aboutOpacity = useTransform(smooth, [1.8, 1.9, 3.5, 3.8], [0, 1, 1, 0]);
   const aboutClip    = useTransform(smooth,
-    [1.8, 1.9, 2.4, 2.8],
+    [1.8, 1.9, 2.4, 3.8],
     ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
   );
 
@@ -169,7 +169,7 @@ export default function Home() {
 
   // ── FAQ ───────────────────────────────────────────────────────────────────
   // Absolute positioned after the white section scroll budget
-  const spacerFaq   = vh * 7.5;
+  const spacerFaq   = vh * 8.5;
   const totalHeight = vh * 10 + 900;
 
   if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
@@ -327,12 +327,12 @@ export default function Home() {
         />
 
         {/* ── FAQ — absolute, on white bg, after CTA ───────────────────────── */}
-        {/* <div
+        <div
           style={{
             position: "absolute",
             top: spacerFaq,
             left: 0, right: 0,
-            zIndex: 31,
+            zIndex: 34,
             overflowX: "hidden",
             background: "#ffffff",
           }}
@@ -341,7 +341,7 @@ export default function Home() {
           <div style={{ width: "100%", maxWidth: "860px", padding: "4rem 1.5rem 2rem", boxSizing: "border-box" }}>
             <FaqSection
               progress={smooth}
-              progressStart={isMobile ? 7.9 : 8.0}
+              progressStart={isMobile ? 6.3 : 6.4}
               title={homeTexts("faq.title")}
               suptitle="FAQ"
               items={[
@@ -353,7 +353,7 @@ export default function Home() {
               ]}
             />
           </div>
-        </div> */}
+        </div>
 
         {/* ── Footer ───────────────────────────────────────────────────────── */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 31, background: "#ffffff" }}>

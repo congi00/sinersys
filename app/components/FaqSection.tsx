@@ -50,8 +50,8 @@ const DEFAULT_ITEMS: FaqItem[] = [
 
 export default function FaqSection({
   progress,
-  progressStart = 3.5,
-  progressEnd = 4.0,
+  progressStart = 6.2,
+  progressEnd = 7.0,
   items = DEFAULT_ITEMS,
   title = "Here are the essentials about our product, how it works, and what makes it different.",
   suptitle = "FAQ",

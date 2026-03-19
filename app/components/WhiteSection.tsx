@@ -18,7 +18,9 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit }: Props
   // Section enters as circle shrinks away (p 5.2+)
   // Opacity/y of the whole section
   const sectionOpacity = useTransform(progressMotion, [5.0, 5.1], [0, 1]);
-  const sectionY       = useTransform(progressMotion, [5.0, 5.35], [0, 0]);
+  const sectionY = useTransform(progressMotion, [5.0, 5.35], [0, 0]);
+  const sectionCTAY = useTransform(progressMotion, [5.0, 5.35, 6.0, 6.01, 6.8], [0, 0, -320, -320, -1000]);
+  const sectionCTAFlex = useTransform(progressMotion, [5.0, 5.35, 6.0, 6.1, 6.8], ["0 0 66.667%", "0 0 66.667%", "0 0 100%", "0 0 100%","0 0 66.667%"]);
 
   return (
     <motion.div
@@ -38,13 +40,14 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit }: Props
       {/* ── TOP THIRD: scrolling marquee title ──────────────────────────────
           Full-width ticker that scrolls right→left in a continuous loop.
       ──────────────────────────────────────────────────────────────────────── */}
-      <div style={{
+      <motion.div style={{
         flex:          "0 0 33.333%",
         display:       "flex",
         alignItems:    "center",
         overflow:      "hidden",
         borderBottom:  "1px solid rgba(28,57,142,0.08)",
         position:      "relative",
+        y: sectionCTAY,
       }}>
         {/* Left gradient fade */}
         <div style={{
@@ -90,20 +93,21 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit }: Props
             to   { transform: translateX(-50%); }
           }
         `}</style>
-      </div>
+      </motion.div>
 
       {/* ── BOTTOM TWO-THIRDS: partial CTA preview ──────────────────────────
           Shows ~60% of the CTA card peeking from below,
           giving the user a clear cue to keep scrolling.
           The actual CTA inset/radius animation is handled inside CallToActionHome.
       ──────────────────────────────────────────────────────────────────────── */}
-      <div style={{
-        flex:     "0 0 66.667%",
+      <motion.div style={{
+        flex:     sectionCTAFlex,
         position: "relative",
         padding:  isMobile ? "12px 12px 0" : "20px 20px 0",
+        y: sectionCTAY,
       }}>
         <CallToActionHome progressMotion={progressMotion} />
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
