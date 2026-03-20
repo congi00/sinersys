@@ -24,12 +24,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import { detectIOS } from "../support/useViewportHeight";
 import Header from "../components/Header";
@@ -41,16 +36,16 @@ import { useAppSelector } from "../hooks";
 // ─────────────────────────────────────────────────────────────────────────────
 export interface LegalSection {
   heading: string;
-  body:    React.ReactNode;
+  body: React.ReactNode;
 }
 
 export interface LegalPageProps {
-  label:    string;
-  title:    string;
+  label: string;
+  title: string;
   subtitle: string;
-  updated:  string;
+  updated: string;
   sections: LegalSection[];
-  accent?:  string;
+  accent?: string;
 }
 
 function isTouchDevice() {
@@ -58,22 +53,60 @@ function isTouchDevice() {
   return window.matchMedia("(pointer: coarse)").matches;
 }
 
-function SectionBlock({ section, index }: { section: LegalSection; index: number }) {
+function SectionBlock({
+  section,
+  index,
+}: {
+  section: LegalSection;
+  index: number;
+}) {
   return (
-    <div style={{
-      borderTop:  "1px solid rgba(255,255,255,0.08)",
-      paddingTop: "clamp(2rem,4vh,3rem)",
-      marginTop:  "clamp(2rem,4vh,3rem)",
-    }}>
-      <div style={{ display:"flex", alignItems:"baseline", gap:"1rem", marginBottom:"1.1rem" }}>
-        <span style={{ fontSize:"clamp(0.58rem,0.78vw,0.68rem)", fontWeight:700, letterSpacing:"0.18em", color:"rgba(160,196,255,0.35)", flexShrink:0 }}>
+    <div
+      style={{
+        borderTop: "1px solid rgba(255,255,255,0.08)",
+        paddingTop: "clamp(2rem,4vh,3rem)",
+        marginTop: "clamp(2rem,4vh,3rem)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          gap: "1rem",
+          marginBottom: "1.1rem",
+        }}
+      >
+        <span
+          style={{
+            fontSize: "clamp(0.58rem,0.78vw,0.68rem)",
+            fontWeight: 700,
+            letterSpacing: "0.18em",
+            color: "rgba(160,196,255,0.35)",
+            flexShrink: 0,
+          }}
+        >
           {String(index + 1).padStart(2, "0")}
         </span>
-        <h2 style={{ margin:0, fontSize:"clamp(1.8rem,2vw,1.55rem)", fontWeight:700, letterSpacing:"-0.015em", lineHeight:1.2, color:"#f4f7fa" }}>
+        <h2
+          style={{
+            margin: 0,
+            fontSize: "clamp(1.8rem,2vw,1.55rem)",
+            fontWeight: 700,
+            letterSpacing: "-0.015em",
+            lineHeight: 1.2,
+            color: "#f4f7fa",
+          }}
+        >
           {section.heading}
         </h2>
       </div>
-      <div style={{ fontSize:"clamp(1.38rem,1.2vw,1rem)", lineHeight:1.78, color:"rgba(200,218,250,0.72)" }}>
+      <div
+        style={{
+          fontSize: "clamp(1.38rem,1.2vw,1rem)",
+          lineHeight: 1.78,
+          color: "rgba(200,218,250,0.72)",
+        }}
+      >
         {section.body}
       </div>
     </div>
@@ -82,18 +115,23 @@ function SectionBlock({ section, index }: { section: LegalSection; index: number
 
 // ─────────────────────────────────────────────────────────────────────────────
 export default function LegalPage({
-  label, title, subtitle, updated, sections, accent = "#1c398e",
+  label,
+  title,
+  subtitle,
+  updated,
+  sections,
+  accent = "#1c398e",
 }: LegalPageProps) {
   const openContact = useAppSelector((s) => s.siteState.openContact);
-  const isIOS       = detectIOS();
+  const isIOS = detectIOS();
 
   // Two separate MotionValues:
   // scrollPx  — raw scrollY in pixels, updated by Lenis
   // scrollSmooth — spring-smoothed version, used only for inset/radius
-  const scrollPx     = useMotionValue(0);
+  const scrollPx = useMotionValue(0);
   const scrollSmooth = useSpring(scrollPx, { stiffness: 380, damping: 36 });
 
-  const [vhPx, setVhPx]        = useState(0);
+  const [vhPx, setVhPx] = useState(0);
   const [contentH, setContentH] = useState(4000);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -101,7 +139,9 @@ export default function LegalPage({
   useEffect(() => {
     const measure = () => {
       const el = document.createElement("div");
-      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${isIOS?"lvh":"dvh"};pointer-events:none;visibility:hidden;`;
+      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${
+        isIOS ? "lvh" : "dvh"
+      };pointer-events:none;visibility:hidden;`;
       document.body.appendChild(el);
       setVhPx(el.getBoundingClientRect().height);
       document.body.removeChild(el);
@@ -136,10 +176,16 @@ export default function LegalPage({
     }
     const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
     let rafId = 0;
-    const raf = (t: number) => { lenis.raf(t); rafId = requestAnimationFrame(raf); };
+    const raf = (t: number) => {
+      lenis.raf(t);
+      rafId = requestAnimationFrame(raf);
+    };
     rafId = requestAnimationFrame(raf);
     lenis.on("scroll", (e: { scroll: number }) => scrollPx.set(e.scroll));
-    return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
   }, [scrollPx]);
 
   const vh = vhPx || 800;
@@ -157,14 +203,14 @@ export default function LegalPage({
   //   OPEN_PX + SCROLL_PX   → content fully scrolled (last line visible)
   //   OPEN_PX + SCROLL_PX + CLOSE_PX → card fully closed again, y offset applied
 
-  const OPEN_PX  = vh * 0.45;
+  const OPEN_PX = vh * 0.45;
   const SCROLL_PX = Math.max(contentH - vh, 0);
   const CLOSE_PX = vh * 0.45;
   const FOOTER_PX = 300; // space for footer after card exits
 
-  const kOpen    = OPEN_PX;
+  const kOpen = OPEN_PX;
   const kReadEnd = OPEN_PX + SCROLL_PX;
-  const kCloseEnd= kReadEnd + CLOSE_PX;
+  const kCloseEnd = kReadEnd + CLOSE_PX;
 
   const totalHeight = kCloseEnd + FOOTER_PX + vh;
 
@@ -172,33 +218,43 @@ export default function LegalPage({
   const insetPx = useTransform(
     scrollSmooth,
     [0, kOpen, kReadEnd, kCloseEnd],
-    [16, 0, 0, 16]
+    [
+      "inset(16px round 24px)",
+      "inset(0px round 0px)",
+      "inset(0px round 0px)",
+      "inset(16px round 24px)",
+    ]
   );
   const radiusPx = useTransform(
     scrollSmooth,
     [0, kOpen, kReadEnd, kCloseEnd],
     [24, 0, 0, 24]
   );
-  const padStr = useTransform(insetPx,  (v) => `${v}px`);
+  const padStr = useTransform(insetPx, (v) => `${v}px`);
   const radStr = useTransform(radiusPx, (v) => `${v}px`);
 
   // ── Card Y exit — spring-smoothed (nice easing on exit) ──────────────────
-  const cardY  = useTransform(scrollSmooth, [kReadEnd, kCloseEnd], [0, -(CLOSE_PX * 2.8)]);
-  const cardOp = useTransform(scrollSmooth, [kReadEnd + CLOSE_PX * 0.4, kCloseEnd], [1, 0]);
+  const cardY = useTransform(
+    scrollSmooth,
+    [kReadEnd, kCloseEnd],
+    [0, -(CLOSE_PX * 2.8)]
+  );
+  const cardOp = useTransform(
+    scrollSmooth,
+    [kReadEnd + CLOSE_PX * 0.4, kCloseEnd],
+    [1, 0]
+  );
 
   // ── Content translateY — RAW (1:1 with scroll, zero latency) ─────────────
   // At kOpen:    contentY = 0    (top of text visible)
   // At kReadEnd: contentY = -SCROLL_PX (bottom of text visible)
-  const contentY = useTransform(
-    scrollPx,
-    [kOpen, kReadEnd],
-    [0, -SCROLL_PX],
-    { clamp: true }
-  );
+  const contentY = useTransform(scrollPx, [kOpen, kReadEnd], [0, -SCROLL_PX], {
+    clamp: true,
+  });
 
   // LiquidBackground progress (always 0 = dark palette)
   const liquidProgress = useMotionValue(0);
-  const headerTheme    = useMotionValue(0);
+  const headerTheme = useMotionValue(0);
   const hPad = "clamp(1.5rem,8vw,7rem)";
 
   if (vhPx === 0) return <div style={{ minHeight: "100vh" }} />;
@@ -224,83 +280,135 @@ export default function LegalPage({
         <motion.div
           style={{
             position: "fixed",
-            inset:    0,
-            zIndex:   10,
-            padding:  padStr,
-            y:        cardY,
-            opacity:  cardOp,
+            inset: 0,
+            zIndex: 10,
+            y: cardY,
+            opacity: cardOp,
           }}
         >
           <motion.div
             style={{
-              width:        "100%",
-              height:       "100%",
+              width: "100%",
+              height: "100%",
               borderRadius: radStr,
-              overflow:     "hidden",
-              position:     "relative",
+              overflow: "hidden",
+              position: "relative",
             }}
           >
             {/* LiquidBackground — automatically clipped by parent borderRadius */}
             <LiquidBackground
               style={{
-                position:      "absolute",
-                inset:         0,
-                zIndex:        0,
+                position: "absolute",
+                zIndex: 0,
+                pointerEvents: "none",
+              }}
+              insetPx={insetPx}
+            />
+
+            {/* Subtle dark overlay for text readability over the liquid bg */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "trasparent",
+                zIndex: 1,
                 pointerEvents: "none",
               }}
             />
 
-            {/* Subtle dark overlay for text readability over the liquid bg */}
-            <div style={{
-              position:      "absolute",
-              inset:         0,
-              background:   "trasparent",
-              zIndex:        1,
-              pointerEvents: "none",
-            }} />
-
             {/* Accent glow */}
-            <div style={{
-              position:      "absolute",
-              top:           "-15%",
-              right:         "-8%",
-              width:         "55vw",
-              height:        "55vw",
-              background:    `radial-gradient(circle, ${accent}22 0%, transparent 70%)`,
-              pointerEvents: "none",
-              zIndex:        2,
-            }} />
+            <div
+              style={{
+                position: "absolute",
+                top: "-15%",
+                right: "-8%",
+                width: "55vw",
+                height: "55vw",
+                background: `radial-gradient(circle, ${accent}22 0%, transparent 70%)`,
+                pointerEvents: "none",
+                zIndex: 2,
+              }}
+            />
 
             {/* ── Content — translates upward (1:1 with scroll) ──────── */}
             <motion.div
               ref={contentRef}
               style={{
-                position:   "absolute",
-                top:        0,
-                left:       0,
-                right:      0,
-                y:          contentY,
-                zIndex:     3,
+                position: "absolute",
+                top: "45px",
+                left: 0,
+                right: 0,
+                y: contentY,
+                zIndex: 3,
                 willChange: "transform",
               }}
             >
               {/* Hero */}
-              <div style={{
-                padding: `clamp(5rem,10vh,7rem) ${hPad} clamp(2.5rem,5vh,3.5rem)`,
-              }}>
-                <div style={{ display:"inline-flex", alignItems:"center", gap:"8px", marginBottom:"1.5rem" }}>
-                  <div style={{ width:"28px", height:"1px", background:`${accent}cc` }} />
-                  <span style={{ fontSize:"clamp(0.62rem,0.85vw,0.72rem)", fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", color:"rgba(160,196,255,0.65)" }}>
+              <div
+                style={{
+                  padding: `clamp(5rem,10vh,7rem) ${hPad} clamp(2.5rem,5vh,3.5rem)`,
+                }}
+              >
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    marginBottom: "1.5rem",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "28px",
+                      height: "1px",
+                      background: `${accent}cc`,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "clamp(0.62rem,0.85vw,0.72rem)",
+                      fontWeight: 700,
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      color: "rgba(160,196,255,0.65)",
+                    }}
+                  >
                     {label}
                   </span>
                 </div>
-                <h1 style={{ margin:0, fontSize:"clamp(2.4rem,6vw,5.2rem)", fontWeight:800, letterSpacing:"-0.03em", lineHeight:0.95, color:"#f4f7fa", marginBottom:"1rem" }}>
+                <h1
+                  style={{
+                    margin: 0,
+                    fontSize: "clamp(2.4rem,6vw,5.2rem)",
+                    fontWeight: 800,
+                    letterSpacing: "-0.03em",
+                    lineHeight: 0.95,
+                    color: "#f4f7fa",
+                    marginBottom: "1rem",
+                  }}
+                >
                   {title}
                 </h1>
-                <p style={{ margin:0, fontSize:"clamp(0.9rem,1.4vw,1.1rem)", lineHeight:1.6, color:"rgba(200,218,250,0.68)", maxWidth:"560px" }}>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: "clamp(0.9rem,1.4vw,1.1rem)",
+                    lineHeight: 1.6,
+                    color: "rgba(200,218,250,0.68)",
+                    maxWidth: "560px",
+                  }}
+                >
                   {subtitle}
                 </p>
-                <p style={{ margin:"1.1rem 0 0", fontSize:"clamp(0.62rem,0.85vw,0.72rem)", fontWeight:600, letterSpacing:"0.08em", color:"rgba(160,196,255,0.38)" }}>
+                <p
+                  style={{
+                    margin: "1.1rem 0 0",
+                    fontSize: "clamp(0.62rem,0.85vw,0.72rem)",
+                    fontWeight: 600,
+                    letterSpacing: "0.08em",
+                    color: "rgba(160,196,255,0.38)",
+                  }}
+                >
                   {updated}
                 </p>
               </div>
@@ -319,10 +427,10 @@ export default function LegalPage({
         <div
           style={{
             position: "absolute",
-            bottom:   0,
-            left:     0,
-            right:    0,
-            zIndex:   11,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 11,
           }}
         >
           <Footer />
@@ -336,12 +444,31 @@ export default function LegalPage({
 // Shared text helpers
 // ─────────────────────────────────────────────────────────────────────────────
 export function P({ children }: { children: React.ReactNode }) {
-  return <p style={{ margin:"0 0 0.9rem", lineHeight:1.78, color:"rgba(200,218,250,0.70)" }}>{children}</p>;
+  return (
+    <p
+      style={{
+        margin: "0 0 0.9rem",
+        lineHeight: 1.78,
+        color: "rgba(200,218,250,0.70)",
+      }}
+    >
+      {children}
+    </p>
+  );
 }
 
 export function UL({ children }: { children: React.ReactNode }) {
   return (
-    <ul style={{ margin:"0.5rem 0 1rem", paddingLeft:0, display:"flex", flexDirection:"column", gap:"0.45rem", listStyle:"none" }}>
+    <ul
+      style={{
+        margin: "0.5rem 0 1rem",
+        paddingLeft: 0,
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.45rem",
+        listStyle: "none",
+      }}
+    >
       {children}
     </ul>
   );
@@ -349,13 +476,33 @@ export function UL({ children }: { children: React.ReactNode }) {
 
 export function LI({ children }: { children: React.ReactNode }) {
   return (
-    <li style={{ color:"rgba(200,218,250,0.68)", lineHeight:1.65, paddingLeft:"1.2rem", position:"relative" }}>
-      <span style={{ position:"absolute", left:0, top:"0.6em", width:"4px", height:"4px", borderRadius:"50%", background:"rgba(100,150,255,0.55)", display:"block" }} />
+    <li
+      style={{
+        color: "rgba(200,218,250,0.68)",
+        lineHeight: 1.65,
+        paddingLeft: "1.2rem",
+        position: "relative",
+      }}
+    >
+      <span
+        style={{
+          position: "absolute",
+          left: 0,
+          top: "0.6em",
+          width: "4px",
+          height: "4px",
+          borderRadius: "50%",
+          background: "rgba(100,150,255,0.55)",
+          display: "block",
+        }}
+      />
       {children}
     </li>
   );
 }
 
 export function Strong({ children }: { children: React.ReactNode }) {
-  return <strong style={{ color:"#c8d8f8", fontWeight:600 }}>{children}</strong>;
+  return (
+    <strong style={{ color: "#c8d8f8", fontWeight: 600 }}>{children}</strong>
+  );
 }

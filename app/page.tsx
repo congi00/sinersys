@@ -28,6 +28,8 @@ import { setNavigationState, setOpenContact } from "./features/counterSlice";
 import { useAppDispatch } from "./hooks";
 import CookieBanner from "./components/CookieBanner";
 import WhiteSection from "./components/WhiteSection";
+import LinkButton from "./components/LinkButton";
+import { ArrowUpRight } from "@deemlol/next-icons";
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -167,6 +169,10 @@ export default function Home() {
   // white section appears after circle shrinks (p 5.2+)
   const headerTheme = useTransform(smooth, [3.75, 3.9, 5.15, 5.3], [0, 1, 1, 0]);
 
+  // ── LinkButton colors ─────────────────────────────────────────────────────
+  // Both slides have white text/icon on dark bg
+  const linkColorWhite = useMotionValue("#ffffff");
+
   // ── FAQ ───────────────────────────────────────────────────────────────────
   // Absolute positioned after the white section scroll budget
   const spacerFaq   = vh * 8.5;
@@ -213,6 +219,17 @@ export default function Home() {
           <h2 className="text-[1.4rem] sm:text-[2rem] mt-5 whitespace-pre-line text-[#c8d8f8] font-light max-w-xl">
             {homeTexts("slide0.subtitle")}
           </h2>
+
+          {/* LinkButton — scopri di più / link ad APWEC */}
+          <div style={{ pointerEvents: "auto" }}>
+            <LinkButton
+              link="/apwec"
+              text={homeTexts("slide0.link")}
+              icon={<ArrowUpRight size={20} />}
+              top="0"
+              color={linkColorWhite}
+            />
+          </div>
         </motion.div>
 
         {/* ── MODEL PHASE A ────────────────────────────────────────────────── */}
@@ -262,6 +279,17 @@ export default function Home() {
             <h2 className="text-[1.3rem] sm:text-[1.8rem] mt-4 whitespace-pre-line text-[#c8d8f8] font-light">
               {homeTexts("slide1.subtitle")}
             </h2>
+
+            {/* LinkButton — scopri di più */}
+            <div style={{ pointerEvents: "auto" }}>
+              <LinkButton
+                link="/apwec"
+                text={homeTexts("slide1.link")}
+                icon={<ArrowUpRight size={20} />}
+                top="0"
+                color={linkColorWhite}
+              />
+            </div>
           </div>
         </motion.div>
 

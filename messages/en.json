@@ -1,14 +1,15 @@
 {
   "menu": {
     "homepage": "HOMEPAGE",
-    "products": "PRODUCTS",
+    "products": "APWEC",
     "about": "ABOUT US",
     "contacts": "CONTACTS"
   },
   "homepage": {
     "slide0": {
       "title": "L'innovazione \n che nasce dall'esperienza",
-      "subtitle": "Il futuro non sta arrivando. \n É qui. Ed è italiano."
+      "subtitle": "Il futuro non sta arrivando. \n É qui. Ed è italiano.",
+      "link": "Scopri APWEC"
     },
     "slide1": {
       "suptitle": "SCOPRI APWEC",
@@ -106,7 +107,7 @@
     "label": "Codice Etico",
     "title": "Codice Etico",
     "subtitle": "I principi che guidano ogni nostra scelta, ogni giorno.",
-    "updated": "Ultimo aggiornamento: Gennaio 2025",
+    "updated": "Ultimo aggiornamento: Marzo 2026",
 
     "s1": {
       "heading": "Premessa e campo di applicazione",
@@ -187,7 +188,7 @@
     "label": "Privacy Policy",
     "title": "Privacy Policy",
     "subtitle": "Come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.",
-    "updated": "Ultimo aggiornamento: Gennaio 2025",
+    "updated": "Ultimo aggiornamento: Marzo 2026",
 
     "s1": {
       "heading": "Titolare del trattamento",
@@ -296,7 +297,7 @@
     "label": "Cookie Policy",
     "title": "Cookie Policy",
     "subtitle": "Come utilizziamo i cookie e tecnologie di tracciamento su sinersys.it.",
-    "updated": "Ultimo aggiornamento: Gennaio 2025",
+    "updated": "Ultimo aggiornamento: Marzo 2026",
 
     "s1": {
       "heading": "Cosa sono i cookie",

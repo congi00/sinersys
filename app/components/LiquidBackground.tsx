@@ -8,6 +8,7 @@ interface Props {
   className?: string;
   style?: React.CSSProperties;
   progress?: MotionValue<number>;
+  insetPx?: MotionValue<string>;
 }
 
 const VERT = `
@@ -123,7 +124,7 @@ void main() {
 }
 `;
 
-export default function LiquidBackground({ className = "", style = {}, progress }: Props) {
+export default function LiquidBackground({ className = "", style = {}, progress, insetPx }: Props) {
   const mountRef  = useRef<HTMLDivElement>(null);
   const paletteRef = useRef(0); // 0 = dark, 1 = light
 
@@ -208,7 +209,7 @@ export default function LiquidBackground({ className = "", style = {}, progress 
         inset: 0,
         zIndex: 0,
         pointerEvents: "none",
-        clipPath: clipPath ?? "inset(16px round 24px)",
+        clipPath: clipPath ?? insetPx ?? "inset(16px round 24px)",
         willChange: "clip-path",
         ...style,
       }}

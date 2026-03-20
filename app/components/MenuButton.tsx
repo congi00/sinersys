@@ -27,7 +27,7 @@ export default function MenuButton() {
   ];
   const links = [
     "/",
-    "",
+    "apwec",
     "about-us",
     "",
   ]
