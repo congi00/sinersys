@@ -14,7 +14,9 @@ import { detectIOS } from "../support/useViewportHeight";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuButton from "../components/MenuButton";
-import { useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import ContactDrawer from "../components/ContactDrawer";
+import { setNavigationState, setOpenContact } from "../features/counterSlice";
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -127,6 +129,7 @@ export default function AboutUsPage() {
   const t           = useTranslations("aboutus");
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const isIOS       = detectIOS();
+  const dispatch = useAppDispatch();
 
   const progressMotion = useMotionValue(0);
   const [vhPx, setVhPx]   = useState(0);
@@ -221,12 +224,12 @@ export default function AboutUsPage() {
   // HERO_SCROLL_BUDGET: at p=1.3 the hero is off screen.
   // p=1.3 corresponds to scrollY = (1.3/6) * (totalHeight - vh)
   // We pin content at vh * 1.8 which is always comfortably below.
-  const CONTENT_TOP = vh * 2.1;
+  const CONTENT_TOP = vh * 2.0;
 
   // ── Total page height ─────────────────────────────────────────────────────
   // = content section top + real content height
   // If contentH is not yet measured, use a reasonable fallback.
-  const totalHeight = CONTENT_TOP + (contentH > 0 ? contentH : vh * 4);
+  const totalHeight = CONTENT_TOP + (contentH > 0 ? contentH : vh * 3.8);
 
   if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
 
@@ -309,7 +312,7 @@ export default function AboutUsPage() {
             top:        CONTENT_TOP,
             left:       0,
             right:      0,
-            background: "linear-gradient(180deg,#0a1540 0%,#0d1d5e 30%,#081230 100%)",
+            background: "linear-gradient(160deg, #1c398e 0%, #0070f3 55%, #050b26 100%)",
             zIndex:     11,
           }}
         >
@@ -416,6 +419,14 @@ export default function AboutUsPage() {
         <div className="w-full" style={{position: "absolute",bottom: 0}}>
             <Footer />
           </div>
+
+        <ContactDrawer
+          open={openContact}
+          onClose={() => {
+            dispatch(setOpenContact(false));
+            dispatch(setNavigationState(0));
+          }}
+        />
       </div>
     </>
   );

@@ -61,8 +61,8 @@ export default function ContactDrawer({ open, onClose }: Props) {
             animate={{ y: "0%" }}
             exit={{ y: "-100%" }}
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            style={{ textAlign: "left" }}
-            className="fixed top-0 left-0 w-full h-full bg-gradient-to-b from-[#1c398e] to-[#0f2a6b] z-50 flex justify-center overflow-y-auto pt-[3px]"
+            style={{ textAlign: "left", background: "linear-gradient(160deg, #1c398e 0%, #0070f3 100%)" }}
+            className="fixed top-0 left-0 w-full h-full z-50 flex justify-center overflow-y-auto pt-[3px]"
             data-lenis-prevent
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}

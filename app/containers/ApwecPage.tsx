@@ -24,7 +24,9 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { useTranslations } from "next-intl";
 import Header from "../components/Header";
 import MenuButton from "../components/MenuButton";
-import { useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import ContactDrawer from "../components/ContactDrawer";
+import { setNavigationState, setOpenContact } from "../features/counterSlice";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Constants
@@ -127,6 +129,7 @@ function GlassCard({ children, style = {} }: { children: React.ReactNode; style?
 export default function ApwecPage() {
   const t = useTranslations("apwec");
   const openContact = useAppSelector((s) => s.siteState.openContact);
+  const dispatch = useAppDispatch();
   // ── Three.js canvas div ───────────────────────────────────────────────────
   const canvasRef = useRef<HTMLDivElement>(null);
 
@@ -456,7 +459,7 @@ export default function ApwecPage() {
           <motion.div style={{
             width:"100%", height:"100%", borderRadius:cardRad,
             overflow:"hidden", position:"relative",
-            background:"linear-gradient(160deg,#080f36 0%,#0c1a52 55%,#050b26 100%)",
+            background:"linear-gradient(160deg, #1c398e 0%, #0070f3 55%, #050b26 100%)",
           }}>
 
             {/* bg image */}
@@ -518,7 +521,7 @@ export default function ApwecPage() {
         {/* ── STATIC CONTENT ───────────────────────────────────────────── */}
         <div style={{
           position:"absolute", top: vh * (SCENES - 0.5), left:0, right:0, zIndex:11,
-          background:"linear-gradient(180deg,#0a1540 0%,#0d1d5e 20%,#081230 100%)",
+          background:"linear-gradient(160deg, #1c398e 0%, #0070f3 55%, #050b26 100%)",
           padding:"clamp(5rem,10vh,8rem) clamp(1.5rem,8vw,8rem)",
         }}>
 
@@ -563,6 +566,13 @@ export default function ApwecPage() {
             </GlassCard>
           </motion.div>
         </div>
+        <ContactDrawer
+          open={openContact}
+          onClose={() => {
+            dispatch(setOpenContact(false));
+            dispatch(setNavigationState(0));
+          }}
+        />
       </div>
     </>
   );
