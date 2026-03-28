@@ -79,7 +79,7 @@ function buildEnvMap(renderer: THREE.WebGLRenderer): THREE.Texture {
   const lightMat = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
   const lightPlane = new THREE.Mesh(lightGeo, lightMat);
   lightPlane.position.set(0, 30, -20);
-  lightPlane.rotation.x = Math.PI * 0.3;
+  lightPlane.rotation.x = Math.PI * 0.8;
   envScene.add(lightPlane);
 
   const tex = pmrem.fromScene(envScene).texture;
@@ -212,6 +212,7 @@ export default function HeroModel({
   useMotionValueEvent(rotationProgress, "change", (rad) => {
     const { modelGroup } = stateRef.current;
     if (modelGroup) modelGroup.rotation.z = rad;
+    if (modelGroup) modelGroup.rotation.y = (180);
   });
 
   useMotionValueEvent(progressMotion, "change", (p) => {
@@ -236,5 +237,5 @@ function fitGroupToView(group: THREE.Group, camera: THREE.PerspectiveCamera) {
   group.children.forEach((c) => c.position.sub(center));
 
   const maxDim = Math.max(size.x, size.y, size.z);
-  group.scale.setScalar(6 / (maxDim || 1));
+  group.scale.setScalar(4 / (maxDim || 1));
 }

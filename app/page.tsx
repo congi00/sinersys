@@ -204,10 +204,10 @@ export default function Home() {
   // ── Model ─────────────────────────────────────────────────────────────────
   const modelPhaseAOpacity = useTransform(
     smooth,
-    [0, 0.5, 0.6, 1.7, 1.8],
+    [0, 0.7, 0.8, 1.7, 1.8],
     [0, 0, 1, 1, 0]
   );
-  const modelPhaseAY = useTransform(smooth, [0.7, 1.0, 1.9], [490, -40, -600]);
+  const modelPhaseAY = useTransform(smooth, [0.7, 1.2, 1.9], [490, -40, -500]);
   const modelMaskOpacity = useTransform(smooth, [0, 0.03], [1, 0]);
   const modelRotationY = useTransform(
     smooth,
@@ -216,6 +216,12 @@ export default function Home() {
   );
   const modelOverflow = useTransform(smooth, (v) =>
     v < 0.05 ? "hidden" : "visible"
+  );
+
+  const modelX = useTransform(
+    smooth,
+    [0, 1],
+    [0, isMobile ? 0 : 280] // ← sposta a destra solo desktop
   );
 
   // ── HomePageAbout ─────────────────────────────────────────────────────────
@@ -362,6 +368,7 @@ export default function Home() {
               zIndex: 10,
               opacity: modelPhaseAOpacity,
               y: modelPhaseAY,
+              x: modelX,
               pointerEvents: "none",
               overflow: modelOverflow,
             }}

@@ -45,8 +45,9 @@ const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) =>
   return (
     <div className="w-full px-6 sm:px-16">
       <motion.h1
-        className="text-[2.8rem] sm:text-[4.0rem] font-bold"
+        className="font-bold"
         style={{
+          fontSize: "clamp(1.9rem, 6.5vw, 4.0rem)",
           display:        "flex",
           flexWrap:       "wrap",
           lineHeight: "1.1",
