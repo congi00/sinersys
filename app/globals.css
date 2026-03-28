@@ -43,6 +43,7 @@ html {
 body {
   background: transparent;
   overflow-x: hidden;
+  overscroll-behavior: none;
 }
 
 @keyframes slideUpFade {
@@ -58,12 +59,4 @@ body {
 
 .animate-slideUp {
   animation: slideUpFade 0.5s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-.line-height-20 {
-  line-height: 20px !important;
-}
-
-.line-height-40 {
-  line-height: 1.0 !important;
 }

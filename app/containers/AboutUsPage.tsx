@@ -216,20 +216,12 @@ export default function AboutUsPage() {
 
   const headerTheme = useTransform(smooth, [1.2, 1.4], [0, 1]);
 
-  // ── Content section start ─────────────────────────────────────────────────
-  // Starts at vh * 1.8 — safely after hero is gone (hero exits by p=1.3
-  // which corresponds to roughly 1.3/6 of total scroll = ~22% of page,
-  // but we use absolute px offset so content always starts below hero).
-  // Content section top = HERO_SCROLL_BUDGET + small gap
-  // HERO_SCROLL_BUDGET: at p=1.3 the hero is off screen.
-  // p=1.3 corresponds to scrollY = (1.3/6) * (totalHeight - vh)
-  // We pin content at vh * 1.8 which is always comfortably below.
-  const CONTENT_TOP = vh * 2.0;
+  const CONTENT_TOP = vh * 1.6;
 
   // ── Total page height ─────────────────────────────────────────────────────
   // = content section top + real content height
   // If contentH is not yet measured, use a reasonable fallback.
-  const totalHeight = CONTENT_TOP + (contentH > 0 ? contentH : vh * 3.8);
+  const totalHeight = CONTENT_TOP + (contentH > 0 ? contentH : vh * 4.2);
 
   if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
 
@@ -413,12 +405,9 @@ export default function AboutUsPage() {
               </GlassCard>
             </FadeIn>
           </section>
-          
-        </div>
-        {/* Footer — inside content div so totalHeight matches exactly */}
-        <div className="w-full" style={{position: "absolute",bottom: 0}}>
+           
             <Footer />
-          </div>
+        </div>
 
         <ContactDrawer
           open={openContact}

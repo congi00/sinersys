@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { detectIOS } from "../support/useViewportHeight";
-import { preloadOBJ } from "./HeroModel";
+import { preloadGLB } from "./HeroModel";
 
 type Props = {
   onFinish:  () => void;
@@ -22,7 +22,7 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     // ── Preload the 3D model in the background immediately ────────────────
     // By the time IntroParticles finishes (~6 s), the OBJ will be ready
     // and HeroModel can use it from cache with zero extra load time.
-    preloadOBJ("/APWEC.obj");
+    preloadGLB("/apwec-draco.glb");
   }, []);
 
   useEffect(() => {

@@ -129,17 +129,11 @@ export default function LiquidBackground({ className = "", style = {}, progress,
   const paletteRef = useRef(0); // 0 = dark, 1 = light
 
   // clip-path: inset with borderRadius → full screen
-  const clipPath = progress
-    ? useTransform(
-        progress,
-        [0, 0.3, 0.8],
-        [
-          "inset(16px round 24px)",
-          "inset(16px round 24px)",
-          "inset(0px round 0px)",
-        ]
-      )
-    : null;
+  const clipPath = useTransform(
+    progress ?? new MotionValue<number>(0),  // ← questo crea un MotionValue ogni render!
+    [0, 0.3, 0.8],
+    ["inset(16px round 24px)", "inset(16px round 24px)", "inset(0px round 0px)"]
+  );
 
   // Palette crossfade: p 2.05→2.20 = dark→light, smooth ease-in-out
   useMotionValueEvent(progress ?? new MotionValue<number>(0), "change", (p) => {
@@ -209,7 +203,7 @@ export default function LiquidBackground({ className = "", style = {}, progress,
         inset: 0,
         zIndex: 0,
         pointerEvents: "none",
-        clipPath: clipPath ?? insetPx ?? "inset(16px round 24px)",
+        clipPath: progress ? clipPath : (insetPx ?? "inset(16px round 24px)"),
         willChange: "clip-path",
         ...style,
       }}

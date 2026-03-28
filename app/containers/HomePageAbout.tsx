@@ -20,10 +20,6 @@ export default function HomePageAbout({ progressMotion }: Props) {
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const homeTexts = useTranslations("homepage");
 
-  // Crossfade
-  const slide0Opacity = useTransform(progressMotion, [0, 0.2], [1, 0]);
-  const slide0Y = useTransform(progressMotion, [0, 0.2], [0, -120]);
-
   const slide1Opacity = useTransform(progressMotion, [0.6, 0.8], [0, 1]);
   const slide1Y = useTransform(progressMotion, [0.6, 0.8], [120, 0]);
   const titleColor = useTransform(
@@ -75,7 +71,7 @@ export default function HomePageAbout({ progressMotion }: Props) {
         className="absolute px-[40px] sm:text-center"
       >
         <motion.h4
-          className="text-[1.15rem] sm:text-[1.7rem] mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] line-height-20 font-regular flex items-center sm:justify-center"
+          className="text-[1rem] sm:text-[1.3rem] mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] line-height-20 font-regular flex items-center sm:justify-center"
           style={{ color: subtitleColor }}
         >
           <motion.div
@@ -85,14 +81,14 @@ export default function HomePageAbout({ progressMotion }: Props) {
           {homeTexts("slide2.suptitle")}
         </motion.h4>
         <motion.h1
-          className="text-[3.0rem] sm:text-[4.2rem] line-height-40 font-bold"
-          style={{ color: titleColor }}
+          className="text-[2.8rem] sm:text-[4.0rem] font-bold"
+          style={{ color: titleColor, lineHeight: "1.1"}}
         >
           {homeTexts("slide2.title")}
         </motion.h1>
         <motion.h2
-          className="text-[1.65rem] sm:text-[2.25rem] mt-4 sm:whitespace-pre-line line-height-40 font-light "
-          style={{ color: titleColor }}
+          className="text-[1.3rem] sm:text-[1.8rem] mt-4 sm:whitespace-pre-line font-light "
+          style={{ color: titleColor, lineHeight: "1.3" }}
         >
           {homeTexts("slide2.subtitle")}
         </motion.h2>

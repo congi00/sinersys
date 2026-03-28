@@ -72,7 +72,7 @@ export default function Header({ headerTheme }: Props) {
         "
     >
       {isDark && <motion.img
-        src="/logobianco.png"
+        src="/full-logo-sinersys.png"
         alt="Logo Sinersys"
         className="relative z-10 h-12 object-contain absolute"
         animate={{ opacity: isDark ? 1 : 0 }}

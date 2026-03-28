@@ -354,5 +354,42 @@
       "p1": "La presente Cookie Policy viene aggiornata periodicamente per riflettere variazioni tecnologiche, modifiche nei servizi di terze parti integrati o aggiornamenti normativi. Ti consigliamo di visitare questa pagina regolarmente.",
       "p2": "Per qualsiasi domanda relativa all'utilizzo dei cookie su sinersys.it, scrivici a privacy@sinersys.it. Indirizzo postale: Sinersys S.r.l., [INSERIRE INDIRIZZO REALE DA VISURA CAMERALE]."
     }
+  },
+  "footer": {
+    "quick": {
+      "title": "Quick Links",
+      "home": "Homepage",
+      "apwec": "APWEC",
+      "about": "Chi Siamo",
+      "certs": "Certificazioni",
+      "faq": "FAQ"
+    },
+    "other": {
+      "title": "Other Links",
+      "gallery": "Galleria",
+      "ethics": "Codice Etico",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy"
+    },
+    "contact": {
+      "title": "Contattaci",
+      "email": "info@sinersys.it",
+      "emailVal": "info@sinersys.it",
+      "address": "Via della Zecca, 1 – Bologna",
+      "addressVal": "Via della Zecca 1, Bologna, Italy",
+      "phone": "+39 346 756 3723",
+      "phoneVal": "+393467563723",
+      "web": "www.sinersys.it",
+      "webVal": "sinersys.it"
+    },
+    "legal": {
+      "company": "Sinersys – Motor Union Italia s.r.l.",
+      "privacy": "Privacy",
+      "cookies": "Cookie",
+      "ethics": "Codice Etico"
+    },
+    "social":{
+      
+    }
   }
 }

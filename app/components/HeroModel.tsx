@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { GLTFLoader }  from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { MotionValue, useMotionValueEvent } from "framer-motion";
 
 interface Props {
@@ -16,32 +17,42 @@ type CacheEntry =
   | { status: "loading"; callbacks: Array<(g: THREE.Group) => void> }
   | { status: "ready";   group: THREE.Group };
 
-const objCache = new Map<string, CacheEntry>();
+const glbCache = new Map<string, CacheEntry>();
 
-export function preloadOBJ(src: string) {
-  if (objCache.has(src)) return;
+export function preloadGLB(src: string) {
+  if (glbCache.has(src)) return;
   const entry: CacheEntry = { status: "loading", callbacks: [] };
-  objCache.set(src, entry);
-  new OBJLoader().load(
+  glbCache.set(src, entry);
+
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
+
+  const loader = new GLTFLoader();
+  loader.setDRACOLoader(dracoLoader);
+
+  loader.load(
     src,
-    (obj) => {
+    (gltf) => {
       const group = new THREE.Group();
-      obj.traverse((c) => { if ((c as THREE.Mesh).isMesh) group.add((c as THREE.Mesh).clone()); });
+      gltf.scene.traverse((c) => {
+        if ((c as THREE.Mesh).isMesh) group.add((c as THREE.Mesh).clone());
+      });
       const ready: CacheEntry = { status: "ready", group };
-      objCache.set(src, ready);
+      glbCache.set(src, ready);
       if (entry.status === "loading") entry.callbacks.forEach((cb) => cb(group));
+      dracoLoader.dispose();
     },
     undefined,
     (err) => console.error("[HeroModel] preload error:", err)
   );
 }
 
-function getOrLoadOBJ(src: string, onReady: (g: THREE.Group) => void) {
-  const cached = objCache.get(src);
+function getOrLoadGLB(src: string, onReady: (g: THREE.Group) => void) {
+  const cached = glbCache.get(src);
   if (cached?.status === "ready") { onReady(cached.group); return; }
   if (cached?.status === "loading") { cached.callbacks.push(onReady); return; }
-  preloadOBJ(src);
-  const e = objCache.get(src)!;
+  preloadGLB(src);
+  const e = glbCache.get(src)!;
   if (e.status === "loading") e.callbacks.push(onReady);
 }
 
@@ -52,12 +63,10 @@ function buildEnvMap(renderer: THREE.WebGLRenderer): THREE.Texture {
   const envScene = new THREE.Scene();
   const geo      = new THREE.SphereGeometry(50, 64, 32);
 
-  // Aluminium studio: bright top highlight, neutral mid, slightly warm floor bounce
   const posArr = geo.attributes.position.array as Float32Array;
   const cols: number[] = [];
   for (let i = 0; i < posArr.length; i += 3) {
-    const t = (posArr[i + 1] + 50) / 100; // 0=floor, 1=ceiling
-    // floor: warm grey  #3a3a3a → ceiling: bright white-blue #e8eeff
+    const t = (posArr[i + 1] + 50) / 100;
     const r = 0.227 + t * (0.910 - 0.227);
     const g = 0.227 + t * (0.933 - 0.227);
     const b = 0.227 + t * (1.000 - 0.227);
@@ -66,7 +75,6 @@ function buildEnvMap(renderer: THREE.WebGLRenderer): THREE.Texture {
   geo.setAttribute("color", new THREE.Float32BufferAttribute(cols, 3));
   envScene.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ side: THREE.BackSide, vertexColors: true })));
 
-  // Add a bright rectangular "studio light" area in the env
   const lightGeo = new THREE.PlaneGeometry(30, 12);
   const lightMat = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
   const lightPlane = new THREE.Mesh(lightGeo, lightMat);
@@ -86,7 +94,7 @@ function buildEnvMap(renderer: THREE.WebGLRenderer): THREE.Texture {
 export default function HeroModel({
   progressMotion,
   rotationProgress,
-  objSrc = "/APWEC.obj",
+  objSrc = "/apwec-draco.glb",
 }: Props) {
   const mountRef = useRef<HTMLDivElement>(null);
 
@@ -102,9 +110,9 @@ export default function HeroModel({
     const mount = mountRef.current;
     if (!mount) return;
 
-    // ── Renderer ─────────────────────────────────────────────────────────
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const isTouchDev = window.matchMedia("(pointer: coarse)").matches;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isTouchDev ? 1.5 : 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.outputColorSpace    = THREE.SRGBColorSpace;
     renderer.toneMapping         = THREE.ACESFilmicToneMapping;
@@ -113,55 +121,43 @@ export default function HeroModel({
     renderer.shadowMap.type      = THREE.PCFSoftShadowMap;
     mount.appendChild(renderer.domElement);
 
-    // ── Scene / Camera ────────────────────────────────────────────────────
     const scene  = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       38, mount.clientWidth / mount.clientHeight, 0.01, 1000
     );
-    // Camera pulled back enough so model is never clipped by near plane or frustum
     camera.position.set(0, 0, 7);
     camera.lookAt(0, 0, 0);
 
-    // ── Environment (aluminium studio) ────────────────────────────────────
-    const envTexture   = buildEnvMap(renderer);
-    scene.environment  = envTexture;
-    // No scene background — canvas is transparent (alpha:true)
+    const envTexture  = buildEnvMap(renderer);
+    scene.environment = envTexture;
 
-    // ── Lights ────────────────────────────────────────────────────────────
-    // Key: cold bright top-right
     const key = new THREE.DirectionalLight(0xf0f4ff, 3.5);
     key.position.set(4, 8, 5);
     key.castShadow = true;
     scene.add(key);
-    // Fill: warm left
     const fill = new THREE.DirectionalLight(0xffe8c8, 1.2);
     fill.position.set(-5, 2, 3);
     scene.add(fill);
-    // Rim: back cold
     const rim = new THREE.DirectionalLight(0xd0e8ff, 2.0);
     rim.position.set(2, -3, -8);
     scene.add(rim);
-    // Very soft ambient
     scene.add(new THREE.AmbientLight(0xffffff, 0.15));
 
-    // ── Aluminium material ────────────────────────────────────────────────
-    // Brushed aluminium: high metalness, moderate roughness, near-neutral color
     const aluminiumMat = new THREE.MeshPhysicalMaterial({
-      color:              0xd8dde8,   // very slightly cool grey
+      color:              0xd8dde8,
       metalness:          1.0,
-      roughness:          0.25,       // brushed — not mirror, not matte
+      roughness:          0.25,
       reflectivity:       1.0,
       envMapIntensity:    2.8,
-      clearcoat:          0.15,       // very subtle clearcoat
+      clearcoat:          0.15,
       clearcoatRoughness: 0.3,
     });
 
-    // ── Model group ───────────────────────────────────────────────────────
     const modelGroup = new THREE.Group();
     scene.add(modelGroup);
     stateRef.current.modelGroup = modelGroup;
 
-    getOrLoadOBJ(objSrc, (cached) => {
+    getOrLoadGLB(objSrc, (cached) => {
       while (modelGroup.children.length > 0) {
         const c = modelGroup.children[0];
         modelGroup.remove(c);
@@ -177,10 +173,9 @@ export default function HeroModel({
       });
       fitGroupToView(modelGroup, camera);
       modelGroup.rotation.set(0, 0, 0);
-      console.log("[HeroModel] aluminium model ready");
+      console.log("[HeroModel] GLB model ready");
     });
 
-    // ── Animation loop ────────────────────────────────────────────────────
     const clock = new THREE.Clock();
     const s     = stateRef.current;
 
@@ -195,7 +190,6 @@ export default function HeroModel({
     }
     animate();
 
-    // ── Resize ────────────────────────────────────────────────────────────
     const ro = new ResizeObserver(() => {
       const w = mount.clientWidth, h = mount.clientHeight;
       renderer.setSize(w, h);
@@ -215,13 +209,11 @@ export default function HeroModel({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [objSrc]);
 
-  // ── Z-axis rotation: 0 → π (180°) across progress 0→0.8, then holds ────
   useMotionValueEvent(rotationProgress, "change", (rad) => {
     const { modelGroup } = stateRef.current;
     if (modelGroup) modelGroup.rotation.z = rad;
   });
 
-  // ── X tilt from scroll direction ──────────────────────────────────────────
   useMotionValueEvent(progressMotion, "change", (p) => {
     const s     = stateRef.current;
     const delta = p - s.lastProgress;
@@ -236,29 +228,13 @@ export default function HeroModel({
   );
 }
 
-// ── Fit model so it is always fully visible inside the camera frustum ─────────
-// Camera is at z=7, fov=38. At z=0 the visible half-height = 7 * tan(19°) ≈ 2.41
-// We scale the model to fit within 80% of that — leaving 10% padding top/bottom.
 function fitGroupToView(group: THREE.Group, camera: THREE.PerspectiveCamera) {
   const box    = new THREE.Box3().setFromObject(group);
   const center = box.getCenter(new THREE.Vector3());
   const size   = box.getSize(new THREE.Vector3());
 
-  // Centre the geometry at origin
   group.children.forEach((c) => c.position.sub(center));
 
-  const camDist      = camera.position.z;
-  const fovRad       = THREE.MathUtils.degToRad(camera.fov);
-  const visibleHalfH = Math.tan(fovRad / 2) * camDist;
-  const visibleHalfW = visibleHalfH * camera.aspect;
-  const visibleH     = visibleHalfH * 2 * 0.78; // 78% — generous padding
-  const visibleW     = visibleHalfW * 2 * 0.90;
-
-  // Scale to fit within viewport (whichever axis is tighter)
   const maxDim = Math.max(size.x, size.y, size.z);
-  const fitH   = visibleH / (size.y || 1);
-  const fitW   = visibleW / (size.x || 1);
-  const scale  =  6 / (maxDim || 1);
-
-  group.scale.setScalar(scale);
+  group.scale.setScalar(6 / (maxDim || 1));
 }
