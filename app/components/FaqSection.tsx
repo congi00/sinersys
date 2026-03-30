@@ -101,7 +101,7 @@ export default function FaqSection({
       className="w-full mx-auto px-5 py-16"
     >
       {/* Header */}
-      <motion.div className="mb-12 text-center">
+      <motion.div className="mb-12 text-left sm:text-center">
         <span
           className="inline-block text-xs font-semibold tracking-[0.2em] uppercase
             border border-current rounded-full px-4 py-1.5 mb-6 font-light
@@ -110,7 +110,7 @@ export default function FaqSection({
           {suptitle}
         </span>
         <h2
-          className="font-bold leading-tight text-[#1c398e] text-[3.0rem] sm:text-[4.2rem]"
+          className="font-bold leading-tight text-[#1c398e] text-[3.0rem] sm:text-[4.2rem] sm:text-center text-left"
           style={{ letterSpacing: "-0.02em" }}
         >
           {title}
@@ -136,7 +136,7 @@ export default function FaqSection({
               >
                 <span
                   className="font-regular text-[#1c398e] pr-4
-                    group-hover:text-[#1c398e] transition-colors duration-200 text-[1.65rem] sm:text-[2.25rem]"
+                    group-hover:text-[#1c398e] transition-colors duration-200 text-[1.55rem] sm:text-[1.8rem]"
                 >
                   {item.question}
                 </span>
@@ -168,7 +168,7 @@ export default function FaqSection({
                     }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-5 text-[1.15rem] sm:text-[1.7rem] font-light text-[#5c8baf] leading-relaxed">
+                    <p className="pb-5 text-[1.15rem] sm:text-[1.4rem] font-light text-[#5c8baf] leading-relaxed">
                       {item.answer}
                     </p>
                   </motion.div>

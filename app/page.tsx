@@ -207,7 +207,7 @@ export default function Home() {
     [0, 0.7, 0.8, 1.7, 1.8],
     [0, 0, 1, 1, 0]
   );
-  const modelPhaseAY = useTransform(smooth, [0.7, 1.2, 1.9], [490, -40, -500]);
+  const modelPhaseAY = useTransform(smooth, [0.7, 1.2, 1.7, 1.9], [490, 30, 30, -500]);
   const modelMaskOpacity = useTransform(smooth, [0, 0.03], [1, 0]);
   const modelRotationY = useTransform(
     smooth,
@@ -334,13 +334,13 @@ export default function Home() {
         >
           <h1
             style={{ lineHeight: "1.0" }}
-            className="text-[3.0rem] sm:text-[5.8rem] text-[#f4f7fa] font-bold leading-tight tracking-tight"
+            className="text-[2.7rem] sm:text-[5.5rem] text-[#f4f7fa] font-bold leading-tight tracking-tight whitespace-pre-line"
           >
             {homeTexts("slide0.title")}
           </h1>
           <h2
-            style={{ lineHeight: "1.3" }}
-            className="text-[1.3rem] sm:text-[2rem] mt-5 whitespace-pre-line text-[#c8d8f8] font-light max-w-xl"
+            style={{ lineHeight: "1.1" }}
+            className="text-[1.3rem] sm:text-[1.6rem] mt-5 mb-5 whitespace-pre-line text-[#c8d8f8] font-light max-w-xl"
           >
             {homeTexts("slide0.subtitle")}
           </h2>
@@ -511,7 +511,7 @@ export default function Home() {
             width:  "283vmax",
             height: "283vmax",
             zIndex: 30,
-            backgroundColor: "#1c398e",
+            background: "linear-gradient(180deg, rgb(28, 57, 142) 10%, rgb(0 86 191) 20%, rgb(5, 11, 38) 70%)",
             borderRadius: "50%",
             scale: circleScale,
             transformOrigin: "bottom right",

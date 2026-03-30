@@ -214,14 +214,17 @@ export default function AboutUsPage() {
   const slide1Opacity = useTransform(smooth, [0.4, 0.6, 1.0, 1.2], [0, 1, 1, 0]);
   const slide1Y       = useTransform(smooth, [0.4, 0.6, 1.0, 1.2], [30, 0, 0, -30]);
 
-  const headerTheme = useTransform(smooth, [1.2, 1.4], [0, 1]);
-
-  const CONTENT_TOP = vh * 1.6;
+  const headerTheme = useTransform(smooth, [1.2, 1.4], [0, 0]);
+  const gradientPage = useTransform(smooth, [0, 1.3, 1.4], ["#F4F7FA", "#F4F7FA" , "linear-gradient(160deg, #1c398e 0%, #0070f3 55%, #050b26 100%)"]);
+  const bodyBg = useTransform(smooth, [0, 1.3, 1.3], ["#F4F7FA", "#F4F7FA" , "linear-gradient(160deg, rgb(28, 57, 142) 29%, rgb(0, 112, 243) 71%, rgb(5, 11, 38) 100%)"]);
+  const h2Color = useTransform(smooth, [0, 1.3, 1.3], ["#1c398e", "#1c398e" , "#f4f7fa"]);
+  const pcolor = useTransform(smooth, [0, 1.3, 1.3], ["#1c398e", "#1c398e" , "rgba(200,218,250,0.75)"]);
+  const CONTENT_TOP = vh * 2.0;
 
   // ── Total page height ─────────────────────────────────────────────────────
   // = content section top + real content height
   // If contentH is not yet measured, use a reasonable fallback.
-  const totalHeight = CONTENT_TOP + (contentH > 0 ? contentH : vh * 4.2);
+  const totalHeight = CONTENT_TOP + (contentH > 0 ? contentH : vh * 4.6);
 
   if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
 
@@ -240,9 +243,9 @@ export default function AboutUsPage() {
 
   return (
     <>
-      <div style={{ height: totalHeight }} aria-hidden />
+      <motion.div style={{ height: totalHeight }} aria-hidden />
 
-      <div className="absolute inset-x-0 top-0" style={{ height: totalHeight, zIndex:1 }}>
+      <motion.div className="absolute inset-x-0 top-0" style={{ height: totalHeight, zIndex:1, background: bodyBg }}>
 
         {!openContact && <Header headerTheme={headerTheme} />}
         {!openContact && <MenuButton />}
@@ -297,14 +300,14 @@ export default function AboutUsPage() {
         {/* ── CONTENT — starts at CONTENT_TOP (safely below hero exit) ─────
             Uses ref to measure its real height → drives totalHeight.
         ──────────────────────────────────────────────────────────────────── */}
-        <div
+        <motion.div
           ref={contentRef}
           style={{
             position:   "absolute",
             top:        CONTENT_TOP,
             left:       0,
             right:      0,
-            background: "linear-gradient(160deg, #1c398e 0%, #0070f3 55%, #050b26 100%)",
+            background: gradientPage,
             zIndex:     11,
           }}
         >
@@ -313,14 +316,14 @@ export default function AboutUsPage() {
             <FadeIn><SectionLabel label={t("whoweareLabel")} /></FadeIn>
             <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:"clamp(2rem,5vw,4rem)", alignItems:"start" }}>
               <FadeIn direction="left">
-                <h2 style={{ margin:0, fontSize:"clamp(2rem,4.5vw,3.8rem)", fontWeight:800, letterSpacing:"-0.03em", lineHeight:1.0, color:"#f4f7fa" }}>
+                <motion.h2 style={{ margin:0, fontSize:"clamp(2rem,4.5vw,3.8rem)", fontWeight:800, letterSpacing:"-0.03em", lineHeight:1.0, color: h2Color }}>
                   {t("whoweare.title")}
-                </h2>
+                </motion.h2>
               </FadeIn>
               <FadeIn direction="right" delay={0.1}>
                 <div style={{ display:"flex", flexDirection:"column", gap:"1.2rem" }}>
-                  <p style={{ margin:0, fontSize:"clamp(0.95rem,1.4vw,1.1rem)", lineHeight:1.7, color:"rgba(200,218,250,0.75)" }}>{t("whoweare.p1")}</p>
-                  <p style={{ margin:0, fontSize:"clamp(0.95rem,1.4vw,1.1rem)", lineHeight:1.7, color:"rgba(200,218,250,0.75)" }}>{t("whoweare.p2")}</p>
+                  <motion.p style={{ margin:0, fontSize:"clamp(0.95rem,1.4vw,1.1rem)", lineHeight:1.7, color:pcolor }}>{t("whoweare.p1")}</motion.p>
+                  <motion.p style={{ margin:0, fontSize:"clamp(0.95rem,1.4vw,1.1rem)", lineHeight:1.7, color:pcolor }}>{t("whoweare.p2")}</motion.p>
                 </div>
               </FadeIn>
             </div>
@@ -407,7 +410,7 @@ export default function AboutUsPage() {
           </section>
            
             <Footer />
-        </div>
+        </motion.div>
 
         <ContactDrawer
           open={openContact}
@@ -416,7 +419,7 @@ export default function AboutUsPage() {
             dispatch(setNavigationState(0));
           }}
         />
-      </div>
+      </motion.div>
     </>
   );
 }

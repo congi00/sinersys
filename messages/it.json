@@ -2,119 +2,271 @@
   "menu": {
     "homepage": "HOMEPAGE",
     "products": "APWEC",
-    "about": "LA NOSTRA STORIA",
-    "contacts": "CONTATTACI"
+    "about": "CHI SIAMO",
+    "contacts": "CONTATTI"
   },
+
   "homepage": {
     "slide0": {
-      "title": "L'innovazione che nasce dall'esperienza",
-      "subtitle": "Il futuro non sta arrivando. \n É qui. Ed è italiano.",
+      "title": "L'energia libera\nnata da un sogno italiano",
+      "subtitle": "Abbiamo inseguito per anni un'idea impossibile:\n un generatore continuo, senza combustibili, senza emissioni.\nCi siamo riusciti.",
       "link": "Scopri APWEC"
     },
     "slide1": {
       "suptitle": "SCOPRI APWEC",
-      "title": "IL GENERATORE CHE RISCRIVE LE REGOLE DELL’ENERGIA",
-      "subtitle": "Una tecnologia italiana brevettata che produce energia continua sfruttando la pressione atmosferica.\n Senza vento. Senza emissioni. 24/7.",
-      "link": "Scopri Di Più"
+      "title": "Il generatore di energia rinnovabile che non si ferma mai",
+      "subtitle": "APWEC è la tecnologia italiana brevettata che trasforma le variazioni di pressione\nin energia elettrica pulita, continua e misurabile.\nZero emissioni. Zero combustibili. 24 ore su 24, 365 giorni l'anno.",
+      "link": "Scopri Come Funziona"
     },
     "slide2": {
       "suptitle": "CHI SIAMO",
-      "title": "OLTRE 100 ANNI DI INNOVAZIONE ITALIANA",
-      "subtitle": "Collaborazioni con Honda, Volvo e Chrysler hanno consolidato l’esperienza di Sinersys nella progettazione e produzione di tecnologie avanzate, aprendo la strada alla rivoluzione green.",
-      "link": "Scopri Di Più"
+      "title": "Oltre 100 anni di ingegneria italiana al servizio della transizione energetica",
+      "subtitle": "Da Honda a Volvo, da Chrysler al green: l'esperienza di Sinersys\nnella progettazione meccanica avanzata ha trovato il suo scopo più grande\nnell'energia rinnovabile distribuita.\nUn percorso lungo un secolo, un traguardo che cambia tutto.",
+      "link": "Scopri La Nostra Storia"
     },
     "slide3": {
-      "title": "LA FORTE CRISI ENERGETICA INTERNAZIONALE DEGLI ULTIMI TEMPI ED IL CONSEGUENTE INNALZAMENTO DEI COSTI DEI CARBURANTI, RENDONO URGENTI SOLUZIONI VOLTE AL RISPARMIO ENERGETICO, AD UNA MIGLIORE COMPATIBILITÀ AMBIENTALE ED ALLA CREAZIONE DI RISORSE INTERNE CHE OFFRANO ALLE ATTIVITÀ PRODUTTIVE E DI PUBBLICO SERVIZIO L'OPPORTUNITÀ DI MAGGIORI AUTONOMIE NELL'APPROVVIGIONAMENTO ENERGETICO.",
-      "subtitle": "Sinersys ha applicato la propria cultura scientifica a tecnologie assemblate, sicure e certificate che rispondono esattamente alle esigenze di nuovi modelli di approvvigionamento energetico. \nSinersys fornisce sistemi efficienti e flessibili che consentono ad utenti industriali, commerciali o del pubblico servizio, l'autoproduzione di energia, riducendo fortemente i costi energetici e l'impatto ambientale."
+      "title": "Ogni impianto è un passo concreto verso l'indipendenza energetica.",
+      "subtitle": "Sinersys progetta sistemi scalabili per la generazione di energia rinnovabile continua,\npensati per aziende, enti pubblici e operatori industriali che vogliono ridurre i costi energetici,\nabbattere le emissioni di CO₂ e raggiungere l'autosufficienza energetica\nin modo misurabile e verificabile."
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "q1": "Cos'è APWEC e come genera energia rinnovabile in modo continuo?",
+      "a1": "APWEC (Advanced Pressure Wave Energy Converter) è la tecnologia brevettata da Sinersys per convertire le oscillazioni di pressione presenti in reti industriali, pipeline e sistemi idraulici in energia elettrica pulita e continua. A differenza del fotovoltaico e dell'eolico tradizionale, APWEC non dipende dalle condizioni atmosferiche: produce energia 24 ore su 24, 365 giorni l'anno, con zero emissioni di CO₂ e senza consumo di combustibili fossili. È la risposta concreta alla domanda di indipendenza energetica misurabile per industrie ed enti pubblici.",
+      "q2": "In cosa si differenzia APWEC dai generatori eolici tradizionali come il Silo Eolico?",
+      "a2": "Il Silo Eolico Sinersys rappresenta già un salto tecnologico rispetto ai WEC tradizionali: a parità di potenza installata, il rotore ha un diametro di soli 2,8–3,5 metri contro i 30 metri delle turbine convenzionali da 200 kW, la manutenzione si esegue interamente a livello del suolo, l'impatto visivo e acustico è drasticamente ridotto e l'altezza massima dell'impianto è inferiore a 20 metri. APWEC va oltre: sfrutta le variazioni di pressione già presenti nell'infrastruttura esistente, eliminando completamente la dipendenza dal vento e rendendo la generazione di energia rinnovabile disponibile in qualsiasi contesto industriale.",
+      "q3": "Qual è la curva di potenza del Silo Eolico Sinersys?",
+      "a3": "Il Silo Eolico non viene tarato su una velocità fissa: viene dimensionato in base alla velocità nominale del vento disponibile nel sito prescelto. Per una configurazione nominale da 200 kW a 5 m/s, la produzione inizia già a 3 m/s (circa 30 kW), raggiunge 55 kW a 4 m/s, 190 kW a 5 m/s e circa 250 kW a 6 m/s. Il sistema di orientamento automatico mantiene la bocca di presa perpendicolare alla direzione del vento in ogni condizione, garantendo la massima efficienza indipendentemente dalle variazioni direzionali.",
+      "q4": "Quali sono i costi di installazione e il ritorno sull'investimento energetico?",
+      "a4": "Il costo di produzione di un Silo Eolico da 200 kW si stima orientativamente tra 120.000 e 150.000 euro per unità in produzione industriale, grazie alla semplicità costruttiva e alle ridotte dimensioni del rotore. In siti eolici idonei con vento nominale di 5 m/s per circa 5.500 ore/anno, la produzione stimata è di 1.000.000 kWh/anno. Sinersys fornisce una valutazione preliminare gratuita entro 72 ore, con stima del potenziale energetico, proiezione dei risparmi e analisi dettagliata del ritorno sull'investimento.",
+      "q5": "APWEC e i sistemi Sinersys sono adatti alla mia azienda o al mio ente pubblico?",
+      "a5": "I sistemi Sinersys sono progettati per rispondere alle esigenze di utenti industriali, commerciali e del pubblico servizio di qualsiasi dimensione. L'architettura modulare di APWEC scala da 1 kW a 10 MW, con incrementi progressivi senza interruzione dell'operatività. Ogni impianto viene progettato su misura nell'ambito del programma Full Energy Project, che include diagnosi energetica, progettazione, installazione, certificazione delle prestazioni e assistenza continuativa tramite Tech Service."
     }
   },
+
   "aboutus": {
+    "hero": {
+      "suptitle": "Sinersys · Chi Siamo",
+      "title": "Un sogno italiano\ndiventato energia",
+      "subtitle": "Oltre un secolo di ingegneria meccanica applicata alla più grande sfida del nostro tempo: produrre energia pulita, continua e accessibile per tutti.",
+      "stat0val": "1919",
+      "stat0label": "Anno di fondazione",
+      "stat1val": "100+",
+      "stat1label": "Anni di know-how industriale",
+      "stat2val": "0",
+      "stat2label": "Emissioni di CO₂",
+      "mission": "Per decenni abbiamo inseguito un obiettivo che molti ritenevano impossibile: costruire un generatore capace di produrre energia rinnovabile in modo continuativo, senza consumare combustibili e senza dipendere dalle condizioni atmosferiche. Ogni ostacolo ha rafforzato la nostra determinazione. Oggi quel sogno è un brevetto industriale. Si chiama APWEC."
+    },
+    "whoweareLabel": "Chi Siamo",
+    "whoweare": {
+      "title": "L'innovazione nasce dall'ostinazione di chi non smette mai di inseguire il proprio sogno",
+      "p1": "Sinersys è una società italiana specializzata nello sviluppo di tecnologie avanzate per la conversione e la generazione di energia rinnovabile continua. Nata all'interno di Motor Union Italia — attiva dal 1919 nel settore dell'automotive industriale e dell'ingegneria motoristica — porta con sé un patrimonio tecnico-scientifico costruito in oltre un secolo di progettazione meccanica di precisione al servizio della transizione energetica.",
+      "p2": "La competenza maturata in collaborazione con Honda, Volvo e Chrysler ha fornito le basi ingegneristiche per affrontare la sfida più ambiziosa della nostra storia: realizzare un sistema di generazione energetica che funzioni ininterrottamente, senza fonti fossili e senza dipendenza dalle variabili ambientali. Inseguire questo sogno per anni — nonostante le difficoltà — è ciò che ha reso possibile APWEC: la tecnologia brevettata che trasforma le variazioni di pressione in energia elettrica pulita, 24 ore su 24."
+    },
+    "values": {
+      "value0": "Energia rinnovabile continua",
+      "value1": "Zero emissioni di CO₂",
+      "value2": "Tecnologia brevettata italiana",
+      "value3": "Risparmio energetico misurabile",
+      "value4": "Indipendenza dalla rete"
+    },
+    "timelineLabel": "La Nostra Storia",
+    "timeline": {
+      "heading": "Dal motore all'energia pulita: il percorso che ha cambiato tutto",
+      "subheading": "Un cammino iniziato nell'officina e arrivato al futuro dell'energia rinnovabile. Ogni tappa ha aggiunto conoscenza, ogni ostacolo ha rafforzato la visione.",
+      "t2018": {
+        "title": "Nasce il progetto APWEC",
+        "description": "Il Centro Ricerche e Sviluppo di Sinersys avvia lo studio sistematico delle oscillazioni di pressione come fonte energetica sfruttabile. L'obiettivo è chiaro: un generatore continuo che non dipenda da vento, sole o combustibili."
+      },
+      "t2019": {
+        "title": "Primo prototipo funzionante",
+        "description": "Il primo prototipo APWEC produce energia in modo continuativo per 72 ore consecutive in condizioni di laboratorio. La prova di concetto è validata: le variazioni di pressione possono diventare elettricità pulita e misurabile."
+      },
+      "t2020": {
+        "title": "Deposito del brevetto internazionale",
+        "description": "Sinersys deposita il brevetto internazionale per la tecnologia APWEC. L'innovazione viene riconosciuta come genuinamente nuova nello scenario globale della generazione di energia rinnovabile distribuita."
+      },
+      "t2021": {
+        "title": "Test industriali su scala reale",
+        "description": "APWEC viene installato e testato presso un impianto industriale partner. I dati confermano rendimenti di conversione superiori all'80% e operatività continuativa 24/7, con impatto ambientale zero e manutenzione minima."
+      },
+      "t2022": {
+        "title": "Certificazione Full Energy Project",
+        "description": "Sinersys lancia il programma di certificazione Full Energy Project: ogni impianto viene progettato su misura, documentato e certificato per garantire al cliente prestazioni energetiche verificabili e un ritorno sull'investimento misurabile."
+      },
+      "t2023": {
+        "title": "Espansione della gamma: da 1 kW a 10 MW",
+        "description": "L'architettura modulare di APWEC viene validata su tutte le scale di potenza, da piccoli impianti industriali a infrastrutture energetiche di grande taglia. Sinersys diventa un fornitore di energia rinnovabile per PMI, grandi industrie ed enti pubblici."
+      },
+      "t2024": {
+        "title": "Verso la generazione energetica distribuita globale",
+        "description": "Sinersys avvia i primi progetti internazionali e amplia il team di ricerca e sviluppo. La missione rimane invariata: rendere l'energia pulita, continua e accessibile una realtà concreta per industrie e comunità in tutto il mondo."
+      }
+    },
+    "teamLabel": "Il Team",
+    "team": {
+      "heading": "Le persone che non hanno mai smesso di credere nel sogno",
+      "subheading": "Ingegneri, ricercatori e progettisti con decenni di esperienza nell'automotive industriale, nell'ingegneria meccanica avanzata e nello sviluppo di tecnologie per l'energia rinnovabile. La loro ostinazione nel perseguire un obiettivo che molti ritenevano impossibile è il motore di APWEC.",
+      "member0": {
+        "name": "Nome Cognome",
+        "role": "Fondatore & Direttore Tecnico",
+        "bio": "Ingegnere meccanico con oltre 30 anni di esperienza nella progettazione di sistemi energetici avanzati. Ha guidato le collaborazioni con Honda, Volvo e Chrysler e ha concepito il principio alla base di APWEC. Custode del sogno originale."
+      },
+      "member1": {
+        "name": "Nome Cognome",
+        "role": "Responsabile Ricerca e Sviluppo",
+        "bio": "Specializzato in fluidodinamica computazionale e sistemi di conversione energetica. Ha guidato lo sviluppo del prototipo APWEC dal laboratorio all'installazione industriale, ottimizzando i rendimenti di conversione fino all'85%."
+      },
+      "member2": {
+        "name": "Nome Cognome",
+        "role": "Responsabile Progetti & Certificazioni",
+        "bio": "Coordina l'intero iter Full Energy Project: dalla diagnosi energetica iniziale alla progettazione su misura, fino alla certificazione finale e al programma Tech Service. Garantisce che ogni impianto Sinersys produca i risultati promessi."
+      },
+      "joinTitle": "Vuoi far parte del team che sta ridefinendo la generazione di energia rinnovabile?",
+      "joinSubtitle": "Siamo alla ricerca di ingegneri, ricercatori e professionisti che condividano la nostra visione: un mondo in cui l'energia pulita, continua e accessibile è la norma, non l'eccezione.",
+      "joinCta": "Contattaci"
+    },
     "slide0": {
       "title": "LE NOSTRE RADICI",
-      "subtitle": "Oltre un Secolo di Esperienza tra Meccanica, Mobilità ed Energia"
+      "subtitle": "Oltre un secolo di ingegneria italiana. Un sogno che ha cambiato il modo di produrre energia."
     },
     "slide1": {
-      "suptitle": "SCOPRI APWEC",
-      "title": "DALLE PRIME INTUIZIONI MECCANICHE ALLA NASCITA DI UNA CULTURA INDUSTRIALE EUROPEA",
-      "subtitle": "Sinersys è oggi l’espressione di una profonda continuità industriale che unisce competenze storiche, ricerca ingegneristica avanzata e una visione strategica orientata alla sostenibilità. L’azienda opera come centro di eccellenza nello sviluppo di soluzioni innovative per la generazione di energia rinnovabile continua, affidabile e a basso impatto ambientale.",
-      "link": "Scopri Di Più"
+      "suptitle": "LA NOSTRA STORIA",
+      "title": "DA UN SOGNO IMPOSSIBILE ALLA PIÙ GRANDE INNOVAZIONE NEL CAMPO DELL'ENERGIA RINNOVABILE",
+      "subtitle": "C'è un'idea che ci ha ossessionato per anni: costruire un generatore capace di produrre energia in modo continuo, senza consumare combustibili, senza dipendere dal vento o dal sole. Un'idea che molti consideravano irrealizzabile. Noi l'abbiamo inseguita, e l'abbiamo trasformata in realtà brevettata. Sinersys nasce da questa ostinazione: unire oltre un secolo di competenza meccanica italiana a una visione radicale della transizione energetica.",
+      "link": "Scopri La Tecnologia"
     },
     "slide2": {
       "suptitle": "CHI SIAMO",
-      "title": "OLTRE 100 ANNI DI INNOVAZIONE ITALIANA",
-      "subtitle": "Collaborazioni con Honda, Volvo e Chrysler hanno consolidato l’esperienza di Sinersys nella progettazione e produzione di tecnologie avanzate, aprendo la strada alla rivoluzione green.",
-      "link": "Scopri Di Più"
+      "title": "DALL'INDUSTRIA AUTOMOBILISTICA ALLA RIVOLUZIONE DELL'ENERGIA PULITA",
+      "subtitle": "Le collaborazioni con Honda, Volvo e Chrysler ci hanno insegnato che la vera ingegneria non conosce compromessi. Quella stessa precisione — applicata oggi allo sviluppo di sistemi per la generazione di energia rinnovabile — è ciò che rende APWEC una tecnologia affidabile, efficiente e pronta per il mercato industriale globale.",
+      "link": "Scopri APWEC"
     },
     "slide3": {
-      "title": "Ogni progetto è un’opportunità per innovare, migliorare le prestazioni energetiche e promuovere modelli di produzione più sostenibili ed efficienti per il futuro.",
-      "subtitle": "Sinersys garantisce sistemi efficienti e flessibili che permettono ad aziende, enti pubblici e operatori commerciali di autoprodurre energia, riducendo significativamente i costi e l’impatto ambientale."
+      "title": "Innovare nel settore energetico significa assumersi una responsabilità verso il futuro.",
+      "subtitle": "Sinersys sviluppa soluzioni per la generazione distribuita di energia rinnovabile che permettono ad aziende, enti pubblici e operatori industriali di ridurre concretamente i consumi, tagliare le emissioni di CO₂ e aumentare la resilienza energetica dei propri impianti — con tecnologie certificate, scalabili e ad alto rendimento."
     }
   },
+
   "apwec": {
     "slide0": {
-      "suptitle": "Sinersys · Prodotto",
+      "suptitle": "Sinersys · Tecnologia Brevettata",
       "title": "APWEC",
-      "subtitle": "Advanced Pressure Wave Energy Converter — il futuro della generazione energetica distribuita."
+      "subtitle": "Advanced Pressure Wave Energy Converter — il sistema italiano che genera energia rinnovabile continua sfruttando le variazioni di pressione, non il carburante. Zero emissioni. Zero dipendenza atmosferica. 24 ore su 24."
     },
     "slide1": {
-      "suptitle": "Tecnologia",
-      "title": "Energia dalle onde di pressione",
-      "subtitle": "Un sistema brevettato che converte le fluttuazioni di pressione in energia elettrica con efficienza senza precedenti."
+      "suptitle": "Come Funziona",
+      "title": "Energia pulita dalle variazioni di pressione: una fonte inesauribile e continua",
+      "subtitle": "APWEC intercetta le fluttuazioni di pressione già presenti in reti industriali, pipeline e sistemi idraulici e le converte in elettricità pulita. Un ciclo energetico continuo, senza emissioni, senza sprechi, disponibile 24/7 indipendentemente dalle condizioni meteorologiche."
     },
     "slide2": {
-      "suptitle": "Ingegneria italiana",
-      "title": "Progettato per durare",
-      "subtitle": "Componenti modulari ad alta resistenza, progettati per operare in ambienti industriali estremi."
+      "suptitle": "Ingegneria Italiana",
+      "title": "Costruito per decenni di produzione energetica continua e affidabile",
+      "subtitle": "Componenti modulari ad alta resistenza progettati per operare in ambienti industriali estremi. Affidabilità certificata, manutenzione a livello del suolo, massima resa nella produzione di energia rinnovabile nel tempo."
     },
     "slide3": {
-      "suptitle": "Architettura",
-      "title": "4 sistemi integrati",
-      "subtitle": "Ogni componente è ottimizzato per massimizzare la resa energetica."
+      "suptitle": "Architettura del Sistema",
+      "title": "4 sistemi integrati per la massima efficienza nella generazione di energia pulita",
+      "subtitle": "Ogni componente di APWEC è progettato per ottimizzare la conversione energetica in ogni condizione operativa, riducendo le dispersioni e massimizzando la produzione netta di energia rinnovabile continua."
     },
     "slide4": {
-      "suptitle": "In contesto",
-      "title": "Pronto all'installazione",
-      "subtitle": "Integrazione plug-and-play con infrastrutture esistenti. Setup in meno di 48 ore."
+      "suptitle": "Installazione",
+      "title": "Operativo in meno di 48 ore: energia rinnovabile che si integra al tuo impianto",
+      "subtitle": "APWEC si integra con qualsiasi infrastruttura industriale esistente. Setup senza interruzioni operative, nessun fermo produttivo, ritorno sull'investimento energetico misurabile fin dai primi mesi di esercizio."
     },
     "static": {
       "label": "Cos'è APWEC",
-      "title": "Una rivoluzione nella generazione energetica distribuita",
-      "p1": "APWEC (Advanced Pressure Wave Energy Converter) è un sistema brevettato sviluppato da Sinersys per convertire le oscillazioni di pressione presenti in reti industriali, pipeline e sistemi idraulici in energia elettrica pulita e continua.",
-      "p2": "A differenza dei sistemi tradizionali, APWEC non richiede un flusso costante: sfrutta le variazioni di pressione già presenti nell'impianto, trasformando energia 'sprecata' in valore economico e ambientale misurabile.",
+      "title": "La tecnologia italiana per la generazione distribuita di energia rinnovabile continua",
+      "p1": "APWEC (Advanced Pressure Wave Energy Converter) è un sistema brevettato sviluppato da Sinersys per convertire le oscillazioni di pressione presenti in reti industriali, pipeline e sistemi idraulici in energia elettrica pulita, continua e a zero emissioni. Una tecnologia nata da un sogno inseguito per decenni: dimostrare che è possibile produrre energia in modo ininterrotto senza dipendere da fonti fossili, dal vento o dall'irraggiamento solare. Un obiettivo che in molti consideravano impossibile — e che Sinersys ha trasformato in brevetto industriale.",
+      "p2": "A differenza dei sistemi tradizionali di generazione rinnovabile, APWEC non richiede condizioni ambientali favorevoli: sfrutta le variazioni di pressione già presenti nell'impianto — trasformando un flusso energetico normalmente disperso in un asset produttivo concreto e misurabile. Risparmio energetico reale, riduzione delle emissioni di CO₂ verificabile, indipendenza dalla rete elettrica.",
       "f0": {
-        "label": "Efficienza",
-        "title": "Fino all'85% di conversione",
-        "description": "Il sistema raggiunge rendimenti di conversione superiori all'85%, grazie alla geometria ottimizzata dei trasduttori e al controllo adattivo del carico."
+        "label": "Efficienza Energetica",
+        "title": "Fino all'85% di conversione: energia rinnovabile senza sprechi",
+        "description": "Il sistema raggiunge rendimenti di conversione superiori all'85% grazie alla geometria ottimizzata dei trasduttori e al controllo adattivo del carico — un livello di efficienza nella produzione di energia rinnovabile che pochi sistemi possono vantare a parità di scala e continuità operativa."
       },
       "f1": {
         "label": "Scalabilità",
-        "title": "Da 1 kW a 10 MW",
-        "description": "L'architettura modulare permette di dimensionare l'impianto in base alla domanda, con incrementi di potenza senza interruzione dell'operatività."
+        "title": "Da 1 kW a 10 MW: risparmio energetico su misura",
+        "description": "L'architettura modulare di APWEC consente di dimensionare l'impianto in base al fabbisogno energetico reale dell'utente, con incrementi di potenza progressivi e senza interruzione dell'operatività. Adatto a PMI, grandi industrie, infrastrutture pubbliche e qualsiasi realtà che voglia ridurre i costi energetici in modo strutturale."
       },
       "f2": {
         "label": "Integrazione",
-        "title": "Plug-and-play universale",
-        "description": "Compatibile con qualsiasi sistema di supervisione industriale (SCADA, DCS, IoT). Protocolli Modbus, OPC-UA e MQTT nativi."
+        "title": "Compatibile con ogni sistema di gestione energetica esistente",
+        "description": "Protocolli Modbus, OPC-UA e MQTT nativi per integrazione immediata con sistemi SCADA, DCS e piattaforme IoT di monitoraggio energetico. APWEC si inserisce nel tuo ecosistema di gestione dell'energia senza richiedere infrastrutture dedicate o interruzioni operative."
       },
       "cta": {
-        "title": "Vuoi sapere se APWEC è adatto al tuo impianto?",
-        "subtitle": "Il nostro team effettua una valutazione preliminare gratuita in meno di 72 ore.",
-        "link": "Richiedi una valutazione"
+        "title": "Scopri quanto puoi risparmiare con APWEC sulla tua bolletta energetica",
+        "subtitle": "Il team tecnico Sinersys effettua una valutazione preliminare gratuita del tuo impianto entro 72 ore: stima del potenziale di generazione energetica, proiezione dei risparmi sui costi dell'energia e analisi del ritorno sull'investimento.",
+        "link": "Richiedi la Valutazione Gratuita"
       }
     }
   },
+
+  "research": {
+    "label": "Ricerca e Sviluppo",
+    "title": "Il Centro Ricerche che ha trasformato un sogno impossibile in brevetto",
+    "subtitle": "Per decenni abbiamo inseguito un'idea che il mondo considerava irraggiungibile: costruire un generatore capace di produrre energia in modo continuativo, senza consumare combustibili e senza dipendere dal sole o dal vento. Oggi quel sogno è realtà brevettata.",
+    "p1": "Il Centro Ricerche e Sviluppo di Sinersys è animato da ingegneri e progettisti di comprovata competenza nel settore energetico, con esperienze internazionali nella ricerca applicata. Il loro obiettivo è sempre stato uno solo: realizzare un sistema capace di produrre energia rinnovabile in modo continuativo, senza la necessità di consumare energia dall'esterno.",
+    "p2": "Sinersys nasce all'interno di Motor Union Italia, attiva dal 1919 nel settore dell'automotive industriale e dell'ingegneria motoristica. Le competenze accumulate in oltre un secolo di progettazione meccanica avanzata — maturate anche attraverso collaborazioni con Honda, Volvo e Chrysler — hanno costituito il patrimonio tecnico-scientifico su cui è stata sviluppata la tecnologia APWEC per la generazione di energia pulita e continua.",
+    "p3": "Motor Union Italia ha dato vita a Sinersys per rispondere alle crescenti necessità di autonomia energetica, risparmio sui costi dell'energia e riduzione dell'impatto ambientale da parte di industrie, enti pubblici e operatori del settore energetico.",
+    "innovation": {
+      "label": "Innovazione Brevettata",
+      "title": "Oltre lo stato dell'arte nella generazione di energia rinnovabile continua",
+      "p1": "La tecnologia alla base di APWEC si fonda sull'azione sinergica di principi aerodinamici e fluidodinamici — moto rettilineo, vortice e sorgente/pozzo — descritti da equazioni differenziali lineari (equazioni di Laplace). Questa base matematica rigorosa garantisce prevedibilità, riproducibilità e solidità ingegneristica al sistema, caratteristiche indispensabili per applicazioni di generazione di energia rinnovabile su scala industriale.",
+      "p2": "Rispetto ai generatori eolici tradizionali, che sfruttano esclusivamente la pressione dinamica del vento (½ρV²), APWEC opera secondo principi diversi e complementari, raggiungendo potenze specifiche più elevate e producendo energia in modo continuativo indipendentemente dalle condizioni atmosferiche. Il risultato è un sistema di produzione energetica pulita che può operare 24/7, ovunque vi siano variazioni di pressione sfruttabili."
+    },
+    "comparison": {
+      "label": "Confronto Tecnologico",
+      "title": "Silo Eolico Sinersys vs. generatori tradizionali: i vantaggi concreti",
+      "costibenefici": {
+        "title": "Costi e benefici nel risparmio energetico",
+        "body": "Il confronto tra il Silo Eolico Sinersys e i sistemi di generazione eolica tradizionale mostra vantaggi netti in termini di costo per kWh prodotto: il rotore da 200 kW ha un diametro massimo di 3,5 metri contro i 30 metri di un WEC equivalente, con costi di produzione stimati tra 120.000 e 150.000 euro per unità. La continuità di generazione — 24/7 indipendentemente dal vento — e i costi di installazione e manutenzione significativamente più contenuti rendono il ritorno sull'investimento energetico più rapido e prevedibile."
+      },
+      "silenziosita": {
+        "title": "Silenziosità e impatto acustico ridotto",
+        "body": "Il rotore di APWEC, operando all'interno di un involucro coibentato, garantisce emissioni acustiche drasticamente inferiori rispetto ai grandi rotori a pale dei WEC tradizionali. Un vantaggio decisivo per installazioni in contesti urbani, periurbani o in prossimità di aree abitate, dove i limiti di rumorosità rappresentano spesso un ostacolo autorizzativo."
+      },
+      "manutenzione": {
+        "title": "Manutenzione a terra: più sicura, meno costosa",
+        "body": "Tutte le operazioni di manutenzione di APWEC si eseguono a livello del suolo: generatore e apparecchiature di controllo sono accessibili senza necessità di lavori in quota. I generatori eolici tradizionali richiedono invece interventi a 50 metri di altezza, con costi, rischi operativi e tempi di fermo significativamente più elevati. Meno downtime significa più ore di produzione di energia rinnovabile ogni anno."
+      },
+      "impatto": {
+        "title": "Impatto visivo e ambientale minimizzato",
+        "body": "A parità di potenza installata, APWEC ha un'altezza massima di circa 20 metri — meno di un quarto di un WEC tradizionale equivalente. L'impatto visivo è nettamente inferiore, con vantaggi concreti in termini di accettabilità paesaggistica, iter autorizzativi più rapidi e maggiore compatibilità con le normative locali sulla tutela del paesaggio."
+      }
+    }
+  },
+
+  "certifications": {
+    "label": "Certificazioni e Qualità",
+    "title": "Qualità certificata, efficienza energetica garantita nel tempo",
+    "subtitle": "Ogni sistema Sinersys per la generazione di energia rinnovabile è progettato, testato e certificato secondo standard qualitativi internazionali. Le prestazioni energetiche promesse sono quelle certificate.",
+    "fullEnergyProject": {
+      "title": "FULL ENERGY PROJECT",
+      "body": "È l'attestato di certificazione esclusivo rilasciato al completamento dell'intero iter Sinersys. Comprende studi scientifici preliminari, diagnosi energetica approfondita e progettazione su misura dell'impianto di generazione rinnovabile. Full Energy Project certifica le prestazioni del sistema installato, garantisce l'efficienza energetica nel tempo e fornisce al cliente documentazione verificabile del rendimento atteso, dei risparmi energetici conseguibili e del ritorno sull'investimento."
+    },
+    "techService": {
+      "title": "TECH SERVICE",
+      "body": "Il programma di assistenza, manutenzione e ottimizzazione continua di Sinersys. Per ogni impianto di energia rinnovabile progettato e installato, Tech Service garantisce la massima resa energetica nel tempo attraverso interventi programmati, monitoraggio da remoto e aggiornamenti tecnici periodici. Un impegno concreto verso la sostenibilità operativa e il ritorno sull'investimento energetico del cliente."
+    }
+  },
+
+  "frontierEnergetiche": {
+    "label": "Soluzioni Energetiche",
+    "title": "Le nuove frontiere dell'energia rinnovabile e dell'efficienza energetica",
+    "p1": "Sinersys realizza progetti e impianti di cogenerazione ad alto rendimento e sviluppa tecnologie avanzate per la generazione distribuita di energia rinnovabile continua. Dalla nostra storia centenaria nell'ingegneria motoristica nasce una missione precisa: rendere accessibile l'indipendenza energetica a industrie, enti pubblici e operatori commerciali che vogliono ridurre i costi dell'energia, abbattere le emissioni di CO₂ e aumentare la resilienza dei propri impianti.",
+    "p2": "Sinersys fornisce sistemi di generazione di energia rinnovabile efficienti, flessibili e scalabili che consentono l'autoproduzione energetica con impatto ambientale zero. Ogni impianto è progettato su misura, certificato con il programma Full Energy Project e supportato nel tempo dal servizio Tech Service, per garantire rendimenti misurabili e verificabili lungo tutto il ciclo di vita dell'impianto."
+  },
+
   "ethics": {
     "label": "Codice Etico",
     "title": "Codice Etico",
     "subtitle": "I principi che guidano ogni nostra scelta, ogni giorno.",
     "updated": "Ultimo aggiornamento: Marzo 2026",
-
     "s1": {
       "heading": "Premessa e campo di applicazione",
-      "p1": "Sinersys è una società italiana specializzata nello sviluppo di tecnologie avanzate per la conversione e la gestione dell'energia. Operiamo con la convinzione che innovazione e responsabilità non siano valori in contraddizione, ma complementari: la qualità del lavoro che facciamo dipende anche dalla qualità delle relazioni che costruiamo e dei comportamenti che adottiamo.",
+      "p1": "Sinersys è una società italiana specializzata nello sviluppo di tecnologie avanzate per la conversione e la gestione dell'energia rinnovabile. Operiamo con la convinzione che innovazione e responsabilità non siano valori in contraddizione, ma complementari: la qualità del lavoro che facciamo dipende anche dalla qualità delle relazioni che costruiamo e dei comportamenti che adottiamo.",
       "p2": "Il presente Codice Etico si applica a tutti coloro che operano per o con Sinersys: dipendenti, collaboratori, consulenti, fornitori e partner commerciali. Non è un documento formale fine a sé stesso, ma il riflesso scritto di una cultura aziendale che privilegia la sostanza rispetto alla forma."
     },
-
     "s2": {
       "heading": "I nostri valori",
       "p1": "Ogni decisione che prendiamo — strategica, operativa, commerciale — è orientata dai seguenti principi fondamentali:",
@@ -124,7 +276,7 @@
       },
       "v2": {
         "title": "Innovazione consapevole",
-        "body": "Sviluppiamo tecnologia con la piena consapevolezza delle sue implicazioni sociali e ambientali. L'innovazione che non porta benefici concreti non è progresso."
+        "body": "Sviluppiamo tecnologia con la piena consapevolezza delle sue implicazioni sociali e ambientali. L'innovazione che non porta benefici concreti alla transizione energetica non è progresso."
       },
       "v3": {
         "title": "Rispetto reciproco",
@@ -139,7 +291,6 @@
         "body": "Comunichiamo in modo chiaro, anche quando le notizie sono difficili. La fiducia si costruisce con l'onestà, non con le rassicurazioni."
       }
     },
-
     "s3": {
       "heading": "Ambiente di lavoro",
       "p1": "Sinersys è un luogo dove le persone devono poter lavorare bene. Questo richiede impegno attivo da parte di tutti:",
@@ -148,13 +299,11 @@
       "l3": "Riconoscere e valorizzare il contributo di ciascuno, indipendentemente da genere, età, nazionalità, orientamento sessuale o convinzioni personali.",
       "l4": "Investire nello sviluppo professionale come impegno reciproco, non come benefit unilaterale."
     },
-
     "s4": {
       "heading": "Relazioni commerciali",
       "p1": "Con clienti e partner costruiamo relazioni che creano valore nel lungo periodo. Questo significa essere onesti sui limiti delle nostre soluzioni, rispettare gli impegni contrattuali anche quando è costoso farlo, e rifiutare commesse che richiederebbero di compromettere la nostra integrità.",
       "p2": "Nella selezione dei fornitori privilegiamo chi condivide standard etici e ambientali comparabili ai nostri. Non accettiamo il principio per cui il prezzo più basso giustifica qualsiasi compromesso sulle condizioni di lavoro o sull'impatto ambientale nella catena di fornitura."
     },
-
     "s5": {
       "heading": "Conflitti di interesse e doni",
       "p1": "Un conflitto di interesse si verifica quando un interesse personale potrebbe interferire con le decisioni prese per conto di Sinersys. Chiediamo a tutti di:",
@@ -163,13 +312,11 @@
       "l3": "Non accettare né offrire doni, ospitalità o altri benefici che vadano oltre le normali prassi di cortesia professionale (limite indicativo: €50 per singolo episodio).",
       "l4": "Non utilizzare informazioni confidenziali ottenute nell'esercizio del proprio ruolo per fini personali o per conto di terzi."
     },
-
     "s6": {
       "heading": "Riservatezza e protezione dei dati",
       "p1": "Le informazioni riservate — relative a clienti, partner, tecnologie proprietarie, dati finanziari — sono un patrimonio che va protetto. Ogni collaboratore è tenuto a trattarle con la stessa cura con cui vorrebbe che i propri dati personali fossero trattati da altri.",
       "p2": "Il trattamento dei dati personali avviene in conformità al Regolamento UE 2016/679 (GDPR) e alla normativa italiana vigente. I principi di minimizzazione, finalità e sicurezza si applicano a ogni trattamento, senza eccezioni."
     },
-
     "s7": {
       "heading": "Anticorruzione e conformità normativa",
       "p1": "Sinersys opera nel rispetto di tutte le leggi e i regolamenti applicabili in ogni paese in cui è presente. La corruzione — in qualsiasi forma — è incompatibile con i nostri valori e con il nostro modello di business. In particolare:",
@@ -177,7 +324,6 @@
       "l2": "La contabilità deve riflettere fedelmente ogni operazione. Non esistono fondi in nero, pagamenti non registrati o registrazioni false.",
       "l3": "Chi rileva o sospetta una violazione di questo Codice può segnalarla in modo riservato attraverso i canali ufficiali, con garanzia di anonimato e protezione da ritorsioni."
     },
-
     "s8": {
       "heading": "Violazioni e conseguenze",
       "p1": "Le violazioni accertate del presente Codice Etico comportano conseguenze proporzionate alla gravità del comportamento, fino alla risoluzione del rapporto di lavoro o collaborazione e, ove previsto dalla legge, alle sanzioni penali o civili applicabili. Sinersys si impegna a trattare ogni segnalazione con la massima riservatezza e ad investigare con tempestività e imparzialità. Per segnalazioni: etica@sinersys.it"
@@ -189,7 +335,6 @@
     "title": "Privacy Policy",
     "subtitle": "Come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.",
     "updated": "Ultimo aggiornamento: Marzo 2026",
-
     "s1": {
       "heading": "Titolare del trattamento",
       "p1": "La presente informativa è redatta ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR) e si applica a chiunque visiti il sito web sinersys.it o interagisca con i servizi di Sinersys.",
@@ -200,7 +345,6 @@
       "email": "Contatto privacy: ",
       "emailVal": "privacy@sinersys.it"
     },
-
     "s2": {
       "heading": "Categorie di dati trattati",
       "p1": "In funzione del tipo di interazione con i nostri servizi, trattiamo le seguenti categorie di dati personali:",
@@ -221,7 +365,6 @@
         "body": "Statistiche aggregate sull'utilizzo delle funzionalità del sito e dei prodotti digitali, raccolte in forma anonimizzata o pseudonimizzata."
       }
     },
-
     "s3": {
       "heading": "Finalità e basi giuridiche",
       "p1": "I dati personali sono trattati per finalità specifiche, ciascuna con una propria base giuridica:",
@@ -231,7 +374,6 @@
       "l4": "Invio di comunicazioni promozionali e newsletter, esclusivamente previo consenso esplicito e revocabile (base: consenso, art. 6.1.a GDPR).",
       "l5": "Analisi statistiche sull'utilizzo del sito per migliorarne le prestazioni e l'esperienza utente (base: legittimo interesse, art. 6.1.f GDPR, con possibilità di opposizione)."
     },
-
     "s4": {
       "heading": "Destinatari dei dati",
       "p1": "I dati personali non vengono venduti a terzi. Possono essere comunicati esclusivamente a:",
@@ -248,13 +390,11 @@
         "body": "Forze dell'ordine, autorità giudiziarie o amministrative, esclusivamente su richiesta formale o in adempimento di un obbligo di legge."
       }
     },
-
     "s5": {
       "heading": "Trasferimenti extra-UE",
       "p1": "Alcuni servizi tecnici di cui ci avvaliamo (es. provider cloud, strumenti di collaborazione) potrebbero comportare trasferimenti di dati verso paesi extra-UE. In tali casi applichiamo le garanzie previste dal GDPR: Clausole Contrattuali Standard (SCC) approvate dalla Commissione Europea, oppure ci avvaliamo di fornitori operanti in paesi con decisione di adeguatezza.",
       "p2": "L'elenco aggiornato dei sub-responsabili e delle garanzie adottate è disponibile su richiesta scrivendo a privacy@sinersys.it."
     },
-
     "s6": {
       "heading": "I tuoi diritti",
       "p1": "In quanto interessato, hai diritto di:",
@@ -280,13 +420,11 @@
       },
       "contact": "Per esercitare i tuoi diritti scrivi a privacy@sinersys.it, indicando il diritto che intendi esercitare. Risponderemo entro 30 giorni. Hai altresì il diritto di proporre reclamo al Garante per la Protezione dei Dati Personali (www.garanteprivacy.it)."
     },
-
     "s7": {
       "heading": "Tempi di conservazione",
       "p1": "Conserviamo i dati personali per il tempo strettamente necessario alle finalità per cui sono stati raccolti: dati contrattuali e fiscali per 10 anni dalla cessazione del rapporto (obblighi di legge); dati di navigazione per massimo 13 mesi; dati per attività di marketing fino alla revoca del consenso o per un massimo di 24 mesi dall'ultima interazione.",
       "p2": "Alla scadenza del periodo di conservazione i dati vengono cancellati in modo sicuro o resi definitivamente anonimi."
     },
-
     "s8": {
       "heading": "Aggiornamenti",
       "p1": "La presente informativa può essere aggiornata in qualsiasi momento per riflettere modifiche normative, tecnologiche o nei nostri servizi. Le modifiche sostanziali vengono comunicate tramite avviso sul sito o via email agli utenti registrati. La data di ultimo aggiornamento è sempre indicata in cima alla pagina."
@@ -298,13 +436,11 @@
     "title": "Cookie Policy",
     "subtitle": "Come utilizziamo i cookie e tecnologie di tracciamento su sinersys.it.",
     "updated": "Ultimo aggiornamento: Marzo 2026",
-
     "s1": {
       "heading": "Cosa sono i cookie",
       "p1": "I cookie sono file di testo di piccole dimensioni che i siti web depositano sul dispositivo dell'utente durante la navigazione. Permettono al sito di ricordare le azioni e le preferenze dell'utente nel tempo, rendendo la navigazione più efficiente e personalizzata.",
       "p2": "Oltre ai cookie tradizionali, utilizziamo tecnologie analoghe come i pixel di tracciamento e il local storage. La presente Cookie Policy si applica a tutte queste tecnologie e descrive come le utilizziamo, perché, e come puoi controllarle."
     },
-
     "s2": {
       "heading": "Tipi di cookie che utilizziamo",
       "p1": "Classifichiamo i cookie che utilizziamo in quattro categorie:",
@@ -325,7 +461,6 @@
         "body": "Utilizzati per mostrare contenuti pubblicitari rilevanti e misurare l'efficacia delle campagne. Creano un profilo degli interessi dell'utente su più siti. Richiedono consenso esplicito."
       }
     },
-
     "s3": {
       "heading": "Cookie di terze parti",
       "p1": "Integriamo nel sito i seguenti servizi di terze parti, ciascuno dei quali può installare propri cookie:",
@@ -333,7 +468,6 @@
       "gtm": "Servizio di Google LLC per la gestione centralizzata dei tag di tracciamento. Non raccoglie direttamente dati utente, ma facilita l'attivazione degli altri cookie di terze parti.",
       "p2": "Per informazioni complete sui cookie installati da ciascun servizio e su come esercitare i relativi diritti, consulta le privacy policy dei singoli fornitori disponibili sui loro siti web ufficiali."
     },
-
     "s4": {
       "heading": "Come gestire i cookie",
       "p1": "Hai il pieno controllo sui cookie non essenziali. Puoi gestire le tue preferenze attraverso:",
@@ -342,19 +476,18 @@
       "l3": "Strumenti di opt-out dei fornitori: Google Analytics Opt-out (tools.google.com/dlpage/gaoptout) e strumenti analoghi messi a disposizione dai singoli provider.",
       "l4": "Piattaforme di gestione per la pubblicità comportamentale: YourOnlineChoices (youronlinechoices.eu) per il contesto europeo."
     },
-
     "s5": {
       "heading": "Impatto della disattivazione",
       "p1": "La disattivazione dei cookie tecnici essenziali non è possibile senza pregiudicare gravemente il funzionamento del sito. La disattivazione dei cookie analitici e di marketing, invece, non influisce sulla tua capacità di navigare e usufruire dei contenuti: il sito funzionerà normalmente, ma non riceverai contenuti personalizzati basati sulla tua navigazione.",
       "p2": "Se utilizzi il browser in modalità privata/incognito, i cookie vengono eliminati automaticamente alla chiusura della finestra. Tieni presente che questa modalità non equivale a un opt-out completo dal tracciamento."
     },
-
     "s6": {
       "heading": "Aggiornamenti e contatti",
       "p1": "La presente Cookie Policy viene aggiornata periodicamente per riflettere variazioni tecnologiche, modifiche nei servizi di terze parti integrati o aggiornamenti normativi. Ti consigliamo di visitare questa pagina regolarmente.",
       "p2": "Per qualsiasi domanda relativa all'utilizzo dei cookie su sinersys.it, scrivici a privacy@sinersys.it. Indirizzo postale: Sinersys S.r.l., [INSERIRE INDIRIZZO REALE DA VISURA CAMERALE]."
     }
   },
+
   "footer": {
     "quick": {
       "title": "Quick Links",
@@ -388,8 +521,6 @@
       "cookies": "Cookie",
       "ethics": "Codice Etico"
     },
-    "social":{
-      
-    }
+    "social": {}
   }
 }

@@ -87,12 +87,12 @@ export default function Footer() {
     <footer ref={ref} className="relative overflow-hidden pt-28 pb-12 text-white">
 
       {/* Background */}
-      <motion.div className="absolute inset-0 bg-gradient-to-br from-[#1c398e] to-[#4e67b1]" />
+      <motion.div className="absolute inset-0" style={{background:"linear-gradient(160deg, rgb(28, 57, 142) 10%, rgb(0 86 191) 40%, rgb(5, 11, 38) 100%)",}} />
 
       {/* Glow */}
       <motion.div
         style={{ opacity: glowOpacity }}
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-blue-400 blur-[180px]"
+        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-[180px]"
       />
 
       <motion.div

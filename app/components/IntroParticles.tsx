@@ -128,9 +128,8 @@ export default function IntroParticles({ onFinish, showIntro }: Props) {
     <div
       className={clsx(
         "fixed inset-x-0 top-0 z-[9999] transition-colors duration-700",
-        phase >= 4 ? "bg-[#F4F7FA]" : "bg-blue-900"
       )}
-      style={{ height: `100${vhUnit}` }}
+      style={{ height: `100${vhUnit}`, background: phase >= 4 ? "#F4F7FA" : "linear-gradient(180deg, rgb(28, 57, 142) 10%, rgb(0 86 191) 50%, rgb(5, 11, 38) 100%)" }}
     >
       <canvas ref={canvasRef} className="absolute inset-0" />
 
