@@ -22,7 +22,6 @@ import { useAppSelector } from "./hooks";
 import { detectIOS } from "./support/useViewportHeight";
 import FaqSection from "./components/FaqSection";
 import LiquidBackground from "./components/LiquidBackground";
-import HeroModel from "./components/HeroModel";
 import ContactDrawer from "./components/ContactDrawer";
 import { setNavigationState, setOpenContact } from "./features/counterSlice";
 import { useAppDispatch } from "./hooks";
@@ -30,6 +29,7 @@ import CookieBanner from "./components/CookieBanner";
 import WhiteSection from "./components/WhiteSection";
 import LinkButton from "./components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
+import HeroVideo from "./components/HeroVideo";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -207,13 +207,7 @@ export default function Home() {
     [0, 0.7, 0.8, 1.7, 1.8],
     [0, 0, 1, 1, 0]
   );
-  const modelPhaseAY = useTransform(smooth, [0.7, 1.2, 1.7, 1.9], [490, 30, 30, -500]);
-  const modelMaskOpacity = useTransform(smooth, [0, 0.03], [1, 0]);
-  const modelRotationY = useTransform(
-    smooth,
-    [0, 1.0, 4],
-    [0, -Math.PI / 6, Math.PI / 7]
-  );
+  const modelPhaseAY = useTransform(smooth, [0.7, 1.2, 1.7, 1.9], [490, 50, 50, -500]);
   const modelOverflow = useTransform(smooth, (v) =>
     v < 0.05 ? "hidden" : "visible"
   );
@@ -221,7 +215,7 @@ export default function Home() {
   const modelX = useTransform(
     smooth,
     [0, 1],
-    [0, isMobile ? 0 : 280] // ← sposta a destra solo desktop
+    [0, isMobile ? 0 : 0] // ← sposta a destra solo desktop
   );
 
   // ── HomePageAbout ─────────────────────────────────────────────────────────
@@ -359,38 +353,23 @@ export default function Home() {
 
         {/* ── MODEL PHASE A ────────────────────────────────────────────────── */}
         {introFinished && (
-          <motion.div
-            style={{
-              position: "fixed",
-              bottom: 0,
-              height: isIOS ? "120lvh" : "120dvh",
-              width: "100vw",
-              zIndex: 10,
-              opacity: modelPhaseAOpacity,
-              y: modelPhaseAY,
-              x: modelX,
-              pointerEvents: "none",
-              overflow: modelOverflow,
-            }}
-          >
-            <HeroModel
-              progressMotion={smooth}
-              rotationProgress={modelRotationY}
-            />
-            <motion.div
-              style={{
-                position: "absolute",
-                inset: 16,
-                background:
-                  "linear-gradient(to top, rgba(12,24,70,0.97) 0%, rgba(12,24,70,0.65) 40%, rgba(12,24,70,0.1) 70%, transparent 100%)",
-                opacity: modelMaskOpacity,
-                pointerEvents: "none",
-                zIndex: 2,
-                borderRadius: "24px",
-              }}
-            />
-          </motion.div>
-        )}
+        <motion.div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            height: isIOS ? "120lvh" : "120dvh",
+            width: "100vw",
+            zIndex: 10,
+            opacity: modelPhaseAOpacity,
+            y: modelPhaseAY,
+            x: modelX,
+            pointerEvents: "none",
+            overflow: modelOverflow,
+          }}
+        >
+          <HeroVideo progressMotion={smooth} />
+        </motion.div>
+      )}
 
         {/* ── SLIDE 1 ─────────────────────────────────────────────────────── */}
         <motion.div

@@ -129,12 +129,11 @@ export default function AboutUsPage() {
   const t           = useTranslations("aboutus");
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const isIOS       = detectIOS();
-  const dispatch = useAppDispatch();
+  const dispatch    = useAppDispatch();
 
   const progressMotion = useMotionValue(0);
   const [vhPx, setVhPx]   = useState(0);
   const [width, setWidth]  = useState(0);
-  // Measure real content height to avoid extra space below footer
   const [contentH, setContentH] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -158,7 +157,6 @@ export default function AboutUsPage() {
     return () => window.removeEventListener("resize", r);
   }, []);
 
-  // Measure the real content height after render
   useEffect(() => {
     if (!contentRef.current) return;
     const ro = new ResizeObserver(() => {
@@ -196,11 +194,6 @@ export default function AboutUsPage() {
   const vh     = vhPx || 1;
 
   // ── Hero scroll timeline ──────────────────────────────────────────────────
-  // p 0→0.4   padding 16→0, radius 24→0  (hero card expands)
-  // p 0.4→0.8 fullscreen (user reads slide 0 + 1)
-  // p 0.8→1.3 padding 0→16, radius 0→24, hero slides up  (exits)
-  // p 1.3+    hero fully gone — content section becomes visible
-
   const heroInset  = useTransform(smooth, [0, 0.4, 0.8, 1.3], [16, 0, 0, 16]);
   const heroRadius = useTransform(smooth, [0, 0.4, 0.8, 1.3], [24, 0, 0, 24]);
   const heroPad    = useTransform(heroInset,  (v) => `${v}px`);
@@ -208,23 +201,28 @@ export default function AboutUsPage() {
   const heroY      = useTransform(smooth, [0.8, 1.3], ["0vh", "-115vh"]);
   const heroOp     = useTransform(smooth, [1.1, 1.3], [1, 0]);
 
-  // Slide texts
   const slide0Opacity = useTransform(smooth, [0, 0, 0.35, 0.5], [0, 1, 1, 0]);
   const slide0Y       = useTransform(smooth, [0, 0, 0.35, 0.5], [20, 0, 0, -30]);
   const slide1Opacity = useTransform(smooth, [0.4, 0.6, 1.0, 1.2], [0, 1, 1, 0]);
   const slide1Y       = useTransform(smooth, [0.4, 0.6, 1.0, 1.2], [30, 0, 0, -30]);
 
-  const headerTheme = useTransform(smooth, [1.2, 1.4], [0, 0]);
-  const gradientPage = useTransform(smooth, [0, 1.3, 1.4], ["#F4F7FA", "#F4F7FA" , "linear-gradient(160deg, #1c398e 0%, #0070f3 55%, #050b26 100%)"]);
-  const bodyBg = useTransform(smooth, [0, 1.3, 1.3], ["#F4F7FA", "#F4F7FA" , "linear-gradient(160deg, rgb(28, 57, 142) 29%, rgb(0, 112, 243) 71%, rgb(5, 11, 38) 100%)"]);
-  const h2Color = useTransform(smooth, [0, 1.3, 1.3], ["#1c398e", "#1c398e" , "#f4f7fa"]);
-  const pcolor = useTransform(smooth, [0, 1.3, 1.3], ["#1c398e", "#1c398e" , "rgba(200,218,250,0.75)"]);
-  const CONTENT_TOP = vh * 2.0;
+  const headerTheme  = useTransform(smooth, [1.2, 1.4], [0, 0]);
+  const gradientPage = useTransform(smooth, [0, 1.3, 1.4], ["#F4F7FA", "#F4F7FA", "linear-gradient(160deg, #1c398e 0%, #0070f3 55%, #050b26 100%)"]);
+  const bodyBg       = useTransform(smooth, [0, 1.3, 1.3, 4.9 ,5.0], ["#F4F7FA", "#F4F7FA", "linear-gradient(160deg, rgb(28, 57, 142) 29%, rgb(0, 112, 243) 71%, rgb(5, 11, 38) 100%)", "linear-gradient(160deg, rgb(28, 57, 142) 29%, rgb(0, 112, 243) 71%, rgb(5, 11, 38) 100%)", "#F4F7FA"]);
+  const h2Color      = useTransform(smooth, [0, 1.3, 1.3], ["#1c398e", "#1c398e", "#f4f7fa"]);
+  const pcolor       = useTransform(smooth, [0, 1.3, 1.3], ["#1c398e", "#1c398e", "rgba(200,218,250,0.75)"]);
 
-  // ── Total page height ─────────────────────────────────────────────────────
-  // = content section top + real content height
-  // If contentH is not yet measured, use a reasonable fallback.
+  const CONTENT_TOP = vh * 2.0;
   const totalHeight = CONTENT_TOP + (contentH > 0 ? contentH : vh * 4.6);
+
+  // ── Content card exit animation (inset + border-radius before footer) ─────
+  // We use scroll progress mapped to the last ~15% of the page.
+  // At p=5.0 → no inset, no radius. At p=5.6 → inset 16px, radius 24px.
+  const contentInset  = useTransform(smooth, [5.0, 5.6], [0, 16]);
+  const contentRadius = useTransform(smooth, [5.0, 5.6], [0, 24]);
+  const contentScale = useTransform(smooth, [5.0, 5.6], [1, 0.96]);
+  const contentY     = useTransform(smooth, [5.0, 5.6], [0, -20]);
+  const contentBR     = useTransform(contentRadius, (v) => `${v}px`);
 
   if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
 
@@ -245,15 +243,12 @@ export default function AboutUsPage() {
     <>
       <motion.div style={{ height: totalHeight }} aria-hidden />
 
-      <motion.div className="absolute inset-x-0 top-0" style={{ height: totalHeight, zIndex:1, background: bodyBg }}>
+      <motion.div className="absolute inset-x-0 top-0" style={{ height: totalHeight, zIndex:1, background: bodyBg, }}>
 
         {!openContact && <Header headerTheme={headerTheme} />}
         {!openContact && <MenuButton />}
 
-        {/* ── HERO ──────────────────────────────────────────────────────────
-            Exits completely before content becomes visible.
-            opacity→0 at p=1.1 so there's no overlap with the content section.
-        ──────────────────────────────────────────────────────────────────── */}
+        {/* ── HERO ─────────────────────────────────────────────────────── */}
         <motion.div style={{ position:"fixed", inset:0, zIndex:10, padding:heroPad, y:heroY, opacity:heroOp }}>
           <motion.div style={{ width:"100%", height:"100%", borderRadius:heroRad, overflow:"hidden", position:"relative" }}>
             <img src="/aboutus.png" alt="" // eslint-disable-line
@@ -297,119 +292,134 @@ export default function AboutUsPage() {
           </motion.div>
         </motion.div>
 
-        {/* ── CONTENT — starts at CONTENT_TOP (safely below hero exit) ─────
-            Uses ref to measure its real height → drives totalHeight.
-        ──────────────────────────────────────────────────────────────────── */}
+        {/* ── CONTENT ──────────────────────────────────────────────────── */}
         <motion.div
           ref={contentRef}
           style={{
-            position:   "absolute",
-            top:        CONTENT_TOP,
-            left:       0,
-            right:      0,
-            background: gradientPage,
-            zIndex:     11,
+            position:     "absolute",
+            top:          CONTENT_TOP,
+            left:         0,
+            right:        0,
+            zIndex:       11,
           }}
         >
-          {/* WHO WE ARE */}
-          <section style={{ padding:"clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem)" }}>
-            <FadeIn><SectionLabel label={t("whoweareLabel")} /></FadeIn>
-            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:"clamp(2rem,5vw,4rem)", alignItems:"start" }}>
-              <FadeIn direction="left">
-                <motion.h2 style={{ margin:0, fontSize:"clamp(2rem,4.5vw,3.8rem)", fontWeight:800, letterSpacing:"-0.03em", lineHeight:1.0, color: h2Color }}>
-                  {t("whoweare.title")}
-                </motion.h2>
-              </FadeIn>
-              <FadeIn direction="right" delay={0.1}>
-                <div style={{ display:"flex", flexDirection:"column", gap:"1.2rem" }}>
-                  <motion.p style={{ margin:0, fontSize:"clamp(0.95rem,1.4vw,1.1rem)", lineHeight:1.7, color:pcolor }}>{t("whoweare.p1")}</motion.p>
-                  <motion.p style={{ margin:0, fontSize:"clamp(0.95rem,1.4vw,1.1rem)", lineHeight:1.7, color:pcolor }}>{t("whoweare.p2")}</motion.p>
-                </div>
-              </FadeIn>
-            </div>
-            <div style={{ display:"flex", gap:"clamp(0.6rem,1.5vw,1rem)", flexWrap:"wrap", marginTop:"clamp(2.5rem,5vh,4rem)" }}>
-              {["value0","value1","value2","value3","value4"].map((key,i) => (
-                <FadeIn key={key} delay={i*0.06} direction="up">
-                  <div style={{ padding:"10px 20px", borderRadius:"100px", background:"rgba(28,57,142,0.35)", border:"1px solid rgba(100,150,255,0.20)", backdropFilter:"blur(12px)", fontSize:"clamp(0.78rem,1.1vw,0.92rem)", fontWeight:600, color:"rgba(180,210,255,0.85)", letterSpacing:"0.04em" }}>
-                    {t(`values.${key}`)}
+          {/*
+            Inner wrapper that animates margin + borderRadius as the user
+            approaches the footer. The outer div keeps left:0/right:0 so the
+            page background shows through the "inset gap".
+          */}
+          <motion.div
+            style={{
+              scale: contentScale,
+              y: contentY,
+              borderRadius: contentBR,
+              overflow:         "hidden",
+              background:       gradientPage,
+            }}
+          >
+            {/* WHO WE ARE */}
+            <section style={{ padding:"clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem)" }}>
+              <FadeIn><SectionLabel label={t("whoweareLabel")} /></FadeIn>
+              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:"clamp(2rem,5vw,4rem)", alignItems:"start" }}>
+                <FadeIn direction="left">
+                  <motion.h2 style={{ margin:0, fontSize:"clamp(2rem,4.5vw,3.8rem)", fontWeight:800, letterSpacing:"-0.03em", lineHeight:1.0, color: h2Color }}>
+                    {t("whoweare.title")}
+                  </motion.h2>
+                </FadeIn>
+                <FadeIn direction="right" delay={0.1}>
+                  <div style={{ display:"flex", flexDirection:"column", gap:"1.2rem" }}>
+                    <motion.p style={{ margin:0, fontSize:"clamp(0.95rem,1.4vw,1.1rem)", lineHeight:1.7, color:pcolor }}>{t("whoweare.p1")}</motion.p>
+                    <motion.p style={{ margin:0, fontSize:"clamp(0.95rem,1.4vw,1.1rem)", lineHeight:1.7, color:pcolor }}>{t("whoweare.p2")}</motion.p>
                   </div>
                 </FadeIn>
-              ))}
-            </div>
-          </section>
+              </div>
+              <div style={{ display:"flex", gap:"clamp(0.6rem,1.5vw,1rem)", flexWrap:"wrap", marginTop:"clamp(2.5rem,5vh,4rem)" }}>
+                {["value0","value1","value2","value3","value4"].map((key,i) => (
+                  <FadeIn key={key} delay={i*0.06} direction="up">
+                    <div style={{ padding:"10px 20px", borderRadius:"100px", background:"rgba(28,57,142,0.35)", border:"1px solid rgba(100,150,255,0.20)", backdropFilter:"blur(12px)", fontSize:"clamp(0.78rem,1.1vw,0.92rem)", fontWeight:600, color:"rgba(180,210,255,0.85)", letterSpacing:"0.04em" }}>
+                      {t(`values.${key}`)}
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </section>
 
-          <div style={{ height:"1px", background:"rgba(255,255,255,0.06)", margin:"0 clamp(1.5rem,8vw,8rem)" }} />
+            <div style={{ height:"1px", background:"rgba(255,255,255,0.06)", margin:"0 clamp(1.5rem,8vw,8rem)" }} />
 
-          {/* TIMELINE */}
-          <section style={{ padding:"clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem)" }}>
-            <FadeIn><SectionLabel label={t("timelineLabel")} /></FadeIn>
-            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:"0 clamp(3rem,6vw,6rem)", alignItems:"start" }}>
-              <div style={{ position: isMobile?"static":"sticky", top:"clamp(6rem,10vh,8rem)", paddingBottom: isMobile?"2rem":0 }}>
+            {/* TIMELINE */}
+            <section style={{ padding:"clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem)" }}>
+              <FadeIn><SectionLabel label={t("timelineLabel")} /></FadeIn>
+              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:"0 clamp(3rem,6vw,6rem)", alignItems:"start" }}>
+                <div style={{ position: isMobile?"static":"sticky", top:"clamp(6rem,10vh,8rem)", paddingBottom: isMobile?"2rem":0 }}>
+                  <FadeIn direction="left">
+                    <h2 style={{ margin:0, fontSize:"clamp(2rem,4.5vw,3.8rem)", fontWeight:800, letterSpacing:"-0.03em", lineHeight:1.0, color:"#f4f7fa", marginBottom:"1.2rem" }}>
+                      {t("timeline.heading")}
+                    </h2>
+                    <p style={{ margin:0, fontSize:"clamp(0.9rem,1.3vw,1.05rem)", lineHeight:1.65, color:"rgba(200,218,250,0.65)", maxWidth:"380px" }}>
+                      {t("timeline.subheading")}
+                    </p>
+                  </FadeIn>
+                </div>
+                <div>
+                  {timeline.map((item,i) => (
+                    <TimelineItem key={item.key} index={i} year={item.year}
+                      title={t(`timeline.${item.key}.title`)}
+                      description={t(`timeline.${item.key}.description`)}
+                      isLast={i===timeline.length-1}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <div style={{ height:"1px", background:"rgba(255,255,255,0.06)", margin:"0 clamp(1.5rem,8vw,8rem)" }} />
+
+            {/* TEAM */}
+            <section style={{ padding:"clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem) clamp(5rem,10vh,8rem)" }}>
+              <FadeIn><SectionLabel label={t("teamLabel")} /></FadeIn>
+              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:"0 clamp(3rem,6vw,6rem)", marginBottom:"clamp(3rem,6vh,5rem)" }}>
                 <FadeIn direction="left">
-                  <h2 style={{ margin:0, fontSize:"clamp(2rem,4.5vw,3.8rem)", fontWeight:800, letterSpacing:"-0.03em", lineHeight:1.0, color:"#f4f7fa", marginBottom:"1.2rem" }}>
-                    {t("timeline.heading")}
+                  <h2 style={{ margin:0, fontSize:"clamp(2rem,4.5vw,3.8rem)", fontWeight:800, letterSpacing:"-0.03em", lineHeight:1.0, color:"#f4f7fa" }}>
+                    {t("team.heading")}
                   </h2>
-                  <p style={{ margin:0, fontSize:"clamp(0.9rem,1.3vw,1.05rem)", lineHeight:1.65, color:"rgba(200,218,250,0.65)", maxWidth:"380px" }}>
-                    {t("timeline.subheading")}
+                </FadeIn>
+                <FadeIn direction="right" delay={0.1}>
+                  <p style={{ margin:0, fontSize:"clamp(0.9rem,1.3vw,1.05rem)", lineHeight:1.65, color:"rgba(200,218,250,0.65)" }}>
+                    {t("team.subheading")}
                   </p>
                 </FadeIn>
               </div>
-              <div>
-                {timeline.map((item,i) => (
-                  <TimelineItem key={item.key} index={i} year={item.year}
-                    title={t(`timeline.${item.key}.title`)}
-                    description={t(`timeline.${item.key}.description`)}
-                    isLast={i===timeline.length-1}
+              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(3,1fr)", gap:"clamp(1rem,2vw,1.5rem)" }}>
+                {team.map((m,i) => (
+                  <TeamCard key={m.key} index={i} photo={m.photo}
+                    name={t(`team.${m.key}.name`)}
+                    role={t(`team.${m.key}.role`)}
+                    bio={t(`team.${m.key}.bio`)}
                   />
                 ))}
               </div>
-            </div>
-          </section>
-
-          <div style={{ height:"1px", background:"rgba(255,255,255,0.06)", margin:"0 clamp(1.5rem,8vw,8rem)" }} />
-
-          {/* TEAM */}
-          <section style={{ padding:"clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem) clamp(5rem,10vh,8rem)" }}>
-            <FadeIn><SectionLabel label={t("teamLabel")} /></FadeIn>
-            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:"0 clamp(3rem,6vw,6rem)", marginBottom:"clamp(3rem,6vh,5rem)" }}>
-              <FadeIn direction="left">
-                <h2 style={{ margin:0, fontSize:"clamp(2rem,4.5vw,3.8rem)", fontWeight:800, letterSpacing:"-0.03em", lineHeight:1.0, color:"#f4f7fa" }}>
-                  {t("team.heading")}
-                </h2>
+              <FadeIn delay={0.3}>
+                <GlassCard style={{ marginTop:"clamp(3rem,6vh,5rem)", padding:"clamp(2rem,4vw,3rem)", display:"flex", alignItems: isMobile?"flex-start":"center", justifyContent:"space-between", flexDirection: isMobile?"column":"row", gap:"1.5rem" }}>
+                  <div>
+                    <h3 style={{ margin:"0 0 0.4rem", fontSize:"clamp(1.2rem,2.2vw,1.8rem)", fontWeight:700, color:"#f4f7fa", letterSpacing:"-0.015em" }}>
+                      {t("team.joinTitle")}
+                    </h3>
+                    <p style={{ margin:0, fontSize:"clamp(0.85rem,1.2vw,1rem)", color:"rgba(200,218,250,0.65)", lineHeight:1.6 }}>
+                      {t("team.joinSubtitle")}
+                    </p>
+                  </div>
+                  <a href="/contatti" style={{ display:"inline-flex", alignItems:"center", gap:"10px", padding:"12px 24px", borderRadius:"100px", background:"rgba(255,255,255,0.12)", border:"1px solid rgba(255,255,255,0.22)", color:"#f4f7fa", fontSize:"clamp(0.82rem,1.1vw,0.95rem)", fontWeight:600, letterSpacing:"0.04em", textDecoration:"none", whiteSpace:"nowrap" }}>
+                    {t("team.joinCta")} ↗
+                  </a>
+                </GlassCard>
               </FadeIn>
-              <FadeIn direction="right" delay={0.1}>
-                <p style={{ margin:0, fontSize:"clamp(0.9rem,1.3vw,1.05rem)", lineHeight:1.65, color:"rgba(200,218,250,0.65)" }}>
-                  {t("team.subheading")}
-                </p>
-              </FadeIn>
-            </div>
-            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(3,1fr)", gap:"clamp(1rem,2vw,1.5rem)" }}>
-              {team.map((m,i) => (
-                <TeamCard key={m.key} index={i} photo={m.photo}
-                  name={t(`team.${m.key}.name`)}
-                  role={t(`team.${m.key}.role`)}
-                  bio={t(`team.${m.key}.bio`)}
-                />
-              ))}
-            </div>
-            <FadeIn delay={0.3}>
-              <GlassCard style={{ marginTop:"clamp(3rem,6vh,5rem)", padding:"clamp(2rem,4vw,3rem)", display:"flex", alignItems: isMobile?"flex-start":"center", justifyContent:"space-between", flexDirection: isMobile?"column":"row", gap:"1.5rem" }}>
-                <div>
-                  <h3 style={{ margin:"0 0 0.4rem", fontSize:"clamp(1.2rem,2.2vw,1.8rem)", fontWeight:700, color:"#f4f7fa", letterSpacing:"-0.015em" }}>
-                    {t("team.joinTitle")}
-                  </h3>
-                  <p style={{ margin:0, fontSize:"clamp(0.85rem,1.2vw,1rem)", color:"rgba(200,218,250,0.65)", lineHeight:1.6 }}>
-                    {t("team.joinSubtitle")}
-                  </p>
-                </div>
-                <a href="/contatti" style={{ display:"inline-flex", alignItems:"center", gap:"10px", padding:"12px 24px", borderRadius:"100px", background:"rgba(255,255,255,0.12)", border:"1px solid rgba(255,255,255,0.22)", color:"#f4f7fa", fontSize:"clamp(0.82rem,1.1vw,0.95rem)", fontWeight:600, letterSpacing:"0.04em", textDecoration:"none", whiteSpace:"nowrap" }}>
-                  {t("team.joinCta")} ↗
-                </a>
-              </GlassCard>
-            </FadeIn>
-          </section>
-           
-            <Footer />
+            </section>
+          </motion.div>
+
+          {/* Whitespace gap before footer */}
+          <div style={{ height:"20vh" }} />
+
+          <Footer />
         </motion.div>
 
         <ContactDrawer
