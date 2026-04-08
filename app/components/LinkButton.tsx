@@ -97,7 +97,7 @@ export default function LinkButton({ link, text, icon, top, color }: Props) {
           "bg-white/10",
           "border border-white/20",
           "shadow-[0_8px_40px_rgba(0,0,0,0.25)]",
-          "text-white text-2xl font-medium",
+          "text-white text-xl sm:text-2xl font-medium",
           "overflow-hidden"
         )}
       >

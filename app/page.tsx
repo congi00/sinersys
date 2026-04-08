@@ -244,10 +244,6 @@ export default function Home() {
   //   ]
   // );
   const circleScale  = useTransform(smooth, [3.7, 3.8, 5.2, 5.3], [0, 1, 1, 0]);
-  const circleRadius = useTransform(smooth,
-    [3.7, 3.8],
-    ["50%", "0%"]  // inizia come cerchio, diventa rettangolo
-  );
 
   // ── OurPromise ────────────────────────────────────────────────────────────
   const ourPromiseY = useTransform(
@@ -328,19 +324,19 @@ export default function Home() {
         >
           <h1
             style={{ lineHeight: "1.0" }}
-            className="text-[2.7rem] sm:text-[5.5rem] text-[#f4f7fa] font-bold leading-tight tracking-tight whitespace-pre-line"
+            className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-7xl text-[#f4f7fa] font-bold leading-tight tracking-tight whitespace-pre-line"
           >
             {homeTexts("slide0.title")}
           </h1>
           <h2
             style={{ lineHeight: "1.1" }}
-            className="text-[1.3rem] sm:text-[1.6rem] mt-5 mb-5 whitespace-pre-line text-[#c8d8f8] font-light max-w-xl"
+            className="text-xl font-stretch-extra-expanded tracking-wide px-3 sm:px-0 sm:text-2xl mt-2 sm:mt-5 sm:mb-5 whitespace-pre-line text-[#c8d8f8] max-w-xl font-light sm:max-w-2xl"
           >
             {homeTexts("slide0.subtitle")}
           </h2>
 
           {/* LinkButton — scopri di più / link ad APWEC */}
-          <div style={{ pointerEvents: "auto" }}>
+          <div className="mb-10 sm:mb-0" style={{ pointerEvents: "auto" }}>
             <LinkButton
               link="/apwec"
               text={homeTexts("slide0.link")}
@@ -395,13 +391,13 @@ export default function Home() {
             </h4>
             <h1
               style={{ lineHeight: "1.1" }}
-              className="text-[2.8rem] sm:text-[4.0rem] text-[#f4f7fa] font-bold leading-tight"
+              className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-7xl text-[#f4f7fa] font-bold leading-tight"
             >
               {homeTexts("slide1.title")}
             </h1>
             <h2
               style={{ lineHeight: "1.3" }}
-              className="text-[1.3rem] sm:text-[1.8rem] mt-4 whitespace-pre-line text-[#c8d8f8] font-light"
+              className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line text-[#c8d8f8] font-light"
             >
               {homeTexts("slide1.subtitle")}
             </h2>

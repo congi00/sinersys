@@ -8,69 +8,59 @@ import {
 } from "../features/counterSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import clsx from "clsx";
-import {useTranslations} from 'next-intl';
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import Link from "next/link";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function MenuButton() {
-  const menuVisibility = useAppSelector((state) => state.siteState.menuVisible);
-  const navigationState = useAppSelector(
-    (state) => state.siteState.navigationState
-  );
-  const dispatch = useAppDispatch();
-  const menuVoices = useTranslations('menu');
-  const items = [
-    'homepage',
-    'products',
-    'about',
-    'contacts'
-  ];
-  const links = [
-    "/",
-    "apwec",
-    "about-us",
-    "",
-  ]
+  const menuVisibility  = useAppSelector((state) => state.siteState.menuVisible);
+  const navigationState = useAppSelector((state) => state.siteState.navigationState);
+  const dispatch        = useAppDispatch();
+  const menuVoices      = useTranslations("menu");
+
+  const items = ["homepage", "products", "about", "contacts"];
+  const links = ["/", "apwec", "about-us", ""];
 
   return (
     <div
       className={clsx(
-        "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 overflow-hidden",
-        "p-4",
-        "pt-8",
+        "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 overflow-visible", // overflow-visible so dropdown isn't clipped
+        "p-4 pt-8",
         "flex flex-col items-center justify-center",
         "bg-[#F4F7FA]/20 backdrop-blur-xl backdrop-saturate-150",
         "items-center",
         "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ease-[cubic-bezier(.16,1,.3,1)]",
         "after:absolute after:inset-0",
         "after:rounded-3xl",
-        "after:border after:border-white/20",
         "after:pointer-events-none",
         !menuVisibility &&
           "min-h-[70px] min-w-[70px] max-h-[70px] max-w-[70px] mb-6 rounded-[999px]",
         menuVisibility &&
-          "min-h-[280px] md:min-w-[550px] max-h-[320px] min-w-[350px] mb-6 bg-[#1A2127]/20 rounded-[28px]"
+          "min-h-[340px] md:min-w-[550px] max-h-[380px] min-w-[350px] mb-6 bg-[#1A2127]/20 rounded-[28px]"
       )}
       style={{
-        background:          "rgba(255, 255, 255, 0.18)",
-        backdropFilter:      "blur(32px) saturate(180%)",
-        WebkitBackdropFilter:"blur(32px) saturate(180%)",
-        border:              "1px solid rgba(255,255,255,0.22)",
-        boxShadow:           "0 8px 40px rgba(12,24,70,0.35), inset 0 1px 0 rgba(255,255,255,0.18)",
+        background:           "rgba(255, 255, 255, 0.18)",
+        backdropFilter:       "blur(32px) saturate(180%)",
+        WebkitBackdropFilter: "blur(32px) saturate(180%)",
+        border:               "1px solid rgba(255,255,255,0.22)",
+        boxShadow:            "0 8px 40px rgba(12,24,70,0.35), inset 0 1px 0 rgba(255,255,255,0.18)",
       }}
     >
+      {/* ── Expanded content ──────────────────────────────────────────── */}
       <div
         className={clsx(
-          "relative z-10 flex flex-col gap-6 mt-6 w-full items-center mb-20 text-sm/6",
+          "relative z-10 flex flex-col gap-4 mt-6 w-full items-center mb-20 text-sm/6",
           "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
           menuVisibility
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-6 pointer-events-none"
         )}
       >
+        {/* Logo */}
         <div
           className={clsx(
-            "flex flex-col items-center w-full ",
+            "flex flex-col items-center w-full",
             "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] mb-2",
             menuVisibility
               ? "opacity-100 translate-y-0 delay-[400ms]"
@@ -87,17 +77,15 @@ export default function MenuButton() {
           </h4>
         </div>
 
-        {/* Menu items */}
-        <div className="flex flex-col items-center w-full gap-1 mb-4">
+        {/* Nav items */}
+        <div className="flex flex-col items-center w-full gap-1 mb-2">
           {items.map((item, index, array) => {
             const reverseIndex = array.length - 1 - index;
-
             return (
               <Link key={item} href={links[index]}>
                 <span
                   className={clsx(
-                    "text-white text-xl",
-                    "cursor-pointer",
+                    "text-white text-xl cursor-pointer",
                     "transition-[opacity,transform] duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
                     "transition-[font-weight] duration-200",
                     menuVisibility
@@ -111,9 +99,9 @@ export default function MenuButton() {
                       : "0ms",
                   }}
                   onClick={() => {
-                      dispatch(setNavigationState(index))
-                      dispatch(setMenuVisibility(!menuVisibility))
-                      if(item === "contacts") dispatch(setOpenContact(true))
+                    dispatch(setNavigationState(index));
+                    dispatch(setMenuVisibility(!menuVisibility));
+                    if (item === "contacts") dispatch(setOpenContact(true));
                   }}
                 >
                   {menuVoices(item)}
@@ -122,10 +110,28 @@ export default function MenuButton() {
             );
           })}
         </div>
+
+        {/* ── Language switcher ──────────────────────────────────────── */}
+        {/*
+          overflow-visible on the parent container is required so the dropdown
+          (which opens upward) is not clipped by the menu card.
+        */}
+        <div
+          className={clsx(
+            "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
+            menuVisibility
+              ? "opacity-100 translate-y-0 delay-[200ms]"
+              : "opacity-0 translate-y-4"
+          )}
+          // Stop click from toggling the menu when interacting with the switcher
+          onClick={(e) => e.stopPropagation()}
+        >
+          <LanguageSwitcher />
+        </div>
       </div>
-      <div
-        className={clsx("z-10", "absolute bottom-4 left-1/2 -translate-x-1/2")}
-      >
+
+      {/* ── Toggle icon ───────────────────────────────────────────────── */}
+      <div className={clsx("z-10", "absolute bottom-4 left-1/2 -translate-x-1/2")}>
         {!menuVisibility && (
           <AlignCenter
             size="40px"
