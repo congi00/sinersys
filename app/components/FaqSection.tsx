@@ -18,6 +18,7 @@ interface Props {
   items?: FaqItem[];
   title?: string;
   suptitle?: string;
+  isMobile: boolean;
 }
 
 const DEFAULT_ITEMS: FaqItem[] = [
@@ -55,6 +56,7 @@ export default function FaqSection({
   items = DEFAULT_ITEMS,
   title = "Here are the essentials about our product, how it works, and what makes it different.",
   suptitle = "FAQ",
+  isMobile,
 }: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -127,7 +129,7 @@ export default function FaqSection({
           return (
             <motion.div
               key={index}
-              style={{ opacity: itemOpacity, y: itemY }}
+              style={{ opacity: itemOpacity, y: itemY}}
             >
               <button
                 onClick={() => toggle(index)}
@@ -137,6 +139,7 @@ export default function FaqSection({
                 <span
                   className="font-regular text-[#1c398e] pr-4
                     group-hover:text-[#1c398e] transition-colors duration-200 text-[1.55rem] sm:text-[1.8rem]"
+                  style={{lineHeight: isMobile ? "1.1" : "unset" }}
                 >
                   {item.question}
                 </span>
@@ -168,7 +171,8 @@ export default function FaqSection({
                     }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-5 text-[1.15rem] sm:text-[1.4rem] font-light text-[#5c8baf] leading-relaxed">
+                    <p className="pb-5 text-l font-stretch-extra-expanded tracking-wide sm:text-2xl font-light text-[#5c8baf] leading-relaxed"
+                    style={{lineHeight: isMobile ? "1.1" : "unset" }}>
                       {item.answer}
                     </p>
                   </motion.div>

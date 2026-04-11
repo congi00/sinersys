@@ -263,8 +263,8 @@ export default function Home() {
   // white section appears after circle shrinks (p 5.2+)
   const headerTheme = useTransform(
     smooth,
-    [3.75, 3.9, 5.15, 5.3],
-    [0, 1, 1, 0]
+    [2, 2.1, 3.7, 3.75, 3.9, 4.9, 5.0, 5.1, 5.2, 5.3 , 6.4, 6.8,7.0,7.2,8.0],
+    [0, 1,1,1, 0, 0, 0, 0, 0, 1 , 0, 1, 1, 1, isMobile? 0 : 1 ]
   );
 
   // ── LinkButton colors ─────────────────────────────────────────────────────
@@ -273,8 +273,8 @@ export default function Home() {
 
   // ── FAQ ───────────────────────────────────────────────────────────────────
   // Absolute positioned after the white section scroll budget
-  const spacerFaq = vh * 8.5;
-  const totalHeight = vh * 10 + 900;
+  const spacerFaq = isMobile ? vh * 10 : vh * 8.5;
+  const totalHeight = isMobile ? vh * 11.8 + 1200 : vh * 10 + 900;
 
   if (!mounted) {
     return <div className="min-h-screen bg-[#0f2057]" />;
@@ -516,6 +516,7 @@ export default function Home() {
               progressStart={isMobile ? 6.3 : 6.4}
               title={homeTexts("faq.title")}
               suptitle="FAQ"
+              isMobile={isMobile}
               items={[
                 { question: homeTexts("faq.q1"), answer: homeTexts("faq.a1") },
                 { question: homeTexts("faq.q2"), answer: homeTexts("faq.a2") },

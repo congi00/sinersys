@@ -9,7 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../hooks";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -21,6 +21,13 @@ export default function MenuButton() {
 
   const items = ["homepage", "products", "about", "contacts"];
   const links = ["/", "apwec", "about-us", ""];
+
+  useEffect(() => {
+    const saved = localStorage.getItem("navState");
+    if (saved !== null) {
+      dispatch(setNavigationState(Number(saved)));
+    }
+  }, [dispatch]);
 
   return (
     <div
@@ -91,7 +98,7 @@ export default function MenuButton() {
                     menuVisibility
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-6",
-                    index === navigationState ? "font-bold" : "font-light"
+                    index === navigationState ? "font-extrabold" : "font-light"
                   )}
                   style={{
                     transitionDelay: menuVisibility
@@ -100,6 +107,8 @@ export default function MenuButton() {
                   }}
                   onClick={() => {
                     dispatch(setNavigationState(index));
+                    localStorage.setItem("navState", String(index));
+
                     dispatch(setMenuVisibility(!menuVisibility));
                     if (item === "contacts") dispatch(setOpenContact(true));
                   }}

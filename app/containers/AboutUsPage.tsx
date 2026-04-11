@@ -206,13 +206,13 @@ export default function AboutUsPage() {
   const slide1Opacity = useTransform(smooth, [0.4, 0.6, 1.0, 1.2], [0, 1, 1, 0]);
   const slide1Y       = useTransform(smooth, [0.4, 0.6, 1.0, 1.2], [30, 0, 0, -30]);
 
-  const headerTheme  = useTransform(smooth, [1.2, 1.4], [0, 0]);
+  const headerTheme  = useTransform(smooth, [1.0, 1.28, 1.3, 1.4, (isMobile?5.5 : 5.8), (isMobile?5.6 : 5.9), 6.0], [0, 1, 1, 0, 0, 1, 0]);
   const gradientPage = useTransform(smooth, [0, 1.3, 1.4], ["#F4F7FA", "#F4F7FA", "linear-gradient(160deg, #1c398e 0%, #0070f3 55%, #050b26 100%)"]);
   const bodyBg       = useTransform(smooth, [0, 1.3, 1.3, 4.9 ,5.0], ["#F4F7FA", "#F4F7FA", "linear-gradient(160deg, rgb(28, 57, 142) 29%, rgb(0, 112, 243) 71%, rgb(5, 11, 38) 100%)", "linear-gradient(160deg, rgb(28, 57, 142) 29%, rgb(0, 112, 243) 71%, rgb(5, 11, 38) 100%)", "#F4F7FA"]);
   const h2Color      = useTransform(smooth, [0, 1.3, 1.3], ["#1c398e", "#1c398e", "#f4f7fa"]);
   const pcolor       = useTransform(smooth, [0, 1.3, 1.3], ["#1c398e", "#1c398e", "rgba(200,218,250,0.75)"]);
 
-  const CONTENT_TOP = vh * 2.0;
+  const CONTENT_TOP = vh * (isMobile? 2.6 : 2.0);
   const totalHeight = CONTENT_TOP + (contentH > 0 ? contentH : vh * 4.6);
 
   // ── Content card exit animation (inset + border-radius before footer) ─────
