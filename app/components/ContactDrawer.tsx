@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { X, Paperclip, FileText, Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface Props {
   open: Boolean;
@@ -10,25 +11,22 @@ interface Props {
 }
 
 export default function ContactDrawer({ open, onClose }: Props) {
-  const [files, setFiles] = useState<File[]>([]);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const t     = useTranslations("contacts");
+  const f     = useTranslations("contacts.fields");
+
+  const [files, setFiles]   = useState<File[]>([]);
+  const fileInputRef        = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const selected = Array.from(e.target.files ?? []);
     setFiles((prev) => {
       const existing = new Set(prev.map((f) => f.name + f.size));
-      const newFiles = selected.filter((f) => !existing.has(f.name + f.size));
-      return [...prev, ...newFiles];
+      return [...prev, ...selected.filter((f) => !existing.has(f.name + f.size))];
     });
-    // reset input so same file can be re-added after removal
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
 
@@ -46,7 +44,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
     <AnimatePresence>
       {open && (
         <>
-          {/* OVERLAY */}
+          {/* Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.6 }}
@@ -55,21 +53,26 @@ export default function ContactDrawer({ open, onClose }: Props) {
             className="fixed inset-0 bg-black backdrop-blur-sm z-40"
           />
 
-          {/* DRAWER */}
+          {/* Drawer */}
           <motion.div
             initial={{ y: "-100%" }}
             animate={{ y: "0%" }}
             exit={{ y: "-100%" }}
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            style={{ textAlign: "left", background: "linear-gradient(160deg, #1c398e 0%, #0070f3 100%)" }}
+            style={{
+              textAlign: "left",
+              background: "linear-gradient(160deg, #1c398e 0%, #0070f3 100%)",
+            }}
             className="fixed top-0 left-0 w-full h-full z-50 flex justify-center overflow-y-auto pt-[3px]"
             data-lenis-prevent
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full max-w-3xl px-6 py-24 text-white" style={{ textAlign: "left" }}>
-
-              {/* CLOSE BUTTON */}
+            <div
+              className="relative w-full max-w-3xl px-6 py-24 text-white"
+              style={{ textAlign: "left" }}
+            >
+              {/* Close */}
               <button
                 onClick={onClose}
                 className="absolute top-6 right-6 w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition cursor-pointer"
@@ -77,61 +80,60 @@ export default function ContactDrawer({ open, onClose }: Props) {
                 <X />
               </button>
 
-              {/* TITLE */}
+              {/* Title */}
               <motion.h2
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
                 className="text-[2rem] font-semibold mb-10 sm:text-center tracking-wide"
               >
-                AVVIA UNA COLLABORAZIONE STRATEGICA
+                {t("drawerTitle")}
               </motion.h2>
 
-              {/* FORM */}
+              {/* Form */}
               <motion.form
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
                 className="space-y-6"
               >
-                {/* EMAIL */}
-                <Input label="Email *" type="email" placeholder="nome@azienda.com" />
+                {/* Email */}
+                <Input label={f("email")} type="email" placeholder={f("emailPlaceholder")} />
 
-                {/* NAME */}
+                {/* Name */}
                 <div className="grid md:grid-cols-2 gap-6">
-                  <Input label="Nome *" />
-                  <Input label="Cognome *" />
+                  <Input label={f("firstName")} />
+                  <Input label={f("lastName")} />
                 </div>
 
-                {/* CHECKBOX SECTION */}
+                {/* Strategic interest */}
                 <div>
-                  <p className="mb-4 font-medium">Interesse strategico</p>
-                  <Checkbox label="Entrare in produzione di grande serie APWEC" />
-                  <Checkbox label="Sviluppo di una o più Famiglie di Potenza" />
-                  <Checkbox label="Operatività in specifici Areali geografici" />
-                  <Checkbox label="Acquisto licenza industriale del prodotto" />
+                  <p className="mb-4 font-medium">{f("interestTitle")}</p>
+                  <Checkbox label={f("check0")} />
+                  <Checkbox label={f("check1")} />
+                  <Checkbox label={f("check2")} />
+                  <Checkbox label={f("check3")} />
                 </div>
 
-                {/* MESSAGE */}
+                {/* Message */}
                 <div>
-                  <label className="block mb-2">Messaggio *</label>
+                  <label className="block mb-2">{f("message")}</label>
                   <textarea
                     rows={5}
                     className="w-full rounded-2xl bg-white/10 border border-white/20 p-4 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-white/40 transition"
-                    placeholder="Descrivi il tuo progetto, area di interesse o richiesta di licenza..."
+                    placeholder={f("messagePlaceholder")}
                   />
                 </div>
 
-                {/* FILE UPLOAD */}
+                {/* File upload */}
                 <div>
                   <label className="block mb-3 font-medium">
-                    Allegati
+                    {f("attachments")}
                     <span className="ml-2 text-white/50 text-sm font-normal">
-                      (opzionale — PDF, DOC, immagini, max 10 MB per file)
+                      {f("attachmentsHint")}
                     </span>
                   </label>
 
-                  {/* Drop zone / button */}
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
@@ -142,11 +144,10 @@ export default function ContactDrawer({ open, onClose }: Props) {
                       className="text-white/50 group-hover:text-white/80 transition"
                     />
                     <span className="text-sm text-white/60 group-hover:text-white/80 transition">
-                      Clicca per allegare un file
+                      {f("attachBtn")}
                     </span>
                   </button>
 
-                  {/* Hidden input */}
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -156,7 +157,6 @@ export default function ContactDrawer({ open, onClose }: Props) {
                     className="hidden"
                   />
 
-                  {/* File list */}
                   <AnimatePresence initial={false}>
                     {files.length > 0 && (
                       <motion.ul
@@ -193,13 +193,13 @@ export default function ContactDrawer({ open, onClose }: Props) {
                   </AnimatePresence>
                 </div>
 
-                {/* SUBMIT */}
+                {/* Submit */}
                 <motion.button
                   whileHover={{ boxShadow: "0px 0px 20px rgba(255,255,255,0.4)" }}
                   whileTap={{ scale: 0.97 }}
                   className="w-full h-14 rounded-full bg-white text-[#1c398e] font-semibold text-lg transition mb-[20px]"
                 >
-                  Invia richiesta
+                  {f("submit")}
                 </motion.button>
               </motion.form>
             </div>

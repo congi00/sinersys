@@ -9,7 +9,7 @@
   "homepage": {
     "slide0": {
       "title": "L'energia libera\nnata da un sogno italiano",
-      "subtitle": "Abbiamo inseguito per anni un'idea impossibile:\n un generatore continuo, senza combustibili, senza emissioni.\nCi siamo riusciti.",
+      "subtitle": "Abbiamo inseguito per anni un'idea impossibile:\nun generatore continuo, senza combustibili, senza emissioni.\nCi siamo riusciti.",
       "link": "Scopri APWEC"
     },
     "slide1": {
@@ -20,26 +20,79 @@
     },
     "slide2": {
       "suptitle": "CHI SIAMO",
-      "title": "Oltre 100 anni di ingegneria italiana al servizio della transizione energetica",
-      "subtitle": "Da Honda a Volvo, da Chrysler al green: l'esperienza di Sinersys\nnella progettazione meccanica avanzata ha trovato il suo scopo più grande\nnell'energia rinnovabile distribuita.\nUn percorso lungo un secolo, un traguardo che cambia tutto.",
-      "link": "Scopri La Nostra Storia"
+      "title": "Oltre 100 anni di ingegneria italiana\n al servizio della transizione energetica",
+      "subtitle": "L'esperienza di Sinersys\nnella progettazione meccanica avanzata ha trovato il suo scopo più\n grande nell'energia rinnovabile distribuita.\nUn percorso lungo un secolo, un traguardo che cambia tutto.",
+      "link": "La Nostra Storia"
     },
     "slide3": {
       "title": "Ogni impianto è un passo concreto verso l'indipendenza energetica.",
       "subtitle": "Sinersys progetta sistemi scalabili per la generazione di energia rinnovabile continua,\npensati per aziende, enti pubblici e operatori industriali che vogliono ridurre i costi energetici,\nabbattere le emissioni di CO₂ e raggiungere l'autosufficienza energetica\nin modo misurabile e verificabile."
+    },
+    "scatteredCards": [
+  {
+    "id": "1",
+    "image": "/images/1.jpg",
+    "label": "Industrializzazione",
+    "suptitle": "Grande Serie",
+    "title": "Produzione",
+    "subtitle": "Portare APWEC dalla fase prototipale alla produzione industriale di grande serie: impianti certificati, scalabili e pronti per il mercato globale dell'energia rinnovabile."
+  },
+  {
+    "id": "2",
+    "image": "/images/2.jpg",
+    "label": "Sviluppo Tecnologico",
+    "suptitle": "Famiglie di Potenza",
+    "title": "Espansione",
+    "subtitle": "Sviluppare nuove famiglie di potenza APWEC — da 1 kW a 10 MW — per rispondere alle esigenze energetiche di PMI, grandi industrie ed enti pubblici in ogni areale geografico."
+  },
+  {
+    "id": "3",
+    "image": "/images/3.jpg",
+    "label": "Impatto Globale",
+    "suptitle": "Transizione Energetica",
+    "title": "Indipendenza",
+    "subtitle": "Rendere l'autosufficienza energetica una realtà concreta e misurabile: zero emissioni di CO₂, zero dipendenza dalla rete, risparmio verificabile fin dal primo anno di esercizio."
+  }
+    ],
+    "cta": {
+      "suptitle": "Entra nel Progetto · Partner Industriali e Licenziatari",
+      "title": "Partecipa alla produzione di grande serie di APWEC e alla crescita globale di Sinersys",
+      "subtitle": "Siamo alla ricerca di partner industriali, operatori energetici e investitori che condividano la visione di Sinersys: sviluppare nuove famiglie di potenza APWEC e portarle sul mercato globale. Contattaci per scoprire le opportunità di collaborazione strategica.",
+      "link": "Avvia una Collaborazione Strategica"
     },
     "faq": {
       "title": "Domande Frequenti",
       "q1": "Cos'è APWEC e come genera energia rinnovabile in modo continuo?",
       "a1": "APWEC (Advanced Pressure Wave Energy Converter) è la tecnologia brevettata da Sinersys per convertire le oscillazioni di pressione presenti in reti industriali, pipeline e sistemi idraulici in energia elettrica pulita e continua. A differenza del fotovoltaico e dell'eolico tradizionale, APWEC non dipende dalle condizioni atmosferiche: produce energia 24 ore su 24, 365 giorni l'anno, con zero emissioni di CO₂ e senza consumo di combustibili fossili. È la risposta concreta alla domanda di indipendenza energetica misurabile per industrie ed enti pubblici.",
       "q2": "In cosa si differenzia APWEC dai generatori eolici tradizionali come il Silo Eolico?",
-      "a2": "Il Silo Eolico Sinersys rappresenta già un salto tecnologico rispetto ai WEC tradizionali: a parità di potenza installata, il rotore ha un diametro di soli 2,8–3,5 metri contro i 30 metri delle turbine convenzionali da 200 kW, la manutenzione si esegue interamente a livello del suolo, l'impatto visivo e acustico è drasticamente ridotto e l'altezza massima dell'impianto è inferiore a 20 metri. APWEC va oltre: sfrutta le variazioni di pressione già presenti nell'infrastruttura esistente, eliminando completamente la dipendenza dal vento e rendendo la generazione di energia rinnovabile disponibile in qualsiasi contesto industriale.",
+      "a2": "Il Silo Eolico Sinersys rappresenta già un salto tecnologico rispetto ai WEC tradizionali: a parità di potenza installata, il rotore ha un diametro di soli 2,8–3,5 metri contro i 30 metri delle turbine convenzionali da 200 kW, la manutenzione si esegue interamente a livello del suolo, l'impatto visivo e acustico è drasticamente ridotto e l'altezza massima dell'impianto è inferiore a 20 metri. APWEC va oltre: sfrutta le variazioni di pressione già presenti nell'infrastruttura esistente, eliminando completamente la dipendenza dal vento.",
       "q3": "Qual è la curva di potenza del Silo Eolico Sinersys?",
-      "a3": "Il Silo Eolico non viene tarato su una velocità fissa: viene dimensionato in base alla velocità nominale del vento disponibile nel sito prescelto. Per una configurazione nominale da 200 kW a 5 m/s, la produzione inizia già a 3 m/s (circa 30 kW), raggiunge 55 kW a 4 m/s, 190 kW a 5 m/s e circa 250 kW a 6 m/s. Il sistema di orientamento automatico mantiene la bocca di presa perpendicolare alla direzione del vento in ogni condizione, garantendo la massima efficienza indipendentemente dalle variazioni direzionali.",
+      "a3": "Il Silo Eolico viene dimensionato in base alla velocità nominale del vento disponibile nel sito prescelto. Per una configurazione da 200 kW a 5 m/s, la produzione inizia già a 3 m/s (circa 30 kW), raggiunge 55 kW a 4 m/s, 190 kW a 5 m/s e circa 250 kW a 6 m/s. Il sistema di orientamento automatico mantiene la bocca di presa perpendicolare al vento in ogni condizione.",
       "q4": "Quali sono i costi di installazione e il ritorno sull'investimento energetico?",
-      "a4": "Il costo di produzione di un Silo Eolico da 200 kW si stima orientativamente tra 120.000 e 150.000 euro per unità in produzione industriale, grazie alla semplicità costruttiva e alle ridotte dimensioni del rotore. In siti eolici idonei con vento nominale di 5 m/s per circa 5.500 ore/anno, la produzione stimata è di 1.000.000 kWh/anno. Sinersys fornisce una valutazione preliminare gratuita entro 72 ore, con stima del potenziale energetico, proiezione dei risparmi e analisi dettagliata del ritorno sull'investimento.",
+      "a4": "Il costo di produzione di un Silo Eolico da 200 kW si stima tra 120.000 e 150.000 euro per unità in produzione industriale. In siti con vento nominale di 5 m/s per circa 5.500 ore/anno, la produzione stimata è di 1.000.000 kWh/anno. Sinersys fornisce una valutazione preliminare gratuita entro 72 ore, con stima del potenziale energetico, proiezione dei risparmi e analisi del ritorno sull'investimento.",
       "q5": "APWEC e i sistemi Sinersys sono adatti alla mia azienda o al mio ente pubblico?",
-      "a5": "I sistemi Sinersys sono progettati per rispondere alle esigenze di utenti industriali, commerciali e del pubblico servizio di qualsiasi dimensione. L'architettura modulare di APWEC scala da 1 kW a 10 MW, con incrementi progressivi senza interruzione dell'operatività. Ogni impianto viene progettato su misura nell'ambito del programma Full Energy Project, che include diagnosi energetica, progettazione, installazione, certificazione delle prestazioni e assistenza continuativa tramite Tech Service."
+      "a5": "I sistemi Sinersys sono progettati per rispondere alle esigenze di utenti industriali, commerciali e del pubblico servizio di qualsiasi dimensione. L'architettura modulare di APWEC scala da 1 kW a 10 MW, con incrementi progressivi senza interruzione dell'operatività. Ogni impianto viene progettato su misura nell'ambito del programma Full Energy Project, che include diagnosi energetica, progettazione, installazione, certificazione e assistenza continuativa."
+    }
+  },
+
+  "contacts": {
+    "drawerTitle": "AVVIA UNA COLLABORAZIONE STRATEGICA",
+    "fields": {
+      "email": "Email *",
+      "emailPlaceholder": "nome@azienda.com",
+      "firstName": "Nome *",
+      "lastName": "Cognome *",
+      "interestTitle": "Interesse strategico",
+      "check0": "Entrare in produzione di grande serie APWEC",
+      "check1": "Sviluppo di una o più Famiglie di Potenza",
+      "check2": "Operatività in specifici Areali geografici",
+      "check3": "Acquisto licenza industriale del prodotto",
+      "message": "Messaggio *",
+      "messagePlaceholder": "Descrivi il tuo progetto, area di interesse o richiesta di licenza...",
+      "attachments": "Allegati",
+      "attachmentsHint": "(opzionale — PDF, DOC, immagini, max 10 MB per file)",
+      "attachBtn": "Clicca per allegare un file",
+      "submit": "Invia richiesta"
     }
   },
 
@@ -60,7 +113,7 @@
     "whoweare": {
       "title": "L'innovazione nasce dall'ostinazione di chi non smette mai di inseguire il proprio sogno",
       "p1": "Sinersys è una società italiana specializzata nello sviluppo di tecnologie avanzate per la conversione e la generazione di energia rinnovabile continua. Nata all'interno di Motor Union Italia — attiva dal 1919 nel settore dell'automotive industriale e dell'ingegneria motoristica — porta con sé un patrimonio tecnico-scientifico costruito in oltre un secolo di progettazione meccanica di precisione al servizio della transizione energetica.",
-      "p2": "La competenza maturata in collaborazione con Honda, Volvo e Chrysler ha fornito le basi ingegneristiche per affrontare la sfida più ambiziosa della nostra storia: realizzare un sistema di generazione energetica che funzioni ininterrottamente, senza fonti fossili e senza dipendenza dalle variabili ambientali. Inseguire questo sogno per anni — nonostante le difficoltà — è ciò che ha reso possibile APWEC: la tecnologia brevettata che trasforma le variazioni di pressione in energia elettrica pulita, 24 ore su 24."
+      "p2": "La competenza maturata in collaborazione con Honda, Volvo e Chrysler ha fornito le basi ingegneristiche per affrontare la sfida più ambiziosa della nostra storia: realizzare un sistema di generazione energetica che funzioni ininterrottamente, senza fonti fossili e senza dipendenza dalle variabili ambientali. Inseguire questo sogno per anni è ciò che ha reso possibile APWEC: la tecnologia brevettata che trasforma le variazioni di pressione in energia elettrica pulita, 24 ore su 24."
     },
     "values": {
       "value0": "Energia rinnovabile continua",
@@ -176,7 +229,7 @@
     "static": {
       "label": "Cos'è APWEC",
       "title": "La tecnologia italiana per la generazione distribuita di energia rinnovabile continua",
-      "p1": "APWEC (Advanced Pressure Wave Energy Converter) è un sistema brevettato sviluppato da Sinersys per convertire le oscillazioni di pressione presenti in reti industriali, pipeline e sistemi idraulici in energia elettrica pulita, continua e a zero emissioni. Una tecnologia nata da un sogno inseguito per decenni: dimostrare che è possibile produrre energia in modo ininterrotto senza dipendere da fonti fossili, dal vento o dall'irraggiamento solare. Un obiettivo che in molti consideravano impossibile — e che Sinersys ha trasformato in brevetto industriale.",
+      "p1": "APWEC (Advanced Pressure Wave Energy Converter) è un sistema brevettato sviluppato da Sinersys per convertire le oscillazioni di pressione presenti in reti industriali, pipeline e sistemi idraulici in energia elettrica pulita, continua e a zero emissioni. Una tecnologia nata da un sogno inseguito per decenni: dimostrare che è possibile produrre energia in modo ininterrotto senza dipendere da fonti fossili, dal vento o dall'irraggiamento solare.",
       "p2": "A differenza dei sistemi tradizionali di generazione rinnovabile, APWEC non richiede condizioni ambientali favorevoli: sfrutta le variazioni di pressione già presenti nell'impianto — trasformando un flusso energetico normalmente disperso in un asset produttivo concreto e misurabile. Risparmio energetico reale, riduzione delle emissioni di CO₂ verificabile, indipendenza dalla rete elettrica.",
       "f0": {
         "label": "Efficienza Energetica",
@@ -211,27 +264,27 @@
     "innovation": {
       "label": "Innovazione Brevettata",
       "title": "Oltre lo stato dell'arte nella generazione di energia rinnovabile continua",
-      "p1": "La tecnologia alla base di APWEC si fonda sull'azione sinergica di principi aerodinamici e fluidodinamici — moto rettilineo, vortice e sorgente/pozzo — descritti da equazioni differenziali lineari (equazioni di Laplace). Questa base matematica rigorosa garantisce prevedibilità, riproducibilità e solidità ingegneristica al sistema, caratteristiche indispensabili per applicazioni di generazione di energia rinnovabile su scala industriale.",
-      "p2": "Rispetto ai generatori eolici tradizionali, che sfruttano esclusivamente la pressione dinamica del vento (½ρV²), APWEC opera secondo principi diversi e complementari, raggiungendo potenze specifiche più elevate e producendo energia in modo continuativo indipendentemente dalle condizioni atmosferiche. Il risultato è un sistema di produzione energetica pulita che può operare 24/7, ovunque vi siano variazioni di pressione sfruttabili."
+      "p1": "La tecnologia alla base di APWEC si fonda sull'azione sinergica di principi aerodinamici e fluidodinamici — moto rettilineo, vortice e sorgente/pozzo — descritti da equazioni differenziali lineari (equazioni di Laplace). Questa base matematica rigorosa garantisce prevedibilità, riproducibilità e solidità ingegneristica al sistema.",
+      "p2": "Rispetto ai generatori eolici tradizionali, che sfruttano esclusivamente la pressione dinamica del vento (½ρV²), APWEC opera secondo principi diversi e complementari, raggiungendo potenze specifiche più elevate e producendo energia in modo continuativo indipendentemente dalle condizioni atmosferiche."
     },
     "comparison": {
       "label": "Confronto Tecnologico",
       "title": "Silo Eolico Sinersys vs. generatori tradizionali: i vantaggi concreti",
       "costibenefici": {
         "title": "Costi e benefici nel risparmio energetico",
-        "body": "Il confronto tra il Silo Eolico Sinersys e i sistemi di generazione eolica tradizionale mostra vantaggi netti in termini di costo per kWh prodotto: il rotore da 200 kW ha un diametro massimo di 3,5 metri contro i 30 metri di un WEC equivalente, con costi di produzione stimati tra 120.000 e 150.000 euro per unità. La continuità di generazione — 24/7 indipendentemente dal vento — e i costi di installazione e manutenzione significativamente più contenuti rendono il ritorno sull'investimento energetico più rapido e prevedibile."
+        "body": "Il confronto tra il Silo Eolico Sinersys e i sistemi di generazione eolica tradizionale mostra vantaggi netti in termini di costo per kWh prodotto: il rotore da 200 kW ha un diametro massimo di 3,5 metri contro i 30 metri di un WEC equivalente, con costi di produzione stimati tra 120.000 e 150.000 euro per unità."
       },
       "silenziosita": {
         "title": "Silenziosità e impatto acustico ridotto",
-        "body": "Il rotore di APWEC, operando all'interno di un involucro coibentato, garantisce emissioni acustiche drasticamente inferiori rispetto ai grandi rotori a pale dei WEC tradizionali. Un vantaggio decisivo per installazioni in contesti urbani, periurbani o in prossimità di aree abitate, dove i limiti di rumorosità rappresentano spesso un ostacolo autorizzativo."
+        "body": "Il rotore di APWEC, operando all'interno di un involucro coibentato, garantisce emissioni acustiche drasticamente inferiori rispetto ai grandi rotori a pale dei WEC tradizionali. Un vantaggio decisivo per installazioni in contesti urbani o in prossimità di aree abitate."
       },
       "manutenzione": {
         "title": "Manutenzione a terra: più sicura, meno costosa",
-        "body": "Tutte le operazioni di manutenzione di APWEC si eseguono a livello del suolo: generatore e apparecchiature di controllo sono accessibili senza necessità di lavori in quota. I generatori eolici tradizionali richiedono invece interventi a 50 metri di altezza, con costi, rischi operativi e tempi di fermo significativamente più elevati. Meno downtime significa più ore di produzione di energia rinnovabile ogni anno."
+        "body": "Tutte le operazioni di manutenzione di APWEC si eseguono a livello del suolo: generatore e apparecchiature di controllo sono accessibili senza necessità di lavori in quota. Meno downtime significa più ore di produzione di energia rinnovabile ogni anno."
       },
       "impatto": {
         "title": "Impatto visivo e ambientale minimizzato",
-        "body": "A parità di potenza installata, APWEC ha un'altezza massima di circa 20 metri — meno di un quarto di un WEC tradizionale equivalente. L'impatto visivo è nettamente inferiore, con vantaggi concreti in termini di accettabilità paesaggistica, iter autorizzativi più rapidi e maggiore compatibilità con le normative locali sulla tutela del paesaggio."
+        "body": "A parità di potenza installata, APWEC ha un'altezza massima di circa 20 metri — meno di un quarto di un WEC tradizionale equivalente. L'impatto visivo è nettamente inferiore, con iter autorizzativi più rapidi e maggiore compatibilità con le normative locali."
       }
     }
   },
@@ -242,11 +295,11 @@
     "subtitle": "Ogni sistema Sinersys per la generazione di energia rinnovabile è progettato, testato e certificato secondo standard qualitativi internazionali. Le prestazioni energetiche promesse sono quelle certificate.",
     "fullEnergyProject": {
       "title": "FULL ENERGY PROJECT",
-      "body": "È l'attestato di certificazione esclusivo rilasciato al completamento dell'intero iter Sinersys. Comprende studi scientifici preliminari, diagnosi energetica approfondita e progettazione su misura dell'impianto di generazione rinnovabile. Full Energy Project certifica le prestazioni del sistema installato, garantisce l'efficienza energetica nel tempo e fornisce al cliente documentazione verificabile del rendimento atteso, dei risparmi energetici conseguibili e del ritorno sull'investimento."
+      "body": "È l'attestato di certificazione esclusivo rilasciato al completamento dell'intero iter Sinersys. Comprende studi scientifici preliminari, diagnosi energetica approfondita e progettazione su misura dell'impianto di generazione rinnovabile. Full Energy Project certifica le prestazioni del sistema installato e fornisce al cliente documentazione verificabile del rendimento atteso e del ritorno sull'investimento."
     },
     "techService": {
       "title": "TECH SERVICE",
-      "body": "Il programma di assistenza, manutenzione e ottimizzazione continua di Sinersys. Per ogni impianto di energia rinnovabile progettato e installato, Tech Service garantisce la massima resa energetica nel tempo attraverso interventi programmati, monitoraggio da remoto e aggiornamenti tecnici periodici. Un impegno concreto verso la sostenibilità operativa e il ritorno sull'investimento energetico del cliente."
+      "body": "Il programma di assistenza, manutenzione e ottimizzazione continua di Sinersys. Per ogni impianto di energia rinnovabile progettato e installato, Tech Service garantisce la massima resa energetica nel tempo attraverso interventi programmati, monitoraggio da remoto e aggiornamenti tecnici periodici."
     }
   },
 
@@ -254,7 +307,7 @@
     "label": "Soluzioni Energetiche",
     "title": "Le nuove frontiere dell'energia rinnovabile e dell'efficienza energetica",
     "p1": "Sinersys realizza progetti e impianti di cogenerazione ad alto rendimento e sviluppa tecnologie avanzate per la generazione distribuita di energia rinnovabile continua. Dalla nostra storia centenaria nell'ingegneria motoristica nasce una missione precisa: rendere accessibile l'indipendenza energetica a industrie, enti pubblici e operatori commerciali che vogliono ridurre i costi dell'energia, abbattere le emissioni di CO₂ e aumentare la resilienza dei propri impianti.",
-    "p2": "Sinersys fornisce sistemi di generazione di energia rinnovabile efficienti, flessibili e scalabili che consentono l'autoproduzione energetica con impatto ambientale zero. Ogni impianto è progettato su misura, certificato con il programma Full Energy Project e supportato nel tempo dal servizio Tech Service, per garantire rendimenti misurabili e verificabili lungo tutto il ciclo di vita dell'impianto."
+    "p2": "Sinersys fornisce sistemi di generazione di energia rinnovabile efficienti, flessibili e scalabili che consentono l'autoproduzione energetica con impatto ambientale zero. Ogni impianto è progettato su misura, certificato con il programma Full Energy Project e supportato nel tempo dal servizio Tech Service."
   },
 
   "ethics": {
@@ -270,26 +323,11 @@
     "s2": {
       "heading": "I nostri valori",
       "p1": "Ogni decisione che prendiamo — strategica, operativa, commerciale — è orientata dai seguenti principi fondamentali:",
-      "v1": {
-        "title": "Integrità",
-        "body": "Manteniamo coerenza tra ciò che diciamo e ciò che facciamo. Ci assumiamo la responsabilità dei nostri errori e non li minimizziamo."
-      },
-      "v2": {
-        "title": "Innovazione consapevole",
-        "body": "Sviluppiamo tecnologia con la piena consapevolezza delle sue implicazioni sociali e ambientali. L'innovazione che non porta benefici concreti alla transizione energetica non è progresso."
-      },
-      "v3": {
-        "title": "Rispetto reciproco",
-        "body": "Ogni persona che interagisce con Sinersys — collaboratore, cliente, fornitore — merita rispetto della propria dignità, indipendentemente dal ruolo o dalla posizione."
-      },
-      "v4": {
-        "title": "Sostenibilità reale",
-        "body": "Non usiamo la sostenibilità come strumento di marketing. I nostri impegni ambientali e sociali sono misurabili e verificabili."
-      },
-      "v5": {
-        "title": "Trasparenza",
-        "body": "Comunichiamo in modo chiaro, anche quando le notizie sono difficili. La fiducia si costruisce con l'onestà, non con le rassicurazioni."
-      }
+      "v1": { "title": "Integrità", "body": "Manteniamo coerenza tra ciò che diciamo e ciò che facciamo. Ci assumiamo la responsabilità dei nostri errori e non li minimizziamo." },
+      "v2": { "title": "Innovazione consapevole", "body": "Sviluppiamo tecnologia con la piena consapevolezza delle sue implicazioni sociali e ambientali. L'innovazione che non porta benefici concreti alla transizione energetica non è progresso." },
+      "v3": { "title": "Rispetto reciproco", "body": "Ogni persona che interagisce con Sinersys merita rispetto della propria dignità, indipendentemente dal ruolo o dalla posizione." },
+      "v4": { "title": "Sostenibilità reale", "body": "Non usiamo la sostenibilità come strumento di marketing. I nostri impegni ambientali e sociali sono misurabili e verificabili." },
+      "v5": { "title": "Trasparenza", "body": "Comunichiamo in modo chiaro, anche quando le notizie sono difficili. La fiducia si costruisce con l'onestà, non con le rassicurazioni." }
     },
     "s3": {
       "heading": "Ambiente di lavoro",
@@ -314,19 +352,19 @@
     },
     "s6": {
       "heading": "Riservatezza e protezione dei dati",
-      "p1": "Le informazioni riservate — relative a clienti, partner, tecnologie proprietarie, dati finanziari — sono un patrimonio che va protetto. Ogni collaboratore è tenuto a trattarle con la stessa cura con cui vorrebbe che i propri dati personali fossero trattati da altri.",
-      "p2": "Il trattamento dei dati personali avviene in conformità al Regolamento UE 2016/679 (GDPR) e alla normativa italiana vigente. I principi di minimizzazione, finalità e sicurezza si applicano a ogni trattamento, senza eccezioni."
+      "p1": "Le informazioni riservate sono un patrimonio che va protetto. Ogni collaboratore è tenuto a trattarle con la stessa cura con cui vorrebbe che i propri dati personali fossero trattati da altri.",
+      "p2": "Il trattamento dei dati personali avviene in conformità al Regolamento UE 2016/679 (GDPR) e alla normativa italiana vigente."
     },
     "s7": {
       "heading": "Anticorruzione e conformità normativa",
-      "p1": "Sinersys opera nel rispetto di tutte le leggi e i regolamenti applicabili in ogni paese in cui è presente. La corruzione — in qualsiasi forma — è incompatibile con i nostri valori e con il nostro modello di business. In particolare:",
+      "p1": "Sinersys opera nel rispetto di tutte le leggi e i regolamenti applicabili in ogni paese in cui è presente. La corruzione — in qualsiasi forma — è incompatibile con i nostri valori e con il nostro modello di business.",
       "l1": "È vietato effettuare pagamenti o promesse di benefici a funzionari pubblici o privati per ottenere vantaggi indebiti.",
       "l2": "La contabilità deve riflettere fedelmente ogni operazione. Non esistono fondi in nero, pagamenti non registrati o registrazioni false.",
       "l3": "Chi rileva o sospetta una violazione di questo Codice può segnalarla in modo riservato attraverso i canali ufficiali, con garanzia di anonimato e protezione da ritorsioni."
     },
     "s8": {
       "heading": "Violazioni e conseguenze",
-      "p1": "Le violazioni accertate del presente Codice Etico comportano conseguenze proporzionate alla gravità del comportamento, fino alla risoluzione del rapporto di lavoro o collaborazione e, ove previsto dalla legge, alle sanzioni penali o civili applicabili. Sinersys si impegna a trattare ogni segnalazione con la massima riservatezza e ad investigare con tempestività e imparzialità. Per segnalazioni: etica@sinersys.it"
+      "p1": "Le violazioni accertate del presente Codice Etico comportano conseguenze proporzionate alla gravità del comportamento, fino alla risoluzione del rapporto di lavoro o collaborazione. Per segnalazioni: etica@sinersys.it"
     }
   },
 
@@ -338,96 +376,57 @@
     "s1": {
       "heading": "Titolare del trattamento",
       "p1": "La presente informativa è redatta ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR) e si applica a chiunque visiti il sito web sinersys.it o interagisca con i servizi di Sinersys.",
-      "controller": "Titolare del trattamento: ",
-      "controllerVal": "Sinersys S.r.l.",
-      "address": "Sede legale: ",
-      "addressVal": "[INSERIRE INDIRIZZO REALE DA VISURA CAMERALE]",
-      "email": "Contatto privacy: ",
-      "emailVal": "privacy@sinersys.it"
+      "controller": "Titolare del trattamento: ", "controllerVal": "Sinersys S.r.l.",
+      "address": "Sede legale: ", "addressVal": "[INSERIRE INDIRIZZO REALE DA VISURA CAMERALE]",
+      "email": "Contatto privacy: ", "emailVal": "privacy@sinersys.it"
     },
     "s2": {
       "heading": "Categorie di dati trattati",
       "p1": "In funzione del tipo di interazione con i nostri servizi, trattiamo le seguenti categorie di dati personali:",
-      "d1": {
-        "title": "Dati di navigazione",
-        "body": "Indirizzo IP, tipo di browser e sistema operativo, pagine visitate, timestamp degli accessi. Raccolti automaticamente dai sistemi informatici a fini tecnici e di sicurezza."
-      },
-      "d2": {
-        "title": "Dati comunicati volontariamente",
-        "body": "Nome, cognome, indirizzo email, numero di telefono e ogni altra informazione inserita nei form di contatto, richiesta di preventivo o iscrizione alla newsletter."
-      },
-      "d3": {
-        "title": "Dati contrattuali",
-        "body": "Informazioni necessarie per la stipula e la gestione di contratti di fornitura: dati anagrafici, codice fiscale/partita IVA, dati di fatturazione e bancari."
-      },
-      "d4": {
-        "title": "Dati tecnici di utilizzo",
-        "body": "Statistiche aggregate sull'utilizzo delle funzionalità del sito e dei prodotti digitali, raccolte in forma anonimizzata o pseudonimizzata."
-      }
+      "d1": { "title": "Dati di navigazione", "body": "Indirizzo IP, tipo di browser e sistema operativo, pagine visitate, timestamp degli accessi." },
+      "d2": { "title": "Dati comunicati volontariamente", "body": "Nome, cognome, indirizzo email, numero di telefono e ogni altra informazione inserita nei form di contatto." },
+      "d3": { "title": "Dati contrattuali", "body": "Informazioni necessarie per la stipula e la gestione di contratti di fornitura." },
+      "d4": { "title": "Dati tecnici di utilizzo", "body": "Statistiche aggregate sull'utilizzo delle funzionalità del sito, raccolte in forma anonimizzata." }
     },
     "s3": {
       "heading": "Finalità e basi giuridiche",
       "p1": "I dati personali sono trattati per finalità specifiche, ciascuna con una propria base giuridica:",
-      "l1": "Risposta a richieste di contatto e gestione di rapporti precontrattuali (base: esecuzione di misure precontrattuali, art. 6.1.b GDPR).",
-      "l2": "Adempimento di obblighi contrattuali relativi alla fornitura di prodotti e servizi (base: esecuzione contrattuale, art. 6.1.b GDPR).",
-      "l3": "Adempimento di obblighi legali, fiscali, contabili e di rendicontazione (base: obbligo legale, art. 6.1.c GDPR).",
-      "l4": "Invio di comunicazioni promozionali e newsletter, esclusivamente previo consenso esplicito e revocabile (base: consenso, art. 6.1.a GDPR).",
-      "l5": "Analisi statistiche sull'utilizzo del sito per migliorarne le prestazioni e l'esperienza utente (base: legittimo interesse, art. 6.1.f GDPR, con possibilità di opposizione)."
+      "l1": "Risposta a richieste di contatto e gestione di rapporti precontrattuali (art. 6.1.b GDPR).",
+      "l2": "Adempimento di obblighi contrattuali relativi alla fornitura di prodotti e servizi (art. 6.1.b GDPR).",
+      "l3": "Adempimento di obblighi legali, fiscali e contabili (art. 6.1.c GDPR).",
+      "l4": "Invio di comunicazioni promozionali e newsletter, esclusivamente previo consenso esplicito (art. 6.1.a GDPR).",
+      "l5": "Analisi statistiche sull'utilizzo del sito (art. 6.1.f GDPR, con possibilità di opposizione)."
     },
     "s4": {
       "heading": "Destinatari dei dati",
       "p1": "I dati personali non vengono venduti a terzi. Possono essere comunicati esclusivamente a:",
-      "b1": {
-        "title": "Responsabili del trattamento",
-        "body": "Fornitori di servizi tecnici (hosting, email, CRM, analytics) che trattano dati per nostro conto sulla base di specifici accordi contrattuali (DPA)."
-      },
-      "b2": {
-        "title": "Professionisti e consulenti",
-        "body": "Commercialisti, consulenti legali e altri professionisti che necessitano di accedere a determinati dati per l'esercizio del loro incarico, nel rispetto del segreto professionale."
-      },
-      "b3": {
-        "title": "Autorità pubbliche",
-        "body": "Forze dell'ordine, autorità giudiziarie o amministrative, esclusivamente su richiesta formale o in adempimento di un obbligo di legge."
-      }
+      "b1": { "title": "Responsabili del trattamento", "body": "Fornitori di servizi tecnici (hosting, email, CRM, analytics) che trattano dati per nostro conto sulla base di specifici accordi contrattuali." },
+      "b2": { "title": "Professionisti e consulenti", "body": "Commercialisti, consulenti legali e altri professionisti che necessitano di accedere a determinati dati per l'esercizio del loro incarico." },
+      "b3": { "title": "Autorità pubbliche", "body": "Forze dell'ordine, autorità giudiziarie o amministrative, esclusivamente su richiesta formale o in adempimento di un obbligo di legge." }
     },
     "s5": {
       "heading": "Trasferimenti extra-UE",
-      "p1": "Alcuni servizi tecnici di cui ci avvaliamo (es. provider cloud, strumenti di collaborazione) potrebbero comportare trasferimenti di dati verso paesi extra-UE. In tali casi applichiamo le garanzie previste dal GDPR: Clausole Contrattuali Standard (SCC) approvate dalla Commissione Europea, oppure ci avvaliamo di fornitori operanti in paesi con decisione di adeguatezza.",
+      "p1": "Alcuni servizi tecnici di cui ci avvaliamo potrebbero comportare trasferimenti di dati verso paesi extra-UE. In tali casi applichiamo le garanzie previste dal GDPR: Clausole Contrattuali Standard approvate dalla Commissione Europea.",
       "p2": "L'elenco aggiornato dei sub-responsabili e delle garanzie adottate è disponibile su richiesta scrivendo a privacy@sinersys.it."
     },
     "s6": {
       "heading": "I tuoi diritti",
       "p1": "In quanto interessato, hai diritto di:",
-      "r1": {
-        "title": "Accesso (art. 15)",
-        "body": "Ottenere conferma che stiamo trattando tuoi dati personali e riceverne una copia."
-      },
-      "r2": {
-        "title": "Rettifica (art. 16)",
-        "body": "Chiedere la correzione di dati inesatti o il completamento di dati incompleti."
-      },
-      "r3": {
-        "title": "Cancellazione (art. 17)",
-        "body": "Richiedere la cancellazione ('diritto all'oblio') nei casi previsti dalla normativa."
-      },
-      "r4": {
-        "title": "Limitazione (art. 18)",
-        "body": "Richiedere che il trattamento sia limitato a determinate operazioni in circostanze specifiche."
-      },
-      "r5": {
-        "title": "Portabilità (art. 20)",
-        "body": "Ricevere i dati forniti in un formato strutturato e machine-readable, e trasmetterli a un altro titolare."
-      },
-      "contact": "Per esercitare i tuoi diritti scrivi a privacy@sinersys.it, indicando il diritto che intendi esercitare. Risponderemo entro 30 giorni. Hai altresì il diritto di proporre reclamo al Garante per la Protezione dei Dati Personali (www.garanteprivacy.it)."
+      "r1": { "title": "Accesso (art. 15)", "body": "Ottenere conferma che stiamo trattando tuoi dati personali e riceverne una copia." },
+      "r2": { "title": "Rettifica (art. 16)", "body": "Chiedere la correzione di dati inesatti o il completamento di dati incompleti." },
+      "r3": { "title": "Cancellazione (art. 17)", "body": "Richiedere la cancellazione nei casi previsti dalla normativa." },
+      "r4": { "title": "Limitazione (art. 18)", "body": "Richiedere che il trattamento sia limitato a determinate operazioni in circostanze specifiche." },
+      "r5": { "title": "Portabilità (art. 20)", "body": "Ricevere i dati forniti in un formato strutturato e machine-readable." },
+      "contact": "Per esercitare i tuoi diritti scrivi a privacy@sinersys.it. Risponderemo entro 30 giorni."
     },
     "s7": {
       "heading": "Tempi di conservazione",
-      "p1": "Conserviamo i dati personali per il tempo strettamente necessario alle finalità per cui sono stati raccolti: dati contrattuali e fiscali per 10 anni dalla cessazione del rapporto (obblighi di legge); dati di navigazione per massimo 13 mesi; dati per attività di marketing fino alla revoca del consenso o per un massimo di 24 mesi dall'ultima interazione.",
+      "p1": "Conserviamo i dati personali per il tempo strettamente necessario: dati contrattuali e fiscali per 10 anni; dati di navigazione per massimo 13 mesi; dati per attività di marketing fino alla revoca del consenso o per un massimo di 24 mesi dall'ultima interazione.",
       "p2": "Alla scadenza del periodo di conservazione i dati vengono cancellati in modo sicuro o resi definitivamente anonimi."
     },
     "s8": {
       "heading": "Aggiornamenti",
-      "p1": "La presente informativa può essere aggiornata in qualsiasi momento per riflettere modifiche normative, tecnologiche o nei nostri servizi. Le modifiche sostanziali vengono comunicate tramite avviso sul sito o via email agli utenti registrati. La data di ultimo aggiornamento è sempre indicata in cima alla pagina."
+      "p1": "La presente informativa può essere aggiornata in qualsiasi momento. Le modifiche sostanziali vengono comunicate tramite avviso sul sito o via email agli utenti registrati."
     }
   },
 
@@ -438,53 +437,41 @@
     "updated": "Ultimo aggiornamento: Marzo 2026",
     "s1": {
       "heading": "Cosa sono i cookie",
-      "p1": "I cookie sono file di testo di piccole dimensioni che i siti web depositano sul dispositivo dell'utente durante la navigazione. Permettono al sito di ricordare le azioni e le preferenze dell'utente nel tempo, rendendo la navigazione più efficiente e personalizzata.",
-      "p2": "Oltre ai cookie tradizionali, utilizziamo tecnologie analoghe come i pixel di tracciamento e il local storage. La presente Cookie Policy si applica a tutte queste tecnologie e descrive come le utilizziamo, perché, e come puoi controllarle."
+      "p1": "I cookie sono file di testo di piccole dimensioni che i siti web depositano sul dispositivo dell'utente durante la navigazione. Permettono al sito di ricordare le azioni e le preferenze dell'utente nel tempo.",
+      "p2": "Oltre ai cookie tradizionali, utilizziamo tecnologie analoghe come i pixel di tracciamento e il local storage. La presente Cookie Policy si applica a tutte queste tecnologie."
     },
     "s2": {
       "heading": "Tipi di cookie che utilizziamo",
       "p1": "Classifichiamo i cookie che utilizziamo in quattro categorie:",
-      "c1": {
-        "title": "Cookie tecnici essenziali",
-        "body": "Necessari per il funzionamento del sito. Senza di essi alcune funzionalità fondamentali non sarebbero disponibili (es. gestione della sessione, memorizzazione delle preferenze sul banner cookie). Non richiedono consenso e non possono essere disattivati."
-      },
-      "c2": {
-        "title": "Cookie analitici",
-        "body": "Raccolgono informazioni aggregate su come gli utenti utilizzano il sito (pagine visitate, tempo di permanenza, fonti di traffico). I dati vengono anonimizzati prima dell'elaborazione. Richiedono consenso."
-      },
-      "c3": {
-        "title": "Cookie funzionali",
-        "body": "Permettono al sito di ricordare scelte effettuate dall'utente (es. lingua, regione, preferenze di visualizzazione) per offrire un'esperienza più personalizzata. Richiedono consenso."
-      },
-      "c4": {
-        "title": "Cookie di marketing e profilazione",
-        "body": "Utilizzati per mostrare contenuti pubblicitari rilevanti e misurare l'efficacia delle campagne. Creano un profilo degli interessi dell'utente su più siti. Richiedono consenso esplicito."
-      }
+      "c1": { "title": "Cookie tecnici essenziali", "body": "Necessari per il funzionamento del sito. Non richiedono consenso e non possono essere disattivati." },
+      "c2": { "title": "Cookie analitici", "body": "Raccolgono informazioni aggregate su come gli utenti utilizzano il sito. I dati vengono anonimizzati prima dell'elaborazione. Richiedono consenso." },
+      "c3": { "title": "Cookie funzionali", "body": "Permettono al sito di ricordare scelte effettuate dall'utente per offrire un'esperienza più personalizzata. Richiedono consenso." },
+      "c4": { "title": "Cookie di marketing e profilazione", "body": "Utilizzati per mostrare contenuti pubblicitari rilevanti e misurare l'efficacia delle campagne. Richiedono consenso esplicito." }
     },
     "s3": {
       "heading": "Cookie di terze parti",
       "p1": "Integriamo nel sito i seguenti servizi di terze parti, ciascuno dei quali può installare propri cookie:",
-      "ga": "Piattaforma di web analytics di Google LLC. Raccoglie dati di navigazione anonimizzati per analisi statistiche. Puoi disattivarlo tramite l'apposito componente aggiuntivo per browser disponibile su tools.google.com/dlpage/gaoptout.",
-      "gtm": "Servizio di Google LLC per la gestione centralizzata dei tag di tracciamento. Non raccoglie direttamente dati utente, ma facilita l'attivazione degli altri cookie di terze parti.",
-      "p2": "Per informazioni complete sui cookie installati da ciascun servizio e su come esercitare i relativi diritti, consulta le privacy policy dei singoli fornitori disponibili sui loro siti web ufficiali."
+      "ga": "Google Analytics: piattaforma di web analytics di Google LLC. Raccoglie dati di navigazione anonimizzati per analisi statistiche.",
+      "gtm": "Google Tag Manager: servizio per la gestione centralizzata dei tag di tracciamento.",
+      "p2": "Per informazioni complete sui cookie installati da ciascun servizio, consulta le privacy policy dei singoli fornitori."
     },
     "s4": {
       "heading": "Come gestire i cookie",
       "p1": "Hai il pieno controllo sui cookie non essenziali. Puoi gestire le tue preferenze attraverso:",
-      "l1": "Il pannello di gestione del consenso: accessibile in qualsiasi momento tramite il link 'Impostazioni cookie' nel footer di ogni pagina. Puoi modificare le tue scelte o ritirare il consenso con effetto immediato.",
-      "l2": "Le impostazioni del browser: Chrome, Firefox, Safari, Edge e gli altri principali browser ti consentono di visualizzare, eliminare e bloccare i cookie. Consulta la sezione 'Impostazioni' o 'Aiuto' del tuo browser per le istruzioni specifiche.",
-      "l3": "Strumenti di opt-out dei fornitori: Google Analytics Opt-out (tools.google.com/dlpage/gaoptout) e strumenti analoghi messi a disposizione dai singoli provider.",
-      "l4": "Piattaforme di gestione per la pubblicità comportamentale: YourOnlineChoices (youronlinechoices.eu) per il contesto europeo."
+      "l1": "Il pannello di gestione del consenso, accessibile tramite il link 'Impostazioni cookie' nel footer.",
+      "l2": "Le impostazioni del browser: Chrome, Firefox, Safari, Edge ti consentono di visualizzare, eliminare e bloccare i cookie.",
+      "l3": "Strumenti di opt-out dei fornitori: Google Analytics Opt-out (tools.google.com/dlpage/gaoptout).",
+      "l4": "Piattaforme di gestione per la pubblicità comportamentale: YourOnlineChoices (youronlinechoices.eu)."
     },
     "s5": {
       "heading": "Impatto della disattivazione",
-      "p1": "La disattivazione dei cookie tecnici essenziali non è possibile senza pregiudicare gravemente il funzionamento del sito. La disattivazione dei cookie analitici e di marketing, invece, non influisce sulla tua capacità di navigare e usufruire dei contenuti: il sito funzionerà normalmente, ma non riceverai contenuti personalizzati basati sulla tua navigazione.",
-      "p2": "Se utilizzi il browser in modalità privata/incognito, i cookie vengono eliminati automaticamente alla chiusura della finestra. Tieni presente che questa modalità non equivale a un opt-out completo dal tracciamento."
+      "p1": "La disattivazione dei cookie tecnici essenziali non è possibile senza pregiudicare gravemente il funzionamento del sito. La disattivazione dei cookie analitici e di marketing non influisce sulla tua capacità di navigare.",
+      "p2": "Se utilizzi il browser in modalità privata/incognito, i cookie vengono eliminati automaticamente alla chiusura della finestra."
     },
     "s6": {
       "heading": "Aggiornamenti e contatti",
-      "p1": "La presente Cookie Policy viene aggiornata periodicamente per riflettere variazioni tecnologiche, modifiche nei servizi di terze parti integrati o aggiornamenti normativi. Ti consigliamo di visitare questa pagina regolarmente.",
-      "p2": "Per qualsiasi domanda relativa all'utilizzo dei cookie su sinersys.it, scrivici a privacy@sinersys.it. Indirizzo postale: Sinersys S.r.l., [INSERIRE INDIRIZZO REALE DA VISURA CAMERALE]."
+      "p1": "La presente Cookie Policy viene aggiornata periodicamente. Ti consigliamo di visitare questa pagina regolarmente.",
+      "p2": "Per qualsiasi domanda relativa all'utilizzo dei cookie su sinersys.it, scrivici a privacy@sinersys.it."
     }
   },
 

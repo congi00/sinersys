@@ -45,9 +45,8 @@ const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) =>
   return (
     <div className="w-full px-6 sm:px-16">
       <motion.h1
-        className="font-bold"
+        className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-7xl text-[#f4f7fa] font-bold leading-tight"
         style={{
-          fontSize: "clamp(1.9rem, 6.5vw, 4.0rem)",
           display:        "flex",
           flexWrap:       "wrap",
           lineHeight: "1.1",
@@ -85,7 +84,7 @@ const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) =>
 
       {subtitle && (
         <motion.h2
-          className="text-[1.3rem] sm:text-[1.8rem] font-light mt-8 text-left sm:text-center"
+          className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl font-light sm:mt-8 mt-4 text-left sm:text-center"
           style={{ color: "rgba(200, 216, 248, 0.75)",lineHeight: "1.3" }}
         >
           {subtitle}

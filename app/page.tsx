@@ -39,6 +39,7 @@ export default function Home() {
   const [introFinished, setIntroFinished] = useState(false);
 
   const homeTexts = useTranslations("homepage");
+  const scatteredCards = homeTexts.raw("scatteredCards");
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const navigationState = useAppSelector((s) => s.siteState.navigationState);
   const dispatch = useAppDispatch();
@@ -428,61 +429,20 @@ export default function Home() {
           }}
           className="flex items-center justify-center"
         >
-          <HomePageAbout progressMotion={smooth} />
+          <HomePageAbout progressMotion={smooth} isMobile={isMobile}/>
         </motion.div>
 
         {/* ── ScatteredCards ──────────────────────────────────────────────── */}
         <ScatteredCards
-          items={[
-            {
-              id: "1",
-              image: "/images/1.jpg",
-              label: "Prodotto",
-              suptitle: "Business",
-              title: "Strategia",
-              subtitle:
-                "Analizzare il mercato, validare il product-market fit e testare la solidità del modello di business.",
-            },
-            {
-              id: "2",
-              image: "/images/2.jpg",
-              label: "Tecnologia",
-              suptitle: "Ingegneria",
-              title: "Innovazione",
-              subtitle:
-                "Sviluppare soluzioni energetiche all'avanguardia che ridefiniscono gli standard di settore.",
-            },
-            {
-              id: "3",
-              image: "/images/3.jpg",
-              label: "Impatto",
-              suptitle: "Ambiente",
-              title: "Sostenibilità",
-              subtitle:
-                "Costruire un futuro energetico sostenibile attraverso tecnologia italiana d'eccellenza.",
-            },
-          ]}
+          items={scatteredCards}
           progress={smooth}
         />
-
-        {/* ── Circle ──────────────────────────────────────────────────────── */}
-        {/* <motion.div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 30,
-            backgroundColor: "#1c398e",
-            clipPath: circleClip,
-            pointerEvents: "none",
-          }}
-        /> */}
 
         <motion.div
           style={{
             position: "fixed",
             bottom: 0,
             right:  0,
-            // Diagonale dello schermo × 2 per coprire tutto
             width:  "283vmax",
             height: "283vmax",
             zIndex: 30,

@@ -2,6 +2,7 @@
 
 import { motion, useTransform, MotionValue } from "framer-motion";
 import { useEffect, useState } from "react";
+import { ArrowUpRight } from "@deemlol/next-icons"
 
 type CardItem = {
   id: string;
@@ -114,18 +115,6 @@ function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProp
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Layout — exact replica of reference image:
-//
-//  ┌────────────────────────────────────┐
-//  │  Subtitle text (top-left)    ↗     │  ← top zone, ~18% height
-//  │                                    │
-//  │       (generous white space)       │  ← middle breathing room ~42%
-//  │                                    │
-//  │  LABEL & CATEGORY                  │  ← small-caps label ~5%
-//  │  Massive Title                     │  ← giant display type ~35%
-//  └────────────────────────────────────┘
-// ─────────────────────────────────────────────────────────────────────────────
 function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
   const textPrimary    = isGlass ? "#f4f7fa"                 : "#0a0f24";
   const textSecondary  = isGlass ? "rgba(200,218,250,0.75)"  : "#374151";
@@ -162,12 +151,12 @@ function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
       }}>
         <p style={{
           margin:     0,
-          fontSize:   "clamp(0.9rem, 1.5vw, 1.15rem)",
-          lineHeight: 1.55,
           color:      textSecondary,
           fontWeight: 400,
           maxWidth:   "78%",
-        }}>
+        }}
+        className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl"
+        >
           {item.subtitle}
         </p>
 
@@ -180,7 +169,7 @@ function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
           flexShrink: 0,
           marginLeft: "1rem",
         }}>
-          ↗
+          <ArrowUpRight strokeWidth={0.5} />
         </span>
       </div>
 
@@ -203,8 +192,8 @@ function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
           }}>
             {item.suptitle && (
               <>
-                <span style={{ fontWeight: 400, color: labelLight }}>{item.suptitle}</span>
-                <span style={{ color: labelBold, fontWeight: 700 }}> & {item.label}</span>
+                <span className={"text-[1rem] sm:text-[1.3rem]"} style={{ fontWeight: 400, color: labelLight }}>{item.suptitle}</span>
+                <span className={"text-[1rem] sm:text-[1.3rem]"} style={{ color: labelBold, fontWeight: 700 }}> & {item.label}</span>
               </>
             )}
             {!item.suptitle && (
@@ -216,15 +205,15 @@ function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
         {/* Massive display title — fills the bottom of the card */}
         <h2 style={{
           margin:        0,
-          fontSize:      "clamp(3rem, 9vw, 7.5rem)",
           fontWeight:    700,
           lineHeight:    0.88,
-          letterSpacing: "-0.03em",
           ...titleStyle,
           // Overflow visible so descenders can breathe
           overflowX:     "visible",
           overflowY:     "visible",
-        }}>
+        }}
+        className="text-4xl font-stretch-extra-expanded tracking-wide sm:text-7xl"
+        >
           {item.title ?? item.label}
         </h2>
       </div>

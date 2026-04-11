@@ -1,8 +1,8 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
-import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useState, useRef, useEffect, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 
@@ -14,21 +14,18 @@ const LOCALES: { code: string; label: string; flag: string }[] = [
 ];
 
 export default function LanguageSwitcher() {
-  const locale   = useLocale();
-  const router   = useRouter();
-  const pathname = usePathname();
-
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const locale            = useLocale();
+  const router            = useRouter();
+  const [open, setOpen]   = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const ref               = useRef<HTMLDivElement>(null);
 
   // Close on outside click
   useEffect(() => {
     if (!open) return;
-    function handle(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
+    const handle = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
     document.addEventListener("mousedown", handle);
     return () => document.removeEventListener("mousedown", handle);
   }, [open]);
@@ -36,98 +33,91 @@ export default function LanguageSwitcher() {
   // Close on Escape
   useEffect(() => {
     if (!open) return;
-    function handle(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
+    const handle = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
     document.addEventListener("keydown", handle);
     return () => document.removeEventListener("keydown", handle);
   }, [open]);
 
   function switchLocale(next: string) {
     if (next === locale) { setOpen(false); return; }
-
-    // Replace the locale segment: /it/about-us → /en/about-us
-    const segments = pathname.split("/");
-    // segments[0] is always "" (leading slash), segments[1] is the locale
-    segments[1] = next;
-    router.push(segments.join("/"));
+    // Write cookie — picked up by getRequestConfig on next request
+    document.cookie = `locale=${next};path=/;max-age=${60 * 60 * 24 * 365};SameSite=Lax`;
     setOpen(false);
+    // router.refresh() re-runs server components so next-intl reads the new cookie
+    startTransition(() => router.refresh());
   }
 
   const current = LOCALES.find((l) => l.code === locale) ?? LOCALES[0];
 
   return (
-    <div ref={ref} style={{ position: "relative" }}>
+    <div ref={ref} style={{ position: "relative", display: "inline-block" }}>
 
-      {/* ── Trigger button — same glass pill style as the rest of the menu ── */}
+      {/* Trigger pill */}
       <motion.button
         onClick={() => setOpen((v) => !v)}
-        whileTap={{ scale: 0.94 }}
-        whileHover={{ backgroundColor: "rgba(255,255,255,0.18)" }}
+        whileTap={{ scale: 0.93 }}
         style={{
-          display:        "inline-flex",
-          alignItems:     "center",
-          gap:            "8px",
-          padding:        "8px 18px 8px 14px",
-          borderRadius:   "100px",
-          background:     "rgba(255,255,255,0.10)",
-          border:         "1px solid rgba(255,255,255,0.22)",
-          backdropFilter: "blur(16px) saturate(160%)",
+          display:              "inline-flex",
+          alignItems:           "center",
+          gap:                  "8px",
+          padding:              "8px 16px 8px 12px",
+          borderRadius:         "100px",
+          background:           "rgba(255,255,255,0.10)",
+          border:               "1px solid rgba(255,255,255,0.22)",
+          backdropFilter:       "blur(16px) saturate(160%)",
           WebkitBackdropFilter: "blur(16px) saturate(160%)",
-          boxShadow:      "0 2px 12px rgba(12,24,70,0.18), inset 0 1px 0 rgba(255,255,255,0.14)",
-          color:          "#f4f7fa",
-          fontSize:       "0.92rem",
-          fontWeight:     500,
-          cursor:         "pointer",
-          letterSpacing:  "0.02em",
-          userSelect:     "none",
+          boxShadow:            "0 2px 12px rgba(12,24,70,0.18), inset 0 1px 0 rgba(255,255,255,0.14)",
+          color:                "#f4f7fa",
+          fontSize:             "0.82rem",
+          fontWeight:           600,
+          letterSpacing:        "0.06em",
+          textTransform:        "uppercase",
+          cursor:               "pointer",
+          userSelect:           "none",
+          opacity:              isPending ? 0.6 : 1,
+          transition:           "opacity 0.2s",
         }}
         aria-label="Change language"
         aria-expanded={open}
         aria-haspopup="listbox"
       >
-        <span style={{ fontSize: "1.1rem", lineHeight: 1 }}>{current.flag}</span>
-        <span style={{ fontWeight: 600, letterSpacing: "0.04em", fontSize: "0.8rem", textTransform: "uppercase" }}>
-          {current.code.toUpperCase()}
-        </span>
-
-        {/* Chevron */}
+        <span style={{ fontSize: "1.05rem", lineHeight: 1 }}>{current.flag}</span>
+        <span>{current.code.toUpperCase()}</span>
         <motion.svg
           animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          width="14" height="14" viewBox="0 0 14 14" fill="none"
-          style={{ flexShrink: 0, opacity: 0.7 }}
+          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          width="12" height="12" viewBox="0 0 12 12" fill="none"
+          style={{ flexShrink: 0, opacity: 0.65 }}
         >
-          <path d="M3 5L7 9L11 5" stroke="#f4f7fa" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M2 4.5L6 8L10 4.5" stroke="#f4f7fa" strokeWidth="1.7"
+                strokeLinecap="round" strokeLinejoin="round" />
         </motion.svg>
       </motion.button>
 
-      {/* ── Dropdown ──────────────────────────────────────────────────────── */}
+      {/* Dropdown — opens upward, z-index above everything */}
       <AnimatePresence>
         {open && (
           <motion.div
             role="listbox"
             aria-label="Select language"
-            initial={{ opacity: 0, y: -8, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0,  scale: 1 }}
-            exit={{   opacity: 0, y: -6,  scale: 0.97 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 6,  scale: 0.96 }}
+            animate={{ opacity: 1, y: 0,  scale: 1    }}
+            exit={{   opacity: 0, y: 4,   scale: 0.97 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              position:     "absolute",
-              // Open upward — menu button is at the bottom of the screen
-              bottom:       "calc(100% + 10px)",
-              right: "-25%",
-              transform:    "translateX(-50%)",
-              zIndex:       9999,
-              minWidth:     "160px",
-              background:   "#173078ee",
-              backdropFilter:       "blur(32px) saturate(180%)",
-              WebkitBackdropFilter: "blur(32px) saturate(180%)",
-              border:       "1px solid rgba(255,255,255,0.18)",
-              borderRadius: "18px",
-              boxShadow:    "0 16px 48px rgba(5,11,38,0.55), inset 0 1px 0 rgba(255,255,255,0.12)",
-              overflow:     "hidden",
-              padding:      "6px",
+              position:             "absolute",
+              bottom:               "calc(100% + 10px)",
+              right:                 "-35%",
+              transform:            "translateX(-50%)",
+              zIndex:               99999,
+              minWidth:             "168px",
+              background:           "#1c398eee",
+              backdropFilter:       "blur(32px) saturate(200%)",
+              WebkitBackdropFilter: "blur(32px) saturate(200%)",
+              border:               "1px solid rgba(255,255,255,0.16)",
+              borderRadius:         "18px",
+              boxShadow:            "0 20px 60px rgba(5,11,38,0.65), inset 0 1px 0 rgba(255,255,255,0.10)",
+              padding:              "6px",
             }}
           >
             {LOCALES.map((loc, i) => {
@@ -138,40 +128,39 @@ export default function LanguageSwitcher() {
                   role="option"
                   aria-selected={isActive}
                   onClick={() => switchLocale(loc.code)}
-                  initial={{ opacity: 0, x: -8 }}
+                  initial={{ opacity: 0, x: -6 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.04, duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ backgroundColor: "rgba(255,255,255,0.10)" }}
+                  transition={{ delay: i * 0.04, duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ backgroundColor: "rgba(255,255,255,0.09)" }}
                   whileTap={{ scale: 0.97 }}
                   style={{
                     display:        "flex",
                     alignItems:     "center",
-                    marginTop: "5px",
                     gap:            "10px",
                     width:          "100%",
-                    padding:        "5px 14px",
+                    padding:        "6px 12px",
+                    marginTop: "3px",
                     borderRadius:   "12px",
-                    background:     isActive ? "rgba(255,255,255,0.12)" : "transparent",
-                    border:         isActive ? "1px solid rgba(255,255,255,0.16)" : "1px solid transparent",
+                    background:     isActive ? "rgba(255,255,255,0.10)" : "transparent",
+                    border:         isActive ? "1px solid rgba(255,255,255,0.14)" : "1px solid transparent",
                     cursor:         "pointer",
-                    textAlign:      "left",
-                    color:          isActive ? "#f4f7fa" : "rgba(200,218,250,0.70)",
+                    color:          isActive ? "#f4f7fa" : "rgba(200,218,250,0.65)",
                     fontSize:       "0.9rem",
                     fontWeight:     isActive ? 600 : 400,
                     letterSpacing:  "0.02em",
-                    transition:     "color 0.15s",
+                    textAlign:      "left",
                   }}
                 >
-                  <span style={{ fontSize: "1.15rem", lineHeight: 1, flexShrink: 0 }}>{loc.flag}</span>
+                  <span style={{ fontSize: "1.1rem", lineHeight: 1, flexShrink: 0 }}>{loc.flag}</span>
                   <span style={{ flex: 1 }}>{loc.label}</span>
                   {isActive && (
                     <motion.svg
                       initial={{ scale: 0 }} animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                      width="14" height="14" viewBox="0 0 14 14" fill="none"
-                      style={{ flexShrink: 0, opacity: 0.8 }}
+                      width="13" height="13" viewBox="0 0 13 13" fill="none"
                     >
-                      <path d="M2.5 7L5.5 10L11.5 4" stroke="#a0c4ff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M2 6.5L5 9.5L11 3.5" stroke="#7eb3ff"
+                            strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
                     </motion.svg>
                   )}
                 </motion.button>
