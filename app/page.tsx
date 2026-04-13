@@ -115,26 +115,8 @@ export default function Home() {
 
   useEffect(() => {
     if (showIntro) return;
-  
-    const isTouch = mounted && window.matchMedia("(pointer: coarse)").matches;
-    const isIOSDevice = mounted ? detectIOS() : false;
     const MAX_PROGRESS = 9;
   
-    if (isTouch && isIOSDevice) {
-      const onScroll = () => {
-        const sy = window.scrollY;
-        const limit = document.documentElement.scrollHeight - window.innerHeight;
-        if (limit > 0) {
-          progressMotion.set(Math.min(MAX_PROGRESS, (sy / limit) * MAX_PROGRESS));
-          scrollY.set(sy);
-        }
-      };
-  
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
-  
-    } else {
       const lenis = new Lenis({
         duration: 1.1,
         easing: (t: number) => 1 - Math.pow(1 - t, 3),
@@ -170,11 +152,11 @@ export default function Home() {
         cancelAnimationFrame(rafId);
         lenis.destroy();
       };
-    }
   }, [progressMotion, scrollY, showIntro]);
 
-  const springValue = useSpring(progressMotion, { stiffness: 280, damping: 28 });
-  const smooth = isMobile ? progressMotion : springValue;
+  // const springValue = useSpring(progressMotion, { stiffness: 280, damping: 28 });
+  // const smooth = isMobile ? progressMotion : springValue;
+  const smooth = progressMotion
   const vh = vhPx || (mounted ? window.innerHeight : 800);
 
   // ── Slide 0 ───────────────────────────────────────────────────────────────
