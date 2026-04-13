@@ -71,12 +71,12 @@ function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProp
 
   const mobileY = (() => {
     if (index === 0) {
-      return useTransform(progress, [enterEnd, slideStart, slideEnd, slideEnd + 0.4], ["0%", "0%", "-100%", "-100%"]);
+      return useTransform(progress, [0, enterEnd - 0.5, enterEnd, slideStart, slideEnd, slideEnd + 0.4], ["120%", "120%" ,"0%", "0%", "-100%", "-100%"]);
     }
     if (index === 1) {
-      return useTransform(progress, [enterStart, enterEnd, slideStart, slideEnd], ["100%", "0%", "0%", "-100%"]);
+      return useTransform(progress, [0, enterEnd - 0.1, enterStart, enterEnd, slideStart, slideEnd], ["120%", "120%", "100%", "0%", "0%", "-100%"]);
     }
-    return useTransform(progress, [enterStart, enterEnd], ["100%", "0%"]);
+    return useTransform(progress, [0, enterEnd - 0.1, enterStart, enterEnd], [ "120%", "120%", "100%", "0%"]);
   })();
 
   const mobileOpacity = (() => {

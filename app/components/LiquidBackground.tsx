@@ -124,19 +124,34 @@ void main() {
 }
 `;
 
+const getViewportSize = () => {
+  if (window.visualViewport) {
+    return {
+      width: window.visualViewport.width,
+      height: window.visualViewport.height,
+    };
+  }
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+};
+
 export default function LiquidBackground({ className = "", style = {}, progress, insetPx }: Props) {
   const mountRef  = useRef<HTMLDivElement>(null);
   const paletteRef = useRef(0); // 0 = dark, 1 = light
 
   // clip-path: inset with borderRadius → full screen
-  const clipPath = useTransform(
-    progress ?? new MotionValue<number>(0),  // ← questo crea un MotionValue ogni render!
-    [0, 0.3, 0.8],
-    ["inset(16px round 24px)", "inset(16px round 24px)", "inset(0px round 0px)"]
+  if (!progress) return null;
+  const radius = useTransform(progress, [0, 0.8], [24, 0]);
+  const inset = useTransform(
+    progress,
+    [0, 0.8],
+    ["inset(16px 16px 16px 16px round 24px)", "inset(0px 0px 0px 0px round 0px)"]
   );
 
   // Palette crossfade: p 2.05→2.20 = dark→light, smooth ease-in-out
-  useMotionValueEvent(progress ?? new MotionValue<number>(0), "change", (p) => {
+  useMotionValueEvent(progress, "change", (p) => {
     const raw   = Math.min(1, Math.max(0, (p - 3.05) / 0.15));
     const eased = raw < 0.5 ? 3 * raw * raw : 1 - Math.pow(-2 * raw + 2, 2) / 2;
     paletteRef.current = eased;
@@ -145,12 +160,10 @@ export default function LiquidBackground({ className = "", style = {}, progress,
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
-
-    const W = window.innerWidth;
-    const H = window.innerHeight;
+    const { width: W, height: H } = getViewportSize();
 
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.2));
     renderer.setSize(W, H);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
@@ -162,6 +175,7 @@ export default function LiquidBackground({ className = "", style = {}, progress,
       uResolution: { value: new THREE.Vector2(W, H) },
       uPalette:    { value: 0 },
     };
+    
     const geo = new THREE.PlaneGeometry(2, 2);
     const mat = new THREE.ShaderMaterial({ vertexShader: VERT, fragmentShader: FRAG, uniforms });
     scene.add(new THREE.Mesh(geo, mat));
@@ -176,11 +190,16 @@ export default function LiquidBackground({ className = "", style = {}, progress,
     }
     animate();
 
+    let resizeTimeout: any;
+
     function onResize() {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      renderer.setSize(w, h);
-      uniforms.uResolution.value.set(w, h);
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        renderer.setSize(w, h);
+        uniforms.uResolution.value.set(w, h);
+      }, 150);
     }
     window.addEventListener("resize", onResize);
 
@@ -196,17 +215,25 @@ export default function LiquidBackground({ className = "", style = {}, progress,
 
   return (
     <motion.div
-      ref={mountRef}
-      className={className}
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 0,
-        pointerEvents: "none",
-        clipPath: progress ? clipPath : (insetPx ?? "inset(16px round 24px)"),
-        willChange: "clip-path",
-        ...style,
-      }}
-    />
+  style={{
+    position: "fixed",
+    clipPath: inset,
+    zIndex: 0,
+    borderRadius: radius,
+    overflow: "hidden",
+    willChange: "clip-path",
+  }}
+>
+  <div
+    ref={mountRef}
+    className={className}
+    style={{
+      width: "100%",
+      height: "100%",
+      pointerEvents: "none",
+      transform: "translateZ(0)",
+    }}
+  />
+</motion.div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -32,6 +32,11 @@ import { ArrowUpRight } from "@deemlol/next-icons";
 import HeroVideo from "./components/HeroVideo";
 import SixPhaseEngine from "./components/SixPhaseEngine";
 
+function isTouchDevice() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(pointer: coarse)").matches;
+}
+
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const progressMotion = useMotionValue(0);
@@ -58,106 +63,66 @@ export default function Home() {
   const isMobile = width <= 768;
   const isIOS = mounted ? detectIOS() : false;
   const vhUnit = isIOS ? "lvh" : "dvh";
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentH, setContentH] = useState(0);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    let debounceTimer: ReturnType<typeof setTimeout>;
-
     const measure = () => {
-      // visualViewport è più stabile della navbar che appare/scompare
-      const h = window.visualViewport
-        ? window.visualViewport.height
-        : window.innerHeight;
-      setVhPx(h);
+      const el = document.createElement("div");
+      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${isIOS?"lvh":"dvh"};pointer-events:none;visibility:hidden;`;
+      document.body.appendChild(el);
+      setVhPx(el.getBoundingClientRect().height);
+      document.body.removeChild(el);
     };
-
-    const debouncedMeasure = () => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(measure, 150); // aspetta che la navbar finisca
-    };
-
-    measure(); // prima misura immediata
-
-    // visualViewport ha il suo evento resize (più preciso di window.resize)
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", debouncedMeasure);
-      window.visualViewport.addEventListener("scroll", debouncedMeasure);
-    }
-    window.addEventListener("resize", debouncedMeasure);
-    window.addEventListener("orientationchange", () => {
-      // orientationchange richiede delay più lungo (il browser ri-calcola lentamente)
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(measure, 400);
-    });
-
-    return () => {
-      clearTimeout(debounceTimer);
-      if (window.visualViewport) {
-        window.visualViewport.removeEventListener("resize", debouncedMeasure);
-        window.visualViewport.removeEventListener("scroll", debouncedMeasure);
-      }
-      window.removeEventListener("resize", debouncedMeasure);
-    };
+    measure();
+    window.addEventListener("resize", measure);
+    window.addEventListener("orientationchange", measure);
+    return () => { window.removeEventListener("resize", measure); window.removeEventListener("orientationchange", measure); };
   }, [isIOS]);
 
   useEffect(() => {
-    const lock = showIntro || navigationState === 3;
-    document.body.style.overflow = lock ? "hidden" : "";
-    document.documentElement.style.overflow = lock ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    };
-  }, [showIntro, navigationState]);
+    const r = () => setWidth(window.innerWidth);
+    r(); window.addEventListener("resize", r);
+    return () => window.removeEventListener("resize", r);
+  }, []);
 
   useEffect(() => {
-    if (showIntro) return;
-    const MAX_PROGRESS = 9;
-  
-      const lenis = new Lenis({
-        duration: 1.1,
-        easing: (t: number) => 1 - Math.pow(1 - t, 3),
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        syncTouch: true,
-        touchMultiplier: 1.15,
-        infinite: false,
-      });
-  
-      let rafId = 0;
-      let ticking = false;
-  
-      const raf = (time: number) => {
-        lenis.raf(time);
-        rafId = requestAnimationFrame(raf);
-      };
-      
-      rafId = requestAnimationFrame(raf);
-  
-      lenis.on("scroll", (e: { scroll: number; limit: number }) => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            progressMotion.set(Math.min(MAX_PROGRESS, (e.scroll / e.limit) * MAX_PROGRESS));
-            scrollY.set(e.scroll);
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
-  
-      return () => {
-        cancelAnimationFrame(rafId);
-        lenis.destroy();
-      };
-  }, [progressMotion, scrollY, showIntro]);
+    if (!contentRef.current) return;
+    const ro = new ResizeObserver(() => {
+      if (contentRef.current) setContentH(contentRef.current.scrollHeight);
+    });
+    ro.observe(contentRef.current);
+    setContentH(contentRef.current.scrollHeight);
+    return () => ro.disconnect();
+  }, []);
 
-  // const springValue = useSpring(progressMotion, { stiffness: 280, damping: 28 });
-  // const smooth = isMobile ? progressMotion : springValue;
-  const smooth = progressMotion
-  const vh = vhPx || (mounted ? window.innerHeight : 800);
+  useEffect(() => {
+    if (isTouchDevice()) {
+      const onScroll = () => {
+        const sy    = window.scrollY;
+        const limit = document.documentElement.scrollHeight - window.innerHeight;
+        if (limit > 0) progressMotion.set(Math.min(9.5, (sy / limit) * 9.5));
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive:true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }
+    const lenis = new Lenis({ duration:1.2, smoothWheel:true });
+    let rafId = 0;
+    const raf = (time: number) => { lenis.raf(time); rafId = requestAnimationFrame(raf); };
+    rafId = requestAnimationFrame(raf);
+    lenis.on("scroll", (e: { scroll:number; limit:number }) => {
+      progressMotion.set(Math.min(9, (e.scroll / e.limit) * 9));
+    });
+    return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
+  }, [progressMotion]);
+
+  const smooth = useSpring(progressMotion, { stiffness:280, damping:28 });
+  const vh     = vhPx || 1;
 
   // ── Slide 0 ───────────────────────────────────────────────────────────────
   const slide0Y = useTransform(smooth, [0, 0.2, 0.6], [0, 0, -880]);
@@ -507,7 +472,7 @@ export default function Home() {
             style={{
               width: "100%",
               maxWidth: "860px",
-              padding: "4rem 1.5rem 2rem",
+              padding: isMobile ? "1rem 1.5rem 2rem" : "4rem 1.5rem 2rem",
               boxSizing: "border-box",
             }}
           >

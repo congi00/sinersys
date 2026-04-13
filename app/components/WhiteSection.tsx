@@ -12,7 +12,7 @@ interface Props {
 
 // ── Marquee text loop ─────────────────────────────────────────────────────────
 // Pure CSS animation — no JS needed, performant, no layout dependency.
-const MARQUEE_TEXT = "INNOVAZIONE · ENERGIA · FUTURO · SINERSYS · NEW ENERGY FRONTIERS · ";
+const MARQUEE_TEXT = "SINERSYS · NEW ENERGY FRONTIERS · ";
 
 export default function WhiteSection({ progressMotion, isMobile, vhUnit }: Props) {
   // Section enters as circle shrinks away (p 5.2+)

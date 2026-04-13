@@ -77,7 +77,7 @@ export default function SixPhaseEngine({
         display: "flex",
         justifyContent: "center",
         padding: isMobile
-          ? "10rem clamp(1.2rem,5vw,2rem)"
+          ? "5rem clamp(1.2rem,5vw,2rem)"
           : "10rem clamp(3rem,8vw,8rem)",
         overflowY: "hidden",
       }}
@@ -171,18 +171,19 @@ export default function SixPhaseEngine({
             opacity: label.op,
             y: label.y,
             display: "inline-flex",
-            alignItems: "center",
+            alignItems: isMobile ? "start" : "center",
+            flexDirection: isMobile ? "column" : "row",
             gap: "10px",
             marginBottom: "clamp(0.7rem,1.8vh,1.2rem)",
           }}
         >
-          <div
+          {!isMobile && <div
             style={{
               width: "28px",
               height: "1px",
               background: "rgba(100,150,255,0.55)",
             }}
-          />
+          />}
           <span
             style={{
               fontWeight: 700,
