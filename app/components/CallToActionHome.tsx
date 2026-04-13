@@ -23,15 +23,15 @@ export default function CallToActionHome({ progressMotion }: Props) {
   //   7.2   → CTA shrinks back  (inset:16 radius:24)
   //
   // Expressed as CSS shorthand via useTransform on a number, then converted.
-  const inset  = useTransform(progressMotion, [5.2, 6.0, 6.1, 6.8], [16, 0, 0, 16]);
-  const radius = useTransform(progressMotion, [5.2, 6.0, 6.1, 6.8], [24, 0, 0, 24]);
+  const inset  = useTransform(progressMotion, [6.2, 7.0, 7.1, 7.8], [16, 0, 0, 16]);
+  const radius = useTransform(progressMotion, [6.2, 7.0, 7.1, 7.8], [24, 0, 0, 24]);
 
   const insetStr  = useTransform(inset,  (v) => `${v}px`);
   const radiusStr = useTransform(radius, (v) => `${v}px`);
 
   // Content fade-in: appears as CTA expands to fullscreen
-  const contentOpacity = useTransform(progressMotion, [5.4, 5.8], [0, 1]);
-  const contentY       = useTransform(progressMotion, [5.4, 5.8], [30, 0]);
+  const contentOpacity = useTransform(progressMotion, [6.4, 6.8], [0, 1]);
+  const contentY       = useTransform(progressMotion, [6.4, 6.8], [30, 0]);
 
   // Autoplay video
   useEffect(() => {

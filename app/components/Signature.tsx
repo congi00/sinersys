@@ -92,8 +92,8 @@ const SIGNATURE_PATH = `
 
 const Signature: React.FC<SignatureProps> = ({ progress }) => {
   // Testo e sottolineatura si "scrivono" insieme, progressivamente
-  const pathLength = useTransform(progress, [4.3, 4.9], [0, 1]);
-  const opacity    = useTransform(progress, [4.0, 4.3], [0, 1]);
+  const pathLength = useTransform(progress, [5.3, 5.9], [0, 1]);
+  const opacity    = useTransform(progress, [5.3, 5.4], [0, 1]);
 
   return (
     <motion.div

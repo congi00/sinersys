@@ -21,23 +21,23 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const homeTexts = useTranslations("homepage");
 
-  const slide1Opacity = useTransform(progressMotion, [0.6, 0.8], [0, 1]);
-  const slide1Y = useTransform(progressMotion, [0.6, 0.8], [120, 0]);
+  const slide1Opacity = useTransform(progressMotion, [1.6, 1.8], [0, 1]);
+  const slide1Y = useTransform(progressMotion, [1.6, 1.8], [120, 0]);
   const titleColor = useTransform(
     progressMotion,
-    [2.1, 2.12],
+    [3.1, 3.12],
     ["#F4F7FA", "#1c398e"]
   );
   const subtitleColor = useTransform(
     progressMotion,
-    [2.1, 2.12],
+    [3.1, 3.12],
     ["#F4F7FA82", "#5C8BAF32" ]
   );
 
   // Border radius animato (24px → 0px)
   const borderRadius = useTransform(
     progressMotion,
-    [0, 1, 1.8, 2.3],
+    [0, 2, 2.8, 3.3],
     [24, 0, 0, 24]
   );
 

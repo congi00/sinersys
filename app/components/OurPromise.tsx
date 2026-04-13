@@ -40,7 +40,7 @@ function Word({
 
 const OurPromise: React.FC<OurPromiseProps> = ({ title, subtitle, progress }) => {
   const words = title.split(" ");
-  const wordsProgress = useTransform(progress, [3.9, 4.8], [0, words.length]);
+  const wordsProgress = useTransform(progress, [4.9, 5.8], [0, words.length]);
 
   return (
     <div className="w-full px-6 sm:px-16">

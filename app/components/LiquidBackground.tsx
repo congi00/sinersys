@@ -137,8 +137,8 @@ export default function LiquidBackground({ className = "", style = {}, progress,
 
   // Palette crossfade: p 2.05→2.20 = dark→light, smooth ease-in-out
   useMotionValueEvent(progress ?? new MotionValue<number>(0), "change", (p) => {
-    const raw   = Math.min(1, Math.max(0, (p - 2.05) / 0.15));
-    const eased = raw < 0.5 ? 2 * raw * raw : 1 - Math.pow(-2 * raw + 2, 2) / 2;
+    const raw   = Math.min(1, Math.max(0, (p - 3.05) / 0.15));
+    const eased = raw < 0.5 ? 3 * raw * raw : 1 - Math.pow(-2 * raw + 2, 2) / 2;
     paletteRef.current = eased;
   });
 

@@ -17,10 +17,10 @@ const MARQUEE_TEXT = "INNOVAZIONE · ENERGIA · FUTURO · SINERSYS · NEW ENERGY
 export default function WhiteSection({ progressMotion, isMobile, vhUnit }: Props) {
   // Section enters as circle shrinks away (p 5.2+)
   // Opacity/y of the whole section
-  const sectionOpacity = useTransform(progressMotion, [5.0, 5.1], [0, 1]);
-  const sectionY = useTransform(progressMotion, [5.0, 5.35], [0, 0]);
-  const sectionCTAY = useTransform(progressMotion, [5.0, 5.35, 6.0, 6.01, 6.8], [0, 0, -320, -320, -1000]);
-  const sectionCTAFlex = useTransform(progressMotion, [5.0, 5.35, 6.0, 6.1, 6.8], ["0 0 66.667%", "0 0 66.667%", "0 0 100%", "0 0 100%","0 0 66.667%"]);
+  const sectionOpacity = useTransform(progressMotion, [6.0, 6.1], [0, 1]);
+  const sectionY = useTransform(progressMotion, [6.0, 6.35], [0, 0]);
+  const sectionCTAY = useTransform(progressMotion, [6.0, 6.35, 7.0, 7.01, 7.8], [0, 0, -320, -320, -1000]);
+  const sectionCTAFlex = useTransform(progressMotion, [6.0, 6.35, 7.0, 7.1, 7.8], ["0 0 66.667%", "0 0 66.667%", "0 0 100%", "0 0 100%","0 0 66.667%"]);
 
   return (
     <motion.div

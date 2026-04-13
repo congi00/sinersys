@@ -21,39 +21,11 @@ interface Props {
   isMobile: boolean;
 }
 
-const DEFAULT_ITEMS: FaqItem[] = [
-  {
-    question: "What exactly does Nfinite sell?",
-    answer:
-      "Nfinite develops and sells a high-performance paper-based material that replaces conventional plastic packaging. Our material is fully recyclable, compostable, and designed to meet the same mechanical requirements as traditional plastic films.",
-  },
-  {
-    question: "Does Nfinite paper require lamination?",
-    answer:
-      "No lamination needed. Our proprietary coating technology provides barrier properties directly on the paper surface, eliminating the need for multi-layer lamination processes while maintaining excellent moisture and oxygen resistance.",
-  },
-  {
-    question: "Will it run on existing packing lines?",
-    answer:
-      "Yes. Nfinite paper is engineered to be drop-in compatible with standard horizontal and vertical form-fill-seal machines, with minimal to no equipment modifications required.",
-  },
-  {
-    question: "Does Nfinite paper contain metal?",
-    answer:
-      "No. Our material is entirely metal-free, making it fully compatible with microwave use and industrial composting streams, as well as standard paper recycling facilities.",
-  },
-  {
-    question: "What's the aspect of Nfinite paper?",
-    answer:
-      "Nfinite paper looks and feels just like paper. Our coating is fully transparent, so it doesn't have a metallic appearance on the inside or outside.",
-  },
-];
-
 export default function FaqSection({
   progress,
-  progressStart = 6.2,
-  progressEnd = 7.0,
-  items = DEFAULT_ITEMS,
+  progressStart = 8.2,
+  progressEnd = 8.0,
+  items,
   title = "Here are the essentials about our product, how it works, and what makes it different.",
   suptitle = "FAQ",
   isMobile,
@@ -100,7 +72,7 @@ export default function FaqSection({
   return (
     <motion.section
       style={{ opacity: sectionOpacity, y: sectionY }}
-      className="w-full mx-auto px-5 py-16"
+      className="w-full mx-auto px-5 pt-10 pb-12"
     >
       {/* Header */}
       <motion.div className="mb-12 text-left sm:text-center">
@@ -121,7 +93,7 @@ export default function FaqSection({
 
       {/* Items */}
       <div className="divide-y divide-[#1c398e]">
-        {items.map((item, index) => {
+        {items?.map((item, index) => {
           const itemOpacity = getItemOpacity(index);
           const itemY = getItemY(index);
           const isOpen = openIndex === index;

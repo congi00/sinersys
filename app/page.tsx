@@ -30,6 +30,7 @@ import WhiteSection from "./components/WhiteSection";
 import LinkButton from "./components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import HeroVideo from "./components/HeroVideo";
+import SixPhaseEngine from "./components/SixPhaseEngine";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -117,13 +118,14 @@ export default function Home() {
   
     const isTouch = mounted && window.matchMedia("(pointer: coarse)").matches;
     const isIOSDevice = mounted ? detectIOS() : false;
+    const MAX_PROGRESS = 9;
   
     if (isTouch && isIOSDevice) {
       const onScroll = () => {
         const sy = window.scrollY;
         const limit = document.documentElement.scrollHeight - window.innerHeight;
         if (limit > 0) {
-          progressMotion.set(Math.min(8, (sy / limit) * 8));
+          progressMotion.set(Math.min(MAX_PROGRESS, (sy / limit) * MAX_PROGRESS));
           scrollY.set(sy);
         }
       };
@@ -156,7 +158,7 @@ export default function Home() {
       lenis.on("scroll", (e: { scroll: number; limit: number }) => {
         if (!ticking) {
           requestAnimationFrame(() => {
-            progressMotion.set(Math.min(8, (e.scroll / e.limit) * 8));
+            progressMotion.set(Math.min(MAX_PROGRESS, (e.scroll / e.limit) * MAX_PROGRESS));
             scrollY.set(e.scroll);
             ticking = false;
           });
@@ -220,11 +222,11 @@ export default function Home() {
   );
 
   // ── HomePageAbout ─────────────────────────────────────────────────────────
-  const aboutY = useTransform(smooth, [1.8, 1.9, 2.4, 2.8], [80, 0, 0, -880]);
-  const aboutOpacity = useTransform(smooth, [1.8, 1.9, 3.5, 3.8], [0, 1, 1, 0]);
+  const aboutY = useTransform(smooth, [2.8, 2.9, 3.4, 3.8], [80, 0, 0, -880]);
+  const aboutOpacity = useTransform(smooth, [2.8, 2.9, 4.5, 4.8], [0, 1, 1, 0]);
   const aboutClip = useTransform(
     smooth,
-    [1.8, 1.9, 2.4, 3.8],
+    [2.8, 2.9, 3.4, 4.8],
     [
       "inset(100% 0% 0% 0%)",
       "inset(0% 0% 0% 0%)",
@@ -244,17 +246,17 @@ export default function Home() {
   //     "circle(0% at 5% 5%)",
   //   ]
   // );
-  const circleScale  = useTransform(smooth, [3.7, 3.8, 5.2, 5.3], [0, 1, 1, 0]);
+  const circleScale  = useTransform(smooth, [4.7, 4.8, 6.2, 6.3], [0, 1, 1, 0]);
 
   // ── OurPromise ────────────────────────────────────────────────────────────
   const ourPromiseY = useTransform(
     smooth,
-    [3.85, 4.1, 5.0, 5.2],
+    [4.85, 5.1, 6.0, 6.2],
     [50, 0, 0, -60]
   );
   const ourPromiseOpacity = useTransform(
     smooth,
-    [3.85, 4.1, 4.9, 5.2],
+    [4.85, 5.1, 5.9, 6.2],
     [0, 1, 1, 0]
   );
 
@@ -263,7 +265,7 @@ export default function Home() {
   // white section appears after circle shrinks (p 5.2+)
   const headerTheme = useTransform(
     smooth,
-    [2, 2.1, 3.7, 3.75, 3.9, 4.9, 5.0, 5.1, 5.2, 5.3 , 6.4, 6.8,7.0,7.2,8.0],
+    [3, 3.1, 4.7, 4.75, 4.9, 5.9, 6.0, 6.1, 6.2, 6.3 , 7.4, 7.8,8.0,8.2,9.0],
     [0, 1,1,1, 0, 0, 0, 0, 0, 1 , 0, 1, 1, 1, isMobile? 0 : 1 ]
   );
 
@@ -273,8 +275,8 @@ export default function Home() {
 
   // ── FAQ ───────────────────────────────────────────────────────────────────
   // Absolute positioned after the white section scroll budget
-  const spacerFaq = isMobile ? vh * 10 : vh * 8.5;
-  const totalHeight = isMobile ? vh * 11.8 + 1200 : vh * 10 + 900;
+  const spacerFaq = isMobile ? vh * 11 : vh * 9.7;
+  const totalHeight = isMobile ? vh * 12.8 + 1200 : vh * 11 + 900;
 
   if (!mounted) {
     return <div className="min-h-screen bg-[#0f2057]" />;
@@ -349,7 +351,6 @@ export default function Home() {
         </motion.div>
 
         {/* ── MODEL PHASE A ────────────────────────────────────────────────── */}
-        {introFinished && (
         <motion.div
           style={{
             position: "fixed",
@@ -366,7 +367,6 @@ export default function Home() {
         >
           <HeroVideo progressMotion={smooth} />
         </motion.div>
-      )}
 
         {/* ── SLIDE 1 ─────────────────────────────────────────────────────── */}
         <motion.div
@@ -415,6 +415,24 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
+
+        {/* ── MOTORE 6 FASI ──────────────────────────────────────────────────── */}
+        <SixPhaseEngine
+          progress={smooth}
+          isMobile={isMobile}
+          title={homeTexts("sixPhase.title")}
+          suptitle={homeTexts("sixPhase.suptitle")}
+          badge={homeTexts("sixPhase.badge")}
+          subtitle={homeTexts("sixPhase.subtitle")}
+          phases={[
+            { number: homeTexts("sixPhase.phase0.number"), label: homeTexts("sixPhase.phase0.label"), desc: homeTexts("sixPhase.phase0.desc") },
+            { number: homeTexts("sixPhase.phase1.number"), label: homeTexts("sixPhase.phase1.label"), desc: homeTexts("sixPhase.phase1.desc") },
+            { number: homeTexts("sixPhase.phase2.number"), label: homeTexts("sixPhase.phase2.label"), desc: homeTexts("sixPhase.phase2.desc") },
+            { number: homeTexts("sixPhase.phase3.number"), label: homeTexts("sixPhase.phase3.label"), desc: homeTexts("sixPhase.phase3.desc") },
+          ]}
+          comingSoon={homeTexts("sixPhase.comingSoon")}
+          comingSoonSub={homeTexts("sixPhase.comingSoonSub")}
+        />
 
         {/* ── HomePageAbout ──────────────────────────────────────────────── */}
         <motion.div
@@ -513,7 +531,7 @@ export default function Home() {
           >
             <FaqSection
               progress={smooth}
-              progressStart={isMobile ? 6.3 : 6.4}
+              progressStart={isMobile ? 7.3 : 7.4}
               title={homeTexts("faq.title")}
               suptitle="FAQ"
               isMobile={isMobile}

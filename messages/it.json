@@ -18,6 +18,36 @@
       "subtitle": "APWEC è la tecnologia italiana brevettata che trasforma le variazioni di pressione\nin energia elettrica pulita, continua e misurabile.\nZero emissioni. Zero combustibili. 24 ore su 24, 365 giorni l'anno.",
       "link": "Scopri Come Funziona"
     },
+    "_comment": "Sezione Motore 6 Fasi — homepage",
+    "_seo_note": "Keyword target IT: motore 6 fasi, motore a combustione interna brevettato, ciclo termodinamico innovativo, generazione energia rinnovabile, tecnologia brevettata italiana",
+    "sixPhase": {
+      "suptitle": "Prossimamente · Tecnologia Esclusiva Motor Union",
+      "badge": "BREVETTATO",
+      "title": "Motore a 6 Fasi",
+      "subtitle": "Un nuovo sistema di trasformazione del moto — eccentrico a profilo predeterminato con rotella folle sul pistone — che supera i limiti del tradizionale sistema biella-manovella e configura un ciclo termodinamico completamente nuovo, in due giri d'albero, con sei fasi distinte ad alta efficienza.",
+      "phase0": {
+        "number": "01",
+        "label": "Aspirazione prolungata",
+        "desc": "Pistone fermo al P.M.I.: la velocità inerziale della miscela viene sfruttata al massimo, con coefficienti di riempimento oltre il 120% della cilindrata."
+      },
+      "phase1": {
+        "number": "02",
+        "label": "Combustione a volume costante",
+        "desc": "Accensione all'inizio dell'isocora al P.M.S. con anticipo nullo — zero perdite di energia del volano, pressione di combustione direttamente convertita in lavoro."
+      },
+      "phase2": {
+        "number": "03",
+        "label": "Espansione ottimizzata",
+        "desc": "Il profilo dell'eccentrico è calibrato per massimizzare il lavoro utile durante l'intera fase espansiva, riducendo le perdite termodinamiche residue."
+      },
+      "phase3": {
+        "number": "04-06",
+        "label": "Scarico, ricambio e recupero",
+        "desc": "Le restanti tre fasi del doppio giro completano il ciclo con perdite passive minime, sfruttando il ricuperatore di calore integrato per massimizzare il rendimento globale."
+      },
+      "comingSoon": "In arrivo",
+      "comingSoonSub": "Documentazione tecnica completa e simulazioni del ciclo disponibili a breve"
+    },
     "slide2": {
       "suptitle": "CHI SIAMO",
       "title": "Oltre 100 anni di ingegneria italiana\n al servizio della transizione energetica",
