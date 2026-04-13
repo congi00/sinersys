@@ -2,13 +2,18 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { MotionValue, motion, useTransform, useMotionValueEvent } from "framer-motion";
+import {
+  MotionValue,
+  motion,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 
 interface Props {
   className?: string;
   style?: React.CSSProperties;
   progress?: MotionValue<number>;
-  insetPx?: MotionValue<string>;
+  vhUnit: string;
 }
 
 const VERT = `
@@ -124,35 +129,29 @@ void main() {
 }
 `;
 
-const getViewportSize = () => {
-  if (window.visualViewport) {
-    return {
-      width: window.visualViewport.width,
-      height: window.visualViewport.height,
-    };
-  }
-  return {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
-};
-
-export default function LiquidBackground({ className = "", style = {}, progress, insetPx }: Props) {
-  const mountRef  = useRef<HTMLDivElement>(null);
+export default function LiquidBackground({
+  className = "",
+  style = {},
+  progress,
+  vhUnit,
+}: Props) {
+  const mountRef = useRef<HTMLDivElement>(null);
   const paletteRef = useRef(0); // 0 = dark, 1 = light
 
   // clip-path: inset with borderRadius → full screen
   if (!progress) return null;
-  const radius = useTransform(progress, [0, 0.8], [24, 0]);
   const inset = useTransform(
     progress,
     [0, 0.8],
-    ["inset(16px 16px 16px 16px round 24px)", "inset(0px 0px 0px 0px round 0px)"]
+    [
+      "inset(16px 16px 16px 16px round 24px)",
+      "inset(0px 0px 0px 0px round 0px)",
+    ]
   );
 
   // Palette crossfade: p 2.05→2.20 = dark→light, smooth ease-in-out
   useMotionValueEvent(progress, "change", (p) => {
-    const raw   = Math.min(1, Math.max(0, (p - 3.05) / 0.15));
+    const raw = Math.min(1, Math.max(0, (p - 3.05) / 0.15));
     const eased = raw < 0.5 ? 3 * raw * raw : 1 - Math.pow(-2 * raw + 2, 2) / 2;
     paletteRef.current = eased;
   });
@@ -160,7 +159,14 @@ export default function LiquidBackground({ className = "", style = {}, progress,
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
-    const { width: W, height: H } = getViewportSize();
+
+    // Misura l'altezza reale con lvh/dvh tramite DOM
+    const probe = document.createElement("div");
+    probe.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${vhUnit};pointer-events:none;visibility:hidden;`;
+    document.body.appendChild(probe);
+    const H = probe.getBoundingClientRect().height;
+    document.body.removeChild(probe);
+    const W = window.innerWidth;
 
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.2));
@@ -168,14 +174,14 @@ export default function LiquidBackground({ className = "", style = {}, progress,
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
 
-    const scene  = new THREE.Scene();
+    const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const uniforms = {
-      uTime:       { value: 0 },
+      uTime: { value: 0 },
       uResolution: { value: new THREE.Vector2(W, H) },
-      uPalette:    { value: 0 },
+      uPalette: { value: 0 },
     };
-    
+
     const geo = new THREE.PlaneGeometry(2, 2);
     const mat = new THREE.ShaderMaterial({ vertexShader: VERT, fragmentShader: FRAG, uniforms });
     scene.add(new THREE.Mesh(geo, mat));
@@ -184,56 +190,46 @@ export default function LiquidBackground({ className = "", style = {}, progress,
     const clock = new THREE.Clock();
     function animate() {
       rafId = requestAnimationFrame(animate);
-      uniforms.uTime.value    = clock.getElapsedTime();
+      uniforms.uTime.value = clock.getElapsedTime();
       uniforms.uPalette.value = paletteRef.current;
       renderer.render(scene, camera);
     }
     animate();
 
-    let resizeTimeout: any;
-
-    function onResize() {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        renderer.setSize(w, h);
-        uniforms.uResolution.value.set(w, h);
-      }, 150);
-    }
-    window.addEventListener("resize", onResize);
-
     return () => {
       cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", onResize);
       renderer.dispose();
       mat.dispose();
       geo.dispose();
-      if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement);
+      if (mount.contains(renderer.domElement))
+        mount.removeChild(renderer.domElement);
     };
-  }, []);
+  }, [vhUnit]);
 
   return (
     <motion.div
-  style={{
-    position: "fixed",
-    clipPath: inset,
-    zIndex: 0,
-    borderRadius: radius,
-    overflow: "hidden",
-    willChange: "clip-path",
-  }}
->
-  <div
-    ref={mountRef}
-    className={className}
-    style={{
-      width: "100%",
-      height: "100%",
-      pointerEvents: "none",
-      transform: "translateZ(0)",
-    }}
-  />
-</motion.div>
+      style={{
+        position: "fixed",
+        top: 0,          
+        left: 0,
+        right: 0,
+        bottom: 0,      
+        clipPath: inset,
+        zIndex: 0,
+        overflow: "hidden",
+        willChange: "clip-path",
+      }}
+    >
+      <div
+        ref={mountRef}
+        className={className}
+        style={{
+          width: "100%",
+          height: `100${vhUnit}`,
+          pointerEvents: "none",
+          transform: "translateZ(0)",
+        }}
+      />
+    </motion.div>
   );
 }

@@ -6,25 +6,12 @@
 }
 
 :root {
-  --background: #f4f7fa;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-:root {
   --sat-env-top: env(safe-area-inset-top);
   --sat-env-bottom: env(safe-area-inset-bottom);
 }
 
 /* font-family: var(--font-league), sans-serif; */
 html, body {
-  color: var(--foreground);
   font-family: "Maorin", sans-serif;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
@@ -36,9 +23,6 @@ html, body {
 
 /* iOS Safari legge il background-color dell'elemento fixed per la tab bar glass.
    Con body transparent, risale fino a html dove trova il colore corretto → tab bar trasparente. */
-html {
-  background-color: #F4F7FA;
-}
 
 body {
   background: transparent;

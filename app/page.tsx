@@ -231,7 +231,7 @@ export default function Home() {
 
   return (
     <>
-      <LiquidBackground progress={smooth} />
+      <LiquidBackground progress={smooth} vhUnit={vhUnit} />
 
       <motion.div
         style={{ height: totalHeight, pointerEvents: "none" }}
