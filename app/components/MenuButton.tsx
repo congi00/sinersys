@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { motion, MotionValue } from "framer-motion";
+import { useRef } from "react";
 
 interface Props {
   menuTheme?: MotionValue<number>;
@@ -29,6 +30,7 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
 
   const items = ["homepage", "products", "about", "contacts"];
   const links = ["/", "apwec", "about-us", ""];
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("navState");
@@ -59,9 +61,27 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
     return unsubscribe;
   }, [hiddenMenu]);
   
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (!menuVisibility) return;
+  
+      const el = menuRef.current;
+      if (!el) return;
+  
+      if (!el.contains(e.target as Node)) {
+        dispatch(setMenuVisibility(false));
+      }
+    };
+  
+    document.addEventListener("pointerdown", handleClickOutside);
+    return () => {
+      document.removeEventListener("pointerdown", handleClickOutside);
+    };
+  }, [menuVisibility, dispatch]);
 
   return (
     !hidden && <div
+      ref={menuRef}
       className={clsx(
         "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 overflow-visible", // overflow-visible so dropdown isn't clipped
         "p-4 pt-8",
