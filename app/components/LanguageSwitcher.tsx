@@ -12,8 +12,11 @@ const LOCALES: { code: string; label: string; flag: string }[] = [
   { code: "de", label: "Deutsch",  flag: "🇩🇪" },
   { code: "fr", label: "Français",  flag: "🇫🇷" },
 ];
+interface Props {
+  isDark?: Boolean;
+}
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ isDark }: Props) {
   const locale            = useLocale();
   const router            = useRouter();
   const [open, setOpen]   = useState(false);
@@ -67,7 +70,7 @@ export default function LanguageSwitcher() {
           backdropFilter:       "blur(16px) saturate(160%)",
           WebkitBackdropFilter: "blur(16px) saturate(160%)",
           boxShadow:            "0 2px 12px rgba(12,24,70,0.18), inset 0 1px 0 rgba(255,255,255,0.14)",
-          color:                "#f4f7fa",
+          color:                isDark ? "#F4F7FA" : "#1c398e",
           fontSize:             "0.82rem",
           fontWeight:           600,
           letterSpacing:        "0.06em",
@@ -89,8 +92,8 @@ export default function LanguageSwitcher() {
           width="12" height="12" viewBox="0 0 12 12" fill="none"
           style={{ flexShrink: 0, opacity: 0.65 }}
         >
-          <path d="M2 4.5L6 8L10 4.5" stroke="#f4f7fa" strokeWidth="1.7"
-                strokeLinecap="round" strokeLinejoin="round" />
+          <motion.path d="M2 4.5L6 8L10 4.5" stroke="#f4f7fa" strokeWidth="1.7"
+                strokeLinecap="round" strokeLinejoin="round" color={isDark ? "#F4F7FA" : "#1c398e"} />
         </motion.svg>
       </motion.button>
 

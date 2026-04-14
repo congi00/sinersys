@@ -207,6 +207,17 @@ export default function AboutUsPage() {
   const slide1Y       = useTransform(smooth, [0.4, 0.6, 1.0, 1.2], [30, 0, 0, -30]);
 
   const headerTheme  = useTransform(smooth, [1.0, 1.28, 1.3, 1.4, (isMobile?5.5 : 5.8), (isMobile?5.6 : 5.9), 6.0], [0, 1, 1, 0, 0, 1, 0]);
+  const hiddenMenu  = useTransform(
+    smooth,
+    [5.4,5.5],
+    [1, 0 ]
+  );
+
+  const menuTheme =  useTransform(
+    smooth,
+    [0.8, 0.9, 1.6 , 3, 5.0, 5.5, ],
+    [0, 1, 0 ,0, 0,   1, ]
+  );
   const gradientPage = useTransform(smooth, [0, 1.3, 1.4], ["#F4F7FA", "#F4F7FA", "linear-gradient(160deg, #1c398e 0%, #0070f3 55%, #050b26 100%)"]);
   const bodyBg       = useTransform(smooth, [0, 1.3, 1.3, 4.9 ,5.0], ["#F4F7FA", "#F4F7FA", "linear-gradient(160deg, rgb(28, 57, 142) 29%, rgb(0, 112, 243) 71%, rgb(5, 11, 38) 100%)", "linear-gradient(160deg, rgb(28, 57, 142) 29%, rgb(0, 112, 243) 71%, rgb(5, 11, 38) 100%)", "#F4F7FA"]);
   const h2Color      = useTransform(smooth, [0, 1.3, 1.3], ["#1c398e", "#1c398e", "#f4f7fa"]);
@@ -246,7 +257,7 @@ export default function AboutUsPage() {
       <motion.div className="absolute inset-x-0 top-0" style={{ height: totalHeight, zIndex:1, background: bodyBg, }}>
 
         {!openContact && <Header headerTheme={headerTheme} />}
-        {!openContact && <MenuButton />}
+        {!openContact && <MenuButton hiddenMenu={hiddenMenu} menuTheme={menuTheme}/>}
 
         {/* ── HERO ─────────────────────────────────────────────────────── */}
         <motion.div style={{ position:"fixed", inset:0, zIndex:10, padding:heroPad, y:heroY, opacity:heroOp }}>

@@ -211,6 +211,18 @@ export default function Home() {
     [0, 1,1,1, 0, 0, 0, 0, 0, 1 , 0, 1, 1, 1, isMobile? 0 : 1 ]
   );
 
+  const hiddenMenu  = useTransform(
+    smooth,
+    [8.2,8.3],
+    [1, 0 ]
+  );
+
+  const menuTheme =  useTransform(
+    smooth,
+    [3, 3.1, 4.7, 4.75, 4.9, 5.9, 6.0, 6.1, 6.2, 6.7 , 7.4, 7.8, 8.0, 8.2, 9.0],
+    [0, 1,1,1, 0, 0, 0, 0, 0, 0 , 1, 1, 1, 1, 1 ]
+  );
+
   // ── LinkButton colors ─────────────────────────────────────────────────────
   // Both slides have white text/icon on dark bg
   const linkColorWhite = useMotionValue("#ffffff");
@@ -526,7 +538,7 @@ export default function Home() {
           <Footer />
         </div>
 
-        {!openContact && <MenuButton />}
+        {!openContact && <MenuButton menuTheme={menuTheme} hiddenMenu={hiddenMenu}/>}
 
         <ContactDrawer
           open={openContact}

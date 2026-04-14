@@ -9,15 +9,23 @@ import {
 import { useAppDispatch, useAppSelector } from "../hooks";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { motion, MotionValue } from "framer-motion";
 
-export default function MenuButton() {
+interface Props {
+  menuTheme?: MotionValue<number>;
+  hiddenMenu?: MotionValue<number>
+}
+
+export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
   const menuVisibility  = useAppSelector((state) => state.siteState.menuVisible);
   const navigationState = useAppSelector((state) => state.siteState.navigationState);
   const dispatch        = useAppDispatch();
   const menuVoices      = useTranslations("menu");
+  const [hidden, setHidden] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   const items = ["homepage", "products", "about", "contacts"];
   const links = ["/", "apwec", "about-us", ""];
@@ -29,8 +37,31 @@ export default function MenuButton() {
     }
   }, [dispatch]);
 
+  useEffect(() => {
+    if (!menuTheme) return;
+    // Read initial value
+    setIsDark(menuTheme.get() < 0.5);
+    // Subscribe to changes
+    const unsubscribe = menuTheme.on("change", (v) => {
+      setIsDark(v < 0.5);
+    });
+    return unsubscribe;
+  }, [menuTheme]);
+
+  useEffect(() => {
+    if (!hiddenMenu) return;
+    // Read initial value
+    setHidden(hiddenMenu.get() < 0.5);
+    // Subscribe to changes
+    const unsubscribe = hiddenMenu.on("change", (v) => {
+      setHidden(v < 0.5);
+    });
+    return unsubscribe;
+  }, [hiddenMenu]);
+  
+
   return (
-    <div
+    !hidden && <div
       className={clsx(
         "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 overflow-visible", // overflow-visible so dropdown isn't clipped
         "p-4 pt-8",
@@ -74,14 +105,19 @@ export default function MenuButton() {
               : "opacity-0 translate-y-6"
           )}
         >
-          <img
+         {isDark && <img
             src="/full-logo-sinersys.png"
             alt="Logo Sinersys Full"
             className="h-12 object-contain"
-          />
-          <h4 className="text-white text-xs tracking-widest">
+          />}
+          {!isDark && <img
+            src="/full-logo-sinersys_blu.png"
+            alt="Logo Sinersys Full"
+            className="h-12 object-contain"
+          />}
+          <motion.h4 className="text-xs tracking-widest" style={{color: isDark ? "#F4F7FA" : "#1c398e"}}>
             NEW ENERGY FRONTIERS
-          </h4>
+          </motion.h4>
         </div>
 
         {/* Nav items */}
@@ -90,9 +126,9 @@ export default function MenuButton() {
             const reverseIndex = array.length - 1 - index;
             return (
               <Link key={item} href={links[index]}>
-                <span
+                <motion.span
                   className={clsx(
-                    "text-white text-xl cursor-pointer",
+                    "text-xl cursor-pointer",
                     "transition-[opacity,transform] duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
                     "transition-[font-weight] duration-200",
                     menuVisibility
@@ -104,6 +140,7 @@ export default function MenuButton() {
                     transitionDelay: menuVisibility
                       ? `${reverseIndex * 120}ms`
                       : "0ms",
+                    color: isDark ? "#F4F7FA" : "#1c398e"
                   }}
                   onClick={() => {
                     dispatch(setNavigationState(index));
@@ -114,7 +151,7 @@ export default function MenuButton() {
                   }}
                 >
                   {menuVoices(item)}
-                </span>
+                </motion.span>
               </Link>
             );
           })}
@@ -135,7 +172,7 @@ export default function MenuButton() {
           // Stop click from toggling the menu when interacting with the switcher
           onClick={(e) => e.stopPropagation()}
         >
-          <LanguageSwitcher />
+          <LanguageSwitcher isDark={isDark} />
         </div>
       </div>
 
@@ -144,7 +181,7 @@ export default function MenuButton() {
         {!menuVisibility && (
           <AlignCenter
             size="40px"
-            color="#F4F7FA"
+            color={isDark ? "#F4F7FA" : "#1c398e"}
             className="cursor-pointer mt-1"
             onClick={() => dispatch(setMenuVisibility(!menuVisibility))}
           />
@@ -152,7 +189,7 @@ export default function MenuButton() {
         {menuVisibility && (
           <ChevronDown
             size="40px"
-            color="#F4F7FA"
+            color={isDark ? "#F4F7FA" : "#1c398e"}
             className="cursor-pointer"
             onClick={() => dispatch(setMenuVisibility(!menuVisibility))}
           />
