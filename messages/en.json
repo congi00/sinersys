@@ -18,6 +18,36 @@
       "subtitle": "APWEC is the patented Italian technology that converts pressure variations\ninto clean, continuous, measurable electricity.\nZero emissions. Zero fuel. 24 hours a day, 365 days a year.",
       "link": "See How It Works"
     },
+    "_comment": "Six-Phase Engine section — homepage",
+    "_seo_note": "Target keywords EN: 6-phase engine, patented internal combustion engine, innovative thermodynamic cycle, renewable energy generation, Italian patented technology",
+    "sixPhase": {
+      "suptitle": "Coming Soon · Exclusive Motor Union Technology",
+      "badge": "PATENTED",
+      "title": "6-Phase Engine",
+      "subtitle": "A new motion transformation system — predetermined-profile eccentric with a free-rolling piston follower — that overcomes the limits of the traditional connecting rod-crank system and establishes a completely new thermodynamic cycle: two crankshaft revolutions, six distinct high-efficiency phases.",
+      "phase0": {
+        "number": "01",
+        "label": "Extended intake",
+        "desc": "Piston stationary at BDC: the inertial velocity of the charge is fully exploited, achieving fill coefficients above 120% of displacement."
+      },
+      "phase1": {
+        "number": "02",
+        "label": "Constant-volume combustion",
+        "desc": "Ignition at the start of the isochore at TDC with zero advance — no flywheel energy loss; combustion pressure is converted directly into useful work."
+      },
+      "phase2": {
+        "number": "03",
+        "label": "Optimised expansion",
+        "desc": "The eccentric profile is calibrated to maximise useful work throughout the entire expansion phase, minimising residual thermodynamic losses."
+      },
+      "phase3": {
+        "number": "04-06",
+        "label": "Exhaust, scavenging and recovery",
+        "desc": "The remaining three phases of the double revolution complete the cycle with minimal passive losses, leveraging the integrated heat recuperator to maximise overall efficiency."
+      },
+      "comingSoon": "Coming soon",
+      "comingSoonSub": "Full technical documentation and cycle simulations available shortly"
+    },
     "slide2": {
       "suptitle": "WHO WE ARE",
       "title": "Over 100 years of Italian engineering powering the energy transition",
@@ -29,30 +59,30 @@
       "subtitle": "Sinersys designs scalable systems for continuous renewable energy generation,\nbuilt for businesses, public bodies and industrial operators looking to cut energy costs,\neliminate CO₂ emissions and reach energy self-sufficiency\nin a measurable and verifiable way."
     },
     "scatteredCards": [
-  {
-    "id": "1",
-    "image": "/images/1.jpg",
-    "label": "Industrialisation",
-    "suptitle": "Mass Production",
-    "title": "Production",
-    "subtitle": "Scaling APWEC from prototype to full industrial mass production: certified, scalable plants ready for the global renewable energy market."
-  },
-  {
-    "id": "2",
-    "image": "/images/2.jpg",
-    "label": "Technology Development",
-    "suptitle": "Power Families",
-    "title": "Expansion",
-    "subtitle": "Developing new APWEC power families — from 1 kW to 10 MW — to meet the energy needs of SMEs, large industries and public bodies across every geographic market."
-  },
-  {
-    "id": "3",
-    "image": "/images/3.jpg",
-    "label": "Global Impact",
-    "suptitle": "Energy Transition",
-    "title": "Independence",
-    "subtitle": "Making energy self-sufficiency a concrete, measurable reality: zero CO₂ emissions, zero grid dependence, and verifiable savings from the very first year of operation."
-  }
+      {
+        "id": "1",
+        "image": "/images/1.jpg",
+        "label": "Industrialisation",
+        "suptitle": "Mass Production",
+        "title": "Production",
+        "subtitle": "Scaling APWEC from prototype to full industrial mass production: certified, scalable plants ready for the global renewable energy market."
+      },
+      {
+        "id": "2",
+        "image": "/images/2.jpg",
+        "label": "Technology Development",
+        "suptitle": "Power Families",
+        "title": "Expansion",
+        "subtitle": "Developing new APWEC power families — from 1 kW to 10 MW — to meet the energy needs of SMEs, large industries and public bodies across every geographic market."
+      },
+      {
+        "id": "3",
+        "image": "/images/3.jpg",
+        "label": "Global Impact",
+        "suptitle": "Energy Transition",
+        "title": "Independence",
+        "subtitle": "Making energy self-sufficiency a concrete, measurable reality: zero CO₂ emissions, zero grid dependence, and verifiable savings from the very first year of operation."
+      }
     ],
     "cta": {
       "suptitle": "Join the Project · Industrial Partners & Licensees",
@@ -126,131 +156,46 @@
     "timeline": {
       "heading": "From the engine to clean energy: the journey that changed everything",
       "subheading": "A path that started in the workshop and arrived at the future of renewable energy. Every milestone added knowledge; every obstacle strengthened the vision.",
-      "t2018": {
-        "title": "The APWEC project is born",
-        "description": "The Sinersys Research & Development Centre begins the systematic study of pressure oscillations as an exploitable energy source. The goal is clear: a continuous generator that does not depend on wind, sun or fuel."
-      },
-      "t2019": {
-        "title": "First working prototype",
-        "description": "The first APWEC prototype produces energy continuously for 72 consecutive hours under laboratory conditions. Proof of concept is validated: pressure variations can become clean, measurable electricity."
-      },
-      "t2020": {
-        "title": "International patent filing",
-        "description": "Sinersys files the international patent for APWEC technology. The innovation is recognised as genuinely new in the global landscape of distributed renewable energy generation."
-      },
-      "t2021": {
-        "title": "Real-scale industrial testing",
-        "description": "APWEC is installed and tested at a partner industrial facility. Data confirms conversion efficiencies above 80% and continuous 24/7 operation, with zero environmental impact and minimal maintenance."
-      },
-      "t2022": {
-        "title": "Full Energy Project certification",
-        "description": "Sinersys launches the Full Energy Project certification programme: each installation is custom-designed, documented and certified to guarantee the client verifiable energy performance and a measurable return on investment."
-      },
-      "t2023": {
-        "title": "Range expansion: from 1 kW to 10 MW",
-        "description": "The APWEC modular architecture is validated across all power scales, from small industrial plants to large energy infrastructure. Sinersys becomes a renewable energy provider for SMEs, large industries and public bodies."
-      },
-      "t2024": {
-        "title": "Towards global distributed energy generation",
-        "description": "Sinersys launches its first international projects and expands its R&D team. The mission remains unchanged: making clean, continuous and accessible energy a concrete reality for industries and communities worldwide."
-      }
+      "t2018": { "title": "The APWEC project is born", "description": "The Sinersys Research & Development Centre begins the systematic study of pressure oscillations as an exploitable energy source. The goal is clear: a continuous generator that does not depend on wind, sun or fuel." },
+      "t2019": { "title": "First working prototype", "description": "The first APWEC prototype produces energy continuously for 72 consecutive hours under laboratory conditions. Proof of concept is validated: pressure variations can become clean, measurable electricity." },
+      "t2020": { "title": "International patent filing", "description": "Sinersys files the international patent for APWEC technology. The innovation is recognised as genuinely new in the global landscape of distributed renewable energy generation." },
+      "t2021": { "title": "Real-scale industrial testing", "description": "APWEC is installed and tested at a partner industrial facility. Data confirms conversion efficiencies above 80% and continuous 24/7 operation, with zero environmental impact and minimal maintenance." },
+      "t2022": { "title": "Full Energy Project certification", "description": "Sinersys launches the Full Energy Project certification programme: each installation is custom-designed, documented and certified to guarantee the client verifiable energy performance and a measurable return on investment." },
+      "t2023": { "title": "Range expansion: from 1 kW to 10 MW", "description": "The APWEC modular architecture is validated across all power scales, from small industrial plants to large energy infrastructure. Sinersys becomes a renewable energy provider for SMEs, large industries and public bodies." },
+      "t2024": { "title": "Towards global distributed energy generation", "description": "Sinersys launches its first international projects and expands its R&D team. The mission remains unchanged: making clean, continuous and accessible energy a concrete reality for industries and communities worldwide." }
     },
     "teamLabel": "The Team",
     "team": {
       "heading": "The people who never stopped believing in the dream",
       "subheading": "Engineers, researchers and designers with decades of experience in industrial automotive, advanced mechanical engineering and renewable energy technology development. Their stubbornness in pursuing a goal many deemed impossible is the engine behind APWEC.",
-      "member0": {
-        "name": "Name Surname",
-        "role": "Founder & Technical Director",
-        "bio": "Mechanical engineer with over 30 years of experience designing advanced energy systems. He led collaborations with Honda, Volvo and Chrysler and conceived the principle behind APWEC. Guardian of the original dream."
-      },
-      "member1": {
-        "name": "Name Surname",
-        "role": "Head of Research & Development",
-        "bio": "Specialised in computational fluid dynamics and energy conversion systems. He led the development of the APWEC prototype from laboratory to industrial installation, optimising conversion efficiencies up to 85%."
-      },
-      "member2": {
-        "name": "Name Surname",
-        "role": "Head of Projects & Certifications",
-        "bio": "Coordinates the entire Full Energy Project process: from initial energy diagnosis and custom design to final certification and the Tech Service programme. Guarantees that every Sinersys installation delivers the promised results."
-      },
+      "member0": { "name": "Name Surname", "role": "Founder & Technical Director", "bio": "Mechanical engineer with over 30 years of experience designing advanced energy systems. He led collaborations with Honda, Volvo and Chrysler and conceived the principle behind APWEC. Guardian of the original dream." },
+      "member1": { "name": "Name Surname", "role": "Head of Research & Development", "bio": "Specialised in computational fluid dynamics and energy conversion systems. He led the development of the APWEC prototype from laboratory to industrial installation, optimising conversion efficiencies up to 85%." },
+      "member2": { "name": "Name Surname", "role": "Head of Projects & Certifications", "bio": "Coordinates the entire Full Energy Project process: from initial energy diagnosis and custom design to final certification and the Tech Service programme. Guarantees that every Sinersys installation delivers the promised results." },
       "joinTitle": "Want to join the team redefining renewable energy generation?",
       "joinSubtitle": "We are looking for engineers, researchers and professionals who share our vision: a world in which clean, continuous and accessible energy is the norm, not the exception.",
       "joinCta": "Contact Us"
     },
-    "slide0": {
-      "title": "OUR ROOTS",
-      "subtitle": "Over a century of Italian engineering. A dream that changed the way energy is produced."
-    },
-    "slide1": {
-      "suptitle": "OUR STORY",
-      "title": "FROM AN IMPOSSIBLE DREAM TO THE GREATEST INNOVATION IN RENEWABLE ENERGY",
-      "subtitle": "There is an idea that obsessed us for years: to build a generator capable of producing energy continuously, without burning fuel, without depending on wind or sun. An idea many thought unachievable. We pursued it, and turned it into a patented reality. Sinersys is born of this stubbornness: uniting over a century of Italian mechanical expertise with a radical vision of the energy transition.",
-      "link": "Discover the Technology"
-    },
-    "slide2": {
-      "suptitle": "WHO WE ARE",
-      "title": "FROM THE AUTOMOTIVE INDUSTRY TO THE CLEAN ENERGY REVOLUTION",
-      "subtitle": "Our collaborations with Honda, Volvo and Chrysler taught us that true engineering knows no compromise. That same precision — applied today to the development of renewable energy generation systems — is what makes APWEC a reliable, efficient technology ready for the global industrial market.",
-      "link": "Discover APWEC"
-    },
-    "slide3": {
-      "title": "Innovating in the energy sector means taking responsibility for the future.",
-      "subtitle": "Sinersys develops distributed renewable energy generation solutions that enable companies, public bodies and industrial operators to concretely reduce consumption, cut CO₂ emissions and increase the energy resilience of their facilities — with certified, scalable, high-efficiency technologies."
-    }
+    "slide0": { "title": "OUR ROOTS", "subtitle": "Over a century of Italian engineering. A dream that changed the way energy is produced." },
+    "slide1": { "suptitle": "OUR STORY", "title": "FROM AN IMPOSSIBLE DREAM TO THE GREATEST INNOVATION IN RENEWABLE ENERGY", "subtitle": "There is an idea that obsessed us for years: to build a generator capable of producing energy continuously, without burning fuel, without depending on wind or sun. An idea many thought unachievable. We pursued it, and turned it into a patented reality. Sinersys is born of this stubbornness: uniting over a century of Italian mechanical expertise with a radical vision of the energy transition.", "link": "Discover the Technology" },
+    "slide2": { "suptitle": "WHO WE ARE", "title": "FROM THE AUTOMOTIVE INDUSTRY TO THE CLEAN ENERGY REVOLUTION", "subtitle": "Our collaborations with Honda, Volvo and Chrysler taught us that true engineering knows no compromise. That same precision — applied today to the development of renewable energy generation systems — is what makes APWEC a reliable, efficient technology ready for the global industrial market.", "link": "Discover APWEC" },
+    "slide3": { "title": "Innovating in the energy sector means taking responsibility for the future.", "subtitle": "Sinersys develops distributed renewable energy generation solutions that enable companies, public bodies and industrial operators to concretely reduce consumption, cut CO₂ emissions and increase the energy resilience of their facilities — with certified, scalable, high-efficiency technologies." }
   },
 
   "apwec": {
-    "slide0": {
-      "suptitle": "Sinersys · Patented Technology",
-      "title": "APWEC",
-      "subtitle": "Advanced Pressure Wave Energy Converter — the Italian system that generates continuous renewable energy from pressure variations, not fuel. Zero emissions. Zero atmospheric dependence. 24 hours a day."
-    },
-    "slide1": {
-      "suptitle": "How It Works",
-      "title": "Clean energy from pressure variations: an inexhaustible and continuous source",
-      "subtitle": "APWEC captures pressure fluctuations already present in industrial networks, pipelines and hydraulic systems and converts them into clean electricity. A continuous energy cycle, zero emissions, zero waste, available 24/7 regardless of weather conditions."
-    },
-    "slide2": {
-      "suptitle": "Italian Engineering",
-      "title": "Built for decades of continuous and reliable energy production",
-      "subtitle": "High-resistance modular components designed to operate in extreme industrial environments. Certified reliability, ground-level maintenance, maximum renewable energy output over time."
-    },
-    "slide3": {
-      "suptitle": "System Architecture",
-      "title": "4 integrated systems for maximum efficiency in clean energy generation",
-      "subtitle": "Every APWEC component is designed to optimise energy conversion under all operating conditions, reducing losses and maximising net continuous renewable energy output."
-    },
-    "slide4": {
-      "suptitle": "Installation",
-      "title": "Operational in under 48 hours: renewable energy that integrates with your facility",
-      "subtitle": "APWEC integrates with any existing industrial infrastructure. Setup without operational interruptions, no production downtime, measurable energy ROI from the first months of operation."
-    },
+    "slide0": { "suptitle": "Sinersys · Patented Technology", "title": "APWEC", "subtitle": "Advanced Pressure Wave Energy Converter — the Italian system that generates continuous renewable energy from pressure variations, not fuel. Zero emissions. Zero atmospheric dependence. 24 hours a day." },
+    "slide1": { "suptitle": "How It Works", "title": "Clean energy from pressure variations: an inexhaustible and continuous source", "subtitle": "APWEC captures pressure fluctuations already present in industrial networks, pipelines and hydraulic systems and converts them into clean electricity. A continuous energy cycle, zero emissions, zero waste, available 24/7 regardless of weather conditions." },
+    "slide2": { "suptitle": "Italian Engineering", "title": "Built for decades of continuous and reliable energy production", "subtitle": "High-resistance modular components designed to operate in extreme industrial environments. Certified reliability, ground-level maintenance, maximum renewable energy output over time." },
+    "slide3": { "suptitle": "System Architecture", "title": "4 integrated systems for maximum efficiency in clean energy generation", "subtitle": "Every APWEC component is designed to optimise energy conversion under all operating conditions, reducing losses and maximising net continuous renewable energy output." },
+    "slide4": { "suptitle": "Installation", "title": "Operational in under 48 hours: renewable energy that integrates with your facility", "subtitle": "APWEC integrates with any existing industrial infrastructure. Setup without operational interruptions, no production downtime, measurable energy ROI from the first months of operation." },
     "static": {
       "label": "What is APWEC",
       "title": "The Italian technology for distributed continuous renewable energy generation",
       "p1": "APWEC (Advanced Pressure Wave Energy Converter) is a patented system developed by Sinersys to convert pressure oscillations present in industrial networks, pipelines and hydraulic systems into clean, continuous, zero-emission electricity. A technology born from a dream pursued for decades: to prove that it is possible to produce energy uninterruptedly without depending on fossil fuels, wind or solar irradiation.",
       "p2": "Unlike traditional renewable generation systems, APWEC does not require favourable environmental conditions: it exploits the pressure variations already present in the installation — transforming an energy flow that is normally wasted into a concrete, measurable productive asset. Real energy savings, verifiable CO₂ reduction, grid independence.",
-      "f0": {
-        "label": "Energy Efficiency",
-        "title": "Up to 85% conversion: renewable energy without waste",
-        "description": "The system achieves conversion efficiencies above 85% thanks to the optimised transducer geometry and adaptive load control — a level of renewable energy production efficiency that few systems can match at the same scale and operational continuity."
-      },
-      "f1": {
-        "label": "Scalability",
-        "title": "From 1 kW to 10 MW: energy savings tailored to you",
-        "description": "The modular APWEC architecture allows the system to be sized according to the user's actual energy needs, with progressive power increments and no operational interruption. Suitable for SMEs, large industries, public infrastructure and any organisation looking to reduce energy costs structurally."
-      },
-      "f2": {
-        "label": "Integration",
-        "title": "Compatible with any existing energy management system",
-        "description": "Native Modbus, OPC-UA and MQTT protocols for immediate integration with SCADA, DCS and IoT energy monitoring platforms. APWEC fits into your energy management ecosystem without requiring dedicated infrastructure or operational interruptions."
-      },
-      "cta": {
-        "title": "Find out how much you can save on your energy bill with APWEC",
-        "subtitle": "The Sinersys technical team provides a free preliminary assessment of your facility within 72 hours: energy generation potential estimate, energy cost savings projection and return on investment analysis.",
-        "link": "Request Your Free Assessment"
-      }
+      "f0": { "label": "Energy Efficiency", "title": "Up to 85% conversion: renewable energy without waste", "description": "The system achieves conversion efficiencies above 85% thanks to the optimised transducer geometry and adaptive load control — a level of renewable energy production efficiency that few systems can match at the same scale and operational continuity." },
+      "f1": { "label": "Scalability", "title": "From 1 kW to 10 MW: energy savings tailored to you", "description": "The modular APWEC architecture allows the system to be sized according to the user's actual energy needs, with progressive power increments and no operational interruption. Suitable for SMEs, large industries, public infrastructure and any organisation looking to reduce energy costs structurally." },
+      "f2": { "label": "Integration", "title": "Compatible with any existing energy management system", "description": "Native Modbus, OPC-UA and MQTT protocols for immediate integration with SCADA, DCS and IoT energy monitoring platforms. APWEC fits into your energy management ecosystem without requiring dedicated infrastructure or operational interruptions." },
+      "cta": { "title": "Find out how much you can save on your energy bill with APWEC", "subtitle": "The Sinersys technical team provides a free preliminary assessment of your facility within 72 hours: energy generation potential estimate, energy cost savings projection and return on investment analysis.", "link": "Request Your Free Assessment" }
     }
   },
 
@@ -270,22 +215,10 @@
     "comparison": {
       "label": "Technology Comparison",
       "title": "Sinersys Wind Silo vs. traditional generators: the concrete advantages",
-      "costibenefici": {
-        "title": "Costs and benefits in energy savings",
-        "body": "The comparison between the Sinersys Wind Silo and traditional wind generation systems shows net advantages in cost per kWh produced: the 200 kW rotor has a maximum diameter of 3.5 metres versus 30 metres for an equivalent WEC, with estimated production costs between €120,000 and €150,000 per unit."
-      },
-      "silenziosita": {
-        "title": "Silence and reduced acoustic impact",
-        "body": "The APWEC rotor, operating inside an insulated enclosure, guarantees drastically lower noise emissions than the large blade rotors of traditional WECs — a decisive advantage for installations in urban contexts or near residential areas."
-      },
-      "manutenzione": {
-        "title": "Ground-level maintenance: safer, less costly",
-        "body": "All APWEC maintenance operations are performed at ground level: generator and control equipment are accessible without the need for work at height. Less downtime means more hours of renewable energy production every year."
-      },
-      "impatto": {
-        "title": "Minimised visual and environmental impact",
-        "body": "At the same installed power, APWEC has a maximum height of approximately 20 metres — less than a quarter of an equivalent traditional WEC. The visual impact is significantly lower, with faster permitting and greater compatibility with local landscape regulations."
-      }
+      "costibenefici": { "title": "Costs and benefits in energy savings", "body": "The comparison between the Sinersys Wind Silo and traditional wind generation systems shows net advantages in cost per kWh produced: the 200 kW rotor has a maximum diameter of 3.5 metres versus 30 metres for an equivalent WEC, with estimated production costs between €120,000 and €150,000 per unit." },
+      "silenziosita": { "title": "Silence and reduced acoustic impact", "body": "The APWEC rotor, operating inside an insulated enclosure, guarantees drastically lower noise emissions than the large blade rotors of traditional WECs — a decisive advantage for installations in urban contexts or near residential areas." },
+      "manutenzione": { "title": "Ground-level maintenance: safer, less costly", "body": "All APWEC maintenance operations are performed at ground level: generator and control equipment are accessible without the need for work at height. Less downtime means more hours of renewable energy production every year." },
+      "impatto": { "title": "Minimised visual and environmental impact", "body": "At the same installed power, APWEC has a maximum height of approximately 20 metres — less than a quarter of an equivalent traditional WEC. The visual impact is significantly lower, with faster permitting and greater compatibility with local landscape regulations." }
     }
   },
 
@@ -293,14 +226,8 @@
     "label": "Certifications & Quality",
     "title": "Certified quality, guaranteed energy efficiency over time",
     "subtitle": "Every Sinersys renewable energy generation system is designed, tested and certified to international quality standards. The promised energy performance is the certified performance.",
-    "fullEnergyProject": {
-      "title": "FULL ENERGY PROJECT",
-      "body": "The exclusive certification issued upon completion of the entire Sinersys process. It includes preliminary scientific studies, in-depth energy diagnosis and custom design of the renewable energy installation. Full Energy Project certifies the performance of the installed system and provides the client with verifiable documentation of the expected yield and return on investment."
-    },
-    "techService": {
-      "title": "TECH SERVICE",
-      "body": "Sinersys's programme of continuous assistance, maintenance and optimisation. For every renewable energy system designed and installed, Tech Service guarantees maximum energy performance over time through scheduled interventions, remote monitoring and periodic technical updates."
-    }
+    "fullEnergyProject": { "title": "FULL ENERGY PROJECT", "body": "The exclusive certification issued upon completion of the entire Sinersys process. It includes preliminary scientific studies, in-depth energy diagnosis and custom design of the renewable energy installation. Full Energy Project certifies the performance of the installed system and provides the client with verifiable documentation of the expected yield and return on investment." },
+    "techService": { "title": "TECH SERVICE", "body": "Sinersys's programme of continuous assistance, maintenance and optimisation. For every renewable energy system designed and installed, Tech Service guarantees maximum energy performance over time through scheduled interventions, remote monitoring and periodic technical updates." }
   },
 
   "frontierEnergetiche": {
@@ -315,57 +242,14 @@
     "title": "Code of Ethics",
     "subtitle": "The principles that guide every decision we make, every day.",
     "updated": "Last updated: March 2026",
-    "s1": {
-      "heading": "Preamble and scope",
-      "p1": "Sinersys is an Italian company specialising in the development of advanced technologies for the conversion and management of renewable energy. We operate with the conviction that innovation and responsibility are not conflicting values, but complementary ones.",
-      "p2": "This Code of Ethics applies to all those who operate for or with Sinersys: employees, collaborators, consultants, suppliers and commercial partners."
-    },
-    "s2": {
-      "heading": "Our values",
-      "p1": "Every decision we make — strategic, operational, commercial — is guided by the following core principles:",
-      "v1": { "title": "Integrity", "body": "We maintain consistency between what we say and what we do. We take responsibility for our mistakes and do not minimise them." },
-      "v2": { "title": "Conscious innovation", "body": "We develop technology with full awareness of its social and environmental implications. Innovation that does not bring concrete benefits to the energy transition is not progress." },
-      "v3": { "title": "Mutual respect", "body": "Every person who interacts with Sinersys deserves respect for their dignity, regardless of role or position." },
-      "v4": { "title": "Real sustainability", "body": "We do not use sustainability as a marketing tool. Our environmental and social commitments are measurable and verifiable." },
-      "v5": { "title": "Transparency", "body": "We communicate clearly, even when the news is difficult. Trust is built through honesty, not reassurances." }
-    },
-    "s3": {
-      "heading": "Working environment",
-      "p1": "Sinersys is a place where people must be able to work well. This requires active commitment from everyone:",
-      "l1": "Ensuring safe physical and digital environments, free from avoidable health and wellbeing risks.",
-      "l2": "Building a culture where disagreement is expressed openly and respectfully, without fear of retaliation.",
-      "l3": "Recognising and valuing each person's contribution, regardless of gender, age, nationality, sexual orientation or personal beliefs.",
-      "l4": "Investing in professional development as a mutual commitment, not a unilateral benefit."
-    },
-    "s4": {
-      "heading": "Commercial relationships",
-      "p1": "With clients and partners we build relationships that create long-term value. This means being honest about the limits of our solutions, honouring contractual commitments even when costly, and declining work that would require compromising our integrity.",
-      "p2": "In selecting suppliers, we prefer those who share comparable ethical and environmental standards. We do not accept the principle that the lowest price justifies any compromise on working conditions or environmental impact in the supply chain."
-    },
-    "s5": {
-      "heading": "Conflicts of interest and gifts",
-      "p1": "A conflict of interest arises when a personal interest could interfere with decisions made on behalf of Sinersys. We ask everyone to:",
-      "l1": "Proactively report any situation that may give rise to a real or apparent conflict of interest.",
-      "l2": "Refrain from making decisions in conflict situations, delegating them to a third party.",
-      "l3": "Not accept or offer gifts, hospitality or other benefits beyond normal professional courtesy (indicative limit: €50 per single episode).",
-      "l4": "Not use confidential information obtained in the course of their role for personal purposes or on behalf of third parties."
-    },
-    "s6": {
-      "heading": "Confidentiality and data protection",
-      "p1": "Confidential information is an asset that must be protected. Every collaborator is required to treat it with the same care they would want their own personal data to be treated by others.",
-      "p2": "Personal data is processed in accordance with EU Regulation 2016/679 (GDPR) and applicable Italian legislation."
-    },
-    "s7": {
-      "heading": "Anti-corruption and regulatory compliance",
-      "p1": "Sinersys operates in compliance with all laws and regulations applicable in every country where it operates. Corruption — in any form — is incompatible with our values and our business model.",
-      "l1": "It is prohibited to make payments or promises of benefits to public or private officials to obtain undue advantages.",
-      "l2": "Accounts must faithfully reflect every transaction. There are no slush funds, unrecorded payments or false entries.",
-      "l3": "Anyone who identifies or suspects a violation of this Code may report it confidentially through official channels, with guaranteed anonymity and protection from retaliation."
-    },
-    "s8": {
-      "heading": "Violations and consequences",
-      "p1": "Proven violations of this Code of Ethics result in consequences proportionate to the severity of the behaviour, up to termination of the employment or collaboration relationship. For reports: ethics@sinersys.it"
-    }
+    "s1": { "heading": "Preamble and scope", "p1": "Sinersys is an Italian company specialising in the development of advanced technologies for the conversion and management of renewable energy. We operate with the conviction that innovation and responsibility are not conflicting values, but complementary ones.", "p2": "This Code of Ethics applies to all those who operate for or with Sinersys: employees, collaborators, consultants, suppliers and commercial partners." },
+    "s2": { "heading": "Our values", "p1": "Every decision we make — strategic, operational, commercial — is guided by the following core principles:", "v1": { "title": "Integrity", "body": "We maintain consistency between what we say and what we do. We take responsibility for our mistakes and do not minimise them." }, "v2": { "title": "Conscious innovation", "body": "We develop technology with full awareness of its social and environmental implications. Innovation that does not bring concrete benefits to the energy transition is not progress." }, "v3": { "title": "Mutual respect", "body": "Every person who interacts with Sinersys deserves respect for their dignity, regardless of role or position." }, "v4": { "title": "Real sustainability", "body": "We do not use sustainability as a marketing tool. Our environmental and social commitments are measurable and verifiable." }, "v5": { "title": "Transparency", "body": "We communicate clearly, even when the news is difficult. Trust is built through honesty, not reassurances." } },
+    "s3": { "heading": "Working environment", "p1": "Sinersys is a place where people must be able to work well. This requires active commitment from everyone:", "l1": "Ensuring safe physical and digital environments, free from avoidable health and wellbeing risks.", "l2": "Building a culture where disagreement is expressed openly and respectfully, without fear of retaliation.", "l3": "Recognising and valuing each person's contribution, regardless of gender, age, nationality, sexual orientation or personal beliefs.", "l4": "Investing in professional development as a mutual commitment, not a unilateral benefit." },
+    "s4": { "heading": "Commercial relationships", "p1": "With clients and partners we build relationships that create long-term value. This means being honest about the limits of our solutions, honouring contractual commitments even when costly, and declining work that would require compromising our integrity.", "p2": "In selecting suppliers, we prefer those who share comparable ethical and environmental standards. We do not accept the principle that the lowest price justifies any compromise on working conditions or environmental impact in the supply chain." },
+    "s5": { "heading": "Conflicts of interest and gifts", "p1": "A conflict of interest arises when a personal interest could interfere with decisions made on behalf of Sinersys. We ask everyone to:", "l1": "Proactively report any situation that may give rise to a real or apparent conflict of interest.", "l2": "Refrain from making decisions in conflict situations, delegating them to a third party.", "l3": "Not accept or offer gifts, hospitality or other benefits beyond normal professional courtesy (indicative limit: €50 per single episode).", "l4": "Not use confidential information obtained in the course of their role for personal purposes or on behalf of third parties." },
+    "s6": { "heading": "Confidentiality and data protection", "p1": "Confidential information is an asset that must be protected. Every collaborator is required to treat it with the same care they would want their own personal data to be treated by others.", "p2": "Personal data is processed in accordance with EU Regulation 2016/679 (GDPR) and applicable Italian legislation." },
+    "s7": { "heading": "Anti-corruption and regulatory compliance", "p1": "Sinersys operates in compliance with all laws and regulations applicable in every country where it operates. Corruption — in any form — is incompatible with our values and our business model.", "l1": "It is prohibited to make payments or promises of benefits to public or private officials to obtain undue advantages.", "l2": "Accounts must faithfully reflect every transaction. There are no slush funds, unrecorded payments or false entries.", "l3": "Anyone who identifies or suspects a violation of this Code may report it confidentially through official channels, with guaranteed anonymity and protection from retaliation." },
+    "s8": { "heading": "Violations and consequences", "p1": "Proven violations of this Code of Ethics result in consequences proportionate to the severity of the behaviour, up to termination of the employment or collaboration relationship. For reports: ethics@sinersys.it" }
   },
 
   "privacy": {
@@ -373,61 +257,14 @@
     "title": "Privacy Policy",
     "subtitle": "How we collect, use and protect your personal data.",
     "updated": "Last updated: March 2026",
-    "s1": {
-      "heading": "Data controller",
-      "p1": "This notice is prepared pursuant to Art. 13 of EU Regulation 2016/679 (GDPR) and applies to anyone who visits the sinersys.it website or interacts with Sinersys services.",
-      "controller": "Data controller: ", "controllerVal": "Sinersys S.r.l.",
-      "address": "Registered office: ", "addressVal": "[INSERT ACTUAL ADDRESS FROM COMPANY REGISTER]",
-      "email": "Privacy contact: ", "emailVal": "privacy@sinersys.it"
-    },
-    "s2": {
-      "heading": "Categories of data processed",
-      "p1": "Depending on the type of interaction with our services, we process the following categories of personal data:",
-      "d1": { "title": "Navigation data", "body": "IP address, browser type and operating system, pages visited, access timestamps." },
-      "d2": { "title": "Voluntarily provided data", "body": "Name, surname, email address, phone number and any other information entered in contact forms." },
-      "d3": { "title": "Contractual data", "body": "Information required for the conclusion and management of supply contracts." },
-      "d4": { "title": "Technical usage data", "body": "Aggregate statistics on the use of website features, collected in anonymised form." }
-    },
-    "s3": {
-      "heading": "Purposes and legal bases",
-      "p1": "Personal data is processed for specific purposes, each with its own legal basis:",
-      "l1": "Responding to contact requests and managing pre-contractual relationships (Art. 6.1.b GDPR).",
-      "l2": "Fulfilling contractual obligations relating to the supply of products and services (Art. 6.1.b GDPR).",
-      "l3": "Compliance with legal, tax and accounting obligations (Art. 6.1.c GDPR).",
-      "l4": "Sending promotional communications and newsletters, exclusively with explicit and revocable consent (Art. 6.1.a GDPR).",
-      "l5": "Statistical analysis of website usage to improve performance and user experience (Art. 6.1.f GDPR, with right to object)."
-    },
-    "s4": {
-      "heading": "Recipients of data",
-      "p1": "Personal data is not sold to third parties. It may only be communicated to:",
-      "b1": { "title": "Data processors", "body": "Technical service providers (hosting, email, CRM, analytics) that process data on our behalf under specific contractual agreements." },
-      "b2": { "title": "Professionals and consultants", "body": "Accountants, legal advisers and other professionals who need access to certain data in the exercise of their mandate." },
-      "b3": { "title": "Public authorities", "body": "Law enforcement, judicial or administrative authorities, exclusively upon formal request or in fulfilment of a legal obligation." }
-    },
-    "s5": {
-      "heading": "Transfers outside the EU",
-      "p1": "Some technical services we use may involve transfers of data to non-EU countries. In such cases we apply the safeguards provided by the GDPR: Standard Contractual Clauses approved by the European Commission.",
-      "p2": "The updated list of sub-processors and safeguards adopted is available on request by writing to privacy@sinersys.it."
-    },
-    "s6": {
-      "heading": "Your rights",
-      "p1": "As a data subject, you have the right to:",
-      "r1": { "title": "Access (Art. 15)", "body": "Obtain confirmation that we are processing your personal data and receive a copy." },
-      "r2": { "title": "Rectification (Art. 16)", "body": "Request the correction of inaccurate data or the completion of incomplete data." },
-      "r3": { "title": "Erasure (Art. 17)", "body": "Request erasure ('right to be forgotten') in the cases provided for by law." },
-      "r4": { "title": "Restriction (Art. 18)", "body": "Request that processing be restricted to certain operations in specific circumstances." },
-      "r5": { "title": "Portability (Art. 20)", "body": "Receive the data you provided in a structured, machine-readable format and transmit it to another controller." },
-      "contact": "To exercise your rights, write to privacy@sinersys.it, indicating the right you wish to exercise. We will respond within 30 days."
-    },
-    "s7": {
-      "heading": "Retention periods",
-      "p1": "We retain personal data for the time strictly necessary: contractual and tax data for 10 years; navigation data for a maximum of 13 months; marketing data until consent is withdrawn or for a maximum of 24 months from the last interaction.",
-      "p2": "Upon expiry of the retention period, data is securely deleted or permanently anonymised."
-    },
-    "s8": {
-      "heading": "Updates",
-      "p1": "This notice may be updated at any time. Material changes are communicated via a notice on the website or by email to registered users."
-    }
+    "s1": { "heading": "Data controller", "p1": "This notice is prepared pursuant to Art. 13 of EU Regulation 2016/679 (GDPR) and applies to anyone who visits the sinersys.it website or interacts with Sinersys services.", "controller": "Data controller: ", "controllerVal": "Sinersys S.r.l.", "address": "Registered office: ", "addressVal": "[INSERT ACTUAL ADDRESS FROM COMPANY REGISTER]", "email": "Privacy contact: ", "emailVal": "privacy@sinersys.it" },
+    "s2": { "heading": "Categories of data processed", "p1": "Depending on the type of interaction with our services, we process the following categories of personal data:", "d1": { "title": "Navigation data", "body": "IP address, browser type and operating system, pages visited, access timestamps." }, "d2": { "title": "Voluntarily provided data", "body": "Name, surname, email address, phone number and any other information entered in contact forms." }, "d3": { "title": "Contractual data", "body": "Information required for the conclusion and management of supply contracts." }, "d4": { "title": "Technical usage data", "body": "Aggregate statistics on the use of website features, collected in anonymised form." } },
+    "s3": { "heading": "Purposes and legal bases", "p1": "Personal data is processed for specific purposes, each with its own legal basis:", "l1": "Responding to contact requests and managing pre-contractual relationships (Art. 6.1.b GDPR).", "l2": "Fulfilling contractual obligations relating to the supply of products and services (Art. 6.1.b GDPR).", "l3": "Compliance with legal, tax and accounting obligations (Art. 6.1.c GDPR).", "l4": "Sending promotional communications and newsletters, exclusively with explicit and revocable consent (Art. 6.1.a GDPR).", "l5": "Statistical analysis of website usage to improve performance and user experience (Art. 6.1.f GDPR, with right to object)." },
+    "s4": { "heading": "Recipients of data", "p1": "Personal data is not sold to third parties. It may only be communicated to:", "b1": { "title": "Data processors", "body": "Technical service providers (hosting, email, CRM, analytics) that process data on our behalf under specific contractual agreements." }, "b2": { "title": "Professionals and consultants", "body": "Accountants, legal advisers and other professionals who need access to certain data in the exercise of their mandate." }, "b3": { "title": "Public authorities", "body": "Law enforcement, judicial or administrative authorities, exclusively upon formal request or in fulfilment of a legal obligation." } },
+    "s5": { "heading": "Transfers outside the EU", "p1": "Some technical services we use may involve transfers of data to non-EU countries. In such cases we apply the safeguards provided by the GDPR: Standard Contractual Clauses approved by the European Commission.", "p2": "The updated list of sub-processors and safeguards adopted is available on request by writing to privacy@sinersys.it." },
+    "s6": { "heading": "Your rights", "p1": "As a data subject, you have the right to:", "r1": { "title": "Access (Art. 15)", "body": "Obtain confirmation that we are processing your personal data and receive a copy." }, "r2": { "title": "Rectification (Art. 16)", "body": "Request the correction of inaccurate data or the completion of incomplete data." }, "r3": { "title": "Erasure (Art. 17)", "body": "Request erasure ('right to be forgotten') in the cases provided for by law." }, "r4": { "title": "Restriction (Art. 18)", "body": "Request that processing be restricted to certain operations in specific circumstances." }, "r5": { "title": "Portability (Art. 20)", "body": "Receive the data you provided in a structured, machine-readable format and transmit it to another controller." }, "contact": "To exercise your rights, write to privacy@sinersys.it, indicating the right you wish to exercise. We will respond within 30 days." },
+    "s7": { "heading": "Retention periods", "p1": "We retain personal data for the time strictly necessary: contractual and tax data for 10 years; navigation data for a maximum of 13 months; marketing data until consent is withdrawn or for a maximum of 24 months from the last interaction.", "p2": "Upon expiry of the retention period, data is securely deleted or permanently anonymised." },
+    "s8": { "heading": "Updates", "p1": "This notice may be updated at any time. Material changes are communicated via a notice on the website or by email to registered users." }
   },
 
   "cookies": {
@@ -435,44 +272,12 @@
     "title": "Cookie Policy",
     "subtitle": "How we use cookies and tracking technologies on sinersys.it.",
     "updated": "Last updated: March 2026",
-    "s1": {
-      "heading": "What are cookies",
-      "p1": "Cookies are small text files that websites place on the user's device during browsing. They allow the site to remember the user's actions and preferences over time.",
-      "p2": "In addition to traditional cookies, we use similar technologies such as tracking pixels and local storage. This Cookie Policy applies to all such technologies."
-    },
-    "s2": {
-      "heading": "Types of cookies we use",
-      "p1": "We classify the cookies we use into four categories:",
-      "c1": { "title": "Essential technical cookies", "body": "Necessary for the operation of the site. They do not require consent and cannot be disabled." },
-      "c2": { "title": "Analytical cookies", "body": "Collect aggregate information on how users use the site. Data is anonymised before processing. Require consent." },
-      "c3": { "title": "Functional cookies", "body": "Allow the site to remember choices made by the user to offer a more personalised experience. Require consent." },
-      "c4": { "title": "Marketing and profiling cookies", "body": "Used to show relevant advertising content and measure campaign effectiveness. Require explicit consent." }
-    },
-    "s3": {
-      "heading": "Third-party cookies",
-      "p1": "We integrate the following third-party services into the site, each of which may install its own cookies:",
-      "ga": "Google Analytics: Google LLC web analytics platform. Collects anonymised navigation data for statistical analysis.",
-      "gtm": "Google Tag Manager: Google LLC service for centralised tag management.",
-      "p2": "For complete information on the cookies installed by each service, please consult the privacy policies of the individual providers."
-    },
-    "s4": {
-      "heading": "How to manage cookies",
-      "p1": "You have full control over non-essential cookies. You can manage your preferences through:",
-      "l1": "The consent management panel, accessible at any time via the 'Cookie Settings' link in the footer.",
-      "l2": "Browser settings: Chrome, Firefox, Safari and Edge allow you to view, delete and block cookies.",
-      "l3": "Provider opt-out tools: Google Analytics Opt-out (tools.google.com/dlpage/gaoptout).",
-      "l4": "Behavioural advertising management platforms: YourOnlineChoices (youronlinechoices.eu)."
-    },
-    "s5": {
-      "heading": "Impact of disabling cookies",
-      "p1": "Disabling essential technical cookies is not possible without seriously impairing the functioning of the site. Disabling analytical and marketing cookies does not affect your ability to browse.",
-      "p2": "If you use your browser in private/incognito mode, cookies are automatically deleted when the window is closed."
-    },
-    "s6": {
-      "heading": "Updates and contacts",
-      "p1": "This Cookie Policy is updated periodically. We recommend visiting this page regularly.",
-      "p2": "For any questions regarding the use of cookies on sinersys.it, write to us at privacy@sinersys.it."
-    }
+    "s1": { "heading": "What are cookies", "p1": "Cookies are small text files that websites place on the user's device during browsing. They allow the site to remember the user's actions and preferences over time.", "p2": "In addition to traditional cookies, we use similar technologies such as tracking pixels and local storage. This Cookie Policy applies to all such technologies." },
+    "s2": { "heading": "Types of cookies we use", "p1": "We classify the cookies we use into four categories:", "c1": { "title": "Essential technical cookies", "body": "Necessary for the operation of the site. They do not require consent and cannot be disabled." }, "c2": { "title": "Analytical cookies", "body": "Collect aggregate information on how users use the site. Data is anonymised before processing. Require consent." }, "c3": { "title": "Functional cookies", "body": "Allow the site to remember choices made by the user to offer a more personalised experience. Require consent." }, "c4": { "title": "Marketing and profiling cookies", "body": "Used to show relevant advertising content and measure campaign effectiveness. Require explicit consent." } },
+    "s3": { "heading": "Third-party cookies", "p1": "We integrate the following third-party services into the site, each of which may install its own cookies:", "ga": "Google Analytics: Google LLC web analytics platform. Collects anonymised navigation data for statistical analysis.", "gtm": "Google Tag Manager: Google LLC service for centralised tag management.", "p2": "For complete information on the cookies installed by each service, please consult the privacy policies of the individual providers." },
+    "s4": { "heading": "How to manage cookies", "p1": "You have full control over non-essential cookies. You can manage your preferences through:", "l1": "The consent management panel, accessible at any time via the 'Cookie Settings' link in the footer.", "l2": "Browser settings: Chrome, Firefox, Safari and Edge allow you to view, delete and block cookies.", "l3": "Provider opt-out tools: Google Analytics Opt-out (tools.google.com/dlpage/gaoptout).", "l4": "Behavioural advertising management platforms: YourOnlineChoices (youronlinechoices.eu)." },
+    "s5": { "heading": "Impact of disabling cookies", "p1": "Disabling essential technical cookies is not possible without seriously impairing the functioning of the site. Disabling analytical and marketing cookies does not affect your ability to browse.", "p2": "If you use your browser in private/incognito mode, cookies are automatically deleted when the window is closed." },
+    "s6": { "heading": "Updates and contacts", "p1": "This Cookie Policy is updated periodically. We recommend visiting this page regularly.", "p2": "For any questions regarding the use of cookies on sinersys.it, write to us at privacy@sinersys.it." }
   },
 
   "footer": {

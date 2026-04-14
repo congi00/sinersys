@@ -83,7 +83,7 @@ function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProp
     if (index === 0) {
       return useTransform(progress, [enterStart - 0.1, enterStart, slideEnd + 0.1, slideEnd + 0.3], [0, 1, 1, 0]);
     }
-    return useTransform(progress, [enterStart - 0.1, enterStart], [0,1]);
+    return useTransform(progress, [enterStart - 1, enterStart], [0,1]);
   })();
 
   // Glass card = dark blue bg, white text. Solid card = white bg, dark text.

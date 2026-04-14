@@ -31,6 +31,7 @@ import LinkButton from "./components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import HeroVideo from "./components/HeroVideo";
 import SixPhaseEngine from "./components/SixPhaseEngine";
+import { useMotionValueEvent } from "framer-motion";
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -142,7 +143,7 @@ export default function Home() {
   );
   const slide1Clip = useTransform(
     smooth,
-    [0.7, 1.1, 1.6, 1.8],
+    [0.7, 1.1, 1.8, 1.9],
     [
       "inset(100% 0% 0% 0%)",
       "inset(0% 0% 0% 0%)",
@@ -154,18 +155,12 @@ export default function Home() {
   // ── Model ─────────────────────────────────────────────────────────────────
   const modelPhaseAOpacity = useTransform(
     smooth,
-    [0, 0.7, 0.8, 1.7, 1.8],
+    [0, 1.1, 1.2, 1.8, 1.9],
     [0, 0, 1, 1, 0]
   );
-  const modelPhaseAY = useTransform(smooth, [0.7, 1.2, 1.7, 1.9], [490, 50, 50, -500]);
+  const modelPhaseAY = useTransform(smooth, [0.7, 1.2, 1.8, 1.9], [80, 80, 80, 80]);
   const modelOverflow = useTransform(smooth, (v) =>
     v < 0.05 ? "hidden" : "visible"
-  );
-
-  const modelX = useTransform(
-    smooth,
-    [0, 1],
-    [0, isMobile ? 0 : 0] // ← sposta a destra solo desktop
   );
 
   // ── HomePageAbout ─────────────────────────────────────────────────────────
@@ -225,10 +220,36 @@ export default function Home() {
   const spacerFaq = isMobile ? vh * 11 : vh * 9.7;
   const totalHeight = isMobile ? vh * 12.8 + 1200 : vh * 11 + 900;
 
+  const themeColor = useTransform(
+    smooth,
+    [0, 3.0, 3.2, 6.2, 6.4, 9],
+    [
+      "#0f2057", // dark iniziale
+      "#0f2057",
+      "#faf4f7", // quando passi al light palette
+      "#faf4f7",
+      "#ffffff", // white section
+      "#ffffff",
+    ]
+  );
+
+  useMotionValueEvent(themeColor, "change", (color) => {
+    let meta = document.querySelector('meta[name="theme-color"]');
+
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "theme-color");
+      document.head.appendChild(meta);
+    }
+
+    meta.setAttribute("content", color);
+  });
+
   if (!mounted) {
     return <div className="min-h-screen bg-[#0f2057]" />;
   }
 
+  
   return (
     <>
       <LiquidBackground progress={smooth} vhUnit={vhUnit} />
@@ -303,16 +324,14 @@ export default function Home() {
             position: "fixed",
             bottom: 0,
             height: isIOS ? "120lvh" : "120dvh",
-            width: "100vw",
+            width: isMobile ? "120vw" : "100vw",
             zIndex: 10,
             opacity: modelPhaseAOpacity,
             y: modelPhaseAY,
-            x: modelX,
             pointerEvents: "none",
-            overflow: modelOverflow,
           }}
         >
-          <HeroVideo progressMotion={smooth} />
+          <HeroVideo progressMotion={smooth} isMobile={isMobile} />
         </motion.div>
 
         {/* ── SLIDE 1 ─────────────────────────────────────────────────────── */}

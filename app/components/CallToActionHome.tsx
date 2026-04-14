@@ -114,7 +114,7 @@ export default function CallToActionHome({ progressMotion }: Props) {
           letterSpacing: "-0.025em",
           color:         "#f4f7fa",
           marginBottom:  "1rem",
-          maxWidth:      "700px",
+          maxWidth:      "1000px",
         }}>
           {homeTexts("cta.title")}
         </h2>
