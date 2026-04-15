@@ -16,6 +16,8 @@ import Footer from "../components/Footer";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import ContactDrawer from "../components/ContactDrawer";
 import { setNavigationState, setOpenContact } from "../features/counterSlice";
+import LinkButton from "../components/LinkButton";
+import { ArrowUpRight } from "lucide-react";
 
 const SCENES = 5;
 
@@ -48,14 +50,20 @@ function GlassCard({
 }
 
 export default function ApwecPage() {
-  const t           = useTranslations("apwec");
+  const t = useTranslations("apwec");
   const openContact = useAppSelector((s) => s.siteState.openContact);
-  const dispatch    = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   /* ── Responsive width ─────────────────────────────────────────────────── */
-  const [width, setWidth] = useState(() =>
-    typeof window !== "undefined" ? window.innerWidth : 1024
-  );
+  const [width, setWidth] = useState(1024);
+
+  useEffect(() => {
+    const update = () => setWidth(window.innerWidth);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   const isMobile = width <= 768;
 
   useEffect(() => {
@@ -79,8 +87,8 @@ export default function ApwecPage() {
   }, []);
 
   /* ── Video scrubbing ──────────────────────────────────────────────────── */
-  const videoRef    = useRef<HTMLVideoElement>(null);
-  const videoSrc    = isMobile ? "/apwec-mobile.webm" : "/intro.webm";
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoSrc = isMobile ? "/apwecprod1.webm" : "/apwecprod.webm";
 
   const videoDuration = useRef<number>(0);
 
@@ -93,39 +101,41 @@ export default function ApwecPage() {
   /* ── Scroll ───────────────────────────────────────────────────────────── */
   const progressMotion = useMotionValue(0);
 
-  const [vhPx, setVhPx] = useState(() =>
-    typeof window !== "undefined" ? window.innerHeight : 800
-  );
+  const [vhPx, setVhPx] = useState(800);
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
+    const isMobileDevice = isTouchDevice();
+
     const measure = () => {
       const h = window.visualViewport
         ? window.visualViewport.height
         : window.innerHeight;
+
       setVhPx(h);
     };
-    const debounced = () => {
-      clearTimeout(timer);
-      timer = setTimeout(measure, 150);
-    };
+
+    // misura iniziale SEMPRE
     measure();
-    if (window.visualViewport)
-      window.visualViewport.addEventListener("resize", debounced);
-    window.addEventListener("resize", debounced);
+
+    // 👉 SU MOBILE: NON aggiornare più (evita glitch tab bar)
+    if (isMobileDevice) return;
+
+    // 👉 SOLO DESKTOP: continua a reagire ai resize
+    window.addEventListener("resize", measure);
+    window.visualViewport?.addEventListener("resize", measure);
+
     return () => {
-      clearTimeout(timer);
-      if (window.visualViewport)
-        window.visualViewport.removeEventListener("resize", debounced);
-      window.removeEventListener("resize", debounced);
+      window.removeEventListener("resize", measure);
+      window.visualViewport?.removeEventListener("resize", measure);
     };
   }, []);
 
   useEffect(() => {
     if (isTouchDevice()) {
       const fn = () => {
-        const sy    = window.scrollY;
-        const limit = document.documentElement.scrollHeight - window.innerHeight;
+        const sy = window.scrollY;
+        const limit =
+          document.documentElement.scrollHeight - window.innerHeight;
         if (limit > 0)
           progressMotion.set(Math.min(SCENES, (sy / limit) * SCENES));
       };
@@ -134,8 +144,8 @@ export default function ApwecPage() {
       return () => window.removeEventListener("scroll", fn);
     }
     const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
-    let rafId   = 0;
-    const raf   = (time: number) => {
+    let rafId = 0;
+    const raf = (time: number) => {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     };
@@ -149,18 +159,31 @@ export default function ApwecPage() {
     };
   }, [progressMotion]);
 
-  const springValue = useSpring(progressMotion, { stiffness: 280, damping: 30 });
-  const smooth      = isMobile ? progressMotion : springValue;
+  const springValue = useSpring(progressMotion, {
+    stiffness: 280,
+    damping: 30,
+  });
+  const smooth = isMobile ? progressMotion : springValue;
 
   /* ── Drive video currentTime from scroll progress ─────────────────────── */
+  const VIDEO_START = 0;
+  const VIDEO_END = 3.5;
+
   useMotionValueEvent(smooth, "change", (p) => {
     const vid = videoRef.current;
     if (!vid || !videoDuration.current) return;
-    const targetTime = Math.min(
-      videoDuration.current,
-      (p / SCENES) * videoDuration.current
+
+    // normalizza p dentro il range del video
+    const progress = Math.min(
+      1,
+      Math.max(0, (p - VIDEO_START) / (VIDEO_END - VIDEO_START))
     );
-    if (Math.abs(vid.currentTime - targetTime) > 0.01) vid.currentTime = targetTime;
+
+    const targetTime = progress * videoDuration.current;
+
+    if (Math.abs(vid.currentTime - targetTime) > 0.01) {
+      vid.currentTime = targetTime;
+    }
   });
 
   const vh = vhPx;
@@ -171,17 +194,18 @@ export default function ApwecPage() {
    * - plus the actual height of the static content below
    * This mirrors the AboutUsPage pattern (CONTENT_TOP + contentH).
    */
-  const CONTENT_TOP = vh * (SCENES + 2.2);
-  const totalHeight = contentH;
+  const CONTENT_TOP = vh * (SCENES + (isMobile ? 7.6 : 3));
+  const SCROLL_VH = vh * (SCENES + (isMobile ? 7.6 : 3));
+  const totalHeight = SCROLL_VH + contentH;
 
   /* ── Hero card motion values ──────────────────────────────────────────── */
-  const headerTheme = useTransform(smooth, [3.8, 4.2], [0, 1]);
+  const headerTheme = useTransform(smooth, [3.8, 4.8, 5], [0, 0, 1]);
 
-  const cardInset   = useTransform(smooth, [0, 0.3,3.4,3.8], [16, 0, 0 ,16]);
-  const cardRadius  = useTransform(smooth, [0, 0.3, 3.4,3.8], [24, 0, 0,24]);
-  const cardPad     = useTransform(cardInset,  (v) => `${v}px`);
-  const cardRad     = useTransform(cardRadius, (v) => `${v}px`);
-  const cardY       = useTransform(smooth, [2.8, 3.4, 4.0], ["0vh","0vh", "-120vh"]);
+  const cardInset = useTransform(smooth, [0, 0.3, isMobile? 3.0 : 3.4, 3.8], [16, 0, 0, 16]);
+  const cardRadius = useTransform(smooth, [0, 0.3,isMobile? 3.0 : 3.4, 3.8], [24, 0, 0, 24]);
+  const cardPad = useTransform(cardInset, (v) => `${v}px`);
+  const cardRad = useTransform(cardRadius, (v) => `${v}px`);
+  const cardY = useTransform(smooth, [2.8,isMobile? 3.0 : 3.4, isMobile? 3.7: 4.0], ["0vh", "0vh", "-120vh"]);
   const cardOpacity = useTransform(smooth, [4.1, 4.4], [1, 0]);
 
   const bgOpacity = useTransform(smooth, [2.5, 3.2, 4.0, 4.3], [0, 1, 1, 0]);
@@ -206,7 +230,7 @@ export default function ApwecPage() {
    */
   const gradientPage = useTransform(
     smooth,
-    [0, 3.8, 3.9],
+    [0, isMobile? 3.7 : 3.8, 3.9],
     [
       "#F4F7FA",
       "#F4F7FA",
@@ -216,50 +240,38 @@ export default function ApwecPage() {
 
   const gradientPageH = useTransform(
     smooth,
-    [0, 2.4, 3.9, 4.3,4.4],
+    [0, 2.4, isMobile ? 3.7 : 3.9, 4.3, 4.4],
     [
-     "#F4F7FA", 
-     "#F4F7FA", 
-     "linear-gradient(-160deg, #1c398e 20%, #0070f3 55%, #050b26 100%)", 
-     "linear-gradient(-160deg, #1c398e 20%, #0070f3 55%, #050b26 100%)", 
-     "#F4F7FA"
+      "#F4F7FA",
+      "#F4F7FA",
+      "linear-gradient(-160deg, #1c398e 20%, #0070f3 55%, #050b26 100%)",
+      "linear-gradient(-160deg, #1c398e 20%, #0070f3 55%, #050b26 100%)",
+      "#F4F7FA",
     ]
   );
 
-  const colorP  = useTransform(
+  const colorP = useTransform(
     smooth,
-    [0, 3.8, 3.9],
-    [
-      "#1c398e",
-      "#1c398e",
-      "rgba(160,196,255,0.7)",
-    ]
+    [0,isMobile? 3.6 : 3.8, isMobile? 3.7 : 3.9],
+    ["#1c398e", "#1c398e", "rgba(160,196,255,0.7)"]
   );
 
   const colorTitle = useTransform(
     smooth,
-    [0, 3.8, 3.9],
-    [
-      "#1c398e",
-      "#1c398e",
-      "#f4f7fa",
-    ]
+    [0,isMobile? 3.6 : 3.8,isMobile? 3.7 : 3.9],
+    ["#1c398e", "#1c398e", "#f4f7fa"]
   );
 
   const colorSub = useTransform(
     smooth,
-    [0, 3.8, 3.9],
-    [
-      "#1c398e",
-      "#1c398e",
-      "rgba(200,218,250,0.72)",
-    ]
+    [0,isMobile? 3.6 : 3.8, isMobile? 3.7 : 3.9],
+    ["#1c398e", "#1c398e", "rgba(200,218,250,0.72)"]
   );
 
   const contentRadius = useTransform(smooth, [4.4, 4.7], [0, 24]);
-  const contentScale  = useTransform(smooth, [4.4, 4.7], [1, 0.97]);
-  const contentY      = useTransform(smooth, [5.5, 5.6], [0, -86]);
-  const contentBR     = useTransform(contentRadius, (v) => `${v}px`);
+  const contentScale = useTransform(smooth, [4.4, 4.7], [1, 0.97]);
+  const contentY = useTransform(smooth, [5.5, 5.6], [0, -86]);
+  const contentBR = useTransform(contentRadius, (v) => `${v}px`);
 
   /* ── Slide texts ──────────────────────────────────────────────────────── */
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -278,14 +290,14 @@ export default function ApwecPage() {
     } as const;
   }
 
-  const s0 = mkSlide(0,   0.05, 0.9);
-  const s1 = mkSlide(1.0, 1.15, 1.95);
-  const s2 = mkSlide(2.0, 2.15, 2.95);
-  const s3 = mkSlide(3.0, 3.2,  3.9);
+  const s0 = mkSlide(0, 0, 0.7);
+  const s1 = mkSlide(0.7, 0.8, 1.7);
+  const s2 = mkSlide(1.7, 1.8, 2.7);
+  const s3 = mkSlide(2.7, 2.8, 3.8);
 
   /* ── Shared style helpers ─────────────────────────────────────────────── */
   const sup: React.CSSProperties = {
-    fontSize: "clamp(0.6rem,0.85vw,0.72rem)",
+    // fontSize: "clamp(0.6rem,0.85vw,0.72rem)",
     fontWeight: 700,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
@@ -296,24 +308,22 @@ export default function ApwecPage() {
 
   const h1s: React.CSSProperties = {
     margin: 0,
-    fontSize: isMobile
-      ? "clamp(1.5rem,6vw,2.2rem)"
-      : "clamp(2rem,4.5vw,4rem)",
+    // fontSize: isMobile ? "clamp(1.5rem,6vw,2.2rem)" : "clamp(2rem,4.5vw,4rem)",
     fontWeight: 800,
     letterSpacing: "-0.03em",
-    lineHeight: 1.0,
+    lineHeight: 1.1,
     color: "#f4f7fa",
   };
 
   const bodys: React.CSSProperties = {
     margin: "0.8rem 0 0",
-    fontSize: isMobile
-      ? "clamp(0.8rem,3.5vw,0.95rem)"
-      : "clamp(0.88rem,1.2vw,1.05rem)",
+    // fontSize: isMobile
+    //   ? "clamp(0.8rem,3.5vw,0.95rem)"
+    //   : "clamp(0.88rem,1.2vw,1.05rem)",
     fontWeight: 400,
-    lineHeight: 1.65,
+    lineHeight: 1.2,
     color: "rgba(200,218,250,0.70)",
-    maxWidth: isMobile ? "100%" : "520px",
+    maxWidth: isMobile ? "100%" : "820px",
   };
 
   const textWrap = (extra?: React.CSSProperties): React.CSSProperties => ({
@@ -323,16 +333,30 @@ export default function ApwecPage() {
     ...(isMobile
       ? {
           bottom: "clamp(2rem,4vh,3.5rem)",
-          left:   "clamp(1.2rem,5vw,2rem)",
-          right:  "clamp(1.2rem,5vw,2rem)",
+          left: "clamp(1.2rem,5vw,2rem)",
+          right: "clamp(1.2rem,5vw,2rem)",
         }
       : {
-          top:      "clamp(5.5rem,8vh,7rem)",
-          left:     "clamp(2rem,5vw,5rem)",
+          top: "clamp(5.5rem,8vh,7rem)",
+          left: "clamp(2rem,5vw,5rem)",
           maxWidth: "48%",
         }),
     ...extra,
   });
+
+
+  const linkColorWhite = useMotionValue("#ffffff");
+  const hiddenMenu  = useTransform(
+    smooth,
+    [4.4,4.5],
+    [1, 0 ]
+  );
+
+  const menuTheme =  useTransform(
+    smooth,
+    [3, 3.1,3.9, 4.4, ],
+    [0, 1,   0,   0, ]
+  );
 
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (
@@ -345,7 +369,7 @@ export default function ApwecPage() {
         style={{ height: totalHeight, zIndex: 1 }}
       >
         {!openContact && <Header headerTheme={headerTheme} />}
-        {!openContact && <MenuButton />}
+        {!openContact && <MenuButton hiddenMenu={hiddenMenu} menuTheme={menuTheme}/>}
 
         {/* ── HERO CARD (pinned, scrubbed video) ──────────────────────── */}
         <motion.div
@@ -370,7 +394,7 @@ export default function ApwecPage() {
             }}
           >
             {/* Background image */}
-            <motion.div
+            {/* <motion.div
               style={{
                 position: "absolute",
                 inset: 0,
@@ -379,7 +403,7 @@ export default function ApwecPage() {
                 backgroundPosition: "center",
                 opacity: bgOpacity,
               }}
-            />
+            /> */}
             <motion.div
               style={{
                 position: "absolute",
@@ -404,24 +428,33 @@ export default function ApwecPage() {
                 inset: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "contain",
+                objectFit: "cover",
                 zIndex: 2,
                 pointerEvents: "none",
               }}
             />
 
             {/* Slide 0 */}
-            <motion.div style={{ ...textWrap(), ...s0 }}>
-              <span style={sup}>{t("slide0.suptitle")}</span>
-              <h1 style={h1s}>{t("slide0.title")}</h1>
-              <p style={bodys}>{t("slide0.subtitle")}</p>
+            <motion.div style={{ ...textWrap(isMobile? {top:"20%"} : {
+              top: "20%"
+            }), ...s0 }}>
+              <span className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase" style={sup}>{t("slide0.suptitle")}</span>
+              <h1 className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight" style={h1s}>{t("slide0.title")}</h1>
+              <p className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light" style={{...bodys, ...(isMobile ? {textAlign: "left", marginTop: "5%"} : {})}}>{t("slide0.subtitle")}</p>
             </motion.div>
 
             {/* Slide 1 */}
-            <motion.div style={{ ...textWrap(), ...s1 }}>
-              <span style={sup}>{t("slide1.suptitle")}</span>
-              <h1 style={h1s}>{t("slide1.title")}</h1>
-              <p style={bodys}>{t("slide1.subtitle")}</p>
+            <motion.div style={{ ...textWrap(isMobile? {
+              textAlign: "right",
+              top: "15%",
+            } : {
+              top: "20%",
+              left: "45%",
+              textAlign:"right"
+            }), ...s1 }}>
+              <span className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase" style={sup}>{t("slide1.suptitle")}</span>
+              <h1 className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight" style={h1s}>{t("slide1.title")}</h1>
+              <p className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light" style={{...bodys, ...(isMobile ? {textAlign: "left", marginTop: "35%"} : {})}}>{t("slide1.subtitle")}</p>
             </motion.div>
 
             {/* Slide 2 — centred on desktop */}
@@ -429,27 +462,35 @@ export default function ApwecPage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? {}
+                    ? {
+                      top: "20%",
+                    }
                     : {
-                        left:      "50%",
-                        top:       "50%",
+                        left: "5%",
+                        top: "50%",
                         transform: "translate(-50%,-50%)",
-                        maxWidth:  "500px",
-                        textAlign: "center",
+                        maxWidth: "800px",
+                        textAlign: "left",
                       }
                 ),
                 ...s2,
               }}
             >
-              <span style={{ ...sup, ...(isMobile ? {} : { textAlign: "center" }) }}>
+              <span
+                className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase"
+                style={{ ...sup, ...(isMobile ? { textAlign: "end" } : { textAlign: "left" }) }}
+              >
                 {t("slide2.suptitle")}
               </span>
-              <h1 style={h1s}>{t("slide2.title")}</h1>
+              <h1 className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight" style={{...h1s, ...(isMobile ? { textAlign: "end" } : { })}}>{t("slide2.title")}</h1>
               <p
                 style={{
                   ...bodys,
-                  ...(isMobile ? {} : { margin: "0.8rem auto 0", textAlign: "center" }),
+                  ...(isMobile
+                    ? {marginTop: "40%"}
+                    : { margin: "0.8rem auto 0", textAlign: "left" }),
                 }}
+                className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light"
               >
                 {t("slide2.subtitle")}
               </p>
@@ -460,36 +501,43 @@ export default function ApwecPage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? {}
+                    ? {top: "20%",
+                      textAlign: "center",
+                    }
                     : {
-                        left:      "50%",
-                        top:       "50%",
+                        left: "10%",
+                        top: "13%",
                         transform: "translate(-50%,-50%)",
-                        maxWidth:  "600px",
+                        maxWidth: "100%",
                         textAlign: "center",
                       }
                 ),
                 ...s3,
               }}
             >
-              <span style={{ ...sup, ...(isMobile ? {} : { textAlign: "center" }) }}>
+              <span
+                className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase"
+                style={{ ...sup, ...(isMobile ? {} : { textAlign: "center" }) }}
+              >
                 {t("slide3.suptitle")}
               </span>
               <h1
                 style={{
                   ...h1s,
-                  fontSize: isMobile
-                    ? "clamp(1.4rem,6vw,2rem)"
-                    : "clamp(1.8rem,4vw,3.2rem)",
+                  whiteSpace: "pre-line"
                 }}
+                className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight"
               >
                 {t("slide3.title")}
               </h1>
               <p
                 style={{
                   ...bodys,
-                  ...(isMobile ? {} : { margin: "0.8rem auto 0", textAlign: "center" }),
+                  ...(isMobile
+                    ? {marginTop:"45%", textAlign: "center" }
+                    : { margin: "0.8rem auto 0", marginTop:"23%", textAlign: "center" }),
                 }}
+                className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light"
               >
                 {t("slide3.subtitle")}
               </p>
@@ -507,9 +555,9 @@ export default function ApwecPage() {
           ref={contentRef}
           style={{
             position: "absolute",
-            top:   CONTENT_TOP,
+            top: CONTENT_TOP,
             background: gradientPageH,
-            left:  0,
+            left: 0,
             right: 0,
             zIndex: 11,
           }}
@@ -521,12 +569,12 @@ export default function ApwecPage() {
           */}
           <motion.div
             style={{
-              scale:        contentScale,
-              y:            contentY,
+              scale: contentScale,
+              y: contentY,
               borderRadius: contentBR,
-              overflow:     "hidden",
-              background:   gradientPage,
-              marginBottom: "20px"
+              overflow: "hidden",
+              background: gradientPage,
+              marginBottom: "20px",
             }}
           >
             {/* About section */}
@@ -543,27 +591,28 @@ export default function ApwecPage() {
               >
                 <div
                   style={{
-                    display:      "inline-flex",
-                    alignItems:   "center",
-                    gap:          "8px",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
                     marginBottom: "2rem",
                   }}
                 >
                   <div
                     style={{
-                      width:      "28px",
-                      height:     "1px",
+                      width: "28px",
+                      height: "1px",
                       background: "rgba(160,196,255,0.5)",
                     }}
                   />
                   <motion.span
                     style={{
-                      fontSize:      "0.72rem",
-                      fontWeight:    700,
+                      // fontSize: "0.72rem",
+                      fontWeight: 700,
                       letterSpacing: "0.16em",
                       textTransform: "uppercase",
                       color: colorP,
                     }}
+                    className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase"
                   >
                     {t("static.label")}
                   </motion.span>
@@ -571,42 +620,49 @@ export default function ApwecPage() {
 
                 <div
                   style={{
-                    display:             "grid",
+                    display: "grid",
                     gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                    gap:                 "clamp(2rem,5vw,5rem)",
-                    alignItems:          "start",
+                    gap: "clamp(2rem,5vw,5rem)",
+                    alignItems: "start",
                   }}
                 >
                   <motion.h2
                     style={{
-                      margin:        0,
-                      fontSize:      "clamp(1.8rem,4vw,3.5rem)",
-                      fontWeight:    800,
+                      margin: 0,
+                      fontSize: "clamp(1.8rem,4vw,3.5rem)",
+                      fontWeight: 800,
                       letterSpacing: "-0.03em",
-                      lineHeight:    1.0,
+                      lineHeight: 1.0,
                       color: colorTitle,
                     }}
+                    className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight"
                   >
                     {t("static.title")}
                   </motion.h2>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
+                    }}
+                  >
                     <motion.p
                       style={{
-                        margin:     0,
-                        fontSize:   "clamp(0.9rem,1.3vw,1.05rem)",
-                        lineHeight: 1.7,
-                        color:      colorSub,
+                        margin: 0,
+                        lineHeight: 1.3,
+                        color: colorSub,
                       }}
+                      className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light"
                     >
                       {t("static.p1")}
                     </motion.p>
                     <motion.p
                       style={{
-                        margin:     0,
-                        fontSize:   "clamp(0.9rem,1.3vw,1.05rem)",
-                        lineHeight: 1.7,
-                        color:      colorSub,
+                        margin: 0,
+                        lineHeight: 1.3,
+                        color: colorSub,
                       }}
+                      className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light"
                     >
                       {t("static.p2")}
                     </motion.p>
@@ -617,9 +673,9 @@ export default function ApwecPage() {
 
             <div
               style={{
-                height:     "1px",
+                height: "1px",
                 background: "rgba(255,255,255,0.07)",
-                margin:     "0 clamp(1.5rem,8vw,7rem)",
+                margin: "0 clamp(1.5rem,8vw,7rem)",
               }}
             />
 
@@ -631,9 +687,9 @@ export default function ApwecPage() {
             >
               <div
                 style={{
-                  display:             "grid",
+                  display: "grid",
                   gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)",
-                  gap:                 "clamp(1rem,2vw,1.4rem)",
+                  gap: "clamp(1rem,2vw,1.4rem)",
                 }}
               >
                 {(["f0", "f1", "f2"] as const).map((k, i) => (
@@ -644,45 +700,46 @@ export default function ApwecPage() {
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{
                       duration: 0.6,
-                      delay:    i * 0.1,
-                      ease:     [0.22, 1, 0.36, 1],
+                      delay: i * 0.1,
+                      ease: [0.22, 1, 0.36, 1],
                     }}
                   >
                     <GlassCard
                       style={{
                         padding: "clamp(1.4rem,2.5vw,2.2rem)",
-                        height:  "100%",
+                        height: "100%",
                       }}
                     >
                       <p
                         style={{
-                          margin:        "0 0 0.5rem",
-                          fontSize:      "0.7rem",
-                          fontWeight:    700,
+                          margin: "0 0 0.5rem",
+                          fontSize: "0.9rem",
+                          fontWeight: 700,
                           letterSpacing: "0.12em",
                           textTransform: "uppercase",
-                          color:         "rgba(100,150,255,0.75)",
+                          color: "rgba(100,150,255,0.75)",
                         }}
                       >
                         {t(`static.${k}.label`)}
                       </p>
                       <h3
                         style={{
-                          margin:     "0 0 0.6rem",
-                          fontSize:   "clamp(1.1rem,1.8vw,1.4rem)",
+                          margin: "0 0 0.6rem",
                           fontWeight: 700,
-                          color:      "#f4f7fa",
+                          lineHeight: 1.1,
+                          color: "#f4f7fa",
                         }}
+                        className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-4xl font-bold leading-tight"
                       >
                         {t(`static.${k}.title`)}
                       </h3>
                       <p
                         style={{
-                          margin:     0,
-                          fontSize:   "clamp(0.82rem,1.1vw,0.95rem)",
-                          lineHeight: 1.65,
-                          color:      "rgba(200,218,250,0.62)",
+                          margin: 0,
+                          lineHeight: 1.3,
+                          color: "rgba(200,218,250,0.62)",
                         }}
+                        className="text-l font-stretch-extra-expanded tracking-wide sm:text-xl mt-4 whitespace-pre-line font-light"
                       >
                         {t(`static.${k}.description`)}
                       </p>
@@ -694,9 +751,9 @@ export default function ApwecPage() {
 
             <div
               style={{
-                height:     "1px",
+                height: "1px",
                 background: "rgba(255,255,255,0.07)",
-                margin:     "0 clamp(1.5rem,8vw,7rem)",
+                margin: "0 clamp(1.5rem,8vw,7rem)",
               }}
             />
 
@@ -715,67 +772,57 @@ export default function ApwecPage() {
               >
                 <GlassCard
                   style={{
-                    padding:        "clamp(2rem,4vw,3rem)",
-                    display:        "flex",
-                    flexDirection:  isMobile ? "column" : "row",
-                    alignItems:     isMobile ? "flex-start" : "center",
+                    padding: "clamp(2rem,4vw,3rem)",
+                    display: "flex",
+                    flexDirection: isMobile ? "column" : "row",
+                    alignItems: isMobile ? "flex-start" : "center",
                     justifyContent: "space-between",
-                    gap:            "2rem",
+                    gap: "2rem",
                   }}
                 >
                   <div>
                     <h3
                       style={{
-                        margin:     "0 0 0.4rem",
-                        fontSize:   "clamp(1.2rem,2vw,1.8rem)",
+                        margin: "0 0 0.4rem",
                         fontWeight: 700,
-                        color:      "#f4f7fa",
+                        lineHeight: 1.1,
+                        color: "#f4f7fa",
                       }}
+                      className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-4xl font-bold leading-tight"
                     >
                       {t("static.cta.title")}
                     </h3>
                     <p
                       style={{
-                        margin:     0,
-                        fontSize:   "clamp(0.85rem,1.2vw,1rem)",
-                        color:      "rgba(200,218,250,0.60)",
-                        lineHeight: 1.6,
+                        margin: 0,
+                        color: "rgba(200,218,250,0.60)",
+                        lineHeight: 1.3,
                       }}
+                      className="text-l font-stretch-extra-expanded tracking-wide sm:text-xl mt-4 whitespace-pre-line font-light"
                     >
                       {t("static.cta.subtitle")}
                     </p>
                   </div>
-                  <a
-                    href="/contatti"
-                    style={{
-                      display:        "inline-flex",
-                      alignItems:     "center",
-                      gap:            "8px",
-                      padding:        "12px 28px",
-                      borderRadius:   "100px",
-                      background:     "rgba(255,255,255,0.12)",
-                      border:         "1px solid rgba(255,255,255,0.22)",
-                      color:          "#f4f7fa",
-                      fontSize:       "clamp(0.82rem,1vw,0.92rem)",
-                      fontWeight:     600,
-                      letterSpacing:  "0.05em",
-                      textDecoration: "none",
-                      whiteSpace:     "nowrap",
-                    }}
-                  >
-                    {t("static.cta.link")} ↗
-                  </a>
+                  <div style={{ pointerEvents: "auto" }}>
+                  <LinkButton
+                    link="/contatti"
+                    text={t("static.cta.link")}
+                    icon={<ArrowUpRight size={20} />}
+                    top="0"
+                    color={linkColorWhite}
+                  />
+                </div>
                 </GlassCard>
               </motion.div>
             </section>
           </motion.div>
 
           {/* Whitespace gap before footer */}
-          <div style={{ height: "20vh"}} />
+          <div style={{ height: "20vh" }} />
 
           <Footer />
         </motion.div>
-        
+
         <ContactDrawer
           open={openContact}
           onClose={() => {
