@@ -302,7 +302,6 @@ export default function LegalPage({
                 zIndex: 0,
                 pointerEvents: "none",
               }}
-              insetPx={insetPx}
             />
 
             {/* Subtle dark overlay for text readability over the liquid bg */}

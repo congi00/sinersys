@@ -13,7 +13,7 @@ interface Props {
   className?: string;
   style?: React.CSSProperties;
   progress?: MotionValue<number>;
-  vhUnit: string;
+  vhUnit?: string;
 }
 
 const VERT = `
@@ -132,8 +132,8 @@ void main() {
 export default function LiquidBackground({
   className = "",
   style = {},
-  progress,
-  vhUnit,
+  progress = undefined,
+  vhUnit = "",
 }: Props) {
   const mountRef = useRef<HTMLDivElement>(null);
   const paletteRef = useRef(0); // 0 = dark, 1 = light
