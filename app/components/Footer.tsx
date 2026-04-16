@@ -36,9 +36,9 @@ function GlowLink({ href, children }: { href: string; children: React.ReactNode 
     <motion.a
       href={href}
       {...props}
-      className="block relative text-white/80 mb-2 transition-colors"
+      className="block relative text-[#f4f7fa]/80 mb-2 transition-colors"
       whileHover={{
-        color: "#ffffff",
+        color: "#f4f7fa",
         textShadow: "0px 0px 8px rgba(255,255,255,0.8), 0px 0px 20px rgba(99,102,241,0.6)",
       }}
       whileTap={{ scale: 0.96 }}
@@ -84,7 +84,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer ref={ref} className="relative overflow-hidden pt-28 pb-12 text-white">
+    <footer ref={ref} className="relative overflow-hidden pt-28 pb-12 text-[#f4f7fa]">
 
       {/* Background */}
       <motion.div className="absolute inset-0" style={{background:"linear-gradient(160deg, rgb(28, 57, 142) 10%, rgb(0 86 191) 40%, rgb(5, 11, 38) 100%)",}} />

@@ -10,7 +10,7 @@ import HeroScene from "../components/HeroScene";
 import { useRef, useEffect } from "react";
 import { detectIOS } from "../support/useViewportHeight";
 
-const MotionArrowUpRight = motion.create(ArrowUpRight)
+const MotionArrowUpRight = motion.create(ArrowUpRight);
 
 interface Props {
   progressMotion: MotionValue<number>;
@@ -31,7 +31,7 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
   const subtitleColor = useTransform(
     progressMotion,
     [3.1, 3.12],
-    ["#F4F7FA82", "#5C8BAF32" ]
+    ["#F4F7FA82", "#5C8BAF32"]
   );
 
   // Border radius animato (24px → 0px)
@@ -58,14 +58,14 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
       style={{
         borderRadius,
         height: detectIOS() ? "100lvh" : "100dvh",
-        marginBottom: "70px"
+        marginBottom: "70px",
       }}
       className={clsx(
         "relative",
         "flex w-full",
         "items-center justify-center",
         "text-left",
-        "overflow-hidden",
+        "overflow-hidden"
       )}
     >
       <motion.div
@@ -84,7 +84,7 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
         </motion.h4>
         <motion.h1
           className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-7xl font-bold whitespace-pre-line"
-          style={{ color: titleColor, lineHeight: "1.1"}}
+          style={{ color: titleColor, lineHeight: "1.1" }}
         >
           {homeTexts("slide2.title")}
         </motion.h1>
@@ -94,13 +94,21 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
         >
           {homeTexts("slide2.subtitle")}
         </motion.h2>
-        <LinkButton
-          text={homeTexts("slide2.link")}
-          link={"/about-us"}
-          icon={<MotionArrowUpRight size={20} style={{color: titleColor}} className="text-white"></MotionArrowUpRight>}
-          top={isMobile ? "-20px" : ""}
-          color={titleColor}
-        ></LinkButton>
+        <div style={{ pointerEvents: "auto" }}>
+          <LinkButton
+            text={homeTexts("slide2.link")}
+            link="/about-us"
+            icon={
+              <MotionArrowUpRight
+                size={20}
+                style={{ color: titleColor }}
+                className="text-[#f4f7fa]"
+              ></MotionArrowUpRight>
+            }
+            top={isMobile ? "-20px" : ""}
+            color={titleColor}
+          ></LinkButton>
+        </div>
       </motion.div>
     </motion.div>
   );

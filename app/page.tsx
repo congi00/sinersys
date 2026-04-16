@@ -249,7 +249,7 @@ export default function Home() {
 
   // ── LinkButton colors ─────────────────────────────────────────────────────
   // Both slides have white text/icon on dark bg
-  const linkColorWhite = useMotionValue("#ffffff");
+  const linkColorWhite = useMotionValue("#f4f7fa");
 
   // ── FAQ ───────────────────────────────────────────────────────────────────
   // Absolute positioned after the white section scroll budget
@@ -264,8 +264,8 @@ export default function Home() {
       "#0f2057",
       "#faf4f7", // quando passi al light palette
       "#faf4f7",
-      "#ffffff", // white section
-      "#ffffff",
+      "#f4f7fa", // white section
+      "#f4f7fa",
     ]
   );
 
@@ -519,7 +519,7 @@ export default function Home() {
             right: 0,
             zIndex: 34,
             overflowX: "hidden",
-            background: "#ffffff",
+            background: "#f4f7fa",
           }}
           className="flex items-start justify-center"
         >
@@ -556,7 +556,7 @@ export default function Home() {
             left: 0,
             right: 0,
             zIndex: 31,
-            background: "#ffffff",
+            background: "#f4f7fa",
           }}
         >
           <Footer />

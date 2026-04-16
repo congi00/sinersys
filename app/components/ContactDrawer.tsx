@@ -69,7 +69,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
             onTouchMove={(e) => e.stopPropagation()}
           >
             <div
-              className="relative w-full max-w-3xl px-6 py-24 text-white"
+              className="relative w-full max-w-3xl px-6 py-24 text-[#f4f7fa]"
               style={{ textAlign: "left" }}
             >
               {/* Close */}
@@ -129,7 +129,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
                 <div>
                   <label className="block mb-3 font-medium">
                     {f("attachments")}
-                    <span className="ml-2 text-white/50 text-sm font-normal">
+                    <span className="ml-2 text-[#f4f7fa]/50 text-sm font-normal">
                       {f("attachmentsHint")}
                     </span>
                   </label>
@@ -141,9 +141,9 @@ export default function ContactDrawer({ open, onClose }: Props) {
                   >
                     <Paperclip
                       size={22}
-                      className="text-white/50 group-hover:text-white/80 transition"
+                      className="text-[#f4f7fa]/50 group-hover:text-[#f4f7fa]/80 transition"
                     />
-                    <span className="text-sm text-white/60 group-hover:text-white/80 transition">
+                    <span className="text-sm text-[#f4f7fa]/60 group-hover:text-[#f4f7fa]/80 transition">
                       {f("attachBtn")}
                     </span>
                   </button>
@@ -174,17 +174,17 @@ export default function ContactDrawer({ open, onClose }: Props) {
                             transition={{ duration: 0.2 }}
                             className="flex items-center gap-3 rounded-xl bg-white/10 border border-white/15 px-4 py-3"
                           >
-                            <FileText size={16} className="text-white/60 flex-shrink-0" />
+                            <FileText size={16} className="text-[#f4f7fa]/60 flex-shrink-0" />
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm truncate text-white/90">{file.name}</p>
-                              <p className="text-xs text-white/45">{formatSize(file.size)}</p>
+                              <p className="text-sm truncate text-[#f4f7fa]/90">{file.name}</p>
+                              <p className="text-xs text-[#f4f7fa]/45">{formatSize(file.size)}</p>
                             </div>
                             <button
                               type="button"
                               onClick={() => removeFile(i)}
                               className="flex-shrink-0 w-7 h-7 rounded-lg hover:bg-white/15 flex items-center justify-center transition"
                             >
-                              <Trash2 size={14} className="text-white/50 hover:text-white/80" />
+                              <Trash2 size={14} className="text-[#f4f7fa]/50 hover:text-[#f4f7fa]/80" />
                             </button>
                           </motion.li>
                         ))}
@@ -235,7 +235,7 @@ function Checkbox({ label }: { label: string }) {
   return (
     <label className="flex items-center gap-3 mb-3 cursor-pointer group">
       <input type="checkbox" className="w-5 h-5 accent-white" />
-      <span className="group-hover:text-white transition text-white/80">{label}</span>
+      <span className="group-hover:text-[#f4f7fa] transition text-[#f4f7fa]/80">{label}</span>
     </label>
   );
 }

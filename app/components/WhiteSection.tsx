@@ -28,7 +28,7 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit }: Props
         position:   "fixed",
         inset:      0,
         zIndex:     29,
-        background: "#ffffff",
+        background: "#f4f7fa",
         opacity:    sectionOpacity,
         y:          sectionY,
         pointerEvents: "none",
@@ -52,13 +52,13 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit }: Props
         {/* Left gradient fade */}
         <div style={{
           position:   "absolute", left: 0, top: 0, bottom: 0, width: "80px",
-          background: "linear-gradient(to right, #ffffff, transparent)",
+          background: "linear-gradient(to right, #f4f7fa, transparent)",
           zIndex:     2, pointerEvents: "none",
         }} />
         {/* Right gradient fade */}
         <div style={{
           position:   "absolute", right: 0, top: 0, bottom: 0, width: "80px",
-          background: "linear-gradient(to left, #ffffff, transparent)",
+          background: "linear-gradient(to left, #f4f7fa, transparent)",
           zIndex:     2, pointerEvents: "none",
         }} />
 

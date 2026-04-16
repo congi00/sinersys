@@ -41,7 +41,7 @@ export default function CallToActionHome({ progressMotion }: Props) {
   }, []);
 
   // linkButton color — always white on video bg
-  const linkColor = useMotionValue("#ffffff");
+  const linkColor = useMotionValue("#f4f7fa");
 
   return (
     <motion.div
@@ -136,7 +136,7 @@ export default function CallToActionHome({ progressMotion }: Props) {
         <LinkButton
           link="/contatti"
           text={homeTexts("cta.link")}
-          icon={<ArrowUpRight size={20} className="text-white" />}
+          icon={<ArrowUpRight size={20} className="text-[#f4f7fa]" />}
           top="0"
           color={linkColor}
         />

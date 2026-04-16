@@ -87,11 +87,11 @@ function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProp
   })();
 
   // Glass card = dark blue bg, white text. Solid card = white bg, dark text.
-  const bg         = isGlass ? "rgba(14,28,80,0.72)"            : "#ffffff";
+  const bg         = isGlass ? "rgba(14,28,80,0.72)"            : "#f4f7fa";
   const blur       = isGlass ? "blur(32px) saturate(160%)"      : "none";
   const border     = isGlass ? "1px solid rgba(255,255,255,0.14)": "none";
 
-  const content = <CardContent item={item} isGlass={isGlass} />;
+  const content = <CardContent item={item} isGlass={isGlass} isMobile={isMobile}/>;
 
   const shared: React.CSSProperties = {
     position: "fixed", top: 0, zIndex: 20 + index, overflow: "hidden",
@@ -115,7 +115,7 @@ function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProp
   );
 }
 
-function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
+function CardContent({ item, isGlass, isMobile }: { item: CardItem; isGlass: boolean;  isMobile: boolean}) {
   const textPrimary    = isGlass ? "#f4f7fa"                 : "#0a0f24";
   const textSecondary  = isGlass ? "rgba(200,218,250,0.75)"  : "#374151";
   const labelLight     = isGlass ? "rgba(160,194,255,0.60)"  : "#9ca3af";
@@ -154,6 +154,7 @@ function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
           color:      textSecondary,
           fontWeight: 400,
           maxWidth:   "78%",
+          marginTop: isMobile ? "100px" : 0
         }}
         className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl"
         >
@@ -168,6 +169,7 @@ function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
           lineHeight: 1,
           flexShrink: 0,
           marginLeft: "1rem",
+          marginTop: isMobile ? "100px" : 0
         }}>
           <ArrowUpRight strokeWidth={0.5} />
         </span>
@@ -205,6 +207,7 @@ function CardContent({ item, isGlass }: { item: CardItem; isGlass: boolean }) {
         {/* Massive display title — fills the bottom of the card */}
         <h2 style={{
           margin:        0,
+          marginBottom: isMobile ? "150px" : 0,
           fontWeight:    700,
           lineHeight:    0.88,
           ...titleStyle,

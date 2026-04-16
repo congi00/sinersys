@@ -345,7 +345,7 @@ export default function ApwecPage() {
   });
 
 
-  const linkColorWhite = useMotionValue("#ffffff");
+  const linkColorWhite = useMotionValue("#f4f7fa");
   const hiddenMenu  = useTransform(
     smooth,
     [4.4,4.5],
