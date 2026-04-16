@@ -42,7 +42,11 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const progressMotion = useMotionValue(0);
   const scrollY = useMotionValue(0);
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] =useState<boolean>(() => {
+    // Viene eseguito solo lato client (Next.js SSR: il server non ha sessionStorage)
+    if (typeof window === "undefined") return true;
+    return sessionStorage.getItem("sinersys_intro_seen") !== "true";
+  });
   const [introFinished, setIntroFinished] = useState(false);
 
   const homeTexts = useTranslations("homepage");
@@ -307,6 +311,7 @@ export default function Home() {
             <IntroParticles
               showIntro={showIntro}
               onFinish={() => {
+                sessionStorage.setItem("sinersys_intro_seen", "true");  
                 setIntroFinished(true);
                 setTimeout(() => setShowIntro(false), 10);
               }}

@@ -195,7 +195,11 @@
       "f0": { "label": "Energy Efficiency", "title": "Up to 85% conversion: renewable energy without waste", "description": "The system achieves conversion efficiencies above 85% thanks to the optimised transducer geometry and adaptive load control — a level of renewable energy production efficiency that few systems can match at the same scale and operational continuity." },
       "f1": { "label": "Scalability", "title": "From 1 kW to 10 MW: energy savings tailored to you", "description": "The modular APWEC architecture allows the system to be sized according to the user's actual energy needs, with progressive power increments and no operational interruption. Suitable for SMEs, large industries, public infrastructure and any organisation looking to reduce energy costs structurally." },
       "f2": { "label": "Integration", "title": "Compatible with any existing energy management system", "description": "Native Modbus, OPC-UA and MQTT protocols for immediate integration with SCADA, DCS and IoT energy monitoring platforms. APWEC fits into your energy management ecosystem without requiring dedicated infrastructure or operational interruptions." },
-      "cta": { "title": "Find out how much you can save on your energy bill with APWEC", "subtitle": "The Sinersys technical team provides a free preliminary assessment of your facility within 72 hours: energy generation potential estimate, energy cost savings projection and return on investment analysis.", "link": "Request Your Free Assessment" }
+      "cta": {
+        "title": "Develop and evaluate the industrial scalability of APWEC power families: technology under engineering development for industrial and utility-scale applications",
+        "subtitle": "Sinersys is currently developing APWEC power families for future OEM applications and large-scale industrialization. Request a free preliminary technical assessment: generation potential analysis, engineering feasibility study, ROI projection, and roadmap toward industrial production — delivered within 72 hours.",
+        "link": "Request Assessment"
+      }
     }
   },
 

@@ -175,6 +175,7 @@ export default function SixPhaseEngine({
             flexDirection: isMobile ? "column" : "row",
             gap: "10px",
             marginBottom: "clamp(0.7rem,1.8vh,1.2rem)",
+            marginTop: isMobile ? "0px" : "100px"
           }}
         >
           {!isMobile && <div
@@ -380,21 +381,21 @@ export default function SixPhaseEngine({
             />
             <span
               style={{
-                fontSize: "clamp(0.78rem,0.9vw,0.78rem)",
                 fontWeight: 600,
                 letterSpacing: "0.06em",
                 color: "rgba(160,210,255,0.85)",
               }}
+              className="text-[1rem] sm:text-[1.3rem]"
             >
               {comingSoon}
             </span>
           </div>
           <span
             style={{
-              fontSize: "clamp(0.76rem,0.98vw,0.86rem)",
               color: "rgba(160,190,240,0.6)",
               letterSpacing: "0.04em",
             }}
+            className="text-[1rem] sm:text-[1.3rem]"
           >
             {comingSoonSub}
           </span>

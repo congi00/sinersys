@@ -194,7 +194,11 @@
       "f0": { "label": "Efficacité énergétique", "title": "Jusqu'à 85 % de conversion : énergie renouvelable sans gaspillage", "description": "Le système atteint des rendements de conversion supérieurs à 85 % grâce à la géométrie optimisée des transducteurs et au contrôle adaptatif de charge." },
       "f1": { "label": "Évolutivité", "title": "De 1 kW à 10 MW : économies d'énergie sur mesure", "description": "L'architecture modulaire d'APWEC permet de dimensionner l'installation en fonction des besoins énergétiques réels de l'utilisateur, avec des augmentations progressives sans interruption d'exploitation." },
       "f2": { "label": "Intégration", "title": "Compatible avec tout système de gestion d'énergie existant", "description": "Protocoles Modbus, OPC-UA et MQTT natifs pour une intégration immédiate avec les systèmes SCADA, DCS et les plateformes IoT de surveillance énergétique." },
-      "cta": { "title": "Découvrez combien vous pouvez économiser sur votre facture énergétique avec APWEC", "subtitle": "L'équipe technique Sinersys réalise une évaluation préliminaire gratuite de votre installation en 72 heures.", "link": "Demander l'évaluation gratuite" }
+      "cta": {
+        "title": "Développez et évaluez la scalabilité industrielle des familles de puissance APWEC : technologie en phase de développement pour applications industrielles et utility-scale",
+        "subtitle": "Sinersys développe actuellement des familles de puissance APWEC pour de futures applications OEM et une industrialisation à grande échelle. Demandez une évaluation technique préliminaire gratuite : analyse du potentiel de génération, étude de faisabilité technique, projection du ROI et feuille de route vers la production industrielle — livrés sous 72 heures.",
+        "link": "Demander une Évaluation"
+      }
     }
   },
 

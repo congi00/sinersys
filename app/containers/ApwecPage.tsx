@@ -132,16 +132,32 @@ export default function ApwecPage() {
 
   useEffect(() => {
     if (isTouchDevice()) {
-      const fn = () => {
-        const sy = window.scrollY;
-        const limit =
-          document.documentElement.scrollHeight - window.innerHeight;
-        if (limit > 0)
-          progressMotion.set(Math.min(SCENES, (sy / limit) * SCENES));
+      let rafId = 0;
+      let target = 0;
+      let current = 0;
+
+      const onScroll = () => {
+        const sy    = window.scrollY;
+        const limit = document.documentElement.scrollHeight - window.innerHeight;
+        if (limit > 0) target = Math.min(SCENES, (sy / limit) * SCENES);
       };
-      fn();
-      window.addEventListener("scroll", fn, { passive: true });
-      return () => window.removeEventListener("scroll", fn);
+
+      const tick = () => {
+        // Lerp manuale: 0.1 = smooth ma reattivo su Android
+        current += (target - current) * 0.1;
+        if (Math.abs(target - current) > 0.0001) {
+          progressMotion.set(current);
+        }
+        rafId = requestAnimationFrame(tick);
+      };
+
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      rafId = requestAnimationFrame(tick);
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        cancelAnimationFrame(rafId);
+      };
     }
     const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
     let rafId = 0;

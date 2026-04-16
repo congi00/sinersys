@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
 import {NextIntlClientProvider} from 'next-intl';
 import "./globals.css";
-import { Providers } from "./providers";
-import OrientationGuard from "./components/OrientationGuard";
+import { Providers } from "./providers"; 
+import LandscapeBlock from "./components/LandscapeBlock";
 
 
 const leagueSpartan = League_Spartan({
@@ -39,9 +39,9 @@ export default async function RootLayout({children}: Props) {
           antialiased pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] h-[100vh] h-[100dvh] h-[100lvh]
         `}
       >
+        <LandscapeBlock />
         <Providers>
         <NextIntlClientProvider>
-          <OrientationGuard />
           {children}
         </NextIntlClientProvider>
         </Providers>

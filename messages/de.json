@@ -194,7 +194,11 @@
       "f0": { "label": "Energieeffizienz", "title": "Bis zu 85 % Umwandlung: erneuerbare Energie ohne Verschwendung", "description": "Das System erreicht Umwandlungswirkungsgrade über 85 % dank der optimierten Wandlergeometrie und der adaptiven Lastregelung." },
       "f1": { "label": "Skalierbarkeit", "title": "Von 1 kW bis 10 MW: maßgeschneiderte Energieeinsparung", "description": "Die modulare APWEC-Architektur ermöglicht es, die Anlage entsprechend dem tatsächlichen Energiebedarf des Nutzers zu dimensionieren, mit progressiven Leistungserhöhungen ohne Betriebsunterbrechung." },
       "f2": { "label": "Integration", "title": "Kompatibel mit jedem bestehenden Energiemanagementsystem", "description": "Native Modbus-, OPC-UA- und MQTT-Protokolle für die sofortige Integration in SCADA-, DCS- und IoT-Energiemonitoringplattformen." },
-      "cta": { "title": "Erfahren Sie, wie viel Sie mit APWEC bei Ihrer Energierechnung sparen können", "subtitle": "Das technische Team von Sinersys führt innerhalb von 72 Stunden eine kostenlose Erstbewertung Ihrer Anlage durch.", "link": "Kostenlose Bewertung anfordern" }
+      "cta": {
+        "title": "Entwicklung und Bewertung der industriellen Skalierbarkeit von APWEC-Leistungsfamilien: Technologie in der Entwicklungsphase für industrielle und Utility-Scale-Anwendungen",
+        "subtitle": "Sinersys entwickelt derzeit APWEC-Leistungsfamilien für zukünftige OEM-Anwendungen und die großskalige Industrialisierung. Fordern Sie eine kostenlose technische Vorbewertung an: Analyse des Erzeugungspotenzials, technische Machbarkeitsstudie, ROI-Projektion und Roadmap zur industriellen Produktion — Lieferung innerhalb von 72 Stunden.",
+        "link": "Bewertung Anfordern"
+      }
     }
   },
 

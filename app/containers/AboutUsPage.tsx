@@ -171,14 +171,32 @@ export default function AboutUsPage() {
 
   useEffect(() => {
     if (isTouchDevice()) {
+      let rafId = 0;
+      let target = 0;
+      let current = 0;
+
       const onScroll = () => {
         const sy    = window.scrollY;
         const limit = document.documentElement.scrollHeight - window.innerHeight;
-        if (limit > 0) progressMotion.set(Math.min(6, (sy / limit) * 6));
+        if (limit > 0) target = Math.min(6, (sy / limit) * 6);
       };
+
+      const tick = () => {
+        // Lerp manuale: 0.1 = smooth ma reattivo su Android
+        current += (target - current) * 0.1;
+        if (Math.abs(target - current) > 0.0001) {
+          progressMotion.set(current);
+        }
+        rafId = requestAnimationFrame(tick);
+      };
+
       onScroll();
-      window.addEventListener("scroll", onScroll, { passive:true });
-      return () => window.removeEventListener("scroll", onScroll);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      rafId = requestAnimationFrame(tick);
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        cancelAnimationFrame(rafId);
+      };
     }
     const lenis = new Lenis({ duration:1.2, smoothWheel:true });
     let rafId = 0;
@@ -262,7 +280,7 @@ export default function AboutUsPage() {
         {/* ── HERO ─────────────────────────────────────────────────────── */}
         <motion.div style={{ position:"fixed", inset:0, zIndex:10, padding:heroPad, y:heroY, opacity:heroOp }}>
           <motion.div style={{ width:"100%", height:"100%", borderRadius:heroRad, overflow:"hidden", position:"relative" }}>
-            <img src="/aboutus.png" alt="" // eslint-disable-line
+            <img src="/aboutus.webp" alt="" // eslint-disable-line
               style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center" }}
             />
             <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom,rgba(6,12,44,0.50) 0%,rgba(6,12,44,0.35) 40%,rgba(6,12,44,0.68) 100%)" }} />
