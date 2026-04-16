@@ -3,7 +3,7 @@ import { League_Spartan } from "next/font/google";
 import {NextIntlClientProvider} from 'next-intl';
 import "./globals.css";
 import { Providers } from "./providers";
-import { detectIOS } from "./support/useViewportHeight";
+import OrientationGuard from "./components/OrientationGuard";
 
 
 const leagueSpartan = League_Spartan({
@@ -23,7 +23,7 @@ type Props = {
 
 export default async function RootLayout({children}: Props) {
   return (
-    <html lang="en">
+    <html>
       <head>
         <meta charSet="utf-8"/>
         <meta name="next-size-adjust" content=""/>
@@ -40,7 +40,10 @@ export default async function RootLayout({children}: Props) {
         `}
       >
         <Providers>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <OrientationGuard />
+          {children}
+        </NextIntlClientProvider>
         </Providers>
       </body>
     </html>
