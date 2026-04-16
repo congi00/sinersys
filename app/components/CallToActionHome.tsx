@@ -55,7 +55,7 @@ export default function CallToActionHome({ progressMotion }: Props) {
     >
       {/* ── Video background ─────────────────────────────────────────────── */}
       <img
-        src="/sinVidCompressed.gif"
+        src="/sinVidr.gif"
         alt="background animation"
         style={{
           position: "absolute",
