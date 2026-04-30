@@ -379,8 +379,6 @@ export default function ResearchProducts({
         rotate={ringA}
         style={{
           right: isMobile ? "-80px" : "-120px",
-          top: "50%",
-          translateY: "-50%",
         }}
       />
 
