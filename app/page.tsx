@@ -31,6 +31,7 @@ import LinkButton from "./components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import HeroVideo from "./components/HeroVideo";
 import SixPhaseEngine from "./components/SixPhaseEngine";
+import ScrollNavigator from "./components/ScrollNavigator";
 import { useMotionValueEvent } from "framer-motion";
 
 function isTouchDevice() {
@@ -154,19 +155,19 @@ export default function Home() {
   const vh     = vhPx || 1;
 
   // ── Slide 0 ───────────────────────────────────────────────────────────────
-  const slide0Y = useTransform(smooth, [0, 0.2, 0.6], [0, 0, -880]);
+  const slide0Y = useTransform(smooth, [0, 0.6, 0.7], [0, 0, -880]);
   const slide0Opacity = useTransform(smooth, [0, 0.7, 1.0], [1, 1, 0]);
   const slide0Clip = useTransform(
     smooth,
-    [0, 0.3, 0.7],
+    [0, 0.8, 0.7],
     ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
   );
 
   // ── Slide 1 ───────────────────────────────────────────────────────────────
-  const slide1Y = useTransform(smooth, [0.7, 1.1, 1.6, 1.8], [80, 0, 0, -880]);
+  const slide1Y = useTransform(smooth, [0.6, 0.7, 1.6, 1.8], [80, 0, 0, -880]);
   const slide1Opacity = useTransform(
     smooth,
-    [0.7, 1.1, 2.1, 2.5],
+    [0.6, 0.7, 2.1, 2.5],
     [0, 1, 1, 0]
   );
   const slide1Clip = useTransform(
@@ -257,8 +258,8 @@ export default function Home() {
 
   // ── FAQ ───────────────────────────────────────────────────────────────────
   // Absolute positioned after the white section scroll budget
-  const spacerFaq = isMobile ? vh * 11 : vh * 9.7;
-  const totalHeight = isMobile ? vh * 12.8 + 1200 : vh * 11 + 900;
+  const spacerFaq = isMobile ? vh * 10.7 : vh * 9.7;
+  const totalHeight = isMobile ? vh * 12.8 + 800 : vh * 11 + 700;
 
   const themeColor = useTransform(
     smooth,
@@ -320,6 +321,7 @@ export default function Home() {
         </AnimatePresence>
 
         {!openContact && <Header headerTheme={headerTheme} />}
+        
 
         {/* ── SLIDE 0 ─────────────────────────────────────────────────────── */}
         <motion.div
@@ -335,14 +337,16 @@ export default function Home() {
           className="flex flex-col items-center justify-center px-8 text-center"
         >
           <h1
-            style={{ lineHeight: "1.0" }}
-            className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-7xl text-[#f4f7fa] font-bold leading-tight tracking-tight whitespace-pre-line"
+            style={{ 
+              lineHeight: "1.0" ,
+            }}
+            className="text-3xl sm:text-6xl tracking-wide text-[#f4f7fa] font-bold sm:whitespace-pre-line sm:mt-0 mt-8"
           >
             {homeTexts("slide0.title")}
           </h1>
           <h2
-            style={{ lineHeight: "1.1" }}
-            className="text-xl font-stretch-extra-expanded tracking-wide px-3 sm:px-0 sm:text-2xl mt-2 sm:mt-5 sm:mb-5 whitespace-pre-line text-[#c8d8f8] max-w-xl font-light sm:max-w-2xl"
+            style={{ lineHeight: isMobile ? "1.1" : "1.1" }}
+            className="text-lg sm:text-xl px-3 sm:px-0 mt-3 sm:mt-5 sm:mb-5 whitespace-pre-line text-[#c8d8f8] sm:max-w-2xl font-light"
           >
             {homeTexts("slide0.subtitle")}
           </h2>
@@ -386,32 +390,32 @@ export default function Home() {
             clipPath: slide1Clip,
             pointerEvents: "none",
           }}
-          className="flex flex-col items-start justify-center px-8 sm:px-16"
+          className="flex flex-col items-center justify-center px-8 sm:px-16 text-center"
         >
           <div
             style={{
-              maxWidth: isMobile ? "100%" : "55%",
+              maxWidth: isMobile ? "100%" : "65%",
               marginBottom: isIOS ? "10lvh" : "10dvh",
             }}
           >
-            <h4 className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase">
+            <h4 className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]">
               {homeTexts("slide1.suptitle")}
             </h4>
             <h1
-              style={{ lineHeight: "1.1" }}
-              className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-7xl text-[#f4f7fa] font-bold leading-tight"
+              style={{ lineHeight: "1.0"}}
+              className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line px-3 sm:px-2 mt-3  text-[#f4f7fa]"
             >
               {homeTexts("slide1.title")}
             </h1>
             <h2
-              style={{ lineHeight: "1.3" }}
-              className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line text-[#c8d8f8] font-light"
+              style={{ lineHeight: "1.2" }}
+              className="text-lg sm:text-xl px-6 sm:px-6 mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] sm:max-w-4xl font-light"
             >
               {homeTexts("slide1.subtitle")}
             </h2>
 
             {/* LinkButton — scopri di più */}
-            <div style={{ pointerEvents: "auto" }}>
+            <div className={"px-3 sm:px-0"}style={{ pointerEvents: "auto" }}>
               <LinkButton
                 link="/apwec"
                 text={homeTexts("slide1.link")}
@@ -427,18 +431,21 @@ export default function Home() {
         <SixPhaseEngine
           progress={smooth}
           isMobile={isMobile}
-          title={homeTexts("sixPhase.title")}
-          suptitle={homeTexts("sixPhase.suptitle")}
-          badge={homeTexts("sixPhase.badge")}
-          subtitle={homeTexts("sixPhase.subtitle")}
-          phases={[
-            { number: homeTexts("sixPhase.phase0.number"), label: homeTexts("sixPhase.phase0.label"), desc: homeTexts("sixPhase.phase0.desc") },
-            { number: homeTexts("sixPhase.phase1.number"), label: homeTexts("sixPhase.phase1.label"), desc: homeTexts("sixPhase.phase1.desc") },
-            { number: homeTexts("sixPhase.phase2.number"), label: homeTexts("sixPhase.phase2.label"), desc: homeTexts("sixPhase.phase2.desc") },
-            { number: homeTexts("sixPhase.phase3.number"), label: homeTexts("sixPhase.phase3.label"), desc: homeTexts("sixPhase.phase3.desc") },
+          sectionLabel={homeTexts("sixPhase.researchProducts.sectionLabel")}
+          sectionTitle={homeTexts("sixPhase.researchProducts.sectionTitle")}
+          sectionSubtitle={homeTexts("sixPhase.researchProducts.sectionSubtitle")}
+          products={[
+            {
+              "id": homeTexts("sixPhase.researchProducts.product1.id"),
+              "status": "coming-soon",
+              "statusLabel": homeTexts("sixPhase.researchProducts.product1.id"),
+              "suptitle": homeTexts("sixPhase.researchProducts.product1.suptitle"),
+              "title":  homeTexts("sixPhase.researchProducts.product1.title"),
+              "subtitle":  homeTexts("sixPhase.researchProducts.product1.subtitle"),
+              "detail": homeTexts("sixPhase.researchProducts.product1.detail"),
+              "year": homeTexts("sixPhase.researchProducts.product1.year"),
+            }
           ]}
-          comingSoon={homeTexts("sixPhase.comingSoon")}
-          comingSoonSub={homeTexts("sixPhase.comingSoonSub")}
         />
 
         {/* ── HomePageAbout ──────────────────────────────────────────────── */}
@@ -568,6 +575,15 @@ export default function Home() {
         </div>
 
         {!openContact && <MenuButton menuTheme={menuTheme} hiddenMenu={hiddenMenu}/>}
+
+        {!openContact && (
+          <ScrollNavigator
+            progress={smooth}
+            totalScrollHeight={totalHeight}
+            isMobile={isMobile}
+            menuTheme={menuTheme}
+          />
+        )}
 
         <ContactDrawer
           open={openContact}

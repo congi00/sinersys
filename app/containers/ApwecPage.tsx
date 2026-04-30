@@ -315,7 +315,6 @@ export default function ApwecPage() {
   const sup: React.CSSProperties = {
     // fontSize: "clamp(0.6rem,0.85vw,0.72rem)",
     fontWeight: 700,
-    letterSpacing: "0.18em",
     textTransform: "uppercase",
     color: "rgba(180,210,255,0.6)",
     marginBottom: "0.5rem",
@@ -324,20 +323,15 @@ export default function ApwecPage() {
 
   const h1s: React.CSSProperties = {
     margin: 0,
-    // fontSize: isMobile ? "clamp(1.5rem,6vw,2.2rem)" : "clamp(2rem,4.5vw,4rem)",
     fontWeight: 800,
-    letterSpacing: "-0.03em",
-    lineHeight: 1.1,
+    lineHeight: 1.0,
     color: "#f4f7fa",
   };
 
   const bodys: React.CSSProperties = {
     margin: "0.8rem 0 0",
-    // fontSize: isMobile
-    //   ? "clamp(0.8rem,3.5vw,0.95rem)"
-    //   : "clamp(0.88rem,1.2vw,1.05rem)",
     fontWeight: 400,
-    lineHeight: 1.2,
+    lineHeight: 1.1,
     color: "rgba(200,218,250,0.70)",
     maxWidth: isMobile ? "100%" : "820px",
   };
@@ -382,7 +376,7 @@ export default function ApwecPage() {
 
       <motion.div
         className="absolute inset-x-0 top-0"
-        style={{ height: totalHeight, zIndex: 1 }}
+        style={{ height: totalHeight, zIndex: 1, backgroundColor: "#faf4f7" }}
       >
         {!openContact && <Header headerTheme={headerTheme} />}
         {!openContact && <MenuButton hiddenMenu={hiddenMenu} menuTheme={menuTheme}/>}
@@ -454,9 +448,9 @@ export default function ApwecPage() {
             <motion.div style={{ ...textWrap(isMobile? {top:"20%"} : {
               top: "20%"
             }), ...s0 }}>
-              <span className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase" style={sup}>{t("slide0.suptitle")}</span>
-              <h1 className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight" style={h1s}>{t("slide0.title")}</h1>
-              <p className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light" style={{...bodys, ...(isMobile ? {textAlign: "left", marginTop: "5%"} : {})}}>{t("slide0.subtitle")}</p>
+              <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] " style={sup}>{t("slide0.suptitle")}</span>
+              <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line" style={h1s}>{t("slide0.title")}</h1>
+              <p className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light" style={{...bodys, ...(isMobile ? {textAlign: "left", marginTop: "5%"} : {})}}>{t("slide0.subtitle")}</p>
             </motion.div>
 
             {/* Slide 1 */}
@@ -468,9 +462,9 @@ export default function ApwecPage() {
               left: "45%",
               textAlign:"right"
             }), ...s1 }}>
-              <span className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase" style={sup}>{t("slide1.suptitle")}</span>
-              <h1 className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight" style={h1s}>{t("slide1.title")}</h1>
-              <p className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light" style={{...bodys, ...(isMobile ? {textAlign: "left", marginTop: "35%"} : {})}}>{t("slide1.subtitle")}</p>
+              <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] " style={sup}>{t("slide1.suptitle")}</span>
+              <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line" style={h1s}>{t("slide1.title")}</h1>
+              <p className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light" style={{...bodys, ...(isMobile ? {textAlign: "left", marginTop: "35%"} : {})}}>{t("slide1.subtitle")}</p>
             </motion.div>
 
             {/* Slide 2 — centred on desktop */}
@@ -493,12 +487,12 @@ export default function ApwecPage() {
               }}
             >
               <span
-                className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase"
+                className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8]"
                 style={{ ...sup, ...(isMobile ? { textAlign: "end" } : { textAlign: "left" }) }}
               >
                 {t("slide2.suptitle")}
               </span>
-              <h1 className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight" style={{...h1s, ...(isMobile ? { textAlign: "end" } : { })}}>{t("slide2.title")}</h1>
+              <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line" style={{...h1s, ...(isMobile ? { textAlign: "end" } : { })}}>{t("slide2.title")}</h1>
               <p
                 style={{
                   ...bodys,
@@ -506,7 +500,7 @@ export default function ApwecPage() {
                     ? {marginTop: "40%"}
                     : { margin: "0.8rem auto 0", textAlign: "left" }),
                 }}
-                className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light"
+                className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light"
               >
                 {t("slide2.subtitle")}
               </p>
@@ -532,7 +526,7 @@ export default function ApwecPage() {
               }}
             >
               <span
-                className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase"
+                className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8]"
                 style={{ ...sup, ...(isMobile ? {} : { textAlign: "center" }) }}
               >
                 {t("slide3.suptitle")}
@@ -542,7 +536,7 @@ export default function ApwecPage() {
                   ...h1s,
                   whiteSpace: "pre-line"
                 }}
-                className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight"
+                className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
               >
                 {t("slide3.title")}
               </h1>
@@ -553,7 +547,7 @@ export default function ApwecPage() {
                     ? {marginTop:"45%", textAlign: "center" }
                     : { margin: "0.8rem auto 0", marginTop:"23%", textAlign: "center" }),
                 }}
-                className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light"
+                className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light"
               >
                 {t("slide3.subtitle")}
               </p>
@@ -602,29 +596,17 @@ export default function ApwecPage() {
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "2rem",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "28px",
-                      height: "1px",
-                      background: "rgba(160,196,255,0.5)",
-                    }}
-                  />
                   <motion.span
                     style={{
-                      // fontSize: "0.72rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.16em",
                       textTransform: "uppercase",
                       color: colorP,
                     }}
@@ -645,13 +627,10 @@ export default function ApwecPage() {
                   <motion.h2
                     style={{
                       margin: 0,
-                      fontSize: "clamp(1.8rem,4vw,3.5rem)",
-                      fontWeight: 800,
-                      letterSpacing: "-0.03em",
-                      lineHeight: 1.0,
+                      lineHeight: 1.1,
                       color: colorTitle,
                     }}
-                    className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl font-bold leading-tight"
+                    className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
                   >
                     {t("static.title")}
                   </motion.h2>
@@ -665,20 +644,20 @@ export default function ApwecPage() {
                     <motion.p
                       style={{
                         margin: 0,
-                        lineHeight: 1.3,
+                        lineHeight: 1.2,
                         color: colorSub,
                       }}
-                      className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light"
+                      className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light mt-4"
                     >
                       {t("static.p1")}
                     </motion.p>
                     <motion.p
                       style={{
                         margin: 0,
-                        lineHeight: 1.3,
+                        lineHeight: 1.2,
                         color: colorSub,
                       }}
-                      className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light"
+                      className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light mt-4"
                     >
                       {t("static.p2")}
                     </motion.p>
@@ -729,23 +708,21 @@ export default function ApwecPage() {
                       <p
                         style={{
                           margin: "0 0 0.5rem",
-                          fontSize: "0.9rem",
-                          fontWeight: 700,
-                          letterSpacing: "0.12em",
                           textTransform: "uppercase",
                           color: "rgba(100,150,255,0.75)",
+                          lineHeight: "1.0"
                         }}
+                        className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 mt-3 sm:mt-5"
                       >
                         {t(`static.${k}.label`)}
                       </p>
                       <h3
                         style={{
                           margin: "0 0 0.6rem",
-                          fontWeight: 700,
                           lineHeight: 1.1,
                           color: "#f4f7fa",
                         }}
-                        className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-4xl font-bold leading-tight"
+                        className="text-3xl sm:text-5xl tracking-wide font-bold sm:whitespace-pre-line"
                       >
                         {t(`static.${k}.title`)}
                       </h3>
@@ -755,7 +732,7 @@ export default function ApwecPage() {
                           lineHeight: 1.3,
                           color: "rgba(200,218,250,0.62)",
                         }}
-                        className="text-l font-stretch-extra-expanded tracking-wide sm:text-xl mt-4 whitespace-pre-line font-light"
+                        className="text-lg font-stretch-extra-expanded tracking-wide sm:text-xl mt-4 whitespace-pre-line font-light"
                       >
                         {t(`static.${k}.description`)}
                       </p>
@@ -804,7 +781,7 @@ export default function ApwecPage() {
                         lineHeight: 1.1,
                         color: "#f4f7fa",
                       }}
-                      className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-4xl font-bold leading-tight"
+                      className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
                     >
                       {t("static.cta.title")}
                     </h3>
@@ -812,9 +789,9 @@ export default function ApwecPage() {
                       style={{
                         margin: 0,
                         color: "rgba(200,218,250,0.60)",
-                        lineHeight: 1.3,
+                        lineHeight: 1.2,
                       }}
-                      className="text-l font-stretch-extra-expanded tracking-wide sm:text-xl mt-4 whitespace-pre-line font-light"
+                      className="text-lg sm:text-xl mt-4 text-[#c8d8f8] sm:max-w-4xl font-light"
                     >
                       {t("static.cta.subtitle")}
                     </p>

@@ -64,36 +64,35 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
         "relative",
         "flex w-full",
         "items-center justify-center",
-        "text-left",
+        "text-center",
         "overflow-hidden"
       )}
     >
       <motion.div
         style={{ opacity: slide1Opacity, y: slide1Y }}
-        className="absolute px-[40px] sm:text-center"
+        className="absolute px-[40px]"
       >
         <motion.h4
-          className="text-[1rem] sm:text-[1.3rem] tracking-widest uppercase mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] line-height-20 font-regular flex items-center sm:justify-center"
+          className="
+          text-m sm:text-lg mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8] tracking-widest uppercase
+          mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] items-center sm:justify-center"
           style={{ color: subtitleColor }}
         >
-          <motion.div
-            className="h-[1px] w-[50px] bg-[#5C8BAF62] sm:hidden [shadow:0_0px_0px_rgba(0,0,0,0.2)] mr-2"
-            style={{ backgroundColor: subtitleColor }}
-          ></motion.div>
           {homeTexts("slide2.suptitle")}
         </motion.h4>
         <motion.h1
-          className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-7xl font-bold whitespace-pre-line"
+          className="text-3xl sm:text-6xl mt-3 tracking-wide text-[#f4f7fa] font-bold sm:whitespace-pre-line"
           style={{ color: titleColor, lineHeight: "1.1" }}
         >
           {homeTexts("slide2.title")}
         </motion.h1>
         <motion.h2
-          className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl mt-4 whitespace-pre-line font-light "
-          style={{ color: titleColor, lineHeight: "1.3" }}
+          className="text-lg sm:text-xl mt-4 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light whitespace-pre-line"
+          style={{ color: titleColor, lineHeight: "1.2" }}
         >
           {homeTexts("slide2.subtitle")}
         </motion.h2>
+        
         <div style={{ pointerEvents: "auto" }}>
           <LinkButton
             text={homeTexts("slide2.link")}
@@ -105,8 +104,9 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
                 className="text-[#f4f7fa]"
               ></MotionArrowUpRight>
             }
-            top={isMobile ? "-20px" : ""}
+            top=""
             color={titleColor}
+            fontSize={isMobile ? "19px" : ""}
           ></LinkButton>
         </div>
       </motion.div>

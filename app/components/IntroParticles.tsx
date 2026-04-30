@@ -303,7 +303,7 @@ export default function IntroParticles({ onFinish }: Props) {
             />
 
             <motion.h1
-              className="mt-4 sm:mt-6 flex flex-wrap justify-center text-black font-medium tracking-wider text-lg sm:text-3xl"
+              className="mt-4 sm:mt-6 flex flex-wrap justify-center text-black font-medium tracking-wider text-lg sm:text-4xl"
               initial="hidden"
               animate="visible"
               exit={{ opacity: 0, scale: 0, transition: { duration: 0.1 } }}

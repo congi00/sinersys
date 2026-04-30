@@ -18,9 +18,10 @@ interface Props {
   icon: ReactElement;
   top: string;
   color: MotionValue;
+  fontSize?: string;
 }
 
-export default function LinkButton({ link, text, icon, top, color }: Props) {
+export default function LinkButton({ link, text, icon, top, color, fontSize }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   const mx = useMotionValue(0);
@@ -80,6 +81,7 @@ export default function LinkButton({ link, text, icon, top, color }: Props) {
           scaleY: stretchY,
           top: top,
           color: color,
+          fontSize: fontSize ? fontSize : ""
         }}
         whileHover="hover"
         initial="rest"

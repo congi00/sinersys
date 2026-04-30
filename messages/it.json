@@ -8,55 +8,47 @@
 
   "homepage": {
     "slide0": {
-      "title": "L'energia libera\nnata da un sogno italiano",
-      "subtitle": "Abbiamo inseguito per anni un'idea impossibile:\nun generatore continuo, senza combustibili, senza emissioni.\nCi siamo riusciti.",
+      "title": "La nuova generazione di \nenergia rinnovabile nata da \nun sogno italiano",
+      "subtitle": "Abbiamo inseguito per anni un'idea impossibile:\nun generatore  di energia continua, senza combustione interna, senza emissioni.\n Ci siamo riusciti.",
       "link": "Scopri APWEC"
     },
     "slide1": {
-      "suptitle": "SCOPRI APWEC",
+      "suptitle": "TECNOLOGIA APWEC",
       "title": "Il generatore di energia rinnovabile che non si ferma mai",
-      "subtitle": "APWEC è la tecnologia italiana brevettata che trasforma le variazioni di pressione\nin energia elettrica pulita, continua e misurabile.\nZero emissioni. Zero combustibili. 24 ore su 24, 365 giorni l'anno.",
-      "link": "Scopri Come Funziona"
+      "subtitle": "APWEC è la tecnologia italiana brevettata che genera energia sfruttando la pressione atmosferica e i flussi d’aria interni controllati.\nZero emissioni. Funziona fino a circa 8660 ore l’anno, indipendentemente da sole e vento.",
+      "link": "Come Funziona"
     },
-    "_comment": "Sezione Motore 6 Fasi — homepage",
-    "_seo_note": "Keyword target IT: motore 6 fasi, motore a combustione interna brevettato, ciclo termodinamico innovativo, generazione energia rinnovabile, tecnologia brevettata italiana",
-    "sixPhase": {
-      "suptitle": "Prossimamente · Tecnologia Esclusiva Motor Union",
-      "badge": "BREVETTATO",
-      "title": "Motore a 6 Fasi",
-      "subtitle": "Un nuovo sistema di trasformazione del moto — eccentrico a profilo predeterminato con rotella folle sul pistone — che supera i limiti del tradizionale sistema biella-manovella e configura un ciclo termodinamico completamente nuovo, in due giri d'albero, con sei fasi distinte ad alta efficienza.",
-      "phase0": {
-        "number": "01",
-        "label": "Aspirazione prolungata",
-        "desc": "Pistone fermo al P.M.I.: la velocità inerziale della miscela viene sfruttata al massimo, con coefficienti di riempimento oltre il 120% della cilindrata."
-      },
-      "phase1": {
-        "number": "02",
-        "label": "Combustione a volume costante",
-        "desc": "Accensione all'inizio dell'isocora al P.M.S. con anticipo nullo — zero perdite di energia del volano, pressione di combustione direttamente convertita in lavoro."
-      },
-      "phase2": {
-        "number": "03",
-        "label": "Espansione ottimizzata",
-        "desc": "Il profilo dell'eccentrico è calibrato per massimizzare il lavoro utile durante l'intera fase espansiva, riducendo le perdite termodinamiche residue."
-      },
-      "phase3": {
-        "number": "04-06",
-        "label": "Scarico, ricambio e recupero",
-        "desc": "Le restanti tre fasi del doppio giro completano il ciclo con perdite passive minime, sfruttando il ricuperatore di calore integrato per massimizzare il rendimento globale."
-      },
-      "comingSoon": "In arrivo",
-      "comingSoonSub": "Documentazione tecnica completa e simulazioni del ciclo disponibili a breve"
+    "sixPhase": 
+      {
+        "_comment_researchProducts": "Sezione vetrina dei prodotti nati dalla ricerca Sinersys.",
+        "_seo_note": "Keyword target IT: motore a 6 fasi, ricerca energetica italiana, tecnologia brevettata, generatore rinnovabile, innovazione termodinamica",
+        "researchProducts": {
+          "sectionLabel": "Laboratorio di Ricerca · Motor Union Italia",
+          "sectionTitle": "Dall'ossessione\nnasce la forma",
+          "sectionSubtitle": "Ogni tecnologia che sviluppiamo nasce da anni di ricerca ostinata. Non inseguiamo trend — inseguiamo principi fisici dimenticati e cicli termodinamici mai esplorati fino in fondo.",
+          "product1": 
+            {
+              "id": "motore-6-fasi",
+              "status": "coming-soon",
+              "statusLabel": "In Sviluppo · Brevettato",
+              "suptitle": "Tecnologia Esclusiva Motor Union",
+              "title": "Motore a 6 Fasi",
+              "subtitle": "Un sistema di trasformazione del moto radicalmente nuovo: l'eccentrico a profilo predeterminato con rotella folle sul pistone supera i limiti strutturali del binomio biella-manovella e configura un ciclo termodinamico inedito in due giri d'albero, con sei fasi distinte ad alta efficienza.",
+              "detail": "",
+              "year": "2024 →"
+            }
+          
+        }
     },
     "slide2": {
       "suptitle": "CHI SIAMO",
-      "title": "Oltre 100 anni di ingegneria italiana\n al servizio della transizione energetica",
-      "subtitle": "L'esperienza di Sinersys\nnella progettazione meccanica avanzata ha trovato il suo scopo più\n grande nell'energia rinnovabile distribuita.\nUn percorso lungo un secolo, un traguardo che cambia tutto.",
+      "title": "Ingegneria industriale e\n innovazione energetica",
+      "subtitle": "L'esperienza di Sinersys nella progettazione meccanica\n avanzata ha trovato il suo scopo più grande nell'energia rinnovabile distribuita. \n Un percorso lungo un secolo,\n un traguardo che cambia tutto.",
       "link": "La Nostra Storia"
     },
     "slide3": {
       "title": "Ogni impianto è un passo concreto verso l'indipendenza energetica.",
-      "subtitle": "Sinersys progetta sistemi scalabili per la generazione di energia rinnovabile continua,\npensati per aziende, enti pubblici e operatori industriali che vogliono ridurre i costi energetici,\nabbattere le emissioni di CO₂ e raggiungere l'autosufficienza energetica\nin modo misurabile e verificabile."
+      "subtitle": "Sinersys progetta sistemi scalabili per la generazione di energia rinnovabile continua,\npensati per aziende, enti pubblici, operatori industriali o privati, che vogliono ridurre i costi energetici,\nabbattere le emissioni di CO₂ e raggiungere l'autosufficienza energetica\nin modo misurabile e verificabile."
     },
     "scatteredCards": [
   {
@@ -85,23 +77,23 @@
   }
     ],
     "cta": {
-      "suptitle": "Entra nel Progetto · Partner Industriali e Licenziatari",
-      "title": "Partecipa alla produzione di grande serie di APWEC e alla crescita globale di Sinersys",
-      "subtitle": "Siamo alla ricerca di partner industriali, operatori energetici e investitori che condividano la visione di Sinersys: sviluppare nuove famiglie di potenza APWEC e portarle sul mercato globale. Contattaci per scoprire le opportunità di collaborazione strategica.",
-      "link": "Avvia una Collaborazione"
+      "suptitle": "Partner Industriali e Licenziatari",
+      "title": "Partecipa allo sviluppo industriale di APWEC",
+      "subtitle": "Siamo alla ricerca di partner industriali per produzione, distribuzione e licenze territoriali delle famiglie di potenza APWEC.",
+      "link": "Contattaci"
     },
     "faq": {
       "title": "Domande Frequenti",
-      "q1": "Cos'è APWEC e come genera energia rinnovabile in modo continuo?",
-      "a1": "APWEC (Advanced Pressure Wave Energy Converter) è la tecnologia brevettata da Sinersys per convertire le oscillazioni di pressione presenti in reti industriali, pipeline e sistemi idraulici in energia elettrica pulita e continua. A differenza del fotovoltaico e dell'eolico tradizionale, APWEC non dipende dalle condizioni atmosferiche: produce energia 24 ore su 24, 365 giorni l'anno, con zero emissioni di CO₂ e senza consumo di combustibili fossili. È la risposta concreta alla domanda di indipendenza energetica misurabile per industrie ed enti pubblici.",
-      "q2": "In cosa si differenzia APWEC dai generatori eolici tradizionali come il Silo Eolico?",
-      "a2": "Il Silo Eolico Sinersys rappresenta già un salto tecnologico rispetto ai WEC tradizionali: a parità di potenza installata, il rotore ha un diametro di soli 2,8–3,5 metri contro i 30 metri delle turbine convenzionali da 200 kW, la manutenzione si esegue interamente a livello del suolo, l'impatto visivo e acustico è drasticamente ridotto e l'altezza massima dell'impianto è inferiore a 20 metri. APWEC va oltre: sfrutta le variazioni di pressione già presenti nell'infrastruttura esistente, eliminando completamente la dipendenza dal vento.",
-      "q3": "Qual è la curva di potenza del Silo Eolico Sinersys?",
-      "a3": "Il Silo Eolico viene dimensionato in base alla velocità nominale del vento disponibile nel sito prescelto. Per una configurazione da 200 kW a 5 m/s, la produzione inizia già a 3 m/s (circa 30 kW), raggiunge 55 kW a 4 m/s, 190 kW a 5 m/s e circa 250 kW a 6 m/s. Il sistema di orientamento automatico mantiene la bocca di presa perpendicolare al vento in ogni condizione.",
-      "q4": "Quali sono i costi di installazione e il ritorno sull'investimento energetico?",
-      "a4": "Il costo di produzione di un Silo Eolico da 200 kW si stima tra 120.000 e 150.000 euro per unità in produzione industriale. In siti con vento nominale di 5 m/s per circa 5.500 ore/anno, la produzione stimata è di 1.000.000 kWh/anno. Sinersys fornisce una valutazione preliminare gratuita entro 72 ore, con stima del potenziale energetico, proiezione dei risparmi e analisi del ritorno sull'investimento.",
-      "q5": "APWEC e i sistemi Sinersys sono adatti alla mia azienda o al mio ente pubblico?",
-      "a5": "I sistemi Sinersys sono progettati per rispondere alle esigenze di utenti industriali, commerciali e del pubblico servizio di qualsiasi dimensione. L'architettura modulare di APWEC scala da 1 kW a 10 MW, con incrementi progressivi senza interruzione dell'operatività. Ogni impianto viene progettato su misura nell'ambito del programma Full Energy Project, che include diagnosi energetica, progettazione, installazione, certificazione e assistenza continuativa."
+      "q1": "Come genera energia APWEC senza vento?",
+      "a1": "APWEC sfrutta la pressione atmosferica e il campo gravitazionale terrestre. La differenza di pressione tra interno ed esterno genera un flusso d’aria continuo che alimenta il sistema.",
+      "q2": "È un moto perpetuo?",
+      "a2": "No. Il funzionamento dipende dalla differenza di pressione atmosferica. Quando questa scende sotto una soglia minima, il sistema si arresta.",
+      "q3": "Come viene avviato il sistema?",
+      "a3": "Un ventilatore iniziale genera il flusso d’aria. Dopo l’avvio, viene alimentato dall’energia prodotta dal sistema stesso.",
+      "q4": "APWEC funziona sempre?",
+      "a4": "Funziona fino a circa 8660 ore l’anno, con circa 110 ore dedicate alla manutenzione.",
+      "q5": "È sicuro?",
+      "a5": "Sì. Il rotore è contenuto all’interno di una struttura chiusa, riducendo i rischi rispetto ai generatori eolici tradizionali."
     }
   },
 
@@ -128,13 +120,13 @@
 
   "aboutus": {
     "hero": {
-      "suptitle": "Sinersys · Chi Siamo",
+      "suptitle": "Chi Siamo",
       "title": "Un sogno italiano\ndiventato energia",
       "subtitle": "Oltre un secolo di ingegneria meccanica applicata alla più grande sfida del nostro tempo: produrre energia pulita, continua e accessibile per tutti.",
-      "stat0val": "1919",
-      "stat0label": "Anno di fondazione",
-      "stat1val": "100+",
-      "stat1label": "Anni di know-how industriale",
+      "stat0val": "1965",
+      "stat0label": "Fondazione",
+      "stat1val": "50+",
+      "stat1label": "Anni di esperienza",
       "stat2val": "0",
       "stat2label": "Emissioni di CO₂",
       "mission": "Per decenni abbiamo inseguito un obiettivo che molti ritenevano impossibile: costruire un generatore capace di produrre energia rinnovabile in modo continuativo, senza consumare combustibili e senza dipendere dalle condizioni atmosferiche. Ogni ostacolo ha rafforzato la nostra determinazione. Oggi quel sogno è un brevetto industriale. Si chiama APWEC."
@@ -190,19 +182,14 @@
       "heading": "Le persone che non hanno mai smesso di credere nel sogno",
       "subheading": "Ingegneri, ricercatori e progettisti con decenni di esperienza nell'automotive industriale, nell'ingegneria meccanica avanzata e nello sviluppo di tecnologie per l'energia rinnovabile. La loro ostinazione nel perseguire un obiettivo che molti ritenevano impossibile è il motore di APWEC.",
       "member0": {
-        "name": "Nome Cognome",
-        "role": "Fondatore & Direttore Tecnico",
-        "bio": "Ingegnere meccanico con oltre 30 anni di esperienza nella progettazione di sistemi energetici avanzati. Ha guidato le collaborazioni con Honda, Volvo e Chrysler e ha concepito il principio alla base di APWEC. Custode del sogno originale."
+        "name": "Antonio Luca Biagini",
+        "role": "General Director",
+        "bio": "Esperienza in automotive, cogenerazione e sviluppo industriale. Responsabile sviluppo APWEC dal 2012."
       },
       "member1": {
-        "name": "Nome Cognome",
-        "role": "Responsabile Ricerca e Sviluppo",
-        "bio": "Specializzato in fluidodinamica computazionale e sistemi di conversione energetica. Ha guidato lo sviluppo del prototipo APWEC dal laboratorio all'installazione industriale, ottimizzando i rendimenti di conversione fino all'85%."
-      },
-      "member2": {
-        "name": "Nome Cognome",
-        "role": "Responsabile Progetti & Certificazioni",
-        "bio": "Coordina l'intero iter Full Energy Project: dalla diagnosi energetica iniziale alla progettazione su misura, fino alla certificazione finale e al programma Tech Service. Garantisce che ogni impianto Sinersys produca i risultati promessi."
+        "name": "Gianluca Acciarri",
+        "role": "Ingegnere",
+        "bio": "Specializzato in fluidodinamica e progettazione. Ha guidato lo sviluppo del prototipo APWEC dal laboratorio all'installazione industriale."
       },
       "joinTitle": "Vuoi far parte del team che sta ridefinendo la generazione di energia rinnovabile?",
       "joinSubtitle": "Siamo alla ricerca di ingegneri, ricercatori e professionisti che condividano la nostra visione: un mondo in cui l'energia pulita, continua e accessibile è la norma, non l'eccezione.",
@@ -232,14 +219,14 @@
 
   "apwec": {
     "slide0": {
-      "suptitle": "Sinersys · Tecnologia Brevettata",
+      "suptitle": "TECNOLOGIA BREVETTATA",
       "title": "APWEC",
-      "subtitle": "Advanced Pressure Wave Energy Converter — il sistema italiano che genera energia rinnovabile continua sfruttando le variazioni di pressione, non il carburante. Zero emissioni. Zero dipendenza atmosferica. 24 ore su 24."
+      "subtitle": "Atmospheric Pressure Wind Energy Collector - il generatore italiano di energia rinnovabile che utilizza la pressione dell’aria per produrre elettricità continua."
     },
     "slide1": {
-      "suptitle": "Come Funziona",
-      "title": "Energia pulita dalle variazioni di pressione: una fonte inesauribile e continua",
-      "subtitle": "APWEC intercetta le fluttuazioni di pressione già presenti in reti industriali, pipeline e sistemi idraulici e le converte in elettricità pulita. Un ciclo energetico continuo, senza emissioni, senza sprechi, disponibile 24/7 indipendentemente dalle condizioni meteorologiche."
+      "suptitle": "COME FUNZIONA",
+      "title": "Energia pulita dalla pressione atmosferica",
+      "subtitle": "Il sistema genera un flusso d’aria interno controllato che raggiunge velocità elevate e aziona un rotore collegato a un alternatore."
     },
     "slide2": {
       "suptitle": "Ingegneria Italiana",
@@ -247,24 +234,19 @@
       "subtitle": "Componenti modulari ad alta resistenza progettati per operare in ambienti industriali estremi. Affidabilità certificata, manutenzione a livello del suolo, massima resa nella produzione di energia rinnovabile nel tempo."
     },
     "slide3": {
-      "suptitle": "Architettura del Sistema",
-      "title": "4 sistemi integrati per la massima efficienza\n nella generazione di energia pulita",
-      "subtitle": "Ogni componente di APWEC è progettato per ottimizzare la conversione energetica in ogni condizione operativa, riducendo le dispersioni e massimizzando la produzione netta di energia rinnovabile continua."
-    },
-    "slide4": {
       "suptitle": "Installazione",
       "title": "Operativo in meno di 48 ore: energia rinnovabile che si integra al tuo impianto",
-      "subtitle": "APWEC si integra con qualsiasi infrastruttura industriale esistente. Setup senza interruzioni operative, nessun fermo produttivo, ritorno sull'investimento energetico misurabile fin dai primi mesi di esercizio."
+      "subtitle": "Installazione a livello del suolo, funzionamento indoor o outdoor, senza necessità di torri o strutture complesse."
     },
     "static": {
       "label": "Cos'è APWEC",
-      "title": "La tecnologia italiana per la generazione distribuita di energia rinnovabile continua",
-      "p1": "APWEC (Advanced Pressure Wave Energy Converter) è un sistema brevettato sviluppato da Sinersys per convertire le oscillazioni di pressione presenti in reti industriali, pipeline e sistemi idraulici in energia elettrica pulita, continua e a zero emissioni. Una tecnologia nata da un sogno inseguito per decenni: dimostrare che è possibile produrre energia in modo ininterrotto senza dipendere da fonti fossili, dal vento o dall'irraggiamento solare.",
-      "p2": "A differenza dei sistemi tradizionali di generazione rinnovabile, APWEC non richiede condizioni ambientali favorevoli: sfrutta le variazioni di pressione già presenti nell'impianto — trasformando un flusso energetico normalmente disperso in un asset produttivo concreto e misurabile. Risparmio energetico reale, riduzione delle emissioni di CO₂ verificabile, indipendenza dalla rete elettrica.",
+      "title": "La tecnologia italiana basata su pressione atmosferica e fluidodinamica",
+      "p1": "APWEC è un sistema che utilizza la pressione atmosferica per generare energia elettrica continua. Il flusso d’aria interno viene accelerato e controllato per azionare un rotore collegato a un generatore. Una tecnologia nata da un sogno inseguito per decenni: dimostrare che è possibile produrre energia in modo ininterrotto senza dipendere da fonti fossili, dal vento o dall'irraggiamento solare.",
+      "p2": "A differenza dei sistemi tradizionali di generazione rinnovabile, APWEC non dipende da sole o vento e può operare quasi continuamente durante l’anno. Risparmio energetico reale, riduzione delle emissioni di CO₂ verificabile, indipendenza dalla rete elettrica.",
       "f0": {
-        "label": "Efficienza Energetica",
-        "title": "Fino all'85% di conversione: energia rinnovabile senza sprechi",
-        "description": "Il sistema raggiunge rendimenti di conversione superiori all'85% grazie alla geometria ottimizzata dei trasduttori e al controllo adattivo del carico — un livello di efficienza nella produzione di energia rinnovabile che pochi sistemi possono vantare a parità di scala e continuità operativa."
+        "label": "Funzionamento Continuo",
+        "title": "Fino a 8660 ore annue",
+        "description": "Produzione energetica costante indipendente dalle condizioni meteorologiche."
       },
       "f1": {
         "label": "Scalabilità",
@@ -272,14 +254,14 @@
         "description": "L'architettura modulare di APWEC consente di dimensionare l'impianto in base al fabbisogno energetico reale dell'utente, con incrementi di potenza progressivi e senza interruzione dell'operatività. Adatto a PMI, grandi industrie, infrastrutture pubbliche e qualsiasi realtà che voglia ridurre i costi energetici in modo strutturale."
       },
       "f2": {
-        "label": "Integrazione",
-        "title": "Compatibile con ogni sistema di gestione energetica esistente",
-        "description": "Protocolli Modbus, OPC-UA e MQTT nativi per integrazione immediata con sistemi SCADA, DCS e piattaforme IoT di monitoraggio energetico. APWEC si inserisce nel tuo ecosistema di gestione dell'energia senza richiedere infrastrutture dedicate o interruzioni operative."
+        "label": "Manutenzione",
+        "title": "Semplice e sicura",
+        "description": "Accesso a livello del suolo, senza interventi in quota."
       },
       "cta": {
-        "title": "Sviluppa e valuta la scalabilità industriale di famiglie di potenza APWEC: tecnologia in fase di ingegnerizzazione per applicazioni industriali e utility-scale",
-        "subtitle": "Sinersys è impegnata nello sviluppo di famiglie di potenza APWEC per future applicazioni OEM e industrializzazione su larga scala. Richiedi una valutazione tecnica preliminare gratuita: analisi del potenziale di generazione, studio di fattibilità ingegneristica, proiezione ROI e roadmap verso la produzione industriale, consegnati entro 72 ore.",
-        "link": "Richiedi la Valutazione"
+        "title": "Richiedi una valutazione tecnica",
+        "subtitle": "Analisi del potenziale energetico, fattibilità industriale e modello economico disponibili su richiesta.",
+        "link": "Contattaci"
       }
     }
   },

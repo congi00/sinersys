@@ -5,6 +5,25 @@
   src: url("/font/maorin.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "Flaviotte";
+  src: url("/font/Flaviotte Font/OpenType-TT/Flaviotte.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/font/MangoGrotesque/OpenType-TT/MangoGrotesque-SemiBold.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "Eurostile Extended Regular";
+  src: url("/font/Eurostile Extended Regular/Eurostile Extended Regular.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
 :root {
   --sat-env-top: env(safe-area-inset-top);
   --sat-env-bottom: env(safe-area-inset-bottom);
@@ -12,7 +31,14 @@
 
 /* font-family: var(--font-league), sans-serif; */
 html, body {
-  font-family: "Maorin", sans-serif;
+  /* font-family: "Maorin", sans-serif; */
+  /* font-family: "Gilda Display", serif; */
+  /* font-family: "Flaviotte", serif; */
+  font-family: "Eurostile Extended Regular", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-weight: 900;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);

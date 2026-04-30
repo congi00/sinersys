@@ -154,7 +154,8 @@ function CardContent({ item, isGlass, isMobile }: { item: CardItem; isGlass: boo
           color:      textSecondary,
           fontWeight: 400,
           maxWidth:   "78%",
-          marginTop: isMobile ? "100px" : 0
+          marginTop: isMobile ? "20px" : 0,
+          lineHeight: "1.2"
         }}
         className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl"
         >
@@ -211,11 +212,12 @@ function CardContent({ item, isGlass, isMobile }: { item: CardItem; isGlass: boo
           fontWeight:    700,
           lineHeight:    0.88,
           ...titleStyle,
+          fontSize:      "clamp(2.0rem, 4.2vw, 5.2rem)",
           // Overflow visible so descenders can breathe
           overflowX:     "visible",
           overflowY:     "visible",
         }}
-        className="text-4xl font-stretch-extra-expanded tracking-wide sm:text-7xl"
+        className="font-stretch-extra-expanded tracking-wide uppercase"
         >
           {item.title ?? item.label}
         </h2>

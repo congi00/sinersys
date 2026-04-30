@@ -38,14 +38,14 @@ const Signature: React.FC<SignatureProps> = ({ progress }) => {
 
   return (
     <motion.div
-      className="mt-10 sm:flex sm:justify-center"
+      className="sm:flex sm:justify-center w-full"
       style={{ opacity }}
     >
       <motion.svg
         width="100%"
-        viewBox="0 0 500 140"
+        viewBox="0 0 650 240"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ maxWidth: "460px", overflow: "visible" }}
+        style={{ maxWidth: "560px", overflow: "visible" }}
       >
         {/* Ombra morbida sotto la firma per darle profondità */}
         <motion.path

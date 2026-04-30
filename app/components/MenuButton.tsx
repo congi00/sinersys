@@ -14,6 +14,7 @@ import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { motion, MotionValue } from "framer-motion";
 import { useRef } from "react";
+import SocialSwitcher from "./SocialSwitcher";
 
 interface Props {
   menuTheme?: MotionValue<number>;
@@ -182,17 +183,32 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
           overflow-visible on the parent container is required so the dropdown
           (which opens upward) is not clipped by the menu card.
         */}
-        <div
-          className={clsx(
-            "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
-            menuVisibility
-              ? "opacity-100 translate-y-0 delay-[200ms]"
-              : "opacity-0 translate-y-4"
-          )}
-          // Stop click from toggling the menu when interacting with the switcher
-          onClick={(e) => e.stopPropagation()}
-        >
-          <LanguageSwitcher isDark={isDark} />
+        <div className="flex">
+          <div
+            className={clsx(
+              "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
+              menuVisibility
+                ? "opacity-100 translate-y-0 delay-[200ms]"
+                : "opacity-0 translate-y-4"
+            )}
+            // Stop click from toggling the menu when interacting with the switcher
+            onClick={(e) => e.stopPropagation()}
+          >
+            <LanguageSwitcher isDark={isDark} />
+          </div>
+          <div
+            className={clsx(
+              "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
+              "ml-8",
+              menuVisibility
+                ? "opacity-100 translate-y-0 delay-[200ms]"
+                : "opacity-0 translate-y-4"
+            )}
+            // Stop click from toggling the menu when interacting with the switcher
+            onClick={(e) => e.stopPropagation()}
+          >
+            <SocialSwitcher isDark={isDark} />
+          </div>
         </div>
       </div>
 

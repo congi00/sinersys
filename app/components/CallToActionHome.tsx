@@ -91,55 +91,55 @@ export default function CallToActionHome({ progressMotion }: Props) {
           opacity:   contentOpacity,
           y:         contentY,
         }}
+        className="text-center"
       >
         {/* Suptitle */}
         <p style={{
           margin:        0,
-          fontSize:      "clamp(0.7rem, 1vw, 0.85rem)",
-          fontWeight:    600,
-          letterSpacing: "0.14em",
           textTransform: "uppercase",
           color:         "rgba(180,210,255,0.75)",
           marginBottom:  "0.6rem",
-        }}>
+          lineHeight: "1",
+        }}
+        className="text-m sm:text-lg mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8] tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
+        >
           {homeTexts("cta.suptitle")}
         </p>
 
         {/* Title */}
         <h2 style={{
           margin:        0,
-          fontSize:      "clamp(2rem, 4.5vw, 3.8rem)",
-          fontWeight:    700,
-          lineHeight:    1.05,
-          letterSpacing: "-0.025em",
+          lineHeight:    1.0,
           color:         "#f4f7fa",
-          marginBottom:  "1rem",
-          maxWidth:      "1000px",
-        }}>
+          marginBottom:  "10px",
+        }}
+          className="text-3xl sm:text-6xl px-3 sm:px-2 mt-3 tracking-wide text-[#f4f7fa] font-bold sm:whitespace-pre-line"
+        >
           {homeTexts("cta.title")}
         </h2>
 
         {/* Subtitle */}
         <p style={{
           margin:      0,
-          fontSize:    "clamp(0.9rem, 1.4vw, 1.15rem)",
-          fontWeight:  400,
-          lineHeight:  1.55,
+          lineHeight:  1.2,
           color:       "rgba(200,218,250,0.72)",
-          maxWidth:    "520px",
           marginBottom: "0.5rem",
-        }}>
+        }}
+        className="text-lg sm:text-xl px-2 sm:px-[300px] mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light"
+        >
           {homeTexts("cta.subtitle")}
         </p>
 
         {/* LinkButton */}
-        <LinkButton
-          link="/contatti"
-          text={homeTexts("cta.link")}
-          icon={<ArrowUpRight size={20} className="text-[#f4f7fa]" />}
-          top="0"
-          color={linkColor}
-        />
+        <div>
+          <LinkButton
+            link="/contatti"
+            text={homeTexts("cta.link")}
+            icon={<ArrowUpRight size={20} className="text-[#f4f7fa]" />}
+            top="0"
+            color={linkColor}
+          />
+        </div>
       </motion.div>
     </motion.div>
   );

@@ -72,20 +72,22 @@ export default function FaqSection({
   return (
     <motion.section
       style={{ opacity: sectionOpacity, y: sectionY }}
-      className="w-full mx-auto px-5 pt-10 pb-12"
+      className="w-full mx-auto px-5 pt-10"
     >
       {/* Header */}
-      <motion.div className="mb-12 text-left sm:text-center">
+      <motion.div className="mb-12 text-center">
         <span
-          className="inline-block text-xs font-semibold tracking-[0.2em] uppercase
+          className="inline-block text-sm font-semibold tracking-[0.4em] uppercase
             border border-current rounded-full px-4 py-1.5 mb-6 font-light
             text-[#1c398e]"
         >
           {suptitle}
         </span>
         <h2
-          className="font-bold leading-tight text-[#1c398e] text-[3.0rem] sm:text-[4.2rem] sm:text-center text-left"
-          style={{ letterSpacing: "-0.02em" }}
+          className="font-bold leading-tight text-[#1c398e] text-center text-3xl sm:text-6xl px-3 sm:px-2 mt-3 tracking-wide"
+          style={{ 
+            lineHeight: "1.1"
+          }}
         >
           {title}
         </h2>
@@ -110,8 +112,11 @@ export default function FaqSection({
               >
                 <span
                   className="font-regular text-[#1c398e] pr-4
-                    group-hover:text-[#1c398e] transition-colors duration-200 text-[1.55rem] sm:text-[1.8rem]"
-                  style={{lineHeight: isMobile ? "1.1" : "unset" }}
+                    group-hover:text-[#1c398e] transition-colors duration-200
+                    text-lg sm:text-2xl
+                  "
+                  style={{lineHeight: "1.1"
+                   }}
                 >
                   {item.question}
                 </span>
@@ -143,8 +148,11 @@ export default function FaqSection({
                     }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-5 text-l font-stretch-extra-expanded tracking-wide sm:text-2xl font-light text-[#5c8baf] leading-relaxed"
-                    style={{lineHeight: isMobile ? "1.1" : "unset" }}>
+                    <p className="pb-5 font-stretch-extra-expanded tracking-wide font-light text-[#5c8baf] leading-relaxed
+                    text-base sm:text-xl"
+                    style={{
+                      lineHeight: "1.1" ,
+                      }}>
                       {item.answer}
                     </p>
                   </motion.div>
