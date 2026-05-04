@@ -23,9 +23,9 @@
         "_comment_researchProducts": "Sezione vetrina dei prodotti nati dalla ricerca Sinersys.",
         "_seo_note": "Keyword target IT: motore a 6 fasi, ricerca energetica italiana, tecnologia brevettata, generatore rinnovabile, innovazione termodinamica",
         "researchProducts": {
-          "sectionLabel": "Laboratorio di Ricerca · Motor Union Italia",
-          "sectionTitle": "Dall'ossessione\nnasce la forma",
-          "sectionSubtitle": "Ogni tecnologia che sviluppiamo nasce da anni di ricerca ostinata. Non inseguiamo trend — inseguiamo principi fisici dimenticati e cicli termodinamici mai esplorati fino in fondo.",
+          "sectionLabel": "Laboratorio di Ricerca",
+          "sectionTitle": "Ricerca e sviluppo",
+          "sectionSubtitle": "Continuamo a investire nella ricerca avanzata sui motori a combustione interna per ottimizzare ogni fase del ciclo termodinamico, migliorare l'efficienza energetica e ridurre gli sprechi di combustibile.",
           "product1": 
             {
               "id": "motore-6-fasi",
@@ -33,7 +33,7 @@
               "statusLabel": "In Sviluppo · Brevettato",
               "suptitle": "Tecnologia Esclusiva Motor Union",
               "title": "Motore a 6 Fasi",
-              "subtitle": "Un sistema di trasformazione del moto radicalmente nuovo: l'eccentrico a profilo predeterminato con rotella folle sul pistone supera i limiti strutturali del binomio biella-manovella e configura un ciclo termodinamico inedito in due giri d'albero, con sei fasi distinte ad alta efficienza.",
+              "subtitle": "Un sistema di trasformazione del moto radicalmente nuovo: supera i limiti strutturali del binomio biella-manovella e configura un ciclo termodinamico inedito, con sei fasi distinte ad alta efficienza.",
               "detail": "",
               "year": "2024 →"
             }
@@ -65,7 +65,7 @@
     "label": "Sviluppo Tecnologico",
     "suptitle": "Famiglie di Potenza",
     "title": "Espansione",
-    "subtitle": "Sviluppare nuove famiglie di potenza APWEC — da 1 kW a 10 MW — per rispondere alle esigenze energetiche di PMI, grandi industrie ed enti pubblici in ogni areale geografico."
+    "subtitle": "Sviluppare nuove famiglie di potenza APWEC — da 1 kW a 10 MW — per rispondere alle esigenze energetiche di PMI, grandi industrie ed enti pubblici o privati in ogni areale geografico."
   },
   {
     "id": "3",
@@ -250,7 +250,7 @@
       },
       "f1": {
         "label": "Scalabilità",
-        "title": "Da 1 kW a 10 MW: risparmio energetico su misura",
+        "title": "Da 1 kW a 10 MW",
         "description": "L'architettura modulare di APWEC consente di dimensionare l'impianto in base al fabbisogno energetico reale dell'utente, con incrementi di potenza progressivi e senza interruzione dell'operatività. Adatto a PMI, grandi industrie, infrastrutture pubbliche e qualsiasi realtà che voglia ridurre i costi energetici in modo strutturale."
       },
       "f2": {

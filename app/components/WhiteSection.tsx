@@ -11,6 +11,7 @@ interface Props {
   progressMotion: MotionValue<number>;
   isMobile:       boolean;
   vhUnit:         string;
+  setOpen: Function;
 }
 
 const MARQUEE_TEXT = "SINERSYS · NEW ENERGY FRONTIERS · ";
@@ -19,7 +20,7 @@ const MARQUEE_TEXT = "SINERSYS · NEW ENERGY FRONTIERS · ";
 // anche su schermi larghi. Con font piccolo su mobile ne servono meno.
 const COPIES = 6;
 
-export default function WhiteSection({ progressMotion, isMobile, vhUnit }: Props) {
+export default function WhiteSection({ progressMotion, isMobile, vhUnit, setOpen }: Props) {
   const sectionOpacity = useTransform(progressMotion, [6.0, 6.1], [0, 1]);
   const sectionY       = useTransform(progressMotion, [6.0, 6.35], [0, 0]);
   const sectionCTAY    = useTransform(
@@ -144,7 +145,7 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit }: Props
           y:        sectionCTAY,
         }}
       >
-        <CallToActionHome progressMotion={progressMotion} />
+        <CallToActionHome progressMotion={progressMotion} setOpen={setOpen} />
       </motion.div>
     </motion.div>
   );

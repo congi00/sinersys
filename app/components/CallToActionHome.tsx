@@ -9,9 +9,10 @@ import { useTranslations } from "next-intl";
 
 interface Props {
   progressMotion: MotionValue<number>;
+  setOpen: Function;
 }
 
-export default function CallToActionHome({ progressMotion }: Props) {
+export default function CallToActionHome({ progressMotion, setOpen }: Props) {
   const videoRef  = useRef<HTMLVideoElement>(null);
   const homeTexts = useTranslations("homepage");
 
@@ -131,9 +132,9 @@ export default function CallToActionHome({ progressMotion }: Props) {
         </p>
 
         {/* LinkButton */}
-        <div>
+        <div style={{ pointerEvents: "auto" }} onClick={() => setOpen()}>
           <LinkButton
-            link="/contatti"
+            link="/"
             text={homeTexts("cta.link")}
             icon={<ArrowUpRight size={20} className="text-[#f4f7fa]" />}
             top="0"

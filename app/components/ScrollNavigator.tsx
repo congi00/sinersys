@@ -16,13 +16,13 @@ export interface NavSection {
 }
 
 export const DEFAULT_SECTIONS: NavSection[] = [
-  { index: 1, label: "Intro", start: 0, end: 0.7, target: 0 },
+  { index: 1, label: "Home", start: 0, end: 0.7, target: 0 },
   { index: 2, label: "APWEC", start: 0.8, end: 1.8, target: 1.4 },
   { index: 3, label: "Ricerca", start: 1.8, end: 2.8, target: 2.4 },
   { index: 4, label: "Chi Siamo", start: 2.8, end: 3.2, target: 3.1 },
   { index: 5, label: "Visione", start: 3.8, end: 4.8, target: 4.43 },
-  { index: 6, label: "Promessa", start: 4.9, end: 6.0, target: 6.15 },
-  { index: 7, label: "CTA", start: 6.1, end: 7.9, target: 7.2 },
+  { index: 6, label: "Obiettivi", start: 4.9, end: 6.0, target: 6.15 },
+  { index: 7, label: "Contattaci", start: 6.1, end: 7.9, target: 7.2 },
   { index: 8, label: "FAQ", start: 7.4, end: 9.5, target: 8.5 },
 ];
 
@@ -38,6 +38,7 @@ interface Props {
   isDark?: MotionValue<number>;
   isMobile?: boolean;
   menuTheme?: MotionValue<number>;
+  hiddenMenu?: MotionValue<number>
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -64,10 +65,12 @@ export default function ScrollNavigator({
   sections = DEFAULT_SECTIONS,
   isMobile = false,
   menuTheme,
+  hiddenMenu
 }: Props) {
   const [activeIdx, setActiveIdx] = useState(0);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [isDarkMode, setIsDark] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   // Track active section
   useMotionValueEvent(progress, "change", (p) => {
@@ -83,6 +86,17 @@ export default function ScrollNavigator({
     });
     return unsubscribe;
   }, [menuTheme]);
+
+  useEffect(() => {
+    if (!hiddenMenu) return;
+    // Read initial value
+    setHidden(hiddenMenu.get() < 0.5);
+    // Subscribe to changes
+    const unsubscribe = hiddenMenu.on("change", (v) => {
+      setHidden(v < 0.5);
+    });
+    return unsubscribe;
+  }, [hiddenMenu]);
 
   // Click: jump to section
   const handleClick = useCallback(
@@ -112,7 +126,7 @@ export default function ScrollNavigator({
     : "#1c398e";
 
   return (
-    <motion.nav
+    !hidden && <motion.nav
       aria-label="Page sections navigator"
       initial={{ opacity: 0, x: 12 }}
       animate={{ opacity: 1, x: 0 }}

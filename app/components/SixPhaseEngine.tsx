@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { motion, useTransform, MotionValue } from "framer-motion";
 
 interface ResearchProduct {
@@ -86,52 +87,6 @@ function BlueprintGrid({ isMobile }: { isMobile: boolean }) {
   );
 }
 
-// ── Decorative: rotating ring-glyph ──────────────────────────────────────────
-function RingGlyph({
-  size,
-  opacity,
-  rotate,
-  style,
-}: {
-  size: number;
-  opacity: number;
-  rotate: MotionValue<number>;
-  style?: React.CSSProperties;
-}) {
-  const ticks = Array.from({ length: 36 });
-  return (
-    <motion.div
-      style={{ position: "absolute", width: size, height: size, opacity, pointerEvents: "none", rotate, ...style }}
-    >
-      <svg viewBox="0 0 200 200" width={size} height={size}>
-        <circle cx="100" cy="100" r="88" fill="none" stroke="#a0c4ff" strokeWidth="0.5" strokeDasharray="3 6" />
-        <circle cx="100" cy="100" r="72" fill="none" stroke="#a0c4ff" strokeWidth="0.3" />
-        <circle cx="100" cy="100" r="20" fill="none" stroke="#a0c4ff" strokeWidth="0.8" />
-        {ticks.map((_, i) => {
-          const angle = (i * 360) / 36;
-          const rad = (angle * Math.PI) / 180;
-          const r1 = i % 3 === 0 ? 76 : 80;
-          const r2 = 88;
-          return (
-            <line
-              key={i}
-              x1={100 + r1 * Math.cos(rad)}
-              y1={100 + r1 * Math.sin(rad)}
-              x2={100 + r2 * Math.cos(rad)}
-              y2={100 + r2 * Math.sin(rad)}
-              stroke="#a0c4ff"
-              strokeWidth={i % 3 === 0 ? "0.8" : "0.4"}
-            />
-          );
-        })}
-        {/* cross-hair */}
-        <line x1="92" y1="100" x2="108" y2="100" stroke="#a0c4ff" strokeWidth="0.6" />
-        <line x1="100" y1="92" x2="100" y2="108" stroke="#a0c4ff" strokeWidth="0.6" />
-      </svg>
-    </motion.div>
-  );
-}
-
 // ── Product Card ──────────────────────────────────────────────────────────────
 function ProductCard({
   product,
@@ -156,91 +111,20 @@ function ProductCard({
       {/* Outer frame — blueprint aesthetic */}
       <div
         style={{
-          background: "rgba(8,18,52,0.55)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
           border: "1px solid rgba(100,150,255,0.14)",
-          borderRadius: "2px",
-          padding: isMobile ? "clamp(1.2rem,5vw,1.8rem)" : "clamp(1.4rem,2vw,2.2rem)",
           position: "relative",
+          borderRadius: "15px",
+          overflow: "hidden",
         }}
-      >
-        {/* Corner brackets */}
-        {(["tl", "tr", "bl", "br"] as const).map((corner) => (
-          <div
-            key={corner}
-            style={{
-              position: "absolute",
-              width: "10px",
-              height: "10px",
-              borderColor: "rgba(100,160,255,0.3)",
-              borderStyle: "solid",
-              borderWidth: corner.includes("t") ? "1px 0 0 0" : "0 0 1px 0",
-              borderLeftWidth: corner.includes("l") ? "1px" : "0",
-              borderRightWidth: corner.includes("r") ? "1px" : "0",
-              top: corner.includes("t") ? "6px" : "auto",
-              bottom: corner.includes("b") ? "6px" : "auto",
-              left: corner.includes("l") ? "6px" : "auto",
-              right: corner.includes("r") ? "6px" : "auto",
-            }}
-          />
-        ))}
-
-        {/* Year badge — top right */}
-        {product.year && (
-          <div
-            style={{
-              position: "absolute",
-              top: "1.1rem",
-              right: "1.4rem",
-              fontFamily: "'Courier New', monospace",
-              fontSize: "0.58rem",
-              letterSpacing: "0.18em",
-              color: "rgba(100,150,255,0.3)",
-              userSelect: "none",
-            }}
-          >
-            {product.year}
-          </div>
+        className={clsx(
+          "p-4 pt-8",
+          "flex flex-col items-center justify-center",
+          "bg-[#F4F7FA]/10 backdrop-blur-xl backdrop-saturate-150",
+          "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ease-[cubic-bezier(.16,1,.3,1)]",
         )}
+      >
 
-        {/* Status pill */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            padding: "4px 12px 4px 8px",
-            borderRadius: "2px",
-            background: sc.bg,
-            border: `1px solid ${sc.border}`,
-            marginBottom: "clamp(0.9rem,2vh,1.3rem)",
-          }}
-        >
-          <span
-            style={{
-              width: "5px",
-              height: "5px",
-              borderRadius: "50%",
-              background: sc.dot,
-              boxShadow: `0 0 0 3px ${sc.dot.replace("0.9", "0.15")}`,
-              display: "inline-block",
-              animation: product.status === "coming-soon" ? "pulse-dot 2s ease-in-out infinite" : "none",
-            }}
-          />
-          <span
-            style={{
-              fontSize: "0.58rem",
-              fontWeight: 700,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: sc.text,
-              fontFamily: "'Courier New', monospace",
-            }}
-          >
-            {product.statusLabel}
-          </span>
-        </div>
+
 
         {/* Suptitle */}
         <p
@@ -249,7 +133,7 @@ function ProductCard({
             textTransform: "uppercase",
             color: "rgba(100,160,255,0.55)",
           }}
-          className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
+          className="text-xs sm:text-xs tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
         >
           {product.suptitle}
         </p>
@@ -322,16 +206,7 @@ export default function ResearchProducts({
   // ── Scroll window ──────────────────────────────────────────────────────────
   const wrapOp = useTransform(progress, [1.75, 1.95, 2.65, 2.8], [0, 1, 1, 0]);
   const wrapY = useTransform(progress, [1.75, 1.95, 2.65, 2.8], [60, 0, 0, -60]);
-  const wrapClip = useTransform(
-    progress,
-    [1.75, 1.95, 2.65, 2.8],
-    [
-      "inset(100% 0% 0% 0%)",
-      "inset(0% 0% 0% 0%)",
-      "inset(0% 0% 0% 0%)",
-      "inset(0% 0% 100% 0%)",
-    ]
-  );
+  
 
   // Staggered element reveals
   const rLabel = useReveal(progress, 1.9);
@@ -359,39 +234,20 @@ export default function ResearchProducts({
         zIndex: 11,
         opacity: wrapOp,
         y: wrapY,
-        clipPath: wrapClip,
         pointerEvents: "none",
         display: "flex",
         justifyContent: "center",
         padding: isMobile
-          ? "5rem clamp(1.2rem,5vw,2rem)"
+          ? "1rem clamp(1.2rem,5vw,2rem)"
           : "8rem clamp(3rem,8vw,8rem)",
         overflowY: "hidden",
+        alignContent: "center",
+        textAlign: "center"
       }}
     >
       {/* ── Decorative background ──────────────────────────────────────────── */}
       <BlueprintGrid isMobile={isMobile} />
 
-      {/* Large ring — right */}
-      <RingGlyph
-        size={isMobile ? 260 : 500}
-        opacity={0.06}
-        rotate={ringA}
-        style={{
-          right: isMobile ? "-80px" : "-120px",
-        }}
-      />
-
-      {/* Small ring — bottom left */}
-      <RingGlyph
-        size={isMobile ? 120 : 220}
-        opacity={0.04}
-        rotate={ringB}
-        style={{
-          left: isMobile ? "-30px" : "20px",
-          bottom: isMobile ? "2vh" : "4vh",
-        }}
-      />
 
       {/* Ambient glow */}
       <div
@@ -408,7 +264,7 @@ export default function ResearchProducts({
       />
 
       {/* ── Content ────────────────────────────────────────────────────────── */}
-      <div style={{ width: "100%", position: "relative", zIndex: 1 }}>
+      <div style={{ width: isMobile? "100%" : "90%", position: "relative", zIndex: 1 }}>
 
         {/* Section label */}
         <motion.div
@@ -422,28 +278,13 @@ export default function ResearchProducts({
             marginTop: isMobile ? "60px" : "0",
           }}
         >
-          {!isMobile && (
-            <div
-              style={{
-                width: "32px",
-                height: "1px",
-                background: "rgba(100,150,255,0.4)",
-              }}
-            />
-          )}
-          {/* Diamond marker */}
-          <svg width="8" height="8" viewBox="0 0 8 8" style={{ opacity: 0.5 }}>
-            <rect x="4" y="0" width="5.66" height="5.66" rx="0.5" transform="rotate(45 4 4)" fill="rgba(100,160,255,0.7)" />
-          </svg>
           <span
             style={{
-              fontSize: "0.7rem",
               fontWeight: 700,
-              letterSpacing: "0.28em",
               textTransform: "uppercase",
               color: "rgba(140,190,255,0.55)",
-              fontFamily: "'Courier New', monospace",
             }}
+            className="text-m sm:text-lg text-[#a0b8e8] tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
           >
             {sectionLabel}
           </span>
@@ -493,6 +334,7 @@ export default function ResearchProducts({
               ? "minmax(280px, 600px)"
               : "repeat(auto-fill, minmax(320px, 1fr))",
             gap: "clamp(1rem,2vw,1.6rem)",
+            justifyContent: products.length === 1 ? "center" : "stretch",
           }}
         >
           {products.map((product, i) => (

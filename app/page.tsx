@@ -157,11 +157,6 @@ export default function Home() {
   // ── Slide 0 ───────────────────────────────────────────────────────────────
   const slide0Y = useTransform(smooth, [0, 0.6, 0.7], [0, 0, -880]);
   const slide0Opacity = useTransform(smooth, [0, 0.7, 1.0], [1, 1, 0]);
-  const slide0Clip = useTransform(
-    smooth,
-    [0, 0.8, 0.7],
-    ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"]
-  );
 
   // ── Slide 1 ───────────────────────────────────────────────────────────────
   const slide1Y = useTransform(smooth, [0.6, 0.7, 1.6, 1.8], [80, 0, 0, -880]);
@@ -170,41 +165,18 @@ export default function Home() {
     [0.6, 0.7, 2.1, 2.5],
     [0, 1, 1, 0]
   );
-  const slide1Clip = useTransform(
-    smooth,
-    [0.7, 1.1, 1.8, 1.9],
-    [
-      "inset(100% 0% 0% 0%)",
-      "inset(0% 0% 0% 0%)",
-      "inset(0% 0% 0% 0%)",
-      "inset(0% 0% 100% 0%)",
-    ]
-  );
 
   // ── Model ─────────────────────────────────────────────────────────────────
   const modelPhaseAOpacity = useTransform(
     smooth,
-    [0, 1.1, 1.2, 1.8, 1.9],
+    [0, 0.6, 0.7, 1.8, 1.9],
     [0, 0, 1, 1, 0]
   );
   const modelPhaseAY = useTransform(smooth, [0.7, 1.2, 1.8, 1.9], [80, 80, 80, 80]);
-  const modelOverflow = useTransform(smooth, (v) =>
-    v < 0.05 ? "hidden" : "visible"
-  );
 
   // ── HomePageAbout ─────────────────────────────────────────────────────────
   const aboutY = useTransform(smooth, [2.8, 2.9, 3.4, 3.8], [80, 0, 0, -880]);
   const aboutOpacity = useTransform(smooth, [2.8, 2.9, 4.5, 4.8], [0, 1, 1, 0]);
-  const aboutClip = useTransform(
-    smooth,
-    [2.8, 2.9, 3.4, 4.8],
-    [
-      "inset(100% 0% 0% 0%)",
-      "inset(0% 0% 0% 0%)",
-      "inset(0% 0% 0% 0%)",
-      "inset(0% 0% 100% 0%)",
-    ]
-  );
 
   // ── Circle ────────────────────────────────────────────────────────────────
   // const circleClip = useTransform(
@@ -331,7 +303,6 @@ export default function Home() {
             zIndex: 11,
             y: slide0Y,
             opacity: slide0Opacity,
-            clipPath: slide0Clip,
             pointerEvents: "none",
           }}
           className="flex flex-col items-center justify-center px-8 text-center"
@@ -387,7 +358,6 @@ export default function Home() {
             zIndex: 11,
             y: slide1Y,
             opacity: slide1Opacity,
-            clipPath: slide1Clip,
             pointerEvents: "none",
           }}
           className="flex flex-col items-center justify-center px-8 sm:px-16 text-center"
@@ -456,7 +426,6 @@ export default function Home() {
             zIndex: 11,
             y: aboutY,
             opacity: aboutOpacity,
-            clipPath: aboutClip,
             pointerEvents: "none",
           }}
           className="flex items-center justify-center"
@@ -520,6 +489,7 @@ export default function Home() {
           progressMotion={smooth}
           isMobile={isMobile}
           vhUnit={vhUnit}
+          setOpen={() => {setOpenContact(true)}}
         />
 
         {/* ── FAQ — absolute, on white bg, after CTA ───────────────────────── */}
@@ -582,6 +552,7 @@ export default function Home() {
             totalScrollHeight={totalHeight}
             isMobile={isMobile}
             menuTheme={menuTheme}
+            hiddenMenu={hiddenMenu}
           />
         )}
 
