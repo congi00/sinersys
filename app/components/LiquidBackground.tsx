@@ -14,6 +14,10 @@ interface Props {
   style?: React.CSSProperties;
   progress?: MotionValue<number>;
   vhUnit?: string;
+  lockPalette?: boolean;
+  openPx?: number;
+  readEndPx?: number;
+  closeEndPx?: number;
 }
 
 const VERT = `
@@ -132,7 +136,9 @@ function measureVh(vhUnit: string): number {
 // ── Rileva se siamo su Android Chrome ────────────────────────────────────────
 function isAndroidChrome(): boolean {
   if (typeof navigator === "undefined") return false;
-  return /Android/.test(navigator.userAgent) && /Chrome/.test(navigator.userAgent);
+  return (
+    /Android/.test(navigator.userAgent) && /Chrome/.test(navigator.userAgent)
+  );
 }
 
 export default function LiquidBackground({
@@ -140,26 +146,47 @@ export default function LiquidBackground({
   style = {},
   progress = undefined,
   vhUnit = "dvh",
+  lockPalette = false,
+  openPx = 1,
+  readEndPx = 2,
+  closeEndPx = 3,
 }: Props) {
-  const mountRef   = useRef<HTMLDivElement>(null);
+  const mountRef = useRef<HTMLDivElement>(null);
   const paletteRef = useRef(0);
   // Ref al renderer e agli uniforms per poterli aggiornare dal resize handler
-  const rendererRef  = useRef<THREE.WebGLRenderer | null>(null);
-  const uniformsRef  = useRef<{ uResolution: { value: THREE.Vector2 } } | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const uniformsRef = useRef<{ uResolution: { value: THREE.Vector2 } } | null>(
+    null
+  );
 
   if (!progress) return null;
 
-  const inset = useTransform(
-    progress,
-    [0, 0.8],
-    [
-      "inset(16px 16px 16px 16px round 24px)",
-      "inset(0px 0px 0px 0px round 0px)",
-    ]
-  );
+  const inset = lockPalette
+    ? useTransform(
+        progress,
+        [0, openPx, readEndPx, closeEndPx],
+        [
+          "inset(16px 16px 16px 16px round 24px)",
+          "inset(0px 0px 0px 0px round 0px)",
+          "inset(0px 0px 0px 0px round 0px)",
+          "inset(16px 16px 16px 16px round 24px)",
+        ]
+      )
+    : useTransform(
+        progress,
+        [0, 0.8],
+        [
+          "inset(16px 16px 16px 16px round 24px)",
+          "inset(0px 0px 0px 0px round 0px)",
+        ]
+      );
 
   useMotionValueEvent(progress, "change", (p) => {
-    const raw   = Math.min(1, Math.max(0, (p - 3.05) / 0.15));
+    if (lockPalette) {
+      paletteRef.current = 0;
+      return;
+    }
+    const raw = Math.min(1, Math.max(0, (p - 3.05) / 0.15));
     const eased = raw < 0.5 ? 3 * raw * raw : 1 - Math.pow(-2 * raw + 2, 2) / 2;
     paletteRef.current = eased;
   });
@@ -171,19 +198,22 @@ export default function LiquidBackground({
     let W = window.innerWidth;
     let H = measureVh(vhUnit);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
+    const renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      alpha: false,
+    });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.2));
     renderer.setSize(W, H);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    const scene    = new THREE.Scene();
-    const camera   = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const uniforms = {
-      uTime:       { value: 0 },
+      uTime: { value: 0 },
       uResolution: { value: new THREE.Vector2(W, H) },
-      uPalette:    { value: 0 },
+      uPalette: { value: 0 },
     };
     uniformsRef.current = uniforms;
 
@@ -199,7 +229,7 @@ export default function LiquidBackground({
     const clock = new THREE.Clock();
     function animate() {
       rafId = requestAnimationFrame(animate);
-      uniforms.uTime.value    = clock.getElapsedTime();
+      uniforms.uTime.value = clock.getElapsedTime();
       uniforms.uPalette.value = paletteRef.current;
       renderer.render(scene, camera);
     }
@@ -217,9 +247,7 @@ export default function LiquidBackground({
         // Su Android Chrome usiamo window.innerHeight direttamente perché
         // innerHeight si aggiorna quando la toolbar sparisce.
         // Su iOS usiamo la probe con vhUnit (lvh non cambia con la Safari bar).
-        const newH = isAndroidChrome()
-          ? window.innerHeight
-          : measureVh(vhUnit);
+        const newH = isAndroidChrome() ? window.innerHeight : measureVh(vhUnit);
 
         if (newW === W && Math.abs(newH - H) < 2) return; // nessun cambiamento reale
         W = newW;
@@ -258,14 +286,14 @@ export default function LiquidBackground({
   return (
     <motion.div
       style={{
-        position:  "fixed",
-        top:       0,
-        left:      0,
-        right:     0,
-        bottom:    0,
-        clipPath:  inset,
-        zIndex:    0,
-        overflow:  "hidden",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        clipPath: inset,
+        zIndex: 0,
+        overflow: "hidden",
         willChange: "clip-path",
       }}
     >
@@ -273,13 +301,13 @@ export default function LiquidBackground({
         ref={mountRef}
         className={className}
         style={{
-          width:          "100%",
-          height:         `100${vhUnit}`,
-          pointerEvents:  "none",
-          transform:      "translateZ(0)",
+          width: "100%",
+          height: `100${vhUnit}`,
+          pointerEvents: "none",
+          transform: "translateZ(0)",
           // Su Android assicura che il canvas non venga stretchato dal CSS
           // quando innerHeight cambia prima che Three.js ricalcoli
-          minHeight:      "100%",
+          minHeight: "100%",
         }}
       />
     </motion.div>

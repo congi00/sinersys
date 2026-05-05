@@ -522,7 +522,6 @@ export default function AboutUsPage() {
   // ── Content card exit animation (inset + border-radius before footer) ─────
   // We use scroll progress mapped to the last ~15% of the page.
   // At p=5.0 → no inset, no radius. At p=5.6 → inset 16px, radius 24px.
-  const contentInset = useTransform(smooth, [5.0, 5.6], [0, 16]);
   const contentRadius = useTransform(smooth, [5.0, 5.6], [0, 24]);
   const contentScale = useTransform(smooth, [5.0, 5.6], [1, 0.96]);
   const contentY = useTransform(smooth, [5.0, 5.6], [0, -20]);
@@ -531,13 +530,15 @@ export default function AboutUsPage() {
   if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
 
   const timeline = [
-    { key: "t2018", year: "2018" },
-    { key: "t2019", year: "2019" },
-    { key: "t2020", year: "2020" },
-    { key: "t2021", year: "2021" },
-    { key: "t2022", year: "2022" },
-    { key: "t2023", year: "2023" },
-    { key: "t2024", year: "2024" },
+    { key: "t1919", year: "1919" },
+    { key: "t1964", year: "1964" },
+    { key: "t1965", year: "1965" },
+    { key: "t1977", year: "1977" },
+    { key: "t1978", year: "1978" },
+    { key: "t1998", year: "1998" },
+    { key: "t2002", year: "2002" },
+    { key: "t2008", year: "2008" },
+    { key: "t2010", year: "2010" },
   ];
 
   const team = [
@@ -791,7 +792,7 @@ export default function AboutUsPage() {
                         lineHeight: 1.2,
                         color: pcolor,
                       }}
-                      className="text-lg sm:text-xl font-light"
+                      className="text-lg sm:text-xl font-light whitespace-pre-line"
                     >
                       {t("whoweare.p1")}
                     </motion.p>

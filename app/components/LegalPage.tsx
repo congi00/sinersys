@@ -1,26 +1,38 @@
 "use client";
 
 /**
- * LegalPage — architettura pulita e definitiva.
+ * LegalPage — architettura corretta.
  *
- * STRUTTURA:
- *   - Spacer div (height = totalHeight) per dare altezza scrollabile alla pagina
- *   - LiquidBackground position:fixed zIndex:0 (sfondo sempre visibile)
- *   - Card position:fixed inset:0 zIndex:10
- *     └─ Outer motion.div: padding animato (= effetto inset), y animata (uscita)
- *        └─ Inner div: borderRadius animato, overflow:hidden, background:rgba scuro
- *           ├─ LiquidBackground position:absolute (clippata dal borderRadius)
- *           └─ Content div position:absolute translateY animato (scorre il testo)
- *   - Footer position:absolute bottom:0 zIndex:11
+ * PROBLEMA PRECEDENTE:
+ *   - contentRef era sulla motion.div con y:contentY → scrollHeight inquinato
+ *   - vhPx partiva da 1, quindi i keyframe erano calcolati male al primo render
+ *   - Doppio spring su scrollPx causava lag eccessivo sul contentY
+ *   - SCROLL_PX = contentH - vh, ma contentH veniva letto prima che il DOM
+ *     fosse stabile
  *
- * SCROLL TIMELINE (scrollY in px):
- *   0 → OPEN_PX        padding 16→0, radius 24→0     (card si apre)
- *   OPEN_PX → CLOSE_S  contentY 0 → -(contentH-vh)   (testo scorre)
- *   CLOSE_S → CLOSE_E  padding 0→16, radius 0→24,     (card si chiude)
- *                       card.y 0 → -CLOSE_PX          (card sale ed esce)
+ * SOLUZIONE:
+ *   - Il contentRef va su un div STATICO (position:relative, no transform)
+ *     che è il padre del contenuto. La motion.div del translate è separata.
+ *   - contentY usa scrollPx RAW (1:1), senza spring — fluidità massima.
+ *   - totalHeight ricalcolato ogni volta che contentH o vhPx cambiano.
+ *   - Guard: se vhPx === 0 non renderizza (evita flash con keyframe errati).
  *
- * NESSUNO SPRING sul contentY — risposta 1:1 allo scroll per fluidità massima.
- * Spring solo su padding/radius (decorativi).
+ * STRUTTURA DOM:
+ *   <page-wrapper position:absolute height:totalHeight>
+ *     <card position:fixed inset:0 y:cardY opacity:cardOp>
+ *       <card-inner borderRadius overflow:hidden>
+ *         <LiquidBg position:absolute />
+ *         <measure-wrapper position:absolute inset:0 overflow:hidden>
+ *           <motion.div y:contentY>          ← translateY qui
+ *             <div ref={contentRef}>          ← misurazione qui (no transform)
+ *               ...content...
+ *             </div>
+ *           </motion.div>
+ *         </measure-wrapper>
+ *       </card-inner>
+ *     </card>
+ *     <footer position:absolute bottom:0 />
+ *   </page-wrapper>
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -90,7 +102,7 @@ function SectionBlock({
         <h2
           style={{
             margin: 0,
-            fontSize: "clamp(1.8rem,2vw,1.55rem)",
+            fontSize: "clamp(1.4rem,2vw,1.55rem)",
             fontWeight: 700,
             letterSpacing: "-0.015em",
             lineHeight: 1.2,
@@ -102,7 +114,7 @@ function SectionBlock({
       </div>
       <div
         style={{
-          fontSize: "clamp(1.38rem,1.2vw,1rem)",
+          fontSize: "clamp(0.9rem,1.05vw,1rem)",
           lineHeight: 1.78,
           color: "rgba(200,218,250,0.72)",
         }}
@@ -123,19 +135,31 @@ export default function LegalPage({
   accent = "#1c398e",
 }: LegalPageProps) {
   const openContact = useAppSelector((s) => s.siteState.openContact);
-  const isIOS = detectIOS();
-
-  // Two separate MotionValues:
-  // scrollPx  — raw scrollY in pixels, updated by Lenis
-  // scrollSmooth — spring-smoothed version, used only for inset/radius
   const scrollPx = useMotionValue(0);
-  const scrollSmooth = useSpring(scrollPx, { stiffness: 380, damping: 36 });
-
+  const [mounted, setMounted] = useState(false);
   const [vhPx, setVhPx] = useState(0);
-  const [contentH, setContentH] = useState(4000);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(1024);
 
-  // Measure viewport height
+  // ── content height — misurato sul div STATICO (senza transform applicato) ─
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentH, setContentH] = useState(0);
+
+  useEffect(() => {
+    const onResize = () => setWidth(window.innerWidth);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const isMobile = width <= 768;
+  const isIOS = mounted ? detectIOS() : false;
+  const vhUnit = isIOS ? "lvh" : "dvh";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Measure viewport height accurately (handles iOS/Android quirks)
   useEffect(() => {
     const measure = () => {
       const el = document.createElement("div");
@@ -155,29 +179,36 @@ export default function LegalPage({
     };
   }, [isIOS]);
 
-  // Measure content height (the absolute div inside the card)
+  // Measure content height from the STATIC wrapper (no transform contamination)
   useEffect(() => {
     if (!contentRef.current) return;
-    const ro = new ResizeObserver(() => {
-      if (contentRef.current) setContentH(contentRef.current.scrollHeight);
-    });
+    const measure = () => {
+      if (contentRef.current) {
+        setContentH(
+          contentRef.current.getBoundingClientRect().height ||
+            contentRef.current.scrollHeight
+        );
+      }
+    };
+    const ro = new ResizeObserver(measure);
     ro.observe(contentRef.current);
-    setContentH(contentRef.current.scrollHeight);
+    measure();
     return () => ro.disconnect();
-  }, [sections]);
+  }, [mounted]);
 
-  // Lenis — updates scrollPx with raw pixel value (no normalization)
+  // Lenis / touch scroll → scrollPx MotionValue
   useEffect(() => {
     if (isTouchDevice()) {
-      const fn = () => scrollPx.set(window.scrollY);
-      fn();
-      window.addEventListener("scroll", fn, { passive: true });
-      return () => window.removeEventListener("scroll", fn);
+      const onScroll = () => scrollPx.set(window.scrollY);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
     }
+
     const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
     let rafId = 0;
-    const raf = (t: number) => {
-      lenis.raf(t);
+    const raf = (time: number) => {
+      lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     };
     rafId = requestAnimationFrame(raf);
@@ -188,83 +219,59 @@ export default function LegalPage({
     };
   }, [scrollPx]);
 
-  const vh = vhPx || 800;
-
-  // ── Scroll budget (all in raw pixels) ────────────────────────────────────
-  //
-  // OPEN_PX:   how many px to scroll while the card opens (inset collapses)
-  // SCROLL_PX: how many px to scroll to read all the text
-  //            = max(contentH - vh, 0)  — exactly what doesn't fit in one screen
-  // CLOSE_PX:  how many px to scroll while the card closes
-  //
-  // Keyframes on scrollY:
-  //   0           → card closed (inset:16, radius:24)
-  //   OPEN_PX     → card fully open (inset:0, radius:0), content at top
-  //   OPEN_PX + SCROLL_PX   → content fully scrolled (last line visible)
-  //   OPEN_PX + SCROLL_PX + CLOSE_PX → card fully closed again, y offset applied
-
-  const OPEN_PX = vh * 0.45;
-  const SCROLL_PX = Math.max(contentH - vh, 0);
-  const CLOSE_PX = vh * 0.45;
-  const FOOTER_PX = 300; // space for footer after card exits
-
-  const kOpen = OPEN_PX;
-  const kReadEnd = OPEN_PX + SCROLL_PX;
-  const kCloseEnd = kReadEnd + CLOSE_PX;
-
-  const totalHeight = kCloseEnd + FOOTER_PX + vh;
-
-  // ── inset (padding on outer div) — spring-smoothed ────────────────────────
-  const insetPx = useTransform(
-    scrollSmooth,
-    [0, kOpen, kReadEnd, kCloseEnd],
-    [
-      "inset(16px round 24px)",
-      "inset(0px round 0px)",
-      "inset(0px round 0px)",
-      "inset(16px round 24px)",
-    ]
-  );
-  const radiusPx = useTransform(
-    scrollSmooth,
-    [0, kOpen, kReadEnd, kCloseEnd],
-    [24, 0, 0, 24]
-  );
-  const padStr = useTransform(insetPx, (v) => `${v}px`);
-  const radStr = useTransform(radiusPx, (v) => `${v}px`);
-
-  // ── Card Y exit — spring-smoothed (nice easing on exit) ──────────────────
-  const cardY = useTransform(
-    scrollSmooth,
-    [kReadEnd, kCloseEnd],
-    [0, -(CLOSE_PX * 2.8)]
-  );
-  const cardOp = useTransform(
-    scrollSmooth,
-    [kReadEnd + CLOSE_PX * 0.4, kCloseEnd],
-    [1, 0]
-  );
-
-  // ── Content translateY — RAW (1:1 with scroll, zero latency) ─────────────
-  // At kOpen:    contentY = 0    (top of text visible)
-  // At kReadEnd: contentY = -SCROLL_PX (bottom of text visible)
-  const contentY = useTransform(scrollPx, [kOpen, kReadEnd], [0, -SCROLL_PX], {
-    clamp: true,
+  // Spring ONLY for decorative elements (inset/radius/card-exit)
+  // contentY uses RAW scrollPx for 1:1 response
+  const scrollSmooth = useSpring(scrollPx, {
+    stiffness: isMobile ? 180 : 280,
+    damping: isMobile ? 32 : 28,
+    mass: isMobile ? 0.6 : 1,
   });
 
-  // LiquidBackground progress (always 0 = dark palette)
+  const vh = vhPx || 768;
+
+  // ── Scroll budget ────────────────────────────────────────────────────────
+  const OPEN_PX = vh;
+  const SCROLL_PX = Math.max(contentH - vh + 80, 0); // +80 = bottom breathing room
+  const CLOSE_PX = vh * 0.3;
+  const FOOTER_PX = 320;
+
+  const kReadEnd = OPEN_PX + SCROLL_PX;
+  const kCloseEnd = kReadEnd + CLOSE_PX;
+  const totalHeight = kCloseEnd + FOOTER_PX + vh;
+
+  // ── Card Y exit — spring-smoothed ───────────────────────────────────────
+  const cardY = useTransform(
+    scrollSmooth,
+    [0, kReadEnd - 200, kCloseEnd + FOOTER_PX],
+    [0, 0, -(CLOSE_PX * 3)]
+  );
+
+  // ── Content Y — RAW 1:1, no spring, no lag ──────────────────────────────
+  // Maps: kOpen → 0px,  kReadEnd → -SCROLL_PX
+  const contentY = useTransform(
+    scrollPx,
+    [0.3, kReadEnd - 200],
+    [0, -SCROLL_PX],
+    {
+      clamp: true,
+    }
+  );
+
   const liquidProgress = useMotionValue(0);
   const headerTheme = useMotionValue(0);
   const hPad = "clamp(1.5rem,8vw,7rem)";
 
-  if (vhPx === 0) return <div style={{ minHeight: "100vh" }} />;
+  // Guard: wait until we have real measurements to avoid wrong keyframes
+  if (!mounted || vhPx === 0) {
+    return <div style={{ minHeight: "100vh", background: "#060d2a" }} />;
+  }
 
   return (
     <>
-      {/* ── Scroll spacer — gives the page its scrollable height ────── */}
+      {/* ── Scroll spacer ─────────────────────────────────────────────── */}
       <div style={{ height: totalHeight }} aria-hidden />
 
-      {/* ── Layer container ─────────────────────────────────────────── */}
+      {/* ── Layer container ───────────────────────────────────────────── */}
       <div
         className="absolute inset-x-0 top-0"
         style={{ height: totalHeight, zIndex: 1 }}
@@ -272,47 +279,31 @@ export default function LegalPage({
         {!openContact && <Header headerTheme={headerTheme} />}
         {!openContact && <MenuButton />}
 
-        {/* ── CARD ────────────────────────────────────────────────────────
-            Outer: fixed, inset:0. Padding = visual inset effect.
-            Inner: clips via overflow:hidden + borderRadius.
-            Content div: absolute, translates upward as user scrolls.
-        ──────────────────────────────────────────────────────────────── */}
+        {/* ── CARD ────────────────────────────────────────────────────── */}
         <motion.div
           style={{
             position: "fixed",
             inset: 0,
             zIndex: 10,
             y: cardY,
-            opacity: cardOp,
           }}
         >
           <motion.div
             style={{
               width: "100%",
               height: "100%",
-              borderRadius: radStr,
               overflow: "hidden",
               position: "relative",
             }}
           >
-            {/* LiquidBackground — automatically clipped by parent borderRadius */}
+            {/* Liquid background — clipped by parent borderRadius */}
             <LiquidBackground
-              style={{
-                position: "absolute",
-                zIndex: 0,
-                pointerEvents: "none",
-              }}
-            />
-
-            {/* Subtle dark overlay for text readability over the liquid bg */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "trasparent",
-                zIndex: 1,
-                pointerEvents: "none",
-              }}
+              progress={scrollSmooth}
+              vhUnit={vhUnit}
+              openPx={OPEN_PX}
+              readEndPx={kReadEnd}
+              closeEndPx={kCloseEnd}
+              lockPalette
             />
 
             {/* Accent glow */}
@@ -329,96 +320,116 @@ export default function LegalPage({
               }}
             />
 
-            {/* ── Content — translates upward (1:1 with scroll) ──────── */}
-            <motion.div
-              ref={contentRef}
+            {/* ── Scroll viewport: clips the translating content ──────── */}
+            <div
               style={{
                 position: "absolute",
-                top: "45px",
-                left: 0,
-                right: 0,
-                y: contentY,
+                inset: 0,
+                overflow: "hidden",
                 zIndex: 3,
-                willChange: "transform",
               }}
             >
-              {/* Hero */}
-              <div
+              {/*
+               * translateY wrapper — moves content upward as user scrolls.
+               * Does NOT have ref (avoids measuring transformed height).
+               */}
+              <motion.div
                 style={{
-                  padding: `clamp(5rem,10vh,7rem) ${hPad} clamp(2.5rem,5vh,3.5rem)`,
+                  y: contentY,
+                  willChange: "transform",
                 }}
               >
-                <div
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "1.5rem",
-                  }}
-                >
+                {/*
+                 * STATIC measurement wrapper — no transform, no position:absolute.
+                 * ResizeObserver reads scrollHeight here reliably.
+                 */}
+                <div ref={contentRef}>
+                  {/* Hero */}
                   <div
                     style={{
-                      width: "28px",
-                      height: "1px",
-                      background: `${accent}cc`,
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: "clamp(0.62rem,0.85vw,0.72rem)",
-                      fontWeight: 700,
-                      letterSpacing: "0.16em",
-                      textTransform: "uppercase",
-                      color: "rgba(160,196,255,0.65)",
+                      padding: `clamp(5rem,10vh,7rem) ${hPad} clamp(2.5rem,5vh,3.5rem)`,
                     }}
                   >
-                    {label}
-                  </span>
-                </div>
-                <h1
-                  style={{
-                    margin: 0,
-                    fontSize: "clamp(2.4rem,6vw,5.2rem)",
-                    fontWeight: 800,
-                    letterSpacing: "-0.03em",
-                    lineHeight: 0.95,
-                    color: "#f4f7fa",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {title}
-                </h1>
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: "clamp(0.9rem,1.4vw,1.1rem)",
-                    lineHeight: 1.6,
-                    color: "rgba(200,218,250,0.68)",
-                    maxWidth: "560px",
-                  }}
-                >
-                  {subtitle}
-                </p>
-                <p
-                  style={{
-                    margin: "1.1rem 0 0",
-                    fontSize: "clamp(0.62rem,0.85vw,0.72rem)",
-                    fontWeight: 600,
-                    letterSpacing: "0.08em",
-                    color: "rgba(160,196,255,0.38)",
-                  }}
-                >
-                  {updated}
-                </p>
-              </div>
+                    <div
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        marginBottom: "1.5rem",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "28px",
+                          height: "1px",
+                          background: `${accent}cc`,
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontSize: "clamp(0.62rem,0.85vw,0.72rem)",
+                          fontWeight: 700,
+                          letterSpacing: "0.16em",
+                          textTransform: "uppercase",
+                          color: "rgba(160,196,255,0.65)",
+                        }}
+                      >
+                        {label}
+                      </span>
+                    </div>
 
-              {/* Sections */}
-              <div style={{ padding: `0 ${hPad} clamp(3rem,5vh,4rem)` }}>
-                {sections.map((s, i) => (
-                  <SectionBlock key={i} section={s} index={i} />
-                ))}
-              </div>
-            </motion.div>
+                    <h1
+                      style={{
+                        margin: 0,
+                        fontSize: "clamp(2.4rem,6vw,5.2rem)",
+                        fontWeight: 800,
+                        letterSpacing: "-0.03em",
+                        lineHeight: 0.95,
+                        color: "#f4f7fa",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      {title}
+                    </h1>
+
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: "clamp(0.9rem,1.4vw,1.1rem)",
+                        lineHeight: 1.6,
+                        color: "rgba(200,218,250,0.68)",
+                        maxWidth: "560px",
+                      }}
+                    >
+                      {subtitle}
+                    </p>
+
+                    <p
+                      style={{
+                        margin: "1.1rem 0 0",
+                        fontSize: "clamp(0.62rem,0.85vw,0.72rem)",
+                        fontWeight: 600,
+                        letterSpacing: "0.08em",
+                        color: "rgba(160,196,255,0.38)",
+                      }}
+                    >
+                      {updated}
+                    </p>
+                  </div>
+
+                  {/* Sections */}
+                  <div
+                    style={{
+                      padding: `0 ${hPad} clamp(4rem,8vh,6rem)`,
+                    }}
+                  >
+                    {sections.map((s, i) => (
+                      <SectionBlock key={i} section={s} index={i} />
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </motion.div>
 
@@ -440,7 +451,7 @@ export default function LegalPage({
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Shared text helpers
+// Shared text helpers (invariati)
 // ─────────────────────────────────────────────────────────────────────────────
 export function P({ children }: { children: React.ReactNode }) {
   return (

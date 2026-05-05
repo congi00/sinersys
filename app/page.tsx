@@ -489,7 +489,7 @@ export default function Home() {
           progressMotion={smooth}
           isMobile={isMobile}
           vhUnit={vhUnit}
-          setOpen={() => {setOpenContact(true)}}
+          setOpen={() => {dispatch(setOpenContact(true))}}
         />
 
         {/* ── FAQ — absolute, on white bg, after CTA ───────────────────────── */}

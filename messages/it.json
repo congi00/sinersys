@@ -18,27 +18,24 @@
       "subtitle": "APWEC è la tecnologia italiana brevettata che genera energia sfruttando la pressione atmosferica e i flussi d’aria interni controllati.\nZero emissioni. Funziona fino a circa 8660 ore l’anno, indipendentemente da sole e vento.",
       "link": "Come Funziona"
     },
-    "sixPhase": 
-      {
-        "_comment_researchProducts": "Sezione vetrina dei prodotti nati dalla ricerca Sinersys.",
-        "_seo_note": "Keyword target IT: motore a 6 fasi, ricerca energetica italiana, tecnologia brevettata, generatore rinnovabile, innovazione termodinamica",
-        "researchProducts": {
-          "sectionLabel": "Laboratorio di Ricerca",
-          "sectionTitle": "Ricerca e sviluppo",
-          "sectionSubtitle": "Continuamo a investire nella ricerca avanzata sui motori a combustione interna per ottimizzare ogni fase del ciclo termodinamico, migliorare l'efficienza energetica e ridurre gli sprechi di combustibile.",
-          "product1": 
-            {
-              "id": "motore-6-fasi",
-              "status": "coming-soon",
-              "statusLabel": "In Sviluppo · Brevettato",
-              "suptitle": "Tecnologia Esclusiva Motor Union",
-              "title": "Motore a 6 Fasi",
-              "subtitle": "Un sistema di trasformazione del moto radicalmente nuovo: supera i limiti strutturali del binomio biella-manovella e configura un ciclo termodinamico inedito, con sei fasi distinte ad alta efficienza.",
-              "detail": "",
-              "year": "2024 →"
-            }
-          
+    "sixPhase": {
+      "_comment_researchProducts": "Sezione vetrina dei prodotti nati dalla ricerca Sinersys.",
+      "_seo_note": "Keyword target IT: motore a 6 fasi, ricerca energetica italiana, tecnologia brevettata, generatore rinnovabile, innovazione termodinamica",
+      "researchProducts": {
+        "sectionLabel": "Laboratorio di Ricerca",
+        "sectionTitle": "Ricerca e sviluppo",
+        "sectionSubtitle": "Continuamo a investire nella ricerca avanzata sui motori a combustione interna per ottimizzare ogni fase del ciclo termodinamico, migliorare l'efficienza energetica e ridurre gli sprechi di combustibile.",
+        "product1": {
+          "id": "motore-6-fasi",
+          "status": "coming-soon",
+          "statusLabel": "In Sviluppo · Brevettato",
+          "suptitle": "Tecnologia Esclusiva Motor Union",
+          "title": "Motore a 6 Fasi",
+          "subtitle": "Un sistema di trasformazione del moto radicalmente nuovo: supera i limiti strutturali del binomio biella-manovella e configura un ciclo termodinamico inedito, con sei fasi distinte ad alta efficienza.",
+          "detail": "",
+          "year": "2024 →"
         }
+      }
     },
     "slide2": {
       "suptitle": "CHI SIAMO",
@@ -51,30 +48,30 @@
       "subtitle": "Sinersys progetta sistemi scalabili per la generazione di energia rinnovabile continua,\npensati per aziende, enti pubblici, operatori industriali o privati, che vogliono ridurre i costi energetici,\nabbattere le emissioni di CO₂ e raggiungere l'autosufficienza energetica\nin modo misurabile e verificabile."
     },
     "scatteredCards": [
-  {
-    "id": "1",
-    "image": "/images/1.jpg",
-    "label": "Industrializzazione",
-    "suptitle": "Grande Serie",
-    "title": "Produzione",
-    "subtitle": "Portare APWEC dalla fase prototipale alla produzione industriale di grande serie: impianti certificati, scalabili e pronti per il mercato globale dell'energia rinnovabile."
-  },
-  {
-    "id": "2",
-    "image": "/images/2.jpg",
-    "label": "Sviluppo Tecnologico",
-    "suptitle": "Famiglie di Potenza",
-    "title": "Espansione",
-    "subtitle": "Sviluppare nuove famiglie di potenza APWEC — da 1 kW a 10 MW — per rispondere alle esigenze energetiche di PMI, grandi industrie ed enti pubblici o privati in ogni areale geografico."
-  },
-  {
-    "id": "3",
-    "image": "/images/3.jpg",
-    "label": "Impatto Globale",
-    "suptitle": "Transizione Energetica",
-    "title": "Indipendenza",
-    "subtitle": "Rendere l'autosufficienza energetica una realtà concreta e misurabile: zero emissioni di CO₂, zero dipendenza dalla rete, risparmio verificabile fin dal primo anno di esercizio."
-  }
+      {
+        "id": "1",
+        "image": "/images/1.jpg",
+        "label": "Industrializzazione",
+        "suptitle": "Grande Serie",
+        "title": "Produzione",
+        "subtitle": "Portare APWEC dalla fase prototipale alla produzione industriale di grande serie: impianti certificati, scalabili e pronti per il mercato globale dell'energia rinnovabile."
+      },
+      {
+        "id": "2",
+        "image": "/images/2.jpg",
+        "label": "Sviluppo Tecnologico",
+        "suptitle": "Famiglie di Potenza",
+        "title": "Espansione",
+        "subtitle": "Sviluppare nuove famiglie di potenza APWEC — da 1 kW a 10 MW — per rispondere alle esigenze energetiche di PMI, grandi industrie ed enti pubblici o privati in ogni areale geografico."
+      },
+      {
+        "id": "3",
+        "image": "/images/3.jpg",
+        "label": "Impatto Globale",
+        "suptitle": "Transizione Energetica",
+        "title": "Indipendenza",
+        "subtitle": "Rendere l'autosufficienza energetica una realtà concreta e misurabile: zero emissioni di CO₂, zero dipendenza dalla rete, risparmio verificabile fin dal primo anno di esercizio."
+      }
     ],
     "cta": {
       "suptitle": "Partner Industriali e Licenziatari",
@@ -122,20 +119,20 @@
     "hero": {
       "suptitle": "Chi Siamo",
       "title": "Un sogno italiano\ndiventato energia",
-      "subtitle": "Oltre un secolo di ingegneria meccanica applicata alla più grande sfida del nostro tempo: produrre energia pulita, continua e accessibile per tutti.",
-      "stat0val": "1965",
-      "stat0label": "Fondazione",
-      "stat1val": "50+",
+      "subtitle": "Le origini di Sinersys affondano in oltre cento anni di esperienza nella meccanica, nell'automotive e nella ricerca fluidodinamica applicata. Un percorso tecnico che ha condotto allo sviluppo del sistema proprietario APWEC®.",
+      "stat0val": "1919",
+      "stat0label": "Origini industriali",
+      "stat1val": "1977",
       "stat1label": "Anni di esperienza",
       "stat2val": "0",
       "stat2label": "Emissioni di CO₂",
-      "mission": "Per decenni abbiamo inseguito un obiettivo che molti ritenevano impossibile: costruire un generatore capace di produrre energia rinnovabile in modo continuativo, senza consumare combustibili e senza dipendere dalle condizioni atmosferiche. Ogni ostacolo ha rafforzato la nostra determinazione. Oggi quel sogno è un brevetto industriale. Si chiama APWEC."
+      "mission": "Sinersys nasce come evoluzione di una lunga tradizione imprenditoriale e ingegneristica sviluppata tra progettazione meccanica, ricerca termodinamica e studio dei moti fluidi."
     },
     "whoweareLabel": "Chi Siamo",
     "whoweare": {
-      "title": "L'innovazione nasce dall'ostinazione di chi non smette mai di inseguire il proprio sogno",
-      "p1": "Sinersys è una società italiana specializzata nello sviluppo di tecnologie avanzate per la conversione e la generazione di energia rinnovabile continua. Nata all'interno di Motor Union Italia — attiva dal 1919 nel settore dell'automotive industriale e dell'ingegneria motoristica — porta con sé un patrimonio tecnico-scientifico costruito in oltre un secolo di progettazione meccanica di precisione al servizio della transizione energetica.",
-      "p2": "La competenza maturata in collaborazione con Honda, Volvo e Chrysler ha fornito le basi ingegneristiche per affrontare la sfida più ambiziosa della nostra storia: realizzare un sistema di generazione energetica che funzioni ininterrottamente, senza fonti fossili e senza dipendenza dalle variabili ambientali. Inseguire questo sogno per anni è ciò che ha reso possibile APWEC: la tecnologia brevettata che trasforma le variazioni di pressione in energia elettrica pulita, 24 ore su 24."
+      "title": "L'innovazione costruita su oltre un secolo di esperienza tecnica e sviluppo meccanico",
+      "p1": "Sinersys è una società italiana specializzata nello sviluppo di tecnologie avanzate per la conversione e la generazione di energia rinnovabile continua.\n Nata all'interno di Motor Union Italia — attiva dal 1919 nel settore dell'automotive industriale e dell'ingegneria motoristica — porta con sé un patrimonio tecnico-scientifico costruito in oltre un secolo di progettazione meccanica di precisione al servizio della transizione energetica.",
+      "p2": "La competenza maturata ha fornito le basi ingegneristiche per affrontare la sfida più ambiziosa della nostra storia: realizzare un sistema di generazione energetica che funzioni ininterrottamente, senza fonti fossili e senza dipendenza dalle variabili ambientali."
     },
     "values": {
       "value0": "Energia rinnovabile continua",
@@ -146,35 +143,52 @@
     },
     "timelineLabel": "La Nostra Storia",
     "timeline": {
-      "heading": "Dal motore all'energia pulita: il percorso che ha cambiato tutto",
-      "subheading": "Un cammino iniziato nell'officina e arrivato al futuro dell'energia rinnovabile. Ogni tappa ha aggiunto conoscenza, ogni ostacolo ha rafforzato la visione.",
-      "t2018": {
-        "title": "Nasce il progetto APWEC",
-        "description": "Il Centro Ricerche e Sviluppo di Sinersys avvia lo studio sistematico delle oscillazioni di pressione come fonte energetica sfruttabile. L'obiettivo è chiaro: un generatore continuo che non dipenda da vento, sole o combustibili."
+      "heading": "Oltre un secolo di innovazione industriale: la storia che ha portato ad APWEC®",
+      "subheading": "Dalla meccanica pionieristica del primo Novecento alla ricerca avanzata sui sistemi energetici rinnovabili: ogni fase della storia Sinersys rappresenta un accumulo reale di competenze, brevetti e sviluppo ingegneristico.",
+
+      "t1919": {
+        "title": "Le origini industriali del gruppo",
+        "description": "Le radici dell'attuale Sinersys risalgono al 1919, quando il nucleo imprenditoriale originario entra nei primi programmi europei di sviluppo meccanico e motoristico. È l'inizio di una lunga tradizione tecnica che accompagnerà il gruppo per oltre un secolo."
       },
-      "t2019": {
-        "title": "Primo prototipo funzionante",
-        "description": "Il primo prototipo APWEC produce energia in modo continuativo per 72 ore consecutive in condizioni di laboratorio. La prova di concetto è validata: le variazioni di pressione possono diventare elettricità pulita e misurabile."
+
+      "t1964": {
+        "title": "Ingresso nell'automotive internazionale",
+        "description": "Con il marchio IAP, il gruppo diventa importatore ufficiale dei prodotti Honda in Italia, avviando una collaborazione strategica che porterà nel 1971 alla realizzazione dello stabilimento produttivo Honda in Val di Sangro. La dimensione industriale assume respiro internazionale."
       },
-      "t2020": {
-        "title": "Deposito del brevetto internazionale",
-        "description": "Sinersys deposita il brevetto internazionale per la tecnologia APWEC. L'innovazione viene riconosciuta come genuinamente nuova nello scenario globale della generazione di energia rinnovabile distribuita."
+
+      "t1965": {
+        "title": "Espansione nella distribuzione di grandi marchi europei",
+        "description": "Nasce Motauto, struttura dedicata all'importazione esclusiva in Italia di Volvo, Saab e Hanomag-Henschel. L'azienda consolida competenze logistiche, commerciali e industriali nella gestione di veicoli, componentistica e tecnologie meccaniche avanzate."
       },
-      "t2021": {
-        "title": "Test industriali su scala reale",
-        "description": "APWEC viene installato e testato presso un impianto industriale partner. I dati confermano rendimenti di conversione superiori all'80% e operatività continuativa 24/7, con impatto ambientale zero e manutenzione minima."
+
+      "t1977": {
+        "title": "Fondazione del centro Ricerca & Sviluppo B-Art",
+        "description": "Viene costituita B-Art, la divisione specializzata in ricerca e sviluppo applicata a meccanica, termodinamica e fluidodinamica. Da questo laboratorio nascono numerosi brevetti industriali internazionali, inclusi i primi studi sul sistema energetico a sei fasi e sulle dinamiche dei fluidi in pressione."
       },
-      "t2022": {
-        "title": "Certificazione Full Energy Project",
-        "description": "Sinersys lancia il programma di certificazione Full Energy Project: ogni impianto viene progettato su misura, documentato e certificato per garantire al cliente prestazioni energetiche verificabili e un ritorno sull'investimento misurabile."
+
+      "t1978": {
+        "title": "Inizio degli studi sui moti fluidi e sulla riduzione degli attriti",
+        "description": "Cominciano le ricerche strutturate sui moti fluidodinamici all'interno di geometrie controllate, inizialmente applicate alla riduzione dell'attrito aerodinamico nei veicoli. Questi studi rappresentano il fondamento teorico che, negli anni successivi, condurrà alla concezione del sistema APWEC®."
       },
-      "t2023": {
-        "title": "Espansione della gamma: da 1 kW a 10 MW",
-        "description": "L'architettura modulare di APWEC viene validata su tutte le scale di potenza, da piccoli impianti industriali a infrastrutture energetiche di grande taglia. Sinersys diventa un fornitore di energia rinnovabile per PMI, grandi industrie ed enti pubblici."
+
+      "t1998": {
+        "title": "Nasce Sinersys come spin-off energetico",
+        "description": "Dopo decenni di esperienza nell'ingegneria meccanica e nella progettazione industriale, il gruppo avvia Sinersys (Synergy Systems), società interamente dedicata allo sviluppo di sistemi per la conversione dell'energia atmosferica e dei moti fluidi in energia elettrica continua."
       },
-      "t2024": {
-        "title": "Verso la generazione energetica distribuita globale",
-        "description": "Sinersys avvia i primi progetti internazionali e amplia il team di ricerca e sviluppo. La missione rimane invariata: rendere l'energia pulita, continua e accessibile una realtà concreta per industrie e comunità in tutto il mondo."
+
+      "t2002": {
+        "title": "Avvio degli studi scientifici specifici sul generatore APWEC®",
+        "description": "Sinersys inaugura il programma scientifico dedicato alla trasformazione della pressione atmosferica in flusso cinetico energetico. Inizia la fase sperimentale che porterà alla realizzazione del primo prototipo funzionale e alla validazione del principio fisico del generatore APWEC®."
+      },
+
+      "t2008": {
+        "title": "Deposito del brevetto Silo Eolico Perfezionato®",
+        "description": "Dopo i primi test prototipali e le verifiche ingegneristiche, Sinersys deposita il brevetto Silo Eolico Perfezionato®, prima formalizzazione industriale del sistema di conversione energetica basato su camere di induzione e pressione atmosferica controllata."
+      },
+
+      "t2010": {
+        "title": "Deposito del brevetto APWEC® e validazione internazionale",
+        "description": "Viene depositato il secondo brevetto APWEC® (Atmospheric Pressure Wind Eolic Collector), evoluzione completa della tecnologia proprietaria Sinersys. Il sistema viene sottoposto a test e certificazioni tecniche con TÜV Thüringen e Università di Ilmenau, consolidando la credibilità scientifica del progetto su scala internazionale."
       }
     },
     "teamLabel": "Il Team",
@@ -335,11 +349,26 @@
     "s2": {
       "heading": "I nostri valori",
       "p1": "Ogni decisione che prendiamo — strategica, operativa, commerciale — è orientata dai seguenti principi fondamentali:",
-      "v1": { "title": "Integrità", "body": "Manteniamo coerenza tra ciò che diciamo e ciò che facciamo. Ci assumiamo la responsabilità dei nostri errori e non li minimizziamo." },
-      "v2": { "title": "Innovazione consapevole", "body": "Sviluppiamo tecnologia con la piena consapevolezza delle sue implicazioni sociali e ambientali. L'innovazione che non porta benefici concreti alla transizione energetica non è progresso." },
-      "v3": { "title": "Rispetto reciproco", "body": "Ogni persona che interagisce con Sinersys merita rispetto della propria dignità, indipendentemente dal ruolo o dalla posizione." },
-      "v4": { "title": "Sostenibilità reale", "body": "Non usiamo la sostenibilità come strumento di marketing. I nostri impegni ambientali e sociali sono misurabili e verificabili." },
-      "v5": { "title": "Trasparenza", "body": "Comunichiamo in modo chiaro, anche quando le notizie sono difficili. La fiducia si costruisce con l'onestà, non con le rassicurazioni." }
+      "v1": {
+        "title": "Integrità",
+        "body": "Manteniamo coerenza tra ciò che diciamo e ciò che facciamo. Ci assumiamo la responsabilità dei nostri errori e non li minimizziamo."
+      },
+      "v2": {
+        "title": "Innovazione consapevole",
+        "body": "Sviluppiamo tecnologia con la piena consapevolezza delle sue implicazioni sociali e ambientali. L'innovazione che non porta benefici concreti alla transizione energetica non è progresso."
+      },
+      "v3": {
+        "title": "Rispetto reciproco",
+        "body": "Ogni persona che interagisce con Sinersys merita rispetto della propria dignità, indipendentemente dal ruolo o dalla posizione."
+      },
+      "v4": {
+        "title": "Sostenibilità reale",
+        "body": "Non usiamo la sostenibilità come strumento di marketing. I nostri impegni ambientali e sociali sono misurabili e verificabili."
+      },
+      "v5": {
+        "title": "Trasparenza",
+        "body": "Comunichiamo in modo chiaro, anche quando le notizie sono difficili. La fiducia si costruisce con l'onestà, non con le rassicurazioni."
+      }
     },
     "s3": {
       "heading": "Ambiente di lavoro",
@@ -388,17 +417,32 @@
     "s1": {
       "heading": "Titolare del trattamento",
       "p1": "La presente informativa è redatta ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR) e si applica a chiunque visiti il sito web sinersys.it o interagisca con i servizi di Sinersys.",
-      "controller": "Titolare del trattamento: ", "controllerVal": "Sinersys S.r.l.",
-      "address": "Sede legale: ", "addressVal": "[INSERIRE INDIRIZZO REALE DA VISURA CAMERALE]",
-      "email": "Contatto privacy: ", "emailVal": "privacy@sinersys.it"
+      "controller": "Titolare del trattamento: ",
+      "controllerVal": "Sinersys S.r.l.",
+      "address": "Sede legale: ",
+      "addressVal": "Zona Industriale C.da Saletti - 66041 Piazzano di Atessa (Ch.)",
+      "email": "Contatto privacy: ",
+      "emailVal": "privacy@sinersys.it"
     },
     "s2": {
       "heading": "Categorie di dati trattati",
       "p1": "In funzione del tipo di interazione con i nostri servizi, trattiamo le seguenti categorie di dati personali:",
-      "d1": { "title": "Dati di navigazione", "body": "Indirizzo IP, tipo di browser e sistema operativo, pagine visitate, timestamp degli accessi." },
-      "d2": { "title": "Dati comunicati volontariamente", "body": "Nome, cognome, indirizzo email, numero di telefono e ogni altra informazione inserita nei form di contatto." },
-      "d3": { "title": "Dati contrattuali", "body": "Informazioni necessarie per la stipula e la gestione di contratti di fornitura." },
-      "d4": { "title": "Dati tecnici di utilizzo", "body": "Statistiche aggregate sull'utilizzo delle funzionalità del sito, raccolte in forma anonimizzata." }
+      "d1": {
+        "title": "Dati di navigazione",
+        "body": "Indirizzo IP, tipo di browser e sistema operativo, pagine visitate, timestamp degli accessi."
+      },
+      "d2": {
+        "title": "Dati comunicati volontariamente",
+        "body": "Nome, cognome, indirizzo email, numero di telefono e ogni altra informazione inserita nei form di contatto."
+      },
+      "d3": {
+        "title": "Dati contrattuali",
+        "body": "Informazioni necessarie per la stipula e la gestione di contratti di fornitura."
+      },
+      "d4": {
+        "title": "Dati tecnici di utilizzo",
+        "body": "Statistiche aggregate sull'utilizzo delle funzionalità del sito, raccolte in forma anonimizzata."
+      }
     },
     "s3": {
       "heading": "Finalità e basi giuridiche",
@@ -412,9 +456,18 @@
     "s4": {
       "heading": "Destinatari dei dati",
       "p1": "I dati personali non vengono venduti a terzi. Possono essere comunicati esclusivamente a:",
-      "b1": { "title": "Responsabili del trattamento", "body": "Fornitori di servizi tecnici (hosting, email, CRM, analytics) che trattano dati per nostro conto sulla base di specifici accordi contrattuali." },
-      "b2": { "title": "Professionisti e consulenti", "body": "Commercialisti, consulenti legali e altri professionisti che necessitano di accedere a determinati dati per l'esercizio del loro incarico." },
-      "b3": { "title": "Autorità pubbliche", "body": "Forze dell'ordine, autorità giudiziarie o amministrative, esclusivamente su richiesta formale o in adempimento di un obbligo di legge." }
+      "b1": {
+        "title": "Responsabili del trattamento",
+        "body": "Fornitori di servizi tecnici (hosting, email, CRM, analytics) che trattano dati per nostro conto sulla base di specifici accordi contrattuali."
+      },
+      "b2": {
+        "title": "Professionisti e consulenti",
+        "body": "Commercialisti, consulenti legali e altri professionisti che necessitano di accedere a determinati dati per l'esercizio del loro incarico."
+      },
+      "b3": {
+        "title": "Autorità pubbliche",
+        "body": "Forze dell'ordine, autorità giudiziarie o amministrative, esclusivamente su richiesta formale o in adempimento di un obbligo di legge."
+      }
     },
     "s5": {
       "heading": "Trasferimenti extra-UE",
@@ -424,11 +477,26 @@
     "s6": {
       "heading": "I tuoi diritti",
       "p1": "In quanto interessato, hai diritto di:",
-      "r1": { "title": "Accesso (art. 15)", "body": "Ottenere conferma che stiamo trattando tuoi dati personali e riceverne una copia." },
-      "r2": { "title": "Rettifica (art. 16)", "body": "Chiedere la correzione di dati inesatti o il completamento di dati incompleti." },
-      "r3": { "title": "Cancellazione (art. 17)", "body": "Richiedere la cancellazione nei casi previsti dalla normativa." },
-      "r4": { "title": "Limitazione (art. 18)", "body": "Richiedere che il trattamento sia limitato a determinate operazioni in circostanze specifiche." },
-      "r5": { "title": "Portabilità (art. 20)", "body": "Ricevere i dati forniti in un formato strutturato e machine-readable." },
+      "r1": {
+        "title": "Accesso (art. 15)",
+        "body": "Ottenere conferma che stiamo trattando tuoi dati personali e riceverne una copia."
+      },
+      "r2": {
+        "title": "Rettifica (art. 16)",
+        "body": "Chiedere la correzione di dati inesatti o il completamento di dati incompleti."
+      },
+      "r3": {
+        "title": "Cancellazione (art. 17)",
+        "body": "Richiedere la cancellazione nei casi previsti dalla normativa."
+      },
+      "r4": {
+        "title": "Limitazione (art. 18)",
+        "body": "Richiedere che il trattamento sia limitato a determinate operazioni in circostanze specifiche."
+      },
+      "r5": {
+        "title": "Portabilità (art. 20)",
+        "body": "Ricevere i dati forniti in un formato strutturato e machine-readable."
+      },
       "contact": "Per esercitare i tuoi diritti scrivi a privacy@sinersys.it. Risponderemo entro 30 giorni."
     },
     "s7": {
@@ -455,10 +523,22 @@
     "s2": {
       "heading": "Tipi di cookie che utilizziamo",
       "p1": "Classifichiamo i cookie che utilizziamo in quattro categorie:",
-      "c1": { "title": "Cookie tecnici essenziali", "body": "Necessari per il funzionamento del sito. Non richiedono consenso e non possono essere disattivati." },
-      "c2": { "title": "Cookie analitici", "body": "Raccolgono informazioni aggregate su come gli utenti utilizzano il sito. I dati vengono anonimizzati prima dell'elaborazione. Richiedono consenso." },
-      "c3": { "title": "Cookie funzionali", "body": "Permettono al sito di ricordare scelte effettuate dall'utente per offrire un'esperienza più personalizzata. Richiedono consenso." },
-      "c4": { "title": "Cookie di marketing e profilazione", "body": "Utilizzati per mostrare contenuti pubblicitari rilevanti e misurare l'efficacia delle campagne. Richiedono consenso esplicito." }
+      "c1": {
+        "title": "Cookie tecnici essenziali",
+        "body": "Necessari per il funzionamento del sito. Non richiedono consenso e non possono essere disattivati."
+      },
+      "c2": {
+        "title": "Cookie analitici",
+        "body": "Raccolgono informazioni aggregate su come gli utenti utilizzano il sito. I dati vengono anonimizzati prima dell'elaborazione. Richiedono consenso."
+      },
+      "c3": {
+        "title": "Cookie funzionali",
+        "body": "Permettono al sito di ricordare scelte effettuate dall'utente per offrire un'esperienza più personalizzata. Richiedono consenso."
+      },
+      "c4": {
+        "title": "Cookie di marketing e profilazione",
+        "body": "Utilizzati per mostrare contenuti pubblicitari rilevanti e misurare l'efficacia delle campagne. Richiedono consenso esplicito."
+      }
     },
     "s3": {
       "heading": "Cookie di terze parti",
@@ -493,8 +573,7 @@
       "home": "Homepage",
       "apwec": "APWEC",
       "about": "Chi Siamo",
-      "certs": "Certificazioni",
-      "faq": "FAQ"
+      "certs": "Contattaci"
     },
     "other": {
       "title": "Other Links",

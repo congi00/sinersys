@@ -66,14 +66,12 @@ export default function Footer() {
     { label: t("quick.apwec"),   href: "/apwec" },
     { label: t("quick.about"),   href: "/about-us" },
     { label: t("quick.certs"),   href: "/certificazioni" },
-    { label: t("quick.faq"),     href: "/#faq" },
   ];
 
   const otherLinks = [
-    { label: t("other.gallery"),  href: "/galleria" },
     { label: t("other.ethics"),   href: "/codice-etico" },
     { label: t("other.privacy"),  href: "/privacy" },
-    { label: t("other.cookies"),  href: "/cookie-policy" },
+    { label: t("other.cookies"),  href: "/cookies" },
   ];
 
   const contactLinks = [
@@ -152,7 +150,7 @@ export default function Footer() {
           <p>{t("legal.company")}</p>
           <div className="flex gap-6">
             <GlowLink href="/privacy">{t("legal.privacy")}</GlowLink>
-            <GlowLink href="/cookie-policy">{t("legal.cookies")}</GlowLink>
+            <GlowLink href="/cookies">{t("legal.cookies")}</GlowLink>
             <GlowLink href="/codice-etico">{t("legal.ethics")}</GlowLink>
           </div>
         </motion.div>
