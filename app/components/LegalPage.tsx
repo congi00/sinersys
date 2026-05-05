@@ -233,7 +233,7 @@ export default function LegalPage({
   const OPEN_PX = vh;
   const SCROLL_PX = Math.max(contentH - vh + 80, 0); // +80 = bottom breathing room
   const CLOSE_PX = vh * 0.3;
-  const FOOTER_PX = 320;
+  const FOOTER_PX = isMobile ? 1000 : 320;
 
   const kReadEnd = OPEN_PX + SCROLL_PX;
   const kCloseEnd = kReadEnd + CLOSE_PX;
@@ -242,8 +242,8 @@ export default function LegalPage({
   // ── Card Y exit — spring-smoothed ───────────────────────────────────────
   const cardY = useTransform(
     scrollSmooth,
-    [0, kReadEnd - 200, kCloseEnd + FOOTER_PX],
-    [0, 0, -(CLOSE_PX * 3)]
+    [0, kReadEnd - 200, kCloseEnd + FOOTER_PX - (isMobile ? 300 : 0)],
+    [0, 0, -(CLOSE_PX * (isMobile? 4:3))]
   );
 
   // ── Content Y — RAW 1:1, no spring, no lag ──────────────────────────────
