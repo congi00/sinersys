@@ -586,18 +586,16 @@
       "title": "Contattaci",
       "email": "info@sinersys.it",
       "emailVal": "info@sinersys.it",
-      "address": "Via della Zecca, 1 – Bologna",
+      "address": "Sede Amministrativa:\n Via della Zecca, 1 – Bologna",
       "addressVal": "Via della Zecca 1, Bologna, Italy",
-      "phone": "+39 346 756 3723",
-      "phoneVal": "+393467563723",
-      "web": "www.sinersys.it",
-      "webVal": "sinersys.it"
+      "address2": "Sede Legale:\n Zona Industriale C.da Saletti - 66041 Piazzano di Atessa (Ch.)",
+      "address2Val": "Via della Zecca 1, Bologna, Italy",
+      "phone": "+39 348 323 4275",
+      "phoneVal": "+393483234275",
+      "piva": "P.IVA - 00481850378"
     },
     "legal": {
-      "company": "Sinersys – Motor Union Italia s.r.l.",
-      "privacy": "Privacy",
-      "cookies": "Cookie",
-      "ethics": "Codice Etico"
+      "company": "Sinersys – Motor Union Italia s.r.l."
     },
     "social": {}
   }

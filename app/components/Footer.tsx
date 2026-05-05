@@ -36,7 +36,7 @@ function GlowLink({ href, children }: { href: string; children: React.ReactNode 
     <motion.a
       href={href}
       {...props}
-      className="block relative text-[#f4f7fa]/80 mb-2 transition-colors"
+      className="block relative text-sm text-[#f4f7fa]/80 mb-2 transition-colors whitespace-pre-line"
       whileHover={{
         color: "#f4f7fa",
         textShadow: "0px 0px 8px rgba(255,255,255,0.8), 0px 0px 20px rgba(99,102,241,0.6)",
@@ -52,7 +52,6 @@ export default function Footer() {
   const t   = useTranslations("footer");
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-100px" });
-
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -76,9 +75,10 @@ export default function Footer() {
 
   const contactLinks = [
     { label: t("contact.email"),   href: `mailto:${t("contact.emailVal")}` },
-    { label: t("contact.address"), href: `https://maps.google.com/?q=${encodeURIComponent(t("contact.addressVal"))}` },
     { label: t("contact.phone"),   href: `tel:${t("contact.phoneVal")}` },
-    { label: t("contact.web"),     href: `https://${t("contact.webVal")}` },
+    { label: t("contact.address"), href: `https://maps.google.com/?q=${encodeURIComponent(t("contact.addressVal"))}` },
+    { label: t("contact.address2"), href: `https://maps.google.com/?q=${encodeURIComponent(t("contact.address2Val"))}` },
+    { label: t("contact.piva"), href: ''}
   ];
 
   return (
@@ -97,7 +97,7 @@ export default function Footer() {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="relative max-w-6xl mx-auto px-6"
+        className="relative max-w-5xl mx-auto px-6"
       >
         {/* Logo */}
         <motion.div variants={itemVariants} className="text-center mb-16">
@@ -112,12 +112,12 @@ export default function Footer() {
         {/* Card */}
         <motion.div
           variants={itemVariants}
-          className="bg-white/10 backdrop-blur-xl rounded-3xl p-12 border border-white/20 shadow-2xl"
+          className="bg-white/10 backdrop-blur-xl rounded-3xl py-6 px-10 border border-white/20 shadow-2xl"
         >
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-2">
 
             {/* Quick Links */}
-            <div>
+            <div className="sm:text-left text-center">
               <h3 className="font-bold mb-4 text-lg">{t("quick.title")}</h3>
               {quickLinks.map((link, i) => (
                 <GlowLink key={i} href={link.href}>{link.label}</GlowLink>
@@ -125,7 +125,7 @@ export default function Footer() {
             </div>
 
             {/* Other Links */}
-            <div>
+            <div className="sm:text-left text-center">
               <h3 className="font-bold mb-4 text-lg">{t("other.title")}</h3>
               {otherLinks.map((link, i) => (
                 <GlowLink key={i} href={link.href}>{link.label}</GlowLink>
@@ -133,7 +133,7 @@ export default function Footer() {
             </div>
 
             {/* Contatti */}
-            <div>
+            <div className="sm:text-left text-center">
               <h3 className="font-bold mb-4 text-lg">{t("contact.title")}</h3>
               {contactLinks.map((link, i) => (
                 <GlowLink key={i} href={link.href}>{link.label}</GlowLink>
@@ -149,9 +149,7 @@ export default function Footer() {
         >
           <p>{t("legal.company")}</p>
           <div className="flex gap-6">
-            <GlowLink href="/privacy">{t("legal.privacy")}</GlowLink>
-            <GlowLink href="/cookies">{t("legal.cookies")}</GlowLink>
-            <GlowLink href="/codice-etico">{t("legal.ethics")}</GlowLink>
+            Website Developed by Alessandro Congiusti
           </div>
         </motion.div>
       </motion.div>

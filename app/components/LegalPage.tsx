@@ -257,6 +257,18 @@ export default function LegalPage({
     }
   );
 
+  const hiddenMenu  = useTransform(
+    scrollPx,
+    [0,kReadEnd, kCloseEnd],
+    [1, 1, 0 ]
+  );
+
+  const menuTheme =  useTransform(
+    scrollPx,
+    [0],
+    [0 ]
+  );
+
   const liquidProgress = useMotionValue(0);
   const headerTheme = useMotionValue(0);
   const hPad = "clamp(1.5rem,8vw,7rem)";
@@ -277,7 +289,7 @@ export default function LegalPage({
         style={{ height: totalHeight, zIndex: 1 }}
       >
         {!openContact && <Header headerTheme={headerTheme} />}
-        {!openContact && <MenuButton />}
+        {!openContact && <MenuButton menuTheme={menuTheme} hiddenMenu={hiddenMenu}/>}
 
         {/* ── CARD ────────────────────────────────────────────────────── */}
         <motion.div
