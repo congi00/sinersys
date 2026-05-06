@@ -541,7 +541,7 @@ export default function Home() {
             background: "#f4f7fa",
           }}
         >
-          <Footer />
+          <Footer openContact={() => dispatch(setOpenContact(true))} />
         </div>
 
         {!openContact && <MenuButton menuTheme={menuTheme} hiddenMenu={hiddenMenu}/>}

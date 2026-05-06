@@ -43,7 +43,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuButton from "../components/MenuButton";
 import LiquidBackground from "../components/LiquidBackground";
-import { useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { setOpenContact } from "../features/counterSlice";
 
 // ─────────────────────────────────────────────────────────────────────────────
 export interface LegalSection {
@@ -272,6 +273,7 @@ export default function LegalPage({
   const liquidProgress = useMotionValue(0);
   const headerTheme = useMotionValue(0);
   const hPad = "clamp(1.5rem,8vw,7rem)";
+  const dispatch = useAppDispatch();
 
   // Guard: wait until we have real measurements to avoid wrong keyframes
   if (!mounted || vhPx === 0) {
@@ -455,7 +457,7 @@ export default function LegalPage({
             zIndex: 11,
           }}
         >
-          <Footer />
+          <Footer openContact={() => dispatch(setOpenContact(true))} />
         </div>
       </div>
     </>

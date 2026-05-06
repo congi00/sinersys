@@ -813,7 +813,7 @@ export default function ApwecPage() {
           {/* Whitespace gap before footer */}
           <div style={{ height: "20vh" }} />
 
-          <Footer />
+          <Footer openContact={() => dispatch(setOpenContact(true))}/>
         </motion.div>
 
         <ContactDrawer

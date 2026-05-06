@@ -114,18 +114,24 @@
       "submit": "Invia richiesta"
     }
   },
-
   "aboutus": {
     "hero": {
       "suptitle": "Chi Siamo",
       "title": "Un sogno italiano\ndiventato energia",
       "subtitle": "Le origini di Sinersys affondano in oltre cento anni di esperienza nella meccanica, nell'automotive e nella ricerca fluidodinamica applicata. Un percorso tecnico che ha condotto allo sviluppo del sistema proprietario APWEC®.",
-      "stat0val": "1919",
-      "stat0label": "Origini industriali",
-      "stat1val": "1977",
-      "stat1label": "Anni di esperienza",
-      "stat2val": "0",
-      "stat2label": "Emissioni di CO₂",
+      "slide1suptitle": "La nostra storia",
+      "slide1title": "Dal dopoguerra\nall'energia del futuro",
+      "slide1subtitle": "Cento anni di collaborazioni industriali, brevetti depositati in tutto il mondo e una ricerca ossessiva sui principi della fluidodinamica hanno prodotto APWEC®",
+      "ms0label": "Origini DKW",
+      "ms1label": "Importatore Honda",
+      "ms2label": "Laboratorio B-Art",
+      "ms3label": "Primo prototipo",
+      "ms4label": "Brevetto APWEC®",
+      "partnersLabel": "Partnership industriali",
+      "patentsLabel": "Brevetti internazionali",
+      "pat0name": "Motore a 6 Fasi",
+      "pat1name": "Silo Eolico Perfezionato®",
+      "pat2name": "APWEC® — Seconda generazione",
       "mission": "Sinersys nasce come evoluzione di una lunga tradizione imprenditoriale e ingegneristica sviluppata tra progettazione meccanica, ricerca termodinamica e studio dei moti fluidi."
     },
     "whoweareLabel": "Chi Siamo",
@@ -203,7 +209,7 @@
       "member1": {
         "name": "Gianluca Acciarri",
         "role": "Ingegnere",
-        "bio": "Specializzato in fluidodinamica e progettazione. Ha guidato lo sviluppo del prototipo APWEC dal laboratorio all'installazione industriale."
+        "bio": "Specializzato in fluidodinamica e progettazione, ha guidato lo sviluppo del prototipo APWEC."
       },
       "joinTitle": "Vuoi far parte del team che sta ridefinendo la generazione di energia rinnovabile?",
       "joinSubtitle": "Siamo alla ricerca di ingegneri, ricercatori e professionisti che condividano la nostra visione: un mondo in cui l'energia pulita, continua e accessibile è la norma, non l'eccezione.",
