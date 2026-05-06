@@ -7,6 +7,7 @@ import {
   useSpring,
   useTransform,
   useMotionValueEvent,
+  useInView,
 } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import { useTranslations } from "next-intl";
@@ -19,7 +20,7 @@ import { setNavigationState, setOpenContact } from "../features/counterSlice";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
 
-const SCENES = 5;
+const SCENES = 6.2;
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -46,6 +47,420 @@ function GlassCard({
     >
       {children}
     </div>
+  );
+}
+
+function Appear({
+  children,
+  delay = 0,
+  direction = "up",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  direction?: "up" | "left" | "right" | "none";
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-70px 0px" });
+  const y = direction === "up" ? 36 : 0;
+  const x = direction === "left" ? -48 : direction === "right" ? 48 : 0;
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y, x }}
+      animate={inView ? { opacity: 1, y: 0, x: 0 } : {}}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+ 
+function SectionDivider() {
+  return (
+    <div
+      style={{
+        height: "1px",
+        background: "rgba(255,255,255,0.07)",
+        margin: "0 clamp(1.5rem,8vw,7rem)",
+      }}
+    />
+  );
+}
+ 
+function SectionLabel({ text }: { text: string }) {
+  return (
+    <span
+      style={{
+        display: "block",
+        textTransform: "uppercase",
+        color: "rgba(100,150,255,0.75)",
+        fontWeight: 700,
+        letterSpacing: "0.18em",
+        marginBottom: "clamp(2rem,4vh,3rem)",
+        fontSize: "clamp(0.62rem,0.85vw,0.72rem)",
+      }}
+    >
+      {text}
+    </span>
+  );
+}
+
+export function HowItWorksSection({
+  t,
+  isMobile,
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  t: any;
+  isMobile: boolean;
+}) {
+  const stages = [
+    { key: "cdi0", accent: "rgba(60,130,255,0.65)" },
+    { key: "cdi1", accent: "rgba(90,160,255,0.55)" },
+    { key: "cdi2", accent: "rgba(120,190,255,0.45)" },
+    { key: "cdi3", accent: "rgba(160,220,255,0.35)" },
+  ];
+ 
+  return (
+    <>
+      <SectionDivider />
+      <section
+        style={{
+          padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
+        }}
+      >
+        <Appear>
+          <SectionLabel text={t("howItWorks.label")} />
+        </Appear>
+ 
+        {/* Title + intro grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gap: "clamp(2rem,5vw,5rem)",
+            alignItems: "start",
+            marginBottom: "clamp(3rem,6vh,5rem)",
+          }}
+        >
+          <Appear direction="left">
+            <h2
+              style={{
+                margin: 0,
+                lineHeight: 1.05,
+                color: "#f4f7fa",
+                fontWeight: 800,
+                letterSpacing: "-0.02em",
+              }}
+              className="text-3xl sm:text-6xl tracking-wide font-bold"
+            >
+              {t("howItWorks.title")}
+            </h2>
+          </Appear>
+          <Appear direction="right" delay={0.08}>
+            <p
+              style={{
+                margin: 0,
+                lineHeight: 1.65,
+                color: "rgba(200,218,250,0.70)",
+                fontWeight: 300,
+              }}
+              className="text-lg sm:text-xl font-light"
+            >
+              {t("howItWorks.intro")}
+            </p>
+          </Appear>
+        </div>
+ 
+        {/* Two-shell diagram */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gap: "clamp(1rem,2vw,1.4rem)",
+            marginBottom: "clamp(3rem,6vh,5rem)",
+          }}
+        >
+          {(["shell1", "shell2"] as const).map((shell, i) => (
+            <Appear key={shell} delay={i * 0.1}>
+              <GlassCard
+                style={{
+                  padding: "clamp(1.6rem,3vw,2.4rem)",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                {/* ghost number */}
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "0.8rem",
+                    right: "1rem",
+                    fontSize: "clamp(3rem,6vw,5rem)",
+                    fontWeight: 900,
+                    color: "rgba(100,150,255,0.05)",
+                    lineHeight: 1,
+                    userSelect: "none",
+                    letterSpacing: "-0.05em",
+                  }}
+                >
+                  {i + 1}
+                </span>
+                {/* accent bar */}
+                <div
+                  style={{
+                    width: "32px",
+                    height: "2px",
+                    background:
+                      "linear-gradient(90deg,rgba(80,150,255,0.7),transparent)",
+                    borderRadius: "2px",
+                    marginBottom: "1rem",
+                  }}
+                />
+                <p
+                  style={{
+                    margin: "0 0 0.4rem",
+                    fontSize: "0.62rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "rgba(100,160,255,0.55)",
+                  }}
+                >
+                  {t(`howItWorks.${shell}.label`)}
+                </p>
+                <h3
+                  style={{
+                    margin: "0 0 0.8rem",
+                    lineHeight: 1.1,
+                    color: "#f4f7fa",
+                    fontWeight: 700,
+                  }}
+                  className="text-2xl sm:text-4xl font-bold"
+                >
+                  {t(`howItWorks.${shell}.title`)}
+                </h3>
+                <p
+                  style={{
+                    margin: 0,
+                    lineHeight: 1.65,
+                    color: "rgba(200,218,250,0.65)",
+                    fontWeight: 300,
+                  }}
+                  className="text-base sm:text-lg font-light"
+                >
+                  {t(`howItWorks.${shell}.desc`)}
+                </p>
+              </GlassCard>
+            </Appear>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+ 
+// ── 3. ADVANTAGES — confronto APWEC vs stato dell'arte ───────────────────────
+export function AdvantagesSection({
+  t,
+  isMobile,
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  t: any;
+  isMobile: boolean;
+}) {
+  const advantages = ["a0", "a1", "a2", "a3", "a4", "a5"] as const;
+ 
+  return (
+    <>
+      <SectionDivider />
+      <section
+        style={{
+          padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
+        }}
+      >
+        <Appear>
+          <SectionLabel text={t("advantages.label")} />
+        </Appear>
+ 
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gap: "clamp(2rem,5vw,5rem)",
+            alignItems: "start",
+            marginBottom: "clamp(3rem,6vh,5rem)",
+          }}
+        >
+          <Appear direction="left">
+            <h2
+              style={{
+                margin: 0,
+                lineHeight: 1.05,
+                color: "#f4f7fa",
+                fontWeight: 800,
+                letterSpacing: "-0.02em",
+              }}
+              className="text-3xl sm:text-6xl tracking-wide font-bold"
+            >
+              {t("advantages.title")}
+            </h2>
+          </Appear>
+          <Appear direction="right" delay={0.08}>
+            <p
+              style={{
+                margin: 0,
+                lineHeight: 1.65,
+                color: "rgba(200,218,250,0.70)",
+                fontWeight: 300,
+              }}
+              className="text-lg sm:text-xl font-light"
+            >
+              {t("advantages.intro")}
+            </p>
+          </Appear>
+        </div>
+ 
+        {/* Advantage cards */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile
+              ? "1fr"
+              : "repeat(3,1fr)",
+            gap: "clamp(1rem,2vw,1.4rem)",
+            marginBottom: "clamp(2rem,4vh,3rem)",
+          }}
+        >
+          {advantages.map((ak, i) => (
+            <Appear key={ak} delay={i * 0.07}>
+              <motion.div
+                whileHover={{ scale: 1.025, y: -4 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                style={{ height: "100%" }}
+              >
+                <GlassCard
+                  style={{
+                    padding: "clamp(1.2rem,2vw,1.8rem)",
+                    height: "100%",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  {/* index ghost */}
+                  <span
+                    style={{
+                      position: "absolute",
+                      bottom: "0.6rem",
+                      right: "0.8rem",
+                      fontSize: "clamp(2rem,4vw,3rem)",
+                      fontWeight: 900,
+                      color: "rgba(80,130,255,0.06)",
+                      lineHeight: 1,
+                      userSelect: "none",
+                      letterSpacing: "-0.05em",
+                    }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+ 
+                  {/* check icon */}
+                  <div
+                    style={{
+                      width: "28px",
+                      height: "28px",
+                      borderRadius: "50%",
+                      background: "rgba(60,120,255,0.15)",
+                      border: "1px solid rgba(80,150,255,0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: "0.9rem",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <svg width="12" height="9" viewBox="0 0 12 9">
+                      <path
+                        d="M1 4l3.5 3.5L11 1"
+                        stroke="rgba(120,190,255,0.8)"
+                        strokeWidth="1.5"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+ 
+                  <p
+                    style={{
+                      margin: "0 0 0.4rem",
+                      fontSize: "0.6rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      color: "rgba(100,160,255,0.5)",
+                    }}
+                  >
+                    {t(`advantages.${ak}.label`)}
+                  </p>
+                  <h3
+                    style={{
+                      margin: "0 0 0.5rem",
+                      lineHeight: 1.15,
+                      color: "#eef2fa",
+                      fontWeight: 700,
+                      fontSize: "clamp(0.9rem,1.2vw,1.05rem)",
+                    }}
+                  >
+                    {t(`advantages.${ak}.title`)}
+                  </h3>
+                  <p
+                    style={{
+                      margin: 0,
+                      lineHeight: 1.6,
+                      color: "rgba(190,215,255,0.58)",
+                      fontWeight: 300,
+                      fontSize: "clamp(0.78rem,1vw,0.88rem)",
+                    }}
+                  >
+                    {t(`advantages.${ak}.desc`)}
+                  </p>
+                </GlassCard>
+              </motion.div>
+            </Appear>
+          ))}
+        </div>
+ 
+        {/* vs. Stato dell'arte comparison strip */}
+        <Appear delay={0.1}>
+          <div
+            style={{
+              background: "rgba(10,20,60,0.55)",
+              border: "1px solid rgba(80,130,255,0.15)",
+              borderRadius: "16px",
+              padding: "clamp(1.4rem,2.5vw,2rem)",
+              display: "flex",
+              flexDirection: isMobile ? "column" : "row",
+              gap: "clamp(1.2rem,2.5vw,2rem)",
+              alignItems: isMobile ? "flex-start" : "center",
+            }}
+          >
+            <p
+              style={{
+                margin: 0,
+                lineHeight: 1.65,
+                color: "rgba(190,215,255,0.60)",
+                fontWeight: 300,
+                fontSize: "clamp(0.82rem,1.05vw,0.92rem)",
+                textAlign: "center",
+                whiteSpace: "pre-line"
+              }}
+            >
+              {t("advantages.vsDesc")}
+            </p>
+          </div>
+        </Appear>
+      </section>
+    </>
   );
 }
 
@@ -246,7 +661,7 @@ export default function ApwecPage() {
    */
   const gradientPage = useTransform(
     smooth,
-    [0, isMobile? 3.7 : 3.8, 3.9],
+    [0, isMobile? 3.6 : 4.0, 4.4,],
     [
       "#F4F7FA",
       "#F4F7FA",
@@ -256,7 +671,7 @@ export default function ApwecPage() {
 
   const gradientPageH = useTransform(
     smooth,
-    [0, 2.4, isMobile ? 3.7 : 3.9, 4.3, 4.4],
+    [0, 2.4, isMobile ? 4.2 : 4.2, 4.4, 4.5],
     [
       "#F4F7FA",
       "#F4F7FA",
@@ -268,24 +683,24 @@ export default function ApwecPage() {
 
   const colorP = useTransform(
     smooth,
-    [0,isMobile? 3.6 : 3.8, isMobile? 3.7 : 3.9],
+    [0,isMobile? 3.6 : 3.9, isMobile? 3.7 : 4.0],
     ["#1c398e", "#1c398e", "rgba(160,196,255,0.7)"]
   );
 
   const colorTitle = useTransform(
     smooth,
-    [0,isMobile? 3.6 : 3.8,isMobile? 3.7 : 3.9],
+    [0,isMobile? 3.6 : 3.9,isMobile? 3.7 : 4.0],
     ["#1c398e", "#1c398e", "#f4f7fa"]
   );
 
   const colorSub = useTransform(
     smooth,
-    [0,isMobile? 3.6 : 3.8, isMobile? 3.7 : 3.9],
+    [0,isMobile? 3.6 : 3.9, isMobile? 3.7 : 4.0],
     ["#1c398e", "#1c398e", "rgba(200,218,250,0.72)"]
   );
 
-  const contentRadius = useTransform(smooth, [4.4, 4.7], [0, 24]);
-  const contentScale = useTransform(smooth, [4.4, 4.7], [1, 0.97]);
+  const contentRadius = useTransform(smooth, [5.6, 5.9], [0, 24]);
+  const contentScale = useTransform(smooth, [5.6, 5.9], [1, 0.97]);
   const contentY = useTransform(smooth, [5.5, 5.6], [0, -86]);
   const contentBR = useTransform(contentRadius, (v) => `${v}px`);
 
@@ -349,6 +764,7 @@ export default function ApwecPage() {
       : {
           top: "clamp(5.5rem,8vh,7rem)",
           left: "clamp(2rem,5vw,5rem)",
+          right: "clamp(2rem,5vw,5rem)",
           maxWidth: "48%",
         }),
     ...extra,
@@ -445,26 +861,26 @@ export default function ApwecPage() {
             />
 
             {/* Slide 0 */}
-            <motion.div style={{ ...textWrap(isMobile? {top:"20%"} : {
+            <motion.div style={{ ...textWrap(isMobile? {top:"25%"} : {
               top: "20%"
             }), ...s0 }}>
-              <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] " style={sup}>{t("slide0.suptitle")}</span>
-              <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line" style={h1s}>{t("slide0.title")}</h1>
-              <p className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light" style={{...bodys, ...(isMobile ? {textAlign: "left", marginTop: "5%"} : {})}}>{t("slide0.subtitle")}</p>
+              <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] text-center" style={sup}>{t("slide0.suptitle")}</span>
+              <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line text-center" style={h1s}>{t("slide0.title")}</h1>
+              <p className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light text-center" style={{...bodys, ...(isMobile ? {marginTop: "65%"} : {})}}>{t("slide0.subtitle")}</p>
             </motion.div>
 
             {/* Slide 1 */}
             <motion.div style={{ ...textWrap(isMobile? {
-              textAlign: "right",
+              textAlign: "center",
               top: "15%",
             } : {
               top: "20%",
-              left: "45%",
-              textAlign:"right"
+              textAlign: "center",
+              maxWidth: "100vw",
             }), ...s1 }}>
               <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] " style={sup}>{t("slide1.suptitle")}</span>
               <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line" style={h1s}>{t("slide1.title")}</h1>
-              <p className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light" style={{...bodys, ...(isMobile ? {textAlign: "left", marginTop: "35%"} : {})}}>{t("slide1.subtitle")}</p>
+              <p className="text-lg sm:text-xl sm:text-4xl mt-4 sm:whitespace-pre-line font-light text-center" style={{...bodys, ...(isMobile ? { marginTop: "70%"} : {maxWidth: "100%"})}}>{t("slide1.subtitle")}</p>
             </motion.div>
 
             {/* Slide 2 — centred on desktop */}
@@ -473,34 +889,33 @@ export default function ApwecPage() {
                 ...textWrap(
                   isMobile
                     ? {
-                      top: "20%",
+                      top: "12%",
                     }
                     : {
+                        top: "20%",
                         left: "5%",
-                        top: "50%",
-                        transform: "translate(-50%,-50%)",
-                        maxWidth: "800px",
-                        textAlign: "left",
+                        textAlign: "center",
+                        maxWidth: "100vw"
                       }
                 ),
                 ...s2,
               }}
             >
               <span
-                className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8]"
-                style={{ ...sup, ...(isMobile ? { textAlign: "end" } : { textAlign: "left" }) }}
+                className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] text-center"
+                style={{ ...sup }}
               >
                 {t("slide2.suptitle")}
               </span>
-              <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line" style={{...h1s, ...(isMobile ? { textAlign: "end" } : { })}}>{t("slide2.title")}</h1>
+              <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line text-center" style={{...h1s}}>{t("slide2.title")}</h1>
               <p
                 style={{
                   ...bodys,
                   ...(isMobile
-                    ? {marginTop: "40%"}
-                    : { margin: "0.8rem auto 0", textAlign: "left" }),
+                    ? {marginTop: "45%", textAlign: "center"}
+                    : { margin: "0.8rem auto 0", textAlign: "center", }),
                 }}
-                className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light"
+                className="text-lg sm:text-xl mt-4 whitespace-pre-line font-light"
               >
                 {t("slide2.subtitle")}
               </p>
@@ -511,15 +926,13 @@ export default function ApwecPage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? {top: "20%",
+                    ? {top: "15%",
                       textAlign: "center",
                     }
                     : {
-                        left: "10%",
-                        top: "13%",
-                        transform: "translate(-50%,-50%)",
-                        maxWidth: "100%",
+                        top: "7%",
                         textAlign: "center",
+                        maxWidth: "100vw"
                       }
                 ),
                 ...s3,
@@ -710,7 +1123,8 @@ export default function ApwecPage() {
                           margin: "0 0 0.5rem",
                           textTransform: "uppercase",
                           color: "rgba(100,150,255,0.75)",
-                          lineHeight: "1.0"
+                          lineHeight: "1.0",
+                          textAlign: "center"
                         }}
                         className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 mt-3 sm:mt-5"
                       >
@@ -721,6 +1135,7 @@ export default function ApwecPage() {
                           margin: "0 0 0.6rem",
                           lineHeight: 1.1,
                           color: "#f4f7fa",
+                          textAlign: "center"
                         }}
                         className="text-3xl sm:text-5xl tracking-wide font-bold sm:whitespace-pre-line"
                       >
@@ -731,6 +1146,7 @@ export default function ApwecPage() {
                           margin: 0,
                           lineHeight: 1.3,
                           color: "rgba(200,218,250,0.62)",
+                          textAlign: "center"
                         }}
                         className="text-lg font-stretch-extra-expanded tracking-wide sm:text-xl mt-4 whitespace-pre-line font-light"
                       >
@@ -741,6 +1157,12 @@ export default function ApwecPage() {
                 ))}
               </div>
             </section>
+
+            {/* ── HOW IT WORKS ─────────────────────────────────────────── */}
+            <HowItWorksSection t={t} isMobile={isMobile} />
+
+            {/* ── ADVANTAGES ───────────────────────────────────────────── */}
+            <AdvantagesSection t={t} isMobile={isMobile} />
 
             <div
               style={{

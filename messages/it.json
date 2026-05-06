@@ -246,7 +246,7 @@
     "slide1": {
       "suptitle": "COME FUNZIONA",
       "title": "Energia pulita dalla pressione atmosferica",
-      "subtitle": "Il sistema genera un flusso d’aria interno controllato che raggiunge velocità elevate e aziona un rotore collegato a un alternatore."
+      "subtitle": "Il sistema genera un flusso d’aria interno controllato\n che raggiunge velocità elevate e aziona un rotore collegato a un alternatore."
     },
     "slide2": {
       "suptitle": "Ingegneria Italiana",
@@ -271,7 +271,7 @@
       "f1": {
         "label": "Scalabilità",
         "title": "Da 1 kW a 10 MW",
-        "description": "L'architettura modulare di APWEC consente di dimensionare l'impianto in base al fabbisogno energetico reale dell'utente, con incrementi di potenza progressivi e senza interruzione dell'operatività. Adatto a PMI, grandi industrie, infrastrutture pubbliche e qualsiasi realtà che voglia ridurre i costi energetici in modo strutturale."
+        "description": "L'architettura modulare di APWEC consente di dimensionare l'impianto in base al fabbisogno energetico reale dell'utente."
       },
       "f2": {
         "label": "Manutenzione",
@@ -283,6 +283,111 @@
         "subtitle": "Analisi del potenziale energetico, fattibilità industriale e modello economico disponibili su richiesta.",
         "link": "Contattaci"
       }
+    },
+    "howItWorks": {
+      "label": "Architettura del sistema",
+      "title": "Come funziona APWEC®:\ndue sezioni, un flusso continuo",
+      "intro": "Il generatore APWEC® è composto da due involucri fissati su un'unica base. La Prima Sezione genera e amplifica il flusso d'aria attraverso una serie di Camere di Induzione anulari (c.d.i.). La Seconda Sezione converte quel flusso in energia elettrica tramite un rotore con profilo alare e un alternatore integrato.",
+      "shell1": {
+        "label": "Prima Sezione",
+        "title": "Generazione e amplificazione del flusso",
+        "desc": "Un getto di innesco ad alta velocità entra nella prima Camera di Induzione anulare. La differenza di pressione generata secondo il Principio di Bernoulli richiama aria atmosferica dall'esterno, amplificando progressivamente la portata attraverso ogni camera successiva. Il materiale dell'involucro può essere acciaio, alluminio o plastica rinforzata — massima flessibilità costruttiva."
+      },
+      "shell2": {
+        "label": "Seconda Sezione",
+        "title": "Conversione in energia elettrica",
+        "desc": "Il flusso finale, energizzato dall'atmosfera, impatta sul Rotore a pale con profilo alare — lo stesso principio aerodinamico degli aerogeneratori allo stato dell'arte, con un vantaggio determinante: il flusso è unidirezionale, quindi le pale non richiedono il meccanismo di passo variabile. L'alternatore integrato produce corrente stabilizzata in tensione e frequenza tramite inverter."
+      },
+      "cdiLabel": "Cascata di amplificazione — Camere di Induzione (c.d.i.)",
+      "cdi0": {
+        "label": "C.d.i. 1 — Innesco",
+        "desc": "Il getto di innesco genera una depressione interna (Δp = ½ρv²). La forza F = Δp × Area mette in moto la massa d'aria con accelerazione a = F/m."
+      },
+      "cdi1": {
+        "label": "C.d.i. 2 — Prima amplificazione",
+        "desc": "Il flusso uscente dalla prima camera si unisce all'innesco nella camera successiva. La velocità cresce secondo V = √(2 × a × s), dove s è il percorso nella c.d.i.."
+      },
+      "cdi2": {
+        "label": "C.d.i. n — Amplificazione progressiva",
+        "desc": "Ogni camera riceve un flusso combinato sempre più energetico. Il contributo dell'atmosfera esterna aumenta ad ogni stadio, moltiplicando la portata senza consumo di combustibile."
+      },
+      "cdi3": {
+        "label": "C.d.i. finale — Uscita verso il rotore",
+        "desc": "L'ultima camera di induzione sbocca direttamente nella Seconda Sezione. Il flusso raggiunge la velocità di esercizio progettata e impatta sulle pale del rotore."
+      },
+      "rotor": {
+        "label": "Rotore + Alternatore",
+        "desc": "Pale a profilo alare fisso (no passo variabile). Flusso unidirezionale. Produzione di corrente stabilizzata tramite inverter."
+      }
+    },
+    "physics": {
+      "label": "Principi fisici alla base di APWEC®",
+      "title": "L'energia dell'atmosfera trasformata in corrente elettrica",
+      "intro": "Il funzionamento di APWEC® si fonda sulla sinergia di principi aerodinamici e fluidodinamici consolidati: il Principio di Bernoulli per la generazione della depressione, la seconda legge di Newton per l'accelerazione della massa d'aria, e i teoremi di Betz e Kutta-Joukowski per la conversione della energia cinetica in coppia sul rotore.",
+      "formula0": {
+        "eq": "Δp = ½ρv²",
+        "desc": "Principio di Bernoulli: la depressione interna richiama aria esterna"
+      },
+      "formula1": {
+        "eq": "F = Δp × A",
+        "desc": "La forza che accelera la massa d'aria nella camera di induzione"
+      },
+      "formula2": {
+        "eq": "V = √(2 · a · s)",
+        "desc": "Velocità raggiunta dal flusso all'uscita di ogni c.d.i."
+      },
+      "p0": {
+        "label": "Principio di Bernoulli",
+        "desc": "La differenza di pressione tra l'esterno atmosferico e la depressione interna alla Camera di Induzione è il motore principale di APWEC®. Nessun combustibile, nessuna fonte termica: solo la pressione dell'aria che ci circonda."
+      },
+      "p1": {
+        "label": "Seconda Legge di Newton",
+        "desc": "La forza generata dalla depressione agisce sulla massa d'aria contenuta nella c.d.i., imprimendole un'accelerazione misurabile. Il flusso esce dalla camera con velocità ben superiore all'innesco iniziale."
+      },
+      "p2": {
+        "label": "Teorema di Betz",
+        "desc": "Il rotore di APWEC® opera secondo gli stessi principi di conversione dell'energia cinetica del vento in energia meccanica utilizzati dai grandi aerogeneratori. La differenza è la sorgente del flusso: non il vento meteorologico, ma un flusso interno controllato e continuo."
+      },
+      "p3": {
+        "label": "Teorema di Kutta-Joukowski",
+        "desc": "Il profilo alare delle pale genera portanza sul flusso incidente, trasmettendo coppia all'albero del generatore. Il flusso unidirezionale elimina la necessità del meccanismo di passo variabile, semplificando la struttura meccanica e riducendo i costi di manutenzione."
+      }
+    },
+    "advantages": {
+      "label": "APWEC® vs. aerogeneratori tradizionali",
+      "title": "Vantaggi tecnici ed economici rispetto allo stato dell'arte",
+      "intro": "Il confronto tra APWEC® e i grandi aerogeneratori convenzionali evidenzia vantaggi strutturali che impattano su costi di costruzione, manutenzione, installazione e operatività. Un generatore di nuovissima generazione progettato secondo la filosofia costruttiva automotive.",
+      "a0": {
+        "label": "Operatività",
+        "title": "Funzionamento fino a 8.660 ore annue",
+        "desc": "Produzione energetica continua indipendente dalle condizioni meteorologiche. Nessuna dipendenza da vento o irraggiamento solare: il sistema opera 24/7 per l'intero anno solare, con fermate programmate per sola manutenzione."
+      },
+      "a1": {
+        "label": "Sicurezza manutentiva",
+        "title": "Manutenzione al livello del suolo, senza lavori in quota",
+        "desc": "Tutte le operazioni di service avvengono a terra. Nessun intervento ad altezze significative, eliminando i rischi operativi tipici degli aerogeneratori convenzionali che richiedono tecnici specializzati in quota."
+      },
+      "a2": {
+        "label": "Semplicità costruttiva",
+        "title": "Meno componenti, costruzione di tipo automotive",
+        "desc": "APWEC® richiede un numero inferiore di parti rispetto allo stato dell'arte. La filosofia costruttiva di derivazione automotive garantisce standardizzazione, disponibilità globale dei componenti e riduzione dei costi di produzione in grande serie."
+      },
+      "a3": {
+        "label": "Pale a passo fisso",
+        "title": "Nessun meccanismo di passo variabile",
+        "desc": "Il flusso d'aria interno è unidirezionale e controllato. Le pale del rotore operano a passo fisso, eliminando il sistema di controllo del passo variabile: una delle fonti principali di guasto e costo nei grandi aerogeneratori."
+      },
+      "a4": {
+        "label": "Flessibilità installativa",
+        "title": "Funzionamento indoor e outdoor, limitrofo all'utilizzatore",
+        "desc": "APWEC® può essere installato all'interno di edifici industriali o all'aperto, senza necessità di torri o strutture elevate. L'installazione limitrofa all'utilizzatore finale riduce le perdite di trasmissione e i costi di connessione alla rete."
+      },
+      "a5": {
+        "label": "Analogia con turbine industriali",
+        "title": "Struttura derivata dalla turbina a gas industriale",
+        "desc": "La configurazione fisica di APWEC® segue la struttura delle turbine a gas industriali, a loro volta derivate dalle turbine per aerei a reazione. Una tecnologia matura, affidabile, con decenni di know-how ingegneristico alle spalle."
+      },
+      "vsDesc": "I grandi aerogeneratori sfruttano esclusivamente la pressione dinamica del vento esterno e richiedono vento minimo, torri elevate, meccanismi di passo variabile e manutenzione in quota. \nAPWEC® opera con un flusso interno controllato, al livello del suolo, indipendentemente dalle condizioni atmosferiche esterne — una categoria tecnica distinta e complementare nel panorama della generazione di energia rinnovabile distribuita."
     }
   },
 
