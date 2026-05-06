@@ -47,24 +47,21 @@ const OurPromise: React.FC<OurPromiseProps> = ({
   const wordsProgress = useTransform(progress, [4.9, 5.8], [0, words.length]);
 
   return (
-    <div className="w-full px-6 sm:px-16">
+    <div className="w-full px-6 sm:px-16 flex flex-col items-center">
       <motion.h1
-        className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl text-[#f4f7fa] font-bold leading-tight"
+        className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl text-[#f4f7fa] font-bold leading-tight w-full"
         style={{
           display: "flex",
           flexWrap: "wrap",
           lineHeight: "1.1",
-          // Left on mobile, centered on desktop via justifyContent
         }}
       >
-        {/* Desktop-only centering wrapper — invisible on mobile */}
         <style>{`
-          @media (min-width: 240px) {
-            .ourpromise-words {
-              justify-content: center !important;
-            }
+          .ourpromise-words {
+            justify-content: center;
           }
         `}</style>
+  
         <span
           className="ourpromise-words"
           style={{
@@ -78,17 +75,20 @@ const OurPromise: React.FC<OurPromiseProps> = ({
           ))}
         </span>
       </motion.h1>
-
+  
       {subtitle && (
         <motion.h2
-          className="text-lg font-stretch-extra-expanded tracking-wide sm:text-2xl font-light sm:mt-8 mt-4 text-center sm:text-center sm:px-[20%]"
-          style={{ color: "rgba(200, 216, 248, 0.75)", lineHeight: "1.2" }}
+          className="text-lg font-stretch-extra-expanded tracking-wide sm:text-2xl font-light mt-4 sm:mt-8 text-center max-w-[900px]"
+          style={{
+            color: "rgba(200, 216, 248, 0.75)",
+            lineHeight: "1.2",
+          }}
         >
           {subtitle}
         </motion.h2>
       )}
-
-      <div>
+  
+      <div className="w-full flex justify-center mt-6">
         <Signature progress={progress} />
       </div>
     </div>
