@@ -630,7 +630,7 @@ export default function ApwecPage() {
   const totalHeight = SCROLL_VH + contentH;
 
   /* ── Hero card motion values ──────────────────────────────────────────── */
-  const headerTheme = useTransform(smooth, [3.8, 4.8, 5], [0, 0, 1]);
+  const headerTheme = useTransform(smooth, [3.8, 4.8, 7], [0, 0, 1]);
 
   const cardInset = useTransform(smooth, [0, 0.3, isMobile? 3.0 : 3.4, 3.8], [16, 0, 0, 16]);
   const cardRadius = useTransform(smooth, [0, 0.3,isMobile? 3.0 : 3.4, 3.8], [24, 0, 0, 24]);
@@ -774,14 +774,14 @@ export default function ApwecPage() {
   const linkColorWhite = useMotionValue("#f4f7fa");
   const hiddenMenu  = useTransform(
     smooth,
-    [4.4,4.5],
+    [5.8,5.9],
     [1, 0 ]
   );
 
   const menuTheme =  useTransform(
     smooth,
-    [3, 3.1,3.9, 4.4, ],
-    [0, 1,   0,   0, ]
+    [3, 3.6, 4.4,5.5, 5.9],
+    [0,    1,   0, 0, 1 ]
   );
 
   /* ── Render ───────────────────────────────────────────────────────────── */
