@@ -19,6 +19,7 @@ import ContactDrawer from "../components/ContactDrawer";
 import { setNavigationState, setOpenContact } from "../features/counterSlice";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
+import ScrollNavigator from "../components/ScrollNavigator";
 
 const SCENES = 6.2;
 
@@ -1237,6 +1238,25 @@ export default function ApwecPage() {
 
           <Footer openContact={() => dispatch(setOpenContact(true))}/>
         </motion.div>
+
+        {!openContact && (
+          <ScrollNavigator
+            progress={smooth}
+            totalScrollHeight={totalHeight}
+            isMobile={isMobile}
+            menuTheme={menuTheme}
+            hiddenMenu={hiddenMenu}
+            sections={
+              [
+                { index: 1, label: "Apwec", start: 0, end: 0.7, target: 0 },
+                { index: 2, label: "Cos'è", start: 3.8, end: 4.2, target: 6.35 },
+                { index: 3, label: "Architettura", start: 4.3, end: 4.8, target: 7.2 },
+                { index: 4, label: "Vantaggi", start: 4.9, end: 5.4, target: 8.0 },
+                { index: 5, label: "Contattaci", start: 5.5, end: 7.9, target: 8.65 },
+              ]
+            }
+          />
+        )}
 
         <ContactDrawer
           open={openContact}

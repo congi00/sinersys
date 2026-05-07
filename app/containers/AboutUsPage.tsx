@@ -19,6 +19,7 @@ import ContactDrawer from "../components/ContactDrawer";
 import { setNavigationState, setOpenContact } from "../features/counterSlice";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
+import ScrollNavigator from "../components/ScrollNavigator";
 
 // Industrial partners
 const partners = ["Honda", "Volvo", "Chrysler", "Saab", "Hanomag"];
@@ -1194,6 +1195,24 @@ export default function AboutUsPage() {
 
           <Footer openContact={() => dispatch(setOpenContact(true))} />
         </motion.div>
+
+        {!openContact && (
+          <ScrollNavigator
+            progress={smooth}
+            totalScrollHeight={totalHeight}
+            isMobile={isMobile}
+            menuTheme={menuTheme}
+            hiddenMenu={hiddenMenu}
+            sections={
+              [
+                { index: 1, label: "Chi Siamo", start: 0, end: 0.7, target: 0 },
+                { index: 2, label: "La Nostra Storia", start: 1.0, end: 1.8, target: 3.8 },
+                { index: 3, label: "Timeline", start: 1.9, end: 4.8, target: 5.3 },
+                { index: 4, label: "Team", start: 4.9, end: 5.4, target: 13.3 },
+              ]
+            }
+          />
+        )}
 
         <ContactDrawer
           open={openContact}

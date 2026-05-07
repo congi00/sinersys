@@ -71,6 +71,7 @@ export default function ScrollNavigator({
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [isDarkMode, setIsDark] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   // Track active section
   useMotionValueEvent(progress, "change", (p) => {
@@ -97,6 +98,27 @@ export default function ScrollNavigator({
     });
     return unsubscribe;
   }, [hiddenMenu]);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+  
+    const handleScroll = () => {
+      setIsScrolling(true);
+  
+      clearTimeout(timeout);
+  
+      timeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 120);
+    };
+  
+    window.addEventListener("scroll", handleScroll, { passive: true });
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeout);
+    };
+  }, []);
 
   // Click: jump to section
   const handleClick = useCallback(
@@ -193,7 +215,7 @@ export default function ScrollNavigator({
             <motion.span
               animate={{
                 width: isActive ? 21 : isHovered ? 12 : 6,
-                opacity: isActive ? 1 : isHovered ? 0.5 : 0.25,
+                opacity: isScrolling ? 0 : isActive ? 1 : isHovered ? 0.5 : 0.25,
                 backgroundColor: isActive || isHovered ? lineColor : textColor,
               }}
               transition={{ duration: 0.25, ease: "easeOut" }}
@@ -208,7 +230,7 @@ export default function ScrollNavigator({
             {/* Label tooltip — slides in from right on hover or active */}
             <motion.span
               animate={{
-                opacity: isActive || isHovered ? 1 : 0,
+                opacity: isScrolling ? 0 : isActive || isHovered ? 1 : 0,
                 x: isActive || isHovered ? 0 : 8,
                 scale: isActive || isHovered ? 1 : 0.92,
               }}
@@ -224,6 +246,10 @@ export default function ScrollNavigator({
                 "overflow-hidden"
               )}
               style={{
+                visibility:
+                isScrolling || (!isActive && !isHovered)
+                  ? "hidden"
+                  : "visible",
                 fontSize: "0.58rem",
                 fontWeight: isActive ? 700 : 500,
                 letterSpacing: "0.2em",

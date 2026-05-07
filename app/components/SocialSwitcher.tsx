@@ -68,6 +68,35 @@ export default function SocialSwitcher({ isDark }: Props) {
       ),
     },
     {
+      id: "researchgate",
+      label: "ResearchGate",
+      href: "https://www.researchgate.net/profile/yourprofile",
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <circle
+            cx="12"
+            cy="12"
+            r="9"
+            stroke={isDark ? "#F4F7FA" : "#1c398e"}
+            strokeWidth="1.8"
+          />
+          <path
+            d="M8.2 15.8V8.2h3.2c1.9 0 3 .9 3 2.4 0 1-.5 1.8-1.5 2.2l1.9 2.9"
+            stroke={isDark ? "#F4F7FA" : "#1c398e"}
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M11.2 12.9h1.1"
+            stroke={isDark ? "#F4F7FA" : "#1c398e"}
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          />
+        </svg>
+      ),
+    },
+    {
       id: "instagram",
       label: "Instagram",
       href: "https://www.instagram.com/yourhandle",
