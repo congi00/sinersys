@@ -863,11 +863,13 @@ export default function ApwecPage() {
 
             {/* Slide 0 */}
             <motion.div style={{ ...textWrap(isMobile? {top:"25%"} : {
-              top: "20%"
+              textAlign: "center",
+              top: "20%",
+              maxWidth: "100vw",
             }), ...s0 }}>
               <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] text-center" style={sup}>{t("slide0.suptitle")}</span>
               <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line text-center" style={h1s}>{t("slide0.title")}</h1>
-              <p className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light text-center" style={{...bodys, ...(isMobile ? {marginTop: "65%"} : {})}}>{t("slide0.subtitle")}</p>
+              <p className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light text-center" style={{...bodys, ...(isMobile ? {marginTop: "65%"} : {maxWidth: "100%"})}}>{t("slide0.subtitle")}</p>
             </motion.div>
 
             {/* Slide 1 */}
