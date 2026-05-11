@@ -2,6 +2,8 @@
 
 import clsx from "clsx";
 import { motion, useTransform, MotionValue } from "framer-motion";
+import { Url } from "next/dist/shared/lib/router/router";
+import Link from "next/link";
 
 interface ResearchProduct {
   id: string;
@@ -12,6 +14,7 @@ interface ResearchProduct {
   subtitle: string;
   detail: string;
   year?: string;
+  link: Url;
 }
 
 interface Props {
@@ -33,7 +36,10 @@ function useReveal(progress: MotionValue<number>, start: number) {
   } as const;
 }
 
-const STATUS_COLORS: Record<ResearchProduct["status"], { dot: string; text: string; border: string; bg: string }> = {
+const STATUS_COLORS: Record<
+  ResearchProduct["status"],
+  { dot: string; text: string; border: string; bg: string }
+> = {
   "coming-soon": {
     dot: "rgba(120,190,255,0.9)",
     text: "rgba(150,210,255,0.85)",
@@ -69,7 +75,14 @@ function BlueprintGrid({ isMobile }: { isMobile: boolean }) {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <pattern id="bp-grid" x="0" y="0" width={isMobile ? 40 : 60} height={isMobile ? 40 : 60} patternUnits="userSpaceOnUse">
+        <pattern
+          id="bp-grid"
+          x="0"
+          y="0"
+          width={isMobile ? 40 : 60}
+          height={isMobile ? 40 : 60}
+          patternUnits="userSpaceOnUse"
+        >
           <path
             d={`M ${isMobile ? 40 : 60} 0 L 0 0 0 ${isMobile ? 40 : 60}`}
             fill="none"
@@ -77,8 +90,20 @@ function BlueprintGrid({ isMobile }: { isMobile: boolean }) {
             strokeWidth="0.6"
           />
         </pattern>
-        <pattern id="bp-cross" x="0" y="0" width={isMobile ? 80 : 120} height={isMobile ? 80 : 120} patternUnits="userSpaceOnUse">
-          <circle cx={isMobile ? 40 : 60} cy={isMobile ? 40 : 60} r="1.5" fill="#a0c4ff" />
+        <pattern
+          id="bp-cross"
+          x="0"
+          y="0"
+          width={isMobile ? 80 : 120}
+          height={isMobile ? 80 : 120}
+          patternUnits="userSpaceOnUse"
+        >
+          <circle
+            cx={isMobile ? 40 : 60}
+            cy={isMobile ? 40 : 60}
+            r="1.5"
+            fill="#a0c4ff"
+          />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#bp-grid)" />
@@ -100,97 +125,101 @@ function ProductCard({
   const sc = STATUS_COLORS[product.status];
 
   return (
-    <motion.div
-      style={{
-        opacity: reveal.op,
-        y: reveal.y,
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Outer frame — blueprint aesthetic */}
-      <div
+    <Link href={product.link} style={{ pointerEvents: "auto" }}>
+      <motion.div
         style={{
-          border: "1px solid rgba(100,150,255,0.14)",
+          opacity: reveal.op,
+          y: reveal.y,
           position: "relative",
-          borderRadius: "15px",
           overflow: "hidden",
         }}
-        className={clsx(
-          "p-4 pt-8",
-          "flex flex-col items-center justify-center",
-          "bg-[#F4F7FA]/10 backdrop-blur-xl backdrop-saturate-150",
-          "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ease-[cubic-bezier(.16,1,.3,1)]",
-        )}
       >
-
-
-
-        {/* Suptitle */}
-        <p
-          style={{
-            margin: "0 0 0.35rem",
-            textTransform: "uppercase",
-            color: "rgba(100,160,255,0.55)",
-          }}
-          className="text-xs sm:text-xs tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
-        >
-          {product.suptitle}
-        </p>
-
-        {/* Title */}
-        <h3
-          style={{
-            margin: "0 0 clamp(0.5rem,1.2vh,0.85rem)",
-            fontSize: isMobile ? "clamp(1.3rem,5vw,1.7rem)" : "clamp(1.4rem,1.8vw,2rem)",
-            fontWeight: 800,
-            color: "#e8f0ff",
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {product.title}
-        </h3>
-
-        {/* Divider line */}
+        {/* Outer frame — blueprint aesthetic */}
         <div
           style={{
-            width: "100%",
-            height: "1px",
-            background: "linear-gradient(90deg, rgba(100,160,255,0.2), transparent)",
-            marginBottom: "clamp(0.7rem,1.5vh,1rem)",
+            border: "1px solid rgba(100,150,255,0.14)",
+            position: "relative",
+            borderRadius: "15px",
+            overflow: "hidden",
           }}
-        />
-
-        {/* Subtitle */}
-        <p
-          style={{
-            margin: "0 0 clamp(0.8rem,1.8vh,1.2rem)",
-            fontSize: isMobile ? "clamp(0.78rem,3vw,0.9rem)" : "clamp(0.82rem,0.95vw,0.96rem)",
-            lineHeight: 1.7,
-            color: "rgba(190,215,255,0.65)",
-            fontWeight: 300,
-          }}
+          className={clsx(
+            "p-4 pt-8",
+            "flex flex-col items-center justify-center",
+            "bg-[#F4F7FA]/10 backdrop-blur-xl backdrop-saturate-150",
+            "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ease-[cubic-bezier(.16,1,.3,1)]"
+          )}
         >
-          {product.subtitle}
-        </p>
+          {/* Suptitle */}
+          <p
+            style={{
+              margin: "0 0 0.35rem",
+              textTransform: "uppercase",
+              color: "rgba(100,160,255,0.55)",
+            }}
+            className="text-xs sm:text-xs tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
+          >
+            {product.suptitle}
+          </p>
 
-        {/* Detail — monospace annotation */}
-        <p
-          style={{
-            margin: 0,
-            fontSize: "0.66rem",
-            lineHeight: 1.65,
-            color: "rgba(130,170,255,0.4)",
-            fontFamily: "'Courier New', monospace",
-            borderLeft: "2px solid rgba(100,160,255,0.12)",
-            paddingLeft: "0.75rem",
-          }}
-        >
-          {product.detail}
-        </p>
-      </div>
-    </motion.div>
+          {/* Title */}
+          <h3
+            style={{
+              margin: "0 0 clamp(0.5rem,1.2vh,0.85rem)",
+              fontSize: isMobile
+                ? "clamp(1.3rem,5vw,1.7rem)"
+                : "clamp(1.4rem,1.8vw,2rem)",
+              fontWeight: 800,
+              color: "#e8f0ff",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            {product.title}
+          </h3>
+
+          {/* Divider line */}
+          <div
+            style={{
+              width: "100%",
+              height: "1px",
+              background:
+                "linear-gradient(90deg, rgba(100,160,255,0.2), transparent)",
+              marginBottom: "clamp(0.7rem,1.5vh,1rem)",
+            }}
+          />
+
+          {/* Subtitle */}
+          <p
+            style={{
+              margin: "0 0 clamp(0.8rem,1.8vh,1.2rem)",
+              fontSize: isMobile
+                ? "clamp(0.78rem,3vw,0.9rem)"
+                : "clamp(0.82rem,0.95vw,0.96rem)",
+              lineHeight: 1.7,
+              color: "rgba(190,215,255,0.65)",
+              fontWeight: 300,
+            }}
+          >
+            {product.subtitle}
+          </p>
+
+          {/* Detail — monospace annotation */}
+          <p
+            style={{
+              margin: 0,
+              fontSize: "0.66rem",
+              lineHeight: 1.65,
+              color: "rgba(130,170,255,0.4)",
+              fontFamily: "'Courier New', monospace",
+              borderLeft: "2px solid rgba(100,160,255,0.12)",
+              paddingLeft: "0.75rem",
+            }}
+          >
+            {product.detail}
+          </p>
+        </div>
+      </motion.div>
+    </Link>
   );
 }
 
@@ -205,8 +234,11 @@ export default function ResearchProducts({
 }: Props) {
   // ── Scroll window ──────────────────────────────────────────────────────────
   const wrapOp = useTransform(progress, [1.75, 1.95, 2.65, 2.8], [0, 1, 1, 0]);
-  const wrapY = useTransform(progress, [1.75, 1.95, 2.65, 2.8], [60, 0, 0, -60]);
-  
+  const wrapY = useTransform(
+    progress,
+    [1.75, 1.95, 2.65, 2.8],
+    [60, 0, 0, -60]
+  );
 
   // Staggered element reveals
   const rLabel = useReveal(progress, 1.9);
@@ -242,12 +274,11 @@ export default function ResearchProducts({
           : "8rem clamp(3rem,8vw,8rem)",
         overflowY: "hidden",
         alignContent: "center",
-        textAlign: "center"
+        textAlign: "center",
       }}
     >
       {/* ── Decorative background ──────────────────────────────────────────── */}
       <BlueprintGrid isMobile={isMobile} />
-
 
       {/* Ambient glow */}
       <div
@@ -258,14 +289,20 @@ export default function ResearchProducts({
           width: "45vw",
           height: "45vw",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(40,80,200,0.06) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(40,80,200,0.06) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
 
       {/* ── Content ────────────────────────────────────────────────────────── */}
-      <div style={{ width: isMobile? "100%" : "90%", position: "relative", zIndex: 1 }}>
-
+      <div
+        style={{
+          width: isMobile ? "100%" : "90%",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         {/* Section label */}
         <motion.div
           style={{

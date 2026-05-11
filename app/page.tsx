@@ -368,7 +368,7 @@ export default function Home() {
               marginBottom: isIOS ? "10lvh" : "10dvh",
             }}
           >
-            <h4 className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]">
+            <h4 className="text-m sm:text-2xl tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]">
               {homeTexts("slide1.suptitle")}
             </h4>
             <h1
@@ -414,6 +414,7 @@ export default function Home() {
               "subtitle":  homeTexts("sixPhase.researchProducts.product1.subtitle"),
               "detail": homeTexts("sixPhase.researchProducts.product1.detail"),
               "year": homeTexts("sixPhase.researchProducts.product1.year"),
+              "link": "/six-phase-motor"
             }
           ]}
         />

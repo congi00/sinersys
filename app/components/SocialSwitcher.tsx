@@ -70,7 +70,7 @@ export default function SocialSwitcher({ isDark }: Props) {
     {
       id: "researchgate",
       label: "ResearchGate",
-      href: "https://www.researchgate.net/profile/yourprofile",
+      href: "https://www.researchgate.net/profile/Antonio-Luca-Biagini",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <circle

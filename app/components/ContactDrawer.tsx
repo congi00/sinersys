@@ -11,11 +11,11 @@ interface Props {
 }
 
 export default function ContactDrawer({ open, onClose }: Props) {
-  const t     = useTranslations("contacts");
-  const f     = useTranslations("contacts.fields");
+  const t = useTranslations("contacts");
+  const f = useTranslations("contacts.fields");
 
-  const [files, setFiles]   = useState<File[]>([]);
-  const fileInputRef        = useRef<HTMLInputElement>(null);
+  const [files, setFiles] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -25,7 +25,10 @@ export default function ContactDrawer({ open, onClose }: Props) {
     const selected = Array.from(e.target.files ?? []);
     setFiles((prev) => {
       const existing = new Set(prev.map((f) => f.name + f.size));
-      return [...prev, ...selected.filter((f) => !existing.has(f.name + f.size))];
+      return [
+        ...prev,
+        ...selected.filter((f) => !existing.has(f.name + f.size)),
+      ];
     });
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
@@ -98,7 +101,11 @@ export default function ContactDrawer({ open, onClose }: Props) {
                 className="space-y-6"
               >
                 {/* Email */}
-                <Input label={f("email")} type="email" placeholder={f("emailPlaceholder")} />
+                <Input
+                  label={f("email")}
+                  type="email"
+                  placeholder={f("emailPlaceholder")}
+                />
 
                 {/* Name */}
                 <div className="grid md:grid-cols-2 gap-6">
@@ -110,7 +117,6 @@ export default function ContactDrawer({ open, onClose }: Props) {
                 <div>
                   <p className="mb-4 font-medium">{f("interestTitle")}</p>
                   <Checkbox label={f("check0")} />
-                  <Checkbox label={f("check1")} />
                   <Checkbox label={f("check2")} />
                   <Checkbox label={f("check3")} />
                 </div>
@@ -147,7 +153,11 @@ export default function ContactDrawer({ open, onClose }: Props) {
                       {f("attachBtn")}
                     </span>
                   </button>
-
+                  <div>
+                    <label className="block mb-2 mt-2 text-xs">
+                      {f("postilla")}
+                    </label>
+                  </div>
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -174,17 +184,27 @@ export default function ContactDrawer({ open, onClose }: Props) {
                             transition={{ duration: 0.2 }}
                             className="flex items-center gap-3 rounded-xl bg-white/10 border border-white/15 px-4 py-3"
                           >
-                            <FileText size={16} className="text-[#f4f7fa]/60 flex-shrink-0" />
+                            <FileText
+                              size={16}
+                              className="text-[#f4f7fa]/60 flex-shrink-0"
+                            />
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm truncate text-[#f4f7fa]/90">{file.name}</p>
-                              <p className="text-xs text-[#f4f7fa]/45">{formatSize(file.size)}</p>
+                              <p className="text-sm truncate text-[#f4f7fa]/90">
+                                {file.name}
+                              </p>
+                              <p className="text-xs text-[#f4f7fa]/45">
+                                {formatSize(file.size)}
+                              </p>
                             </div>
                             <button
                               type="button"
                               onClick={() => removeFile(i)}
                               className="flex-shrink-0 w-7 h-7 rounded-lg hover:bg-white/15 flex items-center justify-center transition"
                             >
-                              <Trash2 size={14} className="text-[#f4f7fa]/50 hover:text-[#f4f7fa]/80" />
+                              <Trash2
+                                size={14}
+                                className="text-[#f4f7fa]/50 hover:text-[#f4f7fa]/80"
+                              />
                             </button>
                           </motion.li>
                         ))}
@@ -195,7 +215,9 @@ export default function ContactDrawer({ open, onClose }: Props) {
 
                 {/* Submit */}
                 <motion.button
-                  whileHover={{ boxShadow: "0px 0px 20px rgba(255,255,255,0.4)" }}
+                  whileHover={{
+                    boxShadow: "0px 0px 20px rgba(255,255,255,0.4)",
+                  }}
                   whileTap={{ scale: 0.97 }}
                   className="w-full h-14 rounded-full bg-white text-[#1c398e] font-semibold text-lg transition mb-[20px]"
                 >
@@ -235,7 +257,9 @@ function Checkbox({ label }: { label: string }) {
   return (
     <label className="flex items-center gap-3 mb-3 cursor-pointer group">
       <input type="checkbox" className="w-5 h-5 accent-white" />
-      <span className="group-hover:text-[#f4f7fa] transition text-[#f4f7fa]/80">{label}</span>
+      <span className="group-hover:text-[#f4f7fa] transition text-[#f4f7fa]/80">
+        {label}
+      </span>
     </label>
   );
 }

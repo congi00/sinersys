@@ -22,7 +22,7 @@ import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
 
 // Industrial partners
-const partners = ["Honda", "Volvo", "Chrysler", "Saab", "Hanomag"];
+const partners = ["Honda", "Volvo", "Chrysler", "Saab", "Hanomag - Henschel", "VW"];
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
