@@ -2,20 +2,21 @@
   "menu": {
     "homepage": "HOMEPAGE",
     "products": "APWEC",
+    "sixphase": "MOTORE A 6 FASI",
     "about": "CHI SIAMO",
     "contacts": "CONTATTI"
   },
 
   "homepage": {
     "slide0": {
-      "title": "La nuova generazione di \nenergia rinnovabile nata da \nun sogno italiano",
+      "title": "La nuova generazione di \nenergia rinnovabile nata da \nun sogno di innovatori",
       "subtitle": "Abbiamo inseguito per anni un'idea impossibile:\nun generatore  di energia continua, senza combustione interna, senza emissioni.\n Ci siamo riusciti.",
       "link": "Scopri APWEC"
     },
     "slide1": {
       "suptitle": "TECNOLOGIA APWEC",
       "title": "Il generatore di energia rinnovabile che non si ferma mai",
-      "subtitle": "APWEC è la tecnologia italiana brevettata che genera energia sfruttando la pressione atmosferica e i flussi d’aria interni controllati.\nZero emissioni. Funziona fino a circa 8660 ore l’anno, indipendentemente da sole e vento.",
+      "subtitle": "APWEC è la tecnologia italiana brevettata che genera energia sfruttando la pressione atmosferica e i flussi d’aria interni controllati.\nZero emissioni. Funziona 8660 ore ca. l’anno, indipendentemente da sole e vento naturale.",
       "link": "Come Funziona"
     },
     "sixPhase": {
@@ -31,7 +32,7 @@
           "statusLabel": "In Sviluppo · Brevettato",
           "suptitle": "Tecnologia Esclusiva Motor Union",
           "title": "Motore a 6 Fasi",
-          "subtitle": "Un sistema di trasformazione del moto radicalmente nuovo: supera i limiti strutturali del binomio biella-manovella e configura un ciclo termodinamico inedito, con sei fasi distinte ad alta efficienza.",
+          "subtitle": "Un nuovo sistema di manovellismo all'interno del motore che rende possibile la funzione isocora e supera i limiti strutturali del binomio biella-manovella e configura un ciclo termodinamico inedito, con sei fasi distinte ad alta efficienza.",
           "detail": "",
           "year": "2024 →"
         }
@@ -40,12 +41,12 @@
     "slide2": {
       "suptitle": "CHI SIAMO",
       "title": "Ingegneria industriale e\n innovazione energetica",
-      "subtitle": "L'esperienza di Sinersys nella progettazione meccanica\n avanzata ha trovato il suo scopo più grande nell'energia rinnovabile distribuita. \n Un percorso lungo un secolo,\n un traguardo che cambia tutto.",
+      "subtitle": "L'esperienza di Sinersys nella progettazione meccanica\n avanzata ha trovato il suo scopo più grande nell'energia rinnovabile distribuita. \n Un lungo percorso di studi e ricerca,\n un traguardo che cambia tutto.",
       "link": "La Nostra Storia"
     },
     "slide3": {
-      "title": "Ogni impianto è un passo concreto verso l'indipendenza energetica.",
-      "subtitle": "Sinersys progetta sistemi scalabili per la generazione di energia rinnovabile continua,\npensati per aziende, enti pubblici, operatori industriali o privati, che vogliono ridurre i costi energetici,\nabbattere le emissioni di CO₂ e raggiungere l'autosufficienza energetica\nin modo misurabile e verificabile."
+      "title": "Ogni APWEC è un passo concreto verso l'indipendenza energetica.",
+      "subtitle": "Sinersys studia e ricerca sistemi scalabili per la generazione di energia rinnovabile continua,\npensati per aziende, enti pubblici, operatori industriali o privati, che vogliono ridurre i costi energetici,\nabbattere le emissioni e raggiungere l'autosufficienza energetica\nin modo misurabile e verificabile."
     },
     "scatteredCards": [
       {
@@ -54,7 +55,7 @@
         "label": "Industrializzazione",
         "suptitle": "Grande Serie",
         "title": "Produzione",
-        "subtitle": "Portare APWEC dalla fase prototipale alla produzione industriale di grande serie: impianti certificati, scalabili e pronti per il mercato globale dell'energia rinnovabile."
+        "subtitle": "Portare APWEC dalla fase iniziale alla produzione industriale di grande serie. Macchine certificate, scalabili e pronte per il mercato globale dell'energia rinnovabile."
       },
       {
         "id": "2",
@@ -70,13 +71,13 @@
         "label": "Impatto Globale",
         "suptitle": "Transizione Energetica",
         "title": "Indipendenza",
-        "subtitle": "Rendere l'autosufficienza energetica una realtà concreta e misurabile: zero emissioni di CO₂, zero dipendenza dalla rete, risparmio verificabile fin dal primo anno di esercizio."
+        "subtitle": "Rendere l'autosufficienza energetica una realtà concreta e misurabile: zero emissioni, zero dipendenza dalla rete, risparmio verificabile fin dal primo anno di esercizio."
       }
     ],
     "cta": {
       "suptitle": "Partner Industriali e Licenziatari",
       "title": "Partecipa allo sviluppo industriale di APWEC",
-      "subtitle": "Siamo alla ricerca di partner industriali per produzione, distribuzione e licenze territoriali delle famiglie di potenza APWEC.",
+      "subtitle": "Ricerchiamo partner industriali per la industrializzazione, produzione e distribuzione delle famiglie di potenza APWEC.",
       "link": "Contattaci"
     },
     "faq": {
@@ -102,23 +103,24 @@
       "firstName": "Nome *",
       "lastName": "Cognome *",
       "interestTitle": "Interesse strategico",
-      "check0": "Entrare in produzione di grande serie APWEC",
+      "check0": "Industrializzazione - Produzione",
       "check1": "Sviluppo di una o più Famiglie di Potenza",
       "check2": "Operatività in specifici Areali geografici",
-      "check3": "Acquisto licenza industriale del prodotto",
+      "check3": "Licenza industriale",
       "message": "Messaggio *",
       "messagePlaceholder": "Descrivi il tuo progetto, area di interesse o richiesta di licenza...",
       "attachments": "Allegati",
       "attachmentsHint": "(opzionale — PDF, DOC, immagini, max 10 MB per file)",
       "attachBtn": "Clicca per allegare un file",
+      "postilla": "* Ogni documento inviato sarà trattato da MUI Motor Union Italia senza danne preavviso al mittente e con la finalità che MUI Motor Union Italia deciderà, e senza alcun corrispettivo di sorta da parte di MUI Motor Union Italia al mittente.",
       "submit": "Invia richiesta"
     }
   },
   "aboutus": {
     "hero": {
       "suptitle": "Chi Siamo",
-      "title": "Un sogno italiano\ndiventato energia",
-      "subtitle": "Le origini di Sinersys affondano in oltre cento anni di esperienza nella meccanica, nell'automotive e nella ricerca fluidodinamica applicata. Un percorso tecnico che ha condotto allo sviluppo del sistema proprietario APWEC®.",
+      "title": "Un sogno italiano",
+      "subtitle": "Mettiamo tutta la nostra passione e determinazione per perseguire i sogni e raggiungere traguardi importanti.\n Le origini di Sinersys affondano in decenni di esperienza in vari settori della meccanica, termodinamica e fluidodinamica. Un lungo percorso che ha condotto allo sviluppo di svariati obiettivi nel corso della nostra storia.",
       "slide1suptitle": "La nostra storia",
       "slide1title": "Dal dopoguerra\nall'energia del futuro",
       "slide1subtitle": "Cento anni di collaborazioni industriali, brevetti depositati in tutto il mondo e una ricerca ossessiva sui principi della fluidodinamica hanno prodotto APWEC®",
@@ -136,9 +138,9 @@
     },
     "whoweareLabel": "Chi Siamo",
     "whoweare": {
-      "title": "L'innovazione costruita su oltre un secolo di esperienza tecnica e sviluppo meccanico",
-      "p1": "Sinersys è una società italiana specializzata nello sviluppo di tecnologie avanzate per la conversione e la generazione di energia rinnovabile continua.\n Nata all'interno di Motor Union Italia — attiva dal 1919 nel settore dell'automotive industriale e dell'ingegneria motoristica — porta con sé un patrimonio tecnico-scientifico costruito in oltre un secolo di progettazione meccanica di precisione al servizio della transizione energetica.",
-      "p2": "La competenza maturata ha fornito le basi ingegneristiche per affrontare la sfida più ambiziosa della nostra storia: realizzare un sistema di generazione energetica che funzioni ininterrottamente, senza fonti fossili e senza dipendenza dalle variabili ambientali."
+      "title": "L'innovazione costruita in decenni di esperienza tecnica e sviluppo meccanico",
+      "p1": "Sinersys è un dipartimento di MUI, specializzato nello studio e sviluppo di tecnologie avanzate, dove sono nate negli ultimi anni le innovazioni APWEC e il Motore a 6 Fasi.\n Motor Union Italia — attiva dall'inizio del 900 nel settore dell'automotive — porta con sé un patrimonio tecnico-scientifico costruito sulla base della progettazione meccanica e transizione energetica.",
+      "p2": "La competenza maturata ha fornito le basi per affrontare sfide ambiziose per realizzare tra l'altro un sistema di generazione energetica funzionante ininterrotamente, da fonte rinnovabile, senza dipendenza dalle variabili ambientali e senza combustione interna.\n Inoltre ha raggiunto come obiettivo lo sviluppo di un rivoluzionario motore a combustione interna, con la funzione isocora."
     },
     "values": {
       "value0": "Energia rinnovabile continua",
@@ -149,8 +151,8 @@
     },
     "timelineLabel": "La Nostra Storia",
     "timeline": {
-      "heading": "Oltre un secolo di innovazione industriale: la storia che ha portato ad APWEC®",
-      "subheading": "Dalla meccanica pionieristica del primo Novecento alla ricerca avanzata sui sistemi energetici rinnovabili: ogni fase della storia Sinersys rappresenta un accumulo reale di competenze, brevetti e sviluppo ingegneristico.",
+      "heading": "Oltre un secolo di innovazione industriale: la storia che ha portato ad APWEC     ®",
+      "subheading": "Ogni fase della storia Sinersys rappresenta un accumulo reale di competenze, brevetti e sviluppi scientifici e tecnici.",
 
       "t1919": {
         "title": "Le origini industriali del gruppo",
@@ -164,12 +166,12 @@
 
       "t1965": {
         "title": "Espansione nella distribuzione di grandi marchi europei",
-        "description": "Nasce Motauto, struttura dedicata all'importazione esclusiva in Italia di Volvo, Saab e Hanomag-Henschel. L'azienda consolida competenze logistiche, commerciali e industriali nella gestione di veicoli, componentistica e tecnologie meccaniche avanzate."
+        "description": "Nasce Motauto, struttura dedicata all'importazione esclusiva in Italia di Volvo, Saab e Hanomag-Henschel. L'azienda consolida competenze logistiche, commerciali e industriali nella gestione di veicoli, componentistica e tecnologie meccaniche."
       },
 
       "t1977": {
         "title": "Fondazione del centro Ricerca & Sviluppo B-Art",
-        "description": "Viene costituita B-Art, la divisione specializzata in ricerca e sviluppo applicata a meccanica, termodinamica e fluidodinamica. Da questo laboratorio nascono numerosi brevetti industriali internazionali, inclusi i primi studi sul sistema energetico a sei fasi e sulle dinamiche dei fluidi in pressione."
+        "description": "Viene costituita B-Art, un centro di ricerca e sviluppo. Da questo laboratorio nascono numerosi brevetti industriali internazionali, inclusi i primi studi sul motore a sei fasi con funzione isocora."
       },
 
       "t1978": {
@@ -179,28 +181,44 @@
 
       "t1998": {
         "title": "Nasce Sinersys come spin-off energetico",
-        "description": "Dopo decenni di esperienza nell'ingegneria meccanica e nella progettazione industriale, il gruppo avvia Sinersys (Synergy Systems), società interamente dedicata allo sviluppo di sistemi per la conversione dell'energia atmosferica e dei moti fluidi in energia elettrica continua."
+        "description": "Dopo decenni di esperienza nell'ingegneria meccanica e nella progettazione industriale, il gruppo avvia Sinersys (Sinergia di Sistemi), dipartimento interamente dedicato allo sviluppo di innovazioni."
       },
 
       "t2002": {
         "title": "Avvio degli studi scientifici specifici sul generatore APWEC®",
-        "description": "Sinersys inaugura il programma scientifico dedicato alla trasformazione della pressione atmosferica in flusso cinetico energetico. Inizia la fase sperimentale che porterà alla realizzazione del primo prototipo funzionale e alla validazione del principio fisico del generatore APWEC®."
+        "description": "Sinersys inaugura il programma scientifico dedicato alla realizzazione di un generatore 'green', funzionante con fluido-aria. Inizia la fase sperimentale che porterà alla realizzazione del primo prototipo funzionale e alla validazione del principio fisico del generatore APWEC®."
       },
 
       "t2008": {
-        "title": "Deposito del brevetto Silo Eolico Perfezionato®",
-        "description": "Dopo i primi test prototipali e le verifiche ingegneristiche, Sinersys deposita il brevetto Silo Eolico Perfezionato®, prima formalizzazione industriale del sistema di conversione energetica basato su camere di induzione e pressione atmosferica controllata."
+        "title": "Deposito del brevetto Silo Eolico®",
+        "description": "Dopo i primi test prototipali e le verifiche ingegneristiche, Sinersys deposita il brevetto Silo Eolico, primo step tecnico dell'attuale APWEC, sistema di conversione energetica basato su camere di induzione e pressione atmosferica controllata."
       },
 
       "t2010": {
         "title": "Deposito del brevetto APWEC® e validazione internazionale",
-        "description": "Viene depositato il secondo brevetto APWEC® (Atmospheric Pressure Wind Eolic Collector), evoluzione completa della tecnologia proprietaria Sinersys. Il sistema viene sottoposto a test e certificazioni tecniche con TÜV Thüringen e Università di Ilmenau, consolidando la credibilità scientifica del progetto su scala internazionale."
+        "description": "Viene depositato il brevetto APWEC® (Atmospheric Pressure Wind Eolic Collector), evoluzione della tecnologia Silo Eolico. Il sistema viene sottoposto a test report condotti da TÜV Thüringen e Università di Ilmenau, centri di calcolo e dpt universitari, consolidando la credibilità scientifica del progetto."
+      },
+      "t2016": {
+        "title": "Aggiornamento del brevetto APWEC®",
+        "description": "Ottimizzazione fluido-dinamica"
+      },
+      "t2022": {
+        "title": "Inizio del nuovo corso di programma delle simulazioni CFD",
+        "description": ""
+      },
+      "t2024": {
+        "title": "Ulteriore brevetto per ottimizzare l'ingresso del fluido-aria",
+        "description": ""
+      },
+      "oggi": {
+        "title": "Ulteriori brevetti in fase di studio",
+        "description": ""
       }
     },
     "teamLabel": "Il Team",
     "team": {
       "heading": "Le persone che non hanno mai smesso di credere nel sogno",
-      "subheading": "Ingegneri, ricercatori e progettisti con decenni di esperienza nell'automotive industriale, nell'ingegneria meccanica avanzata e nello sviluppo di tecnologie per l'energia rinnovabile. La loro ostinazione nel perseguire un obiettivo che molti ritenevano impossibile è il motore di APWEC.",
+      "subheading": "Ingegneri, ricercatori e progettisti con decenni di esperienza nell'automotive industriale, nell'ingegneria meccanica avanzata e nello sviluppo di tecnologie per l'energia rinnovabile. La loro ostinazione nel perseguire un obiettivo che molti ritenevano impossibile con APWEC.",
       "member0": {
         "name": "Antonio Luca Biagini",
         "role": "General Director",
@@ -241,28 +259,28 @@
     "slide0": {
       "suptitle": "TECNOLOGIA BREVETTATA",
       "title": "APWEC",
-      "subtitle": "Atmospheric Pressure Wind Energy Collector - il generatore italiano di energia rinnovabile \nche utilizza la pressione dell’aria per produrre elettricità continua."
+      "subtitle": "Atmospheric Pressure Wind Energy Collector - il generatore italiano di energia rinnovabile \nche utilizza la depressione del fluido aria, producendo elettricità in maniera continua."
     },
     "slide1": {
       "suptitle": "COME FUNZIONA",
-      "title": "Energia pulita dalla pressione atmosferica",
-      "subtitle": "Il sistema genera un flusso d’aria interno controllato\n che raggiunge velocità elevate e aziona un rotore collegato a un alternatore."
+      "title": "Energia pulita dalla atmosfera",
+      "subtitle": "Il sistema genera un flusso d’aria interno controllato\n che raggiunge velocità elevate e aziona un rotore il quale è collegato all' alternatore."
     },
     "slide2": {
       "suptitle": "Ingegneria Italiana",
       "title": "Costruito per decenni di produzione energetica continua e affidabile",
-      "subtitle": "Componenti modulari ad alta resistenza progettati per operare in ambienti industriali estremi. Affidabilità certificata, manutenzione a livello del suolo, massima resa nella produzione di energia rinnovabile nel tempo."
+      "subtitle": "Componenti modulari progettati per operare in ambienti chiusi o aperti, sia civili che industriali. Affidabilità certificata, poca manutenzione, a livello del suolo, massima resa nella produzione di energia."
     },
     "slide3": {
       "suptitle": "Installazione",
       "title": "Operativo in meno di 48 ore: energia rinnovabile che si integra al tuo impianto",
-      "subtitle": "Installazione a livello del suolo, funzionamento indoor o outdoor, senza necessità di torri o strutture complesse."
+      "subtitle": "Installazione a livello del suolo, funzionamento indoor o outdoor, avvio e spegnimento a piacimento, senza necessità di ventosità naturale o strutture complesse/alte per captare il vento in quota."
     },
     "static": {
       "label": "Cos'è APWEC",
-      "title": "La tecnologia italiana basata su pressione atmosferica e fluidodinamica",
-      "p1": "APWEC è un sistema che utilizza la pressione atmosferica per generare energia elettrica continua. Il flusso d’aria interno viene accelerato e controllato per azionare un rotore collegato a un generatore. Una tecnologia nata da un sogno inseguito per decenni: dimostrare che è possibile produrre energia in modo ininterrotto senza dipendere da fonti fossili, dal vento o dall'irraggiamento solare.",
-      "p2": "A differenza dei sistemi tradizionali di generazione rinnovabile, APWEC non dipende da sole o vento e può operare quasi continuamente durante l’anno. Risparmio energetico reale, riduzione delle emissioni di CO₂ verificabile, indipendenza dalla rete elettrica.",
+      "title": "La tecnologia italiana basata su fluido ad alta velocità e depressione",
+      "p1": "APWEC è un sistema che utilizza fluido-aria per generare energia elettrica continua. Il flusso d’aria interno viene accelerato e controllato per azionare un rotore collegato a un generatore. Una tecnologia nata da un sogno inseguito per decenni: dimostrare che è possibile produrre energia in modo ininterrotto senza dipendere da fonti fossili, ad esempio: dal vento, dal sole, dalle maree o altro.",
+      "p2": "A differenza dei sistemi tradizionali di generazione rinnovabile, APWEC non dipende direttamente dall'irraggiamento solare o dalle variabili metereologiche, e può operare praticamente ininterrottamente durante tutto l’anno. Risparmio energetico reale, inesistenza di emissioni, indipendenza dalla rete elettrica.",
       "f0": {
         "label": "Funzionamento Continuo",
         "title": "Fino a 8660 ore annue",
@@ -270,7 +288,7 @@
       },
       "f1": {
         "label": "Scalabilità",
-        "title": "Da 1 kW a 10 MW",
+        "title": "Da 1 kW a 10 MW ca.",
         "description": "L'architettura modulare di APWEC consente di dimensionare l'impianto in base al fabbisogno energetico reale dell'utente."
       },
       "f2": {
@@ -286,17 +304,18 @@
     },
     "howItWorks": {
       "label": "Architettura del sistema",
-      "title": "Come funziona APWEC®:\ndue sezioni, un flusso continuo",
-      "intro": "Il generatore APWEC® è composto da due involucri fissati su un'unica base. La Prima Sezione genera e amplifica il flusso d'aria attraverso una serie di Camere di Induzione anulari (c.d.i.). La Seconda Sezione converte quel flusso in energia elettrica tramite un rotore con profilo alare e un alternatore integrato.",
+      "title": "Come funziona APWEC®:\ntre sezioni che abbiamo denominato vessel",
+      "intro": "Il generatore APWEC® è composto da tre vessel fissati solidamente l'uno con l'altro. Il primo genera flusso d'aria con aperture per ingresso aria atmosferica. \n Nel secondo vessel ci sono una serie di Camere di Induzione anulari (C.d.I.) opportunatamente disegnate per accelerare il flusso all'interno di questa seconda sezione. Il terzo converte il flusso-aria notevolmente accelerato ad alta velocità, cineticamente in energia elettrica tramite un rotore collegato all' alternatore.",
       "shell1": {
         "label": "Prima Sezione",
         "title": "Generazione e amplificazione del flusso",
-        "desc": "Un getto di innesco ad alta velocità entra nella prima Camera di Induzione anulare. La differenza di pressione generata secondo il Principio di Bernoulli richiama aria atmosferica dall'esterno, amplificando progressivamente la portata attraverso ogni camera successiva. Il materiale dell'involucro può essere acciaio, alluminio o plastica rinforzata — massima flessibilità costruttiva."
+        "desc": "Un getto di innesco ad alta velocità entra nella prima Camera di Induzione anulare. La differenza di pressione generata secondo il Principio di Bernoulli richiama aria atmosferica dall'esterno, amplificando progressivamente la portata del flusso-aria ad ogni C.d.I. successiva. Il materiale dell'involucro può essere acciaio, alluminio o plastica rinforzata per la massima flessibilità costruttiva per la diminuzione dei costi."
       },
       "shell2": {
         "label": "Seconda Sezione",
         "title": "Conversione in energia elettrica",
-        "desc": "Il flusso finale, energizzato dall'atmosfera, impatta sul Rotore a pale con profilo alare — lo stesso principio aerodinamico degli aerogeneratori allo stato dell'arte, con un vantaggio determinante: il flusso è unidirezionale, quindi le pale non richiedono il meccanismo di passo variabile. L'alternatore integrato produce corrente stabilizzata in tensione e frequenza tramite inverter."
+        "desc2": "Il flusso finale, energizzato dall'atmosfera, impatta sul Rotore a pale con profilo alare — lo stesso principio aerodinamico degli aerogeneratori allo stato dell'arte, con un vantaggio determinante: il flusso è unidirezionale, quindi le pale non richiedono il meccanismo di passo variabile. L'alternatore integrato produce corrente stabilizzata in tensione e frequenza tramite inverter.",
+        "desc": "Dato che il sistema opera in un condotto e il flusso è unidirezionale sempre con la medesima intensità della velocità, il rotore dell'APWEC non ha necessità del sisetma passo-variabile delle pale, in quanto appunto la velocità del flusso-aria rimane sempre la medesima."
       },
       "cdiLabel": "Cascata di amplificazione — Camere di Induzione (c.d.i.)",
       "cdi0": {
@@ -356,7 +375,7 @@
     "advantages": {
       "label": "APWEC® vs. aerogeneratori tradizionali",
       "title": "Vantaggi tecnici ed economici rispetto allo stato dell'arte",
-      "intro": "Il confronto tra APWEC® e i grandi aerogeneratori convenzionali evidenzia vantaggi strutturali che impattano su costi di costruzione, manutenzione, installazione e operatività. Un generatore di nuovissima generazione progettato secondo la filosofia costruttiva automotive.",
+      "intro": "Il concetto basilare è Semplicità. Semplicità di calcolo, costruttiva e di funzionamento. \nIl confronto tra APWEC® e i grandi aerogeneratori convenzionali evidenzia vantaggi strutturali che impattano su costi di costruzione, manutenzione, installazione e operatività. APWEC, generatore di nuovissima generazione progettato secondo la filosofia costruttiva automotive.",
       "a0": {
         "label": "Operatività",
         "title": "Funzionamento fino a 8.660 ore annue",
@@ -390,7 +409,105 @@
       "vsDesc": "I grandi aerogeneratori sfruttano esclusivamente la pressione dinamica del vento esterno e richiedono vento minimo, torri elevate, meccanismi di passo variabile e manutenzione in quota. \nAPWEC® opera con un flusso interno controllato, al livello del suolo, indipendentemente dalle condizioni atmosferiche esterne — una categoria tecnica distinta e complementare nel panorama della generazione di energia rinnovabile distribuita."
     }
   },
-
+  "motore6fasi": {
+    "slide0": {
+      "suptitle": "TECNOLOGIA BREVETTATA",
+      "title": "Motore a 6 Fasi",
+      "subtitle": "Il propulsore italiano a combustione a volume costante con biella rotante e pistone semi-flottante: più potenza, meno consumi, meno emissioni."
+    },
+    "slide1": {
+      "suptitle": "NUOVO MANOVELLISMO",
+      "title": "Il ciclo termodinamico reinventato",
+      "subtitle": "Un eccentrico a profilo predeterminato sostituisce il classico sistema biella-manovella, eliminando i punti morti e consentendo una combustione isocora perfetta al P.M.S."
+    },
+    "slide2": {
+      "suptitle": "Ingegneria Italiana",
+      "title": "Progettato per massimizzare potenza e ridurre le perdite passive",
+      "subtitle": "Coefficienti di riempimento fino al 120% della cilindrata, assenza di anticipo di accensione e architettura modulare derivata dalla filosofia costruttiva automotive."
+    },
+    "slide3": {
+      "suptitle": "Applicazioni",
+      "title": "Dal powertrain automotive al ciclo Stirling industriale",
+      "subtitle": "Il principio del manovellismo a 6 fasi si applica a motori a combustione interna, ibridi e al ciclo Stirling, aprendo scenari a inquinamento quasi zero e consumi ulteriormente ridotti."
+    },
+    "static": {
+      "label": "Cos'è il Motore a 6 Fasi",
+      "title": "La combustione a volume costante che ridefinisce il propulsore moderno",
+      "p1": "Il Motore a 6 Fasi di Motor Union Italia è un propulsore a combustione interna che realizza un ciclo termodinamico in sei fasi nell'arco di due giri dell'albero motore. Il cuore dell'invenzione è il nuovo sistema di manovellismo: un eccentrico a profilo predeterminato, solidale all'albero motore, sul quale scorre una rotella calettata sullo spinotto del pistone. Questo elimina i classici punti morti e consente di definire con precisione la legge cinematica del pistone.",
+      "p2": "Il risultato è una Combustione a Volume Costante (isocora) al Punto Morto Superiore con anticipo di accensione nullo, un'aspirazione prolungata al P.M.I. con coefficienti di riempimento superiori all'unità, e l'eliminazione delle perdite dovute alla pressione di combustione nel periodo dell'anticipo. Il tutto in un propulsore più compatto, più leggero e costruibile con filosofia automotive.",
+      "f0": {
+        "label": "Efficienza Termica",
+        "title": "Combustione isocora al P.M.S.",
+        "description": "Anticipo di accensione nullo: tutta l'energia della miscela viene convertita in lavoro utile senza sottrarre energia al volano durante la compressione."
+      },
+      "f1": {
+        "label": "Coefficiente di Riempimento",
+        "title": "Fino al 120% della cilindrata",
+        "description": "L'aspirazione prolungata a pistone fermo al P.M.I. sfrutta la velocità inerziale della miscela, raggiungendo coefficienti di riempimento superiori a medi e alti regimi."
+      },
+      "f2": {
+        "label": "Compattezza",
+        "title": "Powertrain ridotto in volume e peso",
+        "description": "Integrato con il cambio automatico stepless senza cinghia e pulegge, il powertrain riduce significativamente ingombri, peso e costi rispetto alle soluzioni attuali."
+      },
+      "cta": {
+        "title": "Richiedi una valutazione tecnica",
+        "subtitle": "Analisi delle applicazioni, fattibilità costruttiva e modello economico disponibili su richiesta.",
+        "link": "Contattaci"
+      }
+    },
+    "howItWorks": {
+      "label": "Il ciclo a 6 fasi",
+      "title": "Come funziona il Motore a 6 Fasi:\nil nuovo manovellismo a eccentrico",
+      "intro": "Il sistema si basa su un eccentrico a profilo predeterminato solidale all'albero motore. Una rotella, calettata sullo spinotto del pistone, scorre sul profilo dell'eccentrico: il pistone segue quindi la legge cinematica impressa nel profilo, non quella sinusoidale del classico manovellismo biella-manovella. Il progettista può così definire soste al P.M.S. per la combustione isocora e soste al P.M.I. per massimizzare il riempimento.",
+      "shell1": {
+        "label": "Primo Principio — Combustione Isocora",
+        "title": "Anticipo di accensione zero, energia massima",
+        "desc": "Nel sistema tradizionale, l'anticipo di accensione è necessario per completare la combustione prima che il pistone si allontani dal P.M.S., ma sottrae energia al volano durante la compressione. Con l'eccentrico a profilo predeterminato, il pistone si ferma al P.M.S. per l'angolo prescelto: la combustione avviene a volume costante, con anticipo nullo, trasferendo tutta l'energia termica in pressione disponibile per la fase di espansione."
+      },
+      "shell2": {
+        "label": "Secondo Principio — Aspirazione Prolungata",
+        "title": "Riempimento superiore all'unità a medi e alti regimi",
+        "desc": "Al Punto Morto Inferiore il pistone si ferma per un intervallo angolare programmato, sfruttando la velocità inerziale della colonna di miscela in ingresso. Il coefficiente di riempimento supera l'unità a medi e alti regimi — fino al 120% della cilindrata geometrica — senza ricorrere a sovralimentazione forzata, aumentando la potenza media effettiva (p.m.e.) in modo naturale e affidabile."
+      }
+    },
+    "advantages": {
+      "label": "Motore a 6 Fasi vs. motori convenzionali",
+      "title": "Vantaggi tecnici ed economici rispetto allo stato dell'arte",
+      "intro": "Il confronto tra il Motore a 6 Fasi Motor Union Italia e i propulsori a 4 tempi convenzionali evidenzia vantaggi strutturali su efficienza, emissioni, compattezza e costi. Una tecnologia pensata per l'era della transizione energetica.",
+      "a0": {
+        "label": "Efficienza termodinamica",
+        "title": "Combustione isocora: nessuna perdita di anticipo",
+        "desc": "L'eliminazione dell'anticipo di accensione elimina le perdite di energia durante la compressione. Tutta la pressione generata dalla combustione è disponibile nella fase di espansione, aumentando la potenza specifica a parità di cilindrata."
+      },
+      "a1": {
+        "label": "Riempimento naturale",
+        "title": "Coefficiente di riempimento fino al 120%",
+        "desc": "La sosta al P.M.I. sfrutta l'inerzia della miscela aspirata: a medi e alti regimi il riempimento supera il 100% della cilindrata geometrica, aumentando la p.m.e. senza sovralimentazione meccanica."
+      },
+      "a2": {
+        "label": "Semplicità costruttiva",
+        "title": "Meno componenti, filosofia automotive",
+        "desc": "Il sistema a eccentrico sostituisce il complesso manovellismo biella-manovella con un profilo lavorato di precisione. La filosofia costruttiva automotive garantisce standardizzazione, costi di produzione ridotti e disponibilità globale dei componenti."
+      },
+      "a3": {
+        "label": "Pale a passo fisso — rotore",
+        "title": "Biella rotante e pistone semi-flottante",
+        "desc": "La configurazione con biella rotante e pistone semi-flottante favorisce la stabilità termica alle alte temperature, la lubrificazione ottimale e una massa del pistone uguale o inferiore a quella di analoga cilindrata convenzionale, riducendo le forze di inerzia."
+      },
+      "a4": {
+        "label": "Emissioni e acustica",
+        "title": "Verso l'inquinamento quasi zero",
+        "desc": "Integrato con il ciclo Stirling, il propulsore punta a emissioni conformi agli standard California (tra i più severi al mondo), con inquinamento acustico inferiore ai 70 dB e utilizzo di carburanti a bassissimo numero d'ottani, privi di additivi antidetonanti."
+      },
+      "a5": {
+        "label": "Powertrain compatto",
+        "title": "Volume e peso ridotti con cambio stepless",
+        "desc": "Abbinato al cambio automatico stepless senza cinghia e pulegge, il powertrain riduce significativamente ingombri e peso rispetto alle soluzioni attuali, con benefici diretti su consumi, dinamica del veicolo e costi di integrazione."
+      },
+      "vsDesc": "I motori a 4 tempi convenzionali richiedono anticipo di accensione, operano con coefficienti di riempimento inferiori all'unità e accumulano perdite passive nella fase di compressione. \nIl Motore a 6 Fasi Motor Union Italia elimina queste perdite strutturali grazie alla combustione isocora, all'aspirazione prolungata e al nuovo sistema di manovellismo — una categoria tecnica distinta che si posiziona come evoluzione naturale del propulsore a combustione interna per la transizione energetica."
+    }
+  },
   "research": {
     "label": "Ricerca e Sviluppo",
     "title": "Il Centro Ricerche che ha trasformato un sogno impossibile in brevetto",
@@ -454,7 +571,7 @@
     "updated": "Ultimo aggiornamento: Marzo 2026",
     "s1": {
       "heading": "Premessa e campo di applicazione",
-      "p1": "Sinersys è una società italiana specializzata nello sviluppo di tecnologie avanzate per la conversione e la gestione dell'energia rinnovabile. Operiamo con la convinzione che innovazione e responsabilità non siano valori in contraddizione, ma complementari: la qualità del lavoro che facciamo dipende anche dalla qualità delle relazioni che costruiamo e dei comportamenti che adottiamo.",
+      "p1": "Sinersys è un dipartimento di MUI, specializzato nello studio e sviluppo di tecnologie avanzate, dove sono nate negli ultimi anni le innovazioni APWEC e il Motore a 6 Fasi. Operiamo con la convinzione che innovazione e responsabilità non siano valori in contraddizione, ma complementari: la qualità del lavoro che facciamo dipende anche dalla qualità delle relazioni che costruiamo e dei comportamenti che adottiamo.",
       "p2": "Il presente Codice Etico si applica a tutti coloro che operano per o con Sinersys: dipendenti, collaboratori, consulenti, fornitori e partner commerciali. Non è un documento formale fine a sé stesso, ma il riflesso scritto di una cultura aziendale che privilegia la sostanza rispetto alla forma."
     },
     "s2": {
