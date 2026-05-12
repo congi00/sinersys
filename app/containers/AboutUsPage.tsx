@@ -20,9 +20,55 @@ import { setNavigationState, setOpenContact } from "../features/counterSlice";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
+import VintageMediaViewer, { MediaItem } from "../components/VintageMediaViewer";
 
 // Industrial partners
 const partners = ["Honda", "Volvo", "Chrysler", "Saab", "Hanomag - Henschel", "VW"];
+const MEDIA: MediaItem[] = [
+  {
+    type: "image",
+    src: "/aboutusgallery/img_3.jpg",
+    caption: "Passo... e chiudo",
+    date: "",
+  },
+  {
+    type: "image",
+    src: "/aboutusgallery/IMG_1081.jpg",
+    caption: "Bieffe",
+    date: "",
+  },
+  {
+    type: "image",
+    src: "/aboutusgallery/small_DSC_0005.jpg",
+    caption: "Precursore APWEC",
+    date: "",
+  },
+  {
+    type: "image",
+    src: "/aboutusgallery/small_DSCN0765.jpg",
+    caption: "Motore DKW",
+    date: "",
+  },
+  {
+    type: "image",
+    src: "/aboutusgallery/small_img_1.png",
+    caption: "",
+    date: "",
+  },
+  {
+    type: "image",
+    src: "/aboutusgallery/small_img_2.png",
+    caption: "",
+    date: "",
+  },
+  {
+    type: "image",
+    src: "/aboutusgallery/small_IMG_1001.jpg",
+    caption: "",
+    date: "",
+  },
+  
+];
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -1191,11 +1237,12 @@ export default function AboutUsPage() {
                 </GlassCard>
               </FadeIn>
             </section>
+            <VintageMediaViewer items={MEDIA} vintageIntensity={0} />
+            
           </motion.div>
 
           {/* Whitespace gap before footer */}
           <div style={{ height: "20vh" }} />
-
           <Footer openContact={() => dispatch(setOpenContact(true))} />
         </motion.div>
 
