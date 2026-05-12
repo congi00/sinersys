@@ -29,8 +29,8 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
   const [hidden, setHidden] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
-  const items = ["homepage", "products", "about", "contacts"];
-  const links = ["/", "apwec", "about-us", ""];
+  const items = ["homepage", "products", "motor" , "about", "contacts"];
+  const links = ["/", "apwec", "/six-phase-motor" , "about-us", ""];
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -142,14 +142,14 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
         </div>
 
         {/* Nav items */}
-        <div className="flex flex-col items-center w-full gap-1 mb-2">
+        <div className="flex flex-col items-center w-full gap-1">
           {items.map((item, index, array) => {
             const reverseIndex = array.length - 1 - index;
             return (
               <Link key={item} href={links[index]}>
                 <motion.span
                   className={clsx(
-                    "text-xl cursor-pointer",
+                    "text-lg cursor-pointer",
                     "transition-[opacity,transform] duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
                     "transition-[font-weight] duration-200",
                     menuVisibility
@@ -183,7 +183,7 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
           overflow-visible on the parent container is required so the dropdown
           (which opens upward) is not clipped by the menu card.
         */}
-        <div className="flex">
+        <div className="flex mb-4">
           <div
             className={clsx(
               "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
@@ -199,7 +199,7 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
           <div
             className={clsx(
               "transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
-              "ml-8",
+              "ml-12",
               menuVisibility
                 ? "opacity-100 translate-y-0 delay-[200ms]"
                 : "opacity-0 translate-y-4"

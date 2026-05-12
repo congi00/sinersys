@@ -1,9 +1,10 @@
 "use client";
 
 import clsx from "clsx";
-import { motion, useTransform, MotionValue } from "framer-motion";
+import { motion, useTransform, MotionValue, useMotionValueEvent } from "framer-motion";
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
+import { useState } from "react";
 
 interface ResearchProduct {
   id: string;
@@ -117,15 +118,22 @@ function ProductCard({
   product,
   reveal,
   isMobile,
+  progress,
 }: {
   product: ResearchProduct;
   reveal: ReturnType<typeof useReveal>;
   isMobile: boolean;
+  progress: MotionValue<number>;
 }) {
   const sc = STATUS_COLORS[product.status];
+  const [clickable, setClickable] = useState(false);
+
+  useMotionValueEvent(progress, "change", (v) => {
+    setClickable(v >= 1.9 && v <= 2.7);
+  });
 
   return (
-    <Link href={product.link} style={{ pointerEvents: "auto" }}>
+    <Link href={product.link} style={{ pointerEvents: clickable ? "auto" : "none", }}>
       <motion.div
         style={{
           opacity: reveal.op,
@@ -253,17 +261,13 @@ export default function ResearchProducts({
     useReveal(progress, 2.44),
     useReveal(progress, 2.52),
   ];
-
-  // Decorative ring rotations
-  const ringA = useTransform(progress, [1.8, 2.8], [0, 72]);
-  const ringB = useTransform(progress, [1.8, 2.8], [0, -44]);
-
+  
   return (
     <motion.div
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 11,
+        zIndex: 9,
         opacity: wrapOp,
         y: wrapY,
         pointerEvents: "none",
@@ -380,6 +384,7 @@ export default function ResearchProducts({
               product={product}
               reveal={rCards[i] ?? rCards[rCards.length - 1]}
               isMobile={isMobile}
+              progress={progress}
             />
           ))}
         </div>

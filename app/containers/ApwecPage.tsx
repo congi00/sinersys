@@ -20,8 +20,29 @@ import { setNavigationState, setOpenContact } from "../features/counterSlice";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
+import VintageMediaViewer, { MediaItem } from "../components/VintageMediaViewer";
 
 const SCENES = 6.2;
+const MEDIA: MediaItem[] = [
+  {
+    type: "video",
+    src: "/apwecprod.webm",
+    caption: "Prototipo APWEC — ripresa esterna",
+    date: "2024 · ARCHIVIO",
+  },
+  {
+    type: "video",
+    src: "/apwecprod1.webm",
+    caption: "Sequenza mobile",
+    date: "2024 · FIELD",
+  },
+  {
+    type: "image",
+    src: "/foto-archivio.jpg",
+    caption: "Vista d'insieme dell'impianto",
+    date: "2023 · FOT",
+  },
+];
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -1167,6 +1188,7 @@ export default function ApwecPage() {
             {/* ── ADVANTAGES ───────────────────────────────────────────── */}
             <AdvantagesSection t={t} isMobile={isMobile} />
 
+            {/* <VintageMediaViewer items={MEDIA} vintageIntensity={0} /> */}
             <div
               style={{
                 height: "1px",

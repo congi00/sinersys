@@ -696,7 +696,10 @@ export default function AboutUsPage() {
     { key: "t1998", year: "1998" },
     { key: "t2002", year: "2002" },
     { key: "t2008", year: "2008" },
-    { key: "t2010", year: "2010" },
+    { key: "t2016", year: "2016" },
+    { key: "t2022", year: "2022" },
+    { key: "t2024", year: "2024" },
+    { key: "oggi", year: "oggi" },
   ];
 
   const team = [
