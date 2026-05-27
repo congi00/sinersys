@@ -6,7 +6,27 @@
     "motor": "6 FASE ENGINE",
     "contacts": "CONTACT"
   },
+  "scrollNavigator": {
+    "home": "Home",
+    "apwec": "APWEC",
+    "research": "Research",
+    "aboutUs": "About Us",
+    "vision": "Vision",
+    "goals": "Goals",
+    "contactUs": "Contact Us",
+    "faq": "FAQ",
 
+    "ourStory": "Our Story",
+    "timeline": "Timeline",
+    "team": "Team",
+
+    "whatIsIt": "What Is It",
+    "architecture": "Architecture",
+    "advantages": "Advantages",
+
+    "sixPhaseEngine": "6-Phase Engine",
+    "howItWorks": "How It Works"
+  },
   "homepage": {
     "slide0": {
       "title": "The new generation of \nrenewable energy born from \nan innovator's dream",

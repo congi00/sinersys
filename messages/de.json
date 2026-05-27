@@ -6,7 +6,27 @@
     "about": "ÜBER UNS",
     "contacts": "KONTAKT"
   },
+  "scrollNavigator": {
+    "home": "Startseite",
+    "apwec": "APWEC",
+    "research": "Forschung",
+    "aboutUs": "Über uns",
+    "vision": "Vision",
+    "goals": "Ziele",
+    "contactUs": "Kontakt",
+    "faq": "FAQ",
 
+    "ourStory": "Unsere Geschichte",
+    "timeline": "Zeitachse",
+    "team": "Team",
+
+    "whatIsIt": "Was ist das",
+    "architecture": "Architektur",
+    "advantages": "Vorteile",
+
+    "sixPhaseEngine": "6-Phasen-Motor",
+    "howItWorks": "Wie es funktioniert"
+  },
   "homepage": {
     "slide0": {
       "title": "Die neue Generation \nerneuerbarer Energie, geboren \naus dem Traum von Innovatoren",

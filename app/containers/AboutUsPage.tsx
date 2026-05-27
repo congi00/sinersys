@@ -564,6 +564,7 @@ export default function AboutUsPage() {
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const isIOS = detectIOS();
   const dispatch = useAppDispatch();
+  const ts = useTranslations("scrollNavigator");
 
   const progressMotion = useMotionValue(0);
   const [vhPx, setVhPx] = useState(0);
@@ -752,6 +753,7 @@ export default function AboutUsPage() {
     { key: "member0", photo: "/team/1.jpg" },
     { key: "member1", photo: "/team/2.jpg" },
   ];
+  
 
   return (
     <>
@@ -1255,10 +1257,10 @@ export default function AboutUsPage() {
             hiddenMenu={hiddenMenu}
             sections={
               [
-                { index: 1, label: "Chi Siamo", start: 0, end: 0.7, target: 0 },
-                { index: 2, label: "La Nostra Storia", start: 1.0, end: 1.8, target: 3.8 },
-                { index: 3, label: "Timeline", start: 1.9, end: 4.8, target: 5.3 },
-                { index: 4, label: "Team", start: 4.9, end: 5.4, target: 13.3 },
+                { index: 1, label: ts("aboutUs"), start: 0, end: 0.7, target: 0 },
+                { index: 2, label: ts("ourStory"), start: 1.0, end: 1.8, target: 3.8 },
+                { index: 3, label: ts("timeline"), start: 1.9, end: 4.8, target: 5.3 },
+                { index: 4, label: ts("team"), start: 4.9, end: 5.4, target: 13.3 },
               ]
             }
           />

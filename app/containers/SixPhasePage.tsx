@@ -700,6 +700,7 @@ export default function SixPhasePage() {
   const linkColorWhite = useMotionValue("#f4f7fa");
   const hiddenMenu = useTransform(smooth, [5.8, 5.9], [1, 0]);
   const menuTheme = useTransform(smooth, [3, 3.6, 4.4, 5.5, 5.9], [0, 1, 0, 0, 1]);
+  const ts = useTranslations("scrollNavigator");
  
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (
@@ -1141,11 +1142,11 @@ export default function SixPhasePage() {
             menuTheme={menuTheme}
             hiddenMenu={hiddenMenu}
             sections={[
-              { index: 1, label: "Motore 6 Fasi", start: 0, end: 0.7, target: 0 },
-              { index: 2, label: "Cos'è", start: 3.8, end: 4.2, target: 6.35 },
-              { index: 3, label: "Come funziona", start: 4.3, end: 4.8, target: 7.2 },
-              { index: 4, label: "Vantaggi", start: 4.9, end: 5.4, target: 8.0 },
-              { index: 5, label: "Contattaci", start: 5.5, end: 7.9, target: 8.65 },
+              { index: 1, label: ts("sixPhaseEngine"), start: 0, end: 0.7, target: 0 },
+              { index: 2, label: ts("whatIsIt"), start: 3.8, end: 4.2, target: 6.35 },
+              { index: 3, label: ts("howItWorks"), start: 4.3, end: 4.8, target: 7.2 },
+              { index: 4, label: ts("advantages"), start: 4.9, end: 5.4, target: 8.0 },
+              { index: 5, label: ts("contactUs"), start: 5.5, end: 7.9, target: 8.65 },
             ]}
           />
         )}

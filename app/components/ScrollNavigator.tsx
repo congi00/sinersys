@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion, MotionValue, useMotionValueEvent } from "framer-motion";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Section definitions — progress ranges mirror page.tsx transforms
@@ -15,16 +16,21 @@ export interface NavSection {
   target: number; // progress value to jump to when clicking
 }
 
-export const DEFAULT_SECTIONS: NavSection[] = [
-  { index: 1, label: "Home", start: 0, end: 0.7, target: 0 },
-  { index: 2, label: "APWEC", start: 0.8, end: 1.8, target: 1.4 },
-  { index: 3, label: "Ricerca", start: 1.8, end: 2.8, target: 2.4 },
-  { index: 4, label: "Chi Siamo", start: 2.8, end: 3.2, target: 3.1 },
-  { index: 5, label: "Visione", start: 3.8, end: 4.8, target: 4.43 },
-  { index: 6, label: "Obiettivi", start: 4.9, end: 6.0, target: 6.15 },
-  { index: 7, label: "Contattaci", start: 6.1, end: 7.9, target: 7.2 },
-  { index: 8, label: "FAQ", start: 7.4, end: 9.5, target: 8.5 },
-];
+
+export function useDefaultSections(): NavSection[] {
+  const t = useTranslations("scrollNavigator");
+
+  return [
+    { index: 1, label: t("home"), start: 0, end: 0.7, target: 0 },
+    { index: 2, label: t("apwec"), start: 0.8, end: 1.8, target: 1.4 },
+    { index: 3, label: t("research"), start: 1.8, end: 2.8, target: 2.4 },
+    { index: 4, label: t("aboutUs"), start: 2.8, end: 3.2, target: 3.1 },
+    { index: 5, label: t("vision"), start: 3.8, end: 4.8, target: 4.43 },
+    { index: 6, label: t("goals"), start: 4.9, end: 6.0, target: 6.15 },
+    { index: 7, label: t("contactUs"), start: 6.1, end: 7.9, target: 7.2 },
+    { index: 8, label: t("faq"), start: 7.4, end: 9.5, target: 8.5 },
+  ]
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Props
@@ -62,7 +68,7 @@ function getActiveIndex(p: number, sections: NavSection[]): number {
 export default function ScrollNavigator({
   progress,
   totalScrollHeight,
-  sections = DEFAULT_SECTIONS,
+  sections = useDefaultSections(),
   isMobile = false,
   menuTheme,
   hiddenMenu
