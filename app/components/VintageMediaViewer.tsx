@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
+import Image from "next/image";
 
 /* ─── Types ──────────────────────────────────────────────────────────────── */
 export type MediaItem = {
@@ -85,16 +86,16 @@ function Thumbnail({
           }}
         />
       ) : (
-        <img
+        <Image
           src={item.src}
           alt={item.caption ?? `Frame ${idx + 1}`}
           style={{
-            width: "100%",
-            height: "100%",
             objectFit: "cover",
             filter: "sepia(65%) contrast(1.05) brightness(0.78) saturate(0.55)",
             pointerEvents: "none",
           }}
+          fill
+          priority
         />
       )}
       {/* grain overlay */}
@@ -256,16 +257,16 @@ export default function VintageMediaViewer({
                   }}
                 />
               ) : (
-                <img
+                <Image
                   src={item.src}
                   alt={item.caption ?? `Frame ${current + 1}`}
                   style={{
-                    width: "100%",
-                    height: "100%",
                     objectFit: "cover",
                     display: "block",
                     filter: mediaFilter,
                   }}
+                  fill
+                  priority
                 />
               )}
             </motion.div>

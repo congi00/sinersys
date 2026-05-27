@@ -15,6 +15,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { motion, MotionValue } from "framer-motion";
 import { useRef } from "react";
 import SocialSwitcher from "./SocialSwitcher";
+import Image from "next/image";
 
 interface Props {
   menuTheme?: MotionValue<number>;
@@ -105,6 +106,7 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
         border:               "1px solid rgba(255,255,255,0.22)",
         boxShadow:            "0 8px 40px rgba(12,24,70,0.35), inset 0 1px 0 rgba(255,255,255,0.18)",
       }}
+      aria-label="Apri menu di navigazione" 
     >
       {/* ── Expanded content ──────────────────────────────────────────── */}
       <div
@@ -126,15 +128,21 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
               : "opacity-0 translate-y-6"
           )}
         >
-         {isDark && <img
+         {isDark && <Image
             src="/full-logo-sinersys.png"
             alt="Logo Sinersys Full"
-            className="h-12 object-contain"
+            className="h-12 w-auto object-contain"
+            width={240}
+            height={48}
+            priority
           />}
-          {!isDark && <img
+          {!isDark && <Image
             src="/full-logo-sinersys_blu.png"
             alt="Logo Sinersys Full"
-            className="h-12 object-contain"
+            className="h-12 w-auto object-contain"
+            width={240}
+            height={48}
+            priority
           />}
           <motion.h4 className="text-xs tracking-widest" style={{color: isDark ? "#F4F7FA" : "#1c398e"}}>
             NEW ENERGY FRONTIERS

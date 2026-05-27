@@ -1,29 +1,123 @@
 import type { Metadata } from "next";
-import { League_Spartan } from "next/font/google";
 import {NextIntlClientProvider} from 'next-intl';
 import "./globals.css";
 import { Providers } from "./providers"; 
 import LandscapeBlock from "./components/LandscapeBlock";
+import { getTranslations } from "next-intl/server";
+import { cookies } from "next/headers";
 
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const { locale } = await params;
 
-const leagueSpartan = League_Spartan({
-  subsets: ["latin"],
-  variable: "--font-league",
-  weight: ["100","200","300","400","500","600","700","800","900"],
-});
+  const t = await getTranslations({
+    locale,
+    namespace: "homepage",
+  });
 
-export const metadata: Metadata = {
-  title: "Sinersys",
-  description: "New Energy Frontiers",
-};
+  const title = "Sinersys — New Energy Frontiers";
+
+  const description =
+    t("slide0.subtitle")
+      .replace(/\n/g, " ")
+      .trim();
+
+  return {
+    title: {
+      default: title,
+      template: "%s | Sinersys",
+    },
+
+    description,
+
+    keywords: [
+      "motore elettrico",
+      "six phase motor",
+      "APWEC",
+      "energia rinnovabile",
+      "Sinersys",
+      "motore a 6 fasi",
+      "generatore energia rinnovabile",
+      "energia continua",
+    ],
+
+    authors: [{ name: "Sinersys" }],
+    creator: "Sinersys",
+
+    metadataBase: new URL("https://sinersys.it"),
+
+    openGraph: {
+      type: "website",
+      locale:
+        locale === "it"
+          ? "it_IT"
+          : locale === "en"
+          ? "en_US"
+          : locale === "de"
+          ? "de_DE"
+          : "fr_FR",
+
+      alternateLocale: ["it_IT", "en_US", "de_DE", "fr_FR"],
+
+      title,
+
+      description,
+
+      siteName: "Sinersys",
+
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Sinersys",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/og-image.jpg"],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+
+    alternates: {
+      canonical:
+        locale === "it"
+          ? "https://sinersys.it/it"
+          : `https://sinersys.it/${locale}`,
+
+      languages: {
+        it: "/it",
+        en: "/en",
+        de: "/de",
+        fr: "/fr",
+      },
+    },
+    icons: {
+      icon: [{ url: "/favicon-32x32.png", sizes: "32x32" }, { url: "/favicon-16x16.png", sizes: "16x16" }],
+      apple: "/apple-touch-icon.png",
+    },
+    manifest: "/site.webmanifest",
+  };
+}
 
 type Props = {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 };
 
 export default async function RootLayout({children}: Props) {
+  const locale = (await cookies()).get('locale')?.value || 'en';
   return (
-    <html>
+    <html lang={locale}>
       <head>
         <meta charSet="utf-8"/>
         <meta name="next-size-adjust" content=""/>
@@ -33,15 +127,6 @@ export default async function RootLayout({children}: Props) {
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&display=swap" rel="stylesheet"></link> */}
-        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Gilda+Display&display=swap" rel="stylesheet"></link> */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Gilda+Display&family=Rufina:wght@400;700&display=swap" rel="stylesheet"></link>
       </head>
       <body
         className={`

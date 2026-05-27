@@ -8,7 +8,7 @@ import {
   useTransform,
   useInView,
 } from "framer-motion";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 import { useTranslations } from "next-intl";
 import { detectIOS } from "../support/useViewportHeight";
 import Header from "../components/Header";
@@ -21,6 +21,7 @@ import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
 import VintageMediaViewer, { MediaItem } from "../components/VintageMediaViewer";
+import Image from "next/image";
 
 // Industrial partners
 const partners = ["Honda", "Volvo", "Chrysler", "Saab", "Hanomag - Henschel", "VW"];
@@ -341,10 +342,12 @@ function TeamCard({
             }}
           >
             {photo ? (
-              <img
+              <Image
                 src={photo}
                 alt={name}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{ objectFit: "cover" }}
+                fill
+                priority
               /> // eslint-disable-line
             ) : (
               <span
@@ -788,17 +791,17 @@ export default function AboutUsPage() {
               position: "relative",
             }}
           >
-            <img
+            <Image
               src="/aboutus.webp"
               alt="" // eslint-disable-line
               style={{
                 position: "absolute",
                 inset: 0,
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
                 objectPosition: "center",
               }}
+              fill
+              priority
             />
             <div
               style={{
@@ -823,6 +826,7 @@ export default function AboutUsPage() {
                 y: slide0Y,
                 pointerEvents: "none",
               }}
+              aria-hidden={false}
             >
               <p
                 style={{
@@ -872,6 +876,7 @@ export default function AboutUsPage() {
                 y: slide1Y,
                 pointerEvents: "none",
               }}
+              aria-hidden={false}
             >
               {/* Top row: label + title */}
               <div>
@@ -971,6 +976,7 @@ export default function AboutUsPage() {
             {/* WHO WE ARE */}
             <section
               style={{ padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem)" }}
+              aria-hidden={false}
             >
               <FadeIn>
                 <SectionLabel label={t("whoweareLabel")} />
@@ -1069,6 +1075,7 @@ export default function AboutUsPage() {
             {/* TIMELINE */}
             <section
               style={{ padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem)" }}
+              aria-hidden={false}
             >
               <FadeIn>
                 <SectionLabel label={t("timelineLabel")} />
@@ -1141,6 +1148,7 @@ export default function AboutUsPage() {
                 padding:
                   "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem) clamp(5rem,10vh,8rem)",
               }}
+              aria-hidden={false}
             >
               <FadeIn>
                 <SectionLabel label={t("teamLabel")} />

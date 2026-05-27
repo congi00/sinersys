@@ -5,8 +5,6 @@ import { useTranslations } from "next-intl";
 import { motion, useTransform, MotionValue } from "framer-motion";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
-import { Canvas } from "@react-three/fiber";
-import HeroScene from "../components/HeroScene";
 import { useRef, useEffect } from "react";
 import { detectIOS } from "../support/useViewportHeight";
 

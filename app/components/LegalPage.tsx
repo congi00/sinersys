@@ -37,7 +37,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 import { detectIOS } from "../support/useViewportHeight";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -387,6 +387,7 @@ export default function LegalPage({
                           textTransform: "uppercase",
                           color: "rgba(160,196,255,0.65)",
                         }}
+                        aria-hidden={false}
                       >
                         {label}
                       </span>
@@ -402,6 +403,7 @@ export default function LegalPage({
                         color: "#f4f7fa",
                         marginBottom: "1rem",
                       }}
+                      aria-hidden={false}
                     >
                       {title}
                     </h1>
@@ -414,6 +416,7 @@ export default function LegalPage({
                         color: "rgba(200,218,250,0.68)",
                         maxWidth: "560px",
                       }}
+                      aria-hidden={false}
                     >
                       {subtitle}
                     </p>
@@ -426,6 +429,7 @@ export default function LegalPage({
                         letterSpacing: "0.08em",
                         color: "rgba(160,196,255,0.38)",
                       }}
+                      aria-hidden={false}
                     >
                       {updated}
                     </p>
@@ -475,6 +479,7 @@ export function P({ children }: { children: React.ReactNode }) {
         lineHeight: 1.78,
         color: "rgba(200,218,250,0.70)",
       }}
+      aria-hidden={false}
     >
       {children}
     </p>
@@ -492,6 +497,7 @@ export function UL({ children }: { children: React.ReactNode }) {
         gap: "0.45rem",
         listStyle: "none",
       }}
+      aria-hidden={false}
     >
       {children}
     </ul>
@@ -507,6 +513,7 @@ export function LI({ children }: { children: React.ReactNode }) {
         paddingLeft: "1.2rem",
         position: "relative",
       }}
+      aria-hidden={false}
     >
       <span
         style={{
@@ -527,6 +534,6 @@ export function LI({ children }: { children: React.ReactNode }) {
 
 export function Strong({ children }: { children: React.ReactNode }) {
   return (
-    <strong style={{ color: "#c8d8f8", fontWeight: 600 }}>{children}</strong>
+    <strong style={{ color: "#c8d8f8", fontWeight: 600 }} aria-hidden={false}>{children}</strong>
   );
 }

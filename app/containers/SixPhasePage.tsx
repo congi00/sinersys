@@ -10,7 +10,7 @@ import {
   useMotionValueEvent,
   useInView,
 } from "framer-motion";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 import { useTranslations } from "next-intl";
 import Header from "../components/Header";
 import MenuButton from "../components/MenuButton";
@@ -725,6 +725,7 @@ export default function SixPhasePage() {
             y: cardY,
             opacity: cardOpacity,
           }}
+          aria-hidden={false}
         >
           <motion.div
             style={{
@@ -920,6 +921,7 @@ export default function SixPhasePage() {
             right: 0,
             zIndex: 11,
           }}
+          aria-hidden={false}
         >
           <motion.div
             style={{

@@ -109,6 +109,8 @@ export default function FaqSection({
                 onClick={() => toggle(index)}
                 className="w-full flex items-center justify-between py-5 text-left group"
                 aria-expanded={isOpen}
+                aria-controls={`faq-answer-${index}`}
+                id={`faq-question-${index}`}
               >
                 <span
                   className="font-regular text-[#1c398e] pr-4
@@ -139,8 +141,11 @@ export default function FaqSection({
                 {isOpen && (
                   <motion.div
                     key="answer"
+                    id={`faq-answer-${index}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
+                    role="region"
+                    aria-labelledby={`faq-question-${index}`}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{
                       height: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },

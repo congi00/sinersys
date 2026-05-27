@@ -9,7 +9,7 @@ import {
   useMotionValueEvent,
   useInView,
 } from "framer-motion";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 import { useTranslations } from "next-intl";
 import Header from "../components/Header";
 import MenuButton from "../components/MenuButton";
@@ -888,7 +888,7 @@ export default function ApwecPage() {
               textAlign: "center",
               top: "20%",
               maxWidth: "100vw",
-            }), ...s0 }}>
+            }), ...s0 }} aria-hidden={false}>
               <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] text-center" style={sup}>{t("slide0.suptitle")}</span>
               <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line text-center" style={h1s}>{t("slide0.title")}</h1>
               <p className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light text-center" style={{...bodys, ...(isMobile ? {marginTop: "65%"} : {maxWidth: "100%"})}}>{t("slide0.subtitle")}</p>
@@ -902,7 +902,7 @@ export default function ApwecPage() {
               top: "20%",
               textAlign: "center",
               maxWidth: "100vw",
-            }), ...s1 }}>
+            }), ...s1 }} aria-hidden={false}>
               <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] " style={sup}>{t("slide1.suptitle")}</span>
               <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line" style={h1s}>{t("slide1.title")}</h1>
               <p className="text-lg sm:text-xl sm:text-4xl mt-4 sm:whitespace-pre-line font-light text-center" style={{...bodys, ...(isMobile ? { marginTop: "70%"} : {maxWidth: "100%"})}}>{t("slide1.subtitle")}</p>
@@ -925,6 +925,7 @@ export default function ApwecPage() {
                 ),
                 ...s2,
               }}
+              aria-hidden={false}
             >
               <span
                 className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] text-center"
@@ -962,6 +963,7 @@ export default function ApwecPage() {
                 ),
                 ...s3,
               }}
+              aria-hidden={false}
             >
               <span
                 className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8]"
@@ -1009,6 +1011,7 @@ export default function ApwecPage() {
             right: 0,
             zIndex: 11,
           }}
+          aria-hidden={false}
         >
           {/*
             Inner wrapper: animates background colour, border-radius and

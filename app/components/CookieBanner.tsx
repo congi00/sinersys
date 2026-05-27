@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useCookieConsent } from "./useCookieConsent";
 import CookieDetails from "./CookieDetails";
+import Image from "next/image";
 
 // This component is self-contained — just mount <CookieBanner /> anywhere in your layout.
 // It reads/writes localStorage automatically via useCookieConsent.
@@ -64,7 +65,7 @@ export default function CookieBanner() {
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: "16px", flexShrink: 0,
                 }}>
-                  <img src={"/logobianco.png"}></img>
+                  <Image src={"/logobianco.png"} alt="Logo Sinersys Bianco" width={30} height={30} priority></Image>
                 </div>
                 <h2 style={{
                   margin: 0, fontSize: "1.05rem", fontWeight: 700,
