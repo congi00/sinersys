@@ -6,10 +6,8 @@ import LandscapeBlock from "./components/LandscapeBlock";
 import { getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
 
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  const { locale } = await params;
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = (await cookies()).get('locale')?.value || 'en';
 
   const t = await getTranslations({
     locale,
@@ -111,7 +109,6 @@ export async function generateMetadata(
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 };
 
 export default async function RootLayout({children}: Props) {
