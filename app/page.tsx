@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import HomeClient from "./HomeClient"; // sposta tutto il codice attuale qui
 import { getTranslations } from "next-intl/server";
+import WorkInProgressPage from "./WorkInProgressPage";
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -13,5 +14,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Page() {
-  return <HomeClient />;
+  const inProgress = 1
+  
+  return <>
+    <WorkInProgressPage /> 
+    {!inProgress && <HomeClient />}
+  </>
 }
