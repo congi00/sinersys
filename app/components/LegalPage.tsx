@@ -36,15 +36,20 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { m, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Lenis from "lenis";
 import { detectIOS } from "../support/useViewportHeight";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuButton from "../components/MenuButton";
-import LiquidBackground from "../components/LiquidBackground";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { setOpenContact } from "../features/counterSlice";
+import dynamic from "next/dynamic";
+
+const LiquidBackground = dynamic(() => import('../components/LiquidBackground'), {
+  ssr: false,
+  loading: () => <div className="h-screen bg-[#1c398e]" />
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 export interface LegalSection {
@@ -294,7 +299,7 @@ export default function LegalPage({
         {!openContact && <MenuButton menuTheme={menuTheme} hiddenMenu={hiddenMenu}/>}
 
         {/* ── CARD ────────────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             inset: 0,
@@ -302,7 +307,7 @@ export default function LegalPage({
             y: cardY,
           }}
         >
-          <motion.div
+          <m.div
             style={{
               width: "100%",
               height: "100%",
@@ -347,7 +352,7 @@ export default function LegalPage({
                * translateY wrapper — moves content upward as user scrolls.
                * Does NOT have ref (avoids measuring transformed height).
                */}
-              <motion.div
+              <m.div
                 style={{
                   y: contentY,
                   willChange: "transform",
@@ -446,10 +451,10 @@ export default function LegalPage({
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
         {/* ── FOOTER — absolute, appears after card exits ──────────────── */}
         <div

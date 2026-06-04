@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  motion,
+  m,
   useScroll,
   useMotionValueEvent,
   MotionValue,
@@ -46,7 +46,7 @@ export default function Header({ headerTheme }: Props) {
   }, [headerTheme]);
 
   return (
-      <motion.div
+      <m.div
         onClick={() => 
         {
           const locale = window.location.pathname.split('/')[1] || 'it';
@@ -88,7 +88,7 @@ export default function Header({ headerTheme }: Props) {
         "
       >
         {isDark && (
-          <motion.img
+          <m.img
             src="/full-logo-sinersys.png"
             alt="Logo Sinersys"
             className="relative z-10 h-12 object-contain absolute"
@@ -97,7 +97,7 @@ export default function Header({ headerTheme }: Props) {
           />
         )}
         {!isDark && (
-          <motion.img
+          <m.img
             src="/full-logo-sinersys_blu.png"
             alt="Logo Sinersys"
             className="relative z-10 h-12 object-contain absolute"
@@ -105,6 +105,6 @@ export default function Header({ headerTheme }: Props) {
             transition={{ duration: 0.3 }}
           />
         )}
-      </motion.div>
+      </m.div>
   );
 }

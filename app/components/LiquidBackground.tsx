@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import {
   MotionValue,
-  motion,
+  m,
   useTransform,
   useMotionValueEvent,
 } from "framer-motion";
@@ -284,7 +284,7 @@ export default function LiquidBackground({
   }, [vhUnit]);
 
   return (
-    <motion.div
+    <m.div
       style={{
         position: "fixed",
         top: 0,
@@ -310,6 +310,6 @@ export default function LiquidBackground({
           minHeight: "100%",
         }}
       />
-    </motion.div>
+    </m.div>
   );
 }

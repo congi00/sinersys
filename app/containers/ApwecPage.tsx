@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import {
-  motion,
+  m,
   useMotionValue,
   useSpring,
   useTransform,
@@ -86,14 +86,14 @@ function Appear({
   const y = direction === "up" ? 36 : 0;
   const x = direction === "left" ? -48 : direction === "right" ? 48 : 0;
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y, x }}
       animate={inView ? { opacity: 1, y: 0, x: 0 } : {}}
       transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
  
@@ -355,7 +355,7 @@ export function AdvantagesSection({
         >
           {advantages.map((ak, i) => (
             <Appear key={ak} delay={i * 0.07}>
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.025, y: -4 }}
                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 style={{ height: "100%" }}
@@ -447,7 +447,7 @@ export function AdvantagesSection({
                     {t(`advantages.${ak}.desc`)}
                   </p>
                 </GlassCard>
-              </motion.div>
+              </m.div>
             </Appear>
           ))}
         </div>
@@ -813,7 +813,7 @@ export default function ApwecPage() {
       {/* Scroll spacer */}
       <div style={{ height: totalHeight }} aria-hidden />
 
-      <motion.div
+      <m.div
         className="absolute inset-x-0 top-0"
         style={{ height: totalHeight, zIndex: 1, backgroundColor: "#faf4f7" }}
       >
@@ -821,7 +821,7 @@ export default function ApwecPage() {
         {!openContact && <MenuButton hiddenMenu={hiddenMenu} menuTheme={menuTheme}/>}
 
         {/* ── HERO CARD (pinned, scrubbed video) ──────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             inset: 0,
@@ -831,7 +831,7 @@ export default function ApwecPage() {
             opacity: cardOpacity,
           }}
         >
-          <motion.div
+          <m.div
             style={{
               width: "100%",
               height: "100%",
@@ -843,7 +843,7 @@ export default function ApwecPage() {
             }}
           >
             {/* Background image */}
-            {/* <motion.div
+            {/* <m.div
               style={{
                 position: "absolute",
                 inset: 0,
@@ -853,7 +853,7 @@ export default function ApwecPage() {
                 opacity: bgOpacity,
               }}
             /> */}
-            <motion.div
+            <m.div
               style={{
                 position: "absolute",
                 inset: 0,
@@ -884,7 +884,7 @@ export default function ApwecPage() {
             />
 
             {/* Slide 0 */}
-            <motion.div style={{ ...textWrap(isMobile? {top:"25%"} : {
+            <m.div style={{ ...textWrap(isMobile? {top:"25%"} : {
               textAlign: "center",
               top: "20%",
               maxWidth: "100vw",
@@ -892,10 +892,10 @@ export default function ApwecPage() {
               <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] text-center" style={sup}>{t("slide0.suptitle")}</span>
               <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line text-center" style={h1s}>{t("slide0.title")}</h1>
               <p className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light text-center" style={{...bodys, ...(isMobile ? {marginTop: "65%"} : {maxWidth: "100%"})}}>{t("slide0.subtitle")}</p>
-            </motion.div>
+            </m.div>
 
             {/* Slide 1 */}
-            <motion.div style={{ ...textWrap(isMobile? {
+            <m.div style={{ ...textWrap(isMobile? {
               textAlign: "center",
               top: "15%",
             } : {
@@ -906,10 +906,10 @@ export default function ApwecPage() {
               <span className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] " style={sup}>{t("slide1.suptitle")}</span>
               <h1 className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line" style={h1s}>{t("slide1.title")}</h1>
               <p className="text-lg sm:text-xl sm:text-4xl mt-4 sm:whitespace-pre-line font-light text-center" style={{...bodys, ...(isMobile ? { marginTop: "70%"} : {maxWidth: "100%"})}}>{t("slide1.subtitle")}</p>
-            </motion.div>
+            </m.div>
 
             {/* Slide 2 — centred on desktop */}
-            <motion.div
+            <m.div
               style={{
                 ...textWrap(
                   isMobile
@@ -945,10 +945,10 @@ export default function ApwecPage() {
               >
                 {t("slide2.subtitle")}
               </p>
-            </motion.div>
+            </m.div>
 
             {/* Slide 3 — centred on desktop */}
-            <motion.div
+            <m.div
               style={{
                 ...textWrap(
                   isMobile
@@ -991,9 +991,9 @@ export default function ApwecPage() {
               >
                 {t("slide3.subtitle")}
               </p>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </m.div>
+          </m.div>
+        </m.div>
 
         {/* ── STATIC CONTENT ─────────────────────────────────────────── */}
         {/*
@@ -1001,7 +1001,7 @@ export default function ApwecPage() {
           Left/right 0 so the page background bleeds through the "inset gap"
           when contentInset > 0.
         */}
-        <motion.div
+        <m.div
           ref={contentRef}
           style={{
             position: "absolute",
@@ -1018,7 +1018,7 @@ export default function ApwecPage() {
             a subtle scale/Y as the user nears the footer — identical to
             the AboutUsPage pattern.
           */}
-          <motion.div
+          <m.div
             style={{
               scale: contentScale,
               y: contentY,
@@ -1034,7 +1034,7 @@ export default function ApwecPage() {
                 padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
               }}
             >
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -1046,7 +1046,7 @@ export default function ApwecPage() {
                     alignItems: "center",
                   }}
                 >
-                  <motion.span
+                  <m.span
                     style={{
                       textTransform: "uppercase",
                       color: colorP,
@@ -1054,7 +1054,7 @@ export default function ApwecPage() {
                     className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase"
                   >
                     {t("static.label")}
-                  </motion.span>
+                  </m.span>
                 </div>
 
                 <div
@@ -1065,7 +1065,7 @@ export default function ApwecPage() {
                     alignItems: "start",
                   }}
                 >
-                  <motion.h2
+                  <m.h2
                     style={{
                       margin: 0,
                       lineHeight: 1.1,
@@ -1074,7 +1074,7 @@ export default function ApwecPage() {
                     className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
                   >
                     {t("static.title")}
-                  </motion.h2>
+                  </m.h2>
                   <div
                     style={{
                       display: "flex",
@@ -1082,7 +1082,7 @@ export default function ApwecPage() {
                       gap: "1rem",
                     }}
                   >
-                    <motion.p
+                    <m.p
                       style={{
                         margin: 0,
                         lineHeight: 1.2,
@@ -1091,8 +1091,8 @@ export default function ApwecPage() {
                       className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light mt-4"
                     >
                       {t("static.p1")}
-                    </motion.p>
-                    <motion.p
+                    </m.p>
+                    <m.p
                       style={{
                         margin: 0,
                         lineHeight: 1.2,
@@ -1101,10 +1101,10 @@ export default function ApwecPage() {
                       className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light mt-4"
                     >
                       {t("static.p2")}
-                    </motion.p>
+                    </m.p>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </section>
 
             <div
@@ -1129,7 +1129,7 @@ export default function ApwecPage() {
                 }}
               >
                 {(["f0", "f1", "f2"] as const).map((k, i) => (
-                  <motion.div
+                  <m.div
                     key={k}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -1181,7 +1181,7 @@ export default function ApwecPage() {
                         {t(`static.${k}.description`)}
                       </p>
                     </GlassCard>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </section>
@@ -1208,7 +1208,7 @@ export default function ApwecPage() {
                   "clamp(3rem,6vh,5rem) clamp(1.5rem,8vw,7rem) clamp(4rem,8vh,7rem)",
               }}
             >
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
@@ -1257,15 +1257,15 @@ export default function ApwecPage() {
                   />
                 </div>
                 </GlassCard>
-              </motion.div>
+              </m.div>
             </section>
-          </motion.div>
+          </m.div>
 
           {/* Whitespace gap before footer */}
           <div style={{ height: "20vh" }} />
 
           <Footer openContact={() => dispatch(setOpenContact(true))}/>
-        </motion.div>
+        </m.div>
 
         {!openContact && (
           <ScrollNavigator
@@ -1293,7 +1293,7 @@ export default function ApwecPage() {
             dispatch(setNavigationState(0));
           }}
         />
-      </motion.div>
+      </m.div>
     </>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion, useTransform, MotionValue, useMotionValue } from "framer-motion";
+import { m, useTransform, MotionValue, useMotionValue } from "framer-motion";
 import clsx from "clsx";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
@@ -45,7 +45,7 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
   const linkColor = useMotionValue("#f4f7fa");
 
   return (
-    <motion.div
+    <m.div
       style={{
         position:     "absolute",
         inset:        insetStr,
@@ -80,7 +80,7 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
       }} />
 
       {/* ── Content ──────────────────────────────────────────────────────── */}
-      <motion.div
+      <m.div
         style={{
           position:  "relative",
           zIndex:    2,
@@ -141,7 +141,7 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
             color={linkColor}
           />
         </div>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }

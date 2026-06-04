@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  motion,
+  m,
   useMotionValue,
   useSpring,
   useTransform,
@@ -21,7 +21,6 @@ import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
 import { detectIOS } from "./support/useViewportHeight";
 import FaqSection from "./components/FaqSection";
-import LiquidBackground from "./components/LiquidBackground";
 import ContactDrawer from "./components/ContactDrawer";
 import { setNavigationState, setOpenContact } from "./features/counterSlice";
 import { useAppDispatch } from "./hooks";
@@ -33,6 +32,13 @@ import HeroVideo from "./components/HeroVideo";
 import SixPhaseEngine from "./components/SixPhaseEngine";
 import ScrollNavigator from "./components/ScrollNavigator";
 import { useMotionValueEvent } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const LiquidBackground = dynamic(() => import('./components/LiquidBackground'), {
+    ssr: false,
+    loading: () => <div className="h-screen bg-[#1c398e]" />
+  });
+  
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -272,7 +278,7 @@ export default function Home() {
     <>
       <LiquidBackground progress={smooth} vhUnit={vhUnit} />
 
-      <motion.div
+      <m.div
         style={{ height: totalHeight, pointerEvents: "none" }}
         aria-hidden
       />
@@ -300,7 +306,7 @@ export default function Home() {
         {!openContact && <Header headerTheme={headerTheme} />}
 
         {/* ── SLIDE 0 ─────────────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             inset: 0,
@@ -338,10 +344,10 @@ export default function Home() {
               color={linkColorWhite}
             />
           </div>
-        </motion.div>
+        </m.div>
 
         {/* ── MODEL PHASE A ────────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             bottom: 0,
@@ -354,10 +360,10 @@ export default function Home() {
           }}
         >
           <HeroVideo progressMotion={smooth} isMobile={isMobile} />
-        </motion.div>
+        </m.div>
 
         {/* ── SLIDE 1 ─────────────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             inset: 0,
@@ -406,7 +412,7 @@ export default function Home() {
               />
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* ── MOTORE 6 FASI ──────────────────────────────────────────────────── */}
         <SixPhaseEngine
@@ -437,7 +443,7 @@ export default function Home() {
         />
 
         {/* ── HomePageAbout ──────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             inset: 0,
@@ -449,12 +455,12 @@ export default function Home() {
           className="flex items-center justify-center"
         >
           <HomePageAbout progressMotion={smooth} isMobile={isMobile} />
-        </motion.div>
+        </m.div>
 
         {/* ── ScatteredCards ──────────────────────────────────────────────── */}
         <ScatteredCards items={scatteredCards} progress={smooth} />
 
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             bottom: 0,
@@ -475,7 +481,7 @@ export default function Home() {
         />
 
         {/* ── OurPromise ──────────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             inset: 0,
@@ -493,7 +499,7 @@ export default function Home() {
             subtitle={homeTexts("slide3.subtitle")}
             progress={smooth}
           />
-        </motion.div>
+        </m.div>
 
         {/* ── WHITE SECTION — appears after circle shrinks (p 5.2+) ─────────
             Contains:

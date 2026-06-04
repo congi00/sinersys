@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, useTransition } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 interface Props {
   isDark?: boolean;
@@ -154,7 +154,7 @@ export default function SocialSwitcher({ isDark }: Props) {
   return (
     <div ref={ref} style={{ position: "relative", display: "inline-block" }}>
       {/* Trigger pill */}
-      <motion.div
+      <m.div
         onClick={() => setOpen((v) => !v)}
         whileTap={{ scale: 0.93 }}
         style={{
@@ -183,7 +183,7 @@ export default function SocialSwitcher({ isDark }: Props) {
         aria-haspopup="listbox"
       >
         {SOCIALS.map((social, i) => (
-          <motion.a
+          <m.a
             key={social.id}
             href={social.href}
             target="_blank"
@@ -214,9 +214,9 @@ export default function SocialSwitcher({ isDark }: Props) {
             }}
           >
             <span style={{ flexShrink: 0 }}>{social.icon}</span>
-          </motion.a>
+          </m.a>
         ))}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { X, Paperclip, FileText, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -48,7 +48,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
       {open && (
         <>
           {/* Overlay */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.6 }}
             exit={{ opacity: 0 }}
@@ -57,7 +57,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
           />
 
           {/* Drawer */}
-          <motion.div
+          <m.div
             initial={{ y: "-100%" }}
             animate={{ y: "0%" }}
             exit={{ y: "-100%" }}
@@ -84,17 +84,17 @@ export default function ContactDrawer({ open, onClose }: Props) {
               </button>
 
               {/* Title */}
-              <motion.h2
+              <m.h2
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
                 className="text-[2rem] font-semibold mb-10 sm:text-center tracking-wide"
               >
                 {t("drawerTitle")}
-              </motion.h2>
+              </m.h2>
 
               {/* Form */}
-              <motion.form
+              <m.form
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -169,14 +169,14 @@ export default function ContactDrawer({ open, onClose }: Props) {
 
                   <AnimatePresence initial={false}>
                     {files.length > 0 && (
-                      <motion.ul
+                      <m.ul
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         className="mt-3 space-y-2 overflow-hidden"
                       >
                         {files.map((file, i) => (
-                          <motion.li
+                          <m.li
                             key={file.name + file.size}
                             initial={{ opacity: 0, x: -12 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -206,15 +206,15 @@ export default function ContactDrawer({ open, onClose }: Props) {
                                 className="text-[#f4f7fa]/50 hover:text-[#f4f7fa]/80"
                               />
                             </button>
-                          </motion.li>
+                          </m.li>
                         ))}
-                      </motion.ul>
+                      </m.ul>
                     )}
                   </AnimatePresence>
                 </div>
 
                 {/* Submit */}
-                <motion.button
+                <m.button
                   whileHover={{
                     boxShadow: "0px 0px 20px rgba(255,255,255,0.4)",
                   }}
@@ -222,10 +222,10 @@ export default function ContactDrawer({ open, onClose }: Props) {
                   className="w-full h-14 rounded-full bg-white text-[#1c398e] font-semibold text-lg transition mb-[20px]"
                 >
                   {f("submit")}
-                </motion.button>
-              </motion.form>
+                </m.button>
+              </m.form>
             </div>
-          </motion.div>
+          </m.div>
         </>
       )}
     </AnimatePresence>

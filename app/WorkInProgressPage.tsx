@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  motion,
+  m,
   useMotionValue,
   useSpring,
   useTransform,
@@ -15,11 +15,16 @@ import IntroParticles from "./components/IntroParticles";
 import { useTranslations } from "next-intl";
 import { useAppSelector } from "./hooks";
 import { detectIOS } from "./support/useViewportHeight";
-import LiquidBackground from "./components/LiquidBackground";
 import CookieBanner from "./components/CookieBanner";
 import LinkButton from "./components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import { useMotionValueEvent } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const LiquidBackground = dynamic(() => import('./components/LiquidBackground'), {
+    ssr: false,
+    loading: () => <div className="h-screen bg-[#1c398e]" />
+  });
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -183,7 +188,7 @@ export default function WorkInProgressPage() {
     <>
       <LiquidBackground progress={smooth} vhUnit={vhUnit} />
 
-      <motion.div
+      <m.div
         style={{ height: totalHeight, pointerEvents: "none" }}
         aria-hidden
       />
@@ -212,7 +217,7 @@ export default function WorkInProgressPage() {
         
 
         {/* ── SLIDE 0 ─────────────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             inset: 0,
@@ -239,7 +244,7 @@ export default function WorkInProgressPage() {
           >
             Dreams will come true, new energy generation will be true.
           </h2>
-        </motion.div>
+        </m.div>
       </div>
     </>
   );

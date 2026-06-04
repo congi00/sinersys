@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useCookieConsent } from "./useCookieConsent";
 import CookieDetails from "./CookieDetails";
 import Image from "next/image";
@@ -22,7 +22,7 @@ export default function CookieBanner() {
       {/* ── Main banner ─────────────────────────────────────────────────── */}
       <AnimatePresence>
         {showBanner && !showDetails && (
-          <motion.div
+          <m.div
             key="cookie-banner"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0,  opacity: 1 }}
@@ -206,7 +206,7 @@ export default function CookieBanner() {
                 </a>.
               </p>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 

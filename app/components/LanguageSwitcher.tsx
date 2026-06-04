@@ -3,7 +3,7 @@
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect, useTransition } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 
 const LOCALES: { code: string; label: string; flag: string }[] = [
@@ -57,7 +57,7 @@ export default function LanguageSwitcher({ isDark }: Props) {
     <div ref={ref} style={{ position: "relative", display: "inline-block" }}>
 
       {/* Trigger pill */}
-      <motion.button
+      <m.button
         onClick={() => setOpen((v) => !v)}
         whileTap={{ scale: 0.93 }}
         style={{
@@ -87,21 +87,21 @@ export default function LanguageSwitcher({ isDark }: Props) {
       >
         <span style={{ fontSize: "1.05rem", lineHeight: 1 }}>{current.flag}</span>
         <span>{current.code.toUpperCase()}</span>
-        <motion.svg
+        <m.svg
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
           width="12" height="12" viewBox="0 0 12 12" fill="none"
           style={{ flexShrink: 0, opacity: 0.65 }}
         >
-          <motion.path d="M2 4.5L6 8L10 4.5" stroke="#f4f7fa" strokeWidth="1.7"
+          <m.path d="M2 4.5L6 8L10 4.5" stroke="#f4f7fa" strokeWidth="1.7"
                 strokeLinecap="round" strokeLinejoin="round" color={isDark ? "#F4F7FA" : "#1c398e"} />
-        </motion.svg>
-      </motion.button>
+        </m.svg>
+      </m.button>
 
       {/* Dropdown — opens upward, z-index above everything */}
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             role="listbox"
             aria-label="Select language"
             initial={{ opacity: 0, y: 6,  scale: 0.96 }}
@@ -127,7 +127,7 @@ export default function LanguageSwitcher({ isDark }: Props) {
             {LOCALES.map((loc, i) => {
               const isActive = loc.code === locale;
               return (
-                <motion.button
+                <m.button
                   key={loc.code}
                   role="option"
                   aria-selected={isActive}
@@ -158,19 +158,19 @@ export default function LanguageSwitcher({ isDark }: Props) {
                   <span style={{ fontSize: "1.1rem", lineHeight: 1, flexShrink: 0 }}>{loc.flag}</span>
                   <span style={{ flex: 1 }}>{loc.label}</span>
                   {isActive && (
-                    <motion.svg
+                    <m.svg
                       initial={{ scale: 0 }} animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 400, damping: 20 }}
                       width="13" height="13" viewBox="0 0 13 13" fill="none"
                     >
                       <path d="M2 6.5L5 9.5L11 3.5" stroke="#7eb3ff"
                             strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-                    </motion.svg>
+                    </m.svg>
                   )}
-                </motion.button>
+                </m.button>
               );
             })}
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

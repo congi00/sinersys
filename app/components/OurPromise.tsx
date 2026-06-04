@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useTransform } from "framer-motion";
+import { m, useTransform } from "framer-motion";
 import { MotionValue } from "framer-motion";
 import Signature from "./Signature";
 
@@ -25,7 +25,7 @@ function Word({
   );
 
   return (
-    <motion.span
+    <m.span
       style={{
         whiteSpace: "pre",
         marginRight: "0.5rem",
@@ -34,7 +34,7 @@ function Word({
       }}
     >
       {word}
-    </motion.span>
+    </m.span>
   );
 }
 
@@ -48,7 +48,7 @@ const OurPromise: React.FC<OurPromiseProps> = ({
 
   return (
     <div className="w-full px-6 sm:px-16 flex flex-col items-center">
-      <motion.h1
+      <m.h1
         className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl text-[#f4f7fa] font-bold leading-tight w-full"
         style={{
           display: "flex",
@@ -74,10 +74,10 @@ const OurPromise: React.FC<OurPromiseProps> = ({
             <Word key={i} word={word} index={i} wordsProgress={wordsProgress} />
           ))}
         </span>
-      </motion.h1>
+      </m.h1>
   
       {subtitle && (
-        <motion.h2
+        <m.h2
           className="text-lg font-stretch-extra-expanded tracking-wide sm:text-2xl font-light mt-4 sm:mt-8 text-center max-w-[900px]"
           style={{
             color: "rgba(200, 216, 248, 0.75)",
@@ -85,7 +85,7 @@ const OurPromise: React.FC<OurPromiseProps> = ({
           }}
         >
           {subtitle}
-        </motion.h2>
+        </m.h2>
       )}
   
       <div className="w-full flex justify-center mt-6">

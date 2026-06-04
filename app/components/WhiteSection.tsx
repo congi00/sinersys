@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  motion,
+  m,
   useTransform,
   MotionValue,
 } from "framer-motion";
@@ -41,7 +41,7 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit, setOpen
   const duration = isMobile ? "12s" : "22s";
 
   return (
-    <motion.div
+    <m.div
       style={{
         position:      "fixed",
         inset:         0,
@@ -56,7 +56,7 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit, setOpen
       }}
     >
       {/* ── MARQUEE STRIP ───────────────────────────────────────────────────── */}
-      <motion.div
+      <m.div
         style={{
           flex:         "0 0 33.333%",
           display:      "flex",
@@ -134,10 +134,10 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit, setOpen
             .marquee-track { animation-play-state: paused !important; }
           }
         `}</style>
-      </motion.div>
+      </m.div>
 
       {/* ── CTA ─────────────────────────────────────────────────────────────── */}
-      <motion.div
+      <m.div
         style={{
           flex:     sectionCTAFlex,
           position: "relative",
@@ -146,7 +146,7 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit, setOpen
         }}
       >
         <CallToActionHome progressMotion={progressMotion} setOpen={setOpen} />
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }

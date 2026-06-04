@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import Image from "next/image";
 
@@ -56,7 +56,7 @@ function Thumbnail({
   onClick: () => void;
 }) {
   return (
-    <motion.div
+    <m.div
       onClick={onClick}
       whileHover={{ scale: 1.06, y: -2 }}
       whileTap={{ scale: 0.97 }}
@@ -131,7 +131,7 @@ function Thumbnail({
           pointerEvents: "none",
         }}
       /> */}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -229,7 +229,7 @@ export default function VintageMediaViewer({
         >
           {/* ── media ─────────────────────────────────────────────────── */}
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={current}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -269,7 +269,7 @@ export default function VintageMediaViewer({
                   priority
                 />
               )}
-            </motion.div>
+            </m.div>
           </AnimatePresence>
 
           {/* ── vignette ─────────────────────────────────────────────── */}
@@ -361,7 +361,7 @@ export default function VintageMediaViewer({
           {/* ── play hint overlay ─────────────────────────────────────── */}
           <AnimatePresence>
             {isVideo && (showPlayHint || !isPlaying) && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -395,7 +395,7 @@ export default function VintageMediaViewer({
                     />
                   </svg>
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
 

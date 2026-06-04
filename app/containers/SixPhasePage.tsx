@@ -3,7 +3,7 @@
  
 import { useEffect, useRef, useState, useCallback } from "react";
 import {
-  motion,
+  m,
   useMotionValue,
   useSpring,
   useTransform,
@@ -68,14 +68,14 @@ function Appear({
   const y = direction === "up" ? 36 : 0;
   const x = direction === "left" ? -48 : direction === "right" ? 48 : 0;
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y, x }}
       animate={inView ? { opacity: 1, y: 0, x: 0 } : {}}
       transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
  
@@ -329,7 +329,7 @@ export function AdvantagesSection({
         >
           {advantages.map((ak, i) => (
             <Appear key={ak} delay={i * 0.07}>
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.025, y: -4 }}
                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 style={{ height: "100%" }}
@@ -421,7 +421,7 @@ export function AdvantagesSection({
                     {t(`advantages.${ak}.desc`)}
                   </p>
                 </GlassCard>
-              </motion.div>
+              </m.div>
             </Appear>
           ))}
         </div>
@@ -708,7 +708,7 @@ export default function SixPhasePage() {
       {/* Scroll spacer */}
       <div style={{ height: totalHeight }} aria-hidden />
  
-      <motion.div
+      <m.div
         className="absolute inset-x-0 top-0"
         style={{ height: totalHeight, zIndex: 1, backgroundColor: "#faf4f7" }}
       >
@@ -716,7 +716,7 @@ export default function SixPhasePage() {
         {!openContact && <MenuButton hiddenMenu={hiddenMenu} menuTheme={menuTheme} />}
  
         {/* ── HERO CARD ───────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             inset: 0,
@@ -727,7 +727,7 @@ export default function SixPhasePage() {
           }}
           aria-hidden={false}
         >
-          <motion.div
+          <m.div
             style={{
               width: "100%",
               height: "100%",
@@ -738,7 +738,7 @@ export default function SixPhasePage() {
                 "linear-gradient(160deg, #0f1a57 0%, #1c2e8e 40%, #050b26 100%)",
             }}
           >
-            <motion.div
+            <m.div
               style={{
                 position: "absolute",
                 inset: 0,
@@ -769,7 +769,7 @@ export default function SixPhasePage() {
             />
  
             {/* Slide 0 */}
-            <motion.div
+            <m.div
               style={{
                 ...textWrap(
                   isMobile
@@ -800,10 +800,10 @@ export default function SixPhasePage() {
               >
                 {t("slide0.subtitle")}
               </p>
-            </motion.div>
+            </m.div>
  
             {/* Slide 1 */}
-            <motion.div
+            <m.div
               style={{
                 ...textWrap(
                   isMobile
@@ -834,10 +834,10 @@ export default function SixPhasePage() {
               >
                 {t("slide1.subtitle")}
               </p>
-            </motion.div>
+            </m.div>
  
             {/* Slide 2 */}
-            <motion.div
+            <m.div
               style={{
                 ...textWrap(
                   isMobile
@@ -870,10 +870,10 @@ export default function SixPhasePage() {
               >
                 {t("slide2.subtitle")}
               </p>
-            </motion.div>
+            </m.div>
  
             {/* Slide 3 */}
-            <motion.div
+            <m.div
               style={{
                 ...textWrap(
                   isMobile
@@ -906,12 +906,12 @@ export default function SixPhasePage() {
               >
                 {t("slide3.subtitle")}
               </p>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </m.div>
+          </m.div>
+        </m.div>
  
         {/* ── STATIC CONTENT ─────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           ref={contentRef}
           style={{
             position: "absolute",
@@ -923,7 +923,7 @@ export default function SixPhasePage() {
           }}
           aria-hidden={false}
         >
-          <motion.div
+          <m.div
             style={{
               scale: contentScale,
               y: contentY,
@@ -939,19 +939,19 @@ export default function SixPhasePage() {
                 padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
               }}
             >
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div style={{ display: "inline-flex", alignItems: "center" }}>
-                  <motion.span
+                  <m.span
                     style={{ textTransform: "uppercase", color: colorP }}
                     className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase"
                   >
                     {t("static.label")}
-                  </motion.span>
+                  </m.span>
                 </div>
  
                 <div
@@ -962,28 +962,28 @@ export default function SixPhasePage() {
                     alignItems: "start",
                   }}
                 >
-                  <motion.h2
+                  <m.h2
                     style={{ margin: 0, lineHeight: 1.1, color: colorTitle }}
                     className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
                   >
                     {t("static.title")}
-                  </motion.h2>
+                  </m.h2>
                   <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                    <motion.p
+                    <m.p
                       style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
                       className="text-lg sm:text-xl mt-4 whitespace-pre-line font-light"
                     >
                       {t("static.p1")}
-                    </motion.p>
-                    <motion.p
+                    </m.p>
+                    <m.p
                       style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
                       className="text-lg sm:text-xl mt-4 whitespace-pre-line font-light"
                     >
                       {t("static.p2")}
-                    </motion.p>
+                    </m.p>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </section>
  
             <div
@@ -1008,7 +1008,7 @@ export default function SixPhasePage() {
                 }}
               >
                 {(["f0", "f1", "f2"] as const).map((k, i) => (
-                  <motion.div
+                  <m.div
                     key={k}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -1056,7 +1056,7 @@ export default function SixPhasePage() {
                         {t(`static.${k}.description`)}
                       </p>
                     </GlassCard>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </section>
@@ -1081,7 +1081,7 @@ export default function SixPhasePage() {
                 padding: "clamp(3rem,6vh,5rem) clamp(1.5rem,8vw,7rem) clamp(4rem,8vh,7rem)",
               }}
             >
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
@@ -1126,15 +1126,15 @@ export default function SixPhasePage() {
                     />
                   </div>
                 </GlassCard>
-              </motion.div>
+              </m.div>
             </section> */}
-          </motion.div>
+          </m.div>
  
           {/* Whitespace gap before footer */}
           <div style={{ height: "20vh" }} />
  
           <Footer openContact={() => dispatch(setOpenContact(true))} />
-        </motion.div>
+        </m.div>
  
         {!openContact && (
           <ScrollNavigator
@@ -1160,7 +1160,7 @@ export default function SixPhasePage() {
             dispatch(setNavigationState(0));
           }}
         />
-      </motion.div>
+      </m.div>
     </>
   );
 }

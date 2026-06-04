@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useTransform, MotionValue, AnimatePresence } from "framer-motion";
+import { m, useTransform, MotionValue, AnimatePresence } from "framer-motion";
 import { Plus } from "@deemlol/next-icons";
 
 interface FaqItem {
@@ -70,12 +70,12 @@ export default function FaqSection({
   };
 
   return (
-    <motion.section
+    <m.section
       style={{ opacity: sectionOpacity, y: sectionY }}
       className="w-full mx-auto px-5 pt-10"
     >
       {/* Header */}
-      <motion.div className="mb-12 text-center">
+      <m.div className="mb-12 text-center">
         <span
           className="inline-block text-sm font-semibold tracking-[0.4em] uppercase
             border border-current rounded-full px-4 py-1.5 mb-6 font-light
@@ -91,7 +91,7 @@ export default function FaqSection({
         >
           {title}
         </h2>
-      </motion.div>
+      </m.div>
 
       {/* Items */}
       <div className="divide-y divide-[#1c398e]">
@@ -101,7 +101,7 @@ export default function FaqSection({
           const isOpen = openIndex === index;
 
           return (
-            <motion.div
+            <m.div
               key={index}
               style={{ opacity: itemOpacity, y: itemY}}
             >
@@ -124,7 +124,7 @@ export default function FaqSection({
                 </span>
 
                 {/* Icona + che ruota a × */}
-                <motion.span
+                <m.span
                   animate={{ rotate: isOpen ? 45 : 0 }}
                   transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                   className="flex-shrink-0 w-7 h-7 flex items-center justify-center
@@ -133,13 +133,13 @@ export default function FaqSection({
                     transition-colors duration-200"
                 >
                   <Plus size={14} />
-                </motion.span>
+                </m.span>
               </button>
 
               {/* Risposta con AnimatePresence per unmount pulito */}
               <AnimatePresence initial={false}>
                 {isOpen && (
-                  <motion.div
+                  <m.div
                     key="answer"
                     id={`faq-answer-${index}`}
                     initial={{ height: 0, opacity: 0 }}
@@ -160,13 +160,13 @@ export default function FaqSection({
                       }}>
                       {item.answer}
                     </p>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </m.div>
           );
         })}
       </div>
-    </motion.section>
+    </m.section>
   );
 }

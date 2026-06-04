@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useTransform, MotionValue } from "framer-motion";
+import { m, useTransform, MotionValue } from "framer-motion";
 
 interface SignatureProps {
   progress: MotionValue<number>;
@@ -37,11 +37,11 @@ const Signature: React.FC<SignatureProps> = ({ progress }) => {
   const opacity    = useTransform(progress, [5.0, 5.1], [0, 1]);
 
   return (
-    <motion.div
+    <m.div
       className="w-full flex justify-center items-center "
       style={{ opacity }}
     >
-      <motion.svg
+      <m.svg
         viewBox="40 275 800 105"
         xmlns="http://www.w3.org/2000/svg"
         className="w-[320px] sm:w-[560px]"
@@ -51,7 +51,7 @@ const Signature: React.FC<SignatureProps> = ({ progress }) => {
         }}
       >
         {/* Ombra morbida sotto la firma per darle profondità */}
-        <motion.path
+        <m.path
           d={SIGNATURE_PATH}
           fill="none"
           stroke="rgba(12,24,70,0.35)"
@@ -67,7 +67,7 @@ const Signature: React.FC<SignatureProps> = ({ progress }) => {
         />
 
         {/* Tratto principale della firma — bianco luminoso */}
-        <motion.path
+        <m.path
           d={SIGNATURE_PATH}
           fill="none"
           stroke="rgba(244,247,250,0.95)"
@@ -80,7 +80,7 @@ const Signature: React.FC<SignatureProps> = ({ progress }) => {
         />
 
         {/* Secondo tratto leggermente più sottile e blu per dare corpo */}
-        <motion.path
+        <m.path
           d={SIGNATURE_PATH}
           fill="none"
           stroke="rgba(180,210,255,0.30)"
@@ -92,8 +92,8 @@ const Signature: React.FC<SignatureProps> = ({ progress }) => {
             y: 40
            }}
         />
-      </motion.svg>
-    </motion.div>
+      </m.svg>
+    </m.div>
   );
 };
 

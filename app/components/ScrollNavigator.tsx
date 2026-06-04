@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { motion, MotionValue, useMotionValueEvent } from "framer-motion";
+import { m, MotionValue, useMotionValueEvent } from "framer-motion";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 
@@ -154,7 +154,7 @@ export default function ScrollNavigator({
     : "#1c398e";
 
   return (
-    !hidden && <motion.nav
+    !hidden && <m.nav
       aria-label="Page sections navigator"
       initial={{ opacity: 0, x: 12 }}
       animate={{ opacity: 1, x: 0 }}
@@ -178,7 +178,7 @@ export default function ScrollNavigator({
         const isHovered = i === hoveredIdx;
 
         return (
-          <motion.button
+          <m.button
             key={section.index}
             onClick={() => handleClick(section)}
             onMouseEnter={() => setHoveredIdx(i)}
@@ -196,7 +196,7 @@ export default function ScrollNavigator({
           >
 
             {/* Number */}
-            <motion.span
+            <m.span
               animate={{
                 color: isActive
                   ? textColorActive
@@ -215,10 +215,10 @@ export default function ScrollNavigator({
               }}
             >
               {section.index}
-            </motion.span>
+            </m.span>
 
             {/* Horizontal dash — mimics the reference design */}
-            <motion.span
+            <m.span
               animate={{
                 width: isActive ? 21 : isHovered ? 12 : 6,
                 opacity: isScrolling ? 0 : isActive ? 1 : isHovered ? 0.5 : 0.25,
@@ -234,7 +234,7 @@ export default function ScrollNavigator({
             />
 
             {/* Label tooltip — slides in from right on hover or active */}
-            <motion.span
+            <m.span
               animate={{
                 opacity: isScrolling ? 0 : isActive || isHovered ? 1 : 0,
                 x: isActive || isHovered ? 0 : 8,
@@ -272,10 +272,10 @@ export default function ScrollNavigator({
               }}
             >
               {section.label}
-            </motion.span>
-          </motion.button>
+            </m.span>
+          </m.button>
         );
       })}
-    </motion.nav>
+    </m.nav>
   );
 }

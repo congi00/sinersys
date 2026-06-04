@@ -6,6 +6,7 @@ import { routing } from '../i18n/routing';
 import "../globals.css";
 import { Providers } from "../providers"; 
 import LandscapeBlock from "../components/LandscapeBlock";
+import { MotionProvider } from "../containers/MotionProvider";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -106,7 +107,7 @@ export default async function RootLayout({children, params}: Props) {
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
-  
+
   const messages = await getMessages();
 
   return (
@@ -127,12 +128,14 @@ export default async function RootLayout({children, params}: Props) {
           antialiased pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] h-[100vh] h-[100dvh] h-[100lvh]
         `}
       >
-        <LandscapeBlock />
-        <Providers>
-        <NextIntlClientProvider>
-          {children}
-        </NextIntlClientProvider>
-        </Providers>
+        <MotionProvider>
+          <LandscapeBlock />
+          <Providers>
+          <NextIntlClientProvider>
+            {children}
+          </NextIntlClientProvider>
+          </Providers>
+        </MotionProvider>
       </body>
     </html>
   );

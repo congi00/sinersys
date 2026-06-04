@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  motion,
+  m,
   useMotionValue,
   useSpring,
   useTransform,
@@ -90,14 +90,14 @@ function FadeIn({
   const yMap = { up: 40, down: -40, left: 0, right: 0, none: 0 };
   const xMap = { up: 0, down: 0, left: 60, right: -60, none: 0 };
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: yMap[direction], x: xMap[direction] }}
       animate={inView ? { opacity: 1, y: 0, x: 0 } : {}}
       transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -172,7 +172,7 @@ function TimelineItem({
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px 0px" });
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -210,7 +210,7 @@ function TimelineItem({
           {year}
         </div>
         {!isLast && (
-          <motion.div
+          <m.div
             initial={{ scaleY: 0 }}
             animate={inView ? { scaleY: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -262,7 +262,7 @@ function TimelineItem({
           </p>
         </GlassCard>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -289,7 +289,7 @@ function TeamCard({
     .slice(0, 2)
     .toUpperCase();
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -301,7 +301,7 @@ function TeamCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <motion.div
+      <m.div
         animate={{ y: hovered ? -6 : 0, scale: hovered ? 1.02 : 1 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
@@ -312,7 +312,7 @@ function TeamCard({
             overflow: "hidden",
           }}
         >
-          <motion.div
+          <m.div
             animate={{ opacity: hovered ? 1 : 0 }}
             transition={{ duration: 0.3 }}
             style={{
@@ -403,8 +403,8 @@ function TeamCard({
             {bio}
           </p>
         </GlassCard>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 
@@ -420,7 +420,7 @@ function MilestoneChip({
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true });
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 16, scale: 0.92 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
@@ -464,7 +464,7 @@ function MilestoneChip({
       >
         {label}
       </span>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -481,7 +481,7 @@ function PatentTag({
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true });
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: -12 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -532,7 +532,7 @@ function PatentTag({
       >
         {year}
       </span>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -541,7 +541,7 @@ function PartnerPill({ name, delay }: { name: string; delay: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true });
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, scale: 0.88 }}
       animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -558,7 +558,7 @@ function PartnerPill({ name, delay }: { name: string; delay: number }) {
       }}
     >
       {name}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -760,9 +760,9 @@ export default function AboutUsPage() {
 
   return (
     <>
-      <motion.div style={{ height: totalHeight }} aria-hidden />
+      <m.div style={{ height: totalHeight }} aria-hidden />
 
-      <motion.div
+      <m.div
         className="absolute inset-x-0 top-0"
         style={{ height: totalHeight, zIndex: 1, background: bodyBg }}
       >
@@ -772,7 +772,7 @@ export default function AboutUsPage() {
         )}
 
         {/* ── HERO ─────────────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           style={{
             position: "fixed",
             inset: 0,
@@ -782,7 +782,7 @@ export default function AboutUsPage() {
             opacity: heroOp,
           }}
         >
-          <motion.div
+          <m.div
             style={{
               width: "100%",
               height: "100%",
@@ -813,7 +813,7 @@ export default function AboutUsPage() {
             />
 
             {/* Slide 0 */}
-            <motion.div
+            <m.div
               style={{
                 position: "absolute",
                 inset: 0,
@@ -860,10 +860,10 @@ export default function AboutUsPage() {
               >
                 {t("hero.subtitle")}
               </p>
-            </motion.div>
+            </m.div>
 
             {/* Slide 1 */}
-            <motion.div
+            <m.div
               style={{
                 position: "absolute",
                 inset: 0,
@@ -944,12 +944,12 @@ export default function AboutUsPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </m.div>
+          </m.div>
+        </m.div>
 
         {/* ── CONTENT ──────────────────────────────────────────────────── */}
-        <motion.div
+        <m.div
           ref={contentRef}
           style={{
             position: "absolute",
@@ -964,7 +964,7 @@ export default function AboutUsPage() {
             approaches the footer. The outer div keeps left:0/right:0 so the
             page background shows through the "inset gap".
           */}
-          <motion.div
+          <m.div
             style={{
               scale: contentScale,
               y: contentY,
@@ -990,7 +990,7 @@ export default function AboutUsPage() {
                 }}
               >
                 <FadeIn direction="left">
-                  <motion.h2
+                  <m.h2
                     style={{
                       margin: 0,
                       lineHeight: 1.1,
@@ -999,7 +999,7 @@ export default function AboutUsPage() {
                     className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
                   >
                     {t("whoweare.title")}
-                  </motion.h2>
+                  </m.h2>
                 </FadeIn>
                 <FadeIn direction="right" delay={0.1}>
                   <div
@@ -1009,7 +1009,7 @@ export default function AboutUsPage() {
                       gap: "1.2rem",
                     }}
                   >
-                    <motion.p
+                    <m.p
                       style={{
                         margin: 0,
                         lineHeight: 1.2,
@@ -1018,8 +1018,8 @@ export default function AboutUsPage() {
                       className="text-lg sm:text-xl font-light whitespace-pre-line"
                     >
                       {t("whoweare.p1")}
-                    </motion.p>
-                    <motion.p
+                    </m.p>
+                    <m.p
                       style={{
                         margin: 0,
                         lineHeight: 1.2,
@@ -1028,7 +1028,7 @@ export default function AboutUsPage() {
                       className="text-lg sm:text-xl font-light"
                     >
                       {t("whoweare.p2")}
-                    </motion.p>
+                    </m.p>
                   </div>
                 </FadeIn>
               </div>
@@ -1043,7 +1043,7 @@ export default function AboutUsPage() {
                 {["value0", "value1", "value2", "value3", "value4"].map(
                   (key, i) => (
                     <FadeIn key={key} delay={i * 0.06} direction="up">
-                      <motion.div
+                      <m.div
                         style={{
                           padding: "10px 20px",
                           borderRadius: "100px",
@@ -1057,7 +1057,7 @@ export default function AboutUsPage() {
                         }}
                       >
                         {t(`values.${key}`)}
-                      </motion.div>
+                      </m.div>
                     </FadeIn>
                   )
                 )}
@@ -1238,7 +1238,7 @@ export default function AboutUsPage() {
                     </p>
                   </div>
                   <LinkButton
-                    link="/contatti"
+                    link="/"
                     text={t("team.joinCta")}
                     icon={<ArrowUpRight size={20} />}
                     top="0"
@@ -1249,12 +1249,12 @@ export default function AboutUsPage() {
             </section>
             <VintageMediaViewer items={MEDIA} vintageIntensity={0} />
             
-          </motion.div>
+          </m.div>
 
           {/* Whitespace gap before footer */}
           <div style={{ height: "20vh" }} />
           <Footer openContact={() => dispatch(setOpenContact(true))} />
-        </motion.div>
+        </m.div>
 
         {!openContact && (
           <ScrollNavigator
@@ -1281,7 +1281,7 @@ export default function AboutUsPage() {
             dispatch(setNavigationState(0));
           }}
         />
-      </motion.div>
+      </m.div>
     </>
   );
 }

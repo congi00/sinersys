@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { motion, MotionValue } from "framer-motion";
+import { m, MotionValue } from "framer-motion";
 import { useRef } from "react";
 import SocialSwitcher from "./SocialSwitcher";
 import Image from "next/image";
@@ -154,9 +154,9 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
             height={48}
             priority
           />}
-          <motion.h4 className="text-xs tracking-widest" style={{color: isDark ? "#F4F7FA" : "#1c398e"}}>
+          <m.h4 className="text-xs tracking-widest" style={{color: isDark ? "#F4F7FA" : "#1c398e"}}>
             NEW ENERGY FRONTIERS
-          </motion.h4>
+          </m.h4>
         </div>
 
         {/* Nav items */}
@@ -165,7 +165,7 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
             const reverseIndex = array.length - 1 - index;
             return (
               <Link key={item} href={links[index]}>
-                <motion.span
+                <m.span
                   className={clsx(
                     "text-lg cursor-pointer",
                     "transition-[opacity,transform] duration-700 ease-[cubic-bezier(.22,1,.36,1)]",
@@ -190,7 +190,7 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
                   }}
                 >
                   {menuVoices(item)}
-                </motion.span>
+                </m.span>
               </Link>
             );
           })}

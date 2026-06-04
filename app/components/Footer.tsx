@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import {
-  motion,
+  m,
   useScroll,
   useTransform,
   useInView,
@@ -44,7 +44,7 @@ function GlowLink({
     : {};
 
   return (
-    <motion.a
+    <m.a
       href={openContact ? undefined : href}
       {...props}
       className="block relative text-sm text-[#f4f7fa]/80 mb-2 transition-colors whitespace-pre-line cursor-pointer"
@@ -61,7 +61,7 @@ function GlowLink({
       }}
     >
       {children}
-    </motion.a>
+    </m.a>
   );
 }
 
@@ -123,7 +123,7 @@ export default function Footer({ openContact }: FooterProps) {
       className="relative overflow-hidden pt-28 pb-12 text-[#f4f7fa]"
     >
       {/* Background */}
-      <motion.div
+      <m.div
         className="absolute inset-0"
         style={{
           background:
@@ -132,19 +132,19 @@ export default function Footer({ openContact }: FooterProps) {
       />
 
       {/* Glow */}
-      <motion.div
+      <m.div
         style={{ opacity: glowOpacity }}
         className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-[180px]"
       />
 
-      <motion.div
+      <m.div
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         className="relative max-w-5xl mx-auto px-6"
       >
         {/* Logo */}
-        <motion.div variants={itemVariants} className="text-center mb-8">
+        <m.div variants={itemVariants} className="text-center mb-8">
           <div className="flex justify-center mb-2">
             <Image
               src="/logobianco.png"
@@ -163,10 +163,10 @@ export default function Footer({ openContact }: FooterProps) {
               priority
             />
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Card */}
-        <motion.div
+        <m.div
           variants={itemVariants}
           className="bg-white/10 backdrop-blur-xl rounded-3xl py-6 px-10 border border-white/20 shadow-2xl"
         >
@@ -205,10 +205,10 @@ export default function Footer({ openContact }: FooterProps) {
               ))}
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Bottom bar */}
-        <motion.div
+        <m.div
           variants={itemVariants}
           className="flex justify-between items-center mt-16 text-sm opacity-80 border-t border-white/20 pt-6"
         >
@@ -216,8 +216,8 @@ export default function Footer({ openContact }: FooterProps) {
           <div className="flex gap-6">
             Website Developed by Alessandro Congiusti
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </footer>
   );
 }

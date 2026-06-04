@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useTransform, MotionValue } from "framer-motion";
+import { m, useTransform, MotionValue } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "@deemlol/next-icons"
 
@@ -103,15 +103,15 @@ function SingleCard({ item, index, progress, isGlass, isMobile }: SingleCardProp
 
   if (isMobile) {
     return (
-      <motion.div style={{ ...shared, left: 0, width: "100vw", height: "100%", x: mobileX, y: mobileY, opacity: mobileOpacity }}>
+      <m.div style={{ ...shared, left: 0, width: "100vw", height: "100%", x: mobileX, y: mobileY, opacity: mobileOpacity }}>
         {content}
-      </motion.div>
+      </m.div>
     );
   }
   return (
-    <motion.div style={{ ...shared, left: "50%", width: "50vw", height: "100%", x: desktopX, y: desktopY, opacity: desktopOpacity }}>
+    <m.div style={{ ...shared, left: "50%", width: "50vw", height: "100%", x: desktopX, y: desktopY, opacity: desktopOpacity }}>
       {content}
-    </motion.div>
+    </m.div>
   );
 }
 

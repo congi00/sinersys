@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CookieConsent } from "./useCookieConsent";
 
 interface Props {
@@ -91,7 +91,7 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
     setLocal((prev) => ({ ...prev, [key]: !prev[key] }));
 
   return (
-    <motion.div
+    <m.div
       key="cookie-details"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -110,7 +110,7 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
       }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <motion.div
+      <m.div
         initial={{ scale: 0.94, y: 20, opacity: 0 }}
         animate={{ scale: 1,    y: 0,  opacity: 1 }}
         exit={{    scale: 0.94, y: 20, opacity: 0 }}
@@ -325,7 +325,7 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
             Accetta tutti
           </button>
         </div>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }

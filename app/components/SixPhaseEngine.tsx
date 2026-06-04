@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { motion, useTransform, MotionValue, useMotionValueEvent } from "framer-motion";
+import { m, useTransform, MotionValue, useMotionValueEvent } from "framer-motion";
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
 import { useState } from "react";
@@ -134,7 +134,7 @@ function ProductCard({
 
   return (
     <Link href={product.link} style={{ pointerEvents: clickable ? "auto" : "none", }}>
-      <motion.div
+      <m.div
         style={{
           opacity: reveal.op,
           y: reveal.y,
@@ -226,7 +226,7 @@ function ProductCard({
             {product.detail}
           </p>
         </div>
-      </motion.div>
+      </m.div>
     </Link>
   );
 }
@@ -263,7 +263,7 @@ export default function ResearchProducts({
   ];
   
   return (
-    <motion.div
+    <m.div
       style={{
         position: "fixed",
         inset: 0,
@@ -308,7 +308,7 @@ export default function ResearchProducts({
         }}
       >
         {/* Section label */}
-        <motion.div
+        <m.div
           style={{
             opacity: rLabel.op,
             y: rLabel.y,
@@ -329,10 +329,10 @@ export default function ResearchProducts({
           >
             {sectionLabel}
           </span>
-        </motion.div>
+        </m.div>
 
         {/* Section title */}
-        <motion.h2
+        <m.h2
           style={{
             opacity: rTitle.op,
             y: rTitle.y,
@@ -348,10 +348,10 @@ export default function ResearchProducts({
               <br />
             </span>
           ))}
-        </motion.h2>
+        </m.h2>
 
         {/* Section subtitle */}
-        <motion.p
+        <m.p
           style={{
             opacity: rSub.op,
             y: rSub.y,
@@ -363,7 +363,7 @@ export default function ResearchProducts({
           className="text-lg sm:text-xl mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light"
         >
           {sectionSubtitle}
-        </motion.p>
+        </m.p>
 
         {/* Product cards grid */}
         <div
@@ -397,6 +397,6 @@ export default function ResearchProducts({
           50%       { opacity: 0.55; box-shadow: 0 0 0 7px rgba(120,190,255,0.04); }
         }
       `}</style>
-    </motion.div>
+    </m.div>
   );
 }

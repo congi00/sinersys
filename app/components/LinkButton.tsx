@@ -3,7 +3,7 @@
 import { ReactElement, useRef, useState } from "react";
 import Link from "next/link";
 import {
-  motion,
+  m,
   useMotionValue,
   useSpring,
   useTransform,
@@ -69,7 +69,7 @@ export default function LinkButton({ link, text, icon, top, color, fontSize }: P
 
   return (
     <Link href={link} className="inline-flex mt-8">
-      <motion.div
+      <m.div
         ref={ref}
         onMouseMove={handleMove}
         onMouseLeave={reset}
@@ -107,7 +107,7 @@ export default function LinkButton({ link, text, icon, top, color, fontSize }: P
 
         <AnimatePresence>
           {!popping && (
-            <motion.div
+            <m.div
               key="bubble"
               style={{ borderRadius: blobRadius }}
               initial={{ scale: 1 }}
@@ -132,10 +132,10 @@ export default function LinkButton({ link, text, icon, top, color, fontSize }: P
               )}
             >
               {icon}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </m.div>
     </Link>
   );
 }

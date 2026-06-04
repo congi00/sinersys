@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { detectIOS } from "../support/useViewportHeight";
 
 // ─── Asset list da precaricare durante l'intro ────────────────────────────────
@@ -254,7 +254,7 @@ export default function IntroParticles({ onFinish }: Props) {
       {/* ── Barra di caricamento (visibile solo nelle fasi 1-3) ─────────────── */}
       <AnimatePresence>
         {phase < 4 && (
-          <motion.div
+          <m.div
             key="loader"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -270,21 +270,21 @@ export default function IntroParticles({ onFinish }: Props) {
               gap: 8,
             }}
           >
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* ── Logo reveal (fase 4) ─────────────────────────────────────────────── */}
       <AnimatePresence>
         {phase >= 4 && (
-          <motion.div
+          <m.div
             key="logo"
             className="absolute inset-0 flex flex-col items-center justify-center text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.1 } }}
           >
-            <motion.img
+            <m.img
               src="/logoblu.svg"
               initial={{ opacity: 0, scale: 0.6 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -293,7 +293,7 @@ export default function IntroParticles({ onFinish }: Props) {
               className="mb-4 w-[60px] sm:w-[90px]"
             />
 
-            <motion.img
+            <m.img
               src="/full-logo-sinersys.png"
               initial={{ opacity: 0, scale: 0.6, filter: "invert(0)" }}
               animate={{ opacity: 1, scale: 2.7, filter: "invert(1)" }}
@@ -302,7 +302,7 @@ export default function IntroParticles({ onFinish }: Props) {
               className="w-28 sm:w-44"
             />
 
-            <motion.h1
+            <m.h1
               className="mt-4 sm:mt-6 flex flex-wrap justify-center text-black font-medium tracking-wider text-lg sm:text-4xl"
               initial="hidden"
               animate="visible"
@@ -310,7 +310,7 @@ export default function IntroParticles({ onFinish }: Props) {
               variants={{ visible: { transition: { staggerChildren: 0.02 } } }}
             >
               {"NEW ENERGY FRONTIERS".split("").map((char, i) => (
-                <motion.span
+                <m.span
                   key={i}
                   variants={{
                     hidden:  { opacity: 0, y: 20 },
@@ -318,10 +318,10 @@ export default function IntroParticles({ onFinish }: Props) {
                   }}
                 >
                   {char === " " ? "\u00A0" : char}
-                </motion.span>
+                </m.span>
               ))}
-            </motion.h1>
-          </motion.div>
+            </m.h1>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
