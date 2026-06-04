@@ -47,7 +47,13 @@ export default function Header({ headerTheme }: Props) {
 
   return (
       <motion.div
-        onClick={() => router.push("/")}
+        onClick={() => 
+        {
+          const locale = window.location.pathname.split('/')[1] || 'it';
+          const validLocales = ['it', 'en', 'de', 'fr'];
+          const targetLocale = validLocales.includes(locale) ? locale : 'it';
+          router.push(`/${targetLocale}`);
+        }}
         variants={{
           visible: { y: 0, opacity: 1 },
           hidden: { y: "-150%", opacity: 0 },

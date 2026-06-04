@@ -31,7 +31,17 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
   const [isDark, setIsDark] = useState(false);
 
   const items = ["homepage", "products", "motor" , "about", "contacts"];
-  const links = ["/", "apwec", "/six-phase-motor" , "about-us", ""];
+  const currentLocale = typeof window !== 'undefined'
+    ? (window.location.pathname.split('/')[1] || 'it')
+    : 'it';
+  const l = ['it','en','de','fr'].includes(currentLocale) ? currentLocale : 'it';
+  const links = [
+    `/${l}`,
+    `/${l}/apwec`,
+    `/${l}/six-phase-motor`,
+    `/${l}/about-us`,
+    '',
+  ];
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -10,7 +10,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -70,6 +70,7 @@ export interface FooterProps {
 }
 
 export default function Footer({ openContact }: FooterProps) {
+  const locale = useLocale();  
   const t = useTranslations("footer");
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-100px" });
@@ -86,16 +87,16 @@ export default function Footer({ openContact }: FooterProps) {
 
   // Quick links — label + href from translations
   const quickLinks = [
-    { label: t("quick.home"), href: "/" },
-    { label: t("quick.apwec"), href: "/apwec" },
-    { label: t("quick.about"), href: "/about-us" },
+    { label: t("quick.home"), href: "/${locale}" },
+    { label: t("quick.apwec"), href: "/${locale}/apwec" },
+    { label: t("quick.about"), href: "/${locale}/about-us" },
     { label: t("quick.certs"), href: "" },
   ];
 
   const otherLinks = [
-    { label: t("other.ethics"), href: "/codice-etico" },
-    { label: t("other.privacy"), href: "/privacy" },
-    { label: t("other.cookies"), href: "/cookies" },
+    { label: t("other.ethics"), href: "/${locale}/codice-etico" },
+    { label: t("other.privacy"), href: "/${locale}/privacy" },
+    { label: t("other.cookies"), href: "/${locale}/cookies" },
   ];
 
   const contactLinks = [

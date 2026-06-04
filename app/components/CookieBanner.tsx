@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCookieConsent } from "./useCookieConsent";
 import CookieDetails from "./CookieDetails";
 import Image from "next/image";
+import { useLocale } from 'next-intl';
 
 // This component is self-contained — just mount <CookieBanner /> anywhere in your layout.
 // It reads/writes localStorage automatically via useCookieConsent.
@@ -14,6 +15,7 @@ export default function CookieBanner() {
     acceptAll, rejectAll, saveCustom,
     openDetails, closeDetails,
   } = useCookieConsent();
+  const locale = useLocale();
 
   return (
     <>
@@ -195,11 +197,11 @@ export default function CookieBanner() {
                 fontFamily: "'Barlow', system-ui, sans-serif",
               }}>
                 Consultando la nostra{" "}
-                <a href="/privacy" style={{ color: "rgba(200,216,248,0.75)", textDecoration: "underline" }}>
+                <a href={`/${locale}/privacy`} style={{ color: "rgba(200,216,248,0.75)", textDecoration: "underline" }}>
                   Privacy Policy
                 </a>{" "}
                 e la{" "}
-                <a href="/cookies" style={{ color: "rgba(200,216,248,0.75)", textDecoration: "underline" }}>
+                <a href={`/${locale}/cookies`} style={{ color: "rgba(200,216,248,0.75)", textDecoration: "underline" }}>
                   Cookie Policy
                 </a>.
               </p>

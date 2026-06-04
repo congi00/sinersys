@@ -1249,7 +1249,7 @@ export default function ApwecPage() {
                   </div>
                   <div style={{ pointerEvents: "auto" }}>
                   <LinkButton
-                    link="/contatti"
+                    link="/"
                     text={t("static.cta.link")}
                     icon={<ArrowUpRight size={20} />}
                     top="0"

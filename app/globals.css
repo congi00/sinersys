@@ -1,39 +1,18 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Maorin";
-  src: url("/font/maorin.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "Flaviotte";
-  src: url("/font/Flaviotte Font/OpenType-TT/Flaviotte.ttf") format("opentype");
-}
-
-@font-face {
-  font-family: "MangoGrotesque";
-  src: url("/font/MangoGrotesque/OpenType-TT/MangoGrotesque-SemiBold.ttf") format("opentype");
-}
-
-@font-face {
   font-family: "Eurostile Extended Regular";
-  src: url("/font/Eurostile Extended Regular/Eurostile Extended Regular.ttf") format("truetype");
+  src: url("/font/Eurostile Extended Regular/Eurostile Extended Regular.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }
-
-
 
 :root {
   --sat-env-top: env(safe-area-inset-top);
   --sat-env-bottom: env(safe-area-inset-bottom);
 }
 
-/* font-family: var(--font-league), sans-serif; */
 html, body {
-  /* font-family: "Maorin", sans-serif; */
-  /* font-family: "Gilda Display", serif; */
-  /* font-family: "Flaviotte", serif; */
   font-family: "Eurostile Extended Regular", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -46,9 +25,6 @@ html, body {
   overscroll-behavior-y: none;
   overflow-x: hidden;
 }
-
-/* iOS Safari legge il background-color dell'elemento fixed per la tab bar glass.
-   Con body transparent, risale fino a html dove trova il colore corretto → tab bar trasparente. */
 
 body {
   background: transparent;

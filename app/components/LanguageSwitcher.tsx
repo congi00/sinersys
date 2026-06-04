@@ -43,11 +43,12 @@ export default function LanguageSwitcher({ isDark }: Props) {
 
   function switchLocale(next: string) {
     if (next === locale) { setOpen(false); return; }
-    // Write cookie — picked up by getRequestConfig on next request
-    document.cookie = `locale=${next};path=/;max-age=${60 * 60 * 24 * 365};SameSite=Lax`;
     setOpen(false);
-    // router.refresh() re-runs server components so next-intl reads the new cookie
-    startTransition(() => router.refresh());
+    // Costruisce il nuovo URL sostituendo il segmento locale nell'URL attuale
+    const currentPath = window.location.pathname;
+    // Rimuove il locale corrente dall'inizio del path, aggiunge il nuovo
+    const pathWithoutLocale = currentPath.replace(/^\/(it|en|de|fr)/, '') || '/';
+    startTransition(() => router.push(`/${next}${pathWithoutLocale}`));
   }
 
   const current = LOCALES.find((l) => l.code === locale) ?? LOCALES[0];

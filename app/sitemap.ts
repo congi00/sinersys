@@ -1,12 +1,26 @@
 import { MetadataRoute } from "next";
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    { url: "https://sinersys.it", lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
-    { url: "https://sinersys.it/about-us", lastModified: new Date(), changeFrequency: "yearly", priority: 0.8 },
-    { url: "https://sinersys.it/apwec", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: "https://sinersys.it/six-phase-motor", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: "https://sinersys.it/codice-etico", lastModified: new Date(), changeFrequency: "yearly", priority: 0.8 },
-    { url: "https://sinersys.it/privacy", lastModified: new Date(), changeFrequency: "yearly", priority: 0.8 },
-    { url: "https://sinersys.it/cookies", lastModified: new Date(), changeFrequency: "yearly", priority: 0.8 },
+
+const BASE_URL = 'https://sinersys.it';
+const LOCALES = ['it', 'en', 'de', 'fr'] as const;
+
+const PAGES = [
+    { path: '',              changeFreq: 'weekly'  as const, priority: 1.0 },
+    { path: '/apwec',        changeFreq: 'monthly' as const, priority: 0.9 },
+    { path: '/six-phase-motor', changeFreq: 'monthly' as const, priority: 0.9 },
+    { path: '/about-us',     changeFreq: 'yearly'  as const, priority: 0.8 },
+    { path: '/codice-etico', changeFreq: 'yearly'  as const, priority: 0.5 },
+    { path: '/privacy',      changeFreq: 'yearly'  as const, priority: 0.5 },
+    { path: '/cookies',      changeFreq: 'yearly'  as const, priority: 0.5 },
   ];
+
+
+export default function sitemap(): MetadataRoute.Sitemap {
+    return LOCALES.flatMap((locale) =>
+      PAGES.map((page) => ({
+        url: `${BASE_URL}/${locale}${page.path}`,
+        lastModified: new Date(),
+        changeFrequency: page.changeFreq,
+        priority: page.priority,
+      }))
+    );
 }

@@ -16,7 +16,7 @@ import IntroParticles from "./components/IntroParticles";
 import HomePageAbout from "./containers/HomePageAbout";
 import ScatteredCards from "./components/ScatteredCards";
 import OurPromise from "./components/OurPromise";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
 import { detectIOS } from "./support/useViewportHeight";
@@ -40,10 +40,11 @@ function isTouchDevice() {
 }
 
 export default function Home() {
+  const locale = useLocale();
   const [mounted, setMounted] = useState(false);
   const progressMotion = useMotionValue(0);
   const scrollY = useMotionValue(0);
-  const [showIntro, setShowIntro] =useState<boolean>(() => {
+  const [showIntro, setShowIntro] = useState<boolean>(() => {
     // Viene eseguito solo lato client (Next.js SSR: il server non ha sessionStorage)
     if (typeof window === "undefined") return true;
     return sessionStorage.getItem("sinersys_intro_seen") !== "true";
@@ -72,7 +73,9 @@ export default function Home() {
   useEffect(() => {
     const measure = () => {
       const el = document.createElement("div");
-      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${isIOS?"lvh":"dvh"};pointer-events:none;visibility:hidden;`;
+      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${
+        isIOS ? "lvh" : "dvh"
+      };pointer-events:none;visibility:hidden;`;
       document.body.appendChild(el);
       setVhPx(el.getBoundingClientRect().height);
       document.body.removeChild(el);
@@ -80,12 +83,16 @@ export default function Home() {
     measure();
     window.addEventListener("resize", measure);
     window.addEventListener("orientationchange", measure);
-    return () => { window.removeEventListener("resize", measure); window.removeEventListener("orientationchange", measure); };
+    return () => {
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("orientationchange", measure);
+    };
   }, [isIOS]);
 
   useEffect(() => {
     const r = () => setWidth(window.innerWidth);
-    r(); window.addEventListener("resize", r);
+    r();
+    window.addEventListener("resize", r);
     return () => window.removeEventListener("resize", r);
   }, []);
 
@@ -106,8 +113,9 @@ export default function Home() {
       let current = 0;
 
       const onScroll = () => {
-        const sy    = window.scrollY;
-        const limit = document.documentElement.scrollHeight - window.innerHeight;
+        const sy = window.scrollY;
+        const limit =
+          document.documentElement.scrollHeight - window.innerHeight;
         if (limit > 0) target = Math.min(9.5, (sy / limit) * 9.5);
       };
 
@@ -129,23 +137,28 @@ export default function Home() {
       };
     }
 
-    const lenis = new Lenis({ duration:1.2, smoothWheel:true });
+    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
     let rafId = 0;
-    const raf = (time: number) => { lenis.raf(time); rafId = requestAnimationFrame(raf); };
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
     rafId = requestAnimationFrame(raf);
-    lenis.on("scroll", (e: { scroll:number; limit:number }) => {
+    lenis.on("scroll", (e: { scroll: number; limit: number }) => {
       progressMotion.set(Math.min(9, (e.scroll / e.limit) * 9));
     });
-    return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
   }, [progressMotion]);
 
-  const smooth = useSpring(progressMotion, 
-    { 
-      stiffness: isMobile ? 180 : 280,
-      damping:   isMobile ? 32  : 28,
-      mass:      isMobile ? 0.6 : 1,
-    });
-  const vh     = vhPx || 1;
+  const smooth = useSpring(progressMotion, {
+    stiffness: isMobile ? 180 : 280,
+    damping: isMobile ? 32 : 28,
+    mass: isMobile ? 0.6 : 1,
+  });
+  const vh = vhPx || 1;
 
   // ── Slide 0 ───────────────────────────────────────────────────────────────
   const slide0Y = useTransform(smooth, [0, 0.6, 0.7], [0, 0, -880]);
@@ -165,7 +178,11 @@ export default function Home() {
     [0, 0.6, 0.7, 1.8, 1.9],
     [0, 0, 1, 1, 0]
   );
-  const modelPhaseAY = useTransform(smooth, [0.7, 1.2, 1.8, 1.9], [80, 80, 80, 80]);
+  const modelPhaseAY = useTransform(
+    smooth,
+    [0.7, 1.2, 1.8, 1.9],
+    [80, 80, 80, 80]
+  );
 
   // ── HomePageAbout ─────────────────────────────────────────────────────────
   const aboutY = useTransform(smooth, [2.8, 2.9, 3.4, 3.8], [80, 0, 0, -880]);
@@ -182,7 +199,7 @@ export default function Home() {
   //     "circle(0% at 5% 5%)",
   //   ]
   // );
-  const circleScale  = useTransform(smooth, [4.7, 4.8, 6.2, 6.3], [0, 1, 1, 0]);
+  const circleScale = useTransform(smooth, [4.7, 4.8, 6.2, 6.3], [0, 1, 1, 0]);
 
   // ── OurPromise ────────────────────────────────────────────────────────────
   const ourPromiseY = useTransform(
@@ -201,20 +218,16 @@ export default function Home() {
   // white section appears after circle shrinks (p 5.2+)
   const headerTheme = useTransform(
     smooth,
-    [3, 3.1, 4.7, 4.75, 4.9, 5.9, 6.0, 6.1, 6.2, 6.3 , 7.4, 7.8,8.0,8.2,9.0],
-    [0, 1,1,1, 0, 0, 0, 0, 0, 1 , 0, 1, 1, 1, isMobile? 0 : 1 ]
+    [3, 3.1, 4.7, 4.75, 4.9, 5.9, 6.0, 6.1, 6.2, 6.3, 7.4, 7.8, 8.0, 8.2, 9.0],
+    [0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, isMobile ? 0 : 1]
   );
 
-  const hiddenMenu  = useTransform(
-    smooth,
-    [8.2,8.3],
-    [1, 0 ]
-  );
+  const hiddenMenu = useTransform(smooth, [8.2, 8.3], [1, 0]);
 
-  const menuTheme =  useTransform(
+  const menuTheme = useTransform(
     smooth,
-    [3, 3.1, 4.7, 4.75, 4.9, 5.9, 6.0, 6.1, 6.2, 6.7 , 7.4, 7.8, 8.0, 8.2, 9.0],
-    [0, 1,1,1, 0, 0, 0, 0, 0, 0 , 1, 1, 1, 1, 1 ]
+    [3, 3.1, 4.7, 4.75, 4.9, 5.9, 6.0, 6.1, 6.2, 6.7, 7.4, 7.8, 8.0, 8.2, 9.0],
+    [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
   );
 
   // ── LinkButton colors ─────────────────────────────────────────────────────
@@ -255,7 +268,6 @@ export default function Home() {
     return <div className="min-h-screen bg-[#0f2057]" />;
   }
 
-  
   return (
     <>
       <LiquidBackground progress={smooth} vhUnit={vhUnit} />
@@ -277,7 +289,7 @@ export default function Home() {
             <IntroParticles
               showIntro={showIntro}
               onFinish={() => {
-                sessionStorage.setItem("sinersys_intro_seen", "true");  
+                sessionStorage.setItem("sinersys_intro_seen", "true");
                 setIntroFinished(true);
                 setTimeout(() => setShowIntro(false), 10);
               }}
@@ -286,7 +298,6 @@ export default function Home() {
         </AnimatePresence>
 
         {!openContact && <Header headerTheme={headerTheme} />}
-        
 
         {/* ── SLIDE 0 ─────────────────────────────────────────────────────── */}
         <motion.div
@@ -301,8 +312,8 @@ export default function Home() {
           className="flex flex-col items-center justify-center px-8 text-center"
         >
           <h1
-            style={{ 
-              lineHeight: "1.0" ,
+            style={{
+              lineHeight: "1.0",
             }}
             className="text-3xl sm:text-6xl tracking-wide text-[#f4f7fa] font-bold sm:whitespace-pre-line sm:mt-0 mt-8"
             aria-hidden={false}
@@ -320,7 +331,7 @@ export default function Home() {
           {/* LinkButton — scopri di più / link ad APWEC */}
           <div className="mb-10 sm:mb-0" style={{ pointerEvents: "auto" }}>
             <LinkButton
-              link="/apwec"
+              link={`/${locale}/apwec`}
               text={homeTexts("slide0.link")}
               icon={<ArrowUpRight size={20} />}
               top="0"
@@ -363,11 +374,14 @@ export default function Home() {
               marginBottom: isIOS ? "10lvh" : "10dvh",
             }}
           >
-            <h4 className="text-m sm:text-2xl tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]" aria-hidden={false}>
+            <h4
+              className="text-m sm:text-2xl tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]"
+              aria-hidden={false}
+            >
               {homeTexts("slide1.suptitle")}
             </h4>
             <h2
-              style={{ lineHeight: "1.0"}}
+              style={{ lineHeight: "1.0" }}
               className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line px-3 sm:px-2 mt-3  text-[#f4f7fa]"
               aria-hidden={false}
             >
@@ -382,9 +396,9 @@ export default function Home() {
             </h2>
 
             {/* LinkButton — scopri di più */}
-            <div className={"px-3 sm:px-0"}style={{ pointerEvents: "auto" }}>
+            <div className={"px-3 sm:px-0"} style={{ pointerEvents: "auto" }}>
               <LinkButton
-                link="/apwec"
+                link={`/${locale}/apwec`}
                 text={homeTexts("slide1.link")}
                 icon={<ArrowUpRight size={20} />}
                 top="0"
@@ -400,19 +414,25 @@ export default function Home() {
           isMobile={isMobile}
           sectionLabel={homeTexts("sixPhase.researchProducts.sectionLabel")}
           sectionTitle={homeTexts("sixPhase.researchProducts.sectionTitle")}
-          sectionSubtitle={homeTexts("sixPhase.researchProducts.sectionSubtitle")}
+          sectionSubtitle={homeTexts(
+            "sixPhase.researchProducts.sectionSubtitle"
+          )}
           products={[
             {
-              "id": homeTexts("sixPhase.researchProducts.product1.id"),
-              "status": "coming-soon",
-              "statusLabel": homeTexts("sixPhase.researchProducts.product1.id"),
-              "suptitle": homeTexts("sixPhase.researchProducts.product1.suptitle"),
-              "title":  homeTexts("sixPhase.researchProducts.product1.title"),
-              "subtitle":  homeTexts("sixPhase.researchProducts.product1.subtitle"),
-              "detail": homeTexts("sixPhase.researchProducts.product1.detail"),
-              "year": homeTexts("sixPhase.researchProducts.product1.year"),
-              "link": "/six-phase-motor"
-            }
+              id: homeTexts("sixPhase.researchProducts.product1.id"),
+              status: "coming-soon",
+              statusLabel: homeTexts("sixPhase.researchProducts.product1.id"),
+              suptitle: homeTexts(
+                "sixPhase.researchProducts.product1.suptitle"
+              ),
+              title: homeTexts("sixPhase.researchProducts.product1.title"),
+              subtitle: homeTexts(
+                "sixPhase.researchProducts.product1.subtitle"
+              ),
+              detail: homeTexts("sixPhase.researchProducts.product1.detail"),
+              year: homeTexts("sixPhase.researchProducts.product1.year"),
+              link: "/six-phase-motor",
+            },
           ]}
         />
 
@@ -428,24 +448,22 @@ export default function Home() {
           }}
           className="flex items-center justify-center"
         >
-          <HomePageAbout progressMotion={smooth} isMobile={isMobile}/>
+          <HomePageAbout progressMotion={smooth} isMobile={isMobile} />
         </motion.div>
 
         {/* ── ScatteredCards ──────────────────────────────────────────────── */}
-        <ScatteredCards
-          items={scatteredCards}
-          progress={smooth}
-        />
+        <ScatteredCards items={scatteredCards} progress={smooth} />
 
         <motion.div
           style={{
             position: "fixed",
             bottom: 0,
-            right:  0,
-            width:  "283vmax",
+            right: 0,
+            width: "283vmax",
             height: "283vmax",
             zIndex: 30,
-            background: "linear-gradient(180deg, rgb(28, 57, 142) 10%, rgb(0 86 191) 20%, rgb(5, 11, 38) 70%)",
+            background:
+              "linear-gradient(180deg, rgb(28, 57, 142) 10%, rgb(0 86 191) 20%, rgb(5, 11, 38) 70%)",
             borderRadius: "50%",
             scale: circleScale,
             transformOrigin: "bottom right",
@@ -487,7 +505,9 @@ export default function Home() {
           progressMotion={smooth}
           isMobile={isMobile}
           vhUnit={vhUnit}
-          setOpen={() => {dispatch(setOpenContact(true))}}
+          setOpen={() => {
+            dispatch(setOpenContact(true));
+          }}
         />
 
         {/* ── FAQ — absolute, on white bg, after CTA ───────────────────────── */}
@@ -542,7 +562,9 @@ export default function Home() {
           <Footer openContact={() => dispatch(setOpenContact(true))} />
         </div>
 
-        {!openContact && <MenuButton menuTheme={menuTheme} hiddenMenu={hiddenMenu}/>}
+        {!openContact && (
+          <MenuButton menuTheme={menuTheme} hiddenMenu={hiddenMenu} />
+        )}
 
         {!openContact && (
           <ScrollNavigator

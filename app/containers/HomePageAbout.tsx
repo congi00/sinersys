@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion, useTransform, MotionValue } from "framer-motion";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
@@ -18,6 +18,7 @@ interface Props {
 export default function HomePageAbout({ progressMotion, isMobile }: Props) {
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const homeTexts = useTranslations("homepage");
+  const locale = useLocale();
 
   const slide1Opacity = useTransform(progressMotion, [1.6, 1.8], [0, 1]);
   const slide1Y = useTransform(progressMotion, [1.6, 1.8], [120, 0]);
@@ -94,7 +95,7 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
         <div style={{ pointerEvents: "auto" }}>
           <LinkButton
             text={homeTexts("slide2.link")}
-            link="/about-us"
+            link={`/${locale}/about-us`}
             icon={
               <MotionArrowUpRight
                 size={20}
