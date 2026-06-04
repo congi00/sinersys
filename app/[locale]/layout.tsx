@@ -33,9 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       default: title,
       template: "%s | Sinersys",
     },
-
     description,
-
     keywords: [
       "motore elettrico",
       "six phase motor",
@@ -46,12 +44,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "generatore energia rinnovabile",
       "energia continua",
     ],
-
     authors: [{ name: "Sinersys" }],
     creator: "Sinersys",
-
     metadataBase: new URL("https://sinersys.it"),
-
     openGraph: {
       type: 'website',
       locale: ogLocale,
@@ -61,19 +56,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Sinersys',
       images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Sinersys' }],
     },
-
     twitter: {
       card: "summary_large_image",
       title,
       description,
       images: ["/og-image.jpg"],
     },
-
     robots: {
       index: true,
       follow: true,
     },
-
     alternates: {
       canonical: `https://sinersys.it/${locale}`,
       languages: {
@@ -101,6 +93,22 @@ export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Sinersys',
+  url: 'https://sinersys.it',
+  logo: 'https://sinersys.it/full-logo-sinersys.png',
+  description: 'Ricerca e Sviluppo di tecnologie per nuove frontiere energetiche come APWEC e motore a 6 fasi.',
+  foundingDate: '2020',
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['Italian','English','German','French'] },
+  sameAs: [
+    // 'https://linkedin.com/company/sinersys',   // inserire URL reali
+    // 'https://twitter.com/sinersys',
+  ]
+};
+
+
 export default async function RootLayout({children, params}: Props) {
   const { locale } = await params;
 
@@ -122,6 +130,7 @@ export default async function RootLayout({children, params}: Props) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="preload" href="/font/Eurostile Extended Regular/Eurostile Extended Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       </head>
       <body
         className={`

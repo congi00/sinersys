@@ -4,6 +4,42 @@
 // AboutUsContainer come prop. Ora AboutUsPage è autosufficiente.
 
 import AboutUsPage from "@/app/containers/AboutUsPage";
+import { buildBreadcrumb } from "@/app/utilities";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+
+  const t = await getTranslations({ locale: params.locale, namespace: 'aboutus' });
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'About',
+    name: 'Sinersys — New Energy Frontiers',
+    description: t('hero.suptitle'),
+    brand: { '@type': 'Brand', name: 'Sinersys' },
+    manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://sinersys.it' },
+    category: 'Renewable Energy Technology',
+  };
+
+  const breadcrumb = buildBreadcrumb(params.locale, [
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about-us" },
+  ]);
+  
+  return {
+    title: t('hero.suptitle'),
+    description: t('hero.subtitle'),
+    alternates: {
+      canonical: `https://sinersys.it/${params.locale}/aboutus`,
+      languages: { it: '/it/aboutus', en: '/en/aboutus', de: '/de/aboutus', fr: '/fr/aboutus' },
+    },
+    other: {
+      "script:ld+json": [
+        JSON.stringify(productSchema),
+        JSON.stringify(breadcrumb),
+      ]
+    },
+  };
+}
 
 export default function Page() {
   return <AboutUsPage />;
