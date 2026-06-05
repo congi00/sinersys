@@ -103,7 +103,7 @@ const organizationSchema = {
   foundingDate: '2020',
   contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['Italian','English','German','French'] },
   sameAs: [
-    // 'https://linkedin.com/company/sinersys',   // inserire URL reali
+    'https://www.linkedin.com/company/sinersys-italia'
     // 'https://twitter.com/sinersys',
   ]
 };

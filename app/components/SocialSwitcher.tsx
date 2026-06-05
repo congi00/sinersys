@@ -34,7 +34,7 @@ export default function SocialSwitcher({ isDark }: Props) {
     {
       id: "linkedin",
       label: "LinkedIn",
-      href: "https://www.linkedin.com/company/yourcompany",
+      href: "https://www.linkedin.com/company/sinersys-italia",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <rect
