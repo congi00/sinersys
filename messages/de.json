@@ -133,8 +133,14 @@
       "attachmentsHint": "(optional — PDF, DOC, Bilder, max. 10 MB pro Datei)",
       "attachBtn": "Klicken Sie, um eine Datei anzuhängen",
       "postilla": "* Jedes eingereichte Dokument wird von MUI Motor Union Italia ohne vorherige Benachrichtigung des Absenders und zu dem von MUI Motor Union Italia bestimmten Zweck behandelt, ohne jegliche Gegenleistung von MUI Motor Union Italia an den Absender.",
-      "submit": "Anfrage senden"
-    }
+      "submit": "Anfrage senden",
+      "errorRequired": "Pflichtfeld",
+      "errorEmail": "Ungültige E-Mail-Adresse",
+      "errorInterest": "Wählen Sie mindestens ein Interessengebiet aus"
+    },
+    "successTitle": "Nachricht gesendet!",
+    "successBody": "Wir werden Ihnen so schnell wie möglich unter info@sinersys.it antworten.",
+    "close": "Schließen"
   },
   "aboutus": {
     "hero": {

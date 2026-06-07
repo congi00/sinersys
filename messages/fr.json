@@ -133,8 +133,14 @@
       "attachmentsHint": "(optionnel — PDF, DOC, images, max 10 Mo par fichier)",
       "attachBtn": "Cliquez pour joindre un fichier",
       "postilla": "* Chaque document soumis sera traité par MUI Motor Union Italia sans préavis à l'expéditeur et aux fins que MUI Motor Union Italia décidera, sans aucune contrepartie de la part de MUI Motor Union Italia envers l'expéditeur.",
-      "submit": "Envoyer la demande"
-    }
+      "submit": "Envoyer la demande",
+      "errorRequired": "Champ obligatoire",
+      "errorEmail": "Adresse e-mail invalide",
+      "errorInterest": "Sélectionnez au moins un centre d’intérêt"
+    },
+    "successTitle": "Message envoyé !",
+    "successBody": "Nous vous répondrons dans les plus brefs délais à info@sinersys.it.",
+    "close": "Fermer"
   },
 
   "aboutus": {
