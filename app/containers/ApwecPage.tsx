@@ -21,6 +21,7 @@ import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
 import VintageMediaViewer, { MediaItem } from "../components/VintageMediaViewer";
+import CookieBanner from "../components/CookieBanner";
 
 const SCENES = 6.2;
 const MEDIA: MediaItem[] = [
@@ -1290,6 +1291,8 @@ export default function ApwecPage() {
             }
           />
         )}
+
+        <CookieBanner />
 
         <ContactDrawer
           open={openContact}

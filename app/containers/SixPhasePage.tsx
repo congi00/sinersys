@@ -21,6 +21,7 @@ import { setNavigationState, setOpenContact } from "../features/counterSlice";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
+import CookieBanner from "../components/CookieBanner";
  
 // ─── Constants ────────────────────────────────────────────────────────────────
 const SCENES = 6.2;
@@ -1157,6 +1158,7 @@ export default function SixPhasePage() {
           />
         )}
  
+        <CookieBanner />
         <ContactDrawer
           open={openContact}
           onClose={() => {

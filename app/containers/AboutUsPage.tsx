@@ -22,6 +22,7 @@ import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
 import VintageMediaViewer, { MediaItem } from "../components/VintageMediaViewer";
 import Image from "next/image";
+import CookieBanner from "../components/CookieBanner";
 
 // Industrial partners
 const partners = ["Honda", "Volvo", "Chrysler", "Saab", "Hanomag - Henschel", "VW"];
@@ -1258,6 +1259,8 @@ export default function AboutUsPage() {
           <div style={{ height: "20vh" }} />
           <Footer openContact={() => dispatch(setOpenContact(true))} />
         </m.div>
+
+        <CookieBanner />
 
         {!openContact && (
           <ScrollNavigator
