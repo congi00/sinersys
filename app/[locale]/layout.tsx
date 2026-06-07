@@ -7,6 +7,7 @@ import "../globals.css";
 import { Providers } from "../providers"; 
 import LandscapeBlock from "../components/LandscapeBlock";
 import { MotionProvider } from "../containers/MotionProvider";
+import Script from "next/script";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -155,6 +156,18 @@ export default async function RootLayout({children, params}: Props) {
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="preload" href="/font/Eurostile Extended Regular/Eurostile Extended Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4M192B0GEZ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4M192B0GEZ');
+          `}
+        </Script>
       </head>
       <body
         className={`
