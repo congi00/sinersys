@@ -15,7 +15,7 @@ export interface CookieConsent {
 
 export type ConsentStatus = "pending" | "accepted" | "rejected" | "custom";
 
-const STORAGE_KEY    = "sinersys_cookie_consent";
+const STORAGE_KEY    = "cookie_consent";
 const POLICY_VERSION = "1.0.0";
 
 const DEFAULT_CONSENT: CookieConsent = {

@@ -159,6 +159,20 @@ export default async function RootLayout({children, params}: Props) {
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="preload" href="/font/Eurostile Extended Regular/Eurostile Extended Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        <Script id="gtag-consent-init" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            // Default: tutto DENIED per utenti EU (conforme GDPR)
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'wait_for_update': 500
+            });
+          `}
+        </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-4M192B0GEZ"
           strategy="afterInteractive"

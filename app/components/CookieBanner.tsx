@@ -4,10 +4,29 @@ import { m, AnimatePresence } from "framer-motion";
 import { useCookieConsent } from "./useCookieConsent";
 import CookieDetails from "./CookieDetails";
 import Image from "next/image";
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 // This component is self-contained — just mount <CookieBanner /> anywhere in your layout.
 // It reads/writes localStorage automatically via useCookieConsent.
+declare global {
+  interface Window {
+    dataLayer?: Array<Record<string, unknown> | unknown[]>;
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+const CONSENT_KEY = 'cookie_consent';
+
+function applyGtagConsent(granted: boolean) {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+  window.gtag('consent', 'update', {
+    analytics_storage:    granted ? 'granted' : 'denied',
+    ad_storage:           granted ? 'granted' : 'denied',
+    ad_user_data:         granted ? 'granted' : 'denied',
+    ad_personalization:   granted ? 'granted' : 'denied',
+  });
+}
 
 export default function CookieBanner() {
   const {
@@ -16,6 +35,39 @@ export default function CookieBanner() {
     openDetails, closeDetails,
   } = useCookieConsent();
   const locale = useLocale();
+  const t = useTranslations('Cookie');
+  const [visible, setVisible] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname.includes('/cookies') || pathname.includes('/privacy')) {
+      setVisible(false);
+      return;
+    }
+    const saved = localStorage.getItem(CONSENT_KEY);
+    if (!saved) setVisible(true);
+    else applyGtagConsent(saved === 'all');
+  }, [pathname]);
+
+  const handleAccept = () => {
+    acceptAll();                    
+    applyGtagConsent(true);          
+    setVisible(false);
+  };
+
+  const handleDecline = () => {
+    rejectAll();                    
+    applyGtagConsent(false);
+    setVisible(false);
+  };
+
+  const handleSaveCustom = (custom: Parameters<typeof saveCustom>[0]) => {
+    saveCustom(custom);
+    applyGtagConsent(!!custom.analytics);
+    setVisible(false);
+  };
+
+  if (!visible) return null;
 
   return (
     <>
@@ -129,7 +181,9 @@ export default function CookieBanner() {
 
                 {/* Rifiuta */}
                 <button
-                  onClick={rejectAll}
+                  onClick={() => {
+                    handleDecline()
+                  }}
                   style={{
                     flex:          "1 1 auto",
                     minWidth:      "100px",
@@ -158,7 +212,9 @@ export default function CookieBanner() {
 
                 {/* Accetta tutti */}
                 <button
-                  onClick={acceptAll}
+                  onClick={() => {
+                    handleAccept()
+                  }}
                   style={{
                     flex:          "1 1 auto",
                     minWidth:      "120px",
@@ -215,7 +271,7 @@ export default function CookieBanner() {
         {showDetails && (
           <CookieDetails
             consent={consent}
-            onSave={saveCustom}
+            onSave={handleSaveCustom}
             onAcceptAll={acceptAll}
             onClose={closeDetails}
           />

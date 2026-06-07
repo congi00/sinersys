@@ -3,7 +3,8 @@ import ApwecPage from "../../containers/ApwecPage";
 import { buildBreadcrumb } from "@/app/utilities";
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const t = await getTranslations({ locale: params.locale, namespace: 'apwec' });
+  const { locale } = await params;
+  const t = await getTranslations({ locale: locale, namespace: 'apwec' });
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     category: 'Renewable Energy Technology',
   };
 
-  const breadcrumb = buildBreadcrumb(params.locale, [
+  const breadcrumb = buildBreadcrumb(locale, [
     { name: "Home", path: "/" },
     { name: "APWEC", path: "/apwec" },
   ]);
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
     },
     alternates: {
-      canonical: `https://www.sinersys.it/${params.locale}/apwec`,
+      canonical: `https://www.sinersys.it/${locale}/apwec`,
       languages: { it: '/it/apwec', en: '/en/apwec', de: '/de/apwec', fr: '/fr/apwec' },
     },
     other: {

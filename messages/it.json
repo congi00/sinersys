@@ -25,6 +25,7 @@
     "howItWorks": "Come Funziona"
   },
   "homepage": {
+    "keywords": "motore elettrico, APWEC, energia rinnovabile, Sinersys, motore a 6 fasi, generatore energia rinnovabile, energia continua, motore elettrico innovativo, brevetto italiano energia, generatore energia, generatore verde, energia verde",
     "slide0": {
       "title": "La nuova generazione di \nenergia rinnovabile nata da \nun sogno di innovatori",
       "subtitle": "Abbiamo inseguito per anni un'idea impossibile:\nun generatore  di energia continua, senza combustione interna, senza emissioni.\n Ci siamo riusciti.",
@@ -139,6 +140,7 @@
     "close":        "Chiudi"
   },
   "aboutus": {
+    "keywords": "motore elettrico, APWEC, energia rinnovabile, Sinersys, motore a 6 fasi, generatore energia rinnovabile, energia continua, motore elettrico innovativo, brevetto italiano energia, generatore energia, generatore verde, energia verde",
     "hero": {
       "suptitle": "Chi Siamo",
       "title": "Un sogno italiano",
@@ -277,6 +279,7 @@
     }
   },
   "apwec": {
+    "keywords": "motore elettrico, APWEC, energia rinnovabile, Sinersys, motore a 6 fasi, generatore energia rinnovabile, energia continua, motore elettrico innovativo, brevetto italiano energia, generatore energia, generatore verde, energia verde",
     "slide0": {
       "suptitle": "TECNOLOGIA BREVETTATA",
       "title": "APWEC",
@@ -431,6 +434,7 @@
     }
   },
   "motore6fasi": {
+    "keywords": "motore elettrico, APWEC, energia rinnovabile, Sinersys, motore a 6 fasi, generatore energia rinnovabile, energia continua, motore elettrico innovativo, brevetto italiano energia, generatore energia, generatore verde, energia verde",
     "slide0": {
       "suptitle": "TECNOLOGIA BREVETTATA",
       "title": "Motore a 6 Fasi",
@@ -841,5 +845,13 @@
       "company": "Sinersys – Motor Union Italia s.r.l."
     },
     "social": {}
+  },
+  "Cookie": {
+    "banner": {
+      "text": "Utilizziamo cookie analitici e di marketing (tra cui Google Analytics tramite gtag.js) per migliorare la tua esperienza. Puoi accettare o rifiutare i cookie non essenziali.",
+      "learnMore": "Scopri di più",
+      "accept": "Accetta tutto",
+      "decline": "Solo essenziali"
+    }
   }
 }

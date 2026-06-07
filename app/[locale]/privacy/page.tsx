@@ -2,12 +2,13 @@ import { getTranslations } from "next-intl/server";
 import PrivacyPage from "../../containers/PrivacyPage";
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-    const t = await getTranslations({ locale: params.locale, namespace: 'privacy' });
+    const { locale } = await params;
+    const t = await getTranslations({ locale: locale, namespace: 'privacy' });
     return {
       title: t('title'),
       description: t('subtitle'),
       alternates: {
-        canonical: `https://www.sinersys.it/${params.locale}/privacy`,
+        canonical: `https://www.sinersys.it/${locale}/privacy`,
         languages: { it: '/it/privacy', en: '/en/privacy', de: '/de/privacy', fr: '/fr/privacy' },
       },
     };

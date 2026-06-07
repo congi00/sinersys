@@ -5,7 +5,8 @@ import { buildBreadcrumb } from "@/app/utilities";
 import WorkInProgressPage from "@/app/WorkInProgressPage";
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const t = await getTranslations({ locale: params.locale, namespace: 'motore6fasi' });
+  const { locale } = await params;
+  const t = await getTranslations({ locale: locale, namespace: 'motore6fasi' });
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'SixPhaseMotor',
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     category: 'Renewable Energy Technology',
   };
 
-  const breadcrumb = buildBreadcrumb(params.locale, [
+  const breadcrumb = buildBreadcrumb(locale, [
     { name: "Home", path: "/" },
     { name: "Six Phase Motor", path: "/six-phase-motor" },
   ]);
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
     },
     alternates: {
-      canonical: `https://www.sinersys.it/${params.locale}/six-phase-motor`,
+      canonical: `https://www.sinersys.it/${locale}/six-phase-motor`,
       languages: { it: '/it/six-phase-motor', en: '/en/six-phase-motor', de: '/de/six-phase-motor', fr: '/fr/six-phase-motor' },
     },
     other: {
