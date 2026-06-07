@@ -28,6 +28,14 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   return {
     title: t('hero.suptitle'),
     description: t('hero.subtitle'),
+    keywords: t('keywords'),
+    authors: [{ name: 'Sinersys' }],
+    creator: 'Sinersys',
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+    },
     alternates: {
       canonical: `https://www.sinersys.it/${params.locale}/aboutus`,
       languages: { it: '/it/aboutus', en: '/en/aboutus', de: '/de/aboutus', fr: '/fr/aboutus' },

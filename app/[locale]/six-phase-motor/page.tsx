@@ -24,6 +24,14 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   return {
     title: t('slide0.title'),
     description: t('slide0.subtitle'),
+    keywords: t('keywords'),
+    authors: [{ name: 'Sinersys' }],
+    creator: 'Sinersys',
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+    },
     alternates: {
       canonical: `https://www.sinersys.it/${params.locale}/six-phase-motor`,
       languages: { it: '/it/six-phase-motor', en: '/en/six-phase-motor', de: '/de/six-phase-motor', fr: '/fr/six-phase-motor' },

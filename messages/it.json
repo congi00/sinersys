@@ -111,7 +111,6 @@
       "a5": "Sì. Il rotore è contenuto all’interno di una struttura chiusa, riducendo i rischi rispetto ai generatori eolici tradizionali."
     }
   },
-
   "contacts": {
     "drawerTitle": "AVVIA UNA COLLABORAZIONE STRATEGICA",
     "fields": {
@@ -277,7 +276,6 @@
       "subtitle": "Sinersys sviluppa soluzioni per la generazione distribuita di energia rinnovabile che permettono ad aziende, enti pubblici e operatori industriali di ridurre concretamente i consumi, tagliare le emissioni di CO₂ e aumentare la resilienza energetica dei propri impianti — con tecnologie certificate, scalabili e ad alto rendimento."
     }
   },
-
   "apwec": {
     "slide0": {
       "suptitle": "TECNOLOGIA BREVETTATA",
@@ -565,7 +563,6 @@
       }
     }
   },
-
   "certifications": {
     "label": "Certificazioni e Qualità",
     "title": "Qualità certificata, efficienza energetica garantita nel tempo",
@@ -579,14 +576,12 @@
       "body": "Il programma di assistenza, manutenzione e ottimizzazione continua di Sinersys. Per ogni impianto di energia rinnovabile progettato e installato, Tech Service garantisce la massima resa energetica nel tempo attraverso interventi programmati, monitoraggio da remoto e aggiornamenti tecnici periodici."
     }
   },
-
   "frontierEnergetiche": {
     "label": "Soluzioni Energetiche",
     "title": "Le nuove frontiere dell'energia rinnovabile e dell'efficienza energetica",
     "p1": "Sinersys realizza progetti e impianti di cogenerazione ad alto rendimento e sviluppa tecnologie avanzate per la generazione distribuita di energia rinnovabile continua. Dalla nostra storia centenaria nell'ingegneria motoristica nasce una missione precisa: rendere accessibile l'indipendenza energetica a industrie, enti pubblici e operatori commerciali che vogliono ridurre i costi dell'energia, abbattere le emissioni di CO₂ e aumentare la resilienza dei propri impianti.",
     "p2": "Sinersys fornisce sistemi di generazione di energia rinnovabile efficienti, flessibili e scalabili che consentono l'autoproduzione energetica con impatto ambientale zero. Ogni impianto è progettato su misura, certificato con il programma Full Energy Project e supportato nel tempo dal servizio Tech Service."
   },
-
   "ethics": {
     "label": "Codice Etico",
     "title": "Codice Etico",
@@ -659,7 +654,6 @@
       "p1": "Le violazioni accertate del presente Codice Etico comportano conseguenze proporzionate alla gravità del comportamento, fino alla risoluzione del rapporto di lavoro o collaborazione. Per segnalazioni: info@sinersys.it"
     }
   },
-
   "privacy": {
     "label": "Privacy Policy",
     "title": "Privacy Policy",
@@ -760,7 +754,6 @@
       "p1": "La presente informativa può essere aggiornata in qualsiasi momento. Le modifiche sostanziali vengono comunicate tramite avviso sul sito o via email agli utenti registrati."
     }
   },
-
   "cookies": {
     "label": "Cookie Policy",
     "title": "Cookie Policy",
@@ -817,7 +810,6 @@
       "p2": "Per qualsiasi domanda relativa all'utilizzo dei cookie su sinersys.it, scrivici a info@sinersys.it."
     }
   },
-
   "footer": {
     "quick": {
       "title": "Quick Links",

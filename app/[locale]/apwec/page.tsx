@@ -22,6 +22,14 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   return {
     title: t('slide0.title'),
     description: t('slide0.subtitle'),
+    keywords: t('keywords'),
+    authors: [{ name: 'Sinersys' }],
+    creator: 'Sinersys',
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+    },
     alternates: {
       canonical: `https://www.sinersys.it/${params.locale}/apwec`,
       languages: { it: '/it/apwec', en: '/en/apwec', de: '/de/apwec', fr: '/fr/apwec' },

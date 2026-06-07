@@ -98,7 +98,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'en':        'https://www.sinersys.it/en',
         'de':        'https://www.sinersys.it/de',
         'fr':        'https://www.sinersys.it/fr',
-        'x-default': 'https://www.sinersys.it/en',
+        'x-default': 'https://www.sinersys.it/it',
       }
     },
     icons: {
@@ -126,10 +126,13 @@ const organizationSchema = {
   logo: 'https://www.sinersys.it/full-logo-sinersys.png',
   description: 'Ricerca e Sviluppo di tecnologie per nuove frontiere energetiche come APWEC e motore a 6 fasi.',
   foundingDate: '2020',
-  contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['Italian','English','German','French'] },
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', email: 'info@sinersys.it', availableLanguage: ['Italian','English','German','French'] },
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'IT',
+  },
   sameAs: [
     'https://www.linkedin.com/company/sinersys-italia'
-    // 'https://twitter.com/sinersys',
   ]
 };
 
