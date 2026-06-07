@@ -5,7 +5,7 @@ import { useCookieConsent } from "./useCookieConsent";
 import CookieDetails from "./CookieDetails";
 import Image from "next/image";
 import { useLocale, useTranslations } from 'next-intl';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 // This component is self-contained — just mount <CookieBanner /> anywhere in your layout.
@@ -36,44 +36,44 @@ export default function CookieBanner() {
   } = useCookieConsent();
   const locale = useLocale();
   const t = useTranslations('Cookie');
-  const [visible, setVisible] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     if (pathname.includes('/cookies') || pathname.includes('/privacy')) {
-      setVisible(false);
       return;
     }
+    if (!showBanner) {
+      applyGtagConsent(consent.analytics);
+    }
     const saved = localStorage.getItem(CONSENT_KEY);
-    if (!saved) setVisible(true);
-    else applyGtagConsent(saved === 'all');
+    if (saved) applyGtagConsent(saved === 'all');
   }, [pathname]);
 
   const handleAccept = () => {
     acceptAll();                    
-    applyGtagConsent(true);          
-    setVisible(false);
+    applyGtagConsent(true);       
   };
 
   const handleDecline = () => {
     rejectAll();                    
     applyGtagConsent(false);
-    setVisible(false);
   };
 
   const handleSaveCustom = (custom: Parameters<typeof saveCustom>[0]) => {
     saveCustom(custom);
     applyGtagConsent(!!custom.analytics);
-    setVisible(false);
   };
 
-  if (!visible) return null;
+  const isOnPolicyPage =
+    pathname.includes("/cookies") || pathname.includes("/privacy");
+
+  if (isOnPolicyPage || !showBanner) return null;
 
   return (
     <>
       {/* ── Main banner ─────────────────────────────────────────────────── */}
       <AnimatePresence>
-        {showBanner && !showDetails && (
+        {!showDetails && (
           <m.div
             key="cookie-banner"
             initial={{ y: 40, opacity: 0 }}
@@ -272,7 +272,7 @@ export default function CookieBanner() {
           <CookieDetails
             consent={consent}
             onSave={handleSaveCustom}
-            onAcceptAll={acceptAll}
+            onAcceptAll={handleAccept}
             onClose={closeDetails}
           />
         )}
