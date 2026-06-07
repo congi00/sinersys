@@ -286,7 +286,7 @@ export default function LegalPage({
   }
 
   return (
-    <>
+    <main id="main-content">  
       {/* ── Scroll spacer ─────────────────────────────────────────────── */}
       <div style={{ height: totalHeight }} aria-hidden />
 
@@ -469,7 +469,7 @@ export default function LegalPage({
           <Footer openContact={() => dispatch(setOpenContact(true))} />
         </div>
       </div>
-    </>
+    </main>
   );
 }
 

@@ -32,6 +32,11 @@ body {
   overscroll-behavior: none;
 }
 
+
+h1 { font-size: clamp(2rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(1.5rem, 3.5vw, 3rem); }
+p  { font-size: clamp(0.9rem, 2vw, 1.1rem); }
+
 @keyframes slideUpFade {
   from {
     opacity: 0;

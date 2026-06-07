@@ -149,6 +149,7 @@ export function HowItWorksSection({
         style={{
           padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
         }}
+        aria-labelledby="how-it-works"
       >
         <Appear>
           <SectionLabel text={t("howItWorks.label")} />
@@ -299,6 +300,7 @@ export function AdvantagesSection({
         style={{
           padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
         }}
+        aria-labelledby="advantages"
       >
         <Appear>
           <SectionLabel text={t("advantages.label")} />
@@ -809,7 +811,7 @@ export default function ApwecPage() {
 
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (
-    <>
+    <main id="main-content">  
       {/* Scroll spacer */}
       <div style={{ height: totalHeight }} aria-hidden />
 
@@ -1033,6 +1035,7 @@ export default function ApwecPage() {
               style={{
                 padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
               }}
+              aria-labelledby="about"
             >
               <m.div
                 initial={{ opacity: 0, y: 40 }}
@@ -1120,6 +1123,7 @@ export default function ApwecPage() {
               style={{
                 padding: "clamp(3rem,6vh,5rem) clamp(1.5rem,8vw,7rem)",
               }}
+              aria-labelledby="feature-cards"
             >
               <div
                 style={{
@@ -1207,6 +1211,7 @@ export default function ApwecPage() {
                 padding:
                   "clamp(3rem,6vh,5rem) clamp(1.5rem,8vw,7rem) clamp(4rem,8vh,7rem)",
               }}
+              aria-labelledby="contact-us"
             >
               <m.div
                 initial={{ opacity: 0, y: 20 }}
@@ -1294,6 +1299,6 @@ export default function ApwecPage() {
           }}
         />
       </m.div>
-    </>
+    </main>
   );
 }

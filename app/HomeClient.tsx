@@ -275,7 +275,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <main id="main-content">  
       <LiquidBackground progress={smooth} vhUnit={vhUnit} />
 
       <m.div
@@ -597,6 +597,6 @@ export default function Home() {
           quindi se il consenso è già salvato non mostra nulla.
       ──────────────────────────────────────────────────────────────────────── */}
       {introFinished && <CookieBanner />}
-    </>
+    </main>
   );
 }

@@ -125,6 +125,7 @@ export function HowItWorksSection({
         style={{
           padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
         }}
+        aria-labelledby="about"
       >
         <Appear>
           <SectionLabel text={t("howItWorks.label")} />
@@ -275,6 +276,7 @@ export function AdvantagesSection({
         style={{
           padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
         }}
+        aria-labelledby="advantages"
       >
         <Appear>
           <SectionLabel text={t("advantages.label")} />
@@ -938,6 +940,7 @@ export default function SixPhasePage() {
               style={{
                 padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
               }}
+              aria-labelledby="about"
             >
               <m.div
                 initial={{ opacity: 0, y: 40 }}
@@ -999,6 +1002,7 @@ export default function SixPhasePage() {
               style={{
                 padding: "clamp(3rem,6vh,5rem) clamp(1.5rem,8vw,7rem)",
               }}
+              aria-labelledby="feature-cards"
             >
               <div
                 style={{

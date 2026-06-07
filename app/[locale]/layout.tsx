@@ -144,7 +144,7 @@ export default async function RootLayout({children, params}: Props) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} dir="ltr">
       <head>
         <meta charSet="utf-8"/>
         <meta name="next-size-adjust" content=""/>
@@ -174,6 +174,10 @@ export default async function RootLayout({children, params}: Props) {
           antialiased pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] h-[100vh] h-[100dvh] h-[100lvh]
         `}
       >
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-white focus:text-black focus:p-2">
+          Skip to main content
+        </a>
+
         <MotionProvider>
           <LandscapeBlock />
           <Providers>

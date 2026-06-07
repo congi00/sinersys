@@ -759,7 +759,7 @@ export default function AboutUsPage() {
   
 
   return (
-    <>
+    <main id="main-content">  
       <m.div style={{ height: totalHeight }} aria-hidden />
 
       <m.div
@@ -793,7 +793,7 @@ export default function AboutUsPage() {
           >
             <Image
               src="/aboutus.webp"
-              alt="" // eslint-disable-line
+              alt="About us" // eslint-disable-line
               style={{
                 position: "absolute",
                 inset: 0,
@@ -977,6 +977,7 @@ export default function AboutUsPage() {
             <section
               style={{ padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem)" }}
               aria-hidden={false}
+              aria-labelledby="about-us"
             >
               <FadeIn>
                 <SectionLabel label={t("whoweareLabel")} />
@@ -1076,6 +1077,7 @@ export default function AboutUsPage() {
             <section
               style={{ padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem)" }}
               aria-hidden={false}
+              aria-labelledby="timeline"
             >
               <FadeIn>
                 <SectionLabel label={t("timelineLabel")} />
@@ -1149,6 +1151,7 @@ export default function AboutUsPage() {
                   "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,8rem) clamp(5rem,10vh,8rem)",
               }}
               aria-hidden={false}
+              aria-labelledby="team"
             >
               <FadeIn>
                 <SectionLabel label={t("teamLabel")} />
@@ -1282,6 +1285,6 @@ export default function AboutUsPage() {
           }}
         />
       </m.div>
-    </>
+    </main>
   );
 }

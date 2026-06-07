@@ -102,10 +102,10 @@ export default function ContactDrawer({ open, onClose }: Props) {
     try {
       const res = await fetch("/api/contact", { method: "POST", body: fd });
       const data = await res.json();
-      if (!res.ok) { setServerErr(data.error ?? "Errore sconosciuto"); setStatus("error"); }
+      if (!res.ok) { setServerErr(data.error ?? "Unknown error"); setStatus("error"); }
       else setStatus("success");
     } catch {
-      setServerErr("Errore di rete. Riprova più tardi.");
+      setServerErr("Network error. Try later.");
       setStatus("error");
     }
   }
@@ -196,6 +196,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
                     value={email}
                     onChange={(v) => { setEmail(v); if (errors.email) setErrors((e) => ({ ...e, email: "" })); }}
                     error={errors.email}
+                    aria-required="true"
                   />
 
                   {/* Name */}
@@ -205,12 +206,14 @@ export default function ContactDrawer({ open, onClose }: Props) {
                       value={firstName}
                       onChange={(v) => { setFirstName(v); if (errors.firstName) setErrors((e) => ({ ...e, firstName: "" })); }}
                       error={errors.firstName}
+                      aria-required="true"
                     />
                     <Input
                       label={f("lastName")}
                       value={lastName}
                       onChange={(v) => { setLastName(v); if (errors.lastName) setErrors((e) => ({ ...e, lastName: "" })); }}
                       error={errors.lastName}
+                      aria-required="true"
                     />
                   </div>
 
@@ -232,6 +235,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
                       onChange={(e) => { setMessage(e.target.value); if (errors.message) setErrors((er) => ({ ...er, message: "" })); }}
                       className="w-full rounded-2xl bg-white/10 border border-white/20 p-4 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-white/40 transition"
                       placeholder={f("messagePlaceholder")}
+                      aria-required="true"
                     />
                     {errors.message && <p className="mt-1 text-sm text-red-300">{errors.message}</p>}
                   </div>

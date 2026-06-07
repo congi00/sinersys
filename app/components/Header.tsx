@@ -46,6 +46,7 @@ export default function Header({ headerTheme }: Props) {
   }, [headerTheme]);
 
   return (
+    <nav aria-label="Main Navigation">
       <m.div
         onClick={() => 
         {
@@ -106,5 +107,6 @@ export default function Header({ headerTheme }: Props) {
           />
         )}
       </m.div>
+    </nav>
   );
 }
