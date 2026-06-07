@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       title: t('title'),
       description: t('subtitle'),
       alternates: {
-        canonical: `https://sinersys.it/${params.locale}/privacy`,
+        canonical: `https://www.sinersys.it/${params.locale}/privacy`,
         languages: { it: '/it/privacy', en: '/en/privacy', de: '/de/privacy', fr: '/fr/privacy' },
       },
     };

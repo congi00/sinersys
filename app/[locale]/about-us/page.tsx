@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     name: 'Sinersys — New Energy Frontiers',
     description: t('hero.suptitle'),
     brand: { '@type': 'Brand', name: 'Sinersys' },
-    manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://sinersys.it' },
+    manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
     category: 'Renewable Energy Technology',
   };
 
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     title: t('hero.suptitle'),
     description: t('hero.subtitle'),
     alternates: {
-      canonical: `https://sinersys.it/${params.locale}/aboutus`,
+      canonical: `https://www.sinersys.it/${params.locale}/aboutus`,
       languages: { it: '/it/aboutus', en: '/en/aboutus', de: '/de/aboutus', fr: '/fr/aboutus' },
     },
     other: {

@@ -2,6 +2,7 @@
 import { getTranslations } from "next-intl/server";
 import SixPhasePage from "../../containers/SixPhasePage";
 import { buildBreadcrumb } from "@/app/utilities";
+import WorkInProgressPage from "@/app/WorkInProgressPage";
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
   const t = await getTranslations({ locale: params.locale, namespace: 'motore6fasi' });
@@ -11,7 +12,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     name: 'Six Phase Motor',
     description: t('slide0.subtitle'),
     brand: { '@type': 'Brand', name: 'Sinersys' },
-    manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://sinersys.it' },
+    manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
     category: 'Renewable Energy Technology',
   };
 
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     title: t('slide0.title'),
     description: t('slide0.subtitle'),
     alternates: {
-      canonical: `https://sinersys.it/${params.locale}/six-phase-motor`,
+      canonical: `https://www.sinersys.it/${params.locale}/six-phase-motor`,
       languages: { it: '/it/six-phase-motor', en: '/en/six-phase-motor', de: '/de/six-phase-motor', fr: '/fr/six-phase-motor' },
     },
     other: {
@@ -37,5 +38,10 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 }
 
 export default function Page() {
-  return <SixPhasePage />;
+  const inProgress = 1
+
+  return <>
+    {inProgress && <WorkInProgressPage /> }
+    {!inProgress && <SixPhasePage />}
+  </>
 }

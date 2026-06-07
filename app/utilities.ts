@@ -6,7 +6,7 @@ export function buildBreadcrumb(locale: string, items: { name: string; path: str
         "@type": "ListItem",
         position: index + 1,
         name: item.name,
-        item: `https://sinersys.it/${locale}${item.path}`,
+        item: `https://www.sinersys.it/${locale}${item.path}`,
       })),
     };
   }

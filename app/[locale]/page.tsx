@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function Page() {
-  const inProgress = 1
+  const inProgress = 0
   
   return <>
     {inProgress && <WorkInProgressPage /> }

@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     name: 'APWEC — Autonomous Perpetual Wave Energy Converter',
     description: t('meta.description'),
     brand: { '@type': 'Brand', name: 'Sinersys' },
-    manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://sinersys.it' },
+    manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
     category: 'Renewable Energy Technology',
   };
 
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     title: t('slide0.title'),
     description: t('slide0.subtitle'),
     alternates: {
-      canonical: `https://sinersys.it/${params.locale}/apwec`,
+      canonical: `https://www.sinersys.it/${params.locale}/apwec`,
       languages: { it: '/it/apwec', en: '/en/apwec', de: '/de/apwec', fr: '/fr/apwec' },
     },
     other: {

@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = 'https://sinersys.it';
+const BASE_URL = 'https://www.sinersys.it';
 const LOCALES = ['it', 'en', 'de', 'fr'] as const;
 
 const PAGES = [
