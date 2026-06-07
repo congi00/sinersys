@@ -187,6 +187,7 @@ export default function WorkInProgressPage() {
   return (
     <>
       <LiquidBackground progress={smooth} vhUnit={vhUnit} />
+      <CookieBanner />
 
       <m.div
         style={{ height: totalHeight, pointerEvents: "none" }}
