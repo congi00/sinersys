@@ -356,7 +356,6 @@ export default function ResearchProducts({
             opacity: rSub.op,
             y: rSub.y,
             margin: "0 0 clamp(1.8rem,4vh,3rem)",
-            color: "rgba(180,210,255,0.55)",
             lineHeight: 1.2,
             fontWeight: 300,
           }}

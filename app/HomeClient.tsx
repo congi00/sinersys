@@ -315,7 +315,7 @@ export default function Home() {
             opacity: slide0Opacity,
             pointerEvents: "none",
           }}
-          className="flex flex-col items-center justify-center px-8 text-center"
+          className="flex flex-col items-center justify-center px-8 sm:px-4 text-center"
         >
           <h1
             style={{

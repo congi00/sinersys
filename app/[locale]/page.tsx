@@ -49,11 +49,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function Page() {
-  const inProgress = 1
-  
-  return <>
-    {inProgress && <WorkInProgressPage /> }
-    {!inProgress && <HomeClient />}
-  </>
+export default function Page() {  
+  return <HomeClient />
 }
