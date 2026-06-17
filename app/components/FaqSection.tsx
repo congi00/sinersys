@@ -3,6 +3,8 @@
 import { useState, useRef } from "react";
 import { m, useTransform, MotionValue, AnimatePresence } from "framer-motion";
 import { Plus } from "@deemlol/next-icons";
+import clsx from "clsx";
+import { CARD_TITLE_CLASS, FAQ_QUESTION_CLASS, HERO_TITLE_CLASS, SUPTITLE_CLASS } from "../typography";
 
 interface FaqItem {
   question: string;
@@ -72,25 +74,29 @@ export default function FaqSection({
   return (
     <m.section
       style={{ opacity: sectionOpacity, y: sectionY }}
-      className="w-full mx-auto px-5 pt-10"
+      className="w-full mx-auto px-5"
     >
       {/* Header */}
       <m.div className="mb-12 text-center">
         <span
-          className="inline-block text-sm font-semibold tracking-[0.4em] uppercase
-            border border-current rounded-full px-4 py-1.5 mb-6 font-light
-            text-[#1c398e]"
+          className={clsx(
+            SUPTITLE_CLASS,
+            "inline-block font-semibold tracking-[0.4em]",
+            "border border-current rounded-full px-4 py-1.5 mb-6",
+            "text-[#1c398e]")}
         >
           {suptitle}
         </span>
-        <h2
-          className="font-bold leading-tight text-[#1c398e] text-center text-3xl sm:text-6xl px-3 sm:px-2 mt-3 tracking-wide"
+        <h1
+          className={clsx(
+            HERO_TITLE_CLASS,
+            "leading-tight text-[#1c398e] text-center mt-3 tracking-wide ")}
           style={{ 
             lineHeight: "1.1"
           }}
         >
           {title}
-        </h2>
+        </h1>
       </m.div>
 
       {/* Items */}
@@ -113,10 +119,9 @@ export default function FaqSection({
                 id={`faq-question-${index}`}
               >
                 <span
-                  className="font-regular text-[#1c398e] pr-4
-                    group-hover:text-[#1c398e] transition-colors duration-200
-                    text-lg sm:text-2xl
-                  "
+                  className={clsx(
+                    FAQ_QUESTION_CLASS,
+                    "text-[#1c398e] pr-4 group-hover:text-[#1c398e] transition-colors duration-200")}
                   style={{lineHeight: "1.1"
                    }}
                 >

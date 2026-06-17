@@ -37,7 +37,7 @@
     "slide1": {
       "suptitle": "APWEC TECHNOLOGY",
       "title": "The renewable energy generator that never stops",
-      "subtitle": "APWEC is the Italian patented technology that generates energy by harnessing atmospheric pressure and controlled internal airflows.\nZero emissions. Operates approx. 8,660 hours per year, independent of sunlight and natural wind.",
+      "subtitle": "APWEC® is a patented Italian technology that generates renewable energy by harnessing atmospheric pressure and controlled internal airflow.\nZero emissions. Operates approximately 8,660 hours per year, independent of direct solar radiation and natural wind conditions.",
       "link": "How It Works"
     },
     "sixPhase": {
@@ -67,7 +67,7 @@
     },
     "slide3": {
       "title": "Every APWEC is a concrete step towards energy independence.",
-      "subtitle": "Sinersys researches and develops scalable systems for continuous renewable energy generation,\ndesigned for companies, public bodies, industrial operators and private users who want to reduce energy costs,\ncut emissions and achieve energy self-sufficiency\nin a measurable and verifiable way."
+      "subtitle": "Sinersys researches and develops scalable systems for continuous renewable energy generation,\ndesigned for companies, public bodies, industrial operators and private users who want to reduce energy costs,\ncut emissions and achieve energy self-sufficiency\n very close."
     },
     "scatteredCards": [
       {
@@ -128,6 +128,8 @@
       "check1": "Development of one or more Power Families",
       "check2": "Operations in specific geographic areas",
       "check3": "Industrial licence",
+      "check4": "Industrial cooperation interest inquiries",
+      "check5": "Requests from schools or educational institutions",
       "message": "Message *",
       "messagePlaceholder": "Describe your project, area of interest or licence request...",
       "attachments": "Attachments",
@@ -289,7 +291,7 @@
     "slide0": {
       "suptitle": "PATENTED TECHNOLOGY",
       "title": "APWEC",
-      "subtitle": "Atmospheric Pressure Wind Energy Collector — the Italian renewable energy generator \nthat uses fluid-air depression, producing electricity continuously."
+      "subtitle": "Atmospheric Pressure Wind Energy Collector (APWEC®) – an Italian renewable energy generator\nthat uses controlled air fluid depression to produce continuous electricity, with on-demand start and stop functionality."
     },
     "slide1": {
       "suptitle": "HOW IT WORKS",
@@ -327,15 +329,15 @@
         "description": "Ground-level access, no work at height."
       },
       "cta": {
-        "title": "Request a technical assessment",
-        "subtitle": "Energy potential analysis, industrial feasibility and economic model available on request.",
+        "title": "Interested in collaborating with us?",
+        "subtitle": "We are seeking industrial partners for the industrialization, manufacturing, and distribution of APWEC® power systems.",
         "link": "Contact Us"
       }
     },
     "howItWorks": {
       "label": "System architecture",
-      "title": "How APWEC® works:\nthree sections we have named vessels",
-      "intro": "The APWEC® generator is composed of three vessels solidly fixed to one another. The first generates airflow with openings for atmospheric air intake.\n In the second vessel there are a series of annular Induction Chambers (I.C.) appropriately designed to accelerate the flow within this second section. The third converts the considerably accelerated high-speed airflow kinetically into electrical energy via a rotor connected to the alternator.",
+      "title": "How APWEC® works:\nthree sections called vessels",
+      "intro": "The APWEC® generator consists of three vessels firmly connected to each other. The first vessel creates airflow through openings that allow atmospheric air intake. In the second vessel, a series of Induction Chambers (C.I.) are designed to accelerate airflow inside the second section. Between the second and third vessel, a rotor connected to the alternator receives high-speed airflow, generating electricity.",
       "shell1": {
         "label": "First Section",
         "title": "Flow generation and amplification",
@@ -483,8 +485,8 @@
         "description": "Integrated with the belt-free, pulley-free stepless automatic transmission, the powertrain significantly reduces bulk, weight and costs compared to current solutions."
       },
       "cta": {
-        "title": "Request a technical assessment",
-        "subtitle": "Application analysis, construction feasibility and economic model available on request.",
+        "title": "Interested in collaborating with us?",
+        "subtitle": "We are looking for industrial partners for the industrialization, production, and distribution of the 6-phase motor system.",
         "link": "Contact Us"
       }
     },
@@ -833,6 +835,7 @@
       "title": "Quick Links",
       "home": "Homepage",
       "apwec": "APWEC",
+      "six-phase-motor": "Six Phase Motor",
       "about": "About Us",
       "certs": "Contact Us"
     },

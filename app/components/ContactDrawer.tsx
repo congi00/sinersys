@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import FocusTrap from 'focus-trap-react';
+import clsx from "clsx";
+import { BODY_TEXT_CLASS, CONTACT_TITLE_CLASS } from "../typography";
 
 interface Props {
   open: Boolean;
@@ -180,14 +182,16 @@ export default function ContactDrawer({ open, onClose }: Props) {
                 </button>
 
                 {/* Title */}
-                <m.h2
+                <m.h1
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-[2rem] font-semibold mb-10 sm:text-center tracking-wide"
+                  className={clsx(
+                    CONTACT_TITLE_CLASS,
+                    "mb-10 sm:text-center tracking-wide")}
                 >
                   {t("drawerTitle")}
-                </m.h2>
+                </m.h1>
 
                 {/* SUCCESS STATE */}
                 <AnimatePresence>
@@ -281,6 +285,16 @@ export default function ContactDrawer({ open, onClose }: Props) {
                         checked={interests.includes(f("check3"))}
                         onChange={() => toggleInterest(f("check3"))}
                       />
+                      <Checkbox
+                        label={f("check4")}
+                        checked={interests.includes(f("check4"))}
+                        onChange={() => toggleInterest(f("check4"))}
+                      />
+                      <Checkbox
+                        label={f("check5")}
+                        checked={interests.includes(f("check5"))}
+                        onChange={() => toggleInterest(f("check5"))}
+                      />
                       {errors.interests && (
                         <p className="mt-2 text-sm text-red-300">
                           {errors.interests}
@@ -290,7 +304,7 @@ export default function ContactDrawer({ open, onClose }: Props) {
 
                     {/* Message */}
                     <div>
-                      <label className="block mb-2">{f("message")}</label>
+                      <label className={clsx(BODY_TEXT_CLASS,"block mb-2")}>{f("message")}</label>
                       <textarea
                         rows={5}
                         value={message}
@@ -299,12 +313,12 @@ export default function ContactDrawer({ open, onClose }: Props) {
                           if (errors.message)
                             setErrors((er) => ({ ...er, message: "" }));
                         }}
-                        className="w-full rounded-2xl bg-white/10 border border-white/20 p-4 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-white/40 transition"
+                        className={clsx(BODY_TEXT_CLASS, "w-full rounded-2xl bg-white/10 border border-white/20 p-4 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-white/40 transition")}
                         placeholder={f("messagePlaceholder")}
                         aria-required="true"
                       />
                       {errors.message && (
-                        <p className="mt-1 text-sm text-red-300">
+                        <p className={clsx(BODY_TEXT_CLASS,"mt-1 text-red-300")}>
                           {errors.message}
                         </p>
                       )}
@@ -441,20 +455,22 @@ function Input({
 }) {
   return (
     <div>
-      <label className="block mb-2">{label}</label>
+      <label className={clsx(
+        BODY_TEXT_CLASS,
+        "block mb-2")}>{label}</label>
       <input
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full h-14 rounded-2xl bg-white/10 border px-4 backdrop-blur-md focus:outline-none focus:ring-2 transition
+        className={`w-full h-10 sm:h-14 rounded-2xl bg-white/10 border px-4 backdrop-blur-md focus:outline-none focus:ring-2 transition
           ${
             error
               ? "border-red-400 focus:ring-red-400/40"
               : "border-white/20 focus:ring-white/40"
           }`}
       />
-      {error && <p className="mt-1 text-sm text-red-300">{error}</p>}
+      {error && <p className={clsx(BODY_TEXT_CLASS,"mt-1 text-red-300")}>{error}</p>}
     </div>
   );
 }
@@ -474,9 +490,11 @@ function Checkbox({
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="w-5 h-5 accent-white"
+        className="w-[15px] h-[15px] accent-white"
       />
-      <span className="group-hover:text-[#f4f7fa] transition text-[#f4f7fa]/80">
+      <span className={clsx(
+        BODY_TEXT_CLASS,
+        "group-hover:text-[#f4f7fa] transition text-[#f4f7fa]/80")}>
         {label}
       </span>
     </label>

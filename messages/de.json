@@ -37,7 +37,7 @@
     "slide1": {
       "suptitle": "APWEC-TECHNOLOGIE",
       "title": "Der Generator für erneuerbare Energie, der niemals stoppt",
-      "subtitle": "APWEC ist die patentierte italienische Technologie, die Energie durch Nutzung des atmosphärischen Drucks und kontrollierter interner Luftströme erzeugt.\nNull Emissionen. Betrieb ca. 8.660 Stunden pro Jahr, unabhängig von Sonne und natürlichem Wind.",
+      "subtitle": "APWEC® ist eine patentierte italienische Technologie zur Erzeugung erneuerbarer Energie, die atmosphärischen Druck und kontrollierte interne Luftströmungen nutzt.\nNull Emissionen. Betrieb ca. 8.660 Stunden pro Jahr, unabhängig von direkter Sonneneinstrahlung und natürlichem Wind.",
       "link": "Funktionsweise"
     },
     "sixPhase": {
@@ -67,7 +67,7 @@
     },
     "slide3": {
       "title": "Jedes APWEC ist ein konkreter Schritt in Richtung Energieunabhängigkeit.",
-      "subtitle": "Sinersys erforscht und entwickelt skalierbare Systeme zur kontinuierlichen Erzeugung erneuerbarer Energie,\nkonzipiert für Unternehmen, öffentliche Einrichtungen, Industriebetreiber oder Privatpersonen, die Energiekosten senken,\nEmissionen reduzieren und Energieautarkie\nauf messbare und nachprüfbare Weise erreichen möchten."
+      "subtitle": "Sinersys erforscht und entwickelt skalierbare Systeme zur kontinuierlichen Erzeugung erneuerbarer Energie,\nkonzipiert für Unternehmen, öffentliche Einrichtungen, Industriebetreiber oder Privatpersonen, die Energiekosten senken,\nEmissionen reduzieren und Energieautarkie\nso nah wie möglich."
     },
     "scatteredCards": [
       {
@@ -128,6 +128,8 @@
       "check1": "Entwicklung einer oder mehrerer Leistungsfamilien",
       "check2": "Betrieb in bestimmten geografischen Gebieten",
       "check3": "Industrielizenz",
+      "check4": "Anfragen zu industrieller Kooperation und Zusammenarbeit",
+      "check5": "Anfragen von Schulen oder Bildungseinrichtungen",
       "message": "Nachricht *",
       "messagePlaceholder": "Beschreiben Sie Ihr Projekt, Ihren Interessensbereich oder Ihre Lizenzanfrage...",
       "attachments": "Anhänge",
@@ -287,7 +289,7 @@
     "slide0": {
       "suptitle": "PATENTIERTE TECHNOLOGIE",
       "title": "APWEC",
-      "subtitle": "Atmospheric Pressure Wind Energy Collector — der italienische Generator für erneuerbare Energie, \nder die Luft-Fluid-Unterdruck nutzt und kontinuierlich Strom erzeugt."
+      "subtitle": "Atmospheric Pressure Wind Energy Collector (APWEC®) – ein italienischer Generator für erneuerbare Energie,\nder kontrollierte Luftunterdruck nutzt, um kontinuierlich Strom zu erzeugen, mit Ein- und Ausschaltfunktion auf Anfrage des Nutzers."
     },
     "slide1": {
       "suptitle": "FUNKTIONSWEISE",
@@ -325,15 +327,15 @@
         "description": "Bodenzugang, keine Arbeiten in der Höhe."
       },
       "cta": {
-        "title": "Technische Bewertung anfordern",
-        "subtitle": "Analyse des Energiepotenzials, industrielle Machbarkeit und Wirtschaftsmodell auf Anfrage erhältlich.",
+        "title": "Interessiert an einer Zusammenarbeit?",
+        "subtitle": "Wir suchen Industriepartner für die Industrialisierung, Produktion und den Vertrieb der APWEC®-Leistungssysteme.",
         "link": "Kontakt aufnehmen"
       }
     },
     "howItWorks": {
       "label": "Systemarchitektur",
-      "title": "Wie APWEC® funktioniert:\ndrei Sektionen, die wir Vessels genannt haben",
-      "intro": "Der APWEC®-Generator besteht aus drei fest miteinander verbundenen Vessels. Das erste erzeugt Luftstrom mit Öffnungen für den Einlass von Atmosphärenluft.\n Im zweiten Vessel befinden sich eine Reihe ringförmiger Induktionskammern (I.K.), die geeignet konzipiert wurden, um den Strom innerhalb dieses zweiten Abschnitts zu beschleunigen. Das dritte wandelt den erheblich beschleunigten Hochgeschwindigkeits-Luftstrom kinetisch über einen mit dem Alternator verbundenen Rotor in elektrische Energie um.",
+      "title": "So funktioniert APWEC®:\ndrei Sektionen, sogenannte Vessels",
+      "intro": "Der APWEC®-Generator besteht aus drei fest miteinander verbundenen Vessels. Das erste Vessel erzeugt einen Luftstrom durch Öffnungen für die Aufnahme von atmosphärischer Luft. Im zweiten Vessel befinden sich mehrere Induktionskammern (C.I.), die den Luftstrom innerhalb dieses Abschnitts beschleunigen. Zwischen dem zweiten und dritten Vessel befindet sich ein Rotor, der mit dem Generator verbunden ist und den Hochgeschwindigkeitsluftstrom zur Stromerzeugung nutzt.",
       "shell1": {
         "label": "Erster Abschnitt",
         "title": "Stromerzeugung und -verstärkung",
@@ -481,8 +483,8 @@
         "description": "Integriert mit dem stufenlosen Automatikgetriebe ohne Riemen und Riemenscheiben, reduziert der Antriebsstrang Abmessungen, Gewicht und Kosten im Vergleich zu aktuellen Lösungen erheblich."
       },
       "cta": {
-        "title": "Technische Bewertung anfordern",
-        "subtitle": "Anwendungsanalyse, Herstellungsmachbarkeit und Wirtschaftsmodell auf Anfrage erhältlich.",
+        "title": "Interessiert an einer Zusammenarbeit?",
+        "subtitle": "Wir suchen Industriepartner für die Industrialisierung, Produktion und den Vertrieb des 6-Phasen-Motorsystems.",
         "link": "Kontakt aufnehmen"
       }
     },
@@ -831,6 +833,7 @@
       "title": "Schnelle Links",
       "home": "Startseite",
       "apwec": "APWEC",
+      "six-phase-motor": "Sechs Phasen Motor",
       "about": "Über Uns",
       "certs": "Kontakt"
     },

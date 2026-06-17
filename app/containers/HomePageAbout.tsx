@@ -7,6 +7,7 @@ import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import { useRef, useEffect } from "react";
 import { detectIOS } from "../support/useViewportHeight";
+import { HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, SUPTITLE_CLASS } from "../typography";
 
 const MotionArrowUpRight = m.create(ArrowUpRight);
 
@@ -30,7 +31,7 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
   const subtitleColor = useTransform(
     progressMotion,
     [3.1, 3.12],
-    ["#F4F7FA82", "#5C8BAF32"]
+    ["#F4F7FA82", "#1c398e62"]
   );
 
   // Border radius animato (24px → 0px)
@@ -69,24 +70,30 @@ export default function HomePageAbout({ progressMotion, isMobile }: Props) {
     >
       <m.div
         style={{ opacity: slide1Opacity, y: slide1Y }}
-        className="absolute px-[40px]"
+        className="absolute px-[20px]"
       >
         <m.h4
-          className="
-          text-m sm:text-lg mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8] tracking-widest uppercase
-          mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] items-center sm:justify-center"
+          className={clsx(
+            SUPTITLE_CLASS,
+            "mb-3 px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]",
+            "mb-4 whitespace-pre-line [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] items-center sm:justify-center"
+          )}
           style={{ color: subtitleColor }}
         >
           {homeTexts("slide2.suptitle")}
         </m.h4>
         <m.h1
-          className="text-3xl sm:text-6xl mt-3 tracking-wide text-[#f4f7fa] font-bold sm:whitespace-pre-line"
+          className={clsx(
+            HERO_TITLE_CLASS,
+            "mt-3 text-[#f4f7fa] sm:whitespace-pre-line")}
           style={{ color: titleColor, lineHeight: "1.1" }}
         >
           {homeTexts("slide2.title")}
         </m.h1>
         <m.h2
-          className="text-lg sm:text-xl mt-4 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light whitespace-pre-line"
+          className={clsx(
+            HERO_SUBTITLE_CLASS,
+            "mt-4 sm:mt-5 sm:mb-5 text-[#c8d8f8] sm:whitespace-pre-line")}
           style={{ color: titleColor, lineHeight: "1.2" }}
         >
           {homeTexts("slide2.subtitle")}

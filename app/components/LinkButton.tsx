@@ -93,14 +93,15 @@ export default function LinkButton({ link, text, icon, top, color, fontSize }: P
         transition={{ type: "spring", stiffness: 200, damping: 18 }}
         className={clsx(
           "relative flex items-center",
-          "h-16 pl-8 pr-20",
+          "min-h-[3.5rem] py-3 pl-4",
           "rounded-full",
           "backdrop-blur-2xl",
           "bg-white/10",
           "border border-white/20",
           "shadow-[0_8px_40px_rgba(0,0,0,0.25)]",
-          "text-[#f4f7fa] text-xl sm:text-2xl font-medium",
-          "overflow-hidden"
+          "text-[#f4f7fa] text-base sm:text-2xl font-medium",
+          "overflow-hidden",
+          "whitespace-nowrap"
         )}
       >
         {text}

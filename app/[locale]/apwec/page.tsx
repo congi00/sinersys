@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: 'APWEC — Autonomous Perpetual Wave Energy Converter',
-    description: t('meta.description'),
+    description: t('slide0.subtitle'),
     brand: { '@type': 'Brand', name: 'Sinersys' },
     manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
     category: 'Renewable Energy Technology',

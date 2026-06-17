@@ -6,6 +6,7 @@ import clsx from "clsx";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import { useTranslations } from "next-intl";
+import { HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, PRODUCT_TITLE_CARD, SUPTITLE_CLASS } from "../typography";
 
 interface Props {
   progressMotion: MotionValue<number>;
@@ -88,24 +89,27 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
           display:   "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding:   "clamp(2rem, 5vw, 4rem)",
+          padding:   "clamp(1vw, 7vw, 20vw)",
           opacity:   contentOpacity,
           y:         contentY,
         }}
         className="text-center"
       >
         {/* Suptitle */}
-        <p style={{
+        <h4 style={{
           margin:        0,
           textTransform: "uppercase",
           color:         "rgba(180,210,255,0.75)",
           marginBottom:  "0.6rem",
           lineHeight: "1",
         }}
-        className="text-m sm:text-lg mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8] tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
+        className={clsx(
+          SUPTITLE_CLASS,
+          "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]",
+        )}
         >
           {homeTexts("cta.suptitle")}
-        </p>
+        </h4>
 
         {/* Title */}
         <h2 style={{
@@ -114,7 +118,9 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
           color:         "#f4f7fa",
           marginBottom:  "10px",
         }}
-          className="text-3xl sm:text-6xl px-3 sm:px-2 mt-3 tracking-wide text-[#f4f7fa] font-bold sm:whitespace-pre-line"
+          className={clsx(
+            HERO_TITLE_CLASS,
+            "px-3 sm:px-2 mt-3 text-[#f4f7fa] font-bold sm:whitespace-pre-line")}
         >
           {homeTexts("cta.title")}
         </h2>
@@ -126,7 +132,9 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
           color:       "rgba(200,218,250,0.72)",
           marginBottom: "0.5rem",
         }}
-        className="text-lg sm:text-xl px-2 sm:px-[300px] mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light"
+        className={clsx(
+          HERO_SUBTITLE_CLASS,
+          "sm:px-[300px] mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light")}
         >
           {homeTexts("cta.subtitle")}
         </p>

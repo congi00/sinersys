@@ -22,6 +22,8 @@ import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
 import CookieBanner from "../components/CookieBanner";
+import clsx from "clsx";
+import { CARD_TITLE_CLASS, CONTACT_TITLE_CLASS, HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, PRODUCT_CONTENT_CLASS, PRODUCT_TITLE_CARD, SUPTITLE_CLASS } from "../typography";
  
 // ─── Constants ────────────────────────────────────────────────────────────────
 const SCENES = 6.2;
@@ -47,6 +49,7 @@ function GlassCard({
         WebkitBackdropFilter: "blur(20px)",
         border: "1px solid rgba(255,255,255,0.13)",
         borderRadius: "20px",
+        minHeight: "stretch",
         ...style,
       }}
     >
@@ -151,7 +154,7 @@ export function HowItWorksSection({
                 fontWeight: 800,
                 letterSpacing: "-0.02em",
               }}
-              className="text-3xl sm:text-6xl tracking-wide font-bold"
+              className={clsx(HERO_TITLE_CLASS)}
             >
               {t("howItWorks.title")}
             </h2>
@@ -160,11 +163,11 @@ export function HowItWorksSection({
             <p
               style={{
                 margin: 0,
-                lineHeight: 1.65,
+                lineHeight: 1.2,
                 color: "rgba(200,218,250,0.70)",
                 fontWeight: 300,
               }}
-              className="text-lg sm:text-xl font-light"
+              className={clsx(PRODUCT_CONTENT_CLASS)}
             >
               {t("howItWorks.intro")}
             </p>
@@ -195,13 +198,12 @@ export function HowItWorksSection({
                     position: "absolute",
                     top: "0.8rem",
                     right: "1rem",
-                    fontSize: "clamp(3rem,6vw,5rem)",
-                    fontWeight: 900,
-                    color: "rgba(100,150,255,0.05)",
+                    color: "rgba(100,150,255,0.45)",
                     lineHeight: 1,
                     userSelect: "none",
                     letterSpacing: "-0.05em",
                   }}
+                  className={clsx(SUPTITLE_CLASS)}
                 >
                   {i + 1}
                 </span>
@@ -219,12 +221,10 @@ export function HowItWorksSection({
                 <p
                   style={{
                     margin: "0 0 0.4rem",
-                    fontSize: "0.62rem",
-                    fontWeight: 700,
                     letterSpacing: "0.2em",
-                    textTransform: "uppercase",
                     color: "rgba(100,160,255,0.55)",
                   }}
+                  className={clsx(SUPTITLE_CLASS)}
                 >
                   {t(`howItWorks.${shell}.label`)}
                 </p>
@@ -233,20 +233,18 @@ export function HowItWorksSection({
                     margin: "0 0 0.8rem",
                     lineHeight: 1.1,
                     color: "#f4f7fa",
-                    fontWeight: 700,
                   }}
-                  className="text-2xl sm:text-4xl font-bold"
+                  className={clsx(CONTACT_TITLE_CLASS)}
                 >
                   {t(`howItWorks.${shell}.title`)}
                 </h3>
                 <p
                   style={{
                     margin: 0,
-                    lineHeight: 1.65,
+                    lineHeight: 1.2,
                     color: "rgba(200,218,250,0.65)",
-                    fontWeight: 300,
                   }}
-                  className="text-base sm:text-lg font-light"
+                  className={clsx(PRODUCT_CONTENT_CLASS)}
                 >
                   {t(`howItWorks.${shell}.desc`)}
                 </p>
@@ -298,10 +296,8 @@ export function AdvantagesSection({
                 margin: 0,
                 lineHeight: 1.05,
                 color: "#f4f7fa",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
               }}
-              className="text-3xl sm:text-6xl tracking-wide font-bold"
+              className={clsx(HERO_TITLE_CLASS)}
             >
               {t("advantages.title")}
             </h2>
@@ -310,11 +306,10 @@ export function AdvantagesSection({
             <p
               style={{
                 margin: 0,
-                lineHeight: 1.65,
+                lineHeight: 1.2,
                 color: "rgba(200,218,250,0.70)",
-                fontWeight: 300,
               }}
-              className="text-lg sm:text-xl font-light"
+              className={clsx(PRODUCT_CONTENT_CLASS)}
             >
               {t("advantages.intro")}
             </p>
@@ -392,12 +387,9 @@ export function AdvantagesSection({
                   <p
                     style={{
                       margin: "0 0 0.4rem",
-                      fontSize: "0.6rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.18em",
-                      textTransform: "uppercase",
                       color: "rgba(100,160,255,0.5)",
                     }}
+                    className={clsx(SUPTITLE_CLASS)}
                   >
                     {t(`advantages.${ak}.label`)}
                   </p>
@@ -406,20 +398,18 @@ export function AdvantagesSection({
                       margin: "0 0 0.5rem",
                       lineHeight: 1.15,
                       color: "#eef2fa",
-                      fontWeight: 700,
-                      fontSize: "clamp(0.9rem,1.2vw,1.05rem)",
                     }}
+                    className={clsx(CONTACT_TITLE_CLASS)}
                   >
                     {t(`advantages.${ak}.title`)}
                   </h3>
                   <p
                     style={{
                       margin: 0,
-                      lineHeight: 1.6,
+                      lineHeight: 1.2,
                       color: "rgba(190,215,255,0.58)",
-                      fontWeight: 300,
-                      fontSize: "clamp(0.78rem,1vw,0.88rem)",
                     }}
+                    className={clsx(PRODUCT_CONTENT_CLASS)}
                   >
                     {t(`advantages.${ak}.desc`)}
                   </p>
@@ -446,13 +436,12 @@ export function AdvantagesSection({
             <p
               style={{
                 margin: 0,
-                lineHeight: 1.65,
+                lineHeight: 1.2,
                 color: "rgba(190,215,255,0.60)",
-                fontWeight: 300,
-                fontSize: "clamp(0.82rem,1.05vw,0.92rem)",
                 textAlign: "center",
                 whiteSpace: "pre-line",
               }}
+              className={clsx(HERO_SUBTITLE_CLASS)}
             >
               {t("advantages.vsDesc")}
             </p>
@@ -659,8 +648,6 @@ export default function SixPhasePage() {
  
   /* ── Shared style helpers ─────────────────────────────────────────────── */
   const sup: React.CSSProperties = {
-    fontWeight: 700,
-    textTransform: "uppercase",
     color: "rgba(180,210,255,0.6)",
     marginBottom: "0.5rem",
     display: "block",
@@ -668,14 +655,12 @@ export default function SixPhasePage() {
  
   const h1s: React.CSSProperties = {
     margin: 0,
-    fontWeight: 800,
     lineHeight: 1.0,
     color: "#f4f7fa",
   };
  
   const bodys: React.CSSProperties = {
     margin: "0.8rem 0 0",
-    fontWeight: 400,
     lineHeight: 1.1,
     color: "rgba(200,218,250,0.70)",
     maxWidth: isMobile ? "100%" : "820px",
@@ -782,20 +767,20 @@ export default function SixPhasePage() {
                 ...s0,
               }}
             >
-              <span
-                className="text-m sm:text-lg tracking-widest uppercase mb-3 text-[#a0b8e8] text-center"
+              <h4
+                className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8] text-center")}
                 style={sup}
               >
                 {t("slide0.suptitle")}
-              </span>
+              </h4>
               <h1
-                className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line text-center"
+                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line text-center")}
                 style={h1s}
               >
                 {t("slide0.title")}
               </h1>
               <p
-                className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light text-center"
+                className={clsx(HERO_SUBTITLE_CLASS,"text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light text-center")}
                 style={{
                   ...bodys,
                   ...(isMobile ? { marginTop: "65%" } : { maxWidth: "100%" }),
@@ -816,20 +801,20 @@ export default function SixPhasePage() {
                 ...s1,
               }}
             >
-              <span
-                className="text-m sm:text-lg tracking-widest uppercase mb-3 text-[#a0b8e8]"
+              <h4
+                className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8]")}
                 style={sup}
               >
                 {t("slide1.suptitle")}
-              </span>
+              </h4>
               <h1
-                className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
+                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
                 style={h1s}
               >
                 {t("slide1.title")}
               </h1>
               <p
-                className="text-lg sm:text-xl sm:text-4xl mt-4 sm:whitespace-pre-line font-light text-center"
+                className={clsx(HERO_SUBTITLE_CLASS,"mt-4 sm:whitespace-pre-line text-center")}
                 style={{
                   ...bodys,
                   ...(isMobile ? { marginTop: "70%" } : { maxWidth: "100%" }),
@@ -850,14 +835,14 @@ export default function SixPhasePage() {
                 ...s2,
               }}
             >
-              <span
-                className="text-m sm:text-lg tracking-widest uppercase mb-3 text-[#a0b8e8] text-center"
+              <h4
+                className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8] text-center")}
                 style={{ ...sup }}
               >
                 {t("slide2.suptitle")}
-              </span>
+              </h4>
               <h1
-                className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line text-center"
+                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line text-center")}
                 style={{ ...h1s }}
               >
                 {t("slide2.title")}
@@ -869,7 +854,7 @@ export default function SixPhasePage() {
                     ? { marginTop: "45%", textAlign: "center" }
                     : { margin: "0.8rem auto 0", textAlign: "center" }),
                 }}
-                className="text-lg sm:text-xl mt-4 whitespace-pre-line font-light"
+                className={clsx(HERO_SUBTITLE_CLASS," mt-4 whitespace-pre-line")}
               >
                 {t("slide2.subtitle")}
               </p>
@@ -886,15 +871,15 @@ export default function SixPhasePage() {
                 ...s3,
               }}
             >
-              <span
-                className="text-m sm:text-lg tracking-widest uppercase mb-3 text-[#a0b8e8]"
+              <h4
+                className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8]")}
                 style={{ ...sup, ...(isMobile ? {} : { textAlign: "center" }) }}
               >
                 {t("slide3.suptitle")}
-              </span>
+              </h4>
               <h1
                 style={{ ...h1s, whiteSpace: "pre-line" }}
-                className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
+                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
               >
                 {t("slide3.title")}
               </h1>
@@ -905,7 +890,7 @@ export default function SixPhasePage() {
                     ? { marginTop: "45%", textAlign: "center" }
                     : { margin: "0.8rem auto 0", marginTop: "23%", textAlign: "center" }),
                 }}
-                className="text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light"
+                className={clsx(HERO_SUBTITLE_CLASS,"mt-4 whitespace-pre-line")}
               >
                 {t("slide3.subtitle")}
               </p>
@@ -950,12 +935,12 @@ export default function SixPhasePage() {
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div style={{ display: "inline-flex", alignItems: "center" }}>
-                  <m.span
-                    style={{ textTransform: "uppercase", color: colorP }}
-                    className="text-[1rem] sm:text-[1.3rem] mb-3 text-[#a0b8e8] tracking-widest uppercase"
+                  <m.h4
+                    style={{ color: colorP }}
+                    className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8]")}
                   >
                     {t("static.label")}
-                  </m.span>
+                  </m.h4>
                 </div>
  
                 <div
@@ -968,20 +953,20 @@ export default function SixPhasePage() {
                 >
                   <m.h2
                     style={{ margin: 0, lineHeight: 1.1, color: colorTitle }}
-                    className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
+                    className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
                   >
                     {t("static.title")}
                   </m.h2>
                   <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                     <m.p
                       style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
-                      className="text-lg sm:text-xl mt-4 whitespace-pre-line font-light"
+                      className={clsx(PRODUCT_CONTENT_CLASS,"mt-4 whitespace-pre-line ")}
                     >
                       {t("static.p1")}
                     </m.p>
                     <m.p
                       style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
-                      className="text-lg sm:text-xl mt-4 whitespace-pre-line font-light"
+                      className={clsx(PRODUCT_CONTENT_CLASS,"mt-4 whitespace-pre-line")}
                     >
                       {t("static.p2")}
                     </m.p>
@@ -1026,18 +1011,17 @@ export default function SixPhasePage() {
                         height: "100%",
                       }}
                     >
-                      <p
+                      <h4
                         style={{
                           margin: "0 0 0.5rem",
-                          textTransform: "uppercase",
                           color: "rgba(100,150,255,0.75)",
                           lineHeight: "1.0",
                           textAlign: "center",
                         }}
-                        className="text-m sm:text-lg tracking-widest uppercase mb-3 mt-3 sm:mt-5"
-                      >
+                        className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 mt-3 sm:mt-5")}
+                        >
                         {t(`static.${k}.label`)}
-                      </p>
+                      </h4>
                       <h3
                         style={{
                           margin: "0 0 0.6rem",
@@ -1045,7 +1029,7 @@ export default function SixPhasePage() {
                           color: "#f4f7fa",
                           textAlign: "center",
                         }}
-                        className="text-3xl sm:text-5xl tracking-wide font-bold sm:whitespace-pre-line"
+                        className={clsx(PRODUCT_TITLE_CARD,"sm:whitespace-pre-line")}
                       >
                         {t(`static.${k}.title`)}
                       </h3>
@@ -1056,7 +1040,7 @@ export default function SixPhasePage() {
                           color: "rgba(200,218,250,0.62)",
                           textAlign: "center",
                         }}
-                        className="text-lg tracking-wide sm:text-xl mt-4 whitespace-pre-line font-light"
+                        className={clsx(HERO_SUBTITLE_CLASS,"font-stretch-extra-expanded mt-4 whitespace-pre-line")}
                       >
                         {t(`static.${k}.description`)}
                       </p>

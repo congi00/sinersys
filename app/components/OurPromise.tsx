@@ -2,11 +2,14 @@ import React from "react";
 import { m, useTransform } from "framer-motion";
 import { MotionValue } from "framer-motion";
 import Signature from "./Signature";
+import clsx from "clsx";
+import { HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS } from "../typography";
 
 interface OurPromiseProps {
   title: string;
   subtitle?: string;
   progress: MotionValue<number>;
+  isMobile: Boolean
 }
 
 function Word({
@@ -42,18 +45,21 @@ const OurPromise: React.FC<OurPromiseProps> = ({
   title,
   subtitle,
   progress,
+  isMobile,
 }) => {
   const words = title.split(" ");
   const wordsProgress = useTransform(progress, [4.9, 5.8], [0, words.length]);
 
   return (
-    <div className="w-full px-6 sm:px-16 flex flex-col items-center">
+    <div className="w-full px-6 sm:px-16 flex flex-col items-center mt-[130px] sm:mt-[200px]">
       <m.h1
-        className="text-3xl font-stretch-extra-expanded tracking-wide sm:text-6xl text-[#f4f7fa] font-bold leading-tight w-full"
+        className={clsx(
+          HERO_TITLE_CLASS,
+          "font-stretch-extra-expanded text-[#f4f7fa] leading-tight w-full sm:max-w-[1250px]")}
         style={{
           display: "flex",
           flexWrap: "wrap",
-          lineHeight: "1.1",
+          lineHeight: "1.0",
         }}
       >
         <style>{`
@@ -78,7 +84,9 @@ const OurPromise: React.FC<OurPromiseProps> = ({
   
       {subtitle && (
         <m.h2
-          className="text-lg font-stretch-extra-expanded tracking-wide sm:text-2xl font-light mt-4 sm:mt-8 text-center max-w-[900px]"
+          className={clsx(
+            HERO_SUBTITLE_CLASS,
+            "font-stretch-extra-expanded tracking-wide font-light mt-2 text-center sm:max-w-[1050px]")}
           style={{
             color: "rgba(200, 216, 248, 0.75)",
             lineHeight: "1.2",
@@ -88,8 +96,8 @@ const OurPromise: React.FC<OurPromiseProps> = ({
         </m.h2>
       )}
   
-      <div className="w-full flex justify-center mt-6">
-        <Signature progress={progress} />
+      <div className="w-full flex justify-center mt-12">
+        <Signature progress={progress} isMobile={isMobile}/>
       </div>
     </div>
   );

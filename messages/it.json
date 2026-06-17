@@ -34,7 +34,7 @@
     "slide1": {
       "suptitle": "TECNOLOGIA APWEC",
       "title": "Il generatore di energia rinnovabile che non si ferma mai",
-      "subtitle": "APWEC è la tecnologia italiana brevettata che genera energia sfruttando la pressione atmosferica e i flussi d’aria interni controllati.\nZero emissioni. Funziona 8660 ore ca. l’anno, indipendentemente da sole e vento naturale.",
+      "subtitle": "APWEC è la tecnologia italiana brevettata che genera energia sfruttando la pressione atmosferica e i flussi d’aria interni controllati.\nZero emissioni. Funziona 8660 ore ca. l’anno, indipendentemente dall’irraggiamento solare diretto e dal vento naturale.",
       "link": "Come Funziona"
     },
     "sixPhase": {
@@ -64,7 +64,7 @@
     },
     "slide3": {
       "title": "Ogni APWEC è un passo concreto verso l'indipendenza energetica.",
-      "subtitle": "Sinersys studia e ricerca sistemi scalabili per la generazione di energia rinnovabile continua,\npensati per aziende, enti pubblici, operatori industriali o privati, che vogliono ridurre i costi energetici,\nabbattere le emissioni e raggiungere l'autosufficienza energetica\nin modo misurabile e verificabile."
+      "subtitle": "Sinersys studia e ricerca sistemi scalabili per la generazione di energia rinnovabile continua,\npensati per aziende, enti pubblici, operatori industriali o privati, che vogliono ridurre i costi energetici,\nabbattere le emissioni e raggiungere l'autosufficienza energetica\n il più vicino possibile."
     },
     "scatteredCards": [
       {
@@ -124,6 +124,8 @@
       "check1": "Sviluppo di una o più Famiglie di Potenza",
       "check2": "Operatività in specifici Areali geografici",
       "check3": "Licenza industriale",
+      "check4": "Richieste per interessi di cooperazione industriale",
+      "check5": "Richieste da scuole o istituzioni",
       "message": "Messaggio *",
       "messagePlaceholder": "Descrivi il tuo progetto, area di interesse o richiesta di licenza...",
       "attachments": "Allegati",
@@ -175,7 +177,7 @@
     },
     "timelineLabel": "La Nostra Storia",
     "timeline": {
-      "heading": "Oltre un secolo di innovazione industriale: la storia che ha portato ad APWEC     ®",
+      "heading": "Oltre un secolo di innovazione industriale: la storia che ha portato ad APWEC ®",
       "subheading": "Ogni fase della storia Sinersys rappresenta un accumulo reale di competenze, brevetti e sviluppi scientifici e tecnici.",
 
       "t1919": {
@@ -283,7 +285,7 @@
     "slide0": {
       "suptitle": "TECNOLOGIA BREVETTATA",
       "title": "APWEC",
-      "subtitle": "Atmospheric Pressure Wind Energy Collector - il generatore italiano di energia rinnovabile \nche utilizza la depressione del fluido aria, producendo elettricità in maniera continua."
+      "subtitle": "Atmospheric Pressure Wind Energy Collector - il generatore italiano di energia rinnovabile \nche utilizza la depressione del fluido aria, producendo elettricità in maniera continua e con possibilità di avvio e spegnimento a richiesta dell’utilizzatore."
     },
     "slide1": {
       "suptitle": "COME FUNZIONA",
@@ -321,15 +323,15 @@
         "description": "Accesso a livello del suolo, senza interventi in quota."
       },
       "cta": {
-        "title": "Richiedi una valutazione tecnica",
-        "subtitle": "Analisi del potenziale energetico, fattibilità industriale e modello economico disponibili su richiesta.",
+        "title": "Ti interessa collaborare con noi?",
+        "subtitle": "Ricerchiamo partner industriali per la industrializzazione, produzione e distribuzione delle famiglie di potenza APWEC.",
         "link": "Contattaci"
       }
     },
     "howItWorks": {
       "label": "Architettura del sistema",
-      "title": "Come funziona APWEC®:\ntre sezioni che abbiamo denominato vessel",
-      "intro": "Il generatore APWEC® è composto da tre vessel fissati solidamente l'uno con l'altro. Il primo genera flusso d'aria con aperture per ingresso aria atmosferica. \n Nel secondo vessel ci sono una serie di Camere di Induzione anulari (C.d.I.) opportunatamente disegnate per accelerare il flusso all'interno di questa seconda sezione. Il terzo converte il flusso-aria notevolmente accelerato ad alta velocità, cineticamente in energia elettrica tramite un rotore collegato all' alternatore.",
+      "title": "Come funziona APWEC®:\ntre sezioni denominate vessel",
+      "intro": "Il generatore APWEC® è composto da tre vessel fissati solidamente l'uno con l'altro. Il primo genera flusso d'aria con aperture per ingresso aria atmosferica. \n Nel secondo vessel ci sono una serie di Camere di Induzione (C.d.I.) opportunatamente disegnate per accelerare il flusso aria all'interno del vessel seconda porzione. Tra il secondo e terzo vessel c’è un rotore, collegato all alternatore, che riceve il flusso aria ad alta velocità.",
       "shell1": {
         "label": "Prima Sezione",
         "title": "Generazione e amplificazione del flusso",
@@ -476,8 +478,8 @@
         "description": "Integrato con il cambio automatico stepless senza cinghia e pulegge, il powertrain riduce significativamente ingombri, peso e costi rispetto alle soluzioni attuali."
       },
       "cta": {
-        "title": "Richiedi una valutazione tecnica",
-        "subtitle": "Analisi delle applicazioni, fattibilità costruttiva e modello economico disponibili su richiesta.",
+        "title": "Ti interessa collaborare con noi?",
+        "subtitle": "Ricerchiamo partner industriali per la industrializzazione, produzione e distribuzione del motore a 6 fasi.",
         "link": "Contattaci"
       }
     },
@@ -818,6 +820,7 @@
     "quick": {
       "title": "Quick Links",
       "home": "Homepage",
+      "six-phase-motor": "Motore a 6 fasi", 
       "apwec": "APWEC",
       "about": "Chi Siamo",
       "certs": "Contattaci"

@@ -33,6 +33,8 @@ import SixPhaseEngine from "./components/SixPhaseEngine";
 import ScrollNavigator from "./components/ScrollNavigator";
 import { useMotionValueEvent } from "framer-motion";
 import dynamic from "next/dynamic";
+import { HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, SUPTITLE_CLASS } from "./typography";
+import { formatRegistered } from "./formatter";
 
 const LiquidBackground = dynamic(() => import('./components/LiquidBackground'), {
     ssr: false,
@@ -242,8 +244,8 @@ export default function Home() {
 
   // ── FAQ ───────────────────────────────────────────────────────────────────
   // Absolute positioned after the white section scroll budget
-  const spacerFaq = isMobile ? vh * 10.7 : vh * 9.7;
-  const totalHeight = isMobile ? vh * 12.8 + 800 : vh * 11 + 700;
+  const spacerFaq = isMobile ? vh * 10.5 : vh * 9.5;
+  const totalHeight = isMobile ? vh * 12.8 + 100 : vh * 11 + 200;
 
   const themeColor = useTransform(
     smooth,
@@ -321,14 +323,19 @@ export default function Home() {
             style={{
               lineHeight: "1.0",
             }}
-            className="text-3xl sm:text-6xl tracking-wide text-[#f4f7fa] font-bold sm:whitespace-pre-line sm:mt-0 mt-8"
+            className={clsx(
+              HERO_TITLE_CLASS,
+              "text-[#f4f7fa] sm:whitespace-pre-line sm:mt-0 mt-8"
+            )}
             aria-hidden={false}
           >
             {homeTexts("slide0.title")}
           </h1>
           <h2
             style={{ lineHeight: isMobile ? "1.1" : "1.1" }}
-            className="text-lg sm:text-xl px-3 sm:px-0 mt-3 sm:mt-5 sm:mb-5 whitespace-pre-line text-[#c8d8f8] sm:max-w-2xl font-light"
+            className={clsx(
+              HERO_SUBTITLE_CLASS,
+              "px-3 sm:px-0 mt-3 sm:mt-5 sm:mb-5 text-[#c8d8f8] sm:max-w-2xl")}
             aria-hidden={false}
           >
             {homeTexts("slide0.subtitle")}
@@ -381,24 +388,33 @@ export default function Home() {
             }}
           >
             <h4
-              className="text-m sm:text-2xl tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]"
+              className={clsx(
+                SUPTITLE_CLASS,
+                "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]"
+              )}
               aria-hidden={false}
             >
               {homeTexts("slide1.suptitle")}
             </h4>
-            <h2
+            <h1
               style={{ lineHeight: "1.0" }}
-              className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line px-3 sm:px-2 mt-3  text-[#f4f7fa]"
+              className={clsx(
+                HERO_TITLE_CLASS,
+                "sm:whitespace-pre-line px-3 sm:px-2 mt-3  text-[#f4f7fa]"
+              )}
               aria-hidden={false}
             >
               {homeTexts("slide1.title")}
-            </h2>
+            </h1>
             <h2
               style={{ lineHeight: "1.2" }}
-              className="text-lg sm:text-xl px-6 sm:px-6 mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] sm:max-w-4xl font-light"
+              className={clsx(
+                HERO_SUBTITLE_CLASS,
+                "px-6 sm:px-6 mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] sm:max-w-4xl"
+              )}
               aria-hidden={false}
             >
-              {homeTexts("slide1.subtitle")}
+              {formatRegistered(homeTexts("slide1.subtitle"))}
             </h2>
 
             {/* LinkButton — scopri di più */}
@@ -490,7 +506,6 @@ export default function Home() {
             opacity: ourPromiseOpacity,
             pointerEvents: "none",
             display: "flex",
-            alignItems: "center",
             justifyContent: "center",
           }}
         >
@@ -498,6 +513,7 @@ export default function Home() {
             title={homeTexts("slide3.title")}
             subtitle={homeTexts("slide3.subtitle")}
             progress={smooth}
+            isMobile={isMobile}
           />
         </m.div>
 

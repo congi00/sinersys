@@ -23,6 +23,9 @@ import ScrollNavigator from "../components/ScrollNavigator";
 import VintageMediaViewer, { MediaItem } from "../components/VintageMediaViewer";
 import Image from "next/image";
 import CookieBanner from "../components/CookieBanner";
+import clsx from "clsx";
+import { BODY_TEXT_CLASS, CARD_SUBTITLE_CLASS, CARD_TITLE_CLASS, FAQ_QUESTION_CLASS, HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, PRODUCT_CONTENT_CLASS, SUPTITLE_CLASS } from "../typography";
+import { formatRegistered } from "../formatter";
 
 // Industrial partners
 const partners = ["Honda", "Volvo", "Chrysler", "Saab", "Hanomag - Henschel", "VW"];
@@ -134,7 +137,7 @@ function SectionLabel({ label }: { label: string }) {
         display: "inline-flex",
         alignItems: "center",
         gap: "8px",
-        marginBottom: "clamp(2.5rem,5vh,4rem)",
+        marginBottom: "clamp(2.0rem,3vh,4rem)",
       }}
     >
       <div
@@ -144,15 +147,14 @@ function SectionLabel({ label }: { label: string }) {
           background: "rgba(160,196,255,0.5)",
         }}
       />
-      <span
+      <h4
         style={{
-          textTransform: "uppercase",
           color: "rgba(160,196,255,0.7)",
         }}
-        className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] "
+        className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] ")}
       >
         {label}
-      </span>
+      </h4>
     </div>
   );
 }
@@ -242,24 +244,23 @@ function TimelineItem({
           <h3
             style={{
               margin: 0,
-              fontSize: "clamp(1.1rem,2vw,1.5rem)",
-              fontWeight: 700,
               letterSpacing: "-0.015em",
               color: "#f4f7fa",
               marginBottom: "0.6rem",
             }}
+            className={clsx(FAQ_QUESTION_CLASS)}
           >
-            {title}
+            {formatRegistered(title)}
           </h3>
           <p
             style={{
               margin: 0,
-              fontSize: "clamp(0.85rem,1.2vw,1rem)",
-              lineHeight: 1.65,
+              lineHeight: 1.2,
               color: "rgba(200,218,250,0.72)",
             }}
+            className={clsx(BODY_TEXT_CLASS)}
           >
-            {description}
+            {formatRegistered(description)}
           </p>
         </GlassCard>
       </div>
@@ -409,133 +410,6 @@ function TeamCard({
   );
 }
 
-function MilestoneChip({
-  year,
-  label,
-  delay,
-}: {
-  year: string;
-  label: string;
-  delay: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-  return (
-    <m.div
-      ref={ref}
-      initial={{ opacity: 0, y: 16, scale: 0.92 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
-      style={{
-        display: "inline-flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "4px",
-        padding: "10px 18px",
-        borderRadius: "12px",
-        background: "rgba(255,255,255,0.06)",
-        border: "1px solid rgba(160,196,255,0.18)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        flexShrink: 0,
-      }}
-    >
-      <span
-        style={{
-          fontSize: "clamp(1rem,2vw,1.3rem)",
-          fontWeight: 800,
-          letterSpacing: "-0.02em",
-          color: "#e8f0ff",
-          lineHeight: 1,
-        }}
-      >
-        {year}
-      </span>
-      <span
-        style={{
-          fontSize: "clamp(0.58rem,0.8vw,0.66rem)",
-          fontWeight: 600,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: "rgba(140,180,255,0.6)",
-          textAlign: "center",
-          maxWidth: "80px",
-          lineHeight: 1.3,
-        }}
-      >
-        {label}
-      </span>
-    </m.div>
-  );
-}
-
-// ── Patent tag (slide1) ──────────────────────────────────────────────────────
-function PatentTag({
-  name,
-  year,
-  delay,
-}: {
-  name: string;
-  year: string;
-  delay: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-  return (
-    <m.div
-      ref={ref}
-      initial={{ opacity: 0, x: -12 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
-        padding: "8px 14px",
-        borderRadius: "8px",
-        background: "rgba(28,57,142,0.35)",
-        border: "1px solid rgba(100,150,255,0.2)",
-        backdropFilter: "blur(8px)",
-      }}
-    >
-      {/* tiny diamond */}
-      <svg width="6" height="6" viewBox="0 0 6 6" style={{ flexShrink: 0 }}>
-        <rect
-          x="3"
-          y="0"
-          width="4.24"
-          height="4.24"
-          rx="0.4"
-          transform="rotate(45 3 3)"
-          fill="rgba(120,175,255,0.7)"
-        />
-      </svg>
-      <span
-        style={{
-          fontSize: "clamp(0.72rem,1vw,0.82rem)",
-          fontWeight: 600,
-          color: "rgba(200,220,255,0.85)",
-          letterSpacing: "0.02em",
-        }}
-      >
-        {name}
-      </span>
-      <span
-        style={{
-          marginLeft: "auto",
-          fontSize: "0.58rem",
-          fontWeight: 700,
-          letterSpacing: "0.12em",
-          color: "rgba(120,170,255,0.45)",
-          fontFamily: "'Courier New', monospace",
-          flexShrink: 0,
-        }}
-      >
-        {year}
-      </span>
-    </m.div>
-  );
-}
 
 // ── Partnership logo pill (slide1) ──────────────────────────────────────────
 function PartnerPill({ name, delay }: { name: string; delay: number }) {
@@ -799,7 +673,8 @@ export default function AboutUsPage() {
                 position: "absolute",
                 inset: 0,
                 objectFit: "cover",
-                objectPosition: "center",
+                transform: isMobile? "scale(1.2)" : "scale(1.5)",
+                objectPosition: isMobile? "-500px 0px" : "-100px -20px"
               }}
               fill
               priority
@@ -829,24 +704,23 @@ export default function AboutUsPage() {
               }}
               aria-hidden={false}
             >
-              <p
+              <h4
                 style={{
                   margin: "0 0 1rem",
-                  color: "rgba(180,210,255,0.7)",
+                  color: "rgba(180,210,255,0.9)",
                 }}
-                className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] px-3 sm:px-0 mt-3 sm:mt-5"
+                className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] px-3 sm:px-0 mt-3 sm:mt-5")}
               >
                 {t("hero.suptitle")}
-              </p>
+              </h4>
               <h1
                 style={{
                   margin: 0,
                   lineHeight: 1.0,
                   color: "#f4f7fa",
                   marginBottom: "1.2rem",
-                  maxWidth: "820px",
                 }}
-                className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line px-3 sm:px-2"
+                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line px-3 sm:px-2")}
               >
                 {t("hero.title")}
               </h1>
@@ -854,10 +728,10 @@ export default function AboutUsPage() {
                 style={{
                   margin: 0,
                   lineHeight: 1.2,
-                  color: "rgba(200,218,250,0.78)",
-                  maxWidth: "560px",
+                  color: "rgba(200,218,250,0.98)",
+                  maxWidth: "860px",
                 }}
-                className="text-lg sm:text-xl px-6 sm:px-6 mt-6 sm:mt-5 sm:mb-5 sm:max-w-4xl font-light"
+                className={clsx(HERO_SUBTITLE_CLASS,"px-6 sm:px-6 mt-6 sm:mt-5 sm:mb-5")}
               >
                 {t("hero.subtitle")}
               </p>
@@ -881,22 +755,22 @@ export default function AboutUsPage() {
             >
               {/* Top row: label + title */}
               <div>
-                <p
+                <h4
                   style={{
                     color: "rgba(180,210,255,0.9)",
                     textAlign: "center",
                   }}
-                  className="text-m sm:text-lg tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)] px-3 sm:px-0 "
+                  className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] px-3 sm:px-0 ")}
                 >
                   {t("hero.slide1suptitle")}
-                </p>
+                </h4>
                 <h1
                   style={{
                     margin: 0,
                     color: "#f4f7fa",
                     textAlign: "center",
                   }}
-                  className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line px-3 sm:px-2"
+                  className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line px-3 sm:px-2")}
                 >
                   {t("hero.slide1title")}
                 </h1>
@@ -904,13 +778,13 @@ export default function AboutUsPage() {
                   style={{
                     margin: 0,
                     lineHeight: 1.2,
-                    color: "rgba(200,218,250,0.78)",
+                    color: "rgba(200,218,250,0.98)",
                     maxWidth: "760px",
                     marginTop: "20px"
                   }}
-                  className="text-lg sm:text-xl px-6 sm:px-6 mt-6 sm:mt-2 sm:mb-5 sm:max-w-4xl font-light"
+                  className={clsx(HERO_SUBTITLE_CLASS,"px-6 sm:px-6 mt-6 sm:mt-2 sm:mb-5")}
                 >
-                  {t("hero.slide1subtitle")}
+                  {formatRegistered(t("hero.slide1subtitle"))}
                 </p>
               </div>
 
@@ -921,13 +795,10 @@ export default function AboutUsPage() {
                   <p
                     style={{
                       margin: "0 0 0.6rem",
-                      fontSize: "0.62rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.2em",
-                      textTransform: "uppercase",
                       color: "rgba(255,255,255,0.8)",
                       textAlign: "center",
                     }}
+                    className={clsx(SUPTITLE_CLASS)}
                   >
                     {t("hero.partnersLabel")}
                   </p>
@@ -998,7 +869,7 @@ export default function AboutUsPage() {
                       lineHeight: 1.1,
                       color: h2Color,
                     }}
-                    className="text-3xl sm:text-6xl tracking-wide font-bold sm:whitespace-pre-line"
+                    className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
                   >
                     {t("whoweare.title")}
                   </m.h2>
@@ -1014,20 +885,20 @@ export default function AboutUsPage() {
                     <m.p
                       style={{
                         margin: 0,
-                        lineHeight: 1.2,
+                        lineHeight: 1.1,
                         color: pcolor,
                       }}
-                      className="text-lg sm:text-xl font-light whitespace-pre-line"
+                      className={clsx(PRODUCT_CONTENT_CLASS,"whitespace-pre-line")}
                     >
                       {t("whoweare.p1")}
                     </m.p>
                     <m.p
                       style={{
                         margin: 0,
-                        lineHeight: 1.2,
+                        lineHeight: 1.1,
                         color: pcolor,
                       }}
-                      className="text-lg sm:text-xl font-light"
+                      className={clsx(PRODUCT_CONTENT_CLASS,"whitespace-pre-line")}
                     >
                       {t("whoweare.p2")}
                     </m.p>
@@ -1106,17 +977,17 @@ export default function AboutUsPage() {
                         color: "#f4f7fa",
                         marginBottom: "1.2rem",
                       }}
-                      className="text-3xl sm:text-5xl tracking-wide font-bold sm:whitespace-pre-line"
+                      className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
                     >
-                      {t("timeline.heading")}
+                      {formatRegistered(t("timeline.heading"))}
                     </h2>
                     <p
                       style={{
                         margin: 0,
                         lineHeight: 1.2,
-                        color: "rgba(200,218,250,0.65)",
+                        color: "rgba(200,218,250,0.85)",
                       }}
-                      className="text-lg sm:text-xl font-light"
+                      className={clsx(PRODUCT_CONTENT_CLASS)}
                     >
                       {t("timeline.subheading")}
                     </p>
@@ -1172,7 +1043,7 @@ export default function AboutUsPage() {
                       lineHeight: 1.1,
                       color: "#f4f7fa",
                     }}
-                    className="text-3xl sm:text-5xl tracking-wide font-bold sm:whitespace-pre-line"
+                    className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
                   >
                     {t("team.heading")}
                   </h2>
@@ -1184,7 +1055,7 @@ export default function AboutUsPage() {
                       lineHeight: 1.2,
                       color: "rgba(200,218,250,0.65)",
                     }}
-                    className="text-lg sm:text-xl font-light"
+                    className={clsx(PRODUCT_CONTENT_CLASS)}
                   >
                     {t("team.subheading")}
                   </p>
@@ -1214,19 +1085,21 @@ export default function AboutUsPage() {
                     marginTop: "clamp(3rem,6vh,5rem)",
                     padding: "clamp(2rem,4vw,3rem)",
                     display: "flex",
-                    alignItems: isMobile ? "flex-start" : "center",
+                    alignItems: isMobile ? "center" : "center",
                     justifyContent: "space-between",
+                    textAlign: isMobile? "center" : "left",
                     flexDirection: isMobile ? "column" : "row",
                     gap: "1.5rem",
                   }}
                 >
-                  <div className="max-w-3xl">
+                  <div>
                     <h3
                       style={{
-                        margin: "0 0 0.4rem",
+                        margin: "0 0 1rem",
                         color: "#f4f7fa",
+                        lineHeight: 1.1,
                       }}
-                      className="text-3xl sm:text-5xl tracking-wide font-bold sm:whitespace-pre-line"
+                      className={clsx(CARD_TITLE_CLASS, "sm:whitespace-pre-line")}
                     >
                       {t("team.joinTitle")}
                     </h3>
@@ -1236,7 +1109,7 @@ export default function AboutUsPage() {
                         color: "rgba(200,218,250,0.65)",
                         lineHeight: 1.2,
                       }}
-                      className="text-lg sm:text-xl font-light"
+                      className={clsx(CARD_SUBTITLE_CLASS)}
                     >
                       {t("team.joinSubtitle")}
                     </p>

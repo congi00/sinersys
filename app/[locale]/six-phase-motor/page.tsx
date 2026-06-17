@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 }
 
 export default function Page() {
-  const inProgress = 1
+  const inProgress = 0
 
   return <>
     {inProgress && <WorkInProgressPage /> }

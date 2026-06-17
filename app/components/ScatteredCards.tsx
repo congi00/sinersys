@@ -3,6 +3,8 @@
 import { m, useTransform, MotionValue } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "@deemlol/next-icons"
+import clsx from "clsx";
+import { CARD_SUBTITLE_CLASS, CARD_TITLE_CLASS, HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, SUPTITLE_CLASS } from "../typography";
 
 type CardItem = {
   id: string;
@@ -152,12 +154,11 @@ function CardContent({ item, isGlass, isMobile }: { item: CardItem; isGlass: boo
         <p style={{
           margin:     0,
           color:      textSecondary,
-          fontWeight: 400,
           maxWidth:   "78%",
           marginTop: isMobile ? "20px" : 0,
           lineHeight: "1.2"
         }}
-        className="text-xl font-stretch-extra-expanded tracking-wide sm:text-2xl"
+        className={clsx(CARD_SUBTITLE_CLASS)}
         >
           {item.subtitle}
         </p>
@@ -195,32 +196,32 @@ function CardContent({ item, isGlass, isMobile }: { item: CardItem; isGlass: boo
           }}>
             {item.suptitle && (
               <>
-                <span className={"text-[1rem] sm:text-[1.3rem]"} style={{ fontWeight: 400, color: labelLight }}>{item.suptitle}</span>
-                <span className={"text-[1rem] sm:text-[1.3rem]"} style={{ color: labelBold, fontWeight: 700 }}> & {item.label}</span>
+                <span className={clsx(SUPTITLE_CLASS)} style={{ fontWeight: 400, color: labelLight }}>{item.suptitle}</span>
+                <span className={clsx(SUPTITLE_CLASS)} style={{ color: labelBold, fontWeight: 700 }}> & {item.label}</span>
               </>
             )}
             {!item.suptitle && (
-              <span style={{ fontWeight: 700, color: labelBold }}>{item.label}</span>
+              <h2 style={{ fontWeight: 700, color: labelBold }} className={clsx(HERO_SUBTITLE_CLASS)}>{item.label}</h2>
             )}
           </p>
         )}
 
         {/* Massive display title — fills the bottom of the card */}
-        <h2 style={{
+        <h1 style={{
           margin:        0,
           marginBottom: isMobile ? "150px" : 0,
-          fontWeight:    700,
           lineHeight:    0.88,
           ...titleStyle,
-          fontSize:      "clamp(2.0rem, 4.2vw, 5.2rem)",
           // Overflow visible so descenders can breathe
           overflowX:     "visible",
           overflowY:     "visible",
         }}
-        className="font-stretch-extra-expanded tracking-wide uppercase"
+        className={clsx(
+          CARD_TITLE_CLASS,
+        )}
         >
           {item.title ?? item.label}
-        </h2>
+        </h1>
       </div>
     </div>
   );

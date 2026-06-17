@@ -5,6 +5,7 @@ import { m, useTransform, MotionValue, useMotionValueEvent } from "framer-motion
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
 import { useState } from "react";
+import { BODY_TEXT_CLASS, CARD_TITLE_CLASS, HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, PRODUCT_TITLE_CARD, SUPTITLE_CLASS } from "../typography";
 
 interface ResearchProduct {
   id: string;
@@ -158,32 +159,31 @@ function ProductCard({
           )}
         >
           {/* Suptitle */}
-          <p
+          <h4
             style={{
               margin: "0 0 0.35rem",
-              textTransform: "uppercase",
-              color: "rgba(100,160,255,0.55)",
             }}
-            className="text-xs sm:text-xs tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
+            className={clsx(
+              SUPTITLE_CLASS,
+              "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3  px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]"
+            )}
           >
             {product.suptitle}
-          </p>
+          </h4>
 
           {/* Title */}
-          <h3
+          <h1
             style={{
               margin: "0 0 clamp(0.5rem,1.2vh,0.85rem)",
-              fontSize: isMobile
-                ? "clamp(1.3rem,5vw,1.7rem)"
-                : "clamp(1.4rem,1.8vw,2rem)",
-              fontWeight: 800,
               color: "#e8f0ff",
               lineHeight: 1.1,
-              letterSpacing: "-0.02em",
             }}
+            className={clsx(
+              PRODUCT_TITLE_CARD,
+            )}
           >
             {product.title}
-          </h3>
+          </h1>
 
           {/* Divider line */}
           <div
@@ -191,7 +191,7 @@ function ProductCard({
               width: "100%",
               height: "1px",
               background:
-                "linear-gradient(90deg, rgba(100,160,255,0.2), transparent)",
+                "linear-gradient(90deg, rgba(100,160,255,0.6), transparent)",
               marginBottom: "clamp(0.7rem,1.5vh,1rem)",
             }}
           />
@@ -200,13 +200,12 @@ function ProductCard({
           <p
             style={{
               margin: "0 0 clamp(0.8rem,1.8vh,1.2rem)",
-              fontSize: isMobile
-                ? "clamp(0.78rem,3vw,0.9rem)"
-                : "clamp(0.82rem,0.95vw,0.96rem)",
-              lineHeight: 1.7,
+              lineHeight: 1.2,
               color: "rgba(190,215,255,0.65)",
-              fontWeight: 300,
             }}
+            className={clsx(
+              BODY_TEXT_CLASS
+            )}
           >
             {product.subtitle}
           </p>
@@ -319,20 +318,18 @@ export default function ResearchProducts({
             marginTop: isMobile ? "60px" : "0",
           }}
         >
-          <span
-            style={{
-              fontWeight: 700,
-              textTransform: "uppercase",
-              color: "rgba(140,190,255,0.55)",
-            }}
-            className="text-m sm:text-lg text-[#a0b8e8] tracking-widest uppercase [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
+          <h4
+            className={clsx(
+              SUPTITLE_CLASS,
+              "text-[#a0b8e8] [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
+            )}
           >
             {sectionLabel}
-          </span>
+          </h4>
         </m.div>
 
         {/* Section title */}
-        <m.h2
+        <m.h1
           style={{
             opacity: rTitle.op,
             y: rTitle.y,
@@ -340,7 +337,10 @@ export default function ResearchProducts({
             color: "#f0f5ff",
             lineHeight: 1.1,
           }}
-          className="text-3xl sm:text-6xl tracking-wide font-bold mt-3"
+          className={clsx(
+            HERO_TITLE_CLASS,
+            "mt-3"
+          )}
         >
           {sectionTitle.split("\\n").map((line, i) => (
             <span key={i}>
@@ -348,21 +348,23 @@ export default function ResearchProducts({
               <br />
             </span>
           ))}
-        </m.h2>
+        </m.h1>
 
         {/* Section subtitle */}
-        <m.p
+        <m.h2
           style={{
             opacity: rSub.op,
             y: rSub.y,
             margin: "0 0 clamp(1.8rem,4vh,3rem)",
             lineHeight: 1.2,
-            fontWeight: 300,
           }}
-          className="text-lg sm:text-xl mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light"
+          className={clsx(
+            HERO_SUBTITLE_CLASS,
+            "mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8]"
+          )}
         >
           {sectionSubtitle}
-        </m.p>
+        </m.h2>
 
         {/* Product cards grid */}
         <div

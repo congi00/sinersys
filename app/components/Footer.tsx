@@ -47,7 +47,7 @@ function GlowLink({
     <m.a
       href={openContact ? undefined : href}
       {...props}
-      className="block relative text-sm text-[#f4f7fa]/80 mb-2 transition-colors whitespace-pre-line cursor-pointer"
+      className="block relative text-sm text-[#f4f7fa]/80 transition-colors whitespace-pre-line cursor-pointer"
       whileHover={{
         color: "#f4f7fa",
         textShadow:
@@ -87,9 +87,10 @@ export default function Footer({ openContact }: FooterProps) {
 
   // Quick links — label + href from translations
   const quickLinks = [
-    { label: t("quick.home"), href: "/${locale}" },
-    { label: t("quick.apwec"), href: "/${locale}/apwec" },
-    { label: t("quick.about"), href: "/${locale}/about-us" },
+    { label: t("quick.home"), href: "/" },
+    { label: t("quick.apwec"), href: "/apwec" },
+    { label: t("quick.six-phase-motor"), href: "/six-phase-motor" },
+    { label: t("quick.about"), href: "/about-us" },
     { label: t("quick.certs"), href: "" },
   ];
 
@@ -101,19 +102,18 @@ export default function Footer({ openContact }: FooterProps) {
 
   const contactLinks = [
     { label: t("contact.email"), href: `mailto:${t("contact.emailVal")}` },
-    { label: t("contact.phone"), href: `tel:${t("contact.phoneVal")}` },
     {
       label: t("contact.address"),
       href: `https://maps.google.com/?q=${encodeURIComponent(
         t("contact.addressVal")
       )}`,
     },
-    {
-      label: t("contact.address2"),
-      href: `https://maps.google.com/?q=${encodeURIComponent(
-        t("contact.address2Val")
-      )}`,
-    },
+    // {
+    //   label: t("contact.address2"),
+    //   href: `https://maps.google.com/?q=${encodeURIComponent(
+    //     t("contact.address2Val")
+    //   )}`,
+    // },
     { label: t("contact.piva"), href: "" },
   ];
 
@@ -178,7 +178,7 @@ export default function Footer({ openContact }: FooterProps) {
                 <GlowLink
                   key={i}
                   href={link.href}
-                  openContact={i === 3 ? openContact : undefined}
+                  openContact={i === 4 ? openContact : undefined}
                 >
                   {link.label}
                 </GlowLink>
