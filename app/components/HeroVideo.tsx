@@ -11,6 +11,8 @@ interface Props {
 export default function HeroVideo({ isMobile }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [failed, setFailed] = useState(false);
+  const hasStartedRef = useRef(false);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -22,40 +24,50 @@ export default function HeroVideo({ isMobile }: Props) {
     video.setAttribute("webkit-playsinline", "");
     video.setAttribute("x-webkit-airplay", "deny");
 
-    // Su Safari è necessario chiamare load() esplicitamente
-    // prima di play(), altrimenti il video resta fermo
-    const tryPlay = () => {
-      video.load();
-      const promise = video.play();
-      if (promise !== undefined) {
-        promise.catch(() => {
-          // Se il primo tentativo fallisce (policy autoplay),
-          // aspetta un'interazione dell'utente e riprova
-          setFailed(true);
-          const resume = () => {
-            video.play().catch(() => {});
-            setFailed(false);
-            document.removeEventListener("touchstart", resume);
-            document.removeEventListener("click", resume);
-          };
-          document.addEventListener("touchstart", resume, { once: true });
-          document.addEventListener("click", resume, { once: true });
-        });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!videoSrc) {
+            setVideoSrc(
+              isMobile
+                ? "/apwecintro1.mp4"
+                : "/apwecintro.mp4"
+            );
+          }
+  
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      {
+        threshold: 0.25,
       }
-    };
+    );
+  
+    observer.observe(video);
+  
+    return () => observer.disconnect();
+  }, [videoSrc, isMobile]);
 
-    // Piccolo delay: su Safari iOS il video element a volte
-    // non è ancora pronto nel primo tick dopo il mount
-    const timer = setTimeout(tryPlay, 0);
-    return () => clearTimeout(timer);
-  }, []);
+  useEffect(() => {
+    if (!videoSrc) return;
+  
+    setVideoSrc(
+      isMobile
+        ? "/apwecintro1.mp4"
+        : "/apwecintro.mp4"
+    );
+  }, [isMobile]);
 
   // Cambio sorgente quando passa da mobile a desktop
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     video.load();
-    video.play().catch(() => {});
+    const rect = video.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (isVisible) video.play().catch(() => {});
   }, [isMobile]);
 
   return (
@@ -101,11 +113,10 @@ export default function HeroVideo({ isMobile }: Props) {
       <video
         ref={videoRef}
         // Cambia sorgente in base al viewport
-        src={isMobile ? "/apwecintro.mp4" : "/apwecintro1.mp4"}
+        src={videoSrc ?? undefined}
         // Preload metadata prima, poi il browser decide se caricare tutto
-        preload="metadata"
+        preload="none"
         autoPlay
-        loop
         muted
         // playsInline è l'attributo React ufficiale
         playsInline
@@ -119,6 +130,7 @@ export default function HeroVideo({ isMobile }: Props) {
           height: "100%",
           // "cover" garantisce che riempia tutta l'area senza bande nere
           objectFit: "cover",
+          objectPosition: isMobile? "-50px bottom" : "-300px 70px",
           // Evita il flickering su Safari durante il caricamento
           backgroundColor: "transparent",
           // Disabilita le ottimizzazioni GPU che su alcuni Safari causano

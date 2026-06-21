@@ -50,6 +50,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function Page() {  
-  
-  return <WorkInProgressPage />
+  return <HomeClient />
+  // return <WorkInProgressPage />
 }

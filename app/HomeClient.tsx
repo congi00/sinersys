@@ -354,7 +354,7 @@ export default function Home() {
         </m.div>
 
         {/* ── MODEL PHASE A ────────────────────────────────────────────────── */}
-        <m.div
+        {!showIntro && ( <m.div
           style={{
             position: "fixed",
             bottom: 0,
@@ -367,7 +367,7 @@ export default function Home() {
           }}
         >
           <HeroVideo progressMotion={smooth} isMobile={isMobile} />
-        </m.div>
+        </m.div> )}
 
         {/* ── SLIDE 1 ─────────────────────────────────────────────────────── */}
         <m.div

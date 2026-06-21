@@ -12,7 +12,7 @@ const VIDEO_ASSETS = [
   // "/apwecprod1.webm",
 ];
 const IMAGE_ASSETS = [
-  "/sinVidr.gif",
+  // "/sinVidr.gif",
   // "/aboutus.webp",
 ];
 
@@ -52,7 +52,7 @@ function preloadVideo(src: string): Promise<void> {
 
 // Carica tutti gli asset e segnala la percentuale di avanzamento
 function preloadAll(onProgress: (pct: number) => void): Promise<void> {
-  const all = [...VIDEO_ASSETS, ...IMAGE_ASSETS];
+  const all = [...VIDEO_ASSETS];
   let done = 0;
 
   const tasks = all.map((src) => {
