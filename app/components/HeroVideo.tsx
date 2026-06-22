@@ -115,13 +115,15 @@ export default function HeroVideo({ isMobile }: Props) {
         // Cambia sorgente in base al viewport
         src={videoSrc ?? undefined}
         // Preload metadata prima, poi il browser decide se caricare tutto
-        preload="none"
+        preload="auto"
         autoPlay
         muted
+        poster="/poster.webp" //#TOFIX
         // playsInline è l'attributo React ufficiale
         playsInline
         // Disabilita i controlli nativi iOS
         controls={false}
+        aria-hidden="true"
         style={{
           // Copre l'intera area del parent (che in page.tsx è fixed + full-screen)
           position: "absolute",
