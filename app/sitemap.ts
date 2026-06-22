@@ -13,14 +13,20 @@ const PAGES = [
     { path: '/cookies',      changeFreq: 'yearly'  as const, priority: 0.5 },
   ];
 
-
 export default function sitemap(): MetadataRoute.Sitemap {
-    return LOCALES.flatMap((locale) =>
-      PAGES.map((page) => ({
-        url: `${BASE_URL}/${locale}${page.path}`,
-        lastModified: new Date(),
-        changeFrequency: page.changeFreq,
-        priority: page.priority,
-      }))
-    );
+  const lastModified = new Date();
+  
+  return PAGES.flatMap((page) =>
+    LOCALES.map((locale) => ({
+      url: `${BASE_URL}/${locale}${page.path}`,
+      lastModified,
+      changeFrequency: page.changeFreq,
+      priority: page.priority,
+      alternates: {
+        languages: Object.fromEntries(
+          LOCALES.map(l => [l, `${BASE_URL}/${l}${page.path}`])
+        )
+      }
+    }))
+  );
 }
