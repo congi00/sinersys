@@ -13,6 +13,8 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     brand: { '@type': 'Brand', name: 'Sinersys' },
     manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
     category: 'Renewable Energy Technology',
+    keywords: 'generatore rinnovabile, energia rinnovabile, APWEC, nuove frontiere di energia',
+    url: `https://www.sinersys.it/${locale}/apwec`,
   };
 
   const breadcrumb = buildBreadcrumb(locale, [

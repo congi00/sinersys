@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import HomeClient from "../HomeClient"; // sposta tutto il codice attuale qui
 import { getTranslations } from "next-intl/server";
-import WorkInProgressPage from "../WorkInProgressPage";
 import { buildBreadcrumb } from "../utilities";
+
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -25,6 +25,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     { name: "Home", path: "/" },
   ]);
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Cos\' è Sinersys?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sinersys nasce all\'interno di Motor Union Italia, un laboratorio di ricerca e sviluppo focalizzata su tecnologie innovative per l\'energia rinnovabile, tra cui APWEC, e per l\'ottimizzazione energetica con il motore a 6 fasi.'
+        }
+      },
+      {
+        '@type': 'Question', 
+        name: 'Cos\' è APWEC?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'APWEC (Autonomous Perpetual Wave Energy Converter) è un sistema brevettato Sinersys, un generatore di energia rinnovabile \nche utilizza la depressione del fluido aria, producendo elettricità in maniera continua'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Qual è la differenza tra APWEC e le pale eoliche?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A differenza delle pale eoliche, APWEC non dipende direttamente dall\'irraggiamento solare o dalle variabili metereologiche, e può operare praticamente ininterrottamente durante tutto l’anno. Risparmio energetico reale, inesistenza di emissioni, indipendenza dalla rete elettrica.'
+        }
+      }
+    ]
+  };
+
   return {
     title: 'Sinersys - New Energy Frontiers',
     description: t('slide0.subtitle'),
@@ -38,12 +69,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       canonical: `https://www.sinersys.it/${locale}/`,
-      languages: { it: '/it/', en: '/en/', de: '/de/', fr: '/fr/six-phase-motor' },
+      languages: { it: '/it', en: '/en', de: '/de', fr: '/fr', 'x-default': 'https://www.sinersys.it/it', },
     },
     other: {
       "script:ld+json": [
         JSON.stringify(productSchema),
         JSON.stringify(breadcrumb),
+        JSON.stringify(faqSchema)
       ]
     },
   };
@@ -51,5 +83,4 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default function Page() {  
   return <HomeClient />
-  // return <WorkInProgressPage />
 }

@@ -56,6 +56,17 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
       }}
     >
       {/* ── Video background ─────────────────────────────────────────────── */}
+      <video autoPlay loop muted playsInline aria-hidden="true" style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+        }}>
+        <source src="/sinVidr.webm" type="video/webm" />
+        <img src="/sinVidr.gif" alt="" /> {/* fallback */}
+      </video>
       <img
         src="/sinVidr.gif"
         alt="background animation"
