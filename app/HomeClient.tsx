@@ -606,13 +606,6 @@ export default function Home() {
           }}
         />
       </div>
-
-      {/* ── Cookie Banner — montato fuori dal div scrollabile, z:9999 ────────
-          Visibile solo dopo che introFinished diventa true.
-          CookieBanner gestisce internamente showBanner da localStorage,
-          quindi se il consenso è già salvato non mostra nulla.
-      ──────────────────────────────────────────────────────────────────────── */}
-      {introFinished && <CookieBanner />}
     </main>
   );
 }

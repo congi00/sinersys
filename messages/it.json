@@ -850,11 +850,39 @@
     "social": {}
   },
   "Cookie": {
-    "banner": {
-      "text": "Utilizziamo cookie analitici e di marketing (tra cui Google Analytics tramite gtag.js) per migliorare la tua esperienza. Puoi accettare o rifiutare i cookie non essenziali.",
-      "learnMore": "Scopri di più",
-      "accept": "Accetta tutto",
-      "decline": "Solo essenziali"
+    "title": "Preferenze Cookie",
+    "body": "Utilizziamo cookie propri e di terze parti (Google Analytics) per migliorare la tua esperienza di navigazione, analizzare il traffico e mostrare contenuti personalizzati. Puoi accettare tutti i cookie, rifiutarli o personalizzare le tue preferenze.",
+    "customize": "Personalizza",
+    "reject": "Rifiuta tutto",
+    "acceptAll": "Accetta tutti",
+    "privacyText": "Consultando la nostra",
+    "privacyLink": "Privacy Policy",
+    "cookieText": "e la",
+    "cookieLink": "Cookie Policy"
+  },
+  "CookieDetails": {
+    "title": "Gestione Cookie",
+    "subtitle": "Personalizza le tue preferenze di privacy",
+    "save": "Salva preferenze",
+    "acceptAll": "Accetta tutti",
+    "close": "Chiudi",
+
+    "necessary": {
+      "label": "Necessari",
+      "description": "Indispensabili per il funzionamento del sito. Includono sessione, autenticazione e sicurezza. Non possono essere disattivati.",
+      "alwaysOn": "SEMPRE ATTIVO"
+    },
+    "analytics": {
+      "label": "Analitici",
+      "description": "Ci aiutano a capire come gli utenti interagiscono con il sito, quali pagine visitano e dove si trovano gli errori. Dati aggregati e anonimi."
+    },
+    "marketing": {
+      "label": "Marketing",
+      "description": "Utilizzati per mostrare pubblicità pertinente in base ai tuoi interessi e per misurare l'efficacia delle campagne pubblicitarie."
+    },
+    "preferences": {
+      "label": "Preferenze",
+      "description": "Memorizzano le tue preferenze di navigazione (lingua, regione, tema) per offrirti un'esperienza personalizzata."
     }
   }
 }

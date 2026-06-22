@@ -27,6 +27,8 @@ const DEFAULT_CONSENT: CookieConsent = {
   version:     POLICY_VERSION,
 };
 
+const CONSENT_EXPIRY_MS = 365 * 24 * 60 * 60 * 1000; // 12 mesi
+
 function loadFromStorage(): CookieConsent | null {
   if (typeof window === "undefined") return null;
   try {
@@ -34,6 +36,13 @@ function loadFromStorage(): CookieConsent | null {
     if (!raw) return null;
     const parsed: CookieConsent = JSON.parse(raw);
     if (parsed.version !== POLICY_VERSION) return null;
+    
+    // ← NUOVO: controlla scadenza 12 mesi
+    if (parsed.timestamp > 0 && 
+        Date.now() - parsed.timestamp > CONSENT_EXPIRY_MS) {
+      localStorage.removeItem(STORAGE_KEY);
+      return null; // Forza rinnovo consenso
+    }
     return parsed;
   } catch {
     return null;

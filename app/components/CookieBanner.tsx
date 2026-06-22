@@ -42,11 +42,16 @@ export default function CookieBanner() {
     if (pathname.includes('/cookies') || pathname.includes('/privacy')) {
       return;
     }
-    if (!showBanner) {
-      applyGtagConsent(consent.analytics);
-    }
     const saved = localStorage.getItem(CONSENT_KEY);
-    if (saved) applyGtagConsent(saved === 'all');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        applyGtagConsent(!!parsed.analytics);
+      } catch {
+        applyGtagConsent(false);
+      }
+      return;
+    }
   }, [pathname]);
 
   const handleAccept = () => {
@@ -127,7 +132,7 @@ export default function CookieBanner() {
                   color: "#f4f7fa",
                   fontFamily: "'Barlow Condensed', 'Arial Narrow', sans-serif",
                 }}>
-                  Preferenze Cookie
+                  {t('title')}
                 </h2>
               </div>
 
@@ -139,9 +144,7 @@ export default function CookieBanner() {
                 color: "rgba(200, 216, 248, 0.85)",
                 fontFamily: "'Barlow', system-ui, sans-serif",
               }}>
-                Utilizziamo i cookie per migliorare la tua esperienza di navigazione, 
-                mostrare contenuti personalizzati e analizzare il traffico. 
-                Puoi accettare tutti i cookie, rifiutarli o personalizzare le tue preferenze.
+                {t('body')}
               </p>
 
               {/* Buttons */}
@@ -176,7 +179,7 @@ export default function CookieBanner() {
                     (e.target as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.25)";
                   }}
                 >
-                  Personalizza
+                  {t('customize')}
                 </button>
 
                 {/* Rifiuta */}
@@ -207,7 +210,7 @@ export default function CookieBanner() {
                     (e.target as HTMLButtonElement).style.background = "rgba(255,255,255,0.06)";
                   }}
                 >
-                  Rifiuta
+                  {t('reject')}
                 </button>
 
                 {/* Accetta tutti */}
@@ -241,7 +244,7 @@ export default function CookieBanner() {
                     (e.target as HTMLButtonElement).style.boxShadow  = "0 2px 12px rgba(255,255,255,0.08)";
                   }}
                 >
-                  Accetta tutti
+                  {t('acceptAll')}
                 </button>
               </div>
 
@@ -252,13 +255,13 @@ export default function CookieBanner() {
                 color: "rgba(200,216,248,0.45)",
                 fontFamily: "'Barlow', system-ui, sans-serif",
               }}>
-                Consultando la nostra{" "}
+                {t('privacyText')}{" "}
                 <a href={`/${locale}/privacy`} style={{ color: "rgba(200,216,248,0.75)", textDecoration: "underline" }}>
-                  Privacy Policy
+                {t('privacyLink')}
                 </a>{" "}
-                e la{" "}
+                {t('cookieText')}{" "}
                 <a href={`/${locale}/cookies`} style={{ color: "rgba(200,216,248,0.75)", textDecoration: "underline" }}>
-                  Cookie Policy
+                {t('cookieLink')}
                 </a>.
               </p>
             </div>

@@ -862,5 +862,41 @@
       "company": "Sinersys – Motor Union Italia s.r.l."
     },
     "social": {}
+  },
+  "Cookie": {
+    "title": "Cookie Preferences",
+    "body": "We use cookies from us and third parties (Google Analytics) to improve your browsing experience, analyze traffic and show personalized content. You can accept all cookies, reject them or customize your preferences.",
+    "customize": "Customize",
+    "reject": "Reject all",
+    "acceptAll": "Accept all",
+    "privacyText": "By consulting our",
+    "privacyLink": "Privacy Policy",
+    "cookieText": "and the",
+    "cookieLink": "Cookie Policy"
+  },
+  "CookieDetails": {
+    "title": "Cookie Management",
+    "subtitle": "Customize your privacy preferences",
+    "save": "Save preferences",
+    "acceptAll": "Accept all",
+    "close": "Close",
+
+    "necessary": {
+      "label": "Necessary",
+      "description": "Essential for the website to function. Includes session, authentication and security. Cannot be disabled.",
+      "alwaysOn": "ALWAYS ON"
+    },
+    "analytics": {
+      "label": "Analytics",
+      "description": "Help us understand how users interact with the site, which pages they visit, and where issues occur. Aggregated and anonymous data."
+    },
+    "marketing": {
+      "label": "Marketing",
+      "description": "Used to show relevant ads based on your interests and measure campaign effectiveness."
+    },
+    "preferences": {
+      "label": "Preferences",
+      "description": "Store your browsing preferences (language, region, theme) to provide a personalized experience."
+    }
   }
 }

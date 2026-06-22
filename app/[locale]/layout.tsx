@@ -8,6 +8,7 @@ import { Providers } from "../providers";
 import LandscapeBlock from "../components/LandscapeBlock";
 import { MotionProvider } from "../containers/MotionProvider";
 import Script from "next/script";
+import CookieBanner from "../components/CookieBanner";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -201,6 +202,7 @@ export default async function RootLayout({children, params}: Props) {
           <Providers>
           <NextIntlClientProvider>
             {children}
+            <CookieBanner />
           </NextIntlClientProvider>
           </Providers>
         </MotionProvider>

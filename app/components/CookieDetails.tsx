@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { m } from "framer-motion";
 import { CookieConsent } from "./useCookieConsent";
+import { useTranslations } from "next-intl";
 
 interface Props {
   consent:      CookieConsent;
@@ -17,33 +18,6 @@ interface CategoryDef {
   description: string;
   required:    false;
 }
-
-const CATEGORIES: (CategoryDef | { key: "necessary"; label: string; description: string; required: true })[] = [
-  {
-    key:         "necessary",
-    label:       "Necessari",
-    required:    true,
-    description: "Indispensabili per il funzionamento del sito. Includono sessione, autenticazione e sicurezza. Non possono essere disattivati.",
-  },
-  {
-    key:         "analytics",
-    label:       "Analitici",
-    required:    false,
-    description: "Ci aiutano a capire come gli utenti interagiscono con il sito, quali pagine visitano e dove si trovano gli errori. Dati aggregati e anonimi.",
-  },
-  {
-    key:         "marketing",
-    label:       "Marketing",
-    required:    false,
-    description: "Utilizzati per mostrare pubblicità pertinente in base ai tuoi interessi e per misurare l'efficacia delle campagne pubblicitarie.",
-  },
-  {
-    key:         "preferences",
-    label:       "Preferenze",
-    required:    false,
-    description: "Memorizzano le tue preferenze di navigazione (lingua, regione, tema) per offrirti un'esperienza personalizzata.",
-  },
-];
 
 function Toggle({ checked, disabled, onChange }: { checked: boolean; disabled?: boolean; onChange: (v: boolean) => void }) {
   return (
@@ -89,6 +63,34 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
 
   const toggle = (key: "analytics" | "marketing" | "preferences") =>
     setLocal((prev) => ({ ...prev, [key]: !prev[key] }));
+  const t = useTranslations('CookieDetails')
+
+  const CATEGORIES: (CategoryDef | { key: "necessary"; label: string; description: string; required: true })[] = [
+    {
+      key:         "necessary",
+      label:       "necessary.label",
+      required:    true,
+      description: "necessary.description",
+    },
+    {
+      key:         "analytics",
+      label:       "analytics.label",
+      required:    false,
+      description: "analytics.description",
+    },
+    {
+      key:         "marketing",
+      label:       "marketing.label",
+      required:    false,
+      description: "marketing.description",
+    },
+    {
+      key:         "preferences",
+      label:       "preferences.label",
+      required:    false,
+      description: "preferences.description",
+    },
+  ];
 
   return (
     <m.div
@@ -149,14 +151,14 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
               color: "#f4f7fa",
               fontFamily: "'Barlow Condensed', 'Arial Narrow', sans-serif",
             }}>
-              Gestione Cookie
+              {t('title')}
             </h2>
             <p style={{
               margin: "4px 0 0", fontSize: "0.78rem",
               color: "rgba(200,216,248,0.6)",
               fontFamily: "'Barlow', system-ui, sans-serif",
             }}>
-              Personalizza le tue preferenze di privacy
+              {t('subtitle')}
             </p>
           </div>
           <button
@@ -222,7 +224,7 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
                     color:         "#f4f7fa",
                     fontFamily:    "'Barlow Condensed', 'Arial Narrow', sans-serif",
                   }}>
-                    {cat.label}
+                    {t(cat.label)}
                   </span>
 
                   {cat.required ? (
@@ -232,7 +234,7 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
                       fontFamily:  "'Barlow', system-ui, sans-serif",
                       letterSpacing: "0.04em",
                     }}>
-                      SEMPRE ATTIVO
+                      {t(cat.key + '.alwaysOn')}
                     </span>
                   ) : (
                     <div onClick={(e) => e.stopPropagation()}>
@@ -253,7 +255,7 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
                     color:      "rgba(200,216,248,0.7)",
                     fontFamily: "'Barlow', system-ui, sans-serif",
                   }}>
-                    {cat.description}
+                    {t(cat.description)}
                   </div>
                 )}
               </div>
@@ -293,7 +295,7 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
             onMouseEnter={(e) => { (e.target as HTMLButtonElement).style.background = "rgba(255,255,255,0.14)"; }}
             onMouseLeave={(e) => { (e.target as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)"; }}
           >
-            Salva preferenze
+            {t('save')}
           </button>
           <button
             onClick={onAcceptAll}
@@ -322,7 +324,7 @@ export default function CookieDetails({ consent, onSave, onAcceptAll, onClose }:
               (e.target as HTMLButtonElement).style.boxShadow   = "0 2px 12px rgba(255,255,255,0.08)";
             }}
           >
-            Accetta tutti
+            {t('acceptAll')}
           </button>
         </div>
       </m.div>
