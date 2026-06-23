@@ -9,7 +9,6 @@ import LandscapeBlock from "../components/LandscapeBlock";
 import { MotionProvider } from "../containers/MotionProvider";
 import Script from "next/script";
 import CookieBanner from "../components/CookieBanner";
-import { headers } from "next/headers";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -145,8 +144,7 @@ export default async function RootLayout({children, params}: Props) {
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
-  const headersList = await headers();
-  const nonce = headersList.get('x-nonce') ?? undefined;
+
   const messages = await getMessages();
 
   return (
@@ -161,9 +159,8 @@ export default async function RootLayout({children, params}: Props) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="preload" href="/font/Eurostile Extended Regular/Eurostile Extended Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <script nonce={nonce} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
         <script
-          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -179,11 +176,10 @@ export default async function RootLayout({children, params}: Props) {
           }}
         />
         <Script
-          nonce={nonce}
           src="https://www.googletagmanager.com/gtag/js?id=G-4M192B0GEZ"
           strategy="afterInteractive"
         />
-        <Script nonce={nonce} id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

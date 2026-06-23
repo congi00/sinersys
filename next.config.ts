@@ -36,8 +36,8 @@ const nextConfig: NextConfig = {
       { key: 'Cross-Origin-Resource-Policy', value: 'same-site' },
       { key: 'Content-Security-Policy', value: [
         "default-src 'self'",
-        "script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com",
-        "style-src 'self'",
+        "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+        "style-src 'self' 'unsafe-inline'",
         "img-src 'self' data: blob: https: https://www.google-analytics.com https://www.googletagmanager.com",
         "media-src 'self' blob:",
         "connect-src 'self' "
