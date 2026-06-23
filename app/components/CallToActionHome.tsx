@@ -7,6 +7,7 @@ import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import { useTranslations } from "next-intl";
 import { HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, PRODUCT_TITLE_CARD, SUPTITLE_CLASS } from "../typography";
+import Image from "next/image";
 
 interface Props {
   progressMotion: MotionValue<number>;
@@ -65,20 +66,8 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
           objectPosition: "center",
         }}>
         <source src="/sinVidr.webm" type="video/webm" />
-        <img src="/sinVidr.gif" alt="" /> {/* fallback */}
+        <Image  width= "100" height= "100" src="/sinVidr.gif" alt="" /> {/* fallback */}
       </video>
-      <img
-        src="/sinVidr.gif"
-        alt="background animation"
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-      />
 
       {/* ── Overlay: dark gradient + subtle colour tint ───────────────────── */}
       <div style={{

@@ -35,7 +35,12 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     },
     alternates: {
       canonical: `https://www.sinersys.it/${locale}/apwec`,
-      languages: { it: '/it/apwec', en: '/en/apwec', de: '/de/apwec', fr: '/fr/apwec' },
+      languages: { 
+        'it': 'https://www.sinersys.it/it/apwec',
+        'en': 'https://www.sinersys.it/en/apwec',
+        'de': 'https://www.sinersys.it/de/apwec',
+        'fr': 'https://www.sinersys.it/fr/apwec',
+        'x-default': 'https://www.sinersys.it/it/apwec', },
     },
     other: {
       "script:ld+json": [
