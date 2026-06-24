@@ -95,9 +95,9 @@ export default function Footer({ openContact }: FooterProps) {
   ];
 
   const otherLinks = [
-    { label: t("other.ethics"), href: "/${locale}/codice-etico" },
-    { label: t("other.privacy"), href: "/${locale}/privacy" },
-    { label: t("other.cookies"), href: "/${locale}/cookies" },
+    { label: t("other.ethics"), href: "/"+ locale +"/codice-etico" },
+    { label: t("other.privacy"), href: "/"+ locale +"/privacy" },
+    { label: t("other.cookies"), href: "/"+ locale +"/cookies" },
   ];
 
   const contactLinks = [
