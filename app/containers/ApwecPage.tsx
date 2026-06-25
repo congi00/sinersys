@@ -1216,14 +1216,14 @@ export default function ApwecPage() {
                       {t("static.cta.subtitle")}
                     </p>
                   </div>
-                  <div style={{ pointerEvents: "auto" }}>
-                  <LinkButton
-                    link="/"
-                    text={t("static.cta.link")}
-                    icon={<ArrowUpRight size={20} />}
-                    top="0"
-                    color={linkColorWhite}
-                  />
+                  <div style={{ pointerEvents: "auto" }} onClick={() => dispatch(setOpenContact(true))}>
+                    <LinkButton
+                      link=""
+                      text={t("static.cta.link")}
+                      icon={<ArrowUpRight size={20} />}
+                      top="0"
+                      color={linkColorWhite}
+                    />
                 </div>
                 </GlassCard>
               </m.div>

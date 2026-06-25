@@ -1114,13 +1114,15 @@ export default function AboutUsPage() {
                       {t("team.joinSubtitle")}
                     </p>
                   </div>
-                  <LinkButton
-                    link="/"
-                    text={t("team.joinCta")}
-                    icon={<ArrowUpRight size={20} />}
-                    top="0"
-                    color={linkColorWhite}
-                  />
+                  <div style={{ pointerEvents: "auto" }} onClick={() => dispatch(setOpenContact(true))}>
+                    <LinkButton
+                      link=""
+                      text={t("team.joinCta")}
+                      icon={<ArrowUpRight size={20} />}
+                      top="0"
+                      color={linkColorWhite}
+                    />
+                  </div>
                 </GlassCard>
               </FadeIn>
             </section>
