@@ -3,20 +3,28 @@ import nodemailer from "nodemailer";
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(5, '1 h'),
-  analytics: true,
-});
+const redisConfigured =
+  process.env.UPSTASH_REDIS_REST_URL &&
+  process.env.UPSTASH_REDIS_REST_TOKEN;
+
+const ratelimit = redisConfigured
+  ? new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(5, "1 h"),
+      analytics: true,
+    })
+  : null;
 
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get('x-forwarded-for') ?? 'anonymous';
-  const { success } = await ratelimit.limit(ip);
+  if (ratelimit) {
+    const ip = req.headers.get('x-forwarded-for') ?? 'anonymous';
+    const { success } = await ratelimit.limit(ip);
 
-  if (!success) return NextResponse.json(
-    { error: 'Too much requests. Try again later.' }, { status: 429 }
-  );
+    if (!success) return NextResponse.json(
+      { error: 'Too much requests. Try again later.' }, { status: 429 }
+    );
+  }
 
 
   try {
@@ -79,8 +87,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[contact route]", err);
+
     return NextResponse.json(
-      { error: "Errore interno. Riprova più tardi." },
+      {
+        error: err instanceof Error ? err.message : String(err),
+        stack:
+          process.env.NODE_ENV === "development"
+            ? err instanceof Error
+              ? err.stack
+              : null
+            : undefined,
+      },
       { status: 500 }
     );
   }

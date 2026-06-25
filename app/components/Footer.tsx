@@ -108,12 +108,6 @@ export default function Footer({ openContact }: FooterProps) {
         t("contact.addressVal")
       )}`,
     },
-    // {
-    //   label: t("contact.address2"),
-    //   href: `https://maps.google.com/?q=${encodeURIComponent(
-    //     t("contact.address2Val")
-    //   )}`,
-    // },
     { label: t("contact.piva"), href: "" },
   ];
 
