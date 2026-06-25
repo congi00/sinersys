@@ -57,6 +57,14 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    if (
+      !process.env.SMTP_HOST ||
+      !process.env.SMTP_USER ||
+      !process.env.SMTP_PASS
+    ) {
+      throw new Error("SMTP configuration missing");
+    }
+
     const transporter = nodemailer.createTransport({
       host:   process.env.SMTP_HOST,
       port:   Number(process.env.SMTP_PORT ?? 465),
