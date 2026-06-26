@@ -299,13 +299,13 @@
     },
     "slide3": {
       "suptitle": "Installazione",
-      "title": "Operativo in meno di 48 ore: energia rinnovabile che si integra al tuo impianto",
+      "title": "Operativo in poco tempo: energia rinnovabile che si integra al tuo impianto",
       "subtitle": "Installazione a livello del suolo, funzionamento indoor o outdoor, avvio e spegnimento a piacimento, senza necessità di ventosità naturale o strutture complesse/alte per captare il vento in quota."
     },
     "static": {
       "label": "Cos'è APWEC",
       "title": "La tecnologia italiana basata su fluido ad alta velocità e depressione",
-      "p1": "APWEC è un sistema che utilizza fluido-aria per generare energia elettrica continua. Il flusso d’aria interno viene accelerato e controllato per azionare un rotore collegato a un generatore. Una tecnologia nata da un sogno inseguito per decenni: dimostrare che è possibile produrre energia in modo ininterrotto senza dipendere da fonti fossili, ad esempio: dal vento, dal sole, dalle maree o altro.",
+      "p1": "APWEC è un sistema che utilizza fluido-aria per generare energia elettrica continua. Il flusso d’aria interno viene accelerato e controllato per azionare un rotore collegato a un generatore. Una tecnologia nata da un sogno inseguito per decenni: dimostrare che è possibile produrre energia in modo, e senza dipendere da fonti fossili, dal vento, dal sole, dalle maree o altro.",
       "p2": "A differenza dei sistemi tradizionali di generazione rinnovabile, APWEC non dipende direttamente dall'irraggiamento solare o dalle variabili metereologiche, e può operare praticamente ininterrottamente durante tutto l’anno. Risparmio energetico reale, inesistenza di emissioni, indipendenza dalla rete elettrica.",
       "f0": {
         "label": "Funzionamento Continuo",
@@ -315,12 +315,12 @@
       "f1": {
         "label": "Scalabilità",
         "title": "Da 1 kW a 10 MW ca.",
-        "description": "L'architettura modulare di APWEC consente di dimensionare l'impianto in base al fabbisogno energetico reale dell'utente."
+        "description": "L'architettura di APWEC consente di dimensionare l'impianto in base al fabbisogno energetico dell'utente."
       },
       "f2": {
         "label": "Manutenzione",
         "title": "Semplice e sicura",
-        "description": "Accesso a livello del suolo, senza interventi in quota."
+        "description": "Accesso a livello del suolo, senza interventi in quota come per le turbine eoliche."
       },
       "cta": {
         "title": "Ti interessa collaborare con noi?",
@@ -331,17 +331,17 @@
     "howItWorks": {
       "label": "Architettura del sistema",
       "title": "Come funziona APWEC®:\ntre sezioni denominate vessel",
-      "intro": "Il generatore APWEC® è composto da tre vessel fissati solidamente l'uno con l'altro. Il primo genera flusso d'aria con aperture per ingresso aria atmosferica. \n Nel secondo vessel ci sono una serie di Camere di Induzione (C.d.I.) opportunatamente disegnate per accelerare il flusso aria all'interno del vessel seconda porzione. Tra il secondo e terzo vessel c’è un rotore, collegato all alternatore, che riceve il flusso aria ad alta velocità.",
+      "intro": "Il generatore APWEC® è composto da tre vessel fissati solidamente l'uno con l'altro. Il primo genera flusso d'aria con aperture per ingresso aria atmosferica. \n Nel secondo vessel ci sono una serie di Camere di Induzione (C.d.I.) opportunatamente disegnate per accelerare il flusso aria all'interno del vessel. Tra il secondo e terzo vessel c’è un rotore, collegato all alternatore, che riceve il flusso aria ad alta velocità.",
       "shell1": {
         "label": "Prima Sezione",
         "title": "Generazione e amplificazione del flusso",
-        "desc": "Un getto di innesco ad alta velocità entra nella prima Camera di Induzione anulare. La differenza di pressione generata secondo il Principio di Bernoulli richiama aria atmosferica dall'esterno, amplificando progressivamente la portata del flusso-aria ad ogni C.d.I. successiva. Il materiale dell'involucro può essere acciaio, alluminio o plastica rinforzata per la massima flessibilità costruttiva per la diminuzione dei costi."
+        "desc": "Un getto di innesco ad alta velocità entra nella prima Camera di Induzione anulare. La differenza di pressione generata secondo il Principio di Bernoulli richiama aria atmosferica dall'esterno, amplificando progressivamente la portata del flusso-aria ad ogni C.d.I. successiva. Il materiale dei tre vessel è in acciaio, alluminio o plastica rinforzata a seconda del modello per la massima flessibilità costruttiva per la diminuzione dei costi."
       },
       "shell2": {
         "label": "Seconda Sezione",
         "title": "Conversione in energia elettrica",
         "desc2": "Il flusso finale, energizzato dall'atmosfera, impatta sul Rotore a pale con profilo alare — lo stesso principio aerodinamico degli aerogeneratori allo stato dell'arte, con un vantaggio determinante: il flusso è unidirezionale, quindi le pale non richiedono il meccanismo di passo variabile. L'alternatore integrato produce corrente stabilizzata in tensione e frequenza tramite inverter.",
-        "desc": "Dato che il sistema opera in un condotto e il flusso è unidirezionale sempre con la medesima intensità della velocità, il rotore dell'APWEC non ha necessità del sisetma passo-variabile delle pale, in quanto appunto la velocità del flusso-aria rimane sempre la medesima."
+        "desc": "Dato che il sistema opera in un condotto e il flusso è unidirezionale sempre con la medesima intensità della velocità, il rotore dell'APWEC non ha necessità del sistema passo-variabile delle pale, in quanto appunto la velocità del flusso-aria rimane sempre la medesima."
       },
       "cdiLabel": "Cascata di amplificazione — Camere di Induzione (c.d.i.)",
       "cdi0": {
@@ -401,38 +401,38 @@
     "advantages": {
       "label": "APWEC® vs. aerogeneratori tradizionali",
       "title": "Vantaggi tecnici ed economici rispetto allo stato dell'arte",
-      "intro": "Il concetto basilare è Semplicità. Semplicità di calcolo, costruttiva e di funzionamento. \nIl confronto tra APWEC® e i grandi aerogeneratori convenzionali evidenzia vantaggi strutturali che impattano su costi di costruzione, manutenzione, installazione e operatività. APWEC, generatore di nuovissima generazione progettato secondo la filosofia costruttiva automotive.",
+      "intro": "Il concetto basilare è Semplicità. \nSemplicità di calcolo, costruttiva e di funzionamento. \nIl confronto tra APWEC® e i grandi aerogeneratori convenzionali evidenzia vantaggi strutturali che impattano su costi di costruzione, manutenzione, installazione e operatività. APWEC, generatore di nuovissima generazione progettato secondo la filosofia costruttiva automotive.",
       "a0": {
         "label": "Operatività",
         "title": "Funzionamento fino a 8.660 ore annue",
-        "desc": "Produzione energetica continua indipendente dalle condizioni meteorologiche. Nessuna dipendenza da vento o irraggiamento solare: il sistema opera 24/7 per l'intero anno solare, con fermate programmate per sola manutenzione."
+        "desc": "Produzione energetica continua indipendente dalle condizioni meteorologiche. Nessuna dipendenza da vento o irraggiamento solare: il sistema opera 24/7 per l'intero anno solare, con manutenzione programmata."
       },
       "a1": {
         "label": "Sicurezza manutentiva",
         "title": "Manutenzione al livello del suolo, senza lavori in quota",
-        "desc": "Tutte le operazioni di service avvengono a terra. Nessun intervento ad altezze significative, eliminando i rischi operativi tipici degli aerogeneratori convenzionali che richiedono tecnici specializzati in quota."
+        "desc": "Tutte le operazioni di service avvengono a livello del suolo. Nessun intervento ad altezze significative, eliminando i rischi operativi tipici che richiedono tecnici specializzati in quota."
       },
       "a2": {
         "label": "Semplicità costruttiva",
-        "title": "Meno componenti, costruzione di tipo automotive",
+        "title": "Meno componenti. Costruzione in grande serie di tipo \"automotive\"",
         "desc": "APWEC® richiede un numero inferiore di parti rispetto allo stato dell'arte. La filosofia costruttiva di derivazione automotive garantisce standardizzazione, disponibilità globale dei componenti e riduzione dei costi di produzione in grande serie."
       },
       "a3": {
         "label": "Pale a passo fisso",
         "title": "Nessun meccanismo di passo variabile",
-        "desc": "Il flusso d'aria interno è unidirezionale e controllato. Le pale del rotore operano a passo fisso, eliminando il sistema di controllo del passo variabile: una delle fonti principali di guasto e costo nei grandi aerogeneratori."
+        "desc": "Il flusso d'aria interno è unidirezionale e controllato. Le pale del rotore operano a passo fisso, eliminando il sistema di controllo del passo variabile."
       },
       "a4": {
         "label": "Flessibilità installativa",
         "title": "Funzionamento indoor e outdoor, limitrofo all'utilizzatore",
-        "desc": "APWEC® può essere installato all'interno di edifici industriali o all'aperto, senza necessità di torri o strutture elevate. L'installazione limitrofa all'utilizzatore finale riduce le perdite di trasmissione e i costi di connessione alla rete."
+        "desc": "APWEC® può essere installato all'interno di edifici o all'aperto. L'installazione limitrofa all'utilizzatore finale riduce le perdite di trasmissione e i costi di connessione alla rete."
       },
       "a5": {
         "label": "Analogia con turbine industriali",
         "title": "Struttura derivata dalla turbina a gas industriale",
         "desc": "La configurazione fisica di APWEC® segue la struttura delle turbine a gas industriali, a loro volta derivate dalle turbine per aerei a reazione. Una tecnologia matura, affidabile, con decenni di know-how ingegneristico alle spalle."
       },
-      "vsDesc": "I grandi aerogeneratori sfruttano esclusivamente la pressione dinamica del vento esterno e richiedono vento minimo, torri elevate, meccanismi di passo variabile e manutenzione in quota. \nAPWEC® opera con un flusso interno controllato, al livello del suolo, indipendentemente dalle condizioni atmosferiche esterne — una categoria tecnica distinta e complementare nel panorama della generazione di energia rinnovabile distribuita."
+      "vsDesc": "I grandi aerogeneratori sfruttano esclusivamente la pressione dinamica del vento esterno e richiedono vento, torri elevate, meccanismi di passo variabile e manutenzione in quota. \nAPWEC® opera con un flusso interno controllato, al livello del suolo, indipendentemente dalle condizioni atmosferiche esterne — una categoria tecnica distinta e complementare nel panorama della generazione di energia rinnovabile distribuita."
     }
   },
   "motore6fasi": {
