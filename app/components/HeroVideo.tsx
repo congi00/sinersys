@@ -132,7 +132,7 @@ export default function HeroVideo({ isMobile }: Props) {
           height: "100%",
           // "cover" garantisce che riempia tutta l'area senza bande nere
           objectFit: "cover",
-          objectPosition: isMobile? "-50px bottom" : "0 70px",
+          objectPosition: isMobile? "-50px bottom" : "center 70px",
           // Evita il flickering su Safari durante il caricamento
           backgroundColor: "transparent",
           // Disabilita le ottimizzazioni GPU che su alcuni Safari causano
