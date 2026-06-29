@@ -15,20 +15,17 @@
     "goals": "Ziele",
     "contactUs": "Kontakt",
     "faq": "FAQ",
-
     "ourStory": "Unsere Geschichte",
     "timeline": "Zeitachse",
     "team": "Team",
-
     "whatIsIt": "Was ist das",
     "architecture": "Architektur",
     "advantages": "Vorteile",
-
     "sixPhaseEngine": "6-Phasen-Motor",
     "howItWorks": "Wie es funktioniert"
   },
   "homepage": {
-    "keywords": "Sechs Phasen Motor, Wellenenergie Konverter, Erneuerbare Energie Italien, innovativer Elektromotor, Meeresenergie",
+    "keywords": "6-Phasen-Motor, APWEC, erneuerbare Energie, Sinersys, grüne Energie, grüner Generator, Energieunabhängigkeit, patentierte italienische Technologie, erneuerbarer Energiegenerator, saubere Energie, kontinuierliche erneuerbare Energie",
     "slide0": {
       "title": "Die neue Generation \nerneuerbarer Energie, geboren \naus dem Traum von Innovatoren",
       "subtitle": "Jahrelang verfolgten wir eine unmögliche Idee:\nein kontinuierlicher Energiegenerator, ohne Verbrennung, ohne Emissionen.\n Wir haben es geschafft.",
@@ -67,7 +64,7 @@
     },
     "slide3": {
       "title": "Jedes APWEC ist ein konkreter Schritt in Richtung Energieunabhängigkeit.",
-      "subtitle": "Sinersys erforscht und entwickelt skalierbare Systeme zur kontinuierlichen Erzeugung erneuerbarer Energie,\nkonzipiert für Unternehmen, öffentliche Einrichtungen, Industriebetreiber oder Privatpersonen, die Energiekosten senken,\nEmissionen reduzieren und Energieautarkie\nso nah wie möglich."
+      "subtitle": "Sinersys erforscht und entwickelt skalierbare Systeme zur kontinuierlichen Erzeugung erneuerbarer Energie,\nkonzipiert für Unternehmen, öffentliche Einrichtungen, Industriebetreiber oder Privatpersonen, die Energiekosten senken,\nEmissionen reduzieren und Energieautarkie\nso nah wie möglich erreichen möchten."
     },
     "scatteredCards": [
       {
@@ -115,7 +112,6 @@
       "a5": "Ja. Der Rotor ist in einer geschlossenen Struktur untergebracht, was die Risiken im Vergleich zu herkömmlichen Windgeneratoren reduziert."
     }
   },
-
   "contacts": {
     "drawerTitle": "STRATEGISCHE ZUSAMMENARBEIT STARTEN",
     "fields": {
@@ -146,7 +142,7 @@
     "close": "Schließen"
   },
   "aboutus": {
-    "keywords": "Sechs Phasen Motor, Wellenenergie Konverter, Erneuerbare Energie Italien, innovativer Elektromotor, Meeresenergie",
+    "keywords": "6-Phasen-Motor, APWEC, erneuerbare Energie, Sinersys, grüne Energie, grüner Generator, Energieunabhängigkeit, patentierte italienische Technologie, erneuerbarer Energiegenerator, saubere Energie, kontinuierliche erneuerbare Energie",
     "hero": {
       "suptitle": "Über Uns",
       "title": "Ein italienischer Traum",
@@ -162,7 +158,7 @@
       "partnersLabel": "Industriepartnerschaften",
       "patentsLabel": "Internationale Patente",
       "pat0name": "6-Phasen-Motor",
-      "pat1name": "Verbesserter Windturm®",
+      "pat1name": "Verbesserter Eolischer Silo®",
       "pat2name": "APWEC® — Zweite Generation",
       "mission": "Sinersys entstand als Weiterentwicklung einer langen unternehmerischen und ingenieurtechnischen Tradition, die zwischen Maschinenkonstruktion, thermodynamischer Forschung und dem Studium von Fluidbewegungen entwickelt wurde."
     },
@@ -183,32 +179,26 @@
     "timeline": {
       "heading": "Über ein Jahrhundert industrieller Innovation: die Geschichte, die zu APWEC® führte",
       "subheading": "Jede Phase der Geschichte von Sinersys stellt eine reale Ansammlung von Fachwissen, Patenten und wissenschaftlichen und technischen Entwicklungen dar.",
-
       "t1919": {
         "title": "Die industriellen Ursprünge der Gruppe",
         "description": "Die Wurzeln des heutigen Sinersys gehen auf das Jahr 1919 zurück, als der ursprüngliche unternehmerische Kern in die ersten europäischen Programme zur mechanischen und motorischen Entwicklung eintrat. Es ist der Beginn einer langen technischen Tradition, die die Gruppe über ein Jahrhundert begleiten wird."
       },
-
       "t1964": {
         "title": "Eintritt in die internationale Automobilbranche",
         "description": "Unter der Marke IAP wird die Gruppe offizieller Importeur von Honda-Produkten in Italien und beginnt eine strategische Zusammenarbeit, die 1971 zur Errichtung des Honda-Produktionswerks im Val di Sangro führen wird. Die industrielle Dimension bekommt internationalen Atem."
       },
-
       "t1965": {
         "title": "Expansion in den Vertrieb großer europäischer Marken",
         "description": "Motauto wird gegründet, eine Struktur, die dem exklusiven Import von Volvo, Saab und Hanomag-Henschel in Italien gewidmet ist. Das Unternehmen festigt seine logistischen, kommerziellen und industriellen Kompetenzen im Umgang mit Fahrzeugen, Bauteilen und mechanischen Technologien."
       },
-
       "t1977": {
         "title": "Gründung des F&E-Zentrums B-Art",
         "description": "B-Art wird gegründet, ein Forschungs- und Entwicklungszentrum. Aus diesem Labor entstehen zahlreiche internationale Industriepatente, darunter die ersten Studien über den Sechsphasenmotor mit isochorer Funktion."
       },
-
       "t1978": {
         "title": "Beginn der Studien über Fluidbewegungen und Reibungsreduzierung",
         "description": "Strukturierte Forschungen zu fluiddynamischen Bewegungen in kontrollierten Geometrien beginnen, zunächst angewendet auf die Reduzierung des aerodynamischen Reibungswiderstands in Fahrzeugen. Diese Studien stellen das theoretische Fundament dar, das in den folgenden Jahren zur Konzeption des APWEC®-Systems führen wird."
       },
-
       "t1998": {
         "title": "Sinersys als Energie-Spin-off gegründet",
         "description": "Nach Jahrzehnten der Erfahrung in der Maschinenbautechnik und im Industriedesign startet die Gruppe Sinersys (Synergie der Systeme), eine Abteilung, die vollständig der Entwicklung von Innovationen gewidmet ist."
@@ -217,15 +207,13 @@
         "title": "Start spezifischer wissenschaftlicher Studien zum APWEC®-Generator",
         "description": "Sinersys eröffnet das wissenschaftliche Programm zur Entwicklung eines 'grünen' Generators, der mit Luft-Fluid betrieben wird. Die Experimentalphase beginnt, die zur Entwicklung des ersten funktionalen Prototyps und zur Validierung des physikalischen Prinzips des APWEC®-Generators führen wird."
       },
-
       "t2008": {
-        "title": "Anmeldung des Windturm®-Patents",
-        "description": "Nach den ersten Prototypentests und ingenieurtechnischen Überprüfungen meldet Sinersys das Windturm-Patent an, den ersten technischen Schritt des heutigen APWEC, ein Energieumwandlungssystem basierend auf Induktionskammern und kontrolliertem atmosphärischem Druck."
+        "title": "Anmeldung des Eolischen Silo®-Patents",
+        "description": "Nach den ersten Prototypentests und ingenieurtechnischen Überprüfungen meldet Sinersys das Eolischen Silo-Patent an, den ersten technischen Schritt des heutigen APWEC, ein Energieumwandlungssystem basierend auf Induktionskammern und kontrolliertem atmosphärischem Druck."
       },
-
       "t2010": {
         "title": "Anmeldung des APWEC®-Patents und internationale Validierung",
-        "description": "Das Patent APWEC® (Atmospheric Pressure Wind Eolic Collector) wird angemeldet, eine Weiterentwicklung der Windturm-Technologie. Das System wird Testberichten unterzogen, die von TÜV Thüringen und der Universität Ilmenau, Rechenzentren und Universitätsdepartments durchgeführt wurden, und festigt damit die wissenschaftliche Glaubwürdigkeit des Projekts."
+        "description": "Das Patent APWEC® (Atmospheric Pressure Wind Eolic Collector) wird angemeldet, eine Weiterentwicklung der Eolischen Silo-Technologie. Das System wird Testberichten unterzogen, die von TÜV Thüringen und der Universität Ilmenau, Rechenzentren und Universitätsdepartments durchgeführt wurden, und festigt damit die wissenschaftliche Glaubwürdigkeit des Projekts."
       },
       "t2016": {
         "title": "Aktualisierung des APWEC®-Patents",
@@ -283,13 +271,12 @@
       "subtitle": "Sinersys entwickelt Lösungen für die verteilte Erzeugung erneuerbarer Energie, die Unternehmen, öffentlichen Einrichtungen und Industriebetreibern ermöglichen, den Verbrauch konkret zu reduzieren, CO₂-Emissionen zu senken und die Energieresilienz ihrer Anlagen zu erhöhen — mit zertifizierten, skalierbaren und leistungsstarken Technologien."
     }
   },
-
   "apwec": {
-    "keywords": "Sechs Phasen Motor, Wellenenergie Konverter, Erneuerbare Energie Italien, innovativer Elektromotor, Meeresenergie",
+    "keywords": "6-Phasen-Motor, APWEC, erneuerbare Energie, Sinersys, grüne Energie, grüner Generator, Energieunabhängigkeit, patentierte italienische Technologie, erneuerbarer Energiegenerator, saubere Energie, kontinuierliche erneuerbare Energie",
     "slide0": {
       "suptitle": "PATENTIERTE TECHNOLOGIE",
       "title": "APWEC",
-      "subtitle": "Atmospheric Pressure Wind Energy Collector (APWEC®) – ein italienischer Generator für erneuerbare Energie,\nder kontrollierte Luftunterdruck nutzt, um kontinuierlich Strom zu erzeugen, mit Ein- und Ausschaltfunktion auf Anfrage des Nutzers."
+      "subtitle": "Atmospheric Pressure Wind Energy Collector (APWEC®) – ein italienischer Generator für erneuerbare Energie,\nder kontrollierten Luftunterdruck nutzt, um kontinuierlich Strom zu erzeugen, mit Ein- und Ausschaltfunktion auf Anfrage des Nutzers."
     },
     "slide1": {
       "suptitle": "FUNKTIONSWEISE",
@@ -303,13 +290,13 @@
     },
     "slide3": {
       "suptitle": "Installation",
-      "title": "Betriebsbereit in weniger als 48 Stunden: erneuerbare Energie, die sich in Ihre Anlage integriert",
+      "title": "Schnell betriebsbereit: erneuerbare Energie, die sich in Ihre Anlage integriert",
       "subtitle": "Bodennahe Installation, Innen- oder Außenbetrieb, Ein- und Ausschalten nach Belieben, ohne Notwendigkeit von natürlichem Wind oder komplexen/hohen Strukturen zur Winderfassung in der Höhe."
     },
     "static": {
       "label": "Was ist APWEC",
       "title": "Die italienische Technologie basierend auf Hochgeschwindigkeitsfluid und atmosphärischem Unterdruck",
-      "p1": "APWEC ist ein System, das Luft-Fluid zur Erzeugung kontinuierlicher elektrischer Energie nutzt. Der interne Luftstrom wird beschleunigt und kontrolliert, um einen Rotor anzutreiben, der mit einem Generator verbunden ist. Eine Technologie, die aus einem jahrzehntelang verfolgten Traum entstanden ist: zu beweisen, dass es möglich ist, Energie ununterbrochen zu produzieren, ohne von fossilen Quellen abhängig zu sein, wie z.B. Wind, Sonne, Gezeiten oder anderem.",
+      "p1": "APWEC ist ein System, das Luft-Fluid zur Erzeugung kontinuierlicher elektrischer Energie nutzt. Der interne Luftstrom wird beschleunigt und kontrolliert, um einen Rotor anzutreiben, der mit einem Generator verbunden ist. Eine Technologie, die aus einem jahrzehntelang verfolgten Traum entstanden ist: zu beweisen, dass es möglich ist, Energie ununterbrochen zu produzieren, ohne von fossilen Quellen abhängig zu sein, Wind, Sonne, Gezeiten oder anderem.",
       "p2": "Im Gegensatz zu herkömmlichen Systemen zur Erzeugung erneuerbarer Energie hängt APWEC nicht direkt von der Sonneneinstrahlung oder meteorologischen Variablen ab und kann das ganze Jahr über praktisch ununterbrochen betrieben werden. Echte Energieeinsparungen, keine Emissionen, Unabhängigkeit vom Stromnetz.",
       "f0": {
         "label": "Kontinuierlicher Betrieb",
@@ -439,9 +426,8 @@
       "vsDesc": "Große Windkraftanlagen nutzen ausschließlich den dynamischen Druck des Außenwinds und benötigen Mindestwind, hohe Türme, Blattwinkelverstellmechanismen und Wartung in der Höhe.\nAPWEC® arbeitet mit einem kontrollierten internen Strom auf Bodenniveau, unabhängig von den äußeren atmosphärischen Bedingungen — eine technisch eigenständige und komplementäre Kategorie in der Landschaft der verteilten Erzeugung erneuerbarer Energie."
     }
   },
-
   "motore6fasi": {
-    "keywords": "Sechs Phasen Motor, Wellenenergie Konverter, Erneuerbare Energie Italien, innovativer Elektromotor, Meeresenergie",
+    "keywords": "6-Phasen-Motor, APWEC, erneuerbare Energie, Sinersys, grüne Energie, grüner Generator, Energieunabhängigkeit, patentierte italienische Technologie, erneuerbarer Energiegenerator, saubere Energie, kontinuierliche erneuerbare Energie",
     "slide0": {
       "suptitle": "PATENTIERTE TECHNOLOGIE",
       "title": "6-Phasen-Motor",
@@ -523,7 +509,7 @@
         "desc": "Das Exzentersystem ersetzt den komplexen Pleuelstangen-Kurbelwellen-Mechanismus durch ein präzisionsbearbeitetes Profil. Die Automobilbauphilosophie garantiert Standardisierung, reduzierte Produktionskosten und weltweite Komponentenverfügbarkeit."
       },
       "a3": {
-        "label": "Schaufeln mit festem Blattwinkel — Rotor",
+        "label": "Rotierende Pleuelstange und halbschwimmender Kolben",
         "title": "Rotierende Pleuelstange und halbschwimmender Kolben",
         "desc": "Die Konfiguration mit rotierender Pleuelstange und halbschwimmendem Kolben begünstigt die thermische Stabilität bei hohen Temperaturen, optimale Schmierung und eine Kolbenmasse gleich oder kleiner als die eines analogen konventionellen Hubraums, was die Trägheitskräfte reduziert."
       },
@@ -540,7 +526,6 @@
       "vsDesc": "Konventionelle 4-Takt-Motoren erfordern eine Zündzeitpunktvorverstellung, arbeiten mit Liefergradkoeffizienten unter eins und häufen passive Verluste in der Kompressionsphase an.\nDer Motor Union Italia 6-Phasen-Motor eliminiert diese strukturellen Verluste durch isochore Verbrennung, verlängerten Einlass und das neue Kurbelwellensystem — eine technisch eigenständige Kategorie, die sich als natürliche Evolution des Verbrennungsmotors für die Energiewende positioniert."
     }
   },
-
   "research": {
     "label": "Forschung und Entwicklung",
     "title": "Das Forschungszentrum, das einen unmöglichen Traum in ein Patent verwandelt hat",
@@ -556,10 +541,10 @@
     },
     "comparison": {
       "label": "Technologievergleich",
-      "title": "Sinersys Windturm vs. traditionelle Generatoren: die konkreten Vorteile",
+      "title": "Sinersys Eolischer Silo vs. traditionelle Generatoren: die konkreten Vorteile",
       "costibenefici": {
         "title": "Kosten und Nutzen bei der Energieeinsparung",
-        "body": "Der Vergleich zwischen dem Sinersys Windturm und herkömmlichen Winderzeugungssystemen zeigt klare Nettovorteile bei den Kosten pro erzeugter kWh: Der 200-kW-Rotor hat einen maximalen Durchmesser von 3,5 Metern gegenüber 30 Metern für eine gleichwertige WEC, mit geschätzten Produktionskosten zwischen 120.000 und 150.000 Euro pro Einheit."
+        "body": "Der Vergleich zwischen dem Sinersys Eolischen Silo und herkömmlichen Winderzeugungssystemen zeigt klare Nettovorteile bei den Kosten pro erzeugter kWh: Der 200-kW-Rotor hat einen maximalen Durchmesser von 3,5 Metern gegenüber 30 Metern für eine gleichwertige WEC, mit geschätzten Produktionskosten zwischen 120.000 und 150.000 Euro pro Einheit."
       },
       "silenziosita": {
         "title": "Stille und reduzierte Lärmbelastung",
@@ -575,7 +560,6 @@
       }
     }
   },
-
   "certifications": {
     "label": "Zertifizierungen und Qualität",
     "title": "Zertifizierte Qualität, im Laufe der Zeit garantierte Energieeffizienz",
@@ -589,14 +573,12 @@
       "body": "Das Sinersys-Programm für kontinuierliche Unterstützung, Wartung und Optimierung. Für jede entworfene und installierte Anlage für erneuerbare Energie garantiert Tech Service maximale Energieleistung über die Zeit durch geplante Eingriffe, Fernüberwachung und regelmäßige technische Updates."
     }
   },
-
   "frontierEnergetiche": {
     "label": "Energielösungen",
     "title": "Die neuen Grenzen erneuerbarer Energie und Energieeffizienz",
     "p1": "Sinersys realisiert Projekte und Anlagen für hocheffiziente Kraft-Wärme-Kopplung und entwickelt fortgeschrittene Technologien für die verteilte kontinuierliche Erzeugung erneuerbarer Energie. Aus unserer jahrhundertelangen Geschichte im Motoringenieurwesen entsteht eine präzise Mission: Energieunabhängigkeit für Industrien, öffentliche Einrichtungen und kommerzielle Betreiber zugänglich zu machen, die Energiekosten konkret senken, CO₂-Emissionen reduzieren und die Energieresilienz ihrer Anlagen erhöhen möchten.",
     "p2": "Sinersys liefert effiziente, flexible und skalierbare Systeme zur Erzeugung erneuerbarer Energie, die die Eigenstromerzeugung mit null Umwelteinfluss ermöglichen. Jede Anlage wird maßgeschneidert konzipiert, mit dem Full Energy Project-Programm zertifiziert und über die Zeit vom Tech Service unterstützt."
   },
-
   "ethics": {
     "label": "Ethikkodex",
     "title": "Ethikkodex",
@@ -669,7 +651,6 @@
       "p1": "Nachgewiesene Verstöße gegen diesen Ethikkodex haben Konsequenzen, die proportional zur Schwere des Verhaltens sind, bis hin zur Beendigung des Arbeits- oder Kooperationsverhältnisses. Für Meldungen: info@sinersys.it"
     }
   },
-
   "privacy": {
     "label": "Datenschutzrichtlinie",
     "title": "Datenschutzrichtlinie",
@@ -770,7 +751,6 @@
       "p1": "Diese Datenschutzinformation kann jederzeit aktualisiert werden. Wesentliche Änderungen werden über einen Hinweis auf der Website oder per E-Mail an registrierte Benutzer kommuniziert."
     }
   },
-
   "cookies": {
     "label": "Cookie-Richtlinie",
     "title": "Cookie-Richtlinie",
@@ -827,13 +807,12 @@
       "p2": "Für Fragen zur Verwendung von Cookies auf sinersys.it schreiben Sie uns unter info@sinersys.it."
     }
   },
-
   "footer": {
     "quick": {
       "title": "Schnelle Links",
       "home": "Startseite",
       "apwec": "APWEC",
-      "six-phase-motor": "Sechs Phasen Motor",
+      "six-phase-motor": "6-Phasen-Motor",
       "about": "Über Uns",
       "certs": "Kontakt"
     },
@@ -861,7 +840,6 @@
     },
     "social": {}
   },
-
   "Cookie": {
     "title": "Cookie-Einstellungen",
     "body": "Wir verwenden eigene und Drittanbieter-Cookies (Google Analytics) um Ihr Surferlebnis zu verbessern, den Traffic zu analysieren und personalisierte Inhalte anzuzeigen. Sie können alle Cookies akzeptieren, ablehnen oder Ihre Einstellungen anpassen.",
@@ -879,7 +857,6 @@
     "save": "Einstellungen speichern",
     "acceptAll": "Alle akzeptieren",
     "close": "Schließen",
-
     "necessary": {
       "label": "Notwendig",
       "description": "Unverzichtbar für die Funktion der Website. Enthält Sitzung, Authentifizierung und Sicherheit. Kann nicht deaktiviert werden.",

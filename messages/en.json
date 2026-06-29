@@ -3,7 +3,7 @@
     "homepage": "HOMEPAGE",
     "products": "APWEC",
     "about": "ABOUT US",
-    "motor": "6 FASE ENGINE",
+    "motor": "6 PHASE ENGINE",
     "contacts": "CONTACT"
   },
   "scrollNavigator": {
@@ -15,15 +15,12 @@
     "goals": "Goals",
     "contactUs": "Contact Us",
     "faq": "FAQ",
-
     "ourStory": "Our Story",
     "timeline": "Timeline",
     "team": "Team",
-
     "whatIsIt": "What Is It",
     "architecture": "Architecture",
     "advantages": "Advantages",
-
     "sixPhaseEngine": "6-Phase Engine",
     "howItWorks": "How It Works"
   },
@@ -67,7 +64,7 @@
     },
     "slide3": {
       "title": "Every APWEC is a concrete step towards energy independence.",
-      "subtitle": "Sinersys researches and develops scalable systems for continuous renewable energy generation,\ndesigned for companies, public bodies, industrial operators and private users who want to reduce energy costs,\ncut emissions and achieve energy self-sufficiency\n very close."
+      "subtitle": "Sinersys researches and develops scalable systems for continuous renewable energy generation,\ndesigned for companies, public bodies, industrial operators and private users who want to reduce energy costs,\ncut emissions and achieve energy self-sufficiency\n as close as possible."
     },
     "scatteredCards": [
       {
@@ -115,7 +112,6 @@
       "a5": "Yes. The rotor is enclosed within a closed structure, reducing risks compared to traditional wind generators."
     }
   },
-
   "contacts": {
     "drawerTitle": "START A STRATEGIC COLLABORATION",
     "fields": {
@@ -145,7 +141,6 @@
     "successBody": "We will get back to you as soon as possible at info@sinersys.it.",
     "close": "Close"
   },
-
   "aboutus": {
     "keywords": "six phase motor, APWEC, Sinersys, green, green energy, six phase electric motor, wave energy converter, APWEC technology, renewable energy, renewable energy generator,  Italian clean energy startup, perpetual wave generator",
     "hero": {
@@ -184,47 +179,38 @@
     "timeline": {
       "heading": "Over a century of industrial innovation: the history that led to APWEC®",
       "subheading": "Each phase of Sinersys's history represents a real accumulation of expertise, patents and scientific and technical developments.",
-
       "t1919": {
         "title": "The industrial origins of the group",
         "description": "The roots of today's Sinersys go back to 1919, when the original entrepreneurial nucleus entered the first European mechanical and motor development programmes. It was the beginning of a long technical tradition that would accompany the group for over a century."
       },
-
       "t1964": {
         "title": "Entry into international automotive",
         "description": "Under the IAP brand, the group became the official importer of Honda products in Italy, beginning a strategic collaboration that would lead in 1971 to the construction of the Honda production plant in Val di Sangro. The industrial dimension took on an international scope."
       },
-
       "t1965": {
         "title": "Expansion into distribution of major European brands",
         "description": "Motauto was established, a structure dedicated to the exclusive importation into Italy of Volvo, Saab and Hanomag-Henschel. The company consolidated logistical, commercial and industrial expertise in the management of vehicles, components and mechanical technologies."
       },
-
       "t1977": {
         "title": "Foundation of the B-Art R&D centre",
         "description": "B-Art was established, a research and development centre. Numerous international industrial patents were born from this laboratory, including the first studies on the six-phase engine with isochoric function."
       },
-
       "t1978": {
         "title": "Start of studies on fluid motion and friction reduction",
         "description": "Structured research began on fluid dynamic motion within controlled geometries, initially applied to the reduction of aerodynamic friction in vehicles. These studies represent the theoretical foundation that, in subsequent years, led to the conception of the APWEC® system."
       },
-
       "t1998": {
         "title": "Sinersys born as an energy spin-off",
         "description": "After decades of experience in mechanical engineering and industrial design, the group launched Sinersys (Sinergia di Sistemi), a department entirely dedicated to the development of innovations."
       },
-
       "t2002": {
         "title": "Start of specific scientific studies on the APWEC® generator",
         "description": "Sinersys inaugurated the scientific programme dedicated to the creation of a 'green' generator, operating with fluid-air. The experimental phase began that would lead to the creation of the first functional prototype and the validation of the physical principle of the APWEC® generator."
       },
-
       "t2008": {
         "title": "Filing of the Eolic Silo® patent",
         "description": "After the first prototype tests and engineering verifications, Sinersys filed the Eolic Silo patent, the first technical step of the current APWEC, an energy conversion system based on induction chambers and controlled atmospheric pressure."
       },
-
       "t2010": {
         "title": "Filing of the APWEC® patent and international validation",
         "description": "The APWEC® (Atmospheric Pressure Wind Eolic Collector) patent was filed, an evolution of the Eolic Silo technology. The system underwent test reports conducted by TÜV Thüringen and the University of Ilmenau, computing centres and university departments, consolidating the scientific credibility of the project."
@@ -285,7 +271,6 @@
       "subtitle": "Sinersys develops solutions for distributed renewable energy generation that allow companies, public bodies and industrial operators to concretely reduce consumption, cut CO₂ emissions and increase the energy resilience of their plants — with certified, scalable, high-performance technologies."
     }
   },
-
   "apwec": {
     "keywords": "six phase motor, APWEC, Sinersys, green, green energy, six phase electric motor, wave energy converter, APWEC technology, renewable energy, renewable energy generator,  Italian clean energy startup, perpetual wave generator",
     "slide0": {
@@ -305,13 +290,13 @@
     },
     "slide3": {
       "suptitle": "Installation",
-      "title": "Operational in less than 48 hours: renewable energy that integrates into your plant",
+      "title": "Operational quickly: renewable energy that integrates into your plant",
       "subtitle": "Ground-level installation, indoor or outdoor operation, on/off at will, no need for natural wind or complex/tall structures to capture wind at height."
     },
     "static": {
       "label": "What is APWEC",
       "title": "The Italian technology based on high-velocity fluid and atmospheric depression",
-      "p1": "APWEC is a system that uses fluid-air to generate continuous electrical energy. The internal airflow is accelerated and controlled to drive a rotor connected to a generator. A technology born from a dream pursued for decades: to demonstrate that it is possible to produce energy uninterruptedly without depending on fossil sources, such as wind, sun, tides or others.",
+      "p1": "APWEC is a system that uses fluid-air to generate continuous electrical energy. The internal airflow is accelerated and controlled to drive a rotor connected to a generator. A technology born from a dream pursued for decades: to demonstrate that it is possible to produce energy uninterruptedly without depending on fossil sources, wind, sun, tides or others.",
       "p2": "Unlike traditional renewable energy generation systems, APWEC does not depend directly on solar irradiation or meteorological variables, and can operate practically without interruption throughout the year. Real energy savings, zero emissions, independence from the electrical grid.",
       "f0": {
         "label": "Continuous Operation",
@@ -441,7 +426,6 @@
       "vsDesc": "Large wind turbines exclusively exploit the dynamic pressure of external wind and require minimum wind speed, tall towers, variable pitch mechanisms and maintenance at height.\nAPWEC® operates with a controlled internal flow, at ground level, regardless of external atmospheric conditions — a technically distinct and complementary category in the landscape of distributed renewable energy generation."
     }
   },
-
   "motore6fasi": {
     "keywords": "six phase motor, APWEC, Sinersys, green, green energy, six phase electric motor, wave energy converter, APWEC technology, renewable energy, renewable energy generator,  Italian clean energy startup, perpetual wave generator",
     "slide0": {
@@ -525,7 +509,7 @@
         "desc": "The eccentric system replaces the complex connecting rod–crank mechanism with a precision-machined profile. The automotive construction philosophy guarantees standardisation, reduced production costs and global availability of components."
       },
       "a3": {
-        "label": "Fixed-pitch blades — rotor",
+        "label": "Rotating connecting rod and semi-floating piston",
         "title": "Rotating connecting rod and semi-floating piston",
         "desc": "The rotating connecting rod and semi-floating piston configuration promotes thermal stability at high temperatures, optimal lubrication and a piston mass equal to or less than that of an equivalent conventional displacement, reducing inertial forces."
       },
@@ -542,7 +526,6 @@
       "vsDesc": "Conventional 4-stroke engines require ignition advance, operate with volumetric efficiencies below unity and accumulate passive losses in the compression phase.\nThe Motor Union Italia 6-Phase Engine eliminates these structural losses through isochoric combustion, prolonged intake and the new crankshaft system — a technically distinct category that positions itself as the natural evolution of the internal combustion engine for the energy transition."
     }
   },
-
   "research": {
     "label": "Research and Development",
     "title": "The Research Centre that transformed an impossible dream into a patent",
@@ -577,7 +560,6 @@
       }
     }
   },
-
   "certifications": {
     "label": "Certifications and Quality",
     "title": "Certified quality, guaranteed energy efficiency over time",
@@ -591,14 +573,12 @@
       "body": "Sinersys's continuous assistance, maintenance and optimisation programme. For every renewable energy plant designed and installed, Tech Service guarantees maximum energy performance over time through scheduled interventions, remote monitoring and periodic technical updates."
     }
   },
-
   "frontierEnergetiche": {
     "label": "Energy Solutions",
     "title": "The new frontiers of renewable energy and energy efficiency",
     "p1": "Sinersys designs and builds high-efficiency cogeneration projects and plants and develops advanced technologies for the distributed generation of continuous renewable energy. From our century-long history in motor engineering comes a precise mission: to make energy independence accessible to industries, public bodies and commercial operators who want to concretely reduce energy costs, cut CO₂ emissions and increase the energy resilience of their plants.",
     "p2": "Sinersys provides efficient, flexible and scalable renewable energy generation systems that enable energy self-production with zero environmental impact. Every plant is custom-designed, certified with the Full Energy Project programme and supported over time by the Tech Service."
   },
-
   "ethics": {
     "label": "Code of Ethics",
     "title": "Code of Ethics",
@@ -671,7 +651,6 @@
       "p1": "Proven violations of this Code of Ethics entail consequences proportionate to the severity of the conduct, up to and including termination of the employment or collaboration relationship. For reports: info@sinersys.it"
     }
   },
-
   "privacy": {
     "label": "Privacy Policy",
     "title": "Privacy Policy",
@@ -772,7 +751,6 @@
       "p1": "This information notice may be updated at any time. Substantial changes are communicated via notice on the site or by email to registered users."
     }
   },
-
   "cookies": {
     "label": "Cookie Policy",
     "title": "Cookie Policy",
@@ -829,13 +807,12 @@
       "p2": "For any questions relating to the use of cookies on sinersys.it, write to us at info@sinersys.it."
     }
   },
-
   "footer": {
     "quick": {
       "title": "Quick Links",
       "home": "Homepage",
       "apwec": "APWEC",
-      "six-phase-motor": "Six Phase Motor",
+      "six-phase-motor": "6-Phase Engine",
       "about": "About Us",
       "certs": "Contact Us"
     },
@@ -880,7 +857,6 @@
     "save": "Save preferences",
     "acceptAll": "Accept all",
     "close": "Close",
-
     "necessary": {
       "label": "Necessary",
       "description": "Essential for the website to function. Includes session, authentication and security. Cannot be disabled.",

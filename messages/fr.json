@@ -28,7 +28,7 @@
     "howItWorks": "Comment ça fonctionne"
   },
   "homepage": {
-    "keywords": "moteur hexaphasé, convertisseur énergie des vagues, énergie renouvelable, startup italienne énergie, moteur électrique innovant",
+    "keywords": "moteur à 6 phases, APWEC, énergie renouvelable, Sinersys, énergie verte, générateur vert, indépendance énergétique, technologie italienne brevetée, générateur d'énergie renouvelable",
     "slide0": {
       "title": "La nouvelle génération d'énergie \nrenouvelable née d'un \nrêve d'innovateurs",
       "subtitle": "Pendant des années, nous avons poursuivi une idée impossible :\nun générateur d'énergie continue, sans combustion interne, sans émissions.\n Nous y sommes parvenus.",
@@ -305,13 +305,13 @@
     },
     "slide3": {
       "suptitle": "Installation",
-      "title": "Opérationnel en moins de 48 heures : une énergie renouvelable qui s'intègre à votre installation",
+      "title": "Opérationnel rapidement: une énergie renouvelable qui s'intègre à votre installation",
       "subtitle": "Installation au niveau du sol, fonctionnement intérieur ou extérieur, démarrage et arrêt à volonté, sans besoin de vent naturel ni de structures complexes/hautes pour capter le vent en altitude."
     },
     "static": {
       "label": "Qu'est-ce qu'APWEC",
       "title": "La technologie italienne basée sur le fluide à haute vitesse et la dépression atmosphérique",
-      "p1": "APWEC est un système qui utilise le fluide-air pour générer de l'énergie électrique en continu. Le flux d'air interne est accéléré et contrôlé pour actionner un rotor connecté à un générateur. Une technologie née d'un rêve poursuivi pendant des décennies : démontrer qu'il est possible de produire de l'énergie de manière ininterrompue sans dépendre de sources fossiles, par exemple : le vent, le soleil, les marées ou autres.",
+      "p1": "APWEC est un système qui utilise le fluide-air pour générer de l'énergie électrique en continu. Le flux d'air interne est accéléré et contrôlé pour actionner un rotor connecté à un générateur. Une technologie née d'un rêve poursuivi pendant des décennies : démontrer qu'il est possible de produire de l'énergie de manière ininterrompue sans dépendre de sources fossiles, du vent, du soleil, des marées ou autres.",
       "p2": "Contrairement aux systèmes traditionnels de génération d'énergie renouvelable, APWEC ne dépend pas directement de l'irradiation solaire ou des variables météorologiques, et peut fonctionner pratiquement sans interruption tout au long de l'année. Économies d'énergie réelles, absence totale d'émissions, indépendance du réseau électrique.",
       "f0": {
         "label": "Fonctionnement Continu",
@@ -835,7 +835,7 @@
       "title": "Liens Rapides",
       "home": "Accueil",
       "apwec": "APWEC",
-      "six-phase-motor": "Moteur Hexaphasé",
+      "six-phase-motor": "Moteur à 6 phases",
       "about": "Qui Sommes-Nous",
       "certs": "Nous Contacter"
     },
