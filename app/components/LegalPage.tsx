@@ -45,7 +45,6 @@ import MenuButton from "../components/MenuButton";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { setOpenContact } from "../features/counterSlice";
 import dynamic from "next/dynamic";
-import { useLenis } from "../containers/LenisProvider";
 
 const LiquidBackground = dynamic(() => import('../components/LiquidBackground'), {
   ssr: false,
@@ -146,7 +145,6 @@ export default function LegalPage({
   const [mounted, setMounted] = useState(false);
   const [vhPx, setVhPx] = useState(0);
   const [width, setWidth] = useState(1024);
-  const { lenis, isTouch } = useLenis();
 
   // ── content height — misurato sul div STATICO (senza transform applicato) ─
   const contentRef = useRef<HTMLDivElement>(null);
@@ -162,7 +160,6 @@ export default function LegalPage({
   const isMobile = width <= 768;
   const isIOS = mounted ? detectIOS() : false;
   const vhUnit = isIOS ? "lvh" : "dvh";
-  const progressMotion = useMotionValue(0);
 
   useEffect(() => {
     setMounted(true);
@@ -205,59 +202,28 @@ export default function LegalPage({
     return () => ro.disconnect();
   }, [mounted]);
 
+  // Lenis / touch scroll → scrollPx MotionValue
   useEffect(() => {
-    if (isTouch) {
-      // Su touch continuiamo a leggere lo scroll nativo direttamente:
-      // nessun Lenis, comportamento identico a prima.
-      let rafId = 0;
-      let target = 0;
-      let current = 0;
-      const onScroll = () => {
-        const sy = window.scrollY;
-        const limit =
-          document.documentElement.scrollHeight - window.innerHeight;
-        if (limit > 0) target = Math.min(6, (sy / limit) * 6);
-      };
-      const tick = () => {
-        current += (target - current) * 0.1;
-        if (Math.abs(target - current) > 0.0001) {
-          progressMotion.set(current);
-        }
-        rafId = requestAnimationFrame(tick);
-      };
+    if (isTouchDevice()) {
+      const onScroll = () => scrollPx.set(window.scrollY);
       onScroll();
       window.addEventListener("scroll", onScroll, { passive: true });
-      rafId = requestAnimationFrame(tick);
-      return () => {
-        window.removeEventListener("scroll", onScroll);
-        cancelAnimationFrame(rafId);
-      };
+      return () => window.removeEventListener("scroll", onScroll);
     }
-    if (!lenis) return;
-    const handleScroll = (e: { scroll: number; limit: number }) => {
-      progressMotion.set(Math.min(6, (e.scroll / e.limit) * 6));
+
+    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
+    let rafId = 0;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
     };
-    lenis.on("scroll", handleScroll);
-    // Sync immediato con la posizione corrente del Lenis condiviso:
-    // fondamentale ora che l'istanza sopravvive alla navigazione, quindi
-    // potrebbe avere già uno scroll != 0 da questa pagina.
-    if (lenis.limit > 0) {
-      progressMotion.set(Math.min(6, (lenis.scroll / lenis.limit) * 6));
-    }
+    rafId = requestAnimationFrame(raf);
+    lenis.on("scroll", (e: { scroll: number }) => scrollPx.set(e.scroll));
     return () => {
-      lenis.off("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
     };
-  }, [lenis, isTouch, progressMotion]);
-  // Reset dello scroll fisico ad ogni mount di pagina (navigazione),
-  // così ogni pagina parte sempre dall'inizio del proprio scroll-track,
-  // indipendentemente da dove si trovava la pagina precedente.
-  useEffect(() => {
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo({ top: 0, left: 0 });
-    }
-  }, [lenis]);
+  }, [scrollPx]);
 
   // Spring ONLY for decorative elements (inset/radius/card-exit)
   // contentY uses RAW scrollPx for 1:1 response
