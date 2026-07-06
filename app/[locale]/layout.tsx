@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: {
       default: title,
-      template: "%s",
+      template: "%s | Sinersys",
     },
     description,
     keywords: [
