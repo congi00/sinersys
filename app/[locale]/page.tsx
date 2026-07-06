@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale: locale, namespace: 'homepage' });
   const productSchema = {
     '@context': 'https://schema.org',
-    '@type': 'home',
+    '@type': 'WebPage',
     name: 'Home',
     description: t('slide0.subtitle'),
     brand: { '@type': 'Brand', name: 'Sinersys' },

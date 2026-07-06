@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   const t = await getTranslations({ locale: locale, namespace: 'aboutus' });
   const productSchema = {
     '@context': 'https://schema.org',
-    '@type': 'About',
+    '@type': 'AboutPage',
     name: 'Sinersys — New Energy Frontiers',
     description: t('hero.suptitle'),
     brand: { '@type': 'Brand', name: 'Sinersys' },
