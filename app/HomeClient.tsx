@@ -127,7 +127,7 @@ export default function Home() {
         const sy = window.scrollY;
         const limit =
           document.documentElement.scrollHeight - window.innerHeight;
-        if (limit > 0) target = Math.min(6, (sy / limit) * 6);
+        if (limit > 0) target = Math.min(9.5, (sy / limit) * 9.5);
       };
       const tick = () => {
         current += (target - current) * 0.1;
@@ -146,14 +146,14 @@ export default function Home() {
     }
     if (!lenis) return;
     const handleScroll = (e: { scroll: number; limit: number }) => {
-      progressMotion.set(Math.min(6, (e.scroll / e.limit) * 6));
+      progressMotion.set(Math.min(9, (e.scroll / e.limit) * 9));
     };
     lenis.on("scroll", handleScroll);
     // Sync immediato con la posizione corrente del Lenis condiviso:
     // fondamentale ora che l'istanza sopravvive alla navigazione, quindi
     // potrebbe avere già uno scroll != 0 da questa pagina.
     if (lenis.limit > 0) {
-      progressMotion.set(Math.min(6, (lenis.scroll / lenis.limit) * 6));
+      progressMotion.set(Math.min(9, (lenis.scroll / lenis.limit) * 9));
     }
     return () => {
       lenis.off("scroll", handleScroll);
