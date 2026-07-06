@@ -26,7 +26,7 @@ export default function WhiteSection({ progressMotion, isMobile, vhUnit, setOpen
   const sectionCTAY    = useTransform(
     progressMotion,
     [6.0, 6.35, 7.0, 7.01, 7.8],
-    [0, 0, -320, -320, -1000]
+    [0, 0, -320, -320, -1500]
   );
   const sectionCTAFlex = useTransform(
     progressMotion,

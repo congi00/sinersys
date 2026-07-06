@@ -71,6 +71,7 @@ export default function Home() {
   const [width, setWidth] = useState(1024);
 
   const isMobile = width <= 768;
+  const isXL = width >= 1536;
   const isIOS = mounted ? detectIOS() : false;
   const vhUnit = isIOS ? "lvh" : "dvh";
   const contentRef = useRef<HTMLDivElement>(null);
@@ -393,7 +394,7 @@ export default function Home() {
         >
           <div
             style={{
-              maxWidth: isMobile ? "100%" : "65%",
+              maxWidth: isMobile || isXL ? "100%" : "65%",
               marginBottom: isIOS ? "10lvh" : "10dvh",
             }}
           >
@@ -420,7 +421,7 @@ export default function Home() {
               style={{ lineHeight: "1.2" }}
               className={clsx(
                 HERO_SUBTITLE_CLASS,
-                "px-6 sm:px-6 mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] sm:max-w-4xl"
+                "px-6 sm:px-6 mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] sm:max-w-4xl 2xl:max-w-full"
               )}
               aria-hidden={false}
             >
