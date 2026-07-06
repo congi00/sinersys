@@ -487,6 +487,7 @@ export default function ApwecPage() {
   }, []);
 
   const isMobile = width <= 768;
+  const isXL = width >= 1536;
 
   useEffect(() => {
     const r = () => setWidth(window.innerWidth);
@@ -749,9 +750,14 @@ export default function ApwecPage() {
   const bodys: React.CSSProperties = {
     margin: "0.8rem 0 0",
     lineHeight: 1.1,
-    color: "rgba(200,218,250,0.70)",
+    color: "rgba(200,218,250,0.90)",
     maxWidth: isMobile ? "100%" : "820px",
+    textShadow: "0 1px 2px rgba(255,255,255,0.35),0 0 8px rgba(0,0,0,0.18)"
   };
+
+  if(!isMobile){
+    bodys.marginTop = "27%"
+  }
 
   const textWrap = (extra?: React.CSSProperties): React.CSSProperties => ({
     position: "absolute",
@@ -786,6 +792,24 @@ export default function ApwecPage() {
     [0,    1,   0, 0, 1 ]
   );
   const ts = useTranslations("scrollNavigator");
+  useEffect(() => {
+    menuTheme.set(0); 
+    headerTheme.set(0);
+  }, []);
+
+  const [objectPos, setObjectPos] = useState("center 45%");
+
+  useEffect(() => {
+    const update = () => {
+      const ar = window.innerWidth / window.innerHeight;
+      if (ar <= 0.75) setObjectPos("center 30%");       // portrait stretto (phone)
+      else if (ar >= 2.1) setObjectPos("center 55%");    // ultra-wide desktop
+      else setObjectPos("center 45%");                   // laptop/tablet/desktop standard
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (
@@ -847,20 +871,21 @@ export default function ApwecPage() {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                // objectPosition: objectPos,
                 zIndex: 2,
                 pointerEvents: "none",
               }}
             />
 
             {/* Slide 0 */}
-            <m.div style={{ ...textWrap(isMobile? {top:"25%"} : {
+            <m.div style={{ ...textWrap(isMobile? {top:"25%"} : !isXL ? {
               textAlign: "center",
-              top: "20%",
+              top: "18%",
               maxWidth: "100vw",
-            }), ...s0 }} aria-hidden={false}>
+            }: {textAlign: "center",maxWidth: "90vw",top: "16%",}), ...s0 }} aria-hidden={false}>
               <h4 className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] text-center")} style={sup}>{t("slide0.suptitle")}</h4>
               <h1 className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line text-center")} style={h1s}>{t("slide0.title")}</h1>
-              <p className={clsx(HERO_SUBTITLE_CLASS,"mt-4 whitespace-pre-line text-center")} style={{...bodys, ...(isMobile ? {marginTop: "65%"} : {maxWidth: "100%"})}}>{t("slide0.subtitle")}</p>
+              <p className={clsx(HERO_SUBTITLE_CLASS,"mt-4 whitespace-pre-line text-center")} style={{...bodys, ...(isMobile ? {marginTop: "65%"} :  !isXL ? {maxWidth: "100%"} : {maxWidth: "100%", marginTop: "25%"})}}>{t("slide0.subtitle")}</p>
             </m.div>
 
             {/* Slide 1 */}
@@ -868,13 +893,13 @@ export default function ApwecPage() {
               textAlign: "center",
               top: "15%",
             } : {
-              top: "20%",
+              top: "18%",
               textAlign: "center",
               maxWidth: "100vw",
             }), ...s1 }} aria-hidden={false}>
               <h4 className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] ")} style={sup}>{t("slide1.suptitle")}</h4>
               <h1 className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")} style={h1s}>{t("slide1.title")}</h1>
-              <p className={clsx(HERO_SUBTITLE_CLASS,"mt-4 sm:whitespace-pre-line text-center")} style={{...bodys, ...(isMobile ? { marginTop: "70%"} : {maxWidth: "100%"})}}>{t("slide1.subtitle")}</p>
+              <p className={clsx(HERO_SUBTITLE_CLASS,"mt-4 sm:whitespace-pre-line text-center")} style={{...bodys, ...(isMobile ? { marginTop: "70%"} : !isXL ? {maxWidth: "100%"} :{maxWidth: "100%", marginTop: "22%"})}}>{t("slide1.subtitle")}</p>
             </m.div>
 
             {/* Slide 2 — centred on desktop */}
@@ -886,10 +911,9 @@ export default function ApwecPage() {
                       top: "12%",
                     }
                     : {
-                        top: "20%",
-                        left: "5%",
+                        top: "15%",
                         textAlign: "center",
-                        maxWidth: "100vw"
+                        maxWidth: "100%"
                       }
                 ),
                 ...s2,
@@ -908,7 +932,7 @@ export default function ApwecPage() {
                   ...bodys,
                   ...(isMobile
                     ? {marginTop: "45%", textAlign: "center"}
-                    : { margin: "0.8rem auto 0", textAlign: "center", }),
+                    : !isXL ? { margin: "0 auto 0", textAlign: "center", maxWidth: "100%" } :{maxWidth: "80%", marginLeft: "10%" ,marginTop: "24%"}),
                 }}
                 className={clsx(HERO_SUBTITLE_CLASS,"mt-4 whitespace-pre-line")}
               >
@@ -925,7 +949,7 @@ export default function ApwecPage() {
                       textAlign: "center",
                     }
                     : {
-                        top: "7%",
+                        top: "8%",
                         textAlign: "center",
                         maxWidth: "100vw"
                       }
@@ -954,7 +978,7 @@ export default function ApwecPage() {
                   ...bodys,
                   ...(isMobile
                     ? {marginTop:"45%", textAlign: "center" }
-                    : { margin: "0.8rem auto 0", marginTop:"23%", textAlign: "center" }),
+                    : { margin: "0.8rem auto 0", marginTop:"25%", textAlign: "center" }),
                 }}
                 className={clsx(HERO_SUBTITLE_CLASS,"mt-4 whitespace-pre-line")}
               >
