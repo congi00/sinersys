@@ -35,6 +35,7 @@ import { useMotionValueEvent } from "framer-motion";
 import dynamic from "next/dynamic";
 import { HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, SUPTITLE_CLASS } from "./typography";
 import { formatRegistered } from "./formatter";
+import { useLenis } from "./containers/LenisProvider";
 
 const LiquidBackground = dynamic(() => import('./components/LiquidBackground'), {
     ssr: false,
@@ -64,6 +65,7 @@ export default function Home() {
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const navigationState = useAppSelector((s) => s.siteState.navigationState);
   const dispatch = useAppDispatch();
+  const { lenis, isTouch } = useLenis();
 
   const [vhPx, setVhPx] = useState(0);
   const [width, setWidth] = useState(1024);
@@ -115,27 +117,25 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (isTouchDevice()) {
+    if (isTouch) {
+      // Su touch continuiamo a leggere lo scroll nativo direttamente:
+      // nessun Lenis, comportamento identico a prima.
       let rafId = 0;
       let target = 0;
       let current = 0;
-
       const onScroll = () => {
         const sy = window.scrollY;
         const limit =
           document.documentElement.scrollHeight - window.innerHeight;
-        if (limit > 0) target = Math.min(9.5, (sy / limit) * 9.5);
+        if (limit > 0) target = Math.min(6, (sy / limit) * 6);
       };
-
       const tick = () => {
-        // Lerp manuale: 0.1 = smooth ma reattivo su Android
         current += (target - current) * 0.1;
         if (Math.abs(target - current) > 0.0001) {
           progressMotion.set(current);
         }
         rafId = requestAnimationFrame(tick);
       };
-
       onScroll();
       window.addEventListener("scroll", onScroll, { passive: true });
       rafId = requestAnimationFrame(tick);
@@ -144,22 +144,31 @@ export default function Home() {
         cancelAnimationFrame(rafId);
       };
     }
-
-    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
-    let rafId = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+    if (!lenis) return;
+    const handleScroll = (e: { scroll: number; limit: number }) => {
+      progressMotion.set(Math.min(6, (e.scroll / e.limit) * 6));
     };
-    rafId = requestAnimationFrame(raf);
-    lenis.on("scroll", (e: { scroll: number; limit: number }) => {
-      progressMotion.set(Math.min(9, (e.scroll / e.limit) * 9));
-    });
+    lenis.on("scroll", handleScroll);
+    // Sync immediato con la posizione corrente del Lenis condiviso:
+    // fondamentale ora che l'istanza sopravvive alla navigazione, quindi
+    // potrebbe avere già uno scroll != 0 da questa pagina.
+    if (lenis.limit > 0) {
+      progressMotion.set(Math.min(6, (lenis.scroll / lenis.limit) * 6));
+    }
     return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
+      lenis.off("scroll", handleScroll);
     };
-  }, [progressMotion]);
+  }, [lenis, isTouch, progressMotion]);
+  // Reset dello scroll fisico ad ogni mount di pagina (navigazione),
+  // così ogni pagina parte sempre dall'inizio del proprio scroll-track,
+  // indipendentemente da dove si trovava la pagina precedente.
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, left: 0 });
+    }
+  }, [lenis]);
 
   const smooth = useSpring(progressMotion, {
     stiffness: isMobile ? 180 : 280,
@@ -271,6 +280,7 @@ export default function Home() {
 
     meta.setAttribute("content", color);
   });
+
 
   if (!mounted) {
     return <div className="min-h-screen bg-[#0f2057]" />;

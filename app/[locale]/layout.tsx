@@ -9,6 +9,7 @@ import LandscapeBlock from "../components/LandscapeBlock";
 import { MotionProvider } from "../containers/MotionProvider";
 import Script from "next/script";
 import CookieBanner from "../components/CookieBanner";
+import { LenisProvider } from "../containers/LenisProvider";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -145,12 +146,16 @@ const organizationSchema = {
   address: {
     "@type": "PostalAddress",
     addressCountry: "IT",
-    streetAddress: 'Via della Zecca 1',      // via e numero civico reali
-    addressLocality: 'Bologna',    // città
-    addressRegion: 'Bologna',      // provincia/regione
-    postalCode: '40121',
+    streetAddress: "Via della Zecca 1", // via e numero civico reali
+    addressLocality: "Bologna", // città
+    addressRegion: "Bologna", // provincia/regione
+    postalCode: "40121",
   },
-  geo: { '@type': 'GeoCoordinates', latitude: 44.4971897, longitude: 11.3316031 },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 44.4971897,
+    longitude: 11.3316031,
+  },
   sameAs: ["https://www.linkedin.com/company/sinersys-italia"],
 };
 
@@ -234,8 +239,10 @@ export default async function RootLayout({ children, params }: Props) {
           <LandscapeBlock />
           <Providers>
             <NextIntlClientProvider>
-              {children}
-              <CookieBanner />
+              <LenisProvider>
+                {children}
+                <CookieBanner />
+              </LenisProvider>
             </NextIntlClientProvider>
           </Providers>
         </MotionProvider>

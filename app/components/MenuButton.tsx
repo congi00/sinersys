@@ -27,9 +27,9 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
   const navigationState = useAppSelector((state) => state.siteState.navigationState);
   const dispatch        = useAppDispatch();
   const menuVoices      = useTranslations("menu");
-  const [hidden, setHidden] = useState(false);
-  const [isDark, setIsDark] = useState(false);
-
+  const [hidden, setHidden] = useState(() => (hiddenMenu ? hiddenMenu.get() < 0.5 : false));
+  const [isDark, setIsDark] = useState(() => (menuTheme ? menuTheme.get() < 0.5 : false));
+  
   const items = ["homepage", "products", "motor" , "about", "contacts"];
   const currentLocale = typeof window !== 'undefined'
     ? (window.location.pathname.split('/')[1] || 'it')
@@ -53,8 +53,6 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
 
   useEffect(() => {
     if (!menuTheme) return;
-    // Read initial value
-    setIsDark(menuTheme.get() < 0.5);
     // Subscribe to changes
     const unsubscribe = menuTheme.on("change", (v) => {
       setIsDark(v < 0.5);
@@ -64,8 +62,6 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
 
   useEffect(() => {
     if (!hiddenMenu) return;
-    // Read initial value
-    setHidden(hiddenMenu.get() < 0.5);
     // Subscribe to changes
     const unsubscribe = hiddenMenu.on("change", (v) => {
       setHidden(v < 0.5);

@@ -75,8 +75,8 @@ export default function ScrollNavigator({
 }: Props) {
   const [activeIdx, setActiveIdx] = useState(0);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-  const [isDarkMode, setIsDark] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [isDarkMode, setIsDark] = useState(() => (menuTheme ? menuTheme.get() < 0.5 : false));
+  const [hidden, setHidden] = useState(() => (hiddenMenu ? hiddenMenu.get() < 0.5 : false));
   const [isScrolling, setIsScrolling] = useState(false);
 
   // Track active section
@@ -85,8 +85,6 @@ export default function ScrollNavigator({
   });
   useEffect(() => {
     if (!menuTheme) return;
-    // Read initial value
-    setIsDark(menuTheme.get() < 0.5);
     // Subscribe to changes
     const unsubscribe = menuTheme.on("change", (v) => {
       setIsDark(v < 0.5);
@@ -96,8 +94,6 @@ export default function ScrollNavigator({
 
   useEffect(() => {
     if (!hiddenMenu) return;
-    // Read initial value
-    setHidden(hiddenMenu.get() < 0.5);
     // Subscribe to changes
     const unsubscribe = hiddenMenu.on("change", (v) => {
       setHidden(v < 0.5);

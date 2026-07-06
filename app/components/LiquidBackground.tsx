@@ -7,6 +7,7 @@ import {
   m,
   useTransform,
   useMotionValueEvent,
+  useMotionValue,
 } from "framer-motion";
 
 interface Props {
@@ -159,37 +160,46 @@ export default function LiquidBackground({
     null
   );
 
-  if (!progress) return null;
+  // Fallback MotionValue costante quando `progress` non è ancora disponibile:
+  // evita di chiamare gli hook in modo condizionale (Rules of Hooks).
+  const fallbackProgress = useMotionValue(0);
+  const safeProgress = progress ?? fallbackProgress;
 
-  const inset = lockPalette
-    ? useTransform(
-        progress,
-        [0, openPx, readEndPx, closeEndPx],
-        [
-          "inset(16px 16px 16px 16px round 24px)",
-          "inset(0px 0px 0px 0px round 0px)",
-          "inset(0px 0px 0px 0px round 0px)",
-          "inset(16px 16px 16px 16px round 24px)",
-        ]
-      )
-    : useTransform(
-        progress,
-        [0, 0.8],
-        [
-          "inset(16px 16px 16px 16px round 24px)",
-          "inset(0px 0px 0px 0px round 0px)",
-        ]
-      );
+  const insetLocked = useTransform(
+    safeProgress,
+    [0, openPx, readEndPx, closeEndPx],
+    [
+      "inset(16px 16px 16px 16px round 24px)",
+      "inset(0px 0px 0px 0px round 0px)",
+      "inset(0px 0px 0px 0px round 0px)",
+      "inset(16px 16px 16px 16px round 24px)",
+    ]
+  );
+  const insetFree = useTransform(
+    safeProgress,
+    [0, 0.8],
+    [
+      "inset(16px 16px 16px 16px round 24px)",
+      "inset(0px 0px 0px 0px round 0px)",
+    ]
+  );
+  const inset = lockPalette ? insetLocked : insetFree;
 
-  useMotionValueEvent(progress, "change", (p) => {
-    if (lockPalette) {
-      paletteRef.current = 0;
-      return;
-    }
+  const computePalette = (p: number) => {
+    if (lockPalette) return 0;
     const raw = Math.min(1, Math.max(0, (p - 3.05) / 0.15));
-    const eased = raw < 0.5 ? 3 * raw * raw : 1 - Math.pow(-2 * raw + 2, 2) / 2;
-    paletteRef.current = eased;
+    return raw < 0.5 ? 3 * raw * raw : 1 - Math.pow(-2 * raw + 2, 2) / 2;
+  };
+
+  // Sincronizza il ref al valore CORRENTE ad ogni render (mount incluso),
+  // così il primo frame WebGL usa già la palette corretta invece di 0.
+  paletteRef.current = computePalette(safeProgress.get());
+
+  useMotionValueEvent(safeProgress, "change", (p) => {
+    paletteRef.current = computePalette(p);
   });
+
+  if (!progress) return null;
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -197,6 +207,10 @@ export default function LiquidBackground({
 
     let W = window.innerWidth;
     let H = measureVh(vhUnit);
+    if (!W || !H) {
+      W = W || window.innerWidth || 1;
+      H = H || window.innerHeight || 1;
+    }
 
     const renderer = new THREE.WebGLRenderer({
       antialias: false,
@@ -224,6 +238,9 @@ export default function LiquidBackground({
       uniforms,
     });
     scene.add(new THREE.Mesh(geo, mat));
+
+    uniforms.uPalette.value = paletteRef.current;
+    renderer.render(scene, camera);
 
     let rafId = 0;
     const clock = new THREE.Clock();

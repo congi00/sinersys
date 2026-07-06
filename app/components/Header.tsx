@@ -15,7 +15,7 @@ interface Props {
 
 export default function Header({ headerTheme }: Props) {
   const [hidden, setHidden] = useState(false);
-  const [isDark, setIsDark] = useState(false); // true = dark bg → white logo
+  const [isDark, setIsDark] = useState(() => (headerTheme ? headerTheme.get() < 0.5 : false));
   const lastScrollY = useRef(0);
   const { scrollY } = useScroll();
   const router = useRouter();
@@ -36,8 +36,6 @@ export default function Header({ headerTheme }: Props) {
   // 1 = light background → blue logo
   useEffect(() => {
     if (!headerTheme) return;
-    // Read initial value
-    setIsDark(headerTheme.get() < 0.5);
     // Subscribe to changes
     const unsubscribe = headerTheme.on("change", (v) => {
       setIsDark(v < 0.5);
