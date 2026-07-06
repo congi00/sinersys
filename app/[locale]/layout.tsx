@@ -145,7 +145,12 @@ const organizationSchema = {
   address: {
     "@type": "PostalAddress",
     addressCountry: "IT",
+    streetAddress: 'Via della Zecca 1',      // via e numero civico reali
+    addressLocality: 'Bologna',    // città
+    addressRegion: 'Bologna',      // provincia/regione
+    postalCode: '40121',
   },
+  geo: { '@type': 'GeoCoordinates', latitude: 44.4971897, longitude: 11.3316031 },
   sameAs: ["https://www.linkedin.com/company/sinersys-italia"],
 };
 
