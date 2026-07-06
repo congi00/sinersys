@@ -19,7 +19,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
     ],
-    sitemap: 'https://www.sinersys.it/sitemap.xml',
+    sitemap: ['https://www.sinersys.it/sitemap.xml','https://www.sinersys.it/video-sitemap.xml'],
     host: 'https://www.sinersys.it',
   };
 }

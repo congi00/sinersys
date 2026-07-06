@@ -56,6 +56,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ]
   };
 
+  const videoSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: 'APWEC — Autonomous Perpetual Wave Energy Converter Presentation',
+    description: t('slide0.subtitle'),
+    thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
+    uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
+    duration: 'PT0M15S', // durata reale del file, formato ISO 8601
+    contentUrl: 'https://www.sinersys.it/apwecintro.mp4',
+    embedUrl: `https://www.sinersys.it/${locale}`,
+    publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
+  };
+
+  const videoSchemaM = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: 'APWEC — Autonomous Perpetual Wave Energy Converter Presentation',
+    description: t('slide0.subtitle'),
+    thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
+    uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
+    duration: 'PT0M15S', // durata reale del file, formato ISO 8601
+    contentUrl: 'https://www.sinersys.it/apwecintro1.mp4',
+    embedUrl: `https://www.sinersys.it/${locale}`,
+    publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
+  };
+
   return {
     title: 'Sinersys - New Energy Frontiers',
     description: t('slide0.subtitle'),
@@ -75,7 +101,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "script:ld+json": [
         JSON.stringify(productSchema),
         JSON.stringify(breadcrumb),
-        JSON.stringify(faqSchema)
+        JSON.stringify(faqSchema),
+        JSON.stringify(videoSchema),
+        JSON.stringify(videoSchemaM)
       ]
     },
   };

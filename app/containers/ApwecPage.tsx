@@ -30,13 +30,13 @@ const SCENES = 6.2;
 const MEDIA: MediaItem[] = [
   {
     type: "video",
-    src: "/apwecprod_fixed.mp4",
+    src: "/apwecprod_fixed_w.mp4",
     caption: "Prototipo APWEC — ripresa esterna",
     date: "2024 · ARCHIVIO",
   },
   {
     type: "video",
-    src: "/apwecprod_fixed1.webm",
+    src: "/apwecprod_fixed_w1.webm",
     caption: "Sequenza mobile",
     date: "2024 · FIELD",
   },
@@ -511,7 +511,7 @@ export default function ApwecPage() {
 
   /* ── Video scrubbing ──────────────────────────────────────────────────── */
   const videoRef = useRef<HTMLVideoElement>(null);
-  const videoSrc = isMobile ? "/apwecprod_fixed1.mp4" : "/apwecprod_fixed.mp4";
+  const videoSrc = isMobile ? "/apwecprod_fixed_w1.mp4" : "/apwecprod_fixed_w.mp4";
 
   const videoDuration = useRef<number>(0);
 

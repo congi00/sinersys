@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@deemlol/next-icons": "^0.1.9",
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.6.1",
     "@reduxjs/toolkit": "^2.11.2",
     "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.38.0",
