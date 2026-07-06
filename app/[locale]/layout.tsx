@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import {NextIntlClientProvider} from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-import { routing } from '../i18n/routing';
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "../i18n/routing";
 import "../globals.css";
-import { Providers } from "../providers"; 
+import { Providers } from "../providers";
 import LandscapeBlock from "../components/LandscapeBlock";
 import { MotionProvider } from "../containers/MotionProvider";
 import Script from "next/script";
@@ -20,15 +20,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = "Sinersys — New Energy Frontiers";
 
-  const description =
-    t("slide0.subtitle")
-      .replace(/\n/g, " ")
-      .trim();
+  const description = t("slide0.subtitle").replace(/\n/g, " ").trim();
 
   const ogLocale =
-  locale === 'it' ? 'it_IT' :
-  locale === 'en' ? 'en_US' :
-  locale === 'de' ? 'de_DE' : 'fr_FR';
+    locale === "it"
+      ? "it_IT"
+      : locale === "en"
+      ? "en_US"
+      : locale === "de"
+      ? "de_DE"
+      : "fr_FR";
 
   return {
     title: {
@@ -45,42 +46,46 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "motore a 6 fasi",
       "generatore energia rinnovabile",
       "energia continua",
-      "motore elettrico innovativo", 
+      "motore elettrico innovativo",
       "brevetto italiano energia",
       "generatore energia",
       "generatore verde",
       "energia verde",
       "green",
       "green energy",
-      "six phase electric motor", 
-      "wave energy converter", 
+      "six phase electric motor",
+      "wave energy converter",
       "APWEC technology",
       "renewable energy",
       "renewable energy generator",
-      "Italian clean energy startup", 
+      "Italian clean energy startup",
       "perpetual wave generator",
       "Sechs Phasen Motor",
       "Wellenenergie Konverter",
-      "Erneuerbare Energie Italien", 
-      "innovativer Elektromotor", 
+      "Erneuerbare Energie Italien",
+      "innovativer Elektromotor",
       "Meeresenergie",
-      "moteur hexaphasé", 
+      "moteur hexaphasé",
       "convertisseur énergie des vagues",
       "énergie renouvelable",
       "startup italienne énergie",
-      "moteur électrique innovant"
+      "moteur électrique innovant",
     ],
     authors: [{ name: "Sinersys" }],
     creator: "Sinersys",
     metadataBase: new URL("https://www.sinersys.it"),
     openGraph: {
-      type: 'website',
+      type: "website",
       locale: ogLocale,
-      alternateLocale: ['it_IT', 'en_US', 'de_DE', 'fr_FR'].filter(l => l !== ogLocale),
+      alternateLocale: ["it_IT", "en_US", "de_DE", "fr_FR"].filter(
+        (l) => l !== ogLocale
+      ),
       title,
       description,
-      siteName: 'Sinersys',
-      images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Sinersys' }],
+      siteName: "Sinersys",
+      images: [
+        { url: "/og-image.jpg", width: 1200, height: 630, alt: "Sinersys" },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -95,15 +100,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `https://www.sinersys.it/${locale}`,
       languages: {
-        'it':        'https://www.sinersys.it/it',
-        'en':        'https://www.sinersys.it/en',
-        'de':        'https://www.sinersys.it/de',
-        'fr':        'https://www.sinersys.it/fr',
-        'x-default': 'https://www.sinersys.it/it',
-      }
+        it: "https://www.sinersys.it/it",
+        en: "https://www.sinersys.it/en",
+        de: "https://www.sinersys.it/de",
+        fr: "https://www.sinersys.it/fr",
+        "x-default": "https://www.sinersys.it/it",
+      },
     },
     icons: {
-      icon: [{ url: "/favicon-32x32.png", sizes: "32x32" }, { url: "/favicon-16x16.png", sizes: "16x16" }],
+      icon: [
+        { url: "/favicon-32x32.png", sizes: "32x32" },
+        { url: "/favicon-16x16.png", sizes: "16x16" },
+      ],
       apple: "/apple-touch-icon.png",
     },
     manifest: "/site.webmanifest",
@@ -120,25 +128,28 @@ export async function generateStaticParams() {
 }
 
 const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Sinersys',
-  url: 'https://www.sinersys.it',
-  logo: 'https://www.sinersys.it/full-logo-sinersys.png',
-  description: 'Ricerca e Sviluppo di tecnologie per nuove frontiere energetiche come APWEC e motore a 6 fasi.',
-  foundingDate: '2020',
-  contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', email: 'info@sinersys.it', availableLanguage: ['Italian','English','German','French'] },
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'IT',
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Sinersys",
+  url: "https://www.sinersys.it",
+  logo: "https://www.sinersys.it/full-logo-sinersys.png",
+  description:
+    "Ricerca e Sviluppo di tecnologie per nuove frontiere energetiche come APWEC e motore a 6 fasi.",
+  foundingDate: "2020",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: "info@sinersys.it",
+    availableLanguage: ["Italian", "English", "German", "French"],
   },
-  sameAs: [
-    'https://www.linkedin.com/company/sinersys-italia'
-  ]
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "IT",
+  },
+  sameAs: ["https://www.linkedin.com/company/sinersys-italia"],
 };
 
-
-export default async function RootLayout({children, params}: Props) {
+export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params;
 
   if (!routing.locales.includes(locale as any)) {
@@ -150,16 +161,30 @@ export default async function RootLayout({children, params}: Props) {
   return (
     <html lang={locale} dir="ltr">
       <head>
-        <meta charSet="utf-8"/>
-        <meta name="next-size-adjust" content=""/>
-        <meta 
-          name="viewport" 
-          content="width=device-width, initial-scale=1, viewport-fit=cover" 
+        <meta charSet="utf-8" />
+        <meta name="next-size-adjust" content="" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="preload" href="/font/Eurostile Extended Regular/Eurostile Extended Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <link
+          rel="preload"
+          href="/font/Eurostile Extended Regular/Eurostile Extended Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -193,17 +218,20 @@ export default async function RootLayout({children, params}: Props) {
           antialiased pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] h-[100vh] h-[100dvh] h-[100lvh]
         `}
       >
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-white focus:text-black focus:p-2">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-white focus:text-black focus:p-2"
+        >
           Skip to main content
         </a>
 
         <MotionProvider>
           <LandscapeBlock />
           <Providers>
-          <NextIntlClientProvider>
-            {children}
-            <CookieBanner />
-          </NextIntlClientProvider>
+            <NextIntlClientProvider>
+              {children}
+              <CookieBanner />
+            </NextIntlClientProvider>
           </Providers>
         </MotionProvider>
       </body>

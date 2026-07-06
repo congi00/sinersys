@@ -891,7 +891,7 @@ export default function ApwecPage() {
             {/* Slide 1 */}
             <m.div style={{ ...textWrap(isMobile? {
               textAlign: "center",
-              top: "18%",
+              top: "25%",
             } : {
               top: "18%",
               textAlign: "center",
@@ -908,7 +908,7 @@ export default function ApwecPage() {
                 ...textWrap(
                   isMobile
                     ? {
-                      top: "18%",
+                      top: "25%",
                     }
                     : {
                         top: "15%",
@@ -945,7 +945,7 @@ export default function ApwecPage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? {top: "18%",
+                    ? {top: "25%",
                       textAlign: "center",
                     }
                     : {
