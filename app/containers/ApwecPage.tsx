@@ -861,6 +861,7 @@ export default function ApwecPage() {
               ref={videoRef}
               key={videoSrc}
               src={videoSrc}
+              aria-label={t('videoAriaLabel')}
               playsInline
               muted
               preload="auto"
