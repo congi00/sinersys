@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
     },
     alternates: {
-      canonical: `https://www.sinersys.it/${locale}/aboutus`,
-      languages: { it: '/it/aboutus', en: '/en/aboutus', de: '/de/aboutus', fr: '/fr/aboutus' },
+      canonical: `https://www.sinersys.it/${locale}/about-us`,
+      languages: { it: '/it/about-us', en: '/en/about-us', de: '/de/about-us', fr: '/fr/about-us' },
     },
     other: {
       "script:ld+json": [
