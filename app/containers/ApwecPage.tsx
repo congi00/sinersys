@@ -584,7 +584,7 @@ export default function ApwecPage() {
         const sy = window.scrollY;
         const limit =
           document.documentElement.scrollHeight - window.innerHeight;
-        if (limit > 0) target = Math.min(6, (sy / limit) * 6);
+        if (limit > 0) target = Math.min(SCENES, (sy / limit) * SCENES);
       };
       const tick = () => {
         current += (target - current) * 0.1;
@@ -603,7 +603,7 @@ export default function ApwecPage() {
     }
     if (!lenis) return;
     const handleScroll = (e: { scroll: number; limit: number }) => {
-      progressMotion.set(Math.min(6, (e.scroll / e.limit) * 6));
+      progressMotion.set(Math.min(SCENES, (e.scroll / e.limit) * SCENES));
     };
     lenis.on("scroll", handleScroll);
     // Sync immediato con la posizione corrente del Lenis condiviso:
