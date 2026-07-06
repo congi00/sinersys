@@ -162,6 +162,7 @@ export default function LegalPage({
   const isMobile = width <= 768;
   const isIOS = mounted ? detectIOS() : false;
   const vhUnit = isIOS ? "lvh" : "dvh";
+  const progressMotion = useMotionValue(0);
 
   useEffect(() => {
     setMounted(true);
