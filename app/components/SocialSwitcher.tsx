@@ -191,6 +191,7 @@ export default function SocialSwitcher({ isDark }: Props) {
             role="option"
             initial={{ opacity: 0, x: -6 }}
             animate={{ opacity: 1, x: 0 }}
+            tabIndex={i}
             transition={{
               delay: i * 0.04,
               duration: 0.18,
