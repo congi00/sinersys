@@ -489,12 +489,6 @@ export default function ApwecPage() {
   const isMobile = width <= 768;
   const isXL = width >= 1536;
 
-  useEffect(() => {
-    const r = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", r);
-    return () => window.removeEventListener("resize", r);
-  }, []);
-
   /* ── Content height (for total scroll) ───────────────────────────────── */
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentH, setContentH] = useState(0);
@@ -520,6 +514,30 @@ export default function ApwecPage() {
       videoDuration.current = videoRef.current.duration || 0;
     }
   }, []);
+
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    if (vid.readyState >= 1 /* HAVE_METADATA */ && vid.duration) {
+      videoDuration.current = vid.duration;
+      return;
+    }
+    const onReady = () => {
+      if (vid.duration) videoDuration.current = vid.duration;
+    };
+    vid.addEventListener("loadedmetadata", onReady);
+    vid.addEventListener("canplay", onReady);
+    const fallbackTimer = window.setTimeout(() => {
+      if (!videoDuration.current) {
+        vid.load();
+      }
+    }, 300);
+    return () => {
+      vid.removeEventListener("loadedmetadata", onReady);
+      vid.removeEventListener("canplay", onReady);
+      clearTimeout(fallbackTimer);
+    };
+  }, [videoSrc]);
 
   /* ── Scroll ───────────────────────────────────────────────────────────── */
   const progressMotion = useMotionValue(0);
@@ -607,23 +625,30 @@ export default function ApwecPage() {
   /* ── Drive video currentTime from scroll progress ─────────────────────── */
   const VIDEO_START = 0;
   const VIDEO_END = 3.5;
-
+  const pendingVideoProgress = useRef<number | null>(null);
+  
   useMotionValueEvent(smooth, "change", (p) => {
-    const vid = videoRef.current;
-    if (!vid || !videoDuration.current) return;
-
-    // normalizza p dentro il range del video
     const progress = Math.min(
       1,
       Math.max(0, (p - VIDEO_START) / (VIDEO_END - VIDEO_START))
     );
-
-    const targetTime = progress * videoDuration.current;
-
-    if (Math.abs(vid.currentTime - targetTime) > 0.01) {
-      vid.currentTime = targetTime;
-    }
+    pendingVideoProgress.current = progress;
   });
+
+  useEffect(() => {
+    let rafId = 0;
+    const apply = () => {
+      rafId = requestAnimationFrame(apply);
+      const vid = videoRef.current;
+      if (!vid || !videoDuration.current || pendingVideoProgress.current === null) return;
+      const targetTime = pendingVideoProgress.current * videoDuration.current;
+      if (Math.abs(vid.currentTime - targetTime) > 0.01) {
+        vid.currentTime = targetTime;
+      }
+    };
+    rafId = requestAnimationFrame(apply);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
 
   const vh = vhPx;
 
@@ -866,6 +891,7 @@ export default function ApwecPage() {
               muted
               preload="auto"
               onLoadedMetadata={handleVideoLoaded}
+              onCanPlay={handleVideoLoaded}
               style={{
                 position: "absolute",
                 inset: 0,
