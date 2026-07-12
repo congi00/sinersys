@@ -43,7 +43,7 @@ function preloadVideo(src: string): Promise<void> {
     video.oncanplay = () => resolve();
     video.onerror   = () => resolve();
     // timeout di sicurezza: se dopo 4s non è pronto, vai avanti
-    const t = setTimeout(resolve, 4000);
+    const t = setTimeout(resolve, 2000);
     video.src = src;
     video.load();
     video.addEventListener("canplay", () => clearTimeout(t), { once: true });
