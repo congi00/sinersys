@@ -18,7 +18,7 @@ import OurPromise from "./components/OurPromise";
 import { useLocale, useTranslations } from "next-intl";
 import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
-import { detectIOS } from "./support/useViewportHeight";
+import { detectIOS, useViewportHeight } from "./support/useViewportHeight";
 import FaqSection from "./components/FaqSection";
 import ContactDrawer from "./components/ContactDrawer";
 import { setNavigationState, setOpenContact } from "./features/counterSlice";
@@ -70,7 +70,7 @@ export default function Home() {
   const dispatch = useAppDispatch();
   const { lenis, isTouch } = useLenis();
 
-  const [vhPx, setVhPx] = useState(0);
+  
   const [width, setWidth] = useState(1024);
 
   const isMobile = width <= 768;
@@ -79,29 +79,11 @@ export default function Home() {
   const vhUnit = isIOS ? "lvh" : "dvh";
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentH, setContentH] = useState(0);
+  const vhPx = useViewportHeight(isIOS);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  useEffect(() => {
-    const measure = () => {
-      const el = document.createElement("div");
-      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${
-        isIOS ? "lvh" : "dvh"
-      };pointer-events:none;visibility:hidden;`;
-      document.body.appendChild(el);
-      setVhPx(el.getBoundingClientRect().height);
-      document.body.removeChild(el);
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    window.addEventListener("orientationchange", measure);
-    return () => {
-      window.removeEventListener("resize", measure);
-      window.removeEventListener("orientationchange", measure);
-    };
-  }, [isIOS]);
 
   useEffect(() => {
     const r = () => setWidth(window.innerWidth);

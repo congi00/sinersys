@@ -38,7 +38,7 @@
 import { useEffect, useRef, useState } from "react";
 import { m, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Lenis from "lenis";
-import { detectIOS } from "../support/useViewportHeight";
+import { detectIOS, useViewportHeight } from "../support/useViewportHeight";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuButton from "../components/MenuButton";
@@ -143,7 +143,6 @@ export default function LegalPage({
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const scrollPx = useMotionValue(0);
   const [mounted, setMounted] = useState(false);
-  const [vhPx, setVhPx] = useState(0);
   const [width, setWidth] = useState(1024);
 
   // ── content height — misurato sul div STATICO (senza transform applicato) ─
@@ -160,30 +159,12 @@ export default function LegalPage({
   const isMobile = width <= 768;
   const isIOS = mounted ? detectIOS() : false;
   const vhUnit = isIOS ? "lvh" : "dvh";
+  const vhPx = useViewportHeight(isIOS);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Measure viewport height accurately (handles iOS/Android quirks)
-  useEffect(() => {
-    const measure = () => {
-      const el = document.createElement("div");
-      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${
-        isIOS ? "lvh" : "dvh"
-      };pointer-events:none;visibility:hidden;`;
-      document.body.appendChild(el);
-      setVhPx(el.getBoundingClientRect().height);
-      document.body.removeChild(el);
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    window.addEventListener("orientationchange", measure);
-    return () => {
-      window.removeEventListener("resize", measure);
-      window.removeEventListener("orientationchange", measure);
-    };
-  }, [isIOS]);
 
   // Measure content height from the STATIC wrapper (no transform contamination)
   useEffect(() => {
