@@ -12,7 +12,6 @@ import Lenis from "lenis";
 import Header from "./components/Header";
 import MenuButton from "./components/MenuButton";
 import clsx from "clsx";
-import IntroParticles from "./components/IntroParticles";
 import HomePageAbout from "./containers/HomePageAbout";
 import ScatteredCards from "./components/ScatteredCards";
 import OurPromise from "./components/OurPromise";
@@ -41,6 +40,10 @@ const LiquidBackground = dynamic(() => import('./components/LiquidBackground'), 
     ssr: false,
     loading: () => <div className="h-screen bg-[#1c398e]" />
   });
+
+const IntroParticles = dynamic(() => import('./components/IntroParticles'), {
+    ssr: false,
+});
   
 
 function isTouchDevice() {
