@@ -200,6 +200,7 @@ export default function SocialSwitcher({ isDark }: Props) {
                 ease: [0.22, 1, 0.36, 1],
               }}
               whileTap={{ scale: 0.97 }}
+              aria-label={social.label}
               style={{
                 //   display: "flex",
                 //   alignItems: "center",
@@ -216,7 +217,7 @@ export default function SocialSwitcher({ isDark }: Props) {
                 //   textDecoration: "none",
               }}
             >
-              <span style={{ flexShrink: 0 }}>{social.icon}</span>
+              <span aria-hidden="true" style={{ flexShrink: 0 }}>{social.icon}</span>
             </m.a>
           ))}
         </div>
