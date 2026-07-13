@@ -43,26 +43,40 @@ function GlowLink({
     ? { target: "_blank", rel: "noopener noreferrer" }
     : {};
 
-  return (
-    <m.a
-      href={openContact ? undefined : href}
-      {...props}
-      className="block relative text-sm text-[#f4f7fa]/80 transition-colors whitespace-pre-line cursor-pointer"
-      whileHover={{
-        color: "#f4f7fa",
-        textShadow:
-          "0px 0px 8px rgba(255,255,255,0.8), 0px 0px 20px rgba(99,102,241,0.6)",
-      }}
-      whileTap={{ scale: 0.96 }}
-      onClick={(e) => {
-        if (openContact) {
-          openContact();
-        }
-      }}
-    >
-      {children}
-    </m.a>
-  );
+  if(openContact){
+    return (
+      <m.button
+        {...props}
+        type="button"
+        className="block relative text-sm text-[#f4f7fa]/80 transition-colors whitespace-pre-line cursor-pointer"
+        whileHover={{
+          color: "#f4f7fa",
+          textShadow:
+            "0px 0px 8px rgba(255,255,255,0.8), 0px 0px 20px rgba(99,102,241,0.6)",
+        }}
+        whileTap={{ scale: 0.96 }}
+        onClick={() => openContact()}
+      >
+        {children}
+      </m.button>
+    );
+    }else{
+      return (
+        <m.a
+          href={openContact ? undefined : href}
+          {...props}
+          className="block relative text-sm text-[#f4f7fa]/80 transition-colors whitespace-pre-line cursor-pointer"
+          whileHover={{
+            color: "#f4f7fa",
+            textShadow:
+              "0px 0px 8px rgba(255,255,255,0.8), 0px 0px 20px rgba(99,102,241,0.6)",
+          }}
+          whileTap={{ scale: 0.96 }}
+        >
+          {children}
+        </m.a>
+      );
+  }
 }
 
 export interface FooterProps {
