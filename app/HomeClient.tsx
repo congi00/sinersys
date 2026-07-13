@@ -13,13 +13,11 @@ import Header from "./components/Header";
 import MenuButton from "./components/MenuButton";
 import clsx from "clsx";
 import HomePageAbout from "./containers/HomePageAbout";
-import ScatteredCards from "./components/ScatteredCards";
 import OurPromise from "./components/OurPromise";
 import { useLocale, useTranslations } from "next-intl";
 import Footer from "./components/Footer";
 import { useAppSelector } from "./hooks";
 import { detectIOS, useViewportHeight } from "./support/useViewportHeight";
-import FaqSection from "./components/FaqSection";
 import ContactDrawer from "./components/ContactDrawer";
 import { setNavigationState, setOpenContact } from "./features/counterSlice";
 import { useAppDispatch } from "./hooks";
@@ -44,6 +42,8 @@ const LiquidBackground = dynamic(() => import('./components/LiquidBackground'), 
 const IntroParticles = dynamic(() => import('./components/IntroParticles'), {
     ssr: false,
 });
+const FaqSection = dynamic(() => import('./components/FaqSection'));
+const ScatteredCards = dynamic(() => import('./components/ScatteredCards'));
   
 
 function isTouchDevice() {

@@ -181,42 +181,45 @@ export default function SocialSwitcher({ isDark }: Props) {
         aria-label="Social links"
         aria-expanded={open}
         aria-haspopup="listbox"
+        role="button"
       >
-        {SOCIALS.map((social, i) => (
-          <m.a
-            key={social.id}
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            role="option"
-            initial={{ opacity: 0, x: -6 }}
-            animate={{ opacity: 1, x: 0 }}
-            tabIndex={i}
-            transition={{
-              delay: i * 0.04,
-              duration: 0.18,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            whileTap={{ scale: 0.97 }}
-            style={{
-              //   display: "flex",
-              //   alignItems: "center",
-              //   gap: "10px",
-              //   padding: "6px 12px",
-              //   marginTop: "3px",
-              //   borderRadius: "12px",
-              //   background: "transparent",
-              //   border: "1px solid transparent",
-              cursor: "pointer",
-              color: "rgba(200,218,250,0.85)",
-              fontWeight: 400,
-              //   letterSpacing: "0.02em",
-              //   textDecoration: "none",
-            }}
-          >
-            <span style={{ flexShrink: 0 }}>{social.icon}</span>
-          </m.a>
-        ))}
+        <div role="menu">
+          {SOCIALS.map((social, i) => (
+            <m.a
+              key={social.id}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              role="menuitem"
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              tabIndex={0}
+              transition={{
+                delay: i * 0.04,
+                duration: 0.18,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileTap={{ scale: 0.97 }}
+              style={{
+                //   display: "flex",
+                //   alignItems: "center",
+                //   gap: "10px",
+                //   padding: "6px 12px",
+                //   marginTop: "3px",
+                //   borderRadius: "12px",
+                //   background: "transparent",
+                //   border: "1px solid transparent",
+                cursor: "pointer",
+                color: "rgba(200,218,250,0.85)",
+                fontWeight: 400,
+                //   letterSpacing: "0.02em",
+                //   textDecoration: "none",
+              }}
+            >
+              <span style={{ flexShrink: 0 }}>{social.icon}</span>
+            </m.a>
+          ))}
+        </div>
       </m.div>
     </div>
   );
