@@ -201,13 +201,13 @@ function CardContent({ item, isGlass, isMobile }: { item: CardItem; isGlass: boo
               </>
             )}
             {!item.suptitle && (
-              <h2 style={{ fontWeight: 700, color: labelBold }} className={clsx(HERO_SUBTITLE_CLASS)}>{item.label}</h2>
+              <h3 style={{ fontWeight: 700, color: labelBold }} className={clsx(HERO_SUBTITLE_CLASS)}>{item.label}</h3>
             )}
           </p>
         )}
 
         {/* Massive display title — fills the bottom of the card */}
-        <h1 style={{
+        <h3 style={{
           margin:        0,
           marginBottom: isMobile ? "150px" : 0,
           lineHeight:    0.88,
@@ -221,7 +221,7 @@ function CardContent({ item, isGlass, isMobile }: { item: CardItem; isGlass: boo
         )}
         >
           {item.title ?? item.label}
-        </h1>
+        </h3>
       </div>
     </div>
   );

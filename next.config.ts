@@ -3,8 +3,15 @@ import createNextIntlPlugin from 'next-intl/plugin';
 import bundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    resolveAlias: {
+      '../build/polyfills/polyfill-module': './lib/empty-polyfill.js',
+      'next/dist/build/polyfills/polyfill-module': './lib/empty-polyfill.js',
+    },
+  },
   experimental: {
     optimizeCss: true,
+    inlineCss: true,
     optimizePackageImports: ['framer-motion', 'lucide-react', 'three'],
   },
   images: {

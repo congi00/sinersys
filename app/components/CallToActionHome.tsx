@@ -96,7 +96,7 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
         className="text-center"
       >
         {/* Suptitle */}
-        <h4 style={{
+        <h3 style={{
           margin:        0,
           textTransform: "uppercase",
           color:         "rgba(180,210,255,0.75)",
@@ -109,10 +109,10 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
         )}
         >
           {homeTexts("cta.suptitle")}
-        </h4>
+        </h3>
 
         {/* Title */}
-        <h2 style={{
+        <h3 style={{
           margin:        0,
           lineHeight:    1.0,
           color:         "#f4f7fa",
@@ -123,7 +123,7 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
             "px-3 sm:px-2 mt-3 text-[#f4f7fa] font-bold sm:whitespace-pre-line")}
         >
           {homeTexts("cta.title")}
-        </h2>
+        </h3>
 
         {/* Subtitle */}
         <p style={{

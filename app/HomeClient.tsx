@@ -383,7 +383,7 @@ export default function Home() {
               marginBottom: isIOS ? "10lvh" : "10dvh",
             }}
           >
-            <h4
+            <h3
               className={clsx(
                 SUPTITLE_CLASS,
                 "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]"
@@ -391,8 +391,8 @@ export default function Home() {
               aria-hidden={false}
             >
               {homeTexts("slide1.suptitle")}
-            </h4>
-            <h1
+            </h3>
+            <h2
               style={{ lineHeight: "1.0" }}
               className={clsx(
                 HERO_TITLE_CLASS,
@@ -401,8 +401,8 @@ export default function Home() {
               aria-hidden={false}
             >
               {homeTexts("slide1.title")}
-            </h1>
-            <h2
+            </h2>
+            <h3
               style={{ lineHeight: "1.2" }}
               className={clsx(
                 HERO_SUBTITLE_CLASS,
@@ -411,7 +411,7 @@ export default function Home() {
               aria-hidden={false}
             >
               {formatRegistered(homeTexts("slide1.subtitle"))}
-            </h2>
+            </h3>
 
             {/* LinkButton — scopri di più */}
             <div className={"px-3 sm:px-0"} style={{ pointerEvents: "auto" }}>

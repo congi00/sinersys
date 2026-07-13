@@ -90,6 +90,8 @@ export default function Header({ headerTheme }: Props) {
           <m.img
             src="/full-logo-sinersys.png"
             alt="Logo Sinersys"
+            width={316}
+            height={48}
             className="relative z-10 h-12 object-contain absolute"
             animate={{ opacity: isDark ? 1 : 0 }}
             transition={{ duration: 0.3 }}
@@ -102,6 +104,8 @@ export default function Header({ headerTheme }: Props) {
             className="relative z-10 h-12 object-contain absolute"
             animate={{ opacity: isDark ? 0 : 1 }}
             transition={{ duration: 0.3 }}
+            width={316}
+            height={48}
           />
         )}
       </m.div>

@@ -37,22 +37,29 @@ export function useFullViewportHeight() {
 export function useViewportHeight(isIOS: boolean) {
   const [vh, setVh] = useState(0);
   useEffect(() => {
-    let raf = 0;
+    let raf1 = 0,
+      raf2 = 0;
     const measure = () => {
-      raf = requestAnimationFrame(() => {
-        const el = document.createElement("div");
-        el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${isIOS?"lvh":"dvh"};pointer-events:none;visibility:hidden;`;
-        document.body.appendChild(el);
-        const h = el.getBoundingClientRect().height;
-        document.body.removeChild(el);
-        setVh(h);
+      const el = document.createElement("div");
+      el.style.cssText = `position:fixed;top:0;left:0;width:1px;height:100${
+        isIOS ? "lvh" : "dvh"
+      };pointer-events:none;visibility:hidden;`;
+      raf1 = requestAnimationFrame(() => {
+        document.body.appendChild(el); // WRITE — frame N
+        raf2 = requestAnimationFrame(() => {
+          // READ — frame N+1, layout già commesso
+          const h = el.getBoundingClientRect().height;
+          document.body.removeChild(el);
+          setVh(h);
+        });
       });
     };
     measure();
     window.addEventListener("resize", measure);
     window.addEventListener("orientationchange", measure);
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
       window.removeEventListener("resize", measure);
       window.removeEventListener("orientationchange", measure);
     };
@@ -61,11 +68,11 @@ export function useViewportHeight(isIOS: boolean) {
 }
 
 export function detectIOS() {
-    const ua = navigator.userAgent;
-  
-    const iOS =
-      /iPad|iPhone|iPod/.test(ua) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  
-    return iOS;
-  }
+  const ua = navigator.userAgent;
+
+  const iOS =
+    /iPad|iPhone|iPod/.test(ua) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+  return iOS;
+}
