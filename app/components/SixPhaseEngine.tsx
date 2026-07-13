@@ -159,7 +159,7 @@ function ProductCard({
           )}
         >
           {/* Suptitle */}
-          <h4
+          <h3
             style={{
               margin: "0 0 0.35rem",
             }}
@@ -169,7 +169,7 @@ function ProductCard({
             )}
           >
             {product.suptitle}
-          </h4>
+          </h3>
 
           {/* Title */}
           <h1

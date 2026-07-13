@@ -694,7 +694,7 @@ export default function AboutUsPage() {
               }}
               aria-hidden={false}
             >
-              <h4
+              <h3
                 style={{
                   margin: "0 0 1rem",
                   color: "rgba(180,210,255,0.9)",
@@ -702,7 +702,7 @@ export default function AboutUsPage() {
                 className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] px-3 sm:px-0 mt-3 sm:mt-5")}
               >
                 {t("hero.suptitle")}
-              </h4>
+              </h3>
               <h1
                 style={{
                   margin: 0,
