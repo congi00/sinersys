@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
-    inlineCss: true,
     optimizePackageImports: ['framer-motion', 'lucide-react', 'three'],
   },
   images: {
