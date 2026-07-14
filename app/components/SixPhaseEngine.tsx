@@ -172,7 +172,7 @@ function ProductCard({
           </h3>
 
           {/* Title */}
-          <h1
+          <h3
             style={{
               margin: "0 0 clamp(0.5rem,1.2vh,0.85rem)",
               color: "#e8f0ff",
@@ -183,7 +183,7 @@ function ProductCard({
             )}
           >
             {product.title}
-          </h1>
+          </h3>
 
           {/* Divider line */}
           <div
@@ -318,18 +318,18 @@ export default function ResearchProducts({
             marginTop: isMobile ? "60px" : "0",
           }}
         >
-          <h4
+          <h3
             className={clsx(
               SUPTITLE_CLASS,
               "text-[#a0b8e8] [text-shadow:0_0px_0px_rgba(0,0,0,0.2)]"
             )}
           >
             {sectionLabel}
-          </h4>
+          </h3>
         </m.div>
 
         {/* Section title */}
-        <m.h1
+        <m.h2
           style={{
             opacity: rTitle.op,
             y: rTitle.y,
@@ -348,7 +348,7 @@ export default function ResearchProducts({
               <br />
             </span>
           ))}
-        </m.h1>
+        </m.h2>
 
         {/* Section subtitle */}
         <m.h2

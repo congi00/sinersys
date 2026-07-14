@@ -101,11 +101,11 @@ export default function Footer({ openContact }: FooterProps) {
 
   // Quick links — label + href from translations
   const quickLinks = [
-    { label: t("quick.home"), href: "/" },
-    { label: t("quick.apwec"), href: "/apwec" },
-    { label: t("quick.six-phase-motor"), href: "/six-phase-motor" },
-    { label: t("quick.about"), href: "/about-us" },
-    { label: t("quick.certs"), href: "" },
+    { label: t("quick.home"), href: `/${locale}/` },
+    { label: t("quick.apwec"), href: `/${locale}/apwec` },
+    { label: t("quick.six-phase-motor"), href: `/${locale}/six-phase-motor` },
+    { label: t("quick.about"), href: `/${locale}/about-us` },
+    { label: t("quick.certs"), href: `` },
   ];
 
   const otherLinks = [
