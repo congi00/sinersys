@@ -183,7 +183,7 @@ export default function SocialSwitcher({ isDark }: Props) {
         aria-haspopup="listbox"
         role="button"
       >
-        <div role="menu">
+        <div role="menu" className="flex items-center gap-3">
           {SOCIALS.map((social, i) => (
             <m.a
               key={social.id}
