@@ -7,6 +7,13 @@ const intlMiddleware = createMiddleware(routing);
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  if (pathname === "/") {
+    return NextResponse.redirect(
+      new URL("/it/", request.url),
+      308
+    );
+  }
+
   if (
     pathname.startsWith("/7_Home") ||
     pathname.startsWith("/f/") ||
@@ -24,7 +31,7 @@ export const config = {
   matcher: [
     "/",
     "/(it|en|de|fr)/:path*",
-    "/((?!api|_next|_vercel|.*\\..*).*)",
+    "/((?!api|_next|_vercel|.*\\..*|sitemap\\.xml|robots\\.txt).*)",
     "/index.html",
     "/7_Home/:path*",
     "/2_Home/:path*",
