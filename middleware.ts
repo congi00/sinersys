@@ -7,13 +7,6 @@ const intlMiddleware = createMiddleware(routing);
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname === "/") {
-    return NextResponse.redirect(
-      new URL("/it/", request.url),
-      308
-    );
-  }
-
   if (
     pathname.startsWith("/7_Home") ||
     pathname.startsWith("/f/") ||
