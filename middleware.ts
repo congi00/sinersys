@@ -10,8 +10,7 @@ export default function middleware(request: NextRequest) {
   if (
     pathname.startsWith('/7_Home') ||
     pathname.startsWith('/2_Home') ||
-    pathname.startsWith('/f/') ||
-    pathname === '/index.html'
+    pathname.startsWith('/f/')
   ) {
     return new NextResponse(null, {
       status: 410,
