@@ -14,8 +14,18 @@ export default function middleware(request: NextRequest) {
     );
   }
 
+  if (
+    pathname.startsWith("/7_Home") ||
+    pathname.startsWith("/f/") ||
+    pathname.startsWith("/2_Home") ||
+    pathname === "/index.html"
+   ) {
+    return new NextResponse(null, { status: 410 });
+   }
+
   return intlMiddleware(request);
 }
+
 
 export const config = {
   matcher: [
