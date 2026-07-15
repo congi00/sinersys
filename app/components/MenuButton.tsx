@@ -37,7 +37,7 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
   const l = ['it','en','de','fr'].includes(currentLocale) ? currentLocale : 'it';
   const links = [
     `/${l}`,
-    `/${l}/apwec`,
+    `/${l}/apwec-energia-rinnovabile`,
     `/${l}/six-phase-motor`,
     `/${l}/about-us`,
     '',

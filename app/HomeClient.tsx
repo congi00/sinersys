@@ -340,7 +340,7 @@ export default function Home() {
           {/* LinkButton — scopri di più / link ad APWEC */}
           <div className="mb-10 sm:mb-0" style={{ pointerEvents: "auto" }}>
             <LinkButton
-              link={`/${locale}/apwec`}
+              link={`/${locale}/apwec-energia-rinnovabile`}
               text={homeTexts("slide0.link")}
               icon={<ArrowUpRight size={20} />}
               top="0"
@@ -416,7 +416,7 @@ export default function Home() {
             {/* LinkButton — scopri di più */}
             <div className={"px-3 sm:px-0"} style={{ pointerEvents: "auto" }}>
               <LinkButton
-                link={`/${locale}/apwec`}
+                link={`/${locale}/apwec-energia-rinnovabile`}
                 text={homeTexts("slide1.link")}
                 icon={<ArrowUpRight size={20} />}
                 top="0"

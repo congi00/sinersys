@@ -2,14 +2,14 @@
 export async function GET() {
     const videos = [
       {
-        loc: 'https://www.sinersys.it/it/apwec',
+        loc: 'https://www.sinersys.it/it/apwec-energia-rinnovabile',
         title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
         description: 'Prototipo APWEC in funzione, generatore di energia rinnovabile.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w.mp4',
         durationSeconds: 6,
       },{
-        loc: 'https://www.sinersys.it/it/apwec',
+        loc: 'https://www.sinersys.it/it/apwec-energia-rinnovabile',
         title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
         description: 'Prototipo APWEC in funzione, generatore di energia rinnovabile.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
@@ -32,7 +32,7 @@ export async function GET() {
         durationSeconds: 15,
       },
       {
-        loc: 'https://www.sinersys.it/en/apwec',
+        loc: 'https://www.sinersys.it/en/apwec-energia-rinnovabile',
         title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
         description: 'APWEC prototype in operation, renewable energy generator.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
@@ -40,7 +40,7 @@ export async function GET() {
         durationSeconds: 6,
       },
       {
-        loc: 'https://www.sinersys.it/en/apwec',
+        loc: 'https://www.sinersys.it/en/apwec-energia-rinnovabile',
         title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
         description: 'APWEC prototype in operation, renewable energy generator.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
@@ -65,7 +65,7 @@ export async function GET() {
       },
       
       {
-        loc: 'https://www.sinersys.it/de/apwec',
+        loc: 'https://www.sinersys.it/de/apwec-energia-rinnovabile',
         title: 'APWEC — Autonomer permanenter Wellenenergie-Konverter',
         description: 'APWEC-Prototyp im Betrieb, Generator für erneuerbare Energien.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
@@ -73,7 +73,7 @@ export async function GET() {
         durationSeconds: 6,
       },
       {
-        loc: 'https://www.sinersys.it/de/apwec',
+        loc: 'https://www.sinersys.it/de/apwec-energia-rinnovabile',
         title: 'APWEC — Autonomer permanenter Wellenenergie-Konverter',
         description: 'APWEC-Prototyp im Betrieb, Generator für erneuerbare Energien.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
@@ -98,7 +98,7 @@ export async function GET() {
       },
       
       {
-        loc: 'https://www.sinersys.it/fr/apwec',
+        loc: 'https://www.sinersys.it/fr/apwec-energia-rinnovabile',
         title: 'APWEC — Convertisseur autonome à énergie houlomotrice permanente',
         description: "Prototype APWEC en fonctionnement, générateur d'énergie renouvelable.",
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
@@ -106,7 +106,7 @@ export async function GET() {
         durationSeconds: 6,
       },
       {
-        loc: 'https://www.sinersys.it/fr/apwec',
+        loc: 'https://www.sinersys.it/fr/apwec-energia-rinnovabile',
         title: 'APWEC — Convertisseur autonome à énergie houlomotrice permanente',
         description: "Prototype APWEC en fonctionnement, générateur d'énergie renouvelable.",
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',

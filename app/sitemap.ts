@@ -5,12 +5,12 @@ const LOCALES = ['it', 'en', 'de', 'fr'] as const;
 
 const PAGES = [
     { path: '',              changeFreq: 'weekly'  as const, priority: 1.0 },
-    { path: '/apwec',        changeFreq: 'monthly' as const, priority: 0.9 },
-    { path: '/six-phase-motor', changeFreq: 'monthly' as const, priority: 0.9 },
-    { path: '/about-us',     changeFreq: 'yearly'  as const, priority: 0.8 },
-    { path: '/codice-etico', changeFreq: 'yearly'  as const, priority: 0.5 },
-    { path: '/privacy',      changeFreq: 'yearly'  as const, priority: 0.5 },
-    { path: '/cookies',      changeFreq: 'yearly'  as const, priority: 0.5 },
+    { path: '/apwec-energia-rinnovabile',        changeFreq: 'weekly' as const, priority: 0.9 },
+    { path: '/six-phase-motor', changeFreq: 'weekly' as const, priority: 0.9 },
+    { path: '/about-us',     changeFreq: 'weekly'  as const, priority: 0.8 },
+    { path: '/codice-etico', changeFreq: 'weekly'  as const, priority: 0.5 },
+    { path: '/privacy',      changeFreq: 'weekly'  as const, priority: 0.5 },
+    { path: '/cookies',      changeFreq: 'weekly'  as const, priority: 0.5 },
   ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
