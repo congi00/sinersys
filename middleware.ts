@@ -32,5 +32,10 @@ export const config = {
     "/",
     "/(it|en|de|fr)/:path*",
     "/((?!api|_next|_vercel|.*\\..*).*)",
+    "/index.html",
+    "/7_Home/:path*",
+    "/2_Home/:path*",
+    "/f/:path*",
+    "/((?!api|_next|_vercel).*)",
   ],
 };
