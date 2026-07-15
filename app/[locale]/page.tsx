@@ -96,11 +96,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `https://www.sinersys.it/${locale}/`,
       languages: { 
-        'it': 'https://www.sinersys.it/it',
-        'en': 'https://www.sinersys.it/en',
-        'de': 'https://www.sinersys.it/de',
-        'fr': 'https://www.sinersys.it/fr',
-        'x-default': 'https://www.sinersys.it/it', 
+        'it': 'https://www.sinersys.it/it/',
+        'en': 'https://www.sinersys.it/en/',
+        'de': 'https://www.sinersys.it/de/',
+        'fr': 'https://www.sinersys.it/fr/',
+        'x-default': 'https://www.sinersys.it/it/', 
       },
     },
     other: {

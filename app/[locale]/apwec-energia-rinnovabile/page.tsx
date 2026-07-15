@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
     category: 'Renewable Energy Technology',
     keywords: 'generatore rinnovabile, energia rinnovabile, APWEC, nuove frontiere di energia',
-    url: `https://www.sinersys.it/${locale}/apwec`,
+    url: `https://www.sinersys.it/${locale}/apwec-energia-tinnovabile`,
   };
 
   const videoSchema = {
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
     duration: 'PT0M6S', // durata reale del file, formato ISO 8601
     contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w.mp4',
-    embedUrl: `https://www.sinersys.it/${locale}/apwec`,
+    embedUrl: `https://www.sinersys.it/${locale}/apwec-energia-tinnovabile`,
     publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
   };
 
@@ -43,13 +43,13 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
     duration: 'PT0M5S', // durata reale del file, formato ISO 8601
     contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w1.mp4',
-    embedUrl: `https://www.sinersys.it/${locale}/apwec`,
+    embedUrl: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
     publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
   };
 
   const breadcrumb = buildBreadcrumb(locale, [
     { name: "Home", path: "/" },
-    { name: "APWEC", path: "/apwec" },
+    { name: "APWEC", path: "/apwec-energia-rinnovabile" },
   ]);
   
   return {
@@ -64,13 +64,13 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
     },
     alternates: {
-      canonical: `https://www.sinersys.it/${locale}/apwec`,
+      canonical: `https://www.sinersys.it/${locale}/apwec-energia-tinnovabile`,
       languages: { 
-        'it': 'https://www.sinersys.it/it/apwec',
-        'en': 'https://www.sinersys.it/en/apwec',
-        'de': 'https://www.sinersys.it/de/apwec',
-        'fr': 'https://www.sinersys.it/fr/apwec',
-        'x-default': 'https://www.sinersys.it/it/apwec', },
+        'it': 'https://www.sinersys.it/it/apwec-energia-tinnovabile',
+        'en': 'https://www.sinersys.it/en/apwec-energia-tinnovabile',
+        'de': 'https://www.sinersys.it/de/apwec-energia-tinnovabile',
+        'fr': 'https://www.sinersys.it/fr/apwec-energia-tinnovabile',
+        'x-default': 'https://www.sinersys.it/it/apwec-energia-tinnovabile', },
     },
     other: {
       "script:ld+json": [
@@ -107,7 +107,7 @@ export default async function Page({params} : Props) {
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
     duration: 'PT0M6S', // durata reale del file, formato ISO 8601
     contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w.mp4',
-    embedUrl: `https://www.sinersys.it/${locale}/apwec`,
+    embedUrl: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
     publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
   };
 
@@ -120,7 +120,7 @@ export default async function Page({params} : Props) {
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
     duration: 'PT0M5S', // durata reale del file, formato ISO 8601
     contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w1.mp4',
-    embedUrl: `https://www.sinersys.it/${locale}/apwec`,
+    embedUrl: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
     publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
   };
   return <>
