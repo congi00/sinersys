@@ -1,5 +1,5 @@
-import createMiddleware from 'next-intl/middleware';
-import { routing } from './app/i18n/routing';
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./app/i18n/routing";
 import { NextRequest, NextResponse } from "next/server";
 
 const intlMiddleware = createMiddleware(routing);
@@ -7,6 +7,7 @@ const intlMiddleware = createMiddleware(routing);
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Homepage neutra
   if (pathname === "/") {
     return NextResponse.redirect(
       new URL("/it/", request.url),
@@ -14,28 +15,23 @@ export default function middleware(request: NextRequest) {
     );
   }
 
+  // Vecchi URL eliminati
   if (
+    pathname === "/index.html" ||
     pathname.startsWith("/7_Home") ||
-    pathname.startsWith("/f/") ||
     pathname.startsWith("/2_Home") ||
-    pathname === "/index.html"
-   ) {
+    pathname.startsWith("/f/")
+  ) {
     return new NextResponse(null, { status: 410 });
-   }
+  }
 
   return intlMiddleware(request);
 }
-
 
 export const config = {
   matcher: [
     "/",
     "/(it|en|de|fr)/:path*",
-    "/((?!api|_next|_vercel|.*\\..*|sitemap\\.xml|robots\\.txt).*)",
-    "/index.html",
-    "/7_Home/:path*",
-    "/2_Home/:path*",
-    "/f/:path*",
-    "/((?!api|_next|_vercel).*)",
+    "/((?!api|_next|.*\\..*|favicon.ico|sitemap.xml|robots.txt).*)",
   ],
 };
