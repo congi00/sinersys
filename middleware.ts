@@ -10,7 +10,8 @@ export default function middleware(request: NextRequest) {
   if (
     pathname.startsWith('/7_Home') ||
     pathname.startsWith('/2_Home') ||
-    pathname.startsWith('/f/')
+    pathname.startsWith('/f/') ||
+    pathname === '/index.html'
   ) {
     return new NextResponse(null, {
       status: 410,
@@ -21,9 +22,11 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/',
-    '/(it|en|de|fr)/:path*',
-    '/((?!api|_next|_vercel|.*\\..*).*)',
-  ],
-};
+    matcher: [
+      '/',
+      '/(it|en|de|fr)/:path*',
+      '/7_Home/:path*',
+      '/2_Home/:path*',
+      '/f/:path*',
+    ],
+  };
