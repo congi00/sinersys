@@ -20,34 +20,11 @@ import { setNavigationState, setOpenContact } from "../features/counterSlice";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
-import VintageMediaViewer, { MediaItem } from "../components/VintageMediaViewer";
 import CookieBanner from "../components/CookieBanner";
 import clsx from "clsx";
 import { CARD_SUBTITLE_CLASS, CARD_TITLE_CLASS, CONTACT_TITLE_CLASS, FAQ_QUESTION_CLASS, HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, PRODUCT_CONTENT_CLASS, SUPTITLE_CLASS } from "../typography";
 import { formatRegistered } from "../formatter";
 import { useLenis } from "./LenisProvider";
-
-const SCENES = 6.2;
-const MEDIA: MediaItem[] = [
-  {
-    type: "video",
-    src: "/apwecprod_fixed_w.mp4",
-    caption: "Prototipo APWEC — ripresa esterna",
-    date: "2024 · ARCHIVIO",
-  },
-  {
-    type: "video",
-    src: "/apwecprod_fixed_w1.webm",
-    caption: "Sequenza mobile",
-    date: "2024 · FIELD",
-  },
-  {
-    type: "image",
-    src: "/foto-archivio.jpg",
-    caption: "Vista d'insieme dell'impianto",
-    date: "2023 · FOT",
-  },
-];
 
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
@@ -490,6 +467,7 @@ export default function ApwecPage() {
 
   const isMobile = width <= 768;
   const isXL = width >= 1536;
+  const SCENES = isXL ? 4 : 6.2;
 
   /* ── Content height (for total scroll) ───────────────────────────────── */
   const contentRef = useRef<HTMLDivElement>(null);
@@ -507,7 +485,7 @@ export default function ApwecPage() {
 
   /* ── Video scrubbing ──────────────────────────────────────────────────── */
   const videoRef = useRef<HTMLVideoElement>(null);
-  const videoSrc = isMobile ? "/apwecprod_fixed_w1.mp4" : isXL ? "apwecprod_fixed_w2.mp4" : "/apwecprod_fixed_w.mp4";
+  const videoSrc = isMobile ? "/apwecprod_fixed_w1.mp4" : isXL ? "/apwecprod_fixed_w2.mp4" : "/apwecprod_fixed_w.mp4";
 
   const videoDuration = useRef<number>(0);
 
@@ -669,9 +647,9 @@ export default function ApwecPage() {
    * - plus the actual height of the static content below
    * This mirrors the AboutUsPage pattern (CONTENT_TOP + contentH).
    */
-  const CONTENT_TOP = vh * (SCENES + (isMobile ? 7.6 : 3));
-  const SCROLL_VH = vh * (SCENES + (isMobile ? 7.6 : 3));
-  const totalHeight = SCROLL_VH + contentH;
+  const CONTENT_TOP = vh * (SCENES + (isMobile ? 7.6 : isXL ? 1.5 : 3));
+  const SCROLL_VH = vh * (SCENES + (isXL ? 0 : (isMobile ? 7.6 : 3)));
+  const totalHeight = SCROLL_VH + contentH
 
   /* ── Hero card motion values ──────────────────────────────────────────── */
   const headerTheme = useTransform(smooth, [3.8, 4.8, 7], [0, 0, 1]);
@@ -923,7 +901,7 @@ export default function ApwecPage() {
             }: {textAlign: "center",maxWidth: "90vw",top: "16%",}), ...s0 }} aria-hidden={false}>
               <h4 className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] text-center")} style={sup}>{t("slide0.suptitle")}</h4>
               <h1 className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line text-center")} style={h1s}>{t("slide0.title")}</h1>
-              <p className={clsx(HERO_SUBTITLE_CLASS,"mt-4 whitespace-pre-line text-center")} style={{...bodys, ...(isMobile ? {marginTop: "65%"} :  !isXL ? {maxWidth: "100%"} : {maxWidth: "100%", marginTop: "25%"})}}>{t("slide0.subtitle")}</p>
+              <p className={clsx(HERO_SUBTITLE_CLASS,"mt-4 whitespace-pre-line text-center")} style={{...bodys, ...(isMobile ? {marginTop: "65%"} :  !isXL ? {maxWidth: "100%"} : {maxWidth: "100%", marginTop: "22%"})}}>{t("slide0.subtitle")}</p>
             </m.div>
 
             {/* Slide 1 */}
