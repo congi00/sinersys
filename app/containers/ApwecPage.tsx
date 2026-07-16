@@ -507,7 +507,7 @@ export default function ApwecPage() {
 
   /* ── Video scrubbing ──────────────────────────────────────────────────── */
   const videoRef = useRef<HTMLVideoElement>(null);
-  const videoSrc = isMobile ? "/apwecprod_fixed_w1.mp4" : isXL ? "apwecprod_fixed_w2" : "/apwecprod_fixed_w.mp4";
+  const videoSrc = isMobile ? "/apwecprod_fixed_w1.mp4" : isXL ? "apwecprod_fixed_w2.mp4" : "/apwecprod_fixed_w.mp4";
 
   const videoDuration = useRef<number>(0);
 
