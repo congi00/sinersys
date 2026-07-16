@@ -526,6 +526,7 @@ export default function AboutUsPage() {
 
   const smooth = useSpring(progressMotion, { stiffness: 280, damping: 28 });
   const vh = vhPx || 1;
+  const isXL = width >= 1536;
 
   const linkColorWhite = useMotionValue("#f4f7fa");
 
@@ -589,7 +590,7 @@ export default function AboutUsPage() {
     ["#1c398e", "#1c398e", "rgba(200,218,250,0.75)"]
   );
 
-  const CONTENT_TOP = vh * (isMobile ? 2.8 : 2.4);
+  const CONTENT_TOP = vh * (isMobile ? 2.8 : isXL ? 2 : 2.4);
   const totalHeight = CONTENT_TOP + (contentH > 0 ? contentH : vh * 4.6);
 
   // ── Content card exit animation (inset + border-radius before footer) ─────

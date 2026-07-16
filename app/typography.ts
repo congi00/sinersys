@@ -21,7 +21,7 @@
 // Esempio: "TECNOLOGIA APWEC", "CHI SIAMO", "FAQ", "Laboratorio di Ricerca"
 // Stile corrente in HomeClient: text-m sm:text-2xl tracking-widest uppercase
 // Problema: "text-m" non è una classe Tailwind standard. Rimpiazzare con text-xs.
-export const SUPTITLE_CLASS = "text-xs sm:text-sm tracking-widest uppercase";
+export const SUPTITLE_CLASS = "text-xs sm:text-sm xl:text-xl tracking-widest uppercase";
 
 // ─── HERO TITLE H1 ────────────────────────────────────────────────────────────
 // Slide 0 e Slide 2 della home, hero delle pagine interne.
