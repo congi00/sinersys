@@ -47,6 +47,20 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
   };
 
+  const videoSchemaB = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: 'APWEC — Autonomous Perpetual Wave Energy Converter in funzione',
+    description: t('slide0.subtitle'),
+    thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
+    uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
+    duration: 'PT0M5S', // durata reale del file, formato ISO 8601
+    contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w2.mp4',
+    embedUrl: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
+    publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
+  };
+
+
   const breadcrumb = buildBreadcrumb(locale, [
     { name: "Home", path: "/" },
     { name: "APWEC", path: "/apwec-energia-rinnovabile" },
@@ -78,6 +92,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
         JSON.stringify(breadcrumb),
         JSON.stringify(videoSchema),
         JSON.stringify(videoSchemaM),
+        JSON.stringify(videoSchemaB),
       ]
     },
   };
@@ -123,10 +138,25 @@ export default async function Page({params} : Props) {
     embedUrl: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
     publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
   };
+
+  const videoSchemaB = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: 'APWEC — Autonomous Perpetual Wave Energy Converter in funzione',
+    description: t('slide0.subtitle'),
+    thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
+    uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
+    duration: 'PT0M5S', // durata reale del file, formato ISO 8601
+    contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w2.mp4',
+    embedUrl: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
+    publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
+  };
+
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchemaM) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchemaB) }} />
     <ApwecPage />
   </>
 }
