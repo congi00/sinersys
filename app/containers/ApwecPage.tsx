@@ -1177,7 +1177,7 @@ export default function ApwecPage() {
                         }}
                         className={clsx(CARD_TITLE_CLASS,"sm:whitespace-pre-line")}
                       >
-                        {t(`static.${k}.title`)}
+                        {formatRegistered(t(`static.${k}.title`),"text-[1.2rem]")}
                       </h3>
                       <p
                         style={{

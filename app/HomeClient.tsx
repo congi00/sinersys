@@ -410,7 +410,7 @@ export default function Home() {
               )}
               aria-hidden={false}
             >
-              {formatRegistered(homeTexts("slide1.subtitle"))}
+              {formatRegistered(homeTexts("slide1.subtitle"),"text-[1rem]")}
             </p>
 
             {/* LinkButton — scopri di più */}
