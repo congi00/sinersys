@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
     category: 'Renewable Energy Technology',
     keywords: 'generatore rinnovabile, energia rinnovabile, APWEC, nuove frontiere di energia',
-    url: `https://www.sinersys.it/${locale}/apwec-energia-tinnovabile`,
+    url: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
   };
 
   const videoSchema = {
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
     duration: 'PT0M6S', // durata reale del file, formato ISO 8601
     contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w.mp4',
-    embedUrl: `https://www.sinersys.it/${locale}/apwec-energia-tinnovabile`,
+    embedUrl: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
     publisher: { '@type': 'Organization', name: 'Sinersys', logo: { '@type': 'ImageObject', url: 'https://www.sinersys.it/full-logo-sinersys.png' } },
   };
 
@@ -78,13 +78,13 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
     },
     alternates: {
-      canonical: `https://www.sinersys.it/${locale}/apwec-energia-tinnovabile`,
+      canonical: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
       languages: { 
-        'it': 'https://www.sinersys.it/it/apwec-energia-tinnovabile',
-        'en': 'https://www.sinersys.it/en/apwec-energia-tinnovabile',
-        'de': 'https://www.sinersys.it/de/apwec-energia-tinnovabile',
-        'fr': 'https://www.sinersys.it/fr/apwec-energia-tinnovabile',
-        'x-default': 'https://www.sinersys.it/it/apwec-energia-tinnovabile', },
+        'it': 'https://www.sinersys.it/it/apwec-energia-rinnovabile',
+        'en': 'https://www.sinersys.it/en/apwec-energia-rinnovabile',
+        'de': 'https://www.sinersys.it/de/apwec-energia-rinnovabile',
+        'fr': 'https://www.sinersys.it/fr/apwec-energia-rinnovabile',
+        'x-default': 'https://www.sinersys.it/it/apwec-energia-rinnovabile', },
     },
     other: {
       "script:ld+json": [
