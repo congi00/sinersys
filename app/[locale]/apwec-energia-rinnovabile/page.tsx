@@ -110,7 +110,7 @@ export default async function Page({params} : Props) {
     manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
     category: 'Renewable Energy Technology',
     keywords: 'generatore rinnovabile, energia rinnovabile, APWEC, nuove frontiere di energia',
-    url: `https://www.sinersys.it/${locale}/apwec`,
+    url: `https://www.sinersys.it/${locale}/apwec-energia-rinnovabile`,
   };
 
   const videoSchema = {
