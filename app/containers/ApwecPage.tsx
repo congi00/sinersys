@@ -914,7 +914,7 @@ export default function ApwecPage() {
               maxWidth: "100vw",
             }), ...s1 }} aria-hidden={false}>
               <h4 className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 text-[#a0b8e8] ")} style={sup}>{t("slide1.suptitle")}</h4>
-              <h1 className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")} style={h1s}>{t("slide1.title")}</h1>
+              <h2 className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")} style={h1s}>{t("slide1.title")}</h2>
               <p className={clsx(HERO_SUBTITLE_CLASS,"mt-4 sm:whitespace-pre-line text-center")} style={{...bodys, ...(isMobile ? { marginTop: "70%"} : !isXL ? {maxWidth: "100%"} :{maxWidth: "100%", marginTop: "22%"})}}>{t("slide1.subtitle")}</p>
             </m.div>
 
@@ -942,7 +942,7 @@ export default function ApwecPage() {
               >
                 {t("slide2.suptitle")}
               </h4>
-              <h1 className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line text-center")} style={{...h1s}}>{t("slide2.title")}</h1>
+              <h2 className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line text-center")} style={{...h1s}}>{t("slide2.title")}</h2>
               <p
                 style={{
                   ...bodys,
@@ -980,7 +980,7 @@ export default function ApwecPage() {
               >
                 {t("slide3.suptitle")}
               </h4>
-              <h1
+              <h2
                 style={{
                   ...h1s,
                   whiteSpace: "pre-line"
@@ -988,7 +988,7 @@ export default function ApwecPage() {
                 className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
               >
                 {t("slide3.title")}
-              </h1>
+              </h2>
               <p
                 style={{
                   ...bodys,
