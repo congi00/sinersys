@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     authors: [{ name: 'Sinersys' }],
     creator: 'Sinersys',
     robots: {
-      index: true,
+      index: false,
       follow: true,
       googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
     },
