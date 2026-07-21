@@ -601,7 +601,10 @@ export default function AboutUsPage() {
   const contentY = useTransform(smooth, [5.0, 5.6], [0, -20]);
   const contentBR = useTransform(contentRadius, (v) => `${v}px`);
 
-  if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
+  useEffect(() => {
+    if (vhPx === 0) return;
+    requestResize();
+  }, [vhPx, totalHeight, requestResize]);
 
   const timeline = [
     { key: "t1919", year: "1919" },
@@ -623,11 +626,7 @@ export default function AboutUsPage() {
     { key: "member1", photo: "/team/2.jpg" },
   ];
 
-  useEffect(() => {
-    if (vhPx === 0) return;
-    requestResize();
-  }, [vhPx, totalHeight, requestResize]);
-  
+  if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
 
   return (
     <main id="main-content">  
