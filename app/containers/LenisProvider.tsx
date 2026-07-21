@@ -13,13 +13,15 @@ import {
 
 interface LenisContextValue {
   lenis: Lenis | null;
-  /** true su dispositivi touch: qui NON usiamo Lenis, si usa lo scroll nativo */
   isTouch: boolean;
+  /** Richiede un ricalcolo esplicito delle dimensioni di Lenis. */
+  requestResize: () => void;
 }
 
 const LenisContext = createContext<LenisContextValue>({
   lenis: null,
   isTouch: false,
+  requestResize: () => {},
 });
 
 export function useLenis() {
@@ -36,19 +38,28 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
 
+  const requestResize = useCallback(() => {
+    // rAF: aspetta che il layout del frame corrente sia commesso
+    // prima di far ricalcolare a Lenis dimensions.limit.
+    requestAnimationFrame(() => {
+      lenisRef.current?.resize();
+    });
+  }, []);
+
   useEffect(() => {
     const touch = isTouchDevice();
     setIsTouch(touch);
 
-    // Su touch manteniamo lo scroll nativo (come già facevi per-pagina):
-    // Lenis va usato solo su desktop/mouse per lo smoothing, evitando
-    // conflitti col sistema di scroll nativo/momentum di iOS/Android.
     if (touch) {
       setReady(true);
       return;
     }
 
-    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
+    const lenis = new Lenis({
+      duration: 1.2,
+      smoothWheel: true,
+      autoResize: false, // ricalcolo manuale, guidato da requestResize()
+    });
     lenisRef.current = lenis;
 
     let rafId = 0;
@@ -58,22 +69,25 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     };
     rafId = requestAnimationFrame(raf);
 
+    // fallback: continua comunque a reagire ai resize della finestra
+    // (orientamento, ridimensionamento manuale del browser)
+    const onWindowResize = () => lenis.resize();
+    window.addEventListener("resize", onWindowResize);
+
     setReady(true);
 
     return () => {
+      window.removeEventListener("resize", onWindowResize);
       cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
     };
   }, []);
 
-  // Non renderizzare i figli finché non sappiamo se siamo touch o no,
-  // per evitare che le pagine partano con un valore isTouch sbagliato
-  // e debbano poi "correggersi" (stesso tipo di bug del Fix 2).
   if (!ready) return null;
 
   return (
-    <LenisContext.Provider value={{ lenis: lenisRef.current, isTouch }}>
+    <LenisContext.Provider value={{ lenis: lenisRef.current, isTouch, requestResize }}>
       {children}
     </LenisContext.Provider>
   );

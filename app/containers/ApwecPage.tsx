@@ -453,7 +453,7 @@ export default function ApwecPage() {
   const t = useTranslations("apwec");
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const dispatch = useAppDispatch();
-  const { lenis, isTouch } = useLenis();
+  const { lenis, isTouch, requestResize } = useLenis();
 
   /* ── Responsive width ─────────────────────────────────────────────────── */
   const [width, setWidth] = useState(1024);
@@ -824,6 +824,11 @@ export default function ApwecPage() {
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
+
+  useEffect(() => {
+    if (vhPx === 0) return;
+    requestResize();
+  }, [vhPx, totalHeight, requestResize]);
 
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (

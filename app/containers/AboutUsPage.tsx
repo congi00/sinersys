@@ -443,7 +443,7 @@ export default function AboutUsPage() {
   const isIOS = detectIOS();
   const dispatch = useAppDispatch();
   const ts = useTranslations("scrollNavigator");
-  const { lenis, isTouch } = useLenis();
+  const { lenis, isTouch, requestResize } = useLenis();
 
   const progressMotion = useMotionValue(0);
   const [width, setWidth] = useState(0);
@@ -622,6 +622,11 @@ export default function AboutUsPage() {
     { key: "member0", photo: "/team/1.jpg" },
     { key: "member1", photo: "/team/2.jpg" },
   ];
+
+  useEffect(() => {
+    if (vhPx === 0) return;
+    requestResize();
+  }, [vhPx, totalHeight, requestResize]);
   
 
   return (

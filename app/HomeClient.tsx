@@ -68,7 +68,7 @@ export default function Home() {
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const navigationState = useAppSelector((s) => s.siteState.navigationState);
   const dispatch = useAppDispatch();
-  const { lenis, isTouch } = useLenis();
+  const { lenis, isTouch, requestResize } = useLenis();
 
   
   const [width, setWidth] = useState(1024);
@@ -267,6 +267,10 @@ export default function Home() {
     meta.setAttribute("content", color);
   });
 
+  useEffect(() => {
+    if (vhPx === 0) return;
+    requestResize();
+  }, [vhPx, totalHeight, requestResize]);
 
   if (!mounted) {
     return <div className="min-h-screen bg-[#0f2057]" />;

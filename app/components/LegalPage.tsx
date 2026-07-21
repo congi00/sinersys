@@ -200,7 +200,7 @@ export default function LegalPage({
     };
   }, [mounted]);
 
-  const { lenis, isTouch } = useLenis();
+  const { lenis, isTouch, requestResize } = useLenis();
 
   // scrollPx MotionValue — alimentato dall'istanza Lenis CONDIVISA
   // (stessa istanza usata da ApwecPage/SixPhasePage/AboutUsPage), non più
@@ -260,6 +260,11 @@ export default function LegalPage({
   const kReadEnd = OPEN_PX + SCROLL_PX;
   const kCloseEnd = kReadEnd + CLOSE_PX;
   const totalHeight = kCloseEnd + FOOTER_PX + vh;
+
+  useEffect(() => {
+    if (!mounted || vhPx === 0) return;
+    requestResize();
+  }, [mounted, vhPx, totalHeight, requestResize]);
 
   // ── Card Y exit — spring-smoothed ───────────────────────────────────────
   const cardY = useTransform(
