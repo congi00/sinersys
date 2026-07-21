@@ -188,7 +188,7 @@ export default async function RootLayout({ children, params }: Props) {
         />
         <link
           rel="preload"
-          href="/font/Eurostile Extended Regular/Eurostile Extended Regular.woff2"
+          href="/font/eurostile-extended-regular/eurostile-extended-regular.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
