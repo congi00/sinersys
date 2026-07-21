@@ -8,8 +8,8 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       title: t('title'),   // es. 'APWEC — Autonomous Perpetual Wave Energy Converter'
       description: t('subtitle'),
       alternates: {
-        canonical: `https://www.sinersys.it/${locale}/ethics`,
-        languages: { it: '/it/ethics', en: '/en/ethics', de: '/de/ethics', fr: '/fr/ethics' },
+        canonical: `https://www.sinersys.it/${locale}/codice-etico`,
+        languages: { it: '/it/codice-etico', en: '/en/codice-etico', de: '/de/codice-etico', fr: '/fr/codice-etico' },
       },
     };
   }
