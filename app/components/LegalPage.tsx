@@ -37,7 +37,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { m, useMotionValue, useSpring, useTransform } from "framer-motion";
-import Lenis from "lenis";
+import { useLenis } from "../containers/LenisProvider";
 import { detectIOS, useViewportHeight } from "../support/useViewportHeight";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -64,11 +64,6 @@ export interface LegalPageProps {
   updated: string;
   sections: LegalSection[];
   accent?: string;
-}
-
-function isTouchDevice() {
-  if (typeof window === "undefined") return false;
-  return window.matchMedia("(pointer: coarse)").matches;
 }
 
 function SectionBlock({
@@ -180,31 +175,71 @@ export default function LegalPage({
     const ro = new ResizeObserver(measure);
     ro.observe(contentRef.current);
     measure();
-    return () => ro.disconnect();
+
+    // Rimisurazione ritardata (doppio rAF, stesso pattern di
+    // useViewportHeight/LenisProvider): la measure() sincrona qui sopra
+    // può catturare un layout non ancora assestato — LiquidBackground è
+    // caricato con dynamic(ssr:false) e può renderizzare il proprio
+    // contenuto reale un frame dopo il mount, cambiando l'altezza finale
+    // senza che nulla lo segnali prima che React committa il primo
+    // totalHeight (lo spacer che determina lo scroll reale del browser).
+    // Il ResizeObserver correggerebbe comunque al frame successivo, ma
+    // questa seconda lettura garantita elimina la finestra in cui un
+    // totalHeight calcolato su un contentH parziale potrebbe essere
+    // già stato committato e scrollato dall'utente.
+    let raf1 = 0;
+    let raf2 = 0;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(measure);
+    });
+
+    return () => {
+      ro.disconnect();
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
   }, [mounted]);
 
-  // Lenis / touch scroll → scrollPx MotionValue
+  const { lenis, isTouch } = useLenis();
+
+  // scrollPx MotionValue — alimentato dall'istanza Lenis CONDIVISA
+  // (stessa istanza usata da ApwecPage/SixPhasePage/AboutUsPage), non più
+  // da una seconda istanza locale. Avere due istanze Lenis attive sullo
+  // stesso window/document (una globale nel layout, una qui) le fa
+  // competere per gli stessi eventi wheel/touch: ciascuna applica il
+  // proprio smoothing, e il valore di scroll che ne risulta non è più
+  // 1:1 con lo scroll fisico reale dell'utente — è quello che causava il
+  // testo tagliato, perché SCROLL_PX/contentY assumono che lo scroll
+  // osservato corrisponda esattamente allo scroll del documento.
   useEffect(() => {
-    if (isTouchDevice()) {
+    if (isTouch || !lenis) {
       const onScroll = () => scrollPx.set(window.scrollY);
       onScroll();
       window.addEventListener("scroll", onScroll, { passive: true });
       return () => window.removeEventListener("scroll", onScroll);
     }
 
-    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
-    let rafId = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    };
-    rafId = requestAnimationFrame(raf);
-    lenis.on("scroll", (e: { scroll: number }) => scrollPx.set(e.scroll));
+    const handleScroll = (e: { scroll: number }) => scrollPx.set(e.scroll);
+    lenis.on("scroll", handleScroll);
+    // Sync immediato: l'istanza condivisa sopravvive alla navigazione,
+    // quindi al mount di questa pagina potrebbe già avere uno scroll
+    // diverso da 0 ereditato dalla pagina precedente.
+    scrollPx.set(lenis.scroll);
     return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
+      lenis.off("scroll", handleScroll);
     };
-  }, [scrollPx]);
+  }, [lenis, isTouch, scrollPx]);
+
+  // Reset dello scroll fisico ad ogni mount di pagina, così ogni legal
+  // page parte sempre dall'inizio del proprio scroll-track (stesso
+  // pattern già usato in ApwecPage/SixPhasePage/AboutUsPage).
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, left: 0 });
+    }
+  }, [lenis]);
 
   // Spring ONLY for decorative elements (inset/radius/card-exit)
   // contentY uses RAW scrollPx for 1:1 response

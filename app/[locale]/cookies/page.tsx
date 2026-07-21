@@ -9,7 +9,13 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       description: t('subtitle'),
       alternates: {
         canonical: `https://www.sinersys.it/${locale}/cookies`,
-        languages: { it: '/it/cookies', en: '/en/cookies', de: '/de/cookies', fr: '/fr/cookies' },
+        languages: {
+          it: 'https://www.sinersys.it/it/cookies',
+          en: 'https://www.sinersys.it/en/cookies',
+          de: 'https://www.sinersys.it/de/cookies',
+          fr: 'https://www.sinersys.it/fr/cookies',
+          'x-default': 'https://www.sinersys.it/it/cookies',
+        },
       },
     };
   }
