@@ -87,7 +87,7 @@ export default function FaqSection({
         >
           {suptitle}
         </span>
-        <h1
+        <h2
           className={clsx(
             HERO_TITLE_CLASS,
             "leading-tight text-[#1c398e] text-center mt-3 tracking-wide ")}
@@ -96,7 +96,7 @@ export default function FaqSection({
           }}
         >
           {title}
-        </h1>
+        </h2>
       </m.div>
 
       {/* Items */}
