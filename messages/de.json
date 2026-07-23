@@ -35,7 +35,7 @@
       "suptitle": "APWEC-TECHNOLOGIE",
       "title": "Der Generator für erneuerbare Energie, der niemals stoppt",
       "subtitle": "APWEC® ist eine patentierte italienische Technologie zur Erzeugung erneuerbarer Energie, die atmosphärischen Druck und kontrollierte interne Luftströmungen nutzt.\nNull Emissionen. Betrieb ca. 8.660 Stunden pro Jahr, unabhängig von direkter Sonneneinstrahlung und natürlichem Wind.",
-      "link": "Funktionsweise"
+      "link": "Erneuerbare Energie APWEC"
     },
     "sixPhase": {
       "_comment_researchProducts": "Schaufenster-Sektion für Produkte aus der Sinersys-Forschung.",
@@ -95,7 +95,7 @@
     "cta": {
       "suptitle": "Team, Ingenieure und strategische Partner",
       "title": "Gestalten Sie mit uns die Zukunft erneuerbarer Energie",
-      "subtitle": "Wir bauen ein Team aus Energie-Pionieren, Ingenieuren und strategischen Partnern mit Erfahrung in Clean-Tech und skalierbarer Fertigung auf. Wir suchen strategische Industriepartner zur Kommerzialisierung von APWEC. Die Vision ist real, die Chance ist jetzt.",
+      "subtitle": "Wir bauen ein Team aus Energiepionieren, Ingenieuren und strategischen Partnern mit Erfahrung in CleanTech und skalierbarer industrieller Fertigung auf.\nWir suchen strategische Industriepartner, um APWEC in ausgewählten Regionen zu produzieren und zu vermarkten.\nDie Vision ist Realität – und die Chance ist jetzt.",
       "link": "Partner werden"
     },
     "faq": {
@@ -166,7 +166,7 @@
     "whoweare": {
       "title": "Innovation, aufgebaut auf Jahrzehnten technischer Expertise und mechanischer Entwicklung",
       "p1": "Sinersys ist eine Abteilung von MUI, spezialisiert auf die Untersuchung und Entwicklung fortgeschrittener Technologien, wo in den letzten Jahren die Innovationen APWEC und der 6-Phasen-Motor entstanden sind.\n Motor Union Italia — seit den frühen 1900er Jahren im Automobilsektor tätig — trägt ein technik-wissenschaftliches Erbe in sich, das auf der Grundlage von Maschinenkonstruktion und Energiewende aufgebaut wurde.",
-      "p2": "Das entwickelte Fachwissen lieferte die Grundlagen für ehrgeizige Herausforderungen, darunter die Schaffung eines kontinuierlich funktionierenden Energieerzeugungssystems aus erneuerbarer Quelle, ohne Abhängigkeit von Umweltvariablen und ohne interne Verbrennung.\n Darüber hinaus wurde als Ziel die Entwicklung eines revolutionären Verbrennungsmotors mit isochorer Funktion erreicht."
+      "p2": "Das erworbene Know-how bildet die Grundlage, um anspruchsvolle Herausforderungen zu meistern, darunter die Entwicklung eines kontinuierlich arbeitenden Energieerzeugungssystems (APWEC), das erneuerbare Energie nutzt, unabhängig von Umweltbedingungen arbeitet und ohne innere Verbrennung auskommt.\nDarüber hinaus wurde ein revolutionärer Verbrennungsmotor entwickelt, der auf dem isochoren Verbrennungsprinzip basiert."
     },
     "values": {
       "value0": "Kontinuierliche erneuerbare Energie",
@@ -205,7 +205,7 @@
       },
       "t2002": {
         "title": "Start spezifischer wissenschaftlicher Studien zum APWEC®-Generator",
-        "description": "Sinersys eröffnet das wissenschaftliche Programm zur Entwicklung eines 'grünen' Generators, der mit Luft-Fluid betrieben wird. Die Experimentalphase beginnt, die zur Entwicklung des ersten funktionalen Prototyps und zur Validierung des physikalischen Prinzips des APWEC®-Generators führen wird."
+        "description": "Sinersys startet sein wissenschaftliches Programm zur Entwicklung eines „grünen“ Generators, der mit einem Luft-Flüssigkeits-System arbeitet. Damit beginnt die experimentelle Phase, die zur Entwicklung des ersten funktionsfähigen Prototyps (Windsilo) und zur Validierung des physikalischen Prinzips des APWEC®-Generators führen wird."
       },
       "t2008": {
         "title": "Anmeldung des Eolischen Silo®-Patents",
@@ -323,7 +323,7 @@
     "howItWorks": {
       "label": "Systemarchitektur",
       "title": "So funktioniert APWEC®:\ndrei Sektionen, sogenannte Vessels",
-      "intro": "Der APWEC®-Generator besteht aus drei fest miteinander verbundenen Vessels. Das erste Vessel erzeugt einen Luftstrom durch Öffnungen für die Aufnahme von atmosphärischer Luft. Im zweiten Vessel befinden sich mehrere Induktionskammern (C.I.), die den Luftstrom innerhalb dieses Abschnitts beschleunigen. Zwischen dem zweiten und dritten Vessel befindet sich ein Rotor, der mit dem Generator verbunden ist und den Hochgeschwindigkeitsluftstrom zur Stromerzeugung nutzt.",
+      "intro": "Der APWEC®-Generator besteht aus drei fest miteinander verbundenen Vessels. Das erste Vessel erzeugt einen Luftstrom durch Öffnungen für die Aufnahme von atmosphärischer Luft. Im zweiten Vessel befinden sich mehrere Induktionskammern (C.I.), die den Luftstrom innerhalb dieses Abschnitts beschleunigen. Zwischen dem zweiten und dritten Vessel befindet sich ein Rotor, der mit dem Generator verbunden ist und den Hochgeschwindigkeitsluftstrom empfängt.",
       "shell1": {
         "label": "Erster Abschnitt",
         "title": "Stromerzeugung und -verstärkung",
@@ -397,12 +397,12 @@
       "a0": {
         "label": "Betriebsfähigkeit",
         "title": "Betrieb bis zu 8.660 Jahresstunden",
-        "desc": "Kontinuierliche Energieerzeugung, unabhängig von den Wetterbedingungen. Keine Abhängigkeit von Wind oder Sonneneinstrahlung: Das System arbeitet 24/7 das gesamte Sonnenjahr, mit geplanten Stopps nur für Wartungszwecke."
+        "desc": "Kontinuierliche Energieerzeugung, unabhängig von den Wetterbedingungen. Keine Abhängigkeit von Wind oder Sonneneinstrahlung: Das System arbeitet 24/7 das gesamte Sonnenjahr, mit geplanter Wartung."
       },
       "a1": {
         "label": "Wartungssicherheit",
         "title": "Bodenwartung, keine Höhenarbeiten",
-        "desc": "Alle Servicearbeiten finden am Boden statt. Keine Eingriffe in erheblichen Höhen, was die für konventionelle Windkraftanlagen typischen Betriebsrisiken eliminiert, die spezialisierte Techniker in der Höhe erfordern."
+        "desc": "Alle Servicearbeiten finden am Boden statt. Keine Eingriffe in erheblichen Höhen, was die typischen Betriebsrisiken eliminiert, die spezialisierte Techniker in der Höhe erfordern."
       },
       "a2": {
         "label": "Konstruktionseinfachheit",
@@ -412,7 +412,7 @@
       "a3": {
         "label": "Schaufeln mit festem Blattwinkel",
         "title": "Kein Blattwinkelverstellmechanismus",
-        "desc": "Der interne Luftstrom ist unidirektional und kontrolliert. Die Rotorschaufeln arbeiten mit festem Blattwinkel und eliminieren das variable Blattwinkelkontrollsystem: eine der Hauptursachen für Ausfälle und Kosten bei großen Windkraftanlagen."
+        "desc": "Der interne Luftstrom ist unidirektional und kontrolliert. Die Rotorschaufeln arbeiten mit festem Blattwinkel und eliminieren das variable Blattwinkelkontrollsystem."
       },
       "a4": {
         "label": "Installationsflexibilität",
@@ -510,7 +510,7 @@
         "desc": "Das Exzentersystem ersetzt den komplexen Pleuelstangen-Kurbelwellen-Mechanismus durch ein präzisionsbearbeitetes Profil. Die Automobilbauphilosophie garantiert Standardisierung, reduzierte Produktionskosten und weltweite Komponentenverfügbarkeit."
       },
       "a3": {
-        "label": "Rotierende Pleuelstange und halbschwimmender Kolben",
+        "label": "Schaufeln mit festem Blattwinkel — Rotor",
         "title": "Rotierende Pleuelstange und halbschwimmender Kolben",
         "desc": "Die Konfiguration mit rotierender Pleuelstange und halbschwimmendem Kolben begünstigt die thermische Stabilität bei hohen Temperaturen, optimale Schmierung und eine Kolbenmasse gleich oder kleiner als die eines analogen konventionellen Hubraums, was die Trägheitskräfte reduziert."
       },
@@ -577,7 +577,7 @@
   "frontierEnergetiche": {
     "label": "Energielösungen",
     "title": "Die neuen Grenzen erneuerbarer Energie und Energieeffizienz",
-    "p1": "Sinersys realisiert Projekte und Anlagen für hocheffiziente Kraft-Wärme-Kopplung und entwickelt fortgeschrittene Technologien für die verteilte kontinuierliche Erzeugung erneuerbarer Energie. Aus unserer jahrhundertelangen Geschichte im Motoringenieurwesen entsteht eine präzise Mission: Energieunabhängigkeit für Industrien, öffentliche Einrichtungen und kommerzielle Betreiber zugänglich zu machen, die Energiekosten konkret senken, CO₂-Emissionen reduzieren und die Energieresilienz ihrer Anlagen erhöhen möchten.",
+    "p1": "Sinersys realisiert Projekte und Anlagen für hocheffiziente Kraft-Wärme-Kopplung und entwickelt fortgeschrittene Technologien für die verteilte kontinuierliche Erzeugung erneuerbarer Energie. Aus unserer jahrhundertelangen Geschichte im Motoringenieurwesen entsteht eine präzise Mission: Energieunabhängigkeit für Industrien, öffentliche Einrichtungen und kommerzielle Betreiber zugänglich zu machen, die Energiekosten senken, CO₂-Emissionen reduzieren und die Energieresilienz ihrer Anlagen erhöhen möchten.",
     "p2": "Sinersys liefert effiziente, flexible und skalierbare Systeme zur Erzeugung erneuerbarer Energie, die die Eigenstromerzeugung mit null Umwelteinfluss ermöglichen. Jede Anlage wird maßgeschneidert konzipiert, mit dem Full Energy Project-Programm zertifiziert und über die Zeit vom Tech Service unterstützt."
   },
   "ethics": {
@@ -837,7 +837,7 @@
       "piva": "MwSt.-Nr. - 00481850378"
     },
     "legal": {
-      "company": "Sinersys – MUI Motor Union Italia s.r.l. DPT"
+      "company": "Sinersys – M.U.I. Motor Union Italia s.r.l. dpt"
     },
     "social": {}
   },

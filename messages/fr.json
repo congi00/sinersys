@@ -38,7 +38,7 @@
       "suptitle": "TECHNOLOGIE APWEC",
       "title": "Le générateur d'énergie renouvelable qui ne s'arrête jamais",
       "subtitle": "APWEC® est une technologie italienne brevetée qui génère de l’énergie renouvelable en exploitant la pression atmosphérique et des flux d’air internes contrôlés.\nZéro émission. Fonctionne environ 8 660 heures par an, indépendamment du rayonnement solaire direct et du vent naturel.",
-      "link": "Comment ça fonctionne"
+      "link": "Énergie renouvelable APWEC"
     },
     "sixPhase": {
       "_comment_researchProducts": "Section vitrine des produits nés de la recherche Sinersys.",
@@ -98,7 +98,7 @@
     "cta": {
       "suptitle": "Équipe, ingénieurs et partenaires stratégiques",
       "title": "Construisons ensemble l'avenir de l'énergie renouvelable",
-      "subtitle": "Nous construisons une équipe de pionniers de l'énergie, d'ingénieurs et de partenaires stratégiques ayant une expérience en clean tech et en production industrielle évolutive. Nous recherchons des partenaires industriels stratégiques pour commercialiser APWEC. La vision est réelle, l'opportunité est maintenant.",
+      "subtitle": "Nous constituons une équipe de pionniers de l'énergie, d'ingénieurs et de partenaires stratégiques spécialisés dans les technologies propres et la production industrielle à grande échelle.\nNous recherchons des partenaires industriels stratégiques pour produire et commercialiser APWEC dans des zones géographiques spécifiques.\nLa vision est réelle, et l'opportunité est aujourd'hui.",
       "link": "Devenir partenaire"
     },
     "faq": {
@@ -171,7 +171,7 @@
     "whoweare": {
       "title": "L'innovation construite sur des décennies d'expertise technique et de développement mécanique",
       "p1": "Sinersys est un département de MUI, spécialisé dans l'étude et le développement de technologies avancées, où sont nées ces dernières années les innovations APWEC et le Moteur à 6 Phases.\n Motor Union Italia — actif depuis le début des années 1900 dans le secteur automobile — porte avec lui un patrimoine technico-scientifique construit sur les bases de la conception mécanique et de la transition énergétique.",
-      "p2": "Les compétences développées ont fourni les bases pour relever des défis ambitieux, notamment la création d'un système de génération d'énergie fonctionnant en continu, à partir d'une source renouvelable, sans dépendance aux variables environnementales et sans combustion interne.\n Il a également atteint comme objectif le développement d'un moteur à combustion interne révolutionnaire, avec la fonction isochore."
+      "p2": "L'expertise acquise a permis de relever des défis ambitieux, notamment le développement d'un système de production d'énergie en continu (APWEC), alimenté par une source d'énergie renouvelable, indépendant des variables environnementales et sans combustion interne.\nElle a également permis de développer un moteur à combustion interne révolutionnaire reposant sur le principe de la combustion isochore."
     },
     "values": {
       "value0": "Énergie renouvelable continue",
@@ -217,7 +217,7 @@
 
       "t2002": {
         "title": "Début des études scientifiques spécifiques sur le générateur APWEC®",
-        "description": "Sinersys inaugure le programme scientifique dédié à la réalisation d'un générateur « vert », fonctionnant avec du fluide-air. La phase expérimentale commence, qui conduira à la création du premier prototype fonctionnel et à la validation du principe physique du générateur APWEC®."
+        "description": "Sinersys lance son programme scientifique consacré au développement d'un générateur « vert » fonctionnant avec un système air-fluide. La phase expérimentale débute et conduira à la réalisation du premier prototype fonctionnel (Silo Éolien) ainsi qu'à la validation du principe physique du générateur APWEC®."
       },
 
       "t2008": {
@@ -338,7 +338,7 @@
     "howItWorks": {
       "label": "Architecture du système",
       "title": "Comment fonctionne APWEC® :\ntrois sections appelées vessels",
-      "intro": "Le générateur APWEC® est composé de trois vessels solidement fixés entre eux. Le premier vessel génère un flux d’air grâce à des ouvertures permettant l’entrée de l’air atmosphérique. Dans le deuxième vessel, une série de chambres d’induction (C.I.) est conçue pour accélérer le flux d’air dans cette section. Entre le deuxième et le troisième vessel se trouve un rotor relié à l’alternateur, qui reçoit le flux d’air à haute vitesse et produit de l’électricité.",
+      "intro": "Le générateur APWEC® est composé de trois vessels solidement fixés entre eux. Le premier vessel génère un flux d’air grâce à des ouvertures permettant l’entrée de l’air atmosphérique. Dans le deuxième vessel, une série de chambres d’induction (C.I.) est conçue pour accélérer le flux d’air dans cette section. Entre le deuxième et le troisième vessel se trouve un rotor relié à l’alternateur, qui reçoit le flux d’air à haute vitesse.",
       "shell1": {
         "label": "Première Section",
         "title": "Génération et amplification du flux",
@@ -412,12 +412,12 @@
       "a0": {
         "label": "Opérabilité",
         "title": "Fonctionnement jusqu'à 8 660 heures annuelles",
-        "desc": "Production d'énergie continue indépendante des conditions météorologiques. Aucune dépendance au vent ou à l'irradiation solaire : le système fonctionne 24h/24 et 7j/7 pendant toute l'année solaire, avec des arrêts programmés pour la seule maintenance."
+        "desc": "Production d'énergie continue indépendante des conditions météorologiques. Aucune dépendance au vent ou à l'irradiation solaire : le système fonctionne 24h/24 et 7j/7 pendant toute l'année solaire, avec une maintenance programmée."
       },
       "a1": {
         "label": "Sécurité de maintenance",
         "title": "Maintenance au niveau du sol, sans travaux en hauteur",
-        "desc": "Toutes les opérations de service s'effectuent au sol. Aucune intervention à des hauteurs significatives, éliminant les risques opérationnels typiques des aérogénérateurs conventionnels qui nécessitent des techniciens spécialisés en hauteur."
+        "desc": "Toutes les opérations de service s'effectuent au sol. Aucune intervention à des hauteurs significatives, éliminant les risques opérationnels typiques qui nécessitent des techniciens spécialisés en hauteur."
       },
       "a2": {
         "label": "Simplicité constructive",
@@ -427,7 +427,7 @@
       "a3": {
         "label": "Pales à pas fixe",
         "title": "Aucun mécanisme à pas variable",
-        "desc": "Le flux d'air interne est unidirectionnel et contrôlé. Les pales du rotor fonctionnent à pas fixe, éliminant le système de contrôle à pas variable : l'une des principales sources de panne et de coût dans les grands aérogénérateurs."
+        "desc": "Le flux d'air interne est unidirectionnel et contrôlé. Les pales du rotor fonctionnent à pas fixe, éliminant le système de contrôle à pas variable."
       },
       "a4": {
         "label": "Flexibilité d'installation",
@@ -596,7 +596,7 @@
   "frontierEnergetiche": {
     "label": "Solutions Énergétiques",
     "title": "Les nouvelles frontières de l'énergie renouvelable et de l'efficacité énergétique",
-    "p1": "Sinersys réalise des projets et des installations de cogénération à haut rendement et développe des technologies avancées pour la génération distribuée continue d'énergie renouvelable. De notre histoire centenaire dans l'ingénierie moteur naît une mission précise : rendre accessible l'indépendance énergétique aux industries, aux collectivités publiques et aux opérateurs commerciaux qui souhaitent réduire concrètement les coûts de l'énergie, réduire les émissions de CO₂ et augmenter la résilience énergétique de leurs installations.",
+    "p1": "Sinersys réalise des projets et des installations de cogénération à haut rendement et développe des technologies avancées pour la génération distribuée continue d'énergie renouvelable. De notre histoire centenaire dans l'ingénierie moteur naît une mission précise : rendre accessible l'indépendance énergétique aux industries, aux collectivités publiques et aux opérateurs commerciaux qui souhaitent réduire les coûts de l'énergie, réduire les émissions de CO₂ et augmenter la résilience énergétique de leurs installations.",
     "p2": "Sinersys fournit des systèmes de génération d'énergie renouvelable efficaces, flexibles et évolutifs qui permettent l'autoproduction d'énergie avec un impact environnemental nul. Chaque installation est conçue sur mesure, certifiée avec le programme Full Energy Project et soutenue dans le temps par le service Tech Service."
   },
 
@@ -860,7 +860,7 @@
       "piva": "N° TVA - 00481850378"
     },
     "legal": {
-      "company": "Sinersys – MUI Motor Union Italia s.r.l. DPT"
+      "company": "Sinersys – M.U.I. Motor Union Italia s.r.l. dpt"
     },
     "social": {}
   },

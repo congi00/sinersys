@@ -35,7 +35,7 @@
       "suptitle": "APWEC TECHNOLOGY",
       "title": "The renewable energy generator that never stops",
       "subtitle": "APWEC® is a patented Italian technology that generates renewable energy by harnessing atmospheric pressure and controlled internal airflow.\nZero emissions. Operates approximately 8,660 hours per year, independent of direct solar radiation and natural wind conditions.",
-      "link": "How It Works"
+      "link": "APWEC Renewable Energy"
     },
     "sixPhase": {
       "_comment_researchProducts": "Showcase section for products born from Sinersys research.",
@@ -95,7 +95,7 @@
     "cta": {
       "suptitle": "Team, Engineers and Strategic Partners",
       "title": "Build the future of renewable energy with us",
-      "subtitle": "We are building a team of energy pioneers, engineers and strategic partners with experience in clean tech and scalable manufacturing. We are seeking strategic industry partners to commercialize APWEC. The vision is real, the opportunity is now.",
+      "subtitle": "We are building a team of energy pioneers, engineers, and strategic partners with expertise in clean technology and scalable industrial manufacturing.\nWe are seeking strategic industrial partners to produce and commercialize APWEC in specific regions.\nThe vision is real, and the opportunity is now.",
       "link": "Become a partner"
     },
     "faq": {
@@ -166,7 +166,7 @@
     "whoweare": {
       "title": "Innovation built on decades of technical expertise and mechanical development",
       "p1": "Sinersys is a department of MUI, specialised in the study and development of advanced technologies, where the APWEC and 6-Phase Engine innovations have emerged in recent years.\n Motor Union Italia — active since the early 1900s in the automotive sector — carries with it a technical-scientific heritage built on the foundations of mechanical design and the energy transition.",
-      "p2": "The expertise developed provided the foundations for tackling ambitious challenges, including the creation of a continuously operating energy generation system, from a renewable source, without dependence on environmental variables and without internal combustion.\n It also achieved the development of a revolutionary internal combustion engine with the isochoric function."
+      "p2": "The expertise gained has provided the foundation to tackle ambitious challenges, including the development of a continuous energy generation system (APWEC) powered by renewable energy, independent of environmental variables and without internal combustion.\nIt has also achieved the development of a revolutionary internal combustion engine based on the isochoric combustion principle."
     },
     "values": {
       "value0": "Continuous renewable energy",
@@ -205,7 +205,7 @@
       },
       "t2002": {
         "title": "Start of specific scientific studies on the APWEC® generator",
-        "description": "Sinersys inaugurated the scientific programme dedicated to the creation of a 'green' generator, operating with fluid-air. The experimental phase began that would lead to the creation of the first functional prototype and the validation of the physical principle of the APWEC® generator."
+        "description": "Sinersys launches its scientific program dedicated to the development of a 'green' generator powered by an air-fluid system. The experimental phase begins, leading to the creation of the first functional prototype (Wind Silo) and the validation of the APWEC® generator's physical principle."
       },
       "t2008": {
         "title": "Filing of the Eolic Silo® patent",
@@ -323,7 +323,7 @@
     "howItWorks": {
       "label": "System architecture",
       "title": "How APWEC® works:\nthree sections called vessels",
-      "intro": "The APWEC® generator consists of three vessels firmly connected to each other. The first vessel creates airflow through openings that allow atmospheric air intake. In the second vessel, a series of Induction Chambers (C.I.) are designed to accelerate airflow inside the second section. Between the second and third vessel, a rotor connected to the alternator receives high-speed airflow, generating electricity.",
+      "intro": "The APWEC® generator consists of three vessels firmly connected to each other. The first vessel creates airflow through openings that allow atmospheric air intake. In the second vessel, a series of Induction Chambers (C.I.) are designed to accelerate airflow inside the second section. Between the second and third vessel, a rotor connected to the alternator receives the high-speed airflow.",
       "shell1": {
         "label": "First Section",
         "title": "Flow generation and amplification",
@@ -397,12 +397,12 @@
       "a0": {
         "label": "Operability",
         "title": "Operation up to 8,660 annual hours",
-        "desc": "Continuous energy production independent of weather conditions. No dependence on wind or solar irradiation: the system operates 24/7 for the entire solar year, with scheduled stoppages for maintenance only."
+        "desc": "Continuous energy production independent of weather conditions. No dependence on wind or solar irradiation: the system operates 24/7 for the entire solar year, with scheduled maintenance."
       },
       "a1": {
         "label": "Maintenance safety",
         "title": "Ground-level maintenance, no work at height",
-        "desc": "All service operations take place on the ground. No intervention at significant heights, eliminating the operational risks typical of conventional wind turbines that require specialised technicians working at height."
+        "desc": "All service operations take place on the ground. No intervention at significant heights, eliminating the typical operational risks that require specialised technicians working at height."
       },
       "a2": {
         "label": "Construction simplicity",
@@ -412,7 +412,7 @@
       "a3": {
         "label": "Fixed-pitch blades",
         "title": "No variable pitch mechanism",
-        "desc": "The internal airflow is unidirectional and controlled. The rotor blades operate at fixed pitch, eliminating the variable pitch control system: one of the main sources of failure and cost in large wind turbines."
+        "desc": "The internal airflow is unidirectional and controlled. The rotor blades operate at fixed pitch, eliminating the variable pitch control system."
       },
       "a4": {
         "label": "Installation flexibility",
@@ -510,7 +510,7 @@
         "desc": "The eccentric system replaces the complex connecting rod–crank mechanism with a precision-machined profile. The automotive construction philosophy guarantees standardisation, reduced production costs and global availability of components."
       },
       "a3": {
-        "label": "Rotating connecting rod and semi-floating piston",
+        "label": "Fixed-pitch blades — rotor",
         "title": "Rotating connecting rod and semi-floating piston",
         "desc": "The rotating connecting rod and semi-floating piston configuration promotes thermal stability at high temperatures, optimal lubrication and a piston mass equal to or less than that of an equivalent conventional displacement, reducing inertial forces."
       },
@@ -577,7 +577,7 @@
   "frontierEnergetiche": {
     "label": "Energy Solutions",
     "title": "The new frontiers of renewable energy and energy efficiency",
-    "p1": "Sinersys designs and builds high-efficiency cogeneration projects and plants and develops advanced technologies for the distributed generation of continuous renewable energy. From our century-long history in motor engineering comes a precise mission: to make energy independence accessible to industries, public bodies and commercial operators who want to concretely reduce energy costs, cut CO₂ emissions and increase the energy resilience of their plants.",
+    "p1": "Sinersys designs and builds high-efficiency cogeneration projects and plants and develops advanced technologies for the distributed generation of continuous renewable energy. From our century-long history in motor engineering comes a precise mission: to make energy independence accessible to industries, public bodies and commercial operators who want to reduce energy costs, cut CO₂ emissions and increase the energy resilience of their plants.",
     "p2": "Sinersys provides efficient, flexible and scalable renewable energy generation systems that enable energy self-production with zero environmental impact. Every plant is custom-designed, certified with the Full Energy Project programme and supported over time by the Tech Service."
   },
   "ethics": {
@@ -837,7 +837,7 @@
       "piva": "VAT No. - 00481850378"
     },
     "legal": {
-      "company": "Sinersys – MUI Motor Union Italia s.r.l. DPT"
+      "company": "Sinersys – M.U.I. Motor Union Italia s.r.l. dpt"
     },
     "social": {}
   },

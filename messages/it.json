@@ -35,7 +35,7 @@
       "suptitle": "TECNOLOGIA APWEC",
       "title": "Il generatore di energia rinnovabile che non si ferma mai",
       "subtitle": "APWEC è la tecnologia italiana brevettata che genera energia sfruttando la pressione atmosferica e i flussi d’aria interni controllati.\nZero emissioni. Funziona 8660 ore ca. l’anno, indipendentemente dall’irraggiamento solare diretto e dal vento naturale.",
-      "link": "Come Funziona"
+      "link": "Energia rinnovabile APWEC"
     },
     "sixPhase": {
       "_comment_researchProducts": "Sezione vetrina dei prodotti nati dalla ricerca Sinersys.",
@@ -95,7 +95,7 @@
     "cta": {
       "suptitle": "Team, Ingegneri e Partner Strategici",
       "title": "Costruiamo insieme il futuro dell'energia rinnovabile",
-      "subtitle": "Stiamo costruendo un team di pionieri dell'energia, ingegneri e partner strategici con esperienza in clean tech e produzione industriale scalabile. Cerchiamo partner industriali strategici per commercializzare APWEC. La visione è reale, l'opportunità è ora.",
+      "subtitle": "Stiamo costruendo un team di pionieri dell'energia, ingegneri e partner strategici con esperienza in clean tech e produzione industriale scalabile.\n Cerchiamo partner industriali strategici per produrre e commercializzare APWEC in specifiche aree.\n La visione è reale, l'opportunità è ora.",
       "link": "Diventa partner"
     },
     "faq": {
@@ -131,7 +131,7 @@
       "attachments": "Allegati",
       "attachmentsHint": "(opzionale — PDF, DOC, immagini, max 10 MB per file)",
       "attachBtn": "Clicca per allegare un file",
-      "postilla": "* Ogni documento inviato sarà trattato da MUI Motor Union Italia senza danne preavviso al mittente e con la finalità che MUI Motor Union Italia deciderà, e senza alcun corrispettivo di sorta da parte di MUI Motor Union Italia al mittente.",
+      "postilla": "* Ogni documento inviato sarà trattato da MUI Motor Union Italia senza darne preavviso al mittente e con la finalità che MUI Motor Union Italia deciderà, e senza alcun corrispettivo di sorta da parte di MUI Motor Union Italia al mittente.",
       "submit": "Invia richiesta",
       "errorRequired": "Campo obbligatorio",
       "errorEmail":    "Email non valida",
@@ -166,7 +166,7 @@
     "whoweare": {
       "title": "L'innovazione costruita in decenni di esperienza tecnica e sviluppo meccanico",
       "p1": "Sinersys è un dipartimento di MUI, specializzato nello studio e sviluppo di tecnologie avanzate, dove sono nate negli ultimi anni le innovazioni APWEC e il Motore a 6 Fasi.\n Motor Union Italia — attiva dall'inizio del 900 nel settore dell'automotive — porta con sé un patrimonio tecnico-scientifico costruito sulla base della progettazione meccanica e transizione energetica.",
-      "p2": "La competenza maturata ha fornito le basi per affrontare sfide ambiziose per realizzare tra l'altro un sistema di generazione energetica funzionante ininterrotamente, da fonte rinnovabile, senza dipendenza dalle variabili ambientali e senza combustione interna.\n Inoltre ha raggiunto come obiettivo lo sviluppo di un rivoluzionario motore a combustione interna, con la funzione isocora."
+      "p2": "La competenza maturata ha fornito le basi per affrontare sfide ambiziose per realizzare tra l'altro un sistema di generazione energetica funzionante ininterrotamente (APWEC), da fonte rinnovabile, senza dipendenza dalle variabili ambientali e senza combustione interna.\n Inoltre ha raggiunto come obiettivo lo sviluppo di un rivoluzionario motore a combustione interna, con la funzione isocora."
     },
     "values": {
       "value0": "Energia rinnovabile continua",
@@ -212,7 +212,7 @@
 
       "t2002": {
         "title": "Avvio degli studi scientifici specifici sul generatore APWEC®",
-        "description": "Sinersys inaugura il programma scientifico dedicato alla realizzazione di un generatore 'green', funzionante con fluido-aria. Inizia la fase sperimentale che porterà alla realizzazione del primo prototipo funzionale e alla validazione del principio fisico del generatore APWEC®."
+        "description": "Sinersys inaugura il programma scientifico dedicato alla realizzazione di un generatore 'green', funzionante con fluido-aria. Inizia la fase sperimentale che porterà alla realizzazione del primo prototipo funzionale (Silo Eolico) e alla validazione del principio fisico del generatore APWEC®."
       },
 
       "t2008": {
@@ -533,7 +533,7 @@
         "title": "Volume e peso ridotti con cambio stepless",
         "desc": "Abbinato al cambio automatico stepless senza cinghia e pulegge, il powertrain riduce significativamente ingombri e peso rispetto alle soluzioni attuali, con benefici diretti su consumi, dinamica del veicolo e costi di integrazione."
       },
-      "vsDesc": "I motori a 4 tempi convenzionali richiedono anticipo di accensione, operano con coefficienti di riempimento inferiori all'unità e accumulano perdite passive nella fase di compressione. \nIl Motore a 6 Fasi Motor Union Italia elimina queste perdite strutturali grazie alla combustione isocora, all'aspirazione prolungata e al nuovo sistema di manovellismo — una categoria tecnica distinta che si posiziona come evoluzione naturale del propulsore a combustione interna per la transizione energetica."
+      "vsDesc": "I motori a 4 tempi convenzionali richiedono anticipo di accensione, operano con coefficienti di riempimento inferiori all'unità e accumulano perdite passive nella fase di compressione. \nIl Motore a 6 Fasi Motor Union Italia elimina queste perdite strutturali grazie alla combustione isocora, all'aspirazione prolungata e al nuovo sistema di manovellismo — una categoria innovativa tecnica distinta che si posiziona come evoluzione naturale del propulsore a combustione interna per la transizione energetica."
     }
   },
   "research": {
@@ -846,7 +846,7 @@
       "piva": "P.IVA - 00481850378"
     },
     "legal": {
-      "company": "Sinersys – MUI Motor Union Italia s.r.l. DPT"
+      "company": "Sinersys – M.U.I. Motor Union Italia s.r.l. dpt"
     },
     "social": {}
   },

@@ -68,7 +68,7 @@ export default function LinkButton({ link, text, icon, top, color, fontSize }: P
   }
 
   return (
-    <Link href={link} className="inline-flex mt-8">
+    <Link href={link} className="inline-flex mt-8" title={text}>
       <m.div
         ref={ref}
         onMouseMove={handleMove}
