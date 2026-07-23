@@ -1,7 +1,17 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
+import {
+  Clock,
+  Mesh,
+  OrthographicCamera,
+  PlaneGeometry,
+  Scene,
+  ShaderMaterial,
+  SRGBColorSpace,
+  Vector2,
+  WebGLRenderer,
+} from "three";
 import {
   MotionValue,
   m,
@@ -155,8 +165,8 @@ export default function LiquidBackground({
   const mountRef = useRef<HTMLDivElement>(null);
   const paletteRef = useRef(0);
   // Ref al renderer e agli uniforms per poterli aggiornare dal resize handler
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const uniformsRef = useRef<{ uResolution: { value: THREE.Vector2 } } | null>(
+  const rendererRef = useRef<WebGLRenderer | null>(null);
+  const uniformsRef = useRef<{ uResolution: { value: Vector2 } } | null>(
     null
   );
 
@@ -212,38 +222,38 @@ export default function LiquidBackground({
       H = H || window.innerHeight || 1;
     }
 
-    const renderer = new THREE.WebGLRenderer({
+    const renderer = new WebGLRenderer({
       antialias: false,
       alpha: false,
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.2));
     renderer.setSize(W, H);
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.outputColorSpace = SRGBColorSpace;
     mount.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const scene = new Scene();
+    const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const uniforms = {
       uTime: { value: 0 },
-      uResolution: { value: new THREE.Vector2(W, H) },
+      uResolution: { value: new Vector2(W, H) },
       uPalette: { value: 0 },
     };
     uniformsRef.current = uniforms;
 
-    const geo = new THREE.PlaneGeometry(2, 2);
-    const mat = new THREE.ShaderMaterial({
+    const geo = new PlaneGeometry(2, 2);
+    const mat = new ShaderMaterial({
       vertexShader: VERT,
       fragmentShader: FRAG,
       uniforms,
     });
-    scene.add(new THREE.Mesh(geo, mat));
+    scene.add(new Mesh(geo, mat));
 
     uniforms.uPalette.value = paletteRef.current;
     renderer.render(scene, camera);
 
     let rafId = 0;
-    const clock = new THREE.Clock();
+    const clock = new Clock();
     function animate() {
       rafId = requestAnimationFrame(animate);
       uniforms.uTime.value = clock.getElapsedTime();
