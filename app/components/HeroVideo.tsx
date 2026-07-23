@@ -115,7 +115,7 @@ export default function HeroVideo({ isMobile }: Props) {
         // Cambia sorgente in base al viewport
         src={videoSrc ?? undefined}
         // Preload metadata prima, poi il browser decide se caricare tutto
-        preload="auto"
+        preload="metadata"
         autoPlay
         muted
         poster="/poster.webp" //#TOFIX
