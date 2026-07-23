@@ -24,14 +24,14 @@ export async function GET() {
         durationSeconds: 5,
       },
       {
-        loc: 'https://www.sinersys.it/it/',
+        loc: 'https://www.sinersys.it/it',
         title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
         description: 'Presentazione prototipo APWEC, generatore di energia rinnovabile.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecintro.mp4',
         durationSeconds: 15,
       },{
-        loc: 'https://www.sinersys.it/it/',
+        loc: 'https://www.sinersys.it/it',
         title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
         description: 'Presentazione prototipo APWEC, generatore di energia rinnovabile.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
