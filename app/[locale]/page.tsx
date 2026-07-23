@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 
   return {
-    title: 'Sinersys | ' + t('slide0.title'),
+    title: 'Sinersys | ' + t('slide0.metatitle'),
     description: t('slide0.subtitle'),
     keywords: t('keywords'),
     authors: [{ name: 'Sinersys' }],
