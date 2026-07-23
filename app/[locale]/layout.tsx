@@ -81,6 +81,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     metadataBase: new URL("https://www.sinersys.it"),
     openGraph: {
       type: "website",
+      url: `https://www.sinersys.it/${locale}`,
       locale: ogLocale,
       alternateLocale: ["it_IT", "en_US", "de_DE", "fr_FR"].filter(
         (l) => l !== ogLocale
