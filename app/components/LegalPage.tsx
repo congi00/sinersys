@@ -35,7 +35,7 @@
  *   </page-wrapper>
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect, useCallback } from "react";
 import { m, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useLenis } from "../containers/LenisProvider";
 import { detectIOS, useViewportHeight } from "../support/useViewportHeight";
@@ -46,10 +46,13 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { setOpenContact } from "../features/counterSlice";
 import dynamic from "next/dynamic";
 
-const LiquidBackground = dynamic(() => import('../components/LiquidBackground'), {
-  ssr: false,
-  loading: () => <div className="h-screen bg-[#1c398e]" />
-});
+const LiquidBackground = dynamic(
+  () => import("../components/LiquidBackground"),
+  {
+    ssr: false,
+    loading: () => <div className="h-screen bg-[#1c398e]" />,
+  }
+);
 
 // ─────────────────────────────────────────────────────────────────────────────
 export interface LegalSection {
@@ -141,7 +144,6 @@ export default function LegalPage({
   const [width, setWidth] = useState(1024);
 
   // ── content height — misurato sul div STATICO (senza transform applicato) ─
-  const contentRef = useRef<HTMLDivElement>(null);
   const [contentH, setContentH] = useState(0);
 
   useEffect(() => {
@@ -155,50 +157,55 @@ export default function LegalPage({
   const isIOS = mounted ? detectIOS() : false;
   const vhUnit = isIOS ? "lvh" : "dvh";
   const vhPx = useViewportHeight(isIOS);
+  const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-
   // Measure content height from the STATIC wrapper (no transform contamination)
+
   useEffect(() => {
-    if (!contentRef.current) return;
+    if (!contentEl) return;
+  
     const measure = () => {
-      if (contentRef.current) {
-        setContentH(
-          contentRef.current.getBoundingClientRect().height ||
-            contentRef.current.scrollHeight
-        );
-      }
+      setContentH(contentEl.scrollHeight);
     };
-    const ro = new ResizeObserver(measure);
-    ro.observe(contentRef.current);
+  
+    const observer = new ResizeObserver(measure);
+    observer.observe(contentEl);
+  
     measure();
-
-    // Rimisurazione ritardata (doppio rAF, stesso pattern di
-    // useViewportHeight/LenisProvider): la measure() sincrona qui sopra
-    // può catturare un layout non ancora assestato — LiquidBackground è
-    // caricato con dynamic(ssr:false) e può renderizzare il proprio
-    // contenuto reale un frame dopo il mount, cambiando l'altezza finale
-    // senza che nulla lo segnali prima che React committa il primo
-    // totalHeight (lo spacer che determina lo scroll reale del browser).
-    // Il ResizeObserver correggerebbe comunque al frame successivo, ma
-    // questa seconda lettura garantita elimina la finestra in cui un
-    // totalHeight calcolato su un contentH parziale potrebbe essere
-    // già stato committato e scrollato dall'utente.
-    let raf1 = 0;
-    let raf2 = 0;
-    raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(measure);
-    });
-
+  
+    window.addEventListener("resize", measure);
+  
     return () => {
-      ro.disconnect();
-      cancelAnimationFrame(raf1);
-      cancelAnimationFrame(raf2);
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
     };
-  }, [mounted]);
+  }, [contentEl]);
+
+  const contentRef = useCallback((node: HTMLDivElement | null) => {
+    setContentEl(node);
+  
+    if (!node) return;
+  
+    const measure = () => {
+      setContentH(node.scrollHeight);
+    };
+  
+    measure();
+  
+    requestAnimationFrame(() => {
+      measure();
+    });
+  
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        measure();
+      });
+    });
+  }, []);
 
   const { lenis, isTouch, requestResize } = useLenis();
 
@@ -270,7 +277,7 @@ export default function LegalPage({
   const cardY = useTransform(
     scrollSmooth,
     [0, kReadEnd - 200, kCloseEnd + FOOTER_PX - (isMobile ? 300 : 0)],
-    [0, 0, -(CLOSE_PX * (isMobile? 4:3))]
+    [0, 0, -(CLOSE_PX * (isMobile ? 4 : 3))]
   );
 
   // ── Content Y — RAW 1:1, no spring, no lag ──────────────────────────────
@@ -284,17 +291,13 @@ export default function LegalPage({
     }
   );
 
-  const hiddenMenu  = useTransform(
+  const hiddenMenu = useTransform(
     scrollPx,
-    [0,kReadEnd, kCloseEnd],
-    [1, 1, 0 ]
+    [0, kReadEnd, kCloseEnd],
+    [1, 1, 0]
   );
 
-  const menuTheme =  useTransform(
-    scrollPx,
-    [0],
-    [0 ]
-  );
+  const menuTheme = useTransform(scrollPx, [0], [0]);
 
   const liquidProgress = useMotionValue(0);
   const headerTheme = useMotionValue(0);
@@ -307,7 +310,7 @@ export default function LegalPage({
   }
 
   return (
-    <main id="main-content">  
+    <main id="main-content">
       {/* ── Scroll spacer ─────────────────────────────────────────────── */}
       <div style={{ height: totalHeight }} aria-hidden />
 
@@ -317,7 +320,9 @@ export default function LegalPage({
         style={{ height: totalHeight, zIndex: 1 }}
       >
         {!openContact && <Header headerTheme={headerTheme} />}
-        {!openContact && <MenuButton menuTheme={menuTheme} hiddenMenu={hiddenMenu}/>}
+        {!openContact && (
+          <MenuButton menuTheme={menuTheme} hiddenMenu={hiddenMenu} />
+        )}
 
         {/* ── CARD ────────────────────────────────────────────────────── */}
         <m.div
@@ -560,6 +565,8 @@ export function LI({ children }: { children: React.ReactNode }) {
 
 export function Strong({ children }: { children: React.ReactNode }) {
   return (
-    <strong style={{ color: "#c8d8f8", fontWeight: 600 }} aria-hidden={false}>{children}</strong>
+    <strong style={{ color: "#c8d8f8", fontWeight: 600 }} aria-hidden={false}>
+      {children}
+    </strong>
   );
 }
