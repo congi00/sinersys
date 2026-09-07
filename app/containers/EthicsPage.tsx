@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import LegalPage, { P, UL, LI, Strong } from "../components/LegalPage";
+import LegalPage, { P, UL, LI } from "../components/LegalPage";
 
 export default function EthicsPage() {
   const t = useTranslations("ethics");
@@ -22,11 +22,8 @@ export default function EthicsPage() {
         <>
           <P>{t("s2.p1")}</P>
           <UL>
-            <LI><Strong>{t("s2.v1.title")}</Strong> — {t("s2.v1.body")}</LI>
-            <LI><Strong>{t("s2.v2.title")}</Strong> — {t("s2.v2.body")}</LI>
-            <LI><Strong>{t("s2.v3.title")}</Strong> — {t("s2.v3.body")}</LI>
-            <LI><Strong>{t("s2.v4.title")}</Strong> — {t("s2.v4.body")}</LI>
-            <LI><Strong>{t("s2.v5.title")}</Strong> — {t("s2.v5.body")}</LI>
+            <LI>{t("s2.l1")}</LI>
+            <LI>{t("s2.l2")}</LI>
           </UL>
         </>
       ),
@@ -36,12 +33,7 @@ export default function EthicsPage() {
       body: (
         <>
           <P>{t("s3.p1")}</P>
-          <UL>
-            <LI>{t("s3.l1")}</LI>
-            <LI>{t("s3.l2")}</LI>
-            <LI>{t("s3.l3")}</LI>
-            <LI>{t("s3.l4")}</LI>
-          </UL>
+          <P>{t("s3.p2")}</P>
         </>
       ),
     },
@@ -50,7 +42,10 @@ export default function EthicsPage() {
       body: (
         <>
           <P>{t("s4.p1")}</P>
-          <P>{t("s4.p2")}</P>
+          <UL>
+            <LI>{t("s4.l1")}</LI>
+            <LI>{t("s4.l2")}</LI>
+          </UL>
         </>
       ),
     },
@@ -62,8 +57,6 @@ export default function EthicsPage() {
           <UL>
             <LI>{t("s5.l1")}</LI>
             <LI>{t("s5.l2")}</LI>
-            <LI>{t("s5.l3")}</LI>
-            <LI>{t("s5.l4")}</LI>
           </UL>
         </>
       ),
@@ -73,7 +66,10 @@ export default function EthicsPage() {
       body: (
         <>
           <P>{t("s6.p1")}</P>
-          <P>{t("s6.p2")}</P>
+          <UL>
+            <LI>{t("s6.l1")}</LI>
+            <LI>{t("s6.l2")}</LI>
+          </UL>
         </>
       ),
     },
@@ -85,14 +81,54 @@ export default function EthicsPage() {
           <UL>
             <LI>{t("s7.l1")}</LI>
             <LI>{t("s7.l2")}</LI>
-            <LI>{t("s7.l3")}</LI>
           </UL>
         </>
       ),
     },
     {
       heading: t("s8.heading"),
-      body: <P>{t("s8.p1")}</P>,
+      body: (
+        <>
+          <P>{t("s8.p1")}</P>
+          <UL>
+            <LI>{t("s8.l1")}</LI>
+            <LI>{t("s8.l2")}</LI>
+          </UL>
+        </>
+      ),
+    },
+    {
+      heading: t("s9.heading"),
+      body: (
+        <>
+          <P>{t("s9.p1")}</P>
+          <UL>
+            <LI>{t("s9.l1")}</LI>
+            <LI>{t("s9.l2")}</LI>
+          </UL>
+        </>
+      ),
+    },
+    {
+      heading: t("s10.heading"),
+      body: (
+        <>
+          <P>{t("s10.p1")}</P>
+          <UL>
+            <LI>{t("s10.l1")}</LI>
+            <LI>{t("s10.l2")}</LI>
+          </UL>
+        </>
+      ),
+    },
+    {
+      heading: t("s11.heading"),
+      body: (
+        <>
+          <P>{t("s11.p1")}</P>
+          <P>{t("s11.p2")}</P>
+        </>
+      ),
     },
   ];
 

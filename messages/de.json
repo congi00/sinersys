@@ -582,76 +582,73 @@
     "p2": "Sinersys liefert effiziente, flexible und skalierbare Systeme zur Erzeugung erneuerbarer Energie, die die Eigenstromerzeugung mit null Umwelteinfluss ermöglichen. Jede Anlage wird maßgeschneidert konzipiert, mit dem Full Energy Project-Programm zertifiziert und über die Zeit vom Tech Service unterstützt."
   },
   "ethics": {
-    "label": "Ethikkodex",
-    "title": "Ethikkodex",
-    "subtitle": "Die Prinzipien, die jeden Tag jede unserer Entscheidungen leiten.",
-    "updated": "Letzte Aktualisierung: März 2026",
-    "s1": {
-      "heading": "Präambel und Anwendungsbereich",
-      "p1": "Sinersys ist eine Abteilung von MUI, spezialisiert auf die Untersuchung und Entwicklung fortgeschrittener Technologien, wo in den letzten Jahren die Innovationen APWEC und der 6-Phasen-Motor entstanden sind. Wir arbeiten in der Überzeugung, dass Innovation und Verantwortung keine widersprüchlichen, sondern komplementären Werte sind: Die Qualität der Arbeit, die wir leisten, hängt auch von der Qualität der Beziehungen ab, die wir aufbauen, und der Verhaltensweisen, die wir annehmen.",
-      "p2": "Dieser Ethikkodex gilt für alle, die für oder mit Sinersys arbeiten: Mitarbeiter, Mitarbeiter, Berater, Lieferanten und Geschäftspartner. Es ist kein formelles Dokument als Selbstzweck, sondern der schriftliche Ausdruck einer Unternehmenskultur, die Substanz gegenüber Form bevorzugt."
-    },
-    "s2": {
-      "heading": "Unsere Werte",
-      "p1": "Jede Entscheidung, die wir treffen — strategisch, operativ, kommerziell — wird von den folgenden Grundprinzipien geleitet:",
-      "v1": {
-        "title": "Integrität",
-        "body": "Wir wahren Konsistenz zwischen dem, was wir sagen, und dem, was wir tun. Wir übernehmen Verantwortung für unsere Fehler und minimieren sie nicht."
+      "label": "Ethikkodex",
+      "title": "Ethikkodex",
+      "subtitle": "Die Grundsätze, die jede unserer Entscheidungen leiten, jeden Tag.",
+      "updated": "Letzte Aktualisierung: Februar 2026",
+      "s1": {
+        "heading": "Präambel und Anwendungsbereich",
+        "p1": "Um das Wohlergehen des Unternehmens und ein nachhaltiges Wachstum zu erreichen, das auf dem Vertrauen aller basiert, die mit uns in Beziehung stehen, verabschiedet Sinersys (eine Abteilung von MUI) die vorliegenden Allgemeinen Internen Regeln. Über die Einhaltung von Gesetzen und Vorschriften hinaus halten wir es für unerlässlich, in jeder Situation aufrichtig und ethisch zu handeln.",
+        "p2": "Dieser Verhaltenskodex gilt für alle, die für oder mit Sinersys tätig sind: Gesellschafter, Mitarbeiter, Partner, Berater, Lieferanten sowie alle, die in einer Geschäftsbeziehung zum Unternehmen stehen."
       },
-      "v2": {
-        "title": "Bewusste Innovation",
-        "body": "Wir entwickeln Technologie mit vollem Bewusstsein für ihre sozialen und ökologischen Auswirkungen. Innovation, die keine konkreten Vorteile für die Energiewende bringt, ist kein Fortschritt."
+      "s2": {
+        "heading": "Produkte und Dienstleistungen",
+        "p1": "Sinersys verpflichtet sich, Produkte und Dienstleistungen anzubieten, die die Erwartungen von Kunden und Gesellschaft übertreffen, wobei Qualität und Sicherheit oberste Priorität haben und wir uns selbst hohe Standards setzen.",
+        "l1": "Wir räumen der Qualität und Sicherheit unserer Produkte und Dienstleistungen höchste Priorität ein und halten uns strikt an die festgelegten Standards und Verfahren.",
+        "l2": "Wir verlangen von unseren Geschäftspartnern und Vertriebshändlern, dieselben Standards und Verfahren einzuhalten."
       },
-      "v3": {
-        "title": "Gegenseitiger Respekt",
-        "body": "Jede Person, die mit Sinersys interagiert, verdient Respekt für ihre Würde, unabhängig von Rolle oder Position."
+      "s3": {
+        "heading": "Kommunikation, Werbung und Wettbewerb",
+        "p1": "Wir betreiben unsere Kommunikations-, Werbe- und Verkaufsförderungsaktivitäten mit Aufrichtigkeit, informieren unsere Kunden korrekt und handeln fair und korrekt unter Achtung des Wettbewerbs und der Rechte der Wettbewerber.",
+        "p2": "Wir betreiben einen fairen Wettbewerb, geben wahrheitsgemäße Informationen über Wettbewerber auf Basis öffentlich zugänglicher Daten weiter und halten uns an das geltende Wettbewerbsrecht."
       },
-      "v4": {
-        "title": "Echte Nachhaltigkeit",
-        "body": "Wir nutzen Nachhaltigkeit nicht als Marketinginstrument. Unsere Umwelt- und Sozialverpflichtungen sind messbar und überprüfbar."
+      "s4": {
+        "heading": "Geschäftspartner",
+        "p1": "Sinersys strebt an, auf Basis von freiem Wettbewerb und gegenseitigem Vertrauen solide und langfristige Beziehungen zu Geschäftspartnern, Lieferanten, Vertriebsunternehmen und etwaigen Subunternehmern aufzubauen.",
+        "l1": "Entscheidungen bezüglich Geschäftspartnern werden in Übereinstimmung mit den Unternehmensrichtlinien und -verfahren sowie unter Beachtung der für Transaktionen geltenden Gesetze und internen Regeln umgesetzt.",
+        "l2": "Wir nehmen keine persönlichen Vorteile (Geld, Sachwerte, Unterhaltung usw.) an und bieten sie nicht an, die über die üblichen geschäftlichen Höflichkeiten hinausgehen, und nutzen unsere Position nicht, um von Dritten unzulässige Vergünstigungen zu erhalten oder zu gewähren."
       },
-      "v5": {
-        "title": "Transparenz",
-        "body": "Wir kommunizieren klar, auch wenn die Nachrichten schwierig sind. Vertrauen wird mit Ehrlichkeit aufgebaut, nicht mit Versicherungen."
+      "s5": {
+        "heading": "Arbeitsumfeld und Beziehungen zu Kollegen",
+        "p1": "Sinersys verpflichtet sich, ein Arbeitsumfeld zu schaffen, das auf gegenseitigem Vertrauen und einer reibungslosen, harmonischen Kommunikation zwischen allen Beteiligten beruht.",
+        "l1": "Wir fördern eine offene Kommunikation am Arbeitsplatz, damit die Zusammenarbeit unter Kollegen stets harmonisch bleibt.",
+        "l2": "Familienangehörige von Gesellschaftern und Führungskräften werden nicht in die Tätigkeiten von Sinersys einbezogen, um Transparenz und Fairness zu gewährleisten."
+      },
+      "s6": {
+        "heading": "Menschenrechte und gegenseitiger Respekt",
+        "p1": "Sinersys ist ein aufrichtiges und faires Unternehmen, das die Menschenrechte im Einklang mit geltendem Recht achtet und sowohl intern als auch gegenüber Partnern und Kollegen darauf achtet, dass dieser Grundsatz stets eingehalten wird.",
+        "l1": "Wir behandeln jeden Gesellschafter, Partner oder Mitarbeiter mit Respekt, Ehrlichkeit und Unparteilichkeit.",
+        "l2": "Wir setzen uns aktiv dafür ein, dass es am Arbeitsplatz keine Belästigung, Diskriminierung oder unfaire Behandlung gibt."
+      },
+      "s7": {
+        "heading": "Gesundheit und Sicherheit",
+        "p1": "Sinersys fordert einen sicheren, hygienischen und geordneten Arbeitsplatz, sowohl intern als auch im Umgang mit Partnern und Mitarbeitern.",
+        "l1": "Wir halten die Gesetze, Vorschriften und internen Regeln zu Gesundheit und Sicherheit ein.",
+        "l2": "Wir bemühen uns um einen sicheren und geordneten Arbeitsplatz, um Krankheiten, Unfälle und die Ausbreitung gefährlicher Situationen zu verhindern."
+      },
+      "s8": {
+        "heading": "Unternehmenstätigkeit und Vermögenswerte",
+        "p1": "Sinersys unterhält und verwaltet seine materiellen und immateriellen Vermögenswerte ordnungsgemäß und ergreift Sicherheitsmaßnahmen zum Schutz von Patenten, Know-how, Studien, Forschungsergebnissen, Entwürfen, Fotos, Videomaterial und anderem Unternehmenseigentum.",
+        "l1": "Wir führen die Unternehmenstätigkeit angemessen und vertraulich durch und setzen uns dafür ein, dass der Wert des Unternehmensvermögens niemals beeinträchtigt wird.",
+        "l2": "Wir verwalten Einrichtungen, Ausrüstungen, Produkte, Betriebsmittel, Unternehmensdarlehen, Gelder, geistiges Eigentum und alle sonstigen Unternehmenswerte ordnungsgemäß und nutzen sie ausschließlich zu geschäftlichen, gewerblichen und forschungsbezogenen Zwecken von Sinersys, ohne sie aus persönlichem Interesse an Dritte weiterzugeben."
+      },
+      "s9": {
+        "heading": "Informationsmanagement",
+        "p1": "Sinersys schützt und verwaltet die vertraulichen und personenbezogenen Informationen des Unternehmens ordnungsgemäß und ergreift alle notwendigen Maßnahmen, um seine geschäftlichen, gewerblichen und Forschungsaktivitäten korrekt durchzuführen.",
+        "l1": "Wir verwalten interne Informationen, Informationen über Geschäftspartner sowie personenbezogene Daten von Kunden und Mitarbeitern in Übereinstimmung mit geltenden Gesetzen und internen Regeln.",
+        "l2": "Wir missbrauchen Informationen nicht, einschließlich Insiderhandel, und geben keine Unternehmens-, technischen, wissenschaftlichen oder Forschungsdaten ohne schriftliche Genehmigung des bevollmächtigten Rechtsvertreters des Unternehmens an Dritte weiter."
+      },
+      "s10": {
+        "heading": "Interessenkonflikte",
+        "p1": "Sinersys toleriert kein Verhalten, das die Interessen des Unternehmens zugunsten persönlicher Interessen oder der Interessen Dritter beeinträchtigt.",
+        "l1": "Wir verpflichten uns, in keiner Form persönliche Interessen oder Interessen von Geschäftspartnern oder Dritten gegen die Interessen von Sinersys zu verfolgen.",
+        "l2": "Wir melden proaktiv jede Situation, die zu einem tatsächlichen oder scheinbaren Interessenkonflikt führen könnte."
+      },
+      "s11": {
+        "heading": "Vertraulichkeit, Kontrolle und Integrität",
+        "p1": "Jede im Namen von Sinersys ausgeübte Tätigkeit, sei es individuell oder innerhalb der eigenen Arbeitsgruppe, erfolgt in Übereinstimmung mit geltenden moralischen, ethischen sowie nationalen und internationalen Standards, mit Loyalität und größtmöglicher Vertraulichkeit.",
+        "p2": "Wir überwachen kontinuierlich, um eine unbefugte Datenübertragung zu verhindern, und wahren dabei jederzeit die Interessen des Unternehmens."
       }
-    },
-    "s3": {
-      "heading": "Arbeitsumgebung",
-      "p1": "Sinersys ist ein Ort, an dem Menschen gut arbeiten können müssen. Dies erfordert aktives Engagement von allen:",
-      "l1": "Sichere physische und digitale Umgebungen gewährleisten, frei von vermeidbaren Gesundheits- und Wohlfahrtsrisiken.",
-      "l2": "Eine Kultur aufbauen, in der Meinungsverschiedenheiten offen und respektvoll geäußert werden, ohne Angst vor Vergeltungsmaßnahmen.",
-      "l3": "Den Beitrag jedes Einzelnen anerkennen und wertschätzen, unabhängig von Geschlecht, Alter, Nationalität, sexueller Orientierung oder persönlichen Überzeugungen.",
-      "l4": "In die berufliche Entwicklung als gegenseitige Verpflichtung investieren, nicht als einseitigen Vorteil."
-    },
-    "s4": {
-      "heading": "Geschäftsbeziehungen",
-      "p1": "Mit Kunden und Partnern bauen wir Beziehungen auf, die langfristig Wert schaffen. Das bedeutet, ehrlich über die Grenzen unserer Lösungen zu sein, vertragliche Verpflichtungen einzuhalten, auch wenn es kostspielig ist, und Aufträge abzulehnen, die einen Kompromiss unserer Integrität erfordern würden.",
-      "p2": "Bei der Auswahl von Lieferanten bevorzugen wir diejenigen, die vergleichbare ethische und ökologische Standards wie wir teilen. Wir akzeptieren nicht das Prinzip, dass der niedrigste Preis jeden Kompromiss bei den Arbeitsbedingungen oder dem Umwelteinfluss in der Lieferkette rechtfertigt."
-    },
-    "s5": {
-      "heading": "Interessenkonflikte und Geschenke",
-      "p1": "Ein Interessenkonflikt entsteht, wenn ein persönliches Interesse die im Namen von Sinersys getroffenen Entscheidungen beeinflussen könnte. Wir bitten alle:",
-      "l1": "Proaktiv jede Situation melden, die einen tatsächlichen oder scheinbaren Interessenkonflikt erzeugen könnte.",
-      "l2": "In Konfliktsituationen keine Entscheidungen zu treffen und diese an Dritte zu delegieren.",
-      "l3": "Keine Geschenke, Bewirtungen oder andere Vorteile anzunehmen oder anzubieten, die über die normalen professionellen Höflichkeitspraktiken hinausgehen (Richtlimit: 50 € pro Einzelfall).",
-      "l4": "Vertrauliche Informationen, die in Ausübung ihrer Rolle erlangt wurden, nicht für persönliche Zwecke oder im Auftrag Dritter zu verwenden."
-    },
-    "s6": {
-      "heading": "Vertraulichkeit und Datenschutz",
-      "p1": "Vertrauliche Informationen sind ein Vermögenswert, der geschützt werden muss. Jeder Mitarbeiter ist verpflichtet, sie mit der gleichen Sorgfalt zu behandeln, mit der er möchte, dass seine eigenen persönlichen Daten von anderen behandelt werden.",
-      "p2": "Die Verarbeitung personenbezogener Daten erfolgt in Übereinstimmung mit der EU-Verordnung 2016/679 (DSGVO) und dem geltenden italienischen Recht."
-    },
-    "s7": {
-      "heading": "Korruptionsbekämpfung und Einhaltung von Vorschriften",
-      "p1": "Sinersys arbeitet in Übereinstimmung mit allen geltenden Gesetzen und Vorschriften in jedem Land, in dem es präsent ist. Korruption — in jeder Form — ist mit unseren Werten und unserem Geschäftsmodell unvereinbar.",
-      "l1": "Es ist verboten, Zahlungen oder Versprechen von Vorteilen an öffentliche oder private Beamte zu leisten, um unangemessene Vorteile zu erlangen.",
-      "l2": "Die Buchführung muss jeden Vorgang getreu widerspiegeln. Es gibt keine schwarzen Kassen, nicht registrierte Zahlungen oder falsche Einträge.",
-      "l3": "Wer einen Verstoß gegen diesen Kodex erkennt oder vermutet, kann diesen vertraulich über offizielle Kanäle melden, mit Garantie für Anonymität und Schutz vor Vergeltungsmaßnahmen."
-    },
-    "s8": {
-      "heading": "Verstöße und Konsequenzen",
-      "p1": "Nachgewiesene Verstöße gegen diesen Ethikkodex haben Konsequenzen, die proportional zur Schwere des Verhaltens sind, bis hin zur Beendigung des Arbeits- oder Kooperationsverhältnisses. Für Meldungen: info@sinersys.it"
-    }
   },
   "privacy": {
     "label": "Datenschutzrichtlinie",
