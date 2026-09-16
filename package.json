@@ -11,8 +11,6 @@
   "dependencies": {
     "@deemlol/next-icons": "^0.1.9",
     "@reduxjs/toolkit": "^2.11.2",
-    "@upstash/ratelimit": "^2.0.8",
-    "@upstash/redis": "^1.38.0",
     "clsx": "^2.1.1",
     "focus-trap-react": "^12.0.2",
     "framer-motion": "^12.34.0",
