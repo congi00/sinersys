@@ -99,7 +99,7 @@ export default function SocialSwitcher({ isDark }: Props) {
     {
       id: "instagram",
       label: "Instagram",
-      href: "https://www.instagram.com/yourhandle",
+      href: "https://www.instagram.com/sinersys.energy",
       icon: (
         <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
           <rect

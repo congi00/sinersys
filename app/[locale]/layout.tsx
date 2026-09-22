@@ -161,7 +161,7 @@ const organizationSchema = {
     latitude: 44.4971897,
     longitude: 11.3316031,
   },
-  sameAs: ["https://www.linkedin.com/company/sinersys-italia","https://www.youtube.com/@Sinersys-Italia"],
+  sameAs: ["https://www.linkedin.com/company/sinersys-italia","https://www.youtube.com/@Sinersys-Italia", "https://www.instagram.com/sinersys.energy/"],
 };
 
 export default async function RootLayout({ children, params }: Props) {
