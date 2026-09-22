@@ -218,10 +218,10 @@ export default function Footer({ openContact }: FooterProps) {
         {/* Bottom bar */}
         <m.div
           variants={itemVariants}
-          className="flex justify-between items-center mt-16 text-sm opacity-80 border-t border-white/20 pt-6"
+          className="flex flex-col justify-between items-center mt-16 text-sm opacity-80 border-t border-white/20 pt-6"
         >
-          <p>{t("legal.company")}</p>
-          <div className="flex gap-6">
+          <p className="text-base">{t("legal.company")}</p>
+          <div className="flex gap-6 mt-6 text-xs">
             Website Developed by Alessandro Congiusti
           </div>
         </m.div>
