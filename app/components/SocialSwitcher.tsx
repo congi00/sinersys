@@ -9,6 +9,7 @@ interface Props {
 
 export default function SocialSwitcher({ isDark }: Props) {
   const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -201,7 +202,12 @@ export default function SocialSwitcher({ isDark }: Props) {
               }}
               whileTap={{ scale: 0.97 }}
               aria-label={social.label}
+              onMouseEnter={() => setHovered(social.id)}
+              onMouseLeave={() => setHovered(null)}
+              onFocus={() => setHovered(social.id)}
+              onBlur={() => setHovered(null)}
               style={{
+                position: "relative",
                 //   display: "flex",
                 //   alignItems: "center",
                 //   gap: "10px",
@@ -218,6 +224,53 @@ export default function SocialSwitcher({ isDark }: Props) {
               }}
             >
               <span aria-hidden="true" style={{ flexShrink: 0 }}>{social.icon}</span>
+
+              <AnimatePresence>
+                {hovered === social.id && (
+                  <m.span
+                    role="tooltip"
+                    initial={{ opacity: 0, y: 4, x: "-50%" }}
+                    animate={{ opacity: 1, y: 0, x: "-50%" }}
+                    exit={{ opacity: 0, y: 4, x: "-50%" }}
+                    transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                    style={{
+                      position: "absolute",
+                      bottom: "calc(100% + 10px)",
+                      left: "50%",
+                      whiteSpace: "nowrap",
+                      pointerEvents: "none",
+                      padding: "5px 10px",
+                      borderRadius: "8px",
+                      background: "rgba(28,57,142,0.92)",
+                      backdropFilter: "blur(8px) saturate(160%)",
+                      WebkitBackdropFilter: "blur(8px) saturate(160%)",
+                      color: "#F4F7FA",
+                      fontSize: "0.72rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.04em",
+                      textTransform: "none",
+                      boxShadow: "0 4px 14px rgba(12,24,70,0.28)",
+                      zIndex: 10,
+                    }}
+                  >
+                    {social.label}
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        position: "absolute",
+                        top: "100%",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        width: 0,
+                        height: 0,
+                        borderLeft: "5px solid transparent",
+                        borderRight: "5px solid transparent",
+                        borderTop: "5px solid rgba(28,57,142,0.92)",
+                      }}
+                    />
+                  </m.span>
+                )}
+              </AnimatePresence>
             </m.a>
           ))}
         </div>
