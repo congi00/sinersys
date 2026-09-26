@@ -20,15 +20,34 @@ import { setNavigationState, setOpenContact } from "../features/counterSlice";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
-import VintageMediaViewer, { MediaItem } from "../components/VintageMediaViewer";
+import VintageMediaViewer, {
+  MediaItem,
+} from "../components/VintageMediaViewer";
 import Image from "next/image";
 import CookieBanner from "../components/CookieBanner";
 import clsx from "clsx";
-import { BODY_TEXT_CLASS, CARD_SUBTITLE_CLASS, CARD_TITLE_CLASS, FAQ_QUESTION_CLASS, HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, PRODUCT_CONTENT_CLASS, SUPTITLE_CLASS } from "../typography";
+import {
+  BODY_TEXT_CLASS,
+  CARD_SUBTITLE_CLASS,
+  CARD_TITLE_CLASS,
+  FAQ_QUESTION_CLASS,
+  HERO_SUBTITLE_CLASS,
+  HERO_TITLE_CLASS,
+  PRODUCT_CONTENT_CLASS,
+  SUPTITLE_CLASS,
+} from "../typography";
 import { formatRegistered } from "../formatter";
+import { relative } from "path";
 
 // Industrial partners
-const partners = ["Honda", "Volvo", "Chrysler", "Saab", "Hanomag - Henschel", "VW"];
+const partners = [
+  "Honda",
+  "Volvo",
+  "Chrysler",
+  "Saab",
+  "Hanomag - Henschel",
+  "VW",
+];
 const MEDIA: MediaItem[] = [
   {
     type: "image",
@@ -72,7 +91,6 @@ const MEDIA: MediaItem[] = [
     caption: "",
     date: "",
   },
-  
 ];
 
 function isTouchDevice() {
@@ -151,7 +169,10 @@ function SectionLabel({ label }: { label: string }) {
         style={{
           color: "rgba(160,196,255,0.7)",
         }}
-        className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] ")}
+        className={clsx(
+          SUPTITLE_CLASS,
+          "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] "
+        )}
       >
         {label}
       </h4>
@@ -328,65 +349,77 @@ function TeamCard({
           />
           <div
             style={{
-              width: "clamp(56px,8vw,72px)",
-              height: "clamp(56px,8vw,72px)",
-              borderRadius: "50%",
-              marginBottom: "1rem",
-              overflow: "hidden",
-              border: "2px solid rgba(100,150,255,0.25)",
-              background: photo
-                ? "transparent"
-                : "linear-gradient(135deg,rgba(28,57,142,0.8),rgba(42,82,201,0.6))",
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
             }}
           >
-            {photo ? (
-              <Image
-                src={photo}
-                alt={name}
-                style={{ objectFit: "cover" }}
-                fill
-                priority
-              /> // eslint-disable-line
-            ) : (
-              <span
+            <div
+              style={{
+                width: "clamp(180px,8vw,72px)",
+                height: "clamp(180px,8vw,72px)",
+                borderRadius: "50%",
+                marginBottom: "1rem",
+                overflow: "hidden",
+                border: "2px solid rgba(100,150,255,0.25)",
+                background: photo
+                  ? "transparent"
+                  : "linear-gradient(135deg,rgba(28,57,142,0.8),rgba(42,82,201,0.6))",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+              }}
+            >
+              {photo ? (
+                <Image
+                  src={photo}
+                  alt={name}
+                  style={{ marginTop: "50px", position: "relative" }}
+                  width={"180"}
+                  height={"280"}
+                  priority
+                /> // eslint-disable-line
+              ) : (
+                <span
+                  style={{
+                    fontSize: "clamp(1rem,1.8vw,1.3rem)",
+                    fontWeight: 700,
+                    color: "rgba(180,210,255,0.9)",
+                  }}
+                >
+                  {initials}
+                </span>
+              )}
+            </div>
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              flexFlow: "column-reverse"
+            }}>
+              <h3
                 style={{
-                  fontSize: "clamp(1rem,1.8vw,1.3rem)",
+                  margin: 0,
+                  fontSize: "clamp(1rem,1.6vw,1.2rem)",
                   fontWeight: 700,
-                  color: "rgba(180,210,255,0.9)",
+                  letterSpacing: "-0.01em",
+                  color: "#f4f7fa",
+                  marginBottom: "0.2rem",
                 }}
               >
-                {initials}
-              </span>
-            )}
+                {name}
+              </h3>
+              <p
+                style={{
+                  fontSize: "clamp(0.65rem,0.9vw,0.78rem)",
+                  fontWeight: 600,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "rgba(100,150,255,0.8)",
+                }}
+              >
+                {role}
+              </p>
+            </div>
           </div>
-          <h3
-            style={{
-              margin: 0,
-              fontSize: "clamp(1rem,1.6vw,1.2rem)",
-              fontWeight: 700,
-              letterSpacing: "-0.01em",
-              color: "#f4f7fa",
-              marginBottom: "0.2rem",
-            }}
-          >
-            {name}
-          </h3>
-          <p
-            style={{
-              margin: "0 0 0.8rem",
-              fontSize: "clamp(0.65rem,0.9vw,0.78rem)",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "rgba(100,150,255,0.8)",
-            }}
-          >
-            {role}
-          </p>
           <div
             style={{
               height: "1px",
@@ -409,7 +442,6 @@ function TeamCard({
     </m.div>
   );
 }
-
 
 // ── Partnership logo pill (slide1) ──────────────────────────────────────────
 function PartnerPill({ name, delay }: { name: string; delay: number }) {
@@ -622,14 +654,14 @@ export default function AboutUsPage() {
   ];
 
   const team = [
-    { key: "member0", photo: "/team/1.jpg" },
-    { key: "member1", photo: "/team/2.jpg" },
+    { key: "member0", photo: "/antonio.png" },
+    { key: "member1", photo: "/gianluca.png" },
   ];
 
   if (vhPx === 0) return <div className="min-h-screen bg-[#0f2057]" />;
 
   return (
-    <main id="main-content">  
+    <main id="main-content">
       <m.div style={{ height: totalHeight }} aria-hidden />
 
       <m.div
@@ -668,8 +700,8 @@ export default function AboutUsPage() {
                 position: "absolute",
                 inset: 0,
                 objectFit: "cover",
-                transform: isMobile? "scale(1.2)" : "scale(1.5)",
-                objectPosition: isMobile? "-500px 0px" : "-100px -20px"
+                transform: isMobile ? "scale(1.2)" : "scale(1.5)",
+                objectPosition: isMobile ? "-500px 0px" : "-100px -20px",
               }}
               fill
               priority
@@ -704,7 +736,10 @@ export default function AboutUsPage() {
                   margin: "0 0 1rem",
                   color: "rgba(180,210,255,0.9)",
                 }}
-                className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] px-3 sm:px-0 mt-3 sm:mt-5")}
+                className={clsx(
+                  SUPTITLE_CLASS,
+                  "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] px-3 sm:px-0 mt-3 sm:mt-5"
+                )}
               >
                 {t("hero.suptitle")}
               </h3>
@@ -715,7 +750,10 @@ export default function AboutUsPage() {
                   color: "#f4f7fa",
                   marginBottom: "1.2rem",
                 }}
-                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line px-3 sm:px-2")}
+                className={clsx(
+                  HERO_TITLE_CLASS,
+                  "sm:whitespace-pre-line px-3 sm:px-2"
+                )}
               >
                 {t("hero.title")}
               </h1>
@@ -726,7 +764,10 @@ export default function AboutUsPage() {
                   color: "rgba(200,218,250,0.98)",
                   maxWidth: "860px",
                 }}
-                className={clsx(HERO_SUBTITLE_CLASS,"px-6 sm:px-6 mt-6 sm:mt-5 sm:mb-5")}
+                className={clsx(
+                  HERO_SUBTITLE_CLASS,
+                  "px-6 sm:px-6 mt-6 sm:mt-5 sm:mb-5"
+                )}
               >
                 {t("hero.subtitle")}
               </p>
@@ -755,7 +796,10 @@ export default function AboutUsPage() {
                     color: "rgba(180,210,255,0.9)",
                     textAlign: "center",
                   }}
-                  className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] px-3 sm:px-0 ")}
+                  className={clsx(
+                    SUPTITLE_CLASS,
+                    "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] px-3 sm:px-0 "
+                  )}
                 >
                   {t("hero.slide1suptitle")}
                 </h4>
@@ -765,7 +809,10 @@ export default function AboutUsPage() {
                     color: "#f4f7fa",
                     textAlign: "center",
                   }}
-                  className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line px-3 sm:px-2")}
+                  className={clsx(
+                    HERO_TITLE_CLASS,
+                    "sm:whitespace-pre-line px-3 sm:px-2"
+                  )}
                 >
                   {t("hero.slide1title")}
                 </h1>
@@ -775,9 +822,12 @@ export default function AboutUsPage() {
                     lineHeight: 1.2,
                     color: "rgba(200,218,250,0.98)",
                     maxWidth: "760px",
-                    marginTop: "20px"
+                    marginTop: "20px",
                   }}
-                  className={clsx(HERO_SUBTITLE_CLASS,"px-6 sm:px-6 mt-6 sm:mt-2 sm:mb-5")}
+                  className={clsx(
+                    HERO_SUBTITLE_CLASS,
+                    "px-6 sm:px-6 mt-6 sm:mt-2 sm:mb-5"
+                  )}
                 >
                   {formatRegistered(t("hero.slide1subtitle"))}
                 </p>
@@ -802,7 +852,7 @@ export default function AboutUsPage() {
                       display: "flex",
                       gap: "0.5rem",
                       flexWrap: "wrap",
-                      justifyContent: "center"
+                      justifyContent: "center",
                     }}
                   >
                     {partners.map((p, i) => (
@@ -864,7 +914,7 @@ export default function AboutUsPage() {
                       lineHeight: 1.1,
                       color: h2Color,
                     }}
-                    className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
+                    className={clsx(HERO_TITLE_CLASS, "sm:whitespace-pre-line")}
                   >
                     {t("whoweare.title")}
                   </m.h2>
@@ -883,7 +933,10 @@ export default function AboutUsPage() {
                         lineHeight: 1.1,
                         color: pcolor,
                       }}
-                      className={clsx(PRODUCT_CONTENT_CLASS,"whitespace-pre-line")}
+                      className={clsx(
+                        PRODUCT_CONTENT_CLASS,
+                        "whitespace-pre-line"
+                      )}
                     >
                       {t("whoweare.p1")}
                     </m.p>
@@ -893,7 +946,10 @@ export default function AboutUsPage() {
                         lineHeight: 1.1,
                         color: pcolor,
                       }}
-                      className={clsx(PRODUCT_CONTENT_CLASS,"whitespace-pre-line")}
+                      className={clsx(
+                        PRODUCT_CONTENT_CLASS,
+                        "whitespace-pre-line"
+                      )}
                     >
                       {t("whoweare.p2")}
                     </m.p>
@@ -972,7 +1028,10 @@ export default function AboutUsPage() {
                         color: "#f4f7fa",
                         marginBottom: "1.2rem",
                       }}
-                      className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
+                      className={clsx(
+                        HERO_TITLE_CLASS,
+                        "sm:whitespace-pre-line"
+                      )}
                     >
                       {formatRegistered(t("timeline.heading"))}
                     </h2>
@@ -1038,7 +1097,7 @@ export default function AboutUsPage() {
                       lineHeight: 1.1,
                       color: "#f4f7fa",
                     }}
-                    className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
+                    className={clsx(HERO_TITLE_CLASS, "sm:whitespace-pre-line")}
                   >
                     {t("team.heading")}
                   </h2>
@@ -1082,7 +1141,7 @@ export default function AboutUsPage() {
                     display: "flex",
                     alignItems: isMobile ? "center" : "center",
                     justifyContent: "space-between",
-                    textAlign: isMobile? "center" : "left",
+                    textAlign: isMobile ? "center" : "left",
                     flexDirection: isMobile ? "column" : "row",
                     gap: "1.5rem",
                   }}
@@ -1094,7 +1153,10 @@ export default function AboutUsPage() {
                         color: "#f4f7fa",
                         lineHeight: 1.1,
                       }}
-                      className={clsx(CARD_TITLE_CLASS, "sm:whitespace-pre-line")}
+                      className={clsx(
+                        CARD_TITLE_CLASS,
+                        "sm:whitespace-pre-line"
+                      )}
                     >
                       {t("team.joinTitle")}
                     </h3>
@@ -1109,7 +1171,10 @@ export default function AboutUsPage() {
                       {t("team.joinSubtitle")}
                     </p>
                   </div>
-                  <div style={{ pointerEvents: "auto" }} onClick={() => dispatch(setOpenContact(true))}>
+                  <div
+                    style={{ pointerEvents: "auto" }}
+                    onClick={() => dispatch(setOpenContact(true))}
+                  >
                     <LinkButton
                       link=""
                       text={t("team.joinCta")}
@@ -1121,8 +1186,7 @@ export default function AboutUsPage() {
                 </GlassCard>
               </FadeIn>
             </section>
-            <VintageMediaViewer items={MEDIA} vintageIntensity={0} />
-            
+            {/* <VintageMediaViewer items={MEDIA} vintageIntensity={0} /> */}
           </m.div>
 
           {/* Whitespace gap before footer */}
@@ -1139,14 +1203,30 @@ export default function AboutUsPage() {
             isMobile={isMobile}
             menuTheme={menuTheme}
             hiddenMenu={hiddenMenu}
-            sections={
-              [
-                { index: 1, label: ts("aboutUs"), start: 0, end: 0.7, target: 0 },
-                { index: 2, label: ts("ourStory"), start: 1.0, end: 1.8, target: 3.8 },
-                { index: 3, label: ts("timeline"), start: 1.9, end: 4.8, target: 5.3 },
-                { index: 4, label: ts("team"), start: 4.9, end: 5.4, target: 13.3 },
-              ]
-            }
+            sections={[
+              { index: 1, label: ts("aboutUs"), start: 0, end: 0.7, target: 0 },
+              {
+                index: 2,
+                label: ts("ourStory"),
+                start: 1.0,
+                end: 1.8,
+                target: 3.8,
+              },
+              {
+                index: 3,
+                label: ts("timeline"),
+                start: 1.9,
+                end: 4.8,
+                target: 5.3,
+              },
+              {
+                index: 4,
+                label: ts("team"),
+                start: 4.9,
+                end: 5.4,
+                target: 13.3,
+              },
+            ]}
           />
         )}
 
