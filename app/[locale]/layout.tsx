@@ -138,6 +138,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "Sinersys",
   url: "https://www.sinersys.it",
+  alternateName: "Sinersys Italia",
   logo: "https://www.sinersys.it/full-logo-sinersys.png",
   description:
     "Ricerca e Sviluppo di tecnologie per nuove frontiere energetiche come APWEC e motore a 6 fasi.",
