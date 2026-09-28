@@ -41,12 +41,13 @@ import { relative } from "path";
 
 // Industrial partners
 const partners = [
-  "Honda",
-  "Volvo",
   "Chrysler",
+  "DKW",
+  "Honda",
   "Saab",
-  "Hanomag - Henschel",
+  "Volvo",
   "VW",
+  "Hanomag - Henschel",
 ];
 const MEDIA: MediaItem[] = [
   {
