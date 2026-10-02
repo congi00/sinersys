@@ -2,7 +2,6 @@
 import { getTranslations } from "next-intl/server";
 import SixPhasePage from "../../containers/SixPhasePage";
 import { buildBreadcrumb } from "@/app/utilities";
-import WorkInProgressPage from "@/app/WorkInProgressPage";
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
   const { locale } = await params;
@@ -47,10 +46,8 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 }
 
 export default function Page() {
-  const inProgress = 1
 
   return <>
-    {inProgress && <WorkInProgressPage /> }
-    {!inProgress && <SixPhasePage />}
+    <SixPhasePage />
   </>
 }
