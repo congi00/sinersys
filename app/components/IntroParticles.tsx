@@ -8,12 +8,6 @@ import { detectIOS } from "../support/useViewportHeight";
 const VIDEO_ASSETS = [
   "/apwecintro.mp4",
   "/apwecintro1.mp4",
-  // "/apwecprod.webm",
-  // "/apwecprod1.webm",
-];
-const IMAGE_ASSETS = [
-  // "/sinVidr.gif",
-  // "/aboutus.webp",
 ];
 
 // ─── Chiave sessionStorage ────────────────────────────────────────────────────
