@@ -1,6 +1,5 @@
-
 "use client";
- 
+
 import { useEffect, useRef, useState, useCallback } from "react";
 import {
   m,
@@ -23,17 +22,22 @@ import { ArrowUpRight } from "lucide-react";
 import ScrollNavigator from "../components/ScrollNavigator";
 import CookieBanner from "../components/CookieBanner";
 import clsx from "clsx";
-import { CARD_TITLE_CLASS, CONTACT_TITLE_CLASS, HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, PRODUCT_CONTENT_CLASS, PRODUCT_TITLE_CARD, SUPTITLE_CLASS } from "../typography";
+import {
+  CARD_TITLE_CLASS,
+  CONTACT_TITLE_CLASS,
+  HERO_SUBTITLE_CLASS,
+  HERO_TITLE_CLASS,
+  PRODUCT_CONTENT_CLASS,
+  PRODUCT_TITLE_CARD,
+  SUPTITLE_CLASS,
+} from "../typography";
 import { useLenis } from "./LenisProvider";
- 
-// ─── Constants ────────────────────────────────────────────────────────────────
-const SCENES = 6.2;
- 
+
 function isTouchDevice() {
   if (typeof window === "undefined") return false;
   return window.matchMedia("(pointer: coarse)").matches;
 }
- 
+
 // ─── Shared UI primitives (identical to ApwecPage) ────────────────────────────
 function GlassCard({
   children,
@@ -58,7 +62,7 @@ function GlassCard({
     </div>
   );
 }
- 
+
 function Appear({
   children,
   delay = 0,
@@ -83,7 +87,7 @@ function Appear({
     </m.div>
   );
 }
- 
+
 function SectionDivider() {
   return (
     <div
@@ -95,7 +99,7 @@ function SectionDivider() {
     />
   );
 }
- 
+
 function SectionLabel({ text }: { text: string }) {
   return (
     <span
@@ -113,7 +117,7 @@ function SectionLabel({ text }: { text: string }) {
     </span>
   );
 }
- 
+
 // ─── How It Works ─────────────────────────────────────────────────────────────
 export function HowItWorksSection({
   t,
@@ -135,7 +139,7 @@ export function HowItWorksSection({
         <Appear>
           <SectionLabel text={t("howItWorks.label")} />
         </Appear>
- 
+
         {/* Title + intro grid */}
         <div
           style={{
@@ -174,7 +178,7 @@ export function HowItWorksSection({
             </p>
           </Appear>
         </div>
- 
+
         {/* Two-principle cards */}
         <div
           style={{
@@ -257,7 +261,7 @@ export function HowItWorksSection({
     </>
   );
 }
- 
+
 // ─── Advantages ───────────────────────────────────────────────────────────────
 export function AdvantagesSection({
   t,
@@ -268,7 +272,7 @@ export function AdvantagesSection({
   isMobile: boolean;
 }) {
   const advantages = ["a0", "a1", "a2", "a3", "a4", "a5"] as const;
- 
+
   return (
     <>
       <SectionDivider />
@@ -281,7 +285,7 @@ export function AdvantagesSection({
         <Appear>
           <SectionLabel text={t("advantages.label")} />
         </Appear>
- 
+
         <div
           style={{
             display: "grid",
@@ -316,7 +320,7 @@ export function AdvantagesSection({
             </p>
           </Appear>
         </div>
- 
+
         {/* Advantage cards */}
         <div
           style={{
@@ -357,7 +361,7 @@ export function AdvantagesSection({
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
- 
+
                   {/* check icon */}
                   <div
                     style={{
@@ -384,7 +388,7 @@ export function AdvantagesSection({
                       />
                     </svg>
                   </div>
- 
+
                   <p
                     style={{
                       margin: "0 0 0.4rem",
@@ -419,7 +423,7 @@ export function AdvantagesSection({
             </Appear>
           ))}
         </div>
- 
+
         {/* vs comparison strip */}
         <Appear delay={0.1}>
           <div
@@ -452,30 +456,31 @@ export function AdvantagesSection({
     </>
   );
 }
- 
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function SixPhasePage() {
   const t = useTranslations("motore6fasi");
   const openContact = useAppSelector((s) => s.siteState.openContact);
   const dispatch = useAppDispatch();
-  const { lenis, isTouch } = useLenis();
- 
+  const { lenis, isTouch, requestResize } = useLenis();
+
   /* ── Responsive width ─────────────────────────────────────────────────── */
   const [width, setWidth] = useState(1024);
- 
+
   useEffect(() => {
     const update = () => setWidth(window.innerWidth);
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
- 
+
   const isMobile = width <= 768;
- 
+  const isXL = width >= 1536;
+  const SCENES = isXL ? 4 : 6.2;
   /* ── Content height ───────────────────────────────────────────────────── */
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentH, setContentH] = useState(0);
- 
+
   useEffect(() => {
     if (!contentRef.current) return;
     const ro = new ResizeObserver(() => {
@@ -485,23 +490,43 @@ export default function SixPhasePage() {
     setContentH(contentRef.current.scrollHeight);
     return () => ro.disconnect();
   }, []);
- 
-  /* ── Video scrubbing ──────────────────────────────────────────────────── */
+
   const videoRef = useRef<HTMLVideoElement>(null);
-  // Update these paths to your actual video assets for the 6-phase engine
   const videoSrc = isMobile ? "/motore6fasi-mobile.webm" : "/motore6fasi.webm";
   const videoDuration = useRef<number>(0);
- 
+
   const handleVideoLoaded = useCallback(() => {
     if (videoRef.current) {
       videoDuration.current = videoRef.current.duration || 0;
     }
   }, []);
- 
+
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    if (vid.readyState >= 1 /* HAVE_METADATA */ && vid.duration) {
+      videoDuration.current = vid.duration;
+      return;
+    }
+    const onReady = () => {
+      if (vid.duration) videoDuration.current = vid.duration;
+    };
+    vid.addEventListener("loadedmetadata", onReady);
+    vid.addEventListener("canplay", onReady);
+    const fallbackTimer = window.setTimeout(() => {
+      if (!videoDuration.current) vid.load();
+    }, 300);
+    return () => {
+      vid.removeEventListener("loadedmetadata", onReady);
+      vid.removeEventListener("canplay", onReady);
+      clearTimeout(fallbackTimer);
+    };
+  }, [videoSrc]);
+
   /* ── Scroll ───────────────────────────────────────────────────────────── */
   const progressMotion = useMotionValue(0);
   const [vhPx, setVhPx] = useState(800);
- 
+
   useEffect(() => {
     const isMobileDevice = isTouchDevice();
     const measure = () => {
@@ -519,7 +544,7 @@ export default function SixPhasePage() {
       window.visualViewport?.removeEventListener("resize", measure);
     };
   }, []);
- 
+
   useEffect(() => {
     if (isTouch) {
       // Su touch continuiamo a leggere lo scroll nativo direttamente:
@@ -531,7 +556,7 @@ export default function SixPhasePage() {
         const sy = window.scrollY;
         const limit =
           document.documentElement.scrollHeight - window.innerHeight;
-        if (limit > 0) target = Math.min(6, (sy / limit) * 6);
+        if (limit > 0) target = Math.min(SCENES, (sy / limit) * SCENES);
       };
       const tick = () => {
         current += (target - current) * 0.1;
@@ -550,19 +575,18 @@ export default function SixPhasePage() {
     }
     if (!lenis) return;
     const handleScroll = (e: { scroll: number; limit: number }) => {
-      progressMotion.set(Math.min(6, (e.scroll / e.limit) * 6));
+      progressMotion.set(Math.min(SCENES, (e.scroll / e.limit) * SCENES));
     };
     lenis.on("scroll", handleScroll);
-    // Sync immediato con la posizione corrente del Lenis condiviso:
-    // fondamentale ora che l'istanza sopravvive alla navigazione, quindi
-    // potrebbe avere già uno scroll != 0 da questa pagina.
     if (lenis.limit > 0) {
-      progressMotion.set(Math.min(6, (lenis.scroll / lenis.limit) * 6));
+      progressMotion.set(
+        Math.min(SCENES, (lenis.scroll / lenis.limit) * SCENES)
+      );
     }
     return () => {
       lenis.off("scroll", handleScroll);
     };
-  }, [lenis, isTouch, progressMotion]);
+  }, [lenis, isTouch, progressMotion, SCENES]);
   // Reset dello scroll fisico ad ogni mount di pagina (navigazione),
   // così ogni pagina parte sempre dall'inizio del proprio scroll-track,
   // indipendentemente da dove si trovava la pagina precedente.
@@ -573,39 +597,74 @@ export default function SixPhasePage() {
       window.scrollTo({ top: 0, left: 0 });
     }
   }, [lenis]);
- 
-  const springValue = useSpring(progressMotion, { stiffness: 280, damping: 30 });
+
+  const springValue = useSpring(progressMotion, {
+    stiffness: 280,
+    damping: 30,
+  });
   const smooth = isMobile ? progressMotion : springValue;
- 
+
   /* ── Drive video currentTime ──────────────────────────────────────────── */
   const VIDEO_START = 0;
   const VIDEO_END = 3.5;
- 
+  const pendingVideoProgress = useRef<number | null>(null);
+
   useMotionValueEvent(smooth, "change", (p) => {
-    const vid = videoRef.current;
-    if (!vid || !videoDuration.current) return;
-    const progress = Math.min(1, Math.max(0, (p - VIDEO_START) / (VIDEO_END - VIDEO_START)));
-    const targetTime = progress * videoDuration.current;
-    if (Math.abs(vid.currentTime - targetTime) > 0.01) vid.currentTime = targetTime;
+    pendingVideoProgress.current = Math.min(
+      1,
+      Math.max(0, (p - VIDEO_START) / (VIDEO_END - VIDEO_START))
+    );
   });
- 
+
+  useEffect(() => {
+    let rafId = 0;
+    const apply = () => {
+      rafId = requestAnimationFrame(apply);
+      const vid = videoRef.current;
+      if (
+        !vid ||
+        !videoDuration.current ||
+        pendingVideoProgress.current === null
+      )
+        return;
+      const targetTime = pendingVideoProgress.current * videoDuration.current;
+      if (Math.abs(vid.currentTime - targetTime) > 0.01) {
+        vid.currentTime = targetTime;
+      }
+    };
+    rafId = requestAnimationFrame(apply);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
   const vh = vhPx;
-  const CONTENT_TOP = vh * (SCENES + (isMobile ? 7.6 : 3));
-  const SCROLL_VH = vh * (SCENES + (isMobile ? 7.6 : 3));
+  const CONTENT_TOP = vh * (SCENES + (isMobile ? 7.6 : isXL ? 1.5 : 3));
+  const SCROLL_VH = vh * (SCENES + (isXL ? 0 : isMobile ? 7.6 : 3));
   const totalHeight = SCROLL_VH + contentH;
- 
+
   /* ── Motion values ────────────────────────────────────────────────────── */
   const headerTheme = useTransform(smooth, [3.8, 4.8, 7], [0, 0, 1]);
- 
-  const cardInset = useTransform(smooth, [0, 0.3, isMobile ? 3.0 : 3.4, 3.8], [16, 0, 0, 16]);
-  const cardRadius = useTransform(smooth, [0, 0.3, isMobile ? 3.0 : 3.4, 3.8], [24, 0, 0, 24]);
+
+  const cardInset = useTransform(
+    smooth,
+    [0, 0.3, isMobile ? 3.0 : 3.4, 3.8],
+    [16, 0, 0, 16]
+  );
+  const cardRadius = useTransform(
+    smooth,
+    [0, 0.3, isMobile ? 3.0 : 3.4, 3.8],
+    [24, 0, 0, 24]
+  );
   const cardPad = useTransform(cardInset, (v) => `${v}px`);
   const cardRad = useTransform(cardRadius, (v) => `${v}px`);
-  const cardY = useTransform(smooth, [2.8, isMobile ? 3.0 : 3.4, isMobile ? 3.7 : 4.0], ["0vh", "0vh", "-120vh"]);
+  const cardY = useTransform(
+    smooth,
+    [2.8, isMobile ? 3.0 : 3.4, isMobile ? 3.7 : 4.0],
+    ["0vh", "0vh", "-120vh"]
+  );
   const cardOpacity = useTransform(smooth, [4.1, 4.4], [1, 0]);
- 
+
   const bgOpacity = useTransform(smooth, [2.5, 3.2, 4.0, 4.3], [0, 1, 1, 0]);
- 
+
   const gradientPage = useTransform(
     smooth,
     [0, isMobile ? 3.6 : 4.0, 4.4],
@@ -615,7 +674,7 @@ export default function SixPhasePage() {
       "linear-gradient(160deg, #1c2e8e 0%, #0050c3 55%, #050b26 100%)",
     ]
   );
- 
+
   const gradientPageH = useTransform(
     smooth,
     [0, 2.4, isMobile ? 4.2 : 4.2, 4.4, 4.5],
@@ -627,7 +686,7 @@ export default function SixPhasePage() {
       "#F4F7FA",
     ]
   );
- 
+
   const colorP = useTransform(
     smooth,
     [0, isMobile ? 3.6 : 3.9, isMobile ? 3.7 : 4.0],
@@ -643,46 +702,54 @@ export default function SixPhasePage() {
     [0, isMobile ? 3.6 : 3.9, isMobile ? 3.7 : 4.0],
     ["#1c2e8e", "#1c2e8e", "rgba(200,218,250,0.72)"]
   );
- 
+
   const contentRadius = useTransform(smooth, [5.6, 5.9], [0, 24]);
   const contentScale = useTransform(smooth, [5.6, 5.9], [1, 0.97]);
   const contentY = useTransform(smooth, [5.5, 5.6], [0, -86]);
   const contentBR = useTransform(contentRadius, (v) => `${v}px`);
- 
+
   /* ── Slide texts ──────────────────────────────────────────────────────── */
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function mkSlide(enter: number, peak: number, exitAt: number) {
     return {
-      opacity: useTransform(smooth, [enter, peak, exitAt - 0.05, exitAt], [0, 1, 1, 0]),
-      y: useTransform(smooth, [enter, peak, exitAt - 0.05, exitAt], [28, 0, 0, -20]),
+      opacity: useTransform(
+        smooth,
+        [enter, peak, exitAt - 0.05, exitAt],
+        [0, 1, 1, 0]
+      ),
+      y: useTransform(
+        smooth,
+        [enter, peak, exitAt - 0.05, exitAt],
+        [28, 0, 0, -20]
+      ),
     } as const;
   }
- 
+
   const s0 = mkSlide(0, 0, 0.7);
   const s1 = mkSlide(0.7, 0.8, 1.7);
   const s2 = mkSlide(1.7, 1.8, 2.7);
   const s3 = mkSlide(2.7, 2.8, 3.8);
- 
+
   /* ── Shared style helpers ─────────────────────────────────────────────── */
   const sup: React.CSSProperties = {
     color: "rgba(180,210,255,0.6)",
     marginBottom: "0.5rem",
     display: "block",
   };
- 
+
   const h1s: React.CSSProperties = {
     margin: 0,
     lineHeight: 1.0,
     color: "#f4f7fa",
   };
- 
+
   const bodys: React.CSSProperties = {
     margin: "0.8rem 0 0",
     lineHeight: 1.1,
     color: "rgba(200,218,250,0.70)",
     maxWidth: isMobile ? "100%" : "820px",
   };
- 
+
   const textWrap = (extra?: React.CSSProperties): React.CSSProperties => ({
     position: "absolute",
     zIndex: 3,
@@ -701,25 +768,41 @@ export default function SixPhasePage() {
         }),
     ...extra,
   });
- 
+
   const linkColorWhite = useMotionValue("#f4f7fa");
   const hiddenMenu = useTransform(smooth, [5.8, 5.9], [1, 0]);
-  const menuTheme = useTransform(smooth, [3, 3.6, 4.4, 5.5, 5.9], [0, 1, 0, 0, 1]);
+  const menuTheme = useTransform(
+    smooth,
+    [3, 3.6, 4.4, 5.5, 5.9],
+    [0, 1, 0, 0, 1]
+  );
   const ts = useTranslations("scrollNavigator");
- 
+
+  useEffect(() => {
+    menuTheme.set(0);
+    headerTheme.set(0);
+  }, []);
+
+  useEffect(() => {
+    if (vhPx === 0) return;
+    requestResize();
+  }, [vhPx, totalHeight, requestResize]);
+
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (
-    <>
+    <main id="main-content">
       {/* Scroll spacer */}
       <div style={{ height: totalHeight }} aria-hidden />
- 
+
       <m.div
         className="absolute inset-x-0 top-0"
         style={{ height: totalHeight, zIndex: 1, backgroundColor: "#faf4f7" }}
       >
         {!openContact && <Header headerTheme={headerTheme} />}
-        {!openContact && <MenuButton hiddenMenu={hiddenMenu} menuTheme={menuTheme} />}
- 
+        {!openContact && (
+          <MenuButton hiddenMenu={hiddenMenu} menuTheme={menuTheme} />
+        )}
+
         {/* ── HERO CARD ───────────────────────────────────────────────── */}
         <m.div
           style={{
@@ -752,7 +835,7 @@ export default function SixPhasePage() {
                 pointerEvents: "none",
               }}
             />
- 
+
             {/* Scrubbed video */}
             <video
               ref={videoRef}
@@ -762,6 +845,7 @@ export default function SixPhasePage() {
               muted
               preload="auto"
               onLoadedMetadata={handleVideoLoaded}
+              onCanPlay={handleVideoLoaded}
               style={{
                 position: "absolute",
                 inset: 0,
@@ -772,7 +856,7 @@ export default function SixPhasePage() {
                 pointerEvents: "none",
               }}
             />
- 
+
             {/* Slide 0 */}
             <m.div
               style={{
@@ -785,19 +869,28 @@ export default function SixPhasePage() {
               }}
             >
               <h4
-                className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8] text-center")}
+                className={clsx(
+                  SUPTITLE_CLASS,
+                  "mb-3 text-[#a0b8e8] text-center"
+                )}
                 style={sup}
               >
                 {t("slide0.suptitle")}
               </h4>
               <h1
-                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line text-center")}
+                className={clsx(
+                  HERO_TITLE_CLASS,
+                  "sm:whitespace-pre-line text-center"
+                )}
                 style={h1s}
               >
                 {t("slide0.title")}
               </h1>
               <p
-                className={clsx(HERO_SUBTITLE_CLASS,"text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light text-center")}
+                className={clsx(
+                  HERO_SUBTITLE_CLASS,
+                  "text-lg sm:text-xl sm:text-4xl mt-4 whitespace-pre-line font-light text-center"
+                )}
                 style={{
                   ...bodys,
                   ...(isMobile ? { marginTop: "65%" } : { maxWidth: "100%" }),
@@ -806,7 +899,7 @@ export default function SixPhasePage() {
                 {t("slide0.subtitle")}
               </p>
             </m.div>
- 
+
             {/* Slide 1 */}
             <m.div
               style={{
@@ -819,19 +912,22 @@ export default function SixPhasePage() {
               }}
             >
               <h4
-                className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8]")}
+                className={clsx(SUPTITLE_CLASS, "mb-3 text-[#a0b8e8]")}
                 style={sup}
               >
                 {t("slide1.suptitle")}
               </h4>
               <h1
-                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
+                className={clsx(HERO_TITLE_CLASS, "sm:whitespace-pre-line")}
                 style={h1s}
               >
                 {t("slide1.title")}
               </h1>
               <p
-                className={clsx(HERO_SUBTITLE_CLASS,"mt-4 sm:whitespace-pre-line text-center")}
+                className={clsx(
+                  HERO_SUBTITLE_CLASS,
+                  "mt-4 sm:whitespace-pre-line text-center"
+                )}
                 style={{
                   ...bodys,
                   ...(isMobile ? { marginTop: "70%" } : { maxWidth: "100%" }),
@@ -840,26 +936,37 @@ export default function SixPhasePage() {
                 {t("slide1.subtitle")}
               </p>
             </m.div>
- 
+
             {/* Slide 2 */}
             <m.div
               style={{
                 ...textWrap(
                   isMobile
                     ? { top: "12%" }
-                    : { top: "20%", left: "5%", textAlign: "center", maxWidth: "100vw" }
+                    : {
+                        top: "20%",
+                        left: "5%",
+                        textAlign: "center",
+                        maxWidth: "100vw",
+                      }
                 ),
                 ...s2,
               }}
             >
               <h4
-                className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8] text-center")}
+                className={clsx(
+                  SUPTITLE_CLASS,
+                  "mb-3 text-[#a0b8e8] text-center"
+                )}
                 style={{ ...sup }}
               >
                 {t("slide2.suptitle")}
               </h4>
               <h1
-                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line text-center")}
+                className={clsx(
+                  HERO_TITLE_CLASS,
+                  "sm:whitespace-pre-line text-center"
+                )}
                 style={{ ...h1s }}
               >
                 {t("slide2.title")}
@@ -871,12 +978,15 @@ export default function SixPhasePage() {
                     ? { marginTop: "45%", textAlign: "center" }
                     : { margin: "0.8rem auto 0", textAlign: "center" }),
                 }}
-                className={clsx(HERO_SUBTITLE_CLASS," mt-4 whitespace-pre-line")}
+                className={clsx(
+                  HERO_SUBTITLE_CLASS,
+                  " mt-4 whitespace-pre-line"
+                )}
               >
                 {t("slide2.subtitle")}
               </p>
             </m.div>
- 
+
             {/* Slide 3 */}
             <m.div
               style={{
@@ -889,14 +999,14 @@ export default function SixPhasePage() {
               }}
             >
               <h4
-                className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8]")}
+                className={clsx(SUPTITLE_CLASS, "mb-3 text-[#a0b8e8]")}
                 style={{ ...sup, ...(isMobile ? {} : { textAlign: "center" }) }}
               >
                 {t("slide3.suptitle")}
               </h4>
               <h1
                 style={{ ...h1s, whiteSpace: "pre-line" }}
-                className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
+                className={clsx(HERO_TITLE_CLASS, "sm:whitespace-pre-line")}
               >
                 {t("slide3.title")}
               </h1>
@@ -905,16 +1015,23 @@ export default function SixPhasePage() {
                   ...bodys,
                   ...(isMobile
                     ? { marginTop: "45%", textAlign: "center" }
-                    : { margin: "0.8rem auto 0", marginTop: "23%", textAlign: "center" }),
+                    : {
+                        margin: "0.8rem auto 0",
+                        marginTop: "23%",
+                        textAlign: "center",
+                      }),
                 }}
-                className={clsx(HERO_SUBTITLE_CLASS,"mt-4 whitespace-pre-line")}
+                className={clsx(
+                  HERO_SUBTITLE_CLASS,
+                  "mt-4 whitespace-pre-line"
+                )}
               >
                 {t("slide3.subtitle")}
               </p>
             </m.div>
           </m.div>
         </m.div>
- 
+
         {/* ── STATIC CONTENT ─────────────────────────────────────────── */}
         <m.div
           ref={contentRef}
@@ -954,12 +1071,12 @@ export default function SixPhasePage() {
                 <div style={{ display: "inline-flex", alignItems: "center" }}>
                   <m.h4
                     style={{ color: colorP }}
-                    className={clsx(SUPTITLE_CLASS,"mb-3 text-[#a0b8e8]")}
+                    className={clsx(SUPTITLE_CLASS, "mb-3 text-[#a0b8e8]")}
                   >
                     {t("static.label")}
                   </m.h4>
                 </div>
- 
+
                 <div
                   style={{
                     display: "grid",
@@ -970,20 +1087,32 @@ export default function SixPhasePage() {
                 >
                   <m.h2
                     style={{ margin: 0, lineHeight: 1.1, color: colorTitle }}
-                    className={clsx(HERO_TITLE_CLASS,"sm:whitespace-pre-line")}
+                    className={clsx(HERO_TITLE_CLASS, "sm:whitespace-pre-line")}
                   >
                     {t("static.title")}
                   </m.h2>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
+                    }}
+                  >
                     <m.p
                       style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
-                      className={clsx(PRODUCT_CONTENT_CLASS,"mt-4 whitespace-pre-line ")}
+                      className={clsx(
+                        PRODUCT_CONTENT_CLASS,
+                        "mt-4 whitespace-pre-line "
+                      )}
                     >
                       {t("static.p1")}
                     </m.p>
                     <m.p
                       style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
-                      className={clsx(PRODUCT_CONTENT_CLASS,"mt-4 whitespace-pre-line")}
+                      className={clsx(
+                        PRODUCT_CONTENT_CLASS,
+                        "mt-4 whitespace-pre-line"
+                      )}
                     >
                       {t("static.p2")}
                     </m.p>
@@ -991,7 +1120,7 @@ export default function SixPhasePage() {
                 </div>
               </m.div>
             </section>
- 
+
             <div
               style={{
                 height: "1px",
@@ -999,7 +1128,7 @@ export default function SixPhasePage() {
                 margin: "0 clamp(1.5rem,8vw,7rem)",
               }}
             />
- 
+
             {/* Feature cards */}
             <section
               style={{
@@ -1020,7 +1149,11 @@ export default function SixPhasePage() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{
+                      duration: 0.6,
+                      delay: i * 0.1,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                   >
                     <GlassCard
                       style={{
@@ -1035,8 +1168,11 @@ export default function SixPhasePage() {
                           lineHeight: "1.0",
                           textAlign: "center",
                         }}
-                        className={clsx(SUPTITLE_CLASS,"[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 mt-3 sm:mt-5")}
-                        >
+                        className={clsx(
+                          SUPTITLE_CLASS,
+                          "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 mt-3 sm:mt-5"
+                        )}
+                      >
                         {t(`static.${k}.label`)}
                       </h4>
                       <h3
@@ -1046,7 +1182,10 @@ export default function SixPhasePage() {
                           color: "#f4f7fa",
                           textAlign: "center",
                         }}
-                        className={clsx(PRODUCT_TITLE_CARD,"sm:whitespace-pre-line")}
+                        className={clsx(
+                          PRODUCT_TITLE_CARD,
+                          "sm:whitespace-pre-line"
+                        )}
                       >
                         {t(`static.${k}.title`)}
                       </h3>
@@ -1057,7 +1196,10 @@ export default function SixPhasePage() {
                           color: "rgba(200,218,250,0.62)",
                           textAlign: "center",
                         }}
-                        className={clsx(HERO_SUBTITLE_CLASS,"font-stretch-extra-expanded mt-4 whitespace-pre-line")}
+                        className={clsx(
+                          HERO_SUBTITLE_CLASS,
+                          "font-stretch-extra-expanded mt-4 whitespace-pre-line"
+                        )}
                       >
                         {t(`static.${k}.description`)}
                       </p>
@@ -1066,13 +1208,13 @@ export default function SixPhasePage() {
                 ))}
               </div>
             </section>
- 
+
             {/* ── HOW IT WORKS ─────────────────────────────────────────── */}
             <HowItWorksSection t={t} isMobile={isMobile} />
- 
+
             {/* ── ADVANTAGES ───────────────────────────────────────────── */}
             <AdvantagesSection t={t} isMobile={isMobile} />
- 
+
             <div
               style={{
                 height: "1px",
@@ -1080,7 +1222,7 @@ export default function SixPhasePage() {
                 margin: "0 clamp(1.5rem,8vw,7rem)",
               }}
             />
- 
+
             {/* CTA */}
             {/* <section
               style={{
@@ -1135,13 +1277,13 @@ export default function SixPhasePage() {
               </m.div>
             </section> */}
           </m.div>
- 
+
           {/* Whitespace gap before footer */}
           <div style={{ height: "20vh" }} />
- 
+
           <Footer openContact={() => dispatch(setOpenContact(true))} />
         </m.div>
- 
+
         {!openContact && (
           <ScrollNavigator
             progress={smooth}
@@ -1150,15 +1292,45 @@ export default function SixPhasePage() {
             menuTheme={menuTheme}
             hiddenMenu={hiddenMenu}
             sections={[
-              { index: 1, label: ts("sixPhaseEngine"), start: 0, end: 0.7, target: 0 },
-              { index: 2, label: ts("whatIsIt"), start: 3.8, end: 4.2, target: 6.35 },
-              { index: 3, label: ts("howItWorks"), start: 4.3, end: 4.8, target: 7.2 },
-              { index: 4, label: ts("advantages"), start: 4.9, end: 5.4, target: 8.0 },
-              { index: 5, label: ts("contactUs"), start: 5.5, end: 7.9, target: 8.65 },
+              {
+                index: 1,
+                label: ts("sixPhaseEngine"),
+                start: 0,
+                end: 0.7,
+                target: 0,
+              },
+              {
+                index: 2,
+                label: ts("whatIsIt"),
+                start: 3.8,
+                end: 4.2,
+                target: 6.35,
+              },
+              {
+                index: 3,
+                label: ts("howItWorks"),
+                start: 4.3,
+                end: 4.8,
+                target: 7.2,
+              },
+              {
+                index: 4,
+                label: ts("advantages"),
+                start: 4.9,
+                end: 5.4,
+                target: 8.0,
+              },
+              {
+                index: 5,
+                label: ts("contactUs"),
+                start: 5.5,
+                end: 7.9,
+                target: 8.65,
+              },
             ]}
           />
         )}
- 
+
         <CookieBanner />
         <ContactDrawer
           open={openContact}
@@ -1168,6 +1340,6 @@ export default function SixPhasePage() {
           }}
         />
       </m.div>
-    </>
+    </main>
   );
 }
