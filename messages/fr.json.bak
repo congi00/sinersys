@@ -15,17 +15,20 @@
     "goals": "Objectifs",
     "contactUs": "Contactez-nous",
     "faq": "FAQ",
+
     "ourStory": "Notre histoire",
     "timeline": "Chronologie",
     "team": "Équipe",
+
     "whatIsIt": "Qu'est-ce que c'est",
     "architecture": "Architecture",
     "advantages": "Avantages",
+
     "sixPhaseEngine": "Moteur à 6 phases",
     "howItWorks": "Comment ça fonctionne"
   },
   "homepage": {
-    "keywords": "moteur électrique, APWEC, énergie renouvelable, Sinersys, moteur à 6 phases, générateur d'énergie renouvelable, énergie continue, moteur électrique innovant, brevet italien énergie, générateur d'énergie, générateur vert, énergie verte",
+    "keywords": "moteur à 6 phases, APWEC, énergie renouvelable, Sinersys, énergie verte, générateur vert, indépendance énergétique, technologie italienne brevetée, générateur d'énergie renouvelable",
     "slide0": {
       "metatitle": "La nouvelle génération d'énergie renouvelable",
       "title": "La nouvelle génération d'énergie \nrenouvelable née d'un \nrêve d'innovateurs",
@@ -113,6 +116,7 @@
       "a5": "Oui. Le rotor est contenu à l'intérieur d'une structure fermée, réduisant les risques par rapport aux générateurs éoliens traditionnels."
     }
   },
+
   "contacts": {
     "drawerTitle": "INITIER UNE COLLABORATION STRATÉGIQUE",
     "fields": {
@@ -142,8 +146,9 @@
     "successBody": "Nous vous répondrons dans les plus brefs délais à info@sinersys.it.",
     "close": "Fermer"
   },
+
   "aboutus": {
-    "keywords": "moteur électrique, APWEC, énergie renouvelable, Sinersys, moteur à 6 phases, générateur d'énergie renouvelable, énergie continue, moteur électrique innovant, brevet italien énergie, générateur d'énergie, générateur vert, énergie verte",
+    "keywords": "moteur hexaphasé, convertisseur énergie des vagues, énergie renouvelable, startup italienne énergie, moteur électrique innovant",
     "hero": {
       "suptitle": "Qui Sommes-Nous",
       "title": "Un rêve italien",
@@ -180,38 +185,47 @@
     "timeline": {
       "heading": "Plus d'un siècle d'innovation industrielle : l'histoire qui a mené à APWEC®",
       "subheading": "Chaque phase de l'histoire de Sinersys représente une accumulation réelle de compétences, de brevets et de développements scientifiques et techniques.",
+
       "t1919": {
         "title": "Les origines industrielles du groupe",
         "description": "Les racines de l'actuelle Sinersys remontent à 1919, lorsque le noyau entrepreneurial d'origine entre dans les premiers programmes européens de développement mécanique et moteur. C'est le début d'une longue tradition technique qui accompagnera le groupe pendant plus d'un siècle."
       },
+
       "t1964": {
         "title": "Entrée dans l'automobile internationale",
         "description": "Sous la marque IAP, le groupe devient importateur officiel des produits Honda en Italie, amorçant une collaboration stratégique qui conduira en 1971 à la réalisation de l'usine de production Honda dans la Val di Sangro. La dimension industrielle prend une envergure internationale."
       },
+
       "t1965": {
         "title": "Expansion dans la distribution de grandes marques européennes",
         "description": "Motauto est fondée, une structure dédiée à l'importation exclusive en Italie de Volvo, Saab et Hanomag-Henschel. L'entreprise consolide ses compétences logistiques, commerciales et industrielles dans la gestion des véhicules, des composants et des technologies mécaniques."
       },
+
       "t1977": {
         "title": "Fondation du centre de R&D B-Art",
         "description": "B-Art est créée, un centre de recherche et développement. De nombreux brevets industriels internationaux naissent de ce laboratoire, dont les premières études sur le moteur à six phases avec fonction isochore."
       },
+
       "t1978": {
         "title": "Début des études sur les mouvements des fluides et la réduction des frottements",
         "description": "Des recherches structurées commencent sur les mouvements fluidodynamiques à l'intérieur de géométries contrôlées, initialement appliquées à la réduction du frottement aérodynamique dans les véhicules. Ces études représentent le fondement théorique qui, dans les années suivantes, conduira à la conception du système APWEC®."
       },
+
       "t1998": {
         "title": "Naissance de Sinersys comme spin-off énergétique",
         "description": "Après des décennies d'expérience en ingénierie mécanique et en conception industrielle, le groupe lance Sinersys (Synergie de Systèmes), un département entièrement dédié au développement d'innovations."
       },
+
       "t2002": {
         "title": "Début des études scientifiques spécifiques sur le générateur APWEC®",
         "description": "Sinersys lance son programme scientifique consacré au développement d'un générateur « vert » fonctionnant avec un système air-fluide. La phase expérimentale débute et conduira à la réalisation du premier prototype fonctionnel (Silo Éolien) ainsi qu'à la validation du principe physique du générateur APWEC®."
       },
+
       "t2008": {
         "title": "Dépôt du brevet Silo Éolien®",
         "description": "Après les premiers tests prototypiques et les vérifications d'ingénierie, Sinersys dépose le brevet Silo Éolien, première étape technique de l'actuel APWEC, système de conversion d'énergie basé sur des chambres d'induction et une pression atmosphérique contrôlée."
       },
+
       "t2010": {
         "title": "Dépôt du brevet APWEC® et validation internationale",
         "description": "Le brevet APWEC® (Atmospheric Pressure Wind Eolic Collector) est déposé, évolution de la technologie Silo Éolien. Le système est soumis à des rapports de tests conduits par TÜV Thüringen et l'Université d'Ilmenau, des centres de calcul et des départements universitaires, consolidant la crédibilité scientifique du projet."
@@ -272,8 +286,9 @@
       "subtitle": "Sinersys développe des solutions pour la génération distribuée d'énergie renouvelable qui permettent aux entreprises, aux collectivités publiques et aux opérateurs industriels de réduire concrètement les consommations, de réduire les émissions de CO₂ et d'augmenter la résilience énergétique de leurs installations — avec des technologies certifiées, évolutives et à haute performance."
     }
   },
+
   "apwec": {
-    "keywords": "moteur électrique, APWEC, énergie renouvelable, Sinersys, moteur à 6 phases, générateur d'énergie renouvelable, énergie continue, moteur électrique innovant, brevet italien énergie, générateur d'énergie, générateur vert, énergie verte",
+    "keywords": "moteur hexaphasé, convertisseur énergie des vagues, énergie renouvelable, startup italienne énergie, moteur électrique innovant",
     "videoAriaLabel": "Prototype APWEC en fonctionnement, générateur d'énergie renouvelable.",
     "slide0": {
       "suptitle": "TECHNOLOGIE BREVETÉE",
@@ -308,7 +323,7 @@
       "f1": {
         "label": "Évolutivité",
         "title": "De 1 kW à environ 10 MW",
-        "description": "L'architecture d'APWEC permet de dimensionner l'installation selon les besoins énergétiques de l'utilisateur."
+        "description": "L'architecture modulaire d'APWEC permet de dimensionner l'installation selon les besoins énergétiques réels de l'utilisateur."
       },
       "f2": {
         "label": "Maintenance",
@@ -328,7 +343,7 @@
       "shell1": {
         "label": "Première Section",
         "title": "Génération et amplification du flux",
-        "desc": "Un jet d'amorçage à haute vitesse entre dans la première Chambre d'Induction annulaire. La différence de pression générée selon le Principe de Bernoulli aspire l'air atmosphérique de l'extérieur, amplifiant progressivement le débit du flux-air à chaque C.d.I. successive. Le matériau des trois vessels est l'acier, l'aluminium ou le plastique renforcé selon le modèle, pour une flexibilité de construction maximale et une réduction des coûts."
+        "desc": "Un jet d'amorçage à haute vitesse entre dans la première Chambre d'Induction annulaire. La différence de pression générée selon le Principe de Bernoulli aspire l'air atmosphérique de l'extérieur, amplifiant progressivement le débit du flux-air à chaque C.d.I. successive. Le matériau de l'enveloppe peut être l'acier, l'aluminium ou le plastique renforcé pour une flexibilité de construction maximale et une réduction des coûts."
       },
       "shell2": {
         "label": "Deuxième Section",
@@ -394,7 +409,7 @@
     "advantages": {
       "label": "APWEC® vs. aérogénérateurs traditionnels",
       "title": "Avantages techniques et économiques par rapport à l'état de l'art",
-      "intro": "Le concept de base est la Simplicité. \nSimplicité de calcul, de construction et de fonctionnement.\nLa comparaison entre APWEC® et les grands aérogénérateurs conventionnels met en évidence des avantages structurels qui impactent les coûts de construction, de maintenance, d'installation et d'exploitation. APWEC, générateur de toute nouvelle génération conçu selon la philosophie constructive automobile.",
+      "intro": "Le concept de base est la Simplicité. Simplicité de calcul, de construction et de fonctionnement.\nLa comparaison entre APWEC® et les grands aérogénérateurs conventionnels met en évidence des avantages structurels qui impactent les coûts de construction, de maintenance, d'installation et d'exploitation. APWEC, générateur de toute nouvelle génération conçu selon la philosophie constructive automobile.",
       "a0": {
         "label": "Opérabilité",
         "title": "Fonctionnement jusqu'à 8 660 heures annuelles",
@@ -407,7 +422,7 @@
       },
       "a2": {
         "label": "Simplicité constructive",
-        "title": "Moins de composants, production en grande série de type « automotive »",
+        "title": "Moins de composants, construction de type automobile",
         "desc": "APWEC® nécessite un nombre inférieur de pièces par rapport à l'état de l'art. La philosophie constructive d'origine automobile garantit la standardisation, la disponibilité mondiale des composants et la réduction des coûts de production en grande série."
       },
       "a3": {
@@ -418,26 +433,27 @@
       "a4": {
         "label": "Flexibilité d'installation",
         "title": "Fonctionnement intérieur et extérieur, à proximité de l'utilisateur",
-        "desc": "APWEC® peut être installé à l'intérieur de bâtiments ou en plein air. L'installation à proximité de l'utilisateur final réduit les pertes de transmission et les coûts de connexion au réseau."
+        "desc": "APWEC® peut être installé à l'intérieur de bâtiments industriels ou en plein air, sans nécessité de tours ou de structures élevées. L'installation à proximité de l'utilisateur final réduit les pertes de transmission et les coûts de connexion au réseau."
       },
       "a5": {
         "label": "Analogie avec les turbines industrielles",
         "title": "Structure dérivée de la turbine à gaz industrielle",
         "desc": "La configuration physique d'APWEC® suit la structure des turbines à gaz industrielles, elles-mêmes dérivées des turbines pour avions à réaction. Une technologie mature et fiable, avec des décennies de savoir-faire d'ingénierie derrière elle."
       },
-      "vsDesc": "Les grands aérogénérateurs exploitent exclusivement la pression dynamique du vent extérieur et nécessitent du vent, des tours élevées, des mécanismes à pas variable et une maintenance en hauteur.\nAPWEC® fonctionne avec un flux interne contrôlé, au niveau du sol, indépendamment des conditions atmosphériques extérieures — une catégorie techniquement distincte et complémentaire dans le panorama de la génération distribuée d'énergie renouvelable."
+      "vsDesc": "Les grands aérogénérateurs exploitent exclusivement la pression dynamique du vent extérieur et nécessitent un vent minimum, des tours élevées, des mécanismes à pas variable et une maintenance en hauteur.\nAPWEC® fonctionne avec un flux interne contrôlé, au niveau du sol, indépendamment des conditions atmosphériques extérieures — une catégorie techniquement distincte et complémentaire dans le panorama de la génération distribuée d'énergie renouvelable."
     }
   },
+
   "motore6fasi": {
-    "keywords": "moteur électrique, APWEC, énergie renouvelable, Sinersys, moteur à 6 phases, générateur d'énergie renouvelable, énergie continue, moteur électrique innovant, brevet italien énergie, générateur d'énergie, générateur vert, énergie verte",
+    "keywords": "moteur hexaphasé, convertisseur énergie des vagues, énergie renouvelable, startup italienne énergie, moteur électrique innovant",
     "slide0": {
       "suptitle": "TECHNOLOGIE BREVETÉE",
       "title": "Moteur à 6 Phases",
-      "subtitle": "Le propulseur italien à combustion à volume constant avec bielle rotative et piston semi-flottant ; par rapport aux moteurs de l'état de l'art, le M6F offre : plus de puissance, moins de consommation, moins d'émissions."
+      "subtitle": "Le propulseur italien à combustion à volume constant avec bielle rotative et piston semi-flottant : plus de puissance, moins de consommation, moins d'émissions."
     },
     "slide1": {
       "suptitle": "NOUVEAU SYSTÈME DE VILEBREQUIN",
-      "title": "Le cycle thermodynamique réinventé : moteur à fonction isochore.",
+      "title": "Le cycle thermodynamique réinventé",
       "subtitle": "Un excentrique à profil prédéterminé remplace le système classique bielle-manivelle, éliminant les points morts et permettant une combustion isochore parfaite au PMH."
     },
     "slide2": {
@@ -446,14 +462,14 @@
       "subtitle": "Coefficients de remplissage jusqu'à 120 % de la cylindrée, absence d'avance à l'allumage et architecture modulaire dérivée de la philosophie constructive automobile."
     },
     "slide3": {
-      "suptitle": "Applications multiples",
-      "title": "Amélioration de l'efficacité de la combustion",
+      "suptitle": "Applications",
+      "title": "Du groupe motopropulseur automobile au cycle Stirling industriel",
       "subtitle": "Le principe du vilebrequin à 6 phases s'applique aux moteurs à combustion interne, hybrides et au cycle Stirling, ouvrant des scénarios à pollution quasi nulle et à consommation encore réduite."
     },
     "static": {
       "label": "Qu'est-ce que le Moteur à 6 Phases",
       "title": "La combustion à volume constant qui redéfinit le moteur moderne",
-      "p1": "Le Moteur à 6 Phases de Motor Union Italia est un moteur à combustion interne qui réalise un cycle thermodynamique en six phases sur deux tours du vilebrequin. Le cœur de l'invention est le nouveau système de vilebrequin : un excentrique à profil prédéterminé. Ceci élimine les points morts classiques et permet de définir avec précision la loi cinématique du piston.",
+      "p1": "Le Moteur à 6 Phases de Motor Union Italia est un moteur à combustion interne qui réalise un cycle thermodynamique en six phases sur deux tours du vilebrequin. Le cœur de l'invention est le nouveau système de vilebrequin : un excentrique à profil prédéterminé, solidaire du vilebrequin, sur lequel glisse un galet calé sur l'axe de piston. Ceci élimine les points morts classiques et permet de définir avec précision la loi cinématique du piston.",
       "p2": "Le résultat est une Combustion à Volume Constant (isochore) au Point Mort Haut avec avance à l'allumage nulle, une aspiration prolongée au PMB avec des coefficients de remplissage supérieurs à l'unité, et l'élimination des pertes dues à la pression de combustion pendant la période d'avance. Le tout dans un moteur plus compact, plus léger et constructible selon une philosophie automobile.",
       "f0": {
         "label": "Efficacité Thermique",
@@ -468,7 +484,7 @@
       "f2": {
         "label": "Compacité",
         "title": "Groupe motopropulseur réduit en volume et en poids",
-        "description": "Intégré à la transmission automatique stepless, autre innovation, en version manuelle. Le système adopte un moteur à deux temps innovant avec vilebrequin à 6 phases, fonctionnant avec récupération de l'huile."
+        "description": "Intégré avec la transmission automatique stepless sans courroie ni poulies, le groupe motopropulseur réduit significativement l'encombrement, le poids et les coûts par rapport aux solutions actuelles."
       },
       "cta": {
         "title": "Intéressé par une collaboration ?",
@@ -528,6 +544,7 @@
       "vsDesc": "Les moteurs à 4 temps conventionnels nécessitent une avance à l'allumage, fonctionnent avec des coefficients de remplissage inférieurs à l'unité et accumulent des pertes passives dans la phase de compression.\nLe Moteur à 6 Phases Motor Union Italia élimine ces pertes structurelles grâce à la combustion isochore, à l'aspiration prolongée et au nouveau système de vilebrequin — une catégorie techniquement distincte qui se positionne comme l'évolution naturelle du moteur à combustion interne pour la transition énergétique."
     }
   },
+
   "research": {
     "label": "Recherche et Développement",
     "title": "Le Centre de Recherche qui a transformé un rêve impossible en brevet",
@@ -562,6 +579,7 @@
       }
     }
   },
+
   "certifications": {
     "label": "Certifications et Qualité",
     "title": "Qualité certifiée, efficacité énergétique garantie dans le temps",
@@ -575,12 +593,14 @@
       "body": "Le programme d'assistance, de maintenance et d'optimisation continue de Sinersys. Pour chaque installation d'énergie renouvelable conçue et installée, Tech Service garantit le rendement énergétique maximal dans le temps grâce à des interventions programmées, à la surveillance à distance et à des mises à jour techniques périodiques."
     }
   },
+
   "frontierEnergetiche": {
     "label": "Solutions Énergétiques",
     "title": "Les nouvelles frontières de l'énergie renouvelable et de l'efficacité énergétique",
     "p1": "Sinersys réalise des projets et des installations de cogénération à haut rendement et développe des technologies avancées pour la génération distribuée continue d'énergie renouvelable. De notre histoire centenaire dans l'ingénierie moteur naît une mission précise : rendre accessible l'indépendance énergétique aux industries, aux collectivités publiques et aux opérateurs commerciaux qui souhaitent réduire les coûts de l'énergie, réduire les émissions de CO₂ et augmenter la résilience énergétique de leurs installations.",
     "p2": "Sinersys fournit des systèmes de génération d'énergie renouvelable efficaces, flexibles et évolutifs qui permettent l'autoproduction d'énergie avec un impact environnemental nul. Chaque installation est conçue sur mesure, certifiée avec le programme Full Energy Project et soutenue dans le temps par le service Tech Service."
   },
+
   "ethics": {
     "label": "Code d'Éthique",
     "title": "Code d'Éthique",
@@ -650,6 +670,7 @@
       "p2": "Nous veillons constamment à prévenir toute transmission non autorisée de données, en préservant en toute circonstance les intérêts de l'entreprise."
     }
   },
+
   "privacy": {
     "label": "Politique de Confidentialité",
     "title": "Politique de Confidentialité",
@@ -750,6 +771,7 @@
       "p1": "La présente notice d'information peut être mise à jour à tout moment. Les modifications substantielles sont communiquées via un avis sur le site ou par email aux utilisateurs enregistrés."
     }
   },
+
   "cookies": {
     "label": "Politique de Cookies",
     "title": "Politique de Cookies",
@@ -806,6 +828,7 @@
       "p2": "Pour toute question relative à l'utilisation des cookies sur sinersys.it, écrivez-nous à info@sinersys.it."
     }
   },
+
   "footer": {
     "quick": {
       "title": "Liens Rapides",
@@ -856,6 +879,7 @@
     "save": "Enregistrer les préférences",
     "acceptAll": "Tout accepter",
     "close": "Fermer",
+
     "necessary": {
       "label": "Nécessaires",
       "description": "Indispensables au fonctionnement du site. Incluent session, authentification et sécurité. Ne peuvent pas être désactivés.",

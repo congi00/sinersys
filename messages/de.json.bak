@@ -308,7 +308,7 @@
       "f1": {
         "label": "Skalierbarkeit",
         "title": "Von 1 kW bis ca. 10 MW",
-        "description": "Die Architektur von APWEC ermöglicht es, die Anlage entsprechend dem Energiebedarf des Benutzers zu dimensionieren."
+        "description": "Die modulare Architektur von APWEC ermöglicht es, die Anlage entsprechend dem tatsächlichen Energiebedarf des Benutzers zu dimensionieren."
       },
       "f2": {
         "label": "Wartung",
@@ -328,7 +328,7 @@
       "shell1": {
         "label": "Erster Abschnitt",
         "title": "Stromerzeugung und -verstärkung",
-        "desc": "Ein Hochgeschwindigkeits-Auslösestrahl tritt in die erste ringförmige Induktionskammer ein. Der gemäß dem Bernoulli-Prinzip erzeugte Druckunterschied zieht Außenluft von außen an und verstärkt die Luftstromrate an jeder nachfolgenden I.K. progressiv. Das Material der drei Vessels ist je nach Modell Stahl, Aluminium oder verstärkter Kunststoff, für maximale Konstruktionsflexibilität und Kostensenkung."
+        "desc": "Ein Hochgeschwindigkeits-Auslösestrahl tritt in die erste ringförmige Induktionskammer ein. Der gemäß dem Bernoulli-Prinzip erzeugte Druckunterschied zieht Außenluft von außen an und verstärkt die Luftstromrate an jeder nachfolgenden I.K. progressiv. Das Gehäusematerial kann Stahl, Aluminium oder verstärkter Kunststoff für maximale Konstruktionsflexibilität und Kostensenkung sein."
       },
       "shell2": {
         "label": "Zweiter Abschnitt",
@@ -394,7 +394,7 @@
     "advantages": {
       "label": "APWEC® vs. herkömmliche Windgeneratoren",
       "title": "Technische und wirtschaftliche Vorteile gegenüber dem Stand der Technik",
-      "intro": "Das grundlegende Konzept ist Einfachheit. \nEinfachheit in Berechnung, Konstruktion und Betrieb.\nDer Vergleich zwischen APWEC® und großen konventionellen Windkraftanlagen zeigt strukturelle Vorteile, die sich auf Bau-, Wartungs-, Installations- und Betriebskosten auswirken. APWEC, ein Generator der neuesten Generation, nach der Automobilbauphilosophie konzipiert.",
+      "intro": "Das grundlegende Konzept ist Einfachheit. Berechnungs-, Konstruktions- und Betriebseinfachheit.\nDer Vergleich zwischen APWEC® und großen konventionellen Windkraftanlagen zeigt strukturelle Vorteile, die sich auf Bau-, Wartungs-, Installations- und Betriebskosten auswirken. APWEC, ein Generator der neuesten Generation, nach der Automobilbauphilosophie konzipiert.",
       "a0": {
         "label": "Betriebsfähigkeit",
         "title": "Betrieb bis zu 8.660 Jahresstunden",
@@ -407,7 +407,7 @@
       },
       "a2": {
         "label": "Konstruktionseinfachheit",
-        "title": "Weniger Komponenten, Großserienproduktion nach \"Automotive\"-Art",
+        "title": "Weniger Komponenten, Automobilbauweise",
         "desc": "APWEC® erfordert weniger Teile im Vergleich zum Stand der Technik. Die von der Automobilindustrie abgeleitete Konstruktionsphilosophie garantiert Standardisierung, weltweite Komponentenverfügbarkeit und reduzierte Produktionskosten in der Großserie."
       },
       "a3": {
@@ -418,14 +418,14 @@
       "a4": {
         "label": "Installationsflexibilität",
         "title": "Innen- und Außenbetrieb, in der Nähe des Nutzers",
-        "desc": "APWEC® kann in Gebäuden oder im Freien installiert werden. Die Installation in der Nähe des Endnutzers reduziert Übertragungsverluste und Netzanschlusskosten."
+        "desc": "APWEC® kann in Industriegebäuden oder im Freien installiert werden, ohne Türme oder erhöhte Strukturen zu benötigen. Die Installation in der Nähe des Endnutzers reduziert Übertragungsverluste und Netzanschlusskosten."
       },
       "a5": {
         "label": "Analogie mit Industrieturbinen",
         "title": "Struktur abgeleitet von der industriellen Gasturbine",
         "desc": "Die physische Konfiguration von APWEC® folgt der Struktur von Industriegasturbinen, die ihrerseits von Strahltriebwerken abgeleitet sind. Eine ausgereifte, zuverlässige Technologie mit Jahrzehnten von ingenieurtechnischem Know-how dahinter."
       },
-      "vsDesc": "Große Windkraftanlagen nutzen ausschließlich den dynamischen Druck des Außenwinds und benötigen Wind, hohe Türme, Blattwinkelverstellmechanismen und Wartung in der Höhe.\nAPWEC® arbeitet mit einem kontrollierten internen Strom auf Bodenniveau, unabhängig von den äußeren atmosphärischen Bedingungen — eine technisch eigenständige und komplementäre Kategorie in der Landschaft der verteilten Erzeugung erneuerbarer Energie."
+      "vsDesc": "Große Windkraftanlagen nutzen ausschließlich den dynamischen Druck des Außenwinds und benötigen Mindestwind, hohe Türme, Blattwinkelverstellmechanismen und Wartung in der Höhe.\nAPWEC® arbeitet mit einem kontrollierten internen Strom auf Bodenniveau, unabhängig von den äußeren atmosphärischen Bedingungen — eine technisch eigenständige und komplementäre Kategorie in der Landschaft der verteilten Erzeugung erneuerbarer Energie."
     }
   },
   "motore6fasi": {
@@ -433,11 +433,11 @@
     "slide0": {
       "suptitle": "PATENTIERTE TECHNOLOGIE",
       "title": "6-Phasen-Motor",
-      "subtitle": "Der italienische Antrieb mit Verbrennung bei konstantem Volumen, rotierender Pleuelstange und halbschwimmendem Kolben; der M6F bietet gegenüber modernen Motoren: mehr Leistung, weniger Verbrauch, weniger Emissionen."
+      "subtitle": "Der italienische Antrieb mit konstantem Brennraumvolumen mit rotierender Pleuelstange und halbschwimmendem Kolben: mehr Leistung, weniger Verbrauch, weniger Emissionen."
     },
     "slide1": {
       "suptitle": "NEUES KURBELWELLENSYSTEM",
-      "title": "Der thermodynamische Zyklus neu erfunden: Motor mit isochorer Funktion.",
+      "title": "Der thermodynamische Zyklus neu erfunden",
       "subtitle": "Ein Exzenter mit vorbestimmtem Profil ersetzt das klassische Pleuelstangen-Kurbelwellen-System, eliminiert die Totpunkte und ermöglicht eine perfekte isochore Verbrennung am OT."
     },
     "slide2": {
@@ -446,14 +446,14 @@
       "subtitle": "Liefergradkoeffizienten bis zu 120 % des Hubraums, keine Zündzeitpunktvorverstellung und modulare Architektur abgeleitet von der Automobilbauphilosophie."
     },
     "slide3": {
-      "suptitle": "Vielfältige Anwendungen",
-      "title": "Effizienzsteigerung der Verbrennung",
+      "suptitle": "Anwendungen",
+      "title": "Vom Automobil-Antriebsstrang zum industriellen Stirling-Zyklus",
       "subtitle": "Das 6-Phasen-Kurbelwellenprinzip gilt für Verbrennungsmotoren, Hybride und den Stirling-Zyklus und eröffnet Szenarien mit nahezu null Verschmutzung und weiter reduziertem Verbrauch."
     },
     "static": {
       "label": "Was ist der 6-Phasen-Motor",
       "title": "Die Konstantvolumenverbrennung, die den modernen Motor neu definiert",
-      "p1": "Der Motor Union Italia 6-Phasen-Motor ist ein Verbrennungsmotor, der in zwei Umdrehungen der Kurbelwelle einen thermodynamischen Zyklus in sechs Phasen realisiert. Das Herzstück der Erfindung ist das neue Kurbelwellensystem: ein Exzenter mit vorbestimmtem Profil. Dies eliminiert die klassischen Totpunkte und ermöglicht es, das kinematische Gesetz des Kolbens präzise zu definieren.",
+      "p1": "Der Motor Union Italia 6-Phasen-Motor ist ein Verbrennungsmotor, der in zwei Umdrehungen der Kurbelwelle einen thermodynamischen Zyklus in sechs Phasen realisiert. Das Herzstück der Erfindung ist das neue Kurbelwellensystem: ein Exzenter mit vorbestimmtem Profil, der integral mit der Kurbelwelle ist, auf dem eine auf dem Kolbenbolzen geklemmte Rolle gleitet. Dies eliminiert die klassischen Totpunkte und ermöglicht es, das kinematische Gesetz des Kolbens präzise zu definieren.",
       "p2": "Das Ergebnis ist eine Konstantvolumenverbrennung (isochor) am oberen Totpunkt mit null Zündzeitpunktvorverstellung, eine verlängerte Einlass am UT mit Liefergradkoeffizienten größer als eins und die Eliminierung von Verlusten durch Verbrennungsdruck während der Vorverstellungsperiode. Alles in einem kompakteren, leichteren Motor, der nach einer Automobilphilosophie gebaut werden kann.",
       "f0": {
         "label": "Thermische Effizienz",
@@ -468,7 +468,7 @@
       "f2": {
         "label": "Kompaktheit",
         "title": "Reduziertes Volumen und Gewicht des Antriebsstrangs",
-        "description": "Integriert mit dem stufenlosen Automatikgetriebe, einer weiteren Innovation, in manueller Version. Das System verwendet einen innovativen Zweitaktmotor mit 6-Phasen-Kurbeltrieb, der mit Ölrückgewinnung arbeitet."
+        "description": "Integriert mit dem stufenlosen Automatikgetriebe ohne Riemen und Riemenscheiben, reduziert der Antriebsstrang Abmessungen, Gewicht und Kosten im Vergleich zu aktuellen Lösungen erheblich."
       },
       "cta": {
         "title": "Interessiert an einer Zusammenarbeit?",
@@ -582,73 +582,73 @@
     "p2": "Sinersys liefert effiziente, flexible und skalierbare Systeme zur Erzeugung erneuerbarer Energie, die die Eigenstromerzeugung mit null Umwelteinfluss ermöglichen. Jede Anlage wird maßgeschneidert konzipiert, mit dem Full Energy Project-Programm zertifiziert und über die Zeit vom Tech Service unterstützt."
   },
   "ethics": {
-    "label": "Ethikkodex",
-    "title": "Ethikkodex",
-    "subtitle": "Die Grundsätze, die jede unserer Entscheidungen leiten, jeden Tag.",
-    "updated": "Letzte Aktualisierung: Februar 2026",
-    "s1": {
-      "heading": "Präambel und Anwendungsbereich",
-      "p1": "Um das Wohlergehen des Unternehmens und ein nachhaltiges Wachstum zu erreichen, das auf dem Vertrauen aller basiert, die mit uns in Beziehung stehen, verabschiedet Sinersys (eine Abteilung von MUI) die vorliegenden Allgemeinen Internen Regeln. Über die Einhaltung von Gesetzen und Vorschriften hinaus halten wir es für unerlässlich, in jeder Situation aufrichtig und ethisch zu handeln.",
-      "p2": "Dieser Verhaltenskodex gilt für alle, die für oder mit Sinersys tätig sind: Gesellschafter, Mitarbeiter, Partner, Berater, Lieferanten sowie alle, die in einer Geschäftsbeziehung zum Unternehmen stehen."
-    },
-    "s2": {
-      "heading": "Produkte und Dienstleistungen",
-      "p1": "Sinersys verpflichtet sich, Produkte und Dienstleistungen anzubieten, die die Erwartungen von Kunden und Gesellschaft übertreffen, wobei Qualität und Sicherheit oberste Priorität haben und wir uns selbst hohe Standards setzen.",
-      "l1": "Wir räumen der Qualität und Sicherheit unserer Produkte und Dienstleistungen höchste Priorität ein und halten uns strikt an die festgelegten Standards und Verfahren.",
-      "l2": "Wir verlangen von unseren Geschäftspartnern und Vertriebshändlern, dieselben Standards und Verfahren einzuhalten."
-    },
-    "s3": {
-      "heading": "Kommunikation, Werbung und Wettbewerb",
-      "p1": "Wir betreiben unsere Kommunikations-, Werbe- und Verkaufsförderungsaktivitäten mit Aufrichtigkeit, informieren unsere Kunden korrekt und handeln fair und korrekt unter Achtung des Wettbewerbs und der Rechte der Wettbewerber.",
-      "p2": "Wir betreiben einen fairen Wettbewerb, geben wahrheitsgemäße Informationen über Wettbewerber auf Basis öffentlich zugänglicher Daten weiter und halten uns an das geltende Wettbewerbsrecht."
-    },
-    "s4": {
-      "heading": "Geschäftspartner",
-      "p1": "Sinersys strebt an, auf Basis von freiem Wettbewerb und gegenseitigem Vertrauen solide und langfristige Beziehungen zu Geschäftspartnern, Lieferanten, Vertriebsunternehmen und etwaigen Subunternehmern aufzubauen.",
-      "l1": "Entscheidungen bezüglich Geschäftspartnern werden in Übereinstimmung mit den Unternehmensrichtlinien und -verfahren sowie unter Beachtung der für Transaktionen geltenden Gesetze und internen Regeln umgesetzt.",
-      "l2": "Wir nehmen keine persönlichen Vorteile (Geld, Sachwerte, Unterhaltung usw.) an und bieten sie nicht an, die über die üblichen geschäftlichen Höflichkeiten hinausgehen, und nutzen unsere Position nicht, um von Dritten unzulässige Vergünstigungen zu erhalten oder zu gewähren."
-    },
-    "s5": {
-      "heading": "Arbeitsumfeld und Beziehungen zu Kollegen",
-      "p1": "Sinersys verpflichtet sich, ein Arbeitsumfeld zu schaffen, das auf gegenseitigem Vertrauen und einer reibungslosen, harmonischen Kommunikation zwischen allen Beteiligten beruht.",
-      "l1": "Wir fördern eine offene Kommunikation am Arbeitsplatz, damit die Zusammenarbeit unter Kollegen stets harmonisch bleibt.",
-      "l2": "Familienangehörige von Gesellschaftern und Führungskräften werden nicht in die Tätigkeiten von Sinersys einbezogen, um Transparenz und Fairness zu gewährleisten."
-    },
-    "s6": {
-      "heading": "Menschenrechte und gegenseitiger Respekt",
-      "p1": "Sinersys ist ein aufrichtiges und faires Unternehmen, das die Menschenrechte im Einklang mit geltendem Recht achtet und sowohl intern als auch gegenüber Partnern und Kollegen darauf achtet, dass dieser Grundsatz stets eingehalten wird.",
-      "l1": "Wir behandeln jeden Gesellschafter, Partner oder Mitarbeiter mit Respekt, Ehrlichkeit und Unparteilichkeit.",
-      "l2": "Wir setzen uns aktiv dafür ein, dass es am Arbeitsplatz keine Belästigung, Diskriminierung oder unfaire Behandlung gibt."
-    },
-    "s7": {
-      "heading": "Gesundheit und Sicherheit",
-      "p1": "Sinersys fordert einen sicheren, hygienischen und geordneten Arbeitsplatz, sowohl intern als auch im Umgang mit Partnern und Mitarbeitern.",
-      "l1": "Wir halten die Gesetze, Vorschriften und internen Regeln zu Gesundheit und Sicherheit ein.",
-      "l2": "Wir bemühen uns um einen sicheren und geordneten Arbeitsplatz, um Krankheiten, Unfälle und die Ausbreitung gefährlicher Situationen zu verhindern."
-    },
-    "s8": {
-      "heading": "Unternehmenstätigkeit und Vermögenswerte",
-      "p1": "Sinersys unterhält und verwaltet seine materiellen und immateriellen Vermögenswerte ordnungsgemäß und ergreift Sicherheitsmaßnahmen zum Schutz von Patenten, Know-how, Studien, Forschungsergebnissen, Entwürfen, Fotos, Videomaterial und anderem Unternehmenseigentum.",
-      "l1": "Wir führen die Unternehmenstätigkeit angemessen und vertraulich durch und setzen uns dafür ein, dass der Wert des Unternehmensvermögens niemals beeinträchtigt wird.",
-      "l2": "Wir verwalten Einrichtungen, Ausrüstungen, Produkte, Betriebsmittel, Unternehmensdarlehen, Gelder, geistiges Eigentum und alle sonstigen Unternehmenswerte ordnungsgemäß und nutzen sie ausschließlich zu geschäftlichen, gewerblichen und forschungsbezogenen Zwecken von Sinersys, ohne sie aus persönlichem Interesse an Dritte weiterzugeben."
-    },
-    "s9": {
-      "heading": "Informationsmanagement",
-      "p1": "Sinersys schützt und verwaltet die vertraulichen und personenbezogenen Informationen des Unternehmens ordnungsgemäß und ergreift alle notwendigen Maßnahmen, um seine geschäftlichen, gewerblichen und Forschungsaktivitäten korrekt durchzuführen.",
-      "l1": "Wir verwalten interne Informationen, Informationen über Geschäftspartner sowie personenbezogene Daten von Kunden und Mitarbeitern in Übereinstimmung mit geltenden Gesetzen und internen Regeln.",
-      "l2": "Wir missbrauchen Informationen nicht, einschließlich Insiderhandel, und geben keine Unternehmens-, technischen, wissenschaftlichen oder Forschungsdaten ohne schriftliche Genehmigung des bevollmächtigten Rechtsvertreters des Unternehmens an Dritte weiter."
-    },
-    "s10": {
-      "heading": "Interessenkonflikte",
-      "p1": "Sinersys toleriert kein Verhalten, das die Interessen des Unternehmens zugunsten persönlicher Interessen oder der Interessen Dritter beeinträchtigt.",
-      "l1": "Wir verpflichten uns, in keiner Form persönliche Interessen oder Interessen von Geschäftspartnern oder Dritten gegen die Interessen von Sinersys zu verfolgen.",
-      "l2": "Wir melden proaktiv jede Situation, die zu einem tatsächlichen oder scheinbaren Interessenkonflikt führen könnte."
-    },
-    "s11": {
-      "heading": "Vertraulichkeit, Kontrolle und Integrität",
-      "p1": "Jede im Namen von Sinersys ausgeübte Tätigkeit, sei es individuell oder innerhalb der eigenen Arbeitsgruppe, erfolgt in Übereinstimmung mit geltenden moralischen, ethischen sowie nationalen und internationalen Standards, mit Loyalität und größtmöglicher Vertraulichkeit.",
-      "p2": "Wir überwachen kontinuierlich, um eine unbefugte Datenübertragung zu verhindern, und wahren dabei jederzeit die Interessen des Unternehmens."
-    }
+      "label": "Ethikkodex",
+      "title": "Ethikkodex",
+      "subtitle": "Die Grundsätze, die jede unserer Entscheidungen leiten, jeden Tag.",
+      "updated": "Letzte Aktualisierung: Februar 2026",
+      "s1": {
+        "heading": "Präambel und Anwendungsbereich",
+        "p1": "Um das Wohlergehen des Unternehmens und ein nachhaltiges Wachstum zu erreichen, das auf dem Vertrauen aller basiert, die mit uns in Beziehung stehen, verabschiedet Sinersys (eine Abteilung von MUI) die vorliegenden Allgemeinen Internen Regeln. Über die Einhaltung von Gesetzen und Vorschriften hinaus halten wir es für unerlässlich, in jeder Situation aufrichtig und ethisch zu handeln.",
+        "p2": "Dieser Verhaltenskodex gilt für alle, die für oder mit Sinersys tätig sind: Gesellschafter, Mitarbeiter, Partner, Berater, Lieferanten sowie alle, die in einer Geschäftsbeziehung zum Unternehmen stehen."
+      },
+      "s2": {
+        "heading": "Produkte und Dienstleistungen",
+        "p1": "Sinersys verpflichtet sich, Produkte und Dienstleistungen anzubieten, die die Erwartungen von Kunden und Gesellschaft übertreffen, wobei Qualität und Sicherheit oberste Priorität haben und wir uns selbst hohe Standards setzen.",
+        "l1": "Wir räumen der Qualität und Sicherheit unserer Produkte und Dienstleistungen höchste Priorität ein und halten uns strikt an die festgelegten Standards und Verfahren.",
+        "l2": "Wir verlangen von unseren Geschäftspartnern und Vertriebshändlern, dieselben Standards und Verfahren einzuhalten."
+      },
+      "s3": {
+        "heading": "Kommunikation, Werbung und Wettbewerb",
+        "p1": "Wir betreiben unsere Kommunikations-, Werbe- und Verkaufsförderungsaktivitäten mit Aufrichtigkeit, informieren unsere Kunden korrekt und handeln fair und korrekt unter Achtung des Wettbewerbs und der Rechte der Wettbewerber.",
+        "p2": "Wir betreiben einen fairen Wettbewerb, geben wahrheitsgemäße Informationen über Wettbewerber auf Basis öffentlich zugänglicher Daten weiter und halten uns an das geltende Wettbewerbsrecht."
+      },
+      "s4": {
+        "heading": "Geschäftspartner",
+        "p1": "Sinersys strebt an, auf Basis von freiem Wettbewerb und gegenseitigem Vertrauen solide und langfristige Beziehungen zu Geschäftspartnern, Lieferanten, Vertriebsunternehmen und etwaigen Subunternehmern aufzubauen.",
+        "l1": "Entscheidungen bezüglich Geschäftspartnern werden in Übereinstimmung mit den Unternehmensrichtlinien und -verfahren sowie unter Beachtung der für Transaktionen geltenden Gesetze und internen Regeln umgesetzt.",
+        "l2": "Wir nehmen keine persönlichen Vorteile (Geld, Sachwerte, Unterhaltung usw.) an und bieten sie nicht an, die über die üblichen geschäftlichen Höflichkeiten hinausgehen, und nutzen unsere Position nicht, um von Dritten unzulässige Vergünstigungen zu erhalten oder zu gewähren."
+      },
+      "s5": {
+        "heading": "Arbeitsumfeld und Beziehungen zu Kollegen",
+        "p1": "Sinersys verpflichtet sich, ein Arbeitsumfeld zu schaffen, das auf gegenseitigem Vertrauen und einer reibungslosen, harmonischen Kommunikation zwischen allen Beteiligten beruht.",
+        "l1": "Wir fördern eine offene Kommunikation am Arbeitsplatz, damit die Zusammenarbeit unter Kollegen stets harmonisch bleibt.",
+        "l2": "Familienangehörige von Gesellschaftern und Führungskräften werden nicht in die Tätigkeiten von Sinersys einbezogen, um Transparenz und Fairness zu gewährleisten."
+      },
+      "s6": {
+        "heading": "Menschenrechte und gegenseitiger Respekt",
+        "p1": "Sinersys ist ein aufrichtiges und faires Unternehmen, das die Menschenrechte im Einklang mit geltendem Recht achtet und sowohl intern als auch gegenüber Partnern und Kollegen darauf achtet, dass dieser Grundsatz stets eingehalten wird.",
+        "l1": "Wir behandeln jeden Gesellschafter, Partner oder Mitarbeiter mit Respekt, Ehrlichkeit und Unparteilichkeit.",
+        "l2": "Wir setzen uns aktiv dafür ein, dass es am Arbeitsplatz keine Belästigung, Diskriminierung oder unfaire Behandlung gibt."
+      },
+      "s7": {
+        "heading": "Gesundheit und Sicherheit",
+        "p1": "Sinersys fordert einen sicheren, hygienischen und geordneten Arbeitsplatz, sowohl intern als auch im Umgang mit Partnern und Mitarbeitern.",
+        "l1": "Wir halten die Gesetze, Vorschriften und internen Regeln zu Gesundheit und Sicherheit ein.",
+        "l2": "Wir bemühen uns um einen sicheren und geordneten Arbeitsplatz, um Krankheiten, Unfälle und die Ausbreitung gefährlicher Situationen zu verhindern."
+      },
+      "s8": {
+        "heading": "Unternehmenstätigkeit und Vermögenswerte",
+        "p1": "Sinersys unterhält und verwaltet seine materiellen und immateriellen Vermögenswerte ordnungsgemäß und ergreift Sicherheitsmaßnahmen zum Schutz von Patenten, Know-how, Studien, Forschungsergebnissen, Entwürfen, Fotos, Videomaterial und anderem Unternehmenseigentum.",
+        "l1": "Wir führen die Unternehmenstätigkeit angemessen und vertraulich durch und setzen uns dafür ein, dass der Wert des Unternehmensvermögens niemals beeinträchtigt wird.",
+        "l2": "Wir verwalten Einrichtungen, Ausrüstungen, Produkte, Betriebsmittel, Unternehmensdarlehen, Gelder, geistiges Eigentum und alle sonstigen Unternehmenswerte ordnungsgemäß und nutzen sie ausschließlich zu geschäftlichen, gewerblichen und forschungsbezogenen Zwecken von Sinersys, ohne sie aus persönlichem Interesse an Dritte weiterzugeben."
+      },
+      "s9": {
+        "heading": "Informationsmanagement",
+        "p1": "Sinersys schützt und verwaltet die vertraulichen und personenbezogenen Informationen des Unternehmens ordnungsgemäß und ergreift alle notwendigen Maßnahmen, um seine geschäftlichen, gewerblichen und Forschungsaktivitäten korrekt durchzuführen.",
+        "l1": "Wir verwalten interne Informationen, Informationen über Geschäftspartner sowie personenbezogene Daten von Kunden und Mitarbeitern in Übereinstimmung mit geltenden Gesetzen und internen Regeln.",
+        "l2": "Wir missbrauchen Informationen nicht, einschließlich Insiderhandel, und geben keine Unternehmens-, technischen, wissenschaftlichen oder Forschungsdaten ohne schriftliche Genehmigung des bevollmächtigten Rechtsvertreters des Unternehmens an Dritte weiter."
+      },
+      "s10": {
+        "heading": "Interessenkonflikte",
+        "p1": "Sinersys toleriert kein Verhalten, das die Interessen des Unternehmens zugunsten persönlicher Interessen oder der Interessen Dritter beeinträchtigt.",
+        "l1": "Wir verpflichten uns, in keiner Form persönliche Interessen oder Interessen von Geschäftspartnern oder Dritten gegen die Interessen von Sinersys zu verfolgen.",
+        "l2": "Wir melden proaktiv jede Situation, die zu einem tatsächlichen oder scheinbaren Interessenkonflikt führen könnte."
+      },
+      "s11": {
+        "heading": "Vertraulichkeit, Kontrolle und Integrität",
+        "p1": "Jede im Namen von Sinersys ausgeübte Tätigkeit, sei es individuell oder innerhalb der eigenen Arbeitsgruppe, erfolgt in Übereinstimmung mit geltenden moralischen, ethischen sowie nationalen und internationalen Standards, mit Loyalität und größtmöglicher Vertraulichkeit.",
+        "p2": "Wir überwachen kontinuierlich, um eine unbefugte Datenübertragung zu verhindern, und wahren dabei jederzeit die Interessen des Unternehmens."
+      }
   },
   "privacy": {
     "label": "Datenschutzrichtlinie",

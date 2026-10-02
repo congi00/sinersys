@@ -442,11 +442,11 @@
     "slide0": {
       "suptitle": "TECNOLOGIA BREVETTATA",
       "title": "Motore a 6 Fasi",
-      "subtitle": "Il propulsore italiano a combustione a volume costante con biella rotante e pistone semi-flottante: più potenza, meno consumi, meno emissioni."
+      "subtitle": "Il propulsore italiano a combustione a volume costante con biella rotante e pistone semi-flottante; il M6F rispetto ai motori allo stato dell'arte ha: più potenza, meno consumi, meno emissioni."
     },
     "slide1": {
       "suptitle": "NUOVO MANOVELLISMO",
-      "title": "Il ciclo termodinamico reinventato",
+      "title": "Il ciclo termodinamico reinventato: motore con funzione isocora.",
       "subtitle": "Un eccentrico a profilo predeterminato sostituisce il classico sistema biella-manovella, eliminando i punti morti e consentendo una combustione isocora perfetta al P.M.S."
     },
     "slide2": {
@@ -455,14 +455,14 @@
       "subtitle": "Coefficienti di riempimento fino al 120% della cilindrata, assenza di anticipo di accensione e architettura modulare derivata dalla filosofia costruttiva automotive."
     },
     "slide3": {
-      "suptitle": "Applicazioni",
-      "title": "Dal powertrain automotive al ciclo Stirling industriale",
+      "suptitle": "Molteplici Applicazioni",
+      "title": "Efficientamento della combustione",
       "subtitle": "Il principio del manovellismo a 6 fasi si applica a motori a combustione interna, ibridi e al ciclo Stirling, aprendo scenari a inquinamento quasi zero e consumi ulteriormente ridotti."
     },
     "static": {
       "label": "Cos'è il Motore a 6 Fasi",
       "title": "La combustione a volume costante che ridefinisce il propulsore moderno",
-      "p1": "Il Motore a 6 Fasi di Motor Union Italia è un propulsore a combustione interna che realizza un ciclo termodinamico in sei fasi nell'arco di due giri dell'albero motore. Il cuore dell'invenzione è il nuovo sistema di manovellismo: un eccentrico a profilo predeterminato, solidale all'albero motore, sul quale scorre una rotella calettata sullo spinotto del pistone. Questo elimina i classici punti morti e consente di definire con precisione la legge cinematica del pistone.",
+      "p1": "Il Motore a 6 Fasi di Motor Union Italia è un propulsore a combustione interna che realizza un ciclo termodinamico in sei fasi nell'arco di due giri dell'albero motore. Il cuore dell'invenzione è il nuovo sistema di manovellismo: un eccentrico a profilo predeterminato. Questo elimina i classici punti morti e consente di definire con precisione la legge cinematica del pistone.",
       "p2": "Il risultato è una Combustione a Volume Costante (isocora) al Punto Morto Superiore con anticipo di accensione nullo, un'aspirazione prolungata al P.M.I. con coefficienti di riempimento superiori all'unità, e l'eliminazione delle perdite dovute alla pressione di combustione nel periodo dell'anticipo. Il tutto in un propulsore più compatto, più leggero e costruibile con filosofia automotive.",
       "f0": {
         "label": "Efficienza Termica",
@@ -477,7 +477,7 @@
       "f2": {
         "label": "Compattezza",
         "title": "Powertrain ridotto in volume e peso",
-        "description": "Integrato con il cambio automatico stepless senza cinghia e pulegge, il powertrain riduce significativamente ingombri, peso e costi rispetto alle soluzioni attuali."
+        "description": "Integrato con il cambio automatico stepless, ulteriore innovazione, in versione manuale. Il sistema adotta un innovativo motore a due tempi con manovellismo a 6 fasi, funzionante con recupero dell’olio."
       },
       "cta": {
         "title": "Ti interessa collaborare con noi?",

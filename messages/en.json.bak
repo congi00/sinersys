@@ -25,7 +25,7 @@
     "howItWorks": "How It Works"
   },
   "homepage": {
-    "keywords": "electric motor, APWEC, renewable energy, Sinersys, 6-phase engine, renewable energy generator, continuous energy, innovative electric motor, Italian energy patent, energy generator, green generator, green energy",
+    "keywords": "six phase motor, APWEC, Sinersys, green, green energy, six phase electric motor, wave energy converter, APWEC technology, renewable energy, renewable energy generator,  Italian clean energy startup, perpetual wave generator",
     "slide0": {
       "metatitle": "The new generation of renewable energy",
       "title": "The new generation of \nrenewable energy born from \nan innovator's dream",
@@ -143,7 +143,7 @@
     "close": "Close"
   },
   "aboutus": {
-    "keywords": "electric motor, APWEC, renewable energy, Sinersys, 6-phase engine, renewable energy generator, continuous energy, innovative electric motor, Italian energy patent, energy generator, green generator, green energy",
+    "keywords": "six phase motor, APWEC, Sinersys, green, green energy, six phase electric motor, wave energy converter, APWEC technology, renewable energy, renewable energy generator,  Italian clean energy startup, perpetual wave generator",
     "hero": {
       "suptitle": "About Us",
       "title": "An Italian dream",
@@ -273,7 +273,7 @@
     }
   },
   "apwec": {
-    "keywords": "electric motor, APWEC, renewable energy, Sinersys, 6-phase engine, renewable energy generator, continuous energy, innovative electric motor, Italian energy patent, energy generator, green generator, green energy",
+    "keywords": "six phase motor, APWEC, Sinersys, green, green energy, six phase electric motor, wave energy converter, APWEC technology, renewable energy, renewable energy generator,  Italian clean energy startup, perpetual wave generator",
     "videoAriaLabel": "APWEC prototype in operation, renewable energy generator.",
     "slide0": {
       "suptitle": "PATENTED TECHNOLOGY",
@@ -308,7 +308,7 @@
       "f1": {
         "label": "Scalability",
         "title": "From 1 kW to approx. 10 MW",
-        "description": "APWEC's architecture allows the plant to be sized according to the user's energy needs."
+        "description": "APWEC's modular architecture allows the plant to be sized according to the user's real energy needs."
       },
       "f2": {
         "label": "Maintenance",
@@ -328,7 +328,7 @@
       "shell1": {
         "label": "First Section",
         "title": "Flow generation and amplification",
-        "desc": "A high-speed trigger jet enters the first annular Induction Chamber. The pressure difference generated according to Bernoulli's Principle draws atmospheric air from outside, progressively amplifying the airflow at each successive I.C. The material of the three vessels is steel, aluminium or reinforced plastic depending on the model, for maximum construction flexibility and cost reduction."
+        "desc": "A high-speed trigger jet enters the first annular Induction Chamber. The pressure difference generated according to Bernoulli's Principle draws atmospheric air from outside, progressively amplifying the airflow at each successive I.C. The casing material can be steel, aluminium or reinforced plastic for maximum construction flexibility and cost reduction."
       },
       "shell2": {
         "label": "Second Section",
@@ -394,7 +394,7 @@
     "advantages": {
       "label": "APWEC® vs. traditional wind turbines",
       "title": "Technical and economic advantages over the state of the art",
-      "intro": "The basic concept is Simplicity. \nSimplicity of calculation, construction and operation.\nThe comparison between APWEC® and large conventional wind turbines highlights structural advantages that impact construction, maintenance, installation and operating costs. APWEC, a next-generation generator designed according to the automotive construction philosophy.",
+      "intro": "The basic concept is Simplicity. Simplicity of calculation, construction and operation.\nThe comparison between APWEC® and large conventional wind turbines highlights structural advantages that impact construction, maintenance, installation and operating costs. APWEC, a next-generation generator designed according to the automotive construction philosophy.",
       "a0": {
         "label": "Operability",
         "title": "Operation up to 8,660 annual hours",
@@ -407,7 +407,7 @@
       },
       "a2": {
         "label": "Construction simplicity",
-        "title": "Fewer components, large-series \"automotive\"-type production",
+        "title": "Fewer components, automotive-style construction",
         "desc": "APWEC® requires fewer parts compared to the state of the art. The automotive-derived construction philosophy guarantees standardisation, global availability of components and reduced production costs in large series."
       },
       "a3": {
@@ -418,26 +418,26 @@
       "a4": {
         "label": "Installation flexibility",
         "title": "Indoor and outdoor operation, adjacent to the user",
-        "desc": "APWEC® can be installed inside buildings or outdoors. Installation adjacent to the end user reduces transmission losses and grid connection costs."
+        "desc": "APWEC® can be installed inside industrial buildings or outdoors, without the need for towers or elevated structures. Installation adjacent to the end user reduces transmission losses and grid connection costs."
       },
       "a5": {
         "label": "Analogy with industrial turbines",
         "title": "Structure derived from the industrial gas turbine",
         "desc": "The physical configuration of APWEC® follows the structure of industrial gas turbines, themselves derived from jet aircraft turbines. A mature, reliable technology with decades of engineering know-how behind it."
       },
-      "vsDesc": "Large wind turbines exclusively exploit the dynamic pressure of external wind and require wind, tall towers, variable pitch mechanisms and maintenance at height.\nAPWEC® operates with a controlled internal flow, at ground level, regardless of external atmospheric conditions — a technically distinct and complementary category in the landscape of distributed renewable energy generation."
+      "vsDesc": "Large wind turbines exclusively exploit the dynamic pressure of external wind and require minimum wind speed, tall towers, variable pitch mechanisms and maintenance at height.\nAPWEC® operates with a controlled internal flow, at ground level, regardless of external atmospheric conditions — a technically distinct and complementary category in the landscape of distributed renewable energy generation."
     }
   },
   "motore6fasi": {
-    "keywords": "electric motor, APWEC, renewable energy, Sinersys, 6-phase engine, renewable energy generator, continuous energy, innovative electric motor, Italian energy patent, energy generator, green generator, green energy",
+    "keywords": "six phase motor, APWEC, Sinersys, green, green energy, six phase electric motor, wave energy converter, APWEC technology, renewable energy, renewable energy generator,  Italian clean energy startup, perpetual wave generator",
     "slide0": {
       "suptitle": "PATENTED TECHNOLOGY",
       "title": "6-Phase Engine",
-      "subtitle": "The Italian constant-volume combustion engine with rotating connecting rod and semi-floating piston; compared with state-of-the-art engines, the M6F offers: more power, lower consumption, lower emissions."
+      "subtitle": "The Italian constant-volume combustion engine with rotating connecting rod and semi-floating piston: more power, lower consumption, lower emissions."
     },
     "slide1": {
       "suptitle": "NEW CRANKSHAFT SYSTEM",
-      "title": "The thermodynamic cycle reinvented: engine with isochoric function.",
+      "title": "The thermodynamic cycle reinvented",
       "subtitle": "A predetermined-profile eccentric replaces the classic connecting rod–crank system, eliminating dead centres and allowing perfect isochoric combustion at TDC."
     },
     "slide2": {
@@ -446,14 +446,14 @@
       "subtitle": "Volumetric efficiency up to 120% of displacement, zero ignition advance and modular architecture derived from the automotive construction philosophy."
     },
     "slide3": {
-      "suptitle": "Multiple Applications",
-      "title": "Combustion efficiency improvement",
+      "suptitle": "Applications",
+      "title": "From automotive powertrain to industrial Stirling cycle",
       "subtitle": "The 6-phase crankshaft principle applies to internal combustion, hybrid and Stirling cycle engines, opening scenarios of near-zero pollution and further reduced consumption."
     },
     "static": {
       "label": "What is the 6-Phase Engine",
       "title": "The constant-volume combustion that redefines the modern engine",
-      "p1": "The Motor Union Italia 6-Phase Engine is an internal combustion engine that realises a thermodynamic cycle in six phases over two revolutions of the crankshaft. The heart of the invention is the new crankshaft system: a predetermined-profile eccentric. This eliminates the classic dead centres and allows the kinematic law of the piston to be precisely defined.",
+      "p1": "The Motor Union Italia 6-Phase Engine is an internal combustion engine that realises a thermodynamic cycle in six phases over two revolutions of the crankshaft. The heart of the invention is the new crankshaft system: a predetermined-profile eccentric, integral with the crankshaft, on which a roller keyed to the piston pin slides. This eliminates the classic dead centres and allows the kinematic law of the piston to be precisely defined.",
       "p2": "The result is an Isochoric (Constant Volume) Combustion at Top Dead Centre with zero ignition advance, a prolonged intake at BDC with volumetric efficiencies greater than unity, and the elimination of losses due to combustion pressure during the advance period. All in a more compact, lighter engine built with an automotive philosophy.",
       "f0": {
         "label": "Thermal Efficiency",
@@ -468,7 +468,7 @@
       "f2": {
         "label": "Compactness",
         "title": "Reduced powertrain volume and weight",
-        "description": "Integrated with the stepless automatic transmission, a further innovation, in manual version. The system adopts an innovative two-stroke engine with a 6-phase crank mechanism, operating with oil recovery."
+        "description": "Integrated with the belt-free, pulley-free stepless automatic transmission, the powertrain significantly reduces bulk, weight and costs compared to current solutions."
       },
       "cta": {
         "title": "Interested in collaborating with us?",
