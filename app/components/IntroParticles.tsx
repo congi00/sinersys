@@ -98,7 +98,7 @@ export default function IntroParticles({ onFinish }: Props) {
 
     const slow = isSlowDevice();
     // Meno particelle su device lenti → meno lavoro sul main thread
-    const COUNT = slow ? 300 : 700;
+    const COUNT = 300;
     // Su device lenti eseguiamo 1 frame ogni 2 (≈30fps invece di 60fps)
     const FRAME_SKIP = slow ? 2 : 1;
 
