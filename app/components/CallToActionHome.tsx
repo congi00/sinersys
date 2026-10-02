@@ -64,7 +64,8 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
           height: "100%",
           objectFit: "cover",
           objectPosition: "center",
-        }}>
+        }}
+        poster="/sinVidr.png">
         <source src="/sinVidr.webm" type="video/webm" />
         <img  width= "100" height= "100" src="/sinVidr.png" alt="" /> {/* fallback */}
       </video>

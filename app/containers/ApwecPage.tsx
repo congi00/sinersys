@@ -886,6 +886,7 @@ export default function ApwecPage() {
               preload="auto"
               onLoadedMetadata={handleVideoLoaded}
               onCanPlay={handleVideoLoaded}
+              poster="/apwec.png"
               style={{
                 position: "absolute",
                 inset: 0,
