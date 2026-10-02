@@ -98,7 +98,7 @@ export default function IntroParticles({ onFinish }: Props) {
 
     const slow = isSlowDevice();
     // Meno particelle su device lenti → meno lavoro sul main thread
-    const COUNT = 300;
+    const COUNT = 500;
     // Su device lenti eseguiamo 1 frame ogni 2 (≈30fps invece di 60fps)
     const FRAME_SKIP = slow ? 2 : 1;
 
@@ -225,7 +225,7 @@ export default function IntroParticles({ onFinish }: Props) {
           onFinish();
         }, 1800);
       });
-    }, 2800); // minimo 2.8s di particelle, poi aspetta assets
+    }, 800); // minimo 2.8s di particelle, poi aspetta assets
 
     return () => clearTimeout(t1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
