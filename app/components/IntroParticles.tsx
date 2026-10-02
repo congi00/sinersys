@@ -4,11 +4,15 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { detectIOS } from "../support/useViewportHeight";
 
-// ─── Asset list da precaricare durante l'intro ────────────────────────────────
-const VIDEO_ASSETS = [
-  "/apwecintro.mp4",
-  "/apwecintro1.mp4",
-];
+// ─── Asset da precaricare durante l'intro ─────────────────────────────────────
+// Si precarica solo la variante (mobile/desktop) che HeroVideo userà
+// davvero: precaricarle entrambe raddoppiava inutilmente le richieste.
+function getVideoAssetForDevice(): string {
+  const isMobile =
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(pointer: coarse)").matches;
+  return isMobile ? "/apwecintro1.mp4" : "/apwecintro.mp4";
+}
 
 // ─── Chiave sessionStorage ────────────────────────────────────────────────────
 const INTRO_KEY = "sinersys_intro_seen";
@@ -46,7 +50,7 @@ function preloadVideo(src: string): Promise<void> {
 
 // Carica tutti gli asset e segnala la percentuale di avanzamento
 function preloadAll(onProgress: (pct: number) => void): Promise<void> {
-  const all = [...VIDEO_ASSETS];
+  const all = [getVideoAssetForDevice()];
   let done = 0;
 
   const tasks = all.map((src) => {
@@ -96,9 +100,17 @@ export default function IntroParticles({ onFinish }: Props) {
     const canvas = canvasRef.current!;
     const ctx    = canvas.getContext("2d")!;
 
+    // Chi ha impostato "riduci animazioni" nel sistema operativo non deve
+    // sostenere il costo CPU del canvas: lo saltiamo del tutto.
+    const reducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return;
+
     const slow = isSlowDevice();
-    // Meno particelle su device lenti → meno lavoro sul main thread
-    const COUNT = 500;
+    // Meno particelle: il canvas gira in parallelo al preload video e
+    // all'idratazione React, quindi va tenuto leggero per non alzare il TBT.
+    const COUNT = slow ? 90 : 400;
     // Su device lenti eseguiamo 1 frame ogni 2 (≈30fps invece di 60fps)
     const FRAME_SKIP = slow ? 2 : 1;
 
@@ -141,6 +153,9 @@ export default function IntroParticles({ onFinish }: Props) {
       tick++;
       frame = requestAnimationFrame(animate);
 
+      // Tab in background: non disegnare, risparmia CPU e mantiene basso il TBT
+      if (document.hidden) return;
+
       // Frame skip su device lenti
       if (tick % FRAME_SKIP !== 0) return;
 
@@ -159,6 +174,11 @@ export default function IntroParticles({ onFinish }: Props) {
 
       const color = p >= 4 ? "rgba(97,188,211,1)" : "rgba(180,240,255,0.95)";
       ctx.fillStyle = color;
+
+      // Un solo Path2D per frame: una sola chiamata fill() invece di COUNT.
+      // beginPath/arc/fill per-particella è la parte più costosa del loop
+      // ed è la causa principale del Total Blocking Time elevato.
+      const path = new Path2D();
 
       for (let i = 0; i < COUNT; i++) {
         if (p <= 3) {
@@ -179,10 +199,11 @@ export default function IntroParticles({ onFinish }: Props) {
           vy_arr[i] *= 0.99;
         }
 
-        ctx.beginPath();
-        ctx.arc(px[i], py[i], 2, 0, Math.PI * 2);
-        ctx.fill();
+        path.moveTo(px[i] + 2, py[i]);
+        path.arc(px[i], py[i], 2, 0, Math.PI * 2);
       }
+
+      ctx.fill(path);
     };
 
     frame = requestAnimationFrame(animate);

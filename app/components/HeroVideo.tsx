@@ -14,6 +14,13 @@ export default function HeroVideo({ isMobile }: Props) {
   const hasStartedRef = useRef(false);
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
+  // Sorgente corretta per il device corrente. Calcolata qui (non in più
+  // effect separati) per evitare chiamate ridondanti a video.load(), che
+  // forzano il browser a ri-scaricare il file anche quando l'URL non è
+  // davvero cambiato: era questa la causa delle richieste duplicate da
+  // ~1-3MB viste nel report delle performance.
+  const targetSrc = isMobile ? "/apwecintro1.mp4" : "/apwecintro.mp4";
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -27,48 +34,31 @@ export default function HeroVideo({ isMobile }: Props) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          if (!videoSrc) {
-            setVideoSrc(
-              isMobile
-                ? "/apwecintro1.mp4"
-                : "/apwecintro.mp4"
-            );
-          }
-  
+          // Imposta la src solo alla prima volta che il video diventa
+          // visibile: niente .load() ripetuti, il browser gestisce da sé
+          // la cache quando la src cambia realmente (es. mobile → desktop).
+          setVideoSrc((prev) => (prev === targetSrc ? prev : targetSrc));
           video.play().catch(() => {});
         } else {
           video.pause();
         }
       },
-      {
-        threshold: 0.25,
-      }
+      { threshold: 0.25 }
     );
   
     observer.observe(video);
   
     return () => observer.disconnect();
-  }, [videoSrc, isMobile]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [targetSrc]);
 
+  // Se il device cambia (resize mobile↔desktop) mentre il video è già
+  // visibile, aggiorna solo la src: il browser re-innesca il download da
+  // solo perché l'attributo src cambia, senza bisogno di .load() esplicito.
   useEffect(() => {
-    if (!videoSrc) return;
-  
-    setVideoSrc(
-      isMobile
-        ? "/apwecintro1.mp4"
-        : "/apwecintro.mp4"
-    );
-  }, [isMobile]);
-
-  // Cambio sorgente quando passa da mobile a desktop
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.load();
-    const rect = video.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-    if (isVisible) video.play().catch(() => {});
-  }, [isMobile]);
+    if (!videoSrc || videoSrc === targetSrc) return;
+    setVideoSrc(targetSrc);
+  }, [targetSrc, videoSrc]);
 
   return (
     <>
