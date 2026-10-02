@@ -66,7 +66,7 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
           objectPosition: "center",
         }}>
         <source src="/sinVidr.webm" type="video/webm" />
-        <Image  width= "100" height= "100" src="/sinVidr.png" alt="" /> {/* fallback */}
+        <img  width= "100" height= "100" src="/sinVidr.png" alt="" /> {/* fallback */}
       </video>
 
       {/* ── Overlay: dark gradient + subtle colour tint ───────────────────── */}
