@@ -712,7 +712,7 @@ export default function AboutUsPage() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to bottom,rgba(6,12,44,0.50) 0%,rgba(6,12,44,0.35) 40%,rgba(6,12,44,0.68) 100%)",
+                  "linear-gradient(to bottom,rgba(6,12,44,0.50) 0%,rgba(6,12,44,0.6) 40%,rgba(6,12,44,0.68) 100%)",
               }}
             />
 
