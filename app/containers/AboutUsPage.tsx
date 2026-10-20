@@ -702,7 +702,7 @@ export default function AboutUsPage() {
                 inset: 0,
                 objectFit: "cover",
                 transform: isMobile ? "scale(1)" : "scale(1)",
-                objectPosition: isMobile ? "-290px 0px" : "-100px -20px",
+                objectPosition: isMobile ? "-290px 0px" : "-100px 0px",
               }}
               fill
               priority
