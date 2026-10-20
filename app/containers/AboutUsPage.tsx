@@ -701,8 +701,8 @@ export default function AboutUsPage() {
                 position: "absolute",
                 inset: 0,
                 objectFit: "cover",
-                transform: isMobile ? "scale(1.2)" : "scale(1.5)",
-                objectPosition: isMobile ? "-500px 0px" : "-100px -20px",
+                transform: isMobile ? "scale(1)" : "scale(1.2)",
+                objectPosition: isMobile ? "-290px 0px" : "-100px -20px",
               }}
               fill
               priority
