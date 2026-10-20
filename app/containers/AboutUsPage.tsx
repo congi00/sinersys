@@ -701,7 +701,7 @@ export default function AboutUsPage() {
                 position: "absolute",
                 inset: 0,
                 objectFit: "cover",
-                transform: isMobile ? "scale(1)" : "scale(1.2)",
+                transform: isMobile ? "scale(1)" : "scale(1)",
                 objectPosition: isMobile ? "-290px 0px" : "-100px -20px",
               }}
               fill
