@@ -487,13 +487,13 @@ const HERO_SLIDES: HeroSlide[] = [
     posDesktop: "-100px 0px",
     posMobile: "-290px 0px",
   },
-  { src: "/aboutusgallery/small_DSC_0005.jpg", alt: "Precursore APWEC", caption: "Precursore APWEC" },
-  { src: "/aboutusgallery/small_DSCN0765.jpg", alt: "Motore DKW", caption: "Motore DKW" },
-  { src: "/aboutusgallery/IMG_1081.jpg", alt: "Bieffe", caption: "Bieffe" },
+  { src: "/small_DSC_0005.jpg", alt: "Precursore APWEC", caption: "Precursore APWEC" },
+  { src: "/small_img_1.png", alt: "", caption: "" },
+  { src: "/record.png", alt: "Bieffe", caption: "Bieffe" },
   // { src: "/aboutusgallery/img_3.jpg", alt: "Archivio Motor Union", caption: "Passo... e chiudo" },
 ];
 
-const SLIDE_MS = 7000; // durata di ogni slide
+const SLIDE_MS = 6000; // durata di ogni slide
 const FADE_S = 0.5; // durata della dissolvenza (secondi)
 
 // Pattern Ken Burns alternati: zoom lento + leggero spostamento
