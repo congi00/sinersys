@@ -487,7 +487,7 @@ const HERO_SLIDES: HeroSlide[] = [
     posDesktop: "-100px 0px",
     posMobile: "-290px 0px",
   },
-  { src: "/small_DSC_0005.jpg", alt: "Precursore APWEC", caption: "Precursore APWEC" },
+  { src: "/small_DSC_0005.png", alt: "Precursore APWEC", caption: "APWEC unità sperimentale funzionale con innesco laterale" },
   { src: "/small_img_1.png", alt: "", caption: "" },
   { src: "/record.png", alt: "Bieffe", caption: "Bieffe" },
   // { src: "/aboutusgallery/img_3.jpg", alt: "Archivio Motor Union", caption: "Passo... e chiudo" },
