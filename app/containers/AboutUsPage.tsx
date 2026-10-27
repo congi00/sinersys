@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import {
   m,
+  AnimatePresence,
+  useReducedMotion,
   useMotionValue,
   useSpring,
   useTransform,
@@ -469,6 +471,202 @@ function PartnerPill({ name, delay }: { name: string; delay: number }) {
     </m.div>
   );
 }
+type HeroSlide = {
+  src: string;
+  alt: string;
+  caption?: string;
+  posDesktop?: string;
+  posMobile?: string;
+};
+
+// Modifica qui ordine e immagini dello slideshow.
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    src: "/aboutus.webp",
+    alt: "About us",
+    posDesktop: "-100px 0px",
+    posMobile: "-290px 0px",
+  },
+  { src: "/aboutusgallery/small_DSC_0005.jpg", alt: "Precursore APWEC", caption: "Precursore APWEC" },
+  { src: "/aboutusgallery/small_DSCN0765.jpg", alt: "Motore DKW", caption: "Motore DKW" },
+  { src: "/aboutusgallery/IMG_1081.jpg", alt: "Bieffe", caption: "Bieffe" },
+  // { src: "/aboutusgallery/img_3.jpg", alt: "Archivio Motor Union", caption: "Passo... e chiudo" },
+];
+
+const SLIDE_MS = 7000; // durata di ogni slide
+const FADE_S = 0.5; // durata della dissolvenza (secondi)
+
+// Pattern Ken Burns alternati: zoom lento + leggero spostamento
+const KEN_BURNS = [
+  { s0: 1.06, s1: 1.16, x0: "0%", x1: "-2%", y0: "0%", y1: "-1.5%" },
+  { s0: 1.16, s1: 1.06, x0: "-2%", x1: "0%", y0: "-1.5%", y1: "0%" },
+  { s0: 1.06, s1: 1.15, x0: "0%", x1: "2%", y0: "0%", y1: "1.5%" },
+  { s0: 1.15, s1: 1.06, x0: "2%", x1: "0%", y0: "1.5%", y1: "0%" },
+];
+
+function HeroSlideshow({ isMobile }: { isMobile: boolean }) {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  // Pausa quando la tab non è visibile
+  useEffect(() => {
+    const onVis = () => setPaused(document.hidden);
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, []);
+
+  // Precarica tutte le immagini per evitare flash tra una slide e l'altra
+  useEffect(() => {
+    HERO_SLIDES.forEach((s) => {
+      const img = new window.Image();
+      img.src = s.src;
+    });
+  }, []);
+
+  // Avanzamento automatico
+  useEffect(() => {
+    if (paused || HERO_SLIDES.length < 2) return;
+    const id = setTimeout(
+      () => setIndex((i) => (i + 1) % HERO_SLIDES.length),
+      SLIDE_MS
+    );
+    return () => clearTimeout(id);
+  }, [index, paused]);
+
+  const slide = HERO_SLIDES[index];
+  const kb = KEN_BURNS[index % KEN_BURNS.length];
+
+  return (
+    <div style={{ position: "absolute", inset: 0 }}>
+      <AnimatePresence>
+        <m.div
+          key={slide.src}
+          style={{ position: "absolute", inset: 0, willChange: "transform, opacity" }}
+          initial={{
+            opacity: 0,
+            // scale: reduceMotion ? 1 : kb.s0,
+            // x: reduceMotion ? "0%" : kb.x0,
+            // y: reduceMotion ? "0%" : kb.y0,
+          }}
+          animate={{
+            opacity: 1,
+            // scale: reduceMotion ? 1 : kb.s1,
+            // x: reduceMotion ? "0%" : kb.x1,
+            // y: reduceMotion ? "0%" : kb.y1,
+            transition: {
+              opacity: { duration: FADE_S, ease: "easeInOut" },
+              scale: { duration: SLIDE_MS / 1000 + FADE_S, ease: "linear" },
+              x: { duration: SLIDE_MS / 1000 + FADE_S, ease: "linear" },
+              y: { duration: SLIDE_MS / 1000 + FADE_S, ease: "linear" },
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: { duration: FADE_S, ease: "easeInOut" },
+          }}
+        >
+          <Image
+            src={slide.src}
+            alt={slide.alt}
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            style={{
+              objectFit: "cover",
+              objectPosition: isMobile
+                ? slide.posMobile ?? "center"
+                : slide.posDesktop ?? "center",
+            }}
+          />
+        </m.div>
+      </AnimatePresence>
+
+      {/* Vignettatura leggera per un look più cinematografico */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "radial-gradient(ellipse at center, transparent 45%, rgba(4,8,30,0.45) 100%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Didascalia + indicatori di avanzamento */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          left: "clamp(1.2rem,4vw,3rem)",
+          right: "clamp(1.2rem,4vw,3rem)",
+          bottom: "clamp(1.2rem,3vh,2rem)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "1rem",
+          pointerEvents: "none",
+        }}
+      >
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          {HERO_SLIDES.map((s, i) => (
+            <div
+              key={s.src}
+              style={{
+                position: "relative",
+                width: "clamp(22px,3vw,36px)",
+                height: "2px",
+                background: "rgba(255,255,255,0.25)",
+                overflow: "hidden",
+                borderRadius: "2px",
+              }}
+            >
+              {i < index && (
+                <div style={{ position: "absolute", inset: 0, background: "rgba(255,255,255,0.85)" }} />
+              )}
+              {i === index && (
+                <m.div
+                  key={`bar-${index}`}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: paused ? 0 : 1 }}
+                  transition={{ duration: SLIDE_MS / 1000, ease: "linear" }}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "rgba(255,255,255,0.9)",
+                    transformOrigin: "left",
+                  }}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <AnimatePresence mode="wait">
+          {slide.caption && (
+            <m.span
+              key={slide.caption}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.5 }}
+              style={{
+                fontSize: "clamp(0.62rem,0.9vw,0.75rem)",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "rgba(200,218,250,0.8)",
+                fontWeight: 600,
+              }}
+            >
+              {slide.caption}
+            </m.span>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
 
 export default function AboutUsPage() {
   const t = useTranslations("aboutus");
@@ -694,19 +892,7 @@ export default function AboutUsPage() {
               position: "relative",
             }}
           >
-            <Image
-              src="/aboutus.webp"
-              alt="About us" // eslint-disable-line
-              style={{
-                position: "absolute",
-                inset: 0,
-                objectFit: "cover",
-                transform: isMobile ? "scale(1)" : "scale(1)",
-                objectPosition: isMobile ? "-290px 0px" : "-100px 0px",
-              }}
-              fill
-              priority
-            />
+            <HeroSlideshow isMobile={isMobile} />
             <div
               style={{
                 position: "absolute",
