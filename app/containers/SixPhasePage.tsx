@@ -492,7 +492,7 @@ export default function SixPhasePage() {
   }, []);
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const videoSrc = isMobile ? "/motore6fasi-mobile.webm" : "/motore6fasi.webm";
+  const videoSrc = "/m6dD_compresso.mp4"
   const videoDuration = useRef<number>(0);
 
   const handleVideoLoaded = useCallback(() => {
@@ -732,7 +732,7 @@ export default function SixPhasePage() {
 
   /* ── Shared style helpers ─────────────────────────────────────────────── */
   const sup: React.CSSProperties = {
-    color: "rgba(180,210,255,0.6)",
+    color: "rgba(180,210,255,1)",
     marginBottom: "0.5rem",
     display: "block",
   };
@@ -746,7 +746,7 @@ export default function SixPhasePage() {
   const bodys: React.CSSProperties = {
     margin: "0.8rem 0 0",
     lineHeight: 1.1,
-    color: "rgba(200,218,250,0.70)",
+    color: "rgba(200,218,250,1)",
     maxWidth: isMobile ? "100%" : "820px",
   };
 
@@ -854,6 +854,7 @@ export default function SixPhasePage() {
                 objectFit: "cover",
                 zIndex: 2,
                 pointerEvents: "none",
+                filter: "brightness(0.25) sepia(0.) hue-rotate(190deg) saturate(2)",
               }}
             />
 
@@ -862,10 +863,11 @@ export default function SixPhasePage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? { top: "25%" }
-                    : { textAlign: "center", top: "20%", maxWidth: "100vw" }
+                    ? { top: "35%" }
+                    : { textAlign: "center", top: "30%", maxWidth: "100vw" }
                 ),
                 ...s0,
+                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)"
               }}
             >
               <h4
@@ -905,10 +907,11 @@ export default function SixPhasePage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? { textAlign: "center", top: "15%" }
-                    : { top: "20%", textAlign: "center", maxWidth: "100vw" }
+                    ? { textAlign: "center", top: "35%" }
+                    : { top: "30%", textAlign: "center", maxWidth: "100vw" }
                 ),
                 ...s1,
+                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)"
               }}
             >
               <h4
@@ -942,15 +945,16 @@ export default function SixPhasePage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? { top: "12%" }
+                    ? { top: "35%" }
                     : {
-                        top: "20%",
+                        top: "30%",
                         left: "5%",
                         textAlign: "center",
                         maxWidth: "100vw",
                       }
                 ),
                 ...s2,
+                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)"
               }}
             >
               <h4
@@ -992,10 +996,11 @@ export default function SixPhasePage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? { top: "15%", textAlign: "center" }
-                    : { top: "7%", textAlign: "center", maxWidth: "100vw" }
+                    ? { top: "35%", textAlign: "center" }
+                    : { top: "30%", textAlign: "center", maxWidth: "100vw" }
                 ),
                 ...s3,
+                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)"
               }}
             >
               <h4
@@ -1014,10 +1019,9 @@ export default function SixPhasePage() {
                 style={{
                   ...bodys,
                   ...(isMobile
-                    ? { marginTop: "45%", textAlign: "center" }
+                    ? { textAlign: "center" }
                     : {
                         margin: "0.8rem auto 0",
-                        marginTop: "23%",
                         textAlign: "center",
                       }),
                 }}
