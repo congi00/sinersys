@@ -172,10 +172,6 @@ export default function NotFoundContent() {
     meta.setAttribute("content", color);
   });
 
-  if (!mounted) {
-    return <div className="min-h-screen bg-[#0f2057]" />;
-  }
-
   return (
     <main id="main-content">  
       <LiquidBackground progress={smooth} vhUnit={vhUnit} />

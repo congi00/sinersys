@@ -16,6 +16,7 @@ import { m, MotionValue } from "framer-motion";
 import { useRef } from "react";
 import SocialSwitcher from "./SocialSwitcher";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 
 interface Props {
   menuTheme?: MotionValue<number>;
@@ -31,10 +32,7 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
   const [isDark, setIsDark] = useState(() => (menuTheme ? menuTheme.get() < 0.5 : false));
   
   const items = ["homepage", "products", "motor" , "about", "contacts"];
-  const currentLocale = typeof window !== 'undefined'
-    ? (window.location.pathname.split('/')[1] || 'it')
-    : 'it';
-  const l = ['it','en','de','fr'].includes(currentLocale) ? currentLocale : 'it';
+  const l = useLocale();
   const links = [
     `/${l}`,
     `/${l}/apwec-energia-rinnovabile`,

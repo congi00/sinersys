@@ -56,11 +56,10 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const progressMotion = useMotionValue(0);
   const scrollY = useMotionValue(0);
-  const [showIntro, setShowIntro] = useState<boolean>(() => {
-    // Viene eseguito solo lato client (Next.js SSR: il server non ha sessionStorage)
-    if (typeof window === "undefined") return true;
-    return sessionStorage.getItem("sinersys_intro_seen") !== "true";
-  });
+  const [showIntro, setShowIntro] = useState(true);
+  useEffect(() => {
+    if (sessionStorage.getItem("sinersys_intro_seen") === "true") setShowIntro(false);
+  }, []);
   const [introFinished, setIntroFinished] = useState(false);
 
   const homeTexts = useTranslations("homepage");
@@ -271,10 +270,6 @@ export default function Home() {
     if (vhPx === 0) return;
     requestResize();
   }, [vhPx, totalHeight, requestResize]);
-
-  if (!mounted) {
-    return <div className="min-h-screen bg-[#0f2057]" />;
-  }
 
   return (
     <main id="main-content">  

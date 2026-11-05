@@ -178,11 +178,6 @@ export default function WorkInProgressPage() {
 
     meta.setAttribute("content", color);
   });
-
-  if (!mounted) {
-    return <div className="min-h-screen bg-[#0f2057]" />;
-  }
-
   
   return (
     <>
