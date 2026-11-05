@@ -945,7 +945,7 @@ export default function SixPhasePage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? { top: "35%" }
+                    ? { top: "25%" }
                     : {
                         top: "30%",
                         left: "5%",
@@ -979,7 +979,7 @@ export default function SixPhasePage() {
                 style={{
                   ...bodys,
                   ...(isMobile
-                    ? { marginTop: "45%", textAlign: "center" }
+                    ? { marginTop: "15%", textAlign: "center" }
                     : { margin: "0.8rem auto 0", textAlign: "center" }),
                 }}
                 className={clsx(
