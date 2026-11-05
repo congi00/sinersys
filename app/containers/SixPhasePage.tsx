@@ -863,7 +863,7 @@ export default function SixPhasePage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? { top: "35%" }
+                    ? { top: "25%" }
                     : { textAlign: "center", top: "30%", maxWidth: "100vw" }
                 ),
                 ...s0,
@@ -895,7 +895,7 @@ export default function SixPhasePage() {
                 )}
                 style={{
                   ...bodys,
-                  ...(isMobile ? { marginTop: "65%" } : { maxWidth: "100%" }),
+                  ...(isMobile ? { marginTop: "15%" } : { maxWidth: "100%" }),
                 }}
               >
                 {t("slide0.subtitle")}
@@ -907,7 +907,7 @@ export default function SixPhasePage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? { textAlign: "center", top: "35%" }
+                    ? { textAlign: "center", top: "25%" }
                     : { top: "30%", textAlign: "center", maxWidth: "100vw" }
                 ),
                 ...s1,
@@ -933,7 +933,7 @@ export default function SixPhasePage() {
                 )}
                 style={{
                   ...bodys,
-                  ...(isMobile ? { marginTop: "70%" } : { maxWidth: "100%" }),
+                  ...(isMobile ? { marginTop: "15%" } : { maxWidth: "100%" }),
                 }}
               >
                 {t("slide1.subtitle")}
@@ -996,7 +996,7 @@ export default function SixPhasePage() {
               style={{
                 ...textWrap(
                   isMobile
-                    ? { top: "35%", textAlign: "center" }
+                    ? { top: "25%", textAlign: "center" }
                     : { top: "30%", textAlign: "center", maxWidth: "100vw" }
                 ),
                 ...s3,
