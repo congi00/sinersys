@@ -84,8 +84,6 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  if (!ready) return null;
-
   return (
     <LenisContext.Provider value={{ lenis: lenisRef.current, isTouch, requestResize }}>
       {children}
