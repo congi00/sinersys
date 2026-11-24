@@ -101,7 +101,7 @@ export default function MenuButton({ menuTheme, hiddenMenu }: Props) {
         !menuVisibility &&
           "min-h-[70px] min-w-[70px] max-h-[70px] max-w-[70px] mb-6 rounded-[999px]",
         menuVisibility &&
-          "min-h-[340px] md:min-w-[550px] max-h-[380px] min-w-[350px] mb-6 bg-[#1A2127]/20 rounded-[28px]"
+          "max-h-[85dvh] overflow-y-auto md:min-w-[550px] min-w-[min(350px,calc(100vw-2rem))] mb-6 bg-[#1A2127]/20 rounded-[28px]"
       )}
       style={{
         background:           "rgba(255, 255, 255, 0.18)",

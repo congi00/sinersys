@@ -37,7 +37,7 @@ const SIGNATURE_PATH = `
       <m.svg
         viewBox="0 245 1200 405"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-[320px] sm:w-[560px]"
+        className="w-[min(320px,80vw)] sm:w-[560px]"
         style={{
           overflow: "visible",
           display: "block",

@@ -229,7 +229,7 @@ export default async function RootLayout({ children, params }: Props) {
       </head>
       <body
         className={`
-          antialiased pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] h-[100vh] h-[100dvh] h-[100lvh]
+          antialiased min-h-dvh
         `}
       >
         <a

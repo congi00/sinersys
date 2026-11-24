@@ -55,13 +55,13 @@ export const CARD_SUBTITLE_CLASS = "text-xl sm:text-2xl lg:text-2xl font-bold fo
 // ─── FAQ QUESTION ─────────────────────────────────────────────────────────────
 // Domanda accordion FAQ
 // Stile corrente: text-lg sm:text-2xl — su mobile è già grande, ok da scalare
-export const FAQ_QUESTION_CLASS = "text-lg sm:text-xl lg:text-2xl font-regular leading-snug";
+export const FAQ_QUESTION_CLASS = "text-lg sm:text-xl lg:text-2xl font-normal leading-snug";
 
 
 export const CONTACT_TITLE_CLASS = "text-2xl xs:text-2xl sm:text-3xl lg:text-4xl tracking-wide font-bold";
 
 
-export const PRODUCT_CONTENT_CLASS = "text-base xs:text-lg sm:text-lg lg:text-xl tracking-wide font-bold font-light";
+export const PRODUCT_CONTENT_CLASS = "text-base xs:text-lg sm:text-lg lg:text-xl tracking-wide font-light";
 
 
 

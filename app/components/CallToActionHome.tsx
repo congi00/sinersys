@@ -162,7 +162,7 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
           }}
           className={clsx(
             HERO_SUBTITLE_CLASS,
-            "sm:px-[300px] mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light"
+            "px-4 sm:px-12 lg:px-[18vw] mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light"
           )}
         >
           {homeTexts("cta.subtitle")}

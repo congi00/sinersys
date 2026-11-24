@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@theme { --breakpoint-xs: 30rem; }
 
 @font-face {
   font-family: "Eurostile Extended Regular";
