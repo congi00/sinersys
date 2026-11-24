@@ -3,21 +3,21 @@ export async function GET() {
     const videos = [
       {
         loc: 'https://www.sinersys.it/it/apwec-energia-rinnovabile',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'Prototipo APWEC in funzione, generatore di energia rinnovabile.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w.mp4',
         durationSeconds: 6,
       },{
         loc: 'https://www.sinersys.it/it/apwec-energia-rinnovabile',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'Prototipo APWEC in funzione, generatore di energia rinnovabile.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w1.mp4',
         durationSeconds: 5,
       },{
         loc: 'https://www.sinersys.it/it/apwec-energia-rinnovabile',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'Prototipo APWEC in funzione, generatore di energia rinnovabile.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w2.mp4',
@@ -25,14 +25,14 @@ export async function GET() {
       },
       {
         loc: 'https://www.sinersys.it/it',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'Presentazione prototipo APWEC, generatore di energia rinnovabile.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecintro.mp4',
         durationSeconds: 15,
       },{
         loc: 'https://www.sinersys.it/it',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'Presentazione prototipo APWEC, generatore di energia rinnovabile.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecintro1.mp4',
@@ -40,7 +40,7 @@ export async function GET() {
       },
       {
         loc: 'https://www.sinersys.it/en/apwec-energia-rinnovabile',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'APWEC prototype in operation, renewable energy generator.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w.mp4',
@@ -48,7 +48,7 @@ export async function GET() {
       },
       {
         loc: 'https://www.sinersys.it/en/apwec-energia-rinnovabile',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'APWEC prototype in operation, renewable energy generator.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w1.mp4',
@@ -56,7 +56,7 @@ export async function GET() {
       },
       {
         loc: 'https://www.sinersys.it/en/apwec-energia-rinnovabile',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'APWEC prototype in operation, renewable energy generator.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecprod_fixed_w2.mp4',
@@ -64,7 +64,7 @@ export async function GET() {
       },
       {
         loc: 'https://www.sinersys.it/en/',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'Presentation of the APWEC prototype, renewable energy generator.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecintro.mp4',
@@ -72,7 +72,7 @@ export async function GET() {
       },
       {
         loc: 'https://www.sinersys.it/en/',
-        title: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+        title: 'APWEC — Atmospheric Pressure Wind Energy Collector',
         description: 'Presentation of the APWEC prototype, renewable energy generator.',
         thumbnail: 'https://www.sinersys.it/full-logo-sinersys_blu.png',
         contentUrl: 'https://www.sinersys.it/apwecintro1.mp4',

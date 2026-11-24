@@ -393,11 +393,13 @@ function TeamCard({
                 </span>
               )}
             </div>
-            <div style={{
-              display: "flex",
-              flexDirection: "column",
-              flexFlow: "column-reverse"
-            }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                flexFlow: "column-reverse",
+              }}
+            >
               <h3
                 style={{
                   margin: 0,
@@ -487,7 +489,11 @@ const HERO_SLIDES: HeroSlide[] = [
     posDesktop: "-100px 0px",
     posMobile: "-290px 0px",
   },
-  { src: "/small_DSC_0005.png", alt: "Precursore APWEC", caption: "APWEC unità sperimentale funzionale con innesco laterale" },
+  {
+    src: "/small_DSC_0005.png",
+    alt: "Precursore APWEC",
+    caption: "APWEC unità sperimentale funzionale con innesco laterale",
+  },
   { src: "/small_img_1.png", alt: "", caption: "" },
   { src: "/record.png", alt: "Bieffe", caption: "Bieffe" },
   // { src: "/aboutusgallery/img_3.jpg", alt: "Archivio Motor Union", caption: "Passo... e chiudo" },
@@ -542,7 +548,11 @@ function HeroSlideshow({ isMobile }: { isMobile: boolean }) {
       <AnimatePresence>
         <m.div
           key={slide.src}
-          style={{ position: "absolute", inset: 0, willChange: "transform, opacity" }}
+          style={{
+            position: "absolute",
+            inset: 0,
+            willChange: "transform, opacity",
+          }}
           initial={{
             opacity: 0,
             // scale: reduceMotion ? 1 : kb.s0,
@@ -623,7 +633,13 @@ function HeroSlideshow({ isMobile }: { isMobile: boolean }) {
               }}
             >
               {i < index && (
-                <div style={{ position: "absolute", inset: 0, background: "rgba(255,255,255,0.85)" }} />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "rgba(255,255,255,0.85)",
+                  }}
+                />
               )}
               {i === index && (
                 <m.div
@@ -1358,12 +1374,9 @@ export default function AboutUsPage() {
                       {t("team.joinSubtitle")}
                     </p>
                   </div>
-                  <div
-                    style={{ pointerEvents: "auto" }}
-                    onClick={() => dispatch(setOpenContact(true))}
-                  >
+                  <div style={{ pointerEvents: "auto" }}>
                     <LinkButton
-                      link=""
+                      onClick={() => dispatch(setOpenContact(true))}
                       text={t("team.joinCta")}
                       icon={<ArrowUpRight size={20} />}
                       top="0"

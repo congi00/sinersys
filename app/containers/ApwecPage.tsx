@@ -1262,9 +1262,9 @@ export default function ApwecPage() {
                       {t("static.cta.subtitle")}
                     </p>
                   </div>
-                  <div style={{ pointerEvents: "auto" }} onClick={() => dispatch(setOpenContact(true))}>
+                  <div style={{ pointerEvents: "auto" }}>
                     <LinkButton
-                      link=""
+                      onClick={() => dispatch(setOpenContact(true))}
                       text={t("static.cta.link")}
                       icon={<ArrowUpRight size={20} />}
                       top="0"

@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         name: 'Cos\' è APWEC?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'APWEC (Autonomous Perpetual Wave Energy Converter) è un sistema brevettato Sinersys, un generatore di energia rinnovabile \nche utilizza la depressione del fluido aria, producendo elettricità in maniera continua'
+          text: 'APWEC (Atmospheric Pressure Wind Energy Collector) è un sistema brevettato Sinersys, un generatore di energia rinnovabile \nche utilizza la depressione del fluido aria, producendo elettricità in maniera continua'
         }
       },
       {
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const videoSchema = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter Presentation',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector Presentation',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const videoSchemaM = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter Presentation',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector Presentation',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
@@ -146,7 +146,7 @@ export default async function Page({ params }: Props) {
         name: 'Cos\' è APWEC?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'APWEC (Autonomous Perpetual Wave Energy Converter) è un sistema brevettato Sinersys, un generatore di energia rinnovabile \nche utilizza la depressione del fluido aria, producendo elettricità in maniera continua'
+          text: 'APWEC (Atmospheric Pressure Wind Energy Collector) è un sistema brevettato Sinersys, un generatore di energia rinnovabile \nche utilizza la depressione del fluido aria, producendo elettricità in maniera continua'
         }
       },
       {
@@ -163,7 +163,7 @@ export default async function Page({ params }: Props) {
   const videoSchema = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter Presentation',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector Presentation',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
@@ -176,7 +176,7 @@ export default async function Page({ params }: Props) {
   const videoSchemaM = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter Presentation',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector Presentation',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato

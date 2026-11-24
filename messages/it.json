@@ -116,6 +116,7 @@
   "contacts": {
     "drawerTitle": "AVVIA UNA COLLABORAZIONE STRATEGICA",
     "fields": {
+      "checkPartner": "Diventare partner industriale",
       "email": "Email *",
       "emailPlaceholder": "nome@azienda.com",
       "firstName": "Nome *",

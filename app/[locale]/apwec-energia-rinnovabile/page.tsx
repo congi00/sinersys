@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector',
     description: t('slide0.subtitle'),
     brand: { '@type': 'Brand', name: 'Sinersys' },
     manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   const videoSchema = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter in funzione',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector in funzione',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   const videoSchemaM = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter in funzione',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector in funzione',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   const videoSchemaB = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter in funzione',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector in funzione',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
@@ -104,7 +104,7 @@ export default async function Page({params} : Props) {
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector',
     description: t('slide0.subtitle'),
     brand: { '@type': 'Brand', name: 'Sinersys' },
     manufacturer: { '@type': 'Organization', name: 'Sinersys', url: 'https://www.sinersys.it' },
@@ -116,7 +116,7 @@ export default async function Page({params} : Props) {
   const videoSchema = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter in funzione',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector in funzione',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
@@ -129,7 +129,7 @@ export default async function Page({params} : Props) {
   const videoSchemaM = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter in funzione',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector in funzione',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato
@@ -142,7 +142,7 @@ export default async function Page({params} : Props) {
   const videoSchemaB = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'APWEC — Autonomous Perpetual Wave Energy Converter in funzione',
+    name: 'APWEC — Atmospheric Pressure Wind Energy Collector in funzione',
     description: t('slide0.subtitle'),
     thumbnailUrl: ['https://www.sinersys.it/full-logo-sinersys_blu.png'],
     uploadDate: '2026-07-06T00:00:00+01:00', // data reale di pubblicazione del girato

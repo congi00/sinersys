@@ -8,6 +8,7 @@ import {
   useTransform,
   useMotionValueEvent,
   useInView,
+  useScroll,
 } from "framer-motion";
 import Lenis from "lenis";
 import { useTranslations } from "next-intl";
@@ -492,7 +493,7 @@ export default function SixPhasePage() {
   }, []);
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const videoSrc = "/m6dD_compresso.mp4"
+  const videoSrc = "/m6dD_compresso.mp4";
   const videoDuration = useRef<number>(0);
 
   const handleVideoLoaded = useCallback(() => {
@@ -504,6 +505,7 @@ export default function SixPhasePage() {
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
+    if (vid.readyState === 0) vid.load();
     if (vid.readyState >= 1 /* HAVE_METADATA */ && vid.duration) {
       videoDuration.current = vid.duration;
       return;
@@ -511,6 +513,8 @@ export default function SixPhasePage() {
     const onReady = () => {
       if (vid.duration) videoDuration.current = vid.duration;
     };
+    const kick = () => { if (vid.readyState < 2) vid.load(); };
+    window.addEventListener("touchstart", kick, { once: true, passive: true });
     vid.addEventListener("loadedmetadata", onReady);
     vid.addEventListener("canplay", onReady);
     const fallbackTimer = window.setTimeout(() => {
@@ -519,6 +523,7 @@ export default function SixPhasePage() {
     return () => {
       vid.removeEventListener("loadedmetadata", onReady);
       vid.removeEventListener("canplay", onReady);
+      vid.removeEventListener("touchstart", onReady);
       clearTimeout(fallbackTimer);
     };
   }, [videoSrc]);
@@ -608,6 +613,7 @@ export default function SixPhasePage() {
   const VIDEO_START = 0;
   const VIDEO_END = 3.5;
   const pendingVideoProgress = useRef<number | null>(null);
+  const videoCurrent = useRef(0);
 
   useMotionValueEvent(smooth, "change", (p) => {
     pendingVideoProgress.current = Math.min(
@@ -621,15 +627,16 @@ export default function SixPhasePage() {
     const apply = () => {
       rafId = requestAnimationFrame(apply);
       const vid = videoRef.current;
-      if (
-        !vid ||
-        !videoDuration.current ||
-        pendingVideoProgress.current === null
-      )
-        return;
-      const targetTime = pendingVideoProgress.current * videoDuration.current;
-      if (Math.abs(vid.currentTime - targetTime) > 0.01) {
-        vid.currentTime = targetTime;
+      if (!vid || pendingVideoProgress.current === null) return;
+      const dur = vid.duration;
+      if (!dur || !isFinite(dur)) return; // legge la durata direttamente
+      const target = pendingVideoProgress.current * dur;
+      videoCurrent.current += (target - videoCurrent.current) * 0.25;
+      if (Math.abs(target - videoCurrent.current) < 0.005)
+        videoCurrent.current = target;
+      if (vid.seeking) return; // non accavallare i seek
+      if (Math.abs(vid.currentTime - videoCurrent.current) > 1 / 60) {
+        vid.currentTime = videoCurrent.current;
       }
     };
     rafId = requestAnimationFrame(apply);
@@ -640,6 +647,12 @@ export default function SixPhasePage() {
   const CONTENT_TOP = vh * (SCENES + (isMobile ? 7.6 : isXL ? 1.5 : 3));
   const SCROLL_VH = vh * (SCENES + (isXL ? 0 : isMobile ? 7.6 : 3));
   const totalHeight = SCROLL_VH + contentH;
+  const { scrollY } = useScroll();
+  const themeT = useTransform(
+    scrollY,
+    [CONTENT_TOP - vh * 0.9, CONTENT_TOP - vh * 0.3],
+    [0, 1]
+  );
 
   /* ── Motion values ────────────────────────────────────────────────────── */
   const headerTheme = useTransform(smooth, [3.8, 4.8, 7], [0, 0, 1]);
@@ -665,42 +678,16 @@ export default function SixPhasePage() {
 
   const bgOpacity = useTransform(smooth, [2.5, 3.2, 4.0, 4.3], [0, 1, 1, 0]);
 
-  const gradientPage = useTransform(
-    smooth,
-    [0, isMobile ? 3.6 : 4.0, 4.4],
-    [
-      "#F4F7FA",
-      "#F4F7FA",
-      "linear-gradient(160deg, #1c2e8e 0%, #0050c3 55%, #050b26 100%)",
-    ]
-  );
-
-  const gradientPageH = useTransform(
-    smooth,
-    [0, 2.4, isMobile ? 4.2 : 4.2, 4.4, 4.5],
-    [
-      "#F4F7FA",
-      "#F4F7FA",
-      "linear-gradient(-160deg, #1c2e8e 20%, #0050c3 55%, #050b26 100%)",
-      "linear-gradient(-160deg, #1c2e8e 20%, #0050c3 55%, #050b26 100%)",
-      "#F4F7FA",
-    ]
-  );
-
   const colorP = useTransform(
-    smooth,
-    [0, isMobile ? 3.6 : 3.9, isMobile ? 3.7 : 4.0],
-    ["#1c2e8e", "#1c2e8e", "rgba(160,196,255,0.7)"]
+    themeT,
+    [0, 1],
+    ["#1c2e8e", "rgba(160,196,255,0.7)"]
   );
-  const colorTitle = useTransform(
-    smooth,
-    [0, isMobile ? 3.6 : 3.9, isMobile ? 3.7 : 4.0],
-    ["#1c2e8e", "#1c2e8e", "#f4f7fa"]
-  );
+  const colorTitle = useTransform(themeT, [0, 1], ["#1c2e8e", "#f4f7fa"]);
   const colorSub = useTransform(
-    smooth,
-    [0, isMobile ? 3.6 : 3.9, isMobile ? 3.7 : 4.0],
-    ["#1c2e8e", "#1c2e8e", "rgba(200,218,250,0.72)"]
+    themeT,
+    [0, 1],
+    ["#1c2e8e", "rgba(200,218,250,0.72)"]
   );
 
   const contentRadius = useTransform(smooth, [5.6, 5.9], [0, 24]);
@@ -854,7 +841,8 @@ export default function SixPhasePage() {
                 objectFit: "cover",
                 zIndex: 2,
                 pointerEvents: "none",
-                filter: "brightness(0.25) sepia(0.) hue-rotate(190deg) saturate(2)",
+                filter:
+                  "brightness(0.25) sepia(0.) hue-rotate(190deg) saturate(2)",
               }}
             />
 
@@ -867,7 +855,7 @@ export default function SixPhasePage() {
                     : { textAlign: "center", top: "30%", maxWidth: "100vw" }
                 ),
                 ...s0,
-                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)"
+                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)",
               }}
             >
               <h4
@@ -911,7 +899,7 @@ export default function SixPhasePage() {
                     : { top: "30%", textAlign: "center", maxWidth: "100vw" }
                 ),
                 ...s1,
-                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)"
+                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)",
               }}
             >
               <h4
@@ -954,7 +942,7 @@ export default function SixPhasePage() {
                       }
                 ),
                 ...s2,
-                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)"
+                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)",
               }}
             >
               <h4
@@ -1000,7 +988,7 @@ export default function SixPhasePage() {
                     : { top: "30%", textAlign: "center", maxWidth: "100vw" }
                 ),
                 ...s3,
-                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)"
+                backgroundColor: "color(srgb 0 0.0435 0.265 / 0.25)",
               }}
             >
               <h4
@@ -1042,7 +1030,7 @@ export default function SixPhasePage() {
           style={{
             position: "absolute",
             top: CONTENT_TOP,
-            background: gradientPageH,
+            background: "#F4F7FA",
             left: 0,
             right: 0,
             zIndex: 11,
@@ -1055,180 +1043,196 @@ export default function SixPhasePage() {
               y: contentY,
               borderRadius: contentBR,
               overflow: "hidden",
-              background: gradientPage,
+              background: "#F4F7FA",
+              position: "relative",
               marginBottom: "20px",
             }}
           >
-            {/* About section */}
-            <section
+            <m.div
+              aria-hidden
               style={{
-                padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
+                position: "absolute",
+                inset: 0,
+                opacity: themeT,
+                pointerEvents: "none",
+                background:
+                  "linear-gradient(160deg, #1c2e8e 0%, #0050c3 55%, #050b26 100%)",
               }}
-              aria-labelledby="about"
-            >
-              <m.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            />
+            <div style={{ position: "relative" }}>
+              {/* About section */}
+              <section
+                style={{
+                  padding: "clamp(4rem,8vh,7rem) clamp(1.5rem,8vw,7rem)",
+                }}
+                aria-labelledby="about"
               >
-                <div style={{ display: "inline-flex", alignItems: "center" }}>
-                  <m.h4
-                    style={{ color: colorP }}
-                    className={clsx(SUPTITLE_CLASS, "mb-3 text-[#a0b8e8]")}
-                  >
-                    {t("static.label")}
-                  </m.h4>
-                </div>
+                <m.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div style={{ display: "inline-flex", alignItems: "center" }}>
+                    <m.h4
+                      style={{ color: colorP }}
+                      className={clsx(SUPTITLE_CLASS, "mb-3 text-[#a0b8e8]")}
+                    >
+                      {t("static.label")}
+                    </m.h4>
+                  </div>
 
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                      gap: "clamp(2rem,5vw,5rem)",
+                      alignItems: "start",
+                    }}
+                  >
+                    <m.h2
+                      style={{ margin: 0, lineHeight: 1.1, color: colorTitle }}
+                      className={clsx(
+                        HERO_TITLE_CLASS,
+                        "sm:whitespace-pre-line"
+                      )}
+                    >
+                      {t("static.title")}
+                    </m.h2>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                      }}
+                    >
+                      <m.p
+                        style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
+                        className={clsx(
+                          PRODUCT_CONTENT_CLASS,
+                          "mt-4 whitespace-pre-line "
+                        )}
+                      >
+                        {t("static.p1")}
+                      </m.p>
+                      <m.p
+                        style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
+                        className={clsx(
+                          PRODUCT_CONTENT_CLASS,
+                          "mt-4 whitespace-pre-line"
+                        )}
+                      >
+                        {t("static.p2")}
+                      </m.p>
+                    </div>
+                  </div>
+                </m.div>
+              </section>
+
+              <div
+                style={{
+                  height: "1px",
+                  background: "rgba(255,255,255,0.07)",
+                  margin: "0 clamp(1.5rem,8vw,7rem)",
+                }}
+              />
+
+              {/* Feature cards */}
+              <section
+                style={{
+                  padding: "clamp(3rem,6vh,5rem) clamp(1.5rem,8vw,7rem)",
+                }}
+                aria-labelledby="feature-cards"
+              >
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                    gap: "clamp(2rem,5vw,5rem)",
-                    alignItems: "start",
+                    gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)",
+                    gap: "clamp(1rem,2vw,1.4rem)",
                   }}
                 >
-                  <m.h2
-                    style={{ margin: 0, lineHeight: 1.1, color: colorTitle }}
-                    className={clsx(HERO_TITLE_CLASS, "sm:whitespace-pre-line")}
-                  >
-                    {t("static.title")}
-                  </m.h2>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "1rem",
-                    }}
-                  >
-                    <m.p
-                      style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
-                      className={clsx(
-                        PRODUCT_CONTENT_CLASS,
-                        "mt-4 whitespace-pre-line "
-                      )}
-                    >
-                      {t("static.p1")}
-                    </m.p>
-                    <m.p
-                      style={{ margin: 0, lineHeight: 1.2, color: colorSub }}
-                      className={clsx(
-                        PRODUCT_CONTENT_CLASS,
-                        "mt-4 whitespace-pre-line"
-                      )}
-                    >
-                      {t("static.p2")}
-                    </m.p>
-                  </div>
-                </div>
-              </m.div>
-            </section>
-
-            <div
-              style={{
-                height: "1px",
-                background: "rgba(255,255,255,0.07)",
-                margin: "0 clamp(1.5rem,8vw,7rem)",
-              }}
-            />
-
-            {/* Feature cards */}
-            <section
-              style={{
-                padding: "clamp(3rem,6vh,5rem) clamp(1.5rem,8vw,7rem)",
-              }}
-              aria-labelledby="feature-cards"
-            >
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)",
-                  gap: "clamp(1rem,2vw,1.4rem)",
-                }}
-              >
-                {(["f0", "f1", "f2"] as const).map((k, i) => (
-                  <m.div
-                    key={k}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{
-                      duration: 0.6,
-                      delay: i * 0.1,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                  >
-                    <GlassCard
-                      style={{
-                        padding: "clamp(1.4rem,2.5vw,2.2rem)",
-                        height: "100%",
+                  {(["f0", "f1", "f2"] as const).map((k, i) => (
+                    <m.div
+                      key={k}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{
+                        duration: 0.6,
+                        delay: i * 0.1,
+                        ease: [0.22, 1, 0.36, 1],
                       }}
                     >
-                      <h4
+                      <GlassCard
                         style={{
-                          margin: "0 0 0.5rem",
-                          color: "rgba(100,150,255,0.75)",
-                          lineHeight: "1.0",
-                          textAlign: "center",
+                          padding: "clamp(1.4rem,2.5vw,2.2rem)",
+                          height: "100%",
                         }}
-                        className={clsx(
-                          SUPTITLE_CLASS,
-                          "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 mt-3 sm:mt-5"
-                        )}
                       >
-                        {t(`static.${k}.label`)}
-                      </h4>
-                      <h3
-                        style={{
-                          margin: "0 0 0.6rem",
-                          lineHeight: 1.1,
-                          color: "#f4f7fa",
-                          textAlign: "center",
-                        }}
-                        className={clsx(
-                          PRODUCT_TITLE_CARD,
-                          "sm:whitespace-pre-line"
-                        )}
-                      >
-                        {t(`static.${k}.title`)}
-                      </h3>
-                      <p
-                        style={{
-                          margin: 0,
-                          lineHeight: 1.3,
-                          color: "rgba(200,218,250,0.62)",
-                          textAlign: "center",
-                        }}
-                        className={clsx(
-                          HERO_SUBTITLE_CLASS,
-                          "font-stretch-extra-expanded mt-4 whitespace-pre-line"
-                        )}
-                      >
-                        {t(`static.${k}.description`)}
-                      </p>
-                    </GlassCard>
-                  </m.div>
-                ))}
-              </div>
-            </section>
+                        <h4
+                          style={{
+                            margin: "0 0 0.5rem",
+                            color: "rgba(100,150,255,0.75)",
+                            lineHeight: "1.0",
+                            textAlign: "center",
+                          }}
+                          className={clsx(
+                            SUPTITLE_CLASS,
+                            "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 mt-3 sm:mt-5"
+                          )}
+                        >
+                          {t(`static.${k}.label`)}
+                        </h4>
+                        <h3
+                          style={{
+                            margin: "0 0 0.6rem",
+                            lineHeight: 1.1,
+                            color: "#f4f7fa",
+                            textAlign: "center",
+                          }}
+                          className={clsx(
+                            PRODUCT_TITLE_CARD,
+                            "sm:whitespace-pre-line"
+                          )}
+                        >
+                          {t(`static.${k}.title`)}
+                        </h3>
+                        <p
+                          style={{
+                            margin: 0,
+                            lineHeight: 1.3,
+                            color: "rgba(200,218,250,0.62)",
+                            textAlign: "center",
+                          }}
+                          className={clsx(
+                            HERO_SUBTITLE_CLASS,
+                            "font-stretch-extra-expanded mt-4 whitespace-pre-line"
+                          )}
+                        >
+                          {t(`static.${k}.description`)}
+                        </p>
+                      </GlassCard>
+                    </m.div>
+                  ))}
+                </div>
+              </section>
 
-            {/* ── HOW IT WORKS ─────────────────────────────────────────── */}
-            <HowItWorksSection t={t} isMobile={isMobile} />
+              {/* ── HOW IT WORKS ─────────────────────────────────────────── */}
+              <HowItWorksSection t={t} isMobile={isMobile} />
 
-            {/* ── ADVANTAGES ───────────────────────────────────────────── */}
-            <AdvantagesSection t={t} isMobile={isMobile} />
+              {/* ── ADVANTAGES ───────────────────────────────────────────── */}
+              <AdvantagesSection t={t} isMobile={isMobile} />
 
-            <div
-              style={{
-                height: "1px",
-                background: "rgba(255,255,255,0.07)",
-                margin: "0 clamp(1.5rem,8vw,7rem)",
-              }}
-            />
+              <div
+                style={{
+                  height: "1px",
+                  background: "rgba(255,255,255,0.07)",
+                  margin: "0 clamp(1.5rem,8vw,7rem)",
+                }}
+              />
 
-            {/* CTA */}
-            {/* <section
+              {/* CTA */}
+              {/* <section
               style={{
                 padding: "clamp(3rem,6vh,5rem) clamp(1.5rem,8vw,7rem) clamp(4rem,8vh,7rem)",
               }}
@@ -1280,6 +1284,7 @@ export default function SixPhasePage() {
                 </GlassCard>
               </m.div>
             </section> */}
+            </div>
           </m.div>
 
           {/* Whitespace gap before footer */}

@@ -68,6 +68,8 @@ export default function Home() {
   const navigationState = useAppSelector((s) => s.siteState.navigationState);
   const dispatch = useAppDispatch();
   const { lenis, isTouch, requestResize } = useLenis();
+  const [partnerIntent, setPartnerIntent] = useState(false)
+  const f = useTranslations("contacts.fields");
 
   
   const [width, setWidth] = useState(1024);
@@ -522,9 +524,7 @@ export default function Home() {
           progressMotion={smooth}
           isMobile={isMobile}
           vhUnit={vhUnit}
-          setOpen={() => {
-            dispatch(setOpenContact(true));
-          }}
+          setOpen={() => { setPartnerIntent(true); dispatch(setOpenContact(true)); }}
         />
 
         {/* ── FAQ — absolute, on white bg, after CTA ───────────────────────── */}
@@ -595,9 +595,11 @@ export default function Home() {
 
         <ContactDrawer
           open={openContact}
+          defaultInterests={partnerIntent ? [f("checkPartner")] : []}
           onClose={() => {
             dispatch(setOpenContact(false));
             dispatch(setNavigationState(0));
+            setPartnerIntent(false)
           }}
         />
       </div>

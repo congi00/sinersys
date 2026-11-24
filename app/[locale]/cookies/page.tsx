@@ -5,7 +5,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     const { locale } = await params;
     const t = await getTranslations({ locale: locale, namespace: 'cookies' });
     return {
-      title: t('title'),   // es. 'APWEC — Autonomous Perpetual Wave Energy Converter'
+      title: t('title'),
       description: t('subtitle'),
       alternates: {
         canonical: `https://www.sinersys.it/${locale}/cookies`,

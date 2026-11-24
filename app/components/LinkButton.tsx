@@ -13,7 +13,8 @@ import {
 import clsx from "clsx";
 
 interface Props {
-  link: string;
+  link?: string; 
+  onClick?: () => void;
   text: string;
   icon: ReactElement;
   top: string;
@@ -21,7 +22,7 @@ interface Props {
   fontSize?: string;
 }
 
-export default function LinkButton({ link, text, icon, top, color, fontSize }: Props) {
+export default function LinkButton({ link, text, icon, top, color, fontSize, onClick }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   const mx = useMotionValue(0);
@@ -67,76 +68,76 @@ export default function LinkButton({ link, text, icon, top, color, fontSize }: P
     my.set(0);
   }
 
-  return (
-    <Link href={link} className="inline-flex mt-8" title={text}>
-      <m.div
-        ref={ref}
-        onMouseMove={handleMove}
-        onMouseLeave={reset}
-        onClick={triggerPop}
-        onFocus={triggerPop}
-        whileTap={{ scale: 0.94 }}
-        style={{
-          scaleX: stretchX,
-          scaleY: stretchY,
-          top: top,
-          color: color,
-          fontSize: fontSize ? fontSize : ""
-        }}
-        whileHover="hover"
-        initial="rest"
-        animate="rest"
-        variants={{
-          rest: { paddingRight: "5rem" },
-          hover: { paddingRight: "6.5rem" },
-        }}
-        transition={{ type: "spring", stiffness: 200, damping: 18 }}
-        className={clsx(
-          "relative flex items-center",
-          "min-h-[3.5rem] py-3 pl-4",
-          "rounded-full",
-          "backdrop-blur-2xl",
-          "bg-white/10",
-          "border border-white/20",
-          "shadow-[0_8px_40px_rgba(0,0,0,0.25)]",
-          "text-[#f4f7fa] text-base sm:text-2xl font-medium",
-          "overflow-hidden",
-          "whitespace-nowrap"
-        )}
-      >
-        {text}
+  const inner = (<m.div
+    ref={ref}
+    onMouseMove={handleMove}
+    onMouseLeave={reset}
+    onClick={triggerPop}
+    onFocus={triggerPop}
+    whileTap={{ scale: 0.94 }}
+    style={{
+      scaleX: stretchX,
+      scaleY: stretchY,
+      top: top,
+      color: color,
+      fontSize: fontSize ? fontSize : ""
+    }}
+    whileHover="hover"
+    initial="rest"
+    animate="rest"
+    variants={{
+      rest: { paddingRight: "5rem" },
+      hover: { paddingRight: "6.5rem" },
+    }}
+    transition={{ type: "spring", stiffness: 200, damping: 18 }}
+    className={clsx(
+      "relative flex items-center",
+      "min-h-[3.5rem] py-3 pl-4",
+      "rounded-full",
+      "backdrop-blur-2xl",
+      "bg-white/10",
+      "border border-white/20",
+      "shadow-[0_8px_40px_rgba(0,0,0,0.25)]",
+      "text-[#f4f7fa] text-base sm:text-2xl font-medium",
+      "overflow-hidden",
+      "whitespace-nowrap"
+    )}
+  >
+    {text}
 
-        <AnimatePresence>
-          {!popping && (
-            <m.div
-              key="bubble"
-              style={{ borderRadius: blobRadius }}
-              initial={{ scale: 1 }}
-              animate={{ scale: 1 }}
-              exit={{
-                scale: [1, 1.35, 1.8],
-                opacity: [1, 1, 0],
-                filter: ["blur(0px)", "blur(0px)", "blur(6px)"],
-                x: [0, 6, 12],
-              }}
-              transition={{
-                duration: 0.55,
-                times: [0, 0.4, 1],
-                ease: "easeOut",
-              }}
-              className={clsx(
-                "absolute right-2",
-                "w-12 h-12",
-                "flex items-center justify-center",
-                "backdrop-blur-md",
-                "bg-white/20 border border-white/30"
-              )}
-            >
-              {icon}
-            </m.div>
+    <AnimatePresence>
+      {!popping && (
+        <m.div
+          key="bubble"
+          style={{ borderRadius: blobRadius }}
+          initial={{ scale: 1 }}
+          animate={{ scale: 1 }}
+          exit={{
+            scale: [1, 1.35, 1.8],
+            opacity: [1, 1, 0],
+            filter: ["blur(0px)", "blur(0px)", "blur(6px)"],
+            x: [0, 6, 12],
+          }}
+          transition={{
+            duration: 0.55,
+            times: [0, 0.4, 1],
+            ease: "easeOut",
+          }}
+          className={clsx(
+            "absolute right-2",
+            "w-12 h-12",
+            "flex items-center justify-center",
+            "backdrop-blur-md",
+            "bg-white/20 border border-white/30"
           )}
-        </AnimatePresence>
-      </m.div>
-    </Link>
-  );
+        >
+          {icon}
+        </m.div>
+      )}
+    </AnimatePresence>
+  </m.div>)
+
+  return link
+  ? <Link href={link} className="inline-flex mt-8" title={text}>{inner}</Link>
+  : <button type="button" onClick={onClick} className="inline-flex mt-8 cursor-pointer" title={text}>{inner}</button>;
 }

@@ -17,12 +17,13 @@ import { BODY_TEXT_CLASS, CONTACT_TITLE_CLASS } from "../typography";
 
 interface Props {
   open: Boolean;
+  defaultInterests?: string[]
   onClose: () => void;
 }
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export default function ContactDrawer({ open, onClose }: Props) {
+export default function ContactDrawer({ open, onClose, defaultInterests }: Props) {
   const t = useTranslations("contacts");
   const f = useTranslations("contacts.fields");
 
@@ -44,6 +45,8 @@ export default function ContactDrawer({ open, onClose }: Props) {
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
+
+  useEffect(() => { if (open && defaultInterests?.length) setInterests(defaultInterests); }, [open]);
 
   // Reset al richiudersi
   useEffect(() => {
@@ -294,6 +297,11 @@ export default function ContactDrawer({ open, onClose }: Props) {
                         label={f("check5")}
                         checked={interests.includes(f("check5"))}
                         onChange={() => toggleInterest(f("check5"))}
+                      />
+                      <Checkbox
+                        label={f("checkPartner")}
+                        checked={interests.includes(f("checkPartner"))}
+                        onChange={() => toggleInterest(f("checkPartner"))}
                       />
                       {errors.interests && (
                         <p className="mt-2 text-sm text-red-300">

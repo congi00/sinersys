@@ -6,7 +6,12 @@ import clsx from "clsx";
 import LinkButton from "../components/LinkButton";
 import { ArrowUpRight } from "@deemlol/next-icons";
 import { useTranslations } from "next-intl";
-import { HERO_SUBTITLE_CLASS, HERO_TITLE_CLASS, PRODUCT_TITLE_CARD, SUPTITLE_CLASS } from "../typography";
+import {
+  HERO_SUBTITLE_CLASS,
+  HERO_TITLE_CLASS,
+  PRODUCT_TITLE_CARD,
+  SUPTITLE_CLASS,
+} from "../typography";
 import Image from "next/image";
 
 interface Props {
@@ -15,7 +20,7 @@ interface Props {
 }
 
 export default function CallToActionHome({ progressMotion, setOpen }: Props) {
-  const videoRef  = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const homeTexts = useTranslations("homepage");
 
   // ── inset & borderRadius animation ────────────────────────────────────────
@@ -26,15 +31,23 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
   //   7.2   → CTA shrinks back  (inset:16 radius:24)
   //
   // Expressed as CSS shorthand via useTransform on a number, then converted.
-  const inset  = useTransform(progressMotion, [6.2, 7.0, 7.1, 7.8], [16, 0, 0, 16]);
-  const radius = useTransform(progressMotion, [6.2, 7.0, 7.1, 7.8], [24, 0, 0, 24]);
+  const inset = useTransform(
+    progressMotion,
+    [6.2, 7.0, 7.1, 7.8],
+    [16, 0, 0, 16]
+  );
+  const radius = useTransform(
+    progressMotion,
+    [6.2, 7.0, 7.1, 7.8],
+    [24, 0, 0, 24]
+  );
 
-  const insetStr  = useTransform(inset,  (v) => `${v}px`);
+  const insetStr = useTransform(inset, (v) => `${v}px`);
   const radiusStr = useTransform(radius, (v) => `${v}px`);
 
   // Content fade-in: appears as CTA expands to fullscreen
   const contentOpacity = useTransform(progressMotion, [6.4, 6.8], [0, 1]);
-  const contentY       = useTransform(progressMotion, [6.4, 6.8], [30, 0]);
+  const contentY = useTransform(progressMotion, [6.4, 6.8], [30, 0]);
 
   // Autoplay video
   useEffect(() => {
@@ -49,15 +62,21 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
   return (
     <m.div
       style={{
-        position:     "absolute",
-        inset:        insetStr,
+        position: "absolute",
+        inset: insetStr,
         borderRadius: radiusStr,
-        overflow:     "hidden",
-        zIndex:       1,
+        overflow: "hidden",
+        zIndex: 1,
       }}
     >
       {/* ── Video background ─────────────────────────────────────────────── */}
-      <video autoPlay loop muted playsInline aria-hidden="true" style={{
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+        style={{
           position: "absolute",
           inset: 0,
           width: "100%",
@@ -65,89 +84,98 @@ export default function CallToActionHome({ progressMotion, setOpen }: Props) {
           objectFit: "cover",
           objectPosition: "center",
         }}
-        poster="/sinVidr.png">
+        poster="/sinVidr.png"
+      >
         <source src="/sinVidr.webm" type="video/webm" />
-        <img  width= "100" height= "100" src="/sinVidr.png" alt="" /> {/* fallback */}
+        <img width="100" height="100" src="/sinVidr.png" alt="" />{" "}
+        {/* fallback */}
       </video>
 
       {/* ── Overlay: dark gradient + subtle colour tint ───────────────────── */}
-      <div style={{
-        position:   "absolute",
-        inset:      0,
-        background: [
-          "linear-gradient(to bottom, rgba(8,16,52,0.65) 0%, rgba(8,16,52,0.40) 40%, rgba(8,16,52,0.72) 100%)",
-          "linear-gradient(135deg, rgba(28,57,142,0.30) 0%, transparent 60%)",
-        ].join(", "),
-        pointerEvents: "none",
-      }} />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: [
+            "linear-gradient(to bottom, rgba(8,16,52,0.65) 0%, rgba(8,16,52,0.40) 40%, rgba(8,16,52,0.72) 100%)",
+            "linear-gradient(135deg, rgba(28,57,142,0.30) 0%, transparent 60%)",
+          ].join(", "),
+          pointerEvents: "none",
+        }}
+      />
 
       {/* ── Content ──────────────────────────────────────────────────────── */}
       <m.div
         style={{
-          position:  "relative",
-          zIndex:    2,
-          height:    "100%",
-          display:   "flex",
+          position: "relative",
+          zIndex: 2,
+          height: "100%",
+          display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding:   "clamp(1vw, 7vw, 20vw)",
-          opacity:   contentOpacity,
-          y:         contentY,
+          padding: "clamp(1vw, 7vw, 20vw)",
+          opacity: contentOpacity,
+          y: contentY,
         }}
         className="text-center"
       >
         {/* Suptitle */}
-        <h3 style={{
-          margin:        0,
-          textTransform: "uppercase",
-          color:         "rgba(180,210,255,0.75)",
-          marginBottom:  "0.6rem",
-          lineHeight: "1",
-        }}
-        className={clsx(
-          SUPTITLE_CLASS,
-          "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]",
-        )}
+        <h3
+          style={{
+            margin: 0,
+            textTransform: "uppercase",
+            color: "rgba(180,210,255,0.75)",
+            marginBottom: "0.6rem",
+            lineHeight: "1",
+          }}
+          className={clsx(
+            SUPTITLE_CLASS,
+            "[text-shadow:0_0px_0px_rgba(0,0,0,0.2)] mb-3 px-3 sm:px-0 mt-3 sm:mt-5 text-[#a0b8e8]"
+          )}
         >
           {homeTexts("cta.suptitle")}
         </h3>
 
         {/* Title */}
-        <h3 style={{
-          margin:        0,
-          lineHeight:    1.0,
-          color:         "#f4f7fa",
-          marginBottom:  "10px",
-        }}
+        <h3
+          style={{
+            margin: 0,
+            lineHeight: 1.0,
+            color: "#f4f7fa",
+            marginBottom: "10px",
+          }}
           className={clsx(
             HERO_TITLE_CLASS,
-            "px-3 sm:px-2 mt-3 text-[#f4f7fa] font-bold sm:whitespace-pre-line")}
+            "px-3 sm:px-2 mt-3 text-[#f4f7fa] font-bold sm:whitespace-pre-line"
+          )}
         >
           {homeTexts("cta.title")}
         </h3>
 
         {/* Subtitle */}
-        <p style={{
-          margin:      0,
-          lineHeight:  1.2,
-          color:       "rgba(200,218,250,0.72)",
-          marginBottom: "0.5rem",
-        }}
-        className={clsx(
-          HERO_SUBTITLE_CLASS,
-          "sm:px-[300px] mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light")}
+        <p
+          style={{
+            margin: 0,
+            lineHeight: 1.2,
+            color: "rgba(200,218,250,0.72)",
+            marginBottom: "0.5rem",
+          }}
+          className={clsx(
+            HERO_SUBTITLE_CLASS,
+            "sm:px-[300px] mt-6 sm:mt-5 sm:mb-5 text-[#c8d8f8] font-light"
+          )}
         >
           {homeTexts("cta.subtitle")}
         </p>
 
         {/* LinkButton */}
-        <div style={{ pointerEvents: "auto" }} onClick={() => setOpen()}>
+        <div style={{ pointerEvents: "auto" }}>
           <LinkButton
-            link="/"
             text={homeTexts("cta.link")}
             icon={<ArrowUpRight size={20} className="text-[#f4f7fa]" />}
             top="0"
             color={linkColor}
+            onClick={() => setOpen()}
           />
         </div>
       </m.div>
