@@ -103,15 +103,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'x-default': 'https://www.sinersys.it/it', 
       },
     },
-    other: {
-      "script:ld+json": [
-        JSON.stringify(productSchema),
-        JSON.stringify(breadcrumb),
-        JSON.stringify(faqSchema),
-        JSON.stringify(videoSchema),
-        JSON.stringify(videoSchemaM)
-      ]
-    },
   };
 }
 

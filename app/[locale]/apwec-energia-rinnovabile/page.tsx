@@ -86,15 +86,6 @@ export async function generateMetadata({ params }: { params: { locale: string } 
         'fr': 'https://www.sinersys.it/fr/apwec-energia-rinnovabile',
         'x-default': 'https://www.sinersys.it/it/apwec-energia-rinnovabile', },
     },
-    other: {
-      "script:ld+json": [
-        JSON.stringify(productSchema),
-        JSON.stringify(breadcrumb),
-        JSON.stringify(videoSchema),
-        JSON.stringify(videoSchemaM),
-        JSON.stringify(videoSchemaB),
-      ]
-    },
   };
 }
 

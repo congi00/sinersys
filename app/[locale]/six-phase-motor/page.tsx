@@ -48,18 +48,43 @@ export async function generateMetadata({
         fr: "/fr/six-phase-motor",
       },
     },
-    other: {
-      "script:ld+json": [
-        JSON.stringify(productSchema),
-        JSON.stringify(breadcrumb),
-      ],
-    },
   };
 }
 
-export default function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "motore6fasi" });
+  const product = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: t("slide0.title"),
+    description: t("slide0.subtitle"),
+    brand: { "@type": "Brand", name: "Sinersys" },
+    manufacturer: {
+      "@type": "Organization",
+      name: "Sinersys",
+      url: "https://www.sinersys.it",
+    },
+    category: "Renewable Energy Technology",
+  };
+  const breadcrumb = buildBreadcrumb(locale, [
+    { name: "Home", path: "/" },
+    { name: "Six Phase Motor", path: "/six-phase-motor" },
+  ]);
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(product) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
       <SixPhasePage />
     </>
   );
